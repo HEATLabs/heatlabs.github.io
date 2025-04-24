@@ -1,0 +1,147 @@
+/* Guides Page Specific Styles */
+.category-section {
+	margin-bottom: 4rem;
+}
+
+.guides-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 2rem;
+}
+
+.guide-card {
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	overflow: hidden;
+	box-shadow: var(--shadow);
+	transition: all var(--transition-speed);
+	border: 1px solid var(--border-color);
+	opacity: 1;
+	/* Changed from 0 to 1 to make cards visible by default */
+	transform: translateY(0);
+	/* Changed from 20px to 0 */
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.guide-card.animated {
+	opacity: 1;
+	transform: translateY(0);
+	transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.guide-card:hover {
+	transform: translateY(-0.5rem) !important;
+	box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+}
+
+.guide-img-container {
+	position: relative;
+	height: 180px;
+	overflow: hidden;
+	flex-shrink: 0;
+}
+
+.guide-img-container img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform var(--transition-speed);
+}
+
+.guide-card:hover .guide-img-container img {
+	transform: scale(1.05);
+}
+
+.guide-difficulty {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	background-color: var(--accent-color);
+	color: white;
+	padding: 0.25rem 0.75rem;
+	border-radius: 1rem;
+	font-size: 0.75rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.guide-content {
+	padding: 1.5rem;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.guide-content h4 {
+	font-size: 1.25rem;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+	color: var(--text-primary);
+}
+
+.guide-author {
+	color: var(--accent-color);
+	font-size: 0.9rem;
+	margin-bottom: 1rem;
+	font-weight: 500;
+}
+
+.guide-excerpt {
+	color: var(--text-secondary);
+	margin-bottom: 1.5rem;
+	font-size: 0.95rem;
+	line-height: 1.5;
+	flex-grow: 1;
+}
+
+/* Category header improvements */
+.category-section h3 {
+	position: relative;
+	padding-bottom: 0.5rem;
+}
+
+.category-section h3::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 50px;
+	height: 3px;
+	background-color: var(--accent-color);
+	border-radius: 3px;
+}
+
+/* View All link styling */
+.category-section a[href="#"] {
+	display: inline-flex;
+	align-items: center;
+	transition: all 0.2s ease;
+}
+
+.category-section a[href="#"]:hover {
+	transform: translateX(3px);
+}
+
+.category-section a[href="#"]::after {
+	content: '→';
+	margin-left: 0.5rem;
+	transition: all 0.2s ease;
+}
+
+.category-section a[href="#"]:hover::after {
+	transform: translateX(2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.guides-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.category-section h3 {
+		font-size: 1.5rem;
+	}
+}
