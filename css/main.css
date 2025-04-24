@@ -414,7 +414,6 @@ body {
 }
 
 .feature-card:hover {
-	transform: translateY(-0.5rem) !important;
 	box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
 }
 
@@ -574,7 +573,7 @@ body {
 
 .btn-accent:hover {
 	background-color: var(--accent-color-hover);
-	transform: translateY(-0.125rem);
+	transform: scale(1.02);
 	box-shadow: 0 0.25rem 0.5rem rgba(255, 131, 0, 0.3);
 }
 
@@ -628,7 +627,7 @@ body {
 }
 
 .cta-button:hover {
-	transform: translateY(-0.1875rem);
+	transform: scale(1.02);
 	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
 }
 
@@ -690,7 +689,7 @@ body {
 
 .social-icon:hover {
 	background-color: var(--accent-color);
-	transform: translateY(-0.1875rem);
+	transform: scale(1.05);
 }
 
 .footer-links h3,
