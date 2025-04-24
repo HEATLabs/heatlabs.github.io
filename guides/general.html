@@ -222,49 +222,83 @@
         </div>
       </section>
       <!-- Footer -->
-      <footer class="footer">
-        <div class="container mx-auto px-4">
-          <div class="footer-grid">
-            <div class="footer-brand text-center">
-              <h3>PCWStats</h3>
-              <p>Your go-to resource for Project CW statistics and gameplay information.</p>
-              <div class="social-icons">
-                <a href="#" class="social-icon">
-                  <i class="fab fa-discord"></i>
-                </a>
-                <a href="#" class="social-icon">
-                  <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="social-icon">
-                  <i class="fab fa-reddit"></i>
-                </a>
-                <a href="#" class="social-icon">
-                  <i class="fab fa-youtube"></i>
-                </a>
-              </div>
+      <footer class="footer bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-10 space-y-10">
+          <!-- Top Row -->
+          <div class="footer-brand flex flex-col items-center text-center">
+            <div>
+              <h3 class="text-2xl font-semibold">PCWStats</h3>
+              <p class="text-gray-400">Your go-to resource for Project CW statistics and gameplay information.</p>
             </div>
-            <div class="footer-links text-center">
-              <h3>Quick Links</h3>
-              <ul>
+            <div class="flex space-x-4 text-xl">
+              <a href="https://discord.com/invite/2nHHHBWNDw" class="social-icon">
+                <i class="fab fa-discord"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-reddit"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Middle Row -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Tools</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="#">Check & Compare</a>
+                </li>
                 <li>
                   <a href="#">Tank Statistics</a>
                 </li>
                 <li>
-                  <a href="#">Comparison Tool</a>
-                </li>
-                <li>
-                  <a href="#">Maps</a>
+                  <a href="#">Player Statistics</a>
                 </li>
               </ul>
             </div>
-            <div class="footer-contact text-center">
-              <h3>Contact</h3>
-              <p>Have suggestions or found a bug?</p>
-              <button class="btn-accent mt-4">
-                <i class="fas fa-envelope mr-2"></i>Send Feedback </button>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Community</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../guides.html">Community Guides</a>
+                </li>
+                <li>
+                  <a href="#">Common Builds</a>
+                </li>
+                <li>
+                  <a href="#">Map Knowledge</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Legal</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="#">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="#">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="#">Project License</a>
+                </li>
+              </ul>
             </div>
           </div>
-          <div class="footer-bottom">
+          <!-- Contact Row -->
+          <div class="text-center">
+            <h3 class="text-lg font-semibold mb-1">Contact</h3>
+            <p class="text-gray-400 mb-2">Have suggestions or found a bug?</p>
+            <a href="#" class="btn-accent mt-4">
+              <i class="fas fa-envelope mr-2"></i>Send Feedback </a>
+          </div>
+          <!-- Bottom Disclaimer -->
+          <div class="text-center text-sm text-gray-500 space-y-1 border-t border-gray-700 pt-4">
             <p>PCWStats is a community-made project and is not associated with, endorsed by, or affiliated with Project CW or Wargaming.net.</p>
             <p>&copy; 2025 PCWStats. All rights reserved.</p>
           </div>
