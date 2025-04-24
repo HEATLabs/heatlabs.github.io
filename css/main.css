@@ -1,3 +1,7 @@
+html {
+	scroll-behavior: smooth;
+}
+
 :root {
 	--accent-color: #ff8300;
 	--accent-color-hover: #e67600;
