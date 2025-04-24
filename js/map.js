@@ -44,19 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeMapPageElements() {
-    // Add any map-specific interactive elements here
-    // For example, image gallery lightbox functionality
-
-    // Example: Simple image gallery click handler
-    const galleryThumbnails = document.querySelectorAll('.gallery-thumbnail');
-    galleryThumbnails.forEach(thumbnail => {
-        thumbnail.addEventListener('click', function(e) {
-            e.preventDefault();
-            // In a real implementation, you'd open a lightbox here
-            // For now, just follow the link
-            window.open(this.href, '_blank');
-        });
-    });
+    // Initialize image gallery
+    initializeImageGallery();
 
     // FAQ Accordion functionality
     const faqItems = document.querySelectorAll('.faq-item');
@@ -92,5 +81,188 @@ function initializeMapPageElements() {
         document.querySelectorAll('.map-image, .sidebar-card').forEach(el => {
             observer.observe(el);
         });
+    }
+}
+
+function initializeImageGallery() {
+    const galleryModal = document.getElementById('galleryModal');
+    const galleryMainImage = document.getElementById('galleryMainImage');
+    const galleryImageCaption = document.getElementById('galleryImageCaption');
+    const galleryThumbnailsContainer = document.getElementById('galleryThumbnailsContainer');
+    const galleryCloseBtn = document.getElementById('galleryCloseBtn');
+    const galleryPrevBtn = document.getElementById('galleryPrevBtn');
+    const galleryNextBtn = document.getElementById('galleryNextBtn');
+
+    // Collect all images from the page that should be in the gallery
+    const galleryImages = [];
+
+    // Add main content images
+    document.querySelectorAll('.map-image img').forEach(img => {
+        galleryImages.push({
+            src: img.src,
+            alt: img.alt,
+            caption: img.nextElementSibling?.textContent || ''
+        });
+    });
+
+    // Add sidebar gallery images
+    document.querySelectorAll('.sidebar-card .gallery-thumbnail img').forEach(img => {
+        galleryImages.push({
+            src: img.parentElement.href,
+            alt: img.alt,
+            caption: img.alt
+        });
+    });
+
+    // If no images found, don't initialize the gallery
+    if (galleryImages.length === 0) return;
+
+    let currentImageIndex = 0;
+
+    // Function to open the gallery at a specific index
+    function openGallery(index) {
+        if (index < 0 || index >= galleryImages.length) return;
+
+        currentImageIndex = index;
+        updateGalleryImage();
+        galleryModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Function to update the gallery with current image
+    function updateGalleryImage() {
+        const currentImage = galleryImages[currentImageIndex];
+        galleryMainImage.src = currentImage.src;
+        galleryMainImage.alt = currentImage.alt;
+        galleryImageCaption.textContent = currentImage.caption;
+
+        // Update active thumbnail
+        document.querySelectorAll('.gallery-thumbnail-item').forEach((thumb, idx) => {
+            thumb.classList.toggle('active', idx === currentImageIndex);
+        });
+
+        // Scroll thumbnails to show active one
+        const activeThumb = document.querySelector('.gallery-thumbnail-item.active');
+        if (activeThumb) {
+            activeThumb.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'center'
+            });
+        }
+    }
+
+    // Function to close the gallery
+    function closeGallery() {
+        galleryModal.classList.remove('active');
+        document.body.style.overflow = '';
+        galleryMainImage.classList.remove('zoomed');
+    }
+
+    // Create thumbnail items
+    function createThumbnails() {
+        galleryThumbnailsContainer.innerHTML = '';
+        galleryImages.forEach((img, index) => {
+            const thumbItem = document.createElement('div');
+            thumbItem.className = 'gallery-thumbnail-item';
+            if (index === currentImageIndex) thumbItem.classList.add('active');
+
+            const thumbImg = document.createElement('img');
+            thumbImg.src = img.src;
+            thumbImg.alt = img.alt;
+
+            thumbItem.appendChild(thumbImg);
+            thumbItem.addEventListener('click', () => {
+                currentImageIndex = index;
+                updateGalleryImage();
+            });
+
+            galleryThumbnailsContainer.appendChild(thumbItem);
+        });
+    }
+
+    // Initialize thumbnails
+    createThumbnails();
+
+    // Set up click handlers for all gallery images
+    document.querySelectorAll('.map-image img, .sidebar-card .gallery-thumbnail').forEach((element, index) => {
+        element.addEventListener('click', (e) => {
+            e.preventDefault();
+            openGallery(index);
+        });
+    });
+
+    // Navigation buttons
+    galleryPrevBtn.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+        updateGalleryImage();
+    });
+
+    galleryNextBtn.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+        updateGalleryImage();
+    });
+
+    // Close button
+    galleryCloseBtn.addEventListener('click', closeGallery);
+
+    // Close when clicking outside the image
+    galleryModal.addEventListener('click', (e) => {
+        if (e.target === galleryModal) {
+            closeGallery();
+        }
+    });
+
+    // Zoom functionality
+    galleryMainImage.addEventListener('click', () => {
+        galleryMainImage.classList.toggle('zoomed');
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!galleryModal.classList.contains('active')) return;
+
+        switch (e.key) {
+            case 'Escape':
+                closeGallery();
+                break;
+            case 'ArrowLeft':
+                currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                updateGalleryImage();
+                break;
+            case 'ArrowRight':
+                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                updateGalleryImage();
+                break;
+        }
+    });
+
+    // Swipe support for touch devices
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    galleryMainImage.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, {
+        passive: true
+    });
+
+    galleryMainImage.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, {
+        passive: true
+    });
+
+    function handleSwipe() {
+        if (touchStartX - touchEndX > 50) {
+            // Swipe left - next image
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            updateGalleryImage();
+        } else if (touchEndX - touchStartX > 50) {
+            // Swipe right - previous image
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateGalleryImage();
+        }
     }
 }
