@@ -1,0 +1,201 @@
+/* Hero Section */
+.about-hero {
+	position: relative;
+	height: 100vh;
+	min-height: 600px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/home/hero-background.png');
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	color: white;
+	text-align: center;
+	padding-top: 60px;
+}
+
+.about-hero-content {
+	max-width: 800px;
+	padding: 2rem;
+	z-index: 1;
+}
+
+.about-hero h1 {
+	font-size: 2.5rem;
+	font-weight: bold;
+	margin-bottom: 1.5rem;
+}
+
+.about-hero p {
+	font-size: 1.25rem;
+	margin-bottom: 2rem;
+	opacity: 0.9;
+}
+
+/* About Content */
+.about-content {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.about-section {
+	margin-bottom: 4rem;
+}
+
+h2 {
+	font-size: 1.75rem;
+	font-weight: 700;
+	margin: 2rem 0 1.5rem;
+	color: var(--text-primary);
+	position: relative;
+	padding-bottom: 0.5rem;
+	text-align: center;
+}
+
+h2::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 60px;
+	height: 3px;
+	background-color: var(--accent-color);
+	border-radius: 2px;
+}
+
+.about-section p {
+	font-size: 1.1rem;
+	line-height: 1.7;
+	color: var(--text-secondary);
+	margin-bottom: 1.5rem;
+}
+
+/* Features Grid */
+.features-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 2rem;
+	margin-top: 2rem;
+}
+
+.feature-item {
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	padding: 2rem;
+	box-shadow: var(--shadow);
+	border: 1px solid var(--border-color);
+	transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+	transform: translateY(-5px);
+}
+
+.feature-icon {
+	color: var(--accent-color);
+	font-size: 2rem;
+	margin-bottom: 1.5rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 4rem;
+	height: 4rem;
+	border-radius: 50%;
+	background-color: var(--accent-color-light);
+}
+
+.feature-item h3 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+	color: var(--text-primary);
+}
+
+.feature-item p {
+	font-size: 1rem;
+	color: var(--text-secondary);
+	margin-bottom: 0;
+}
+
+/* Team Grid */
+.team-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 2rem;
+	margin-top: 2rem;
+}
+
+.team-member {
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	padding: 1.5rem;
+	box-shadow: var(--shadow);
+	border: 1px solid var(--border-color);
+	text-align: center;
+}
+
+.team-member img {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin: 0 auto 1rem;
+	border: 3px solid var(--accent-color);
+}
+
+.team-member h3 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+	color: var(--text-primary);
+}
+
+.team-member .role {
+	font-size: 0.9rem;
+	color: var(--accent-color);
+	margin-bottom: 1rem;
+	font-weight: 500;
+}
+
+.team-member .bio {
+	font-size: 0.95rem;
+	color: var(--text-secondary);
+	margin-bottom: 1.5rem;
+}
+
+/* CTA Buttons */
+.cta-buttons {
+	gap: 1rem;
+	margin-top: 2rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+	.about-hero {
+		min-height: 400px;
+	}
+
+	.about-hero h1 {
+		font-size: 2rem;
+	}
+
+	.about-hero p {
+		font-size: 1.1rem;
+	}
+
+	.cta-buttons {
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 480px) {
+	.about-hero h1 {
+		font-size: 1.75rem;
+	}
+
+	.about-hero p {
+		font-size: 1rem;
+	}
+}

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - PCWStats</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/about.css">
+  </head>
+  <body class="light-theme">
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="flex items-center justify-between">
+          <button id="closeSidebar" class="sidebar-close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <nav class="flex-grow">
+        <ul class="space-y-2">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link">
+              <i class="fas fa-shield-alt"></i>
+              <span>Tank Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="maps.html" class="sidebar-link">
+              <i class="fas fa-map"></i>
+              <span>Map Knowledge</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link">
+              <i class="fas fa-check-double"></i>
+              <span>Check & Compare</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link">
+              <i class="fas fa-wrench"></i>
+              <span>Common Builds</span>
+            </a>
+          </li>
+          <li>
+            <a href="guides.html" class="sidebar-link">
+              <i class="fas fa-book-open"></i>
+              <span>Community Guides</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link">
+              <i class="fas fa-user-friends"></i>
+              <span>Player Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="about-us.html" class="sidebar-link active">
+              <i class="fas fa-info-circle"></i>
+              <span>About</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="theme-toggle-container">
+          <span class="theme-toggle-label">Dark Mode</span>
+          <div class="theme-toggle-switch" id="themeToggle">
+            <div class="toggle-thumb"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="content-wrapper">
+      <!-- Header/Navbar -->
+      <header class="navbar">
+        <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center py-3">
+            <div class="flex items-center space-x-4">
+              <button id="openSidebar" class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <div class="brand-logo">
+                <i class="fas fa-tank text-accent-color"></i>
+                <span>PCWStats</span>
+                <span class="beta-tag">BETA</span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-6">
+              <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Search anything..." class="search-input">
+              </div>
+              <div class="theme-toggle-mobile" id="themeToggleMobile">
+                <i class="fas fa-moon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Hero Section -->
+      <section class="about-hero">
+        <div class="about-hero-content">
+          <h1>About PCWStats</h1>
+          <p>Learn about our mission, vision, and the team behind the project</p>
+          <a href="#main" class="btn-accent">
+            <i class="fas fa-info-circle mr-2"></i>Learn More </a>
+        </div>
+      </section>
+      <!-- About Content -->
+      <section id="main" class="section">
+        <div class="container mx-auto px-4">
+          <div class="about-content">
+            <div class="about-section">
+              <h2>Our Mission</h2>
+              <p class="text-center mt-4">PCWStats was created to provide Project CW players with comprehensive, accurate, and easy-to-understand statistics and gameplay information. We aim to be the go-to resource for both new and experienced players looking to improve their gameplay.</p>
+              <p class="text-center mt-4">Our platform aggregates data from various sources and presents it in a user-friendly format, helping players make informed decisions about tank selection, tactics, and team strategies.</p>
+            </div>
+            <div class="about-section">
+              <h2>The Project</h2>
+              <p class="text-center mt-4">PCWStats started as a passion project by SINEWAVE and has grown into a community-driven initiative with contributions from players across the Project CW community.</p>
+              <p class="text-center mt-4">As a beta project, we're constantly working to improve and expand our database with the most up-to-date information. We welcome feedback and suggestions from the community to help shape the future of PCWStats.</p>
+            </div>
+            <div class="about-section">
+              <h2>Key Features</h2>
+              <div class="features-grid text-center">
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-database"></i>
+                  </div>
+                  <h3>Comprehensive Database</h3>
+                  <p>Explore full tank stats, including armor layout, firepower, mobility, and other key performance data.</p>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                  </div>
+                  <h3>Map Knowledge</h3>
+                  <p>Get tactical insight for every map, learn choke points, ambush zones, and positioning strategies.</p>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                  </div>
+                  <h3>Community Driven</h3>
+                  <p>Every guide, update, and feature is shaped by input from players across the Project CW community.</p>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                  </div>
+                  <h3>Player Statistics</h3>
+                  <p>Track your performance over time with detailed stats, progress graphs, and history data.</p>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                  </div>
+                  <h3>Always Free</h3>
+                  <p>No ads, no premium tiers, this project is and always will be 100% free for everyone to enjoy fully.</p>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <i class="fas fa-code-branch"></i>
+                  </div>
+                  <h3>Fully Open Source</h3>
+                  <p>The code is public and open to all. Fork it, improve it, or contribute to help shape the future together.</p>
+                </div>
+              </div>
+            </div>
+            <div class="about-section text-center">
+              <h2>Our Team</h2>
+              <div class="team-grid">
+                <div class="team-member">
+                  <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="SINEWAVE">
+                  <h3>SINEWAVE</h3>
+                  <p class="role">Founder & Lead Developer</p>
+                  <p class="bio">Created PCWStats to fill the need for comprehensive Project CW statistics.</p>
+                </div>
+                <!-- More team members can be added here -->
+              </div>
+              <div class="text-center mt-8">
+                <p>PCWStats wouldn't be possible without the contributions of our amazing community members.</p>
+                <a href="credits.html" class="btn-accent mt-4">
+                  <i class="fas fa-heart mr-2"></i>View Community Credits </a>
+              </div>
+            </div>
+            <div class="about-section">
+              <h2>Join Our Community</h2>
+              <p class="text-center mt-4">We're always looking for more contributors to help improve PCWStats. Whether you're a developer, data analyst, content creator, or just passionate about Project CW, there's a place for you in our community.</p>
+              <div class="cta-buttons text-center">
+                <a href="https://discord.com/invite/2nHHHBWNDw" class="btn-accent">
+                  <i class="fab fa-discord mr-2"></i>Join Our Discord </a>
+                <a href="https://github.com/PCWStats" class="btn-accent">
+                  <i class="fab fa-github mr-2"></i>Contribute on GitHub </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Footer -->
+      <footer class="footer bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-10 space-y-10">
+          <!-- Top Row -->
+          <div class="footer-brand flex flex-col items-center text-center">
+            <div>
+              <h3 class="text-2xl font-semibold">PCWStats</h3>
+              <p class="text-gray-400">Your go-to resource for Project CW statistics and gameplay information.</p>
+            </div>
+            <div class="flex space-x-4 text-xl">
+              <a href="https://discord.com/invite/2nHHHBWNDw" class="social-icon">
+                <i class="fab fa-discord"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-reddit"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Middle Row -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-10 text-center">
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Tools</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="#">Check & Compare</a>
+                </li>
+                <li>
+                  <a href="#">Tank Statistics</a>
+                </li>
+                <li>
+                  <a href="#">Player Statistics</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Community</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="guides.html">Community Guides</a>
+                </li>
+                <li>
+                  <a href="#">Common Builds</a>
+                </li>
+                <li>
+                  <a href="maps.html">Map Knowledge</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">PCWStats</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="about-us.html">About The Project</a>
+                </li>
+                <li>
+                  <a href="credits.html">Community Credits</a>
+                </li>
+                <li>
+                  <a href="https://github.com/PCWStats">Source Code</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Legal</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="legal/privacy-policy.html">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="legal/terms-of-service.html">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="legal/project-license.html">Project License</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Contact Row -->
+          <div class="text-center">
+            <h3 class="text-lg font-semibold mb-1">Contact</h3>
+            <p class="text-gray-400 mb-2">Have suggestions or found a bug?</p>
+            <a href="#" class="btn-accent mt-4">
+              <i class="fas fa-envelope mr-2"></i>Send Feedback </a>
+          </div>
+          <!-- Bottom Disclaimer -->
+          <div class="text-center text-sm text-gray-500 space-y-1 border-t border-gray-700 pt-4">
+            <p>PCWStats is a community-made project and is not associated with, endorsed by, or affiliated with Project CW or Wargaming.net.</p>
+            <p>&copy; 2025 PCWStats. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="js/main.js"></script>
+  </body>
+</html>
