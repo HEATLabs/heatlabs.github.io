@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Credits - PCWStats</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/credits.css">
+  </head>
+  <body class="light-theme">
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="flex items-center justify-between">
+          <button id="closeSidebar" class="sidebar-close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <nav class="flex-grow">
+        <ul class="space-y-2">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link">
+              <i class="fas fa-shield-alt"></i>
+              <span>Tank Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="maps.html" class="sidebar-link">
+              <i class="fas fa-map"></i>
+              <span>Map Knowledge</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link">
+              <i class="fas fa-check-double"></i>
+              <span>Check & Compare</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link">
+              <i class="fas fa-wrench"></i>
+              <span>Common Builds</span>
+            </a>
+          </li>
+          <li>
+            <a href="guides.html" class="sidebar-link">
+              <i class="fas fa-book-open"></i>
+              <span>Community Guides</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link">
+              <i class="fas fa-user-friends"></i>
+              <span>Player Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="about-us.html" class="sidebar-link">
+              <i class="fas fa-info-circle"></i>
+              <span>About</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="theme-toggle-container">
+          <span class="theme-toggle-label">Dark Mode</span>
+          <div class="theme-toggle-switch" id="themeToggle">
+            <div class="toggle-thumb"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="content-wrapper">
+      <!-- Header/Navbar -->
+      <header class="navbar">
+        <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center py-3">
+            <div class="flex items-center space-x-4">
+              <button id="openSidebar" class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <div class="brand-logo">
+                <i class="fas fa-tank text-accent-color"></i>
+                <span>PCWStats</span>
+                <span class="beta-tag">BETA</span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-6">
+              <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Search anything..." class="search-input">
+              </div>
+              <div class="theme-toggle-mobile" id="themeToggleMobile">
+                <i class="fas fa-moon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Hero Section -->
+      <section class="credits-hero">
+        <div class="credits-hero-content">
+          <h1>Community Credits</h1>
+          <p>Recognizing the amazing contributors who helped build PCWStats</p>
+          <a href="#main" class="btn-accent">
+            <i class="fas fa-users mr-2"></i>Meet Our Contributors </a>
+        </div>
+      </section>
+      <!-- Credits Content -->
+      <section id="main" class="section">
+        <div class="container mx-auto px-4">
+          <div class="credits-content">
+            <div class="credits-intro text-center">
+              <h2>Our Amazing Community</h2>
+              <p>PCWStats is a community-driven project, and we wouldn't be here without the incredible contributions from players across the Project CW community. This page recognizes those who have helped make PCWStats what it is today.</p>
+            </div>
+            <div class="credits-section">
+              <h2>Core Team</h2>
+              <div class="contributors-grid">
+                <div class="contributor-card">
+                  <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/team-members/SINEWAVE.png" alt="SINEWAVE">
+                  <h4>SINEWAVE</h4>
+                  <p class="role">Founder & Lead Developer</p>
+                  <p class="contribution">Created the initial platform and continues to lead development.</p>
+                </div>
+                <!-- More core team members can be added here -->
+              </div>
+            </div>
+            <div class="credits-section text-center">
+              <h2>Data Contributors</h2>
+              <p>These community members have contributed valuable data and statistics to our database:</p>
+              <div class="contributors-list">
+                <div class="contributor-item">
+                  <span class="name">Player1</span>
+                  <span class="contribution">Tank statistics collection</span>
+                </div>
+                <div class="contributor-item">
+                  <span class="name">Player2</span>
+                  <span class="contribution">Map strategy analysis</span>
+                </div>
+                <div class="contributor-item">
+                  <span class="name">Player3</span>
+                  <span class="contribution">Game mechanic testing</span>
+                </div>
+                <!-- More contributors can be added here -->
+              </div>
+            </div>
+            <div class="credits-section text-center">
+              <h2>Content Creators</h2>
+              <p>These community members have contributed guides, tutorials, and other educational content:</p>
+              <div class="contributors-list">
+                <div class="contributor-item">
+                  <span class="name">GuideMaster</span>
+                  <span class="contribution">Advanced tactics guides</span>
+                </div>
+                <div class="contributor-item">
+                  <span class="name">TankExpert</span>
+                  <span class="contribution">Tank comparison articles</span>
+                </div>
+                <!-- More content creators can be added here -->
+              </div>
+            </div>
+            <div class="credits-section text-center">
+              <h2>Beta Testers</h2>
+              <p>Special thanks to our beta testers who helped identify bugs and improve the user experience:</p>
+              <div class="beta-testers">
+                <span>Tester1</span>
+                <span>Tester2</span>
+                <span>Tester3</span>
+                <span>Tester4</span>
+                <span>Tester5</span>
+                <!-- More testers can be added here -->
+              </div>
+            </div>
+            <div class="credits-cta text-center">
+              <h2>Want to see your name here?</h2>
+              <p>PCWStats is always looking for more contributors. Whether you can help with data collection, content creation, testing, or development, your contributions are welcome!</p>
+              <div class="cta-buttons">
+                <a href="https://discord.com/invite/2nHHHBWNDw" class="btn-accent">
+                  <i class="fab fa-discord mr-2"></i>Join Our Discord </a>
+                <a href="https://github.com/PCWStats" class="btn-accent">
+                  <i class="fab fa-github mr-2"></i>Contribute on GitHub </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Footer -->
+      <footer class="footer bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-10 space-y-10">
+          <!-- Top Row -->
+          <div class="footer-brand flex flex-col items-center text-center">
+            <div>
+              <h3 class="text-2xl font-semibold">PCWStats</h3>
+              <p class="text-gray-400">Your go-to resource for Project CW statistics and gameplay information.</p>
+            </div>
+            <div class="flex space-x-4 text-xl">
+              <a href="https://discord.com/invite/2nHHHBWNDw" class="social-icon">
+                <i class="fab fa-discord"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-reddit"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Middle Row -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-10 text-center">
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Tools</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="#">Check & Compare</a>
+                </li>
+                <li>
+                  <a href="#">Tank Statistics</a>
+                </li>
+                <li>
+                  <a href="#">Player Statistics</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Community</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="guides.html">Community Guides</a>
+                </li>
+                <li>
+                  <a href="#">Common Builds</a>
+                </li>
+                <li>
+                  <a href="maps.html">Map Knowledge</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">PCWStats</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="about-us.html">About The Project</a>
+                </li>
+                <li>
+                  <a href="#">Community Credits</a>
+                </li>
+                <li>
+                  <a href="https://github.com/PCWStats">Source Code</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Legal</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="legal/privacy-policy.html">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="legal/terms-of-service.html">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="legal/project-license.html">Project License</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Contact Row -->
+          <div class="text-center">
+            <h3 class="text-lg font-semibold mb-1">Contact</h3>
+            <p class="text-gray-400 mb-2">Have suggestions or found a bug?</p>
+            <a href="#" class="btn-accent mt-4">
+              <i class="fas fa-envelope mr-2"></i>Send Feedback </a>
+          </div>
+          <!-- Bottom Disclaimer -->
+          <div class="text-center text-sm text-gray-500 space-y-1 border-t border-gray-700 pt-4">
+            <p>PCWStats is a community-made project and is not associated with, endorsed by, or affiliated with Project CW or Wargaming.net.</p>
+            <p>&copy; 2025 PCWStats. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="js/main.js"></script>
+  </body>
+</html>
