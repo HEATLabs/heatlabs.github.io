@@ -16,6 +16,10 @@
 	--shadow-dark: 0 4px 6px rgba(0, 0, 0, 0.2);
 	--transition-speed: 0.3s;
 	--sidebar-width: 280px;
+	--highlight-bg: rgba(239, 246, 255, 1);
+	--highlight-border: var(--accent-color);
+	--highlight-title: var(--text-primary);
+	--highlight-text: var(--text-primary);
 }
 
 /* Base Styles */
@@ -52,6 +56,10 @@ body {
 	--header-bg: rgba(18, 18, 18, 0.95);
 	--shadow: var(--shadow-dark);
 	--border-color: #333;
+	--highlight-bg: rgba(30, 30, 30, 0.8);
+	--highlight-border: var(--accent-color);
+	--highlight-title: var(--text-primary-dark);
+	--highlight-text: var(--text-primary-dark);
 }
 
 /* Layout */
