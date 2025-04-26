@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Guides - PCWStats</title>
+    <script>
+      // Immediately set theme class before rendering begins
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+          // Default to dark theme if saved or system preference
+          if (savedTheme === 'dark-theme' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark-theme');
+          } else {
+            document.documentElement.classList.add('light-theme');
+          }
+        } catch (e) {
+          console.error('Theme initialization error:', e);
+          document.documentElement.classList.add('light-theme');
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/guides.css">
+  </head>
+  <body>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="flex items-center justify-between">
+          <button id="closeSidebar" class="sidebar-close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <nav class="flex-grow">
+        <ul class="space-y-2">
+          <li>
+            <a href="../.html" class="sidebar-link">
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="../tanks.html" class="sidebar-link">
+              <i class="fas fa-shield-alt"></i>
+              <span>Tank Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="../maps.html" class="sidebar-link">
+              <i class="fas fa-map"></i>
+              <span>Map Knowledge</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link">
+              <i class="fas fa-check-double"></i>
+              <span>Check & Compare</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link">
+              <i class="fas fa-wrench"></i>
+              <span>Common Builds</span>
+            </a>
+          </li>
+          <li>
+            <a href="../guides.html" class="sidebar-link active">
+              <i class="fas fa-book-open"></i>
+              <span>Community Guides</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link">
+              <i class="fas fa-user-friends"></i>
+              <span>Player Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="../credits.html" class="sidebar-link">
+              <i class="fas fa-users"></i>
+              <span>Community Credits</span>
+            </a>
+          </li>
+          <li>
+            <a href="../about-us.html" class="sidebar-link">
+              <i class="fas fa-info-circle"></i>
+              <span>About the Project</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="theme-toggle-container">
+          <span class="theme-toggle-label">Dark Mode</span>
+          <div class="theme-toggle-switch" id="themeToggle">
+            <div class="toggle-thumb"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="content-wrapper">
+      <!-- Header/Navbar -->
+      <header class="navbar">
+        <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center py-3">
+            <div class="flex items-center space-x-4">
+              <button id="openSidebar" class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <div class="brand-logo">
+                <i class="fas fa-tank text-accent-color"></i>
+                <span>PCWStats</span>
+                <span class="beta-tag">BETA</span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-6">
+              <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Search guides..." class="search-input">
+              </div>
+              <div class="theme-toggle-mobile" id="themeToggleMobile">
+                <i class="fas fa-moon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1>Tank Guides</h1>
+          <p>Placeholder Tank Guides Description</p>
+          <a href="#main" class="btn-accent">
+            <i class="fas fa-chart-line mr-2"></i>View All Tank Guides </a>
+        </div>
+      </section>
+      <!-- Guides Section -->
+      <section id="main" class="section">
+        <div class="container mx-auto px-4 py-8">
+          <div class="container mx-auto px-4">
+            <h2 class="section-title">All Agent Guides</h2>
+          </div>
+          <div class="guides-grid text-center">
+            <!-- Guide 1 -->
+            <div class="guide-card">
+              <div class="guide-img-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Meta Guide">
+                <span class="guide-date">Placeholder Date</span>
+              </div>
+              <div class="guide-content">
+                <h4>Placeholder Guide Title</h4>
+                <p class="guide-author">By: Placeholder Author</p>
+                <p class="guide-excerpt">Placeholder Guide Description</p>
+                <a href="tanks/placeholder-guide.html" class="btn-accent">Read Guide</a>
+              </div>
+            </div>
+            <!-- Guide 2 -->
+            <div class="guide-card">
+              <div class="guide-img-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Meta Guide">
+                <span class="guide-date">Placeholder Date</span>
+              </div>
+              <div class="guide-content">
+                <h4>Placeholder Guide Title</h4>
+                <p class="guide-author">By: Placeholder Author</p>
+                <p class="guide-excerpt">Placeholder Guide Description</p>
+                <a href="tanks/placeholder-guide.html" class="btn-accent">Read Guide</a>
+              </div>
+            </div>
+            <!-- Guide 3 -->
+            <div class="guide-card">
+              <div class="guide-img-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Meta Guide">
+                <span class="guide-date">Placeholder Date</span>
+              </div>
+              <div class="guide-content">
+                <h4>Placeholder Guide Title</h4>
+                <p class="guide-author">By: Placeholder Author</p>
+                <p class="guide-excerpt">Placeholder Guide Description</p>
+                <a href="tanks/placeholder-guide.html" class="btn-accent">Read Guide</a>
+              </div>
+            </div>
+            <!-- Guide 4 -->
+            <div class="guide-card">
+              <div class="guide-img-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Meta Guide">
+                <span class="guide-date">Placeholder Date</span>
+              </div>
+              <div class="guide-content">
+                <h4>Placeholder Guide Title</h4>
+                <p class="guide-author">By: Placeholder Author</p>
+                <p class="guide-excerpt">Placeholder Guide Description</p>
+                <a href="tanks/placeholder-guide.html" class="btn-accent">Read Guide</a>
+              </div>
+            </div>
+            <!-- Guide 5 -->
+            <div class="guide-card">
+              <div class="guide-img-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Meta Guide">
+                <span class="guide-date">Placeholder Date</span>
+              </div>
+              <div class="guide-content">
+                <h4>Placeholder Guide Title</h4>
+                <p class="guide-author">By: Placeholder Author</p>
+                <p class="guide-excerpt">Placeholder Guide Description</p>
+                <a href="tanks/placeholder-guide.html" class="btn-accent">Read Guide</a>
+              </div>
+            </div>
+            <!-- Guide 6 -->
+            <div class="guide-card">
+              <div class="guide-img-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Meta Guide">
+                <span class="guide-date">Placeholder Date</span>
+              </div>
+              <div class="guide-content">
+                <h4>Placeholder Guide Title</h4>
+                <p class="guide-author">By: Placeholder Author</p>
+                <p class="guide-excerpt">Placeholder Guide Description</p>
+                <a href="tanks/placeholder-guide.html" class="btn-accent">Read Guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- CTA Section -->
+      <section class="cta-section">
+        <div class="container mx-auto px-4 text-center py-16">
+          <h2 class="text-3xl font-bold mb-4">Can't Find What You're Looking For?</h2>
+          <p class="text-lg mb-8 max-w-2xl mx-auto">Request a specific guide or submit your own to help the community!</p>
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="#" class="cta-button inline-flex items-center px-6 py-3 bg-accent-color text-white rounded-lg font-medium hover:bg-accent-color-dark transition-colors">
+              <i class="fas fa-pen-fancy mr-2"></i> Submit Guide </a>
+            <a href="#" class="cta-button inline-flex items-center px-6 py-3 bg-accent-color text-white rounded-lg font-medium hover:bg-accent-color-dark transition-colors">
+              <i class="fas fa-lightbulb mr-2"></i> Request Guide </a>
+          </div>
+        </div>
+      </section>
+      <!-- Footer -->
+      <footer class="footer bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-10 space-y-10">
+          <!-- Top Row -->
+          <div class="footer-brand flex flex-col items-center text-center">
+            <div>
+              <h3 class="text-2xl font-semibold">PCWStats</h3>
+              <p class="text-gray-400">Your go-to resource for Project CW statistics and gameplay information.</p>
+            </div>
+            <div class="flex space-x-4 text-xl">
+              <a href="https://discord.com/invite/2nHHHBWNDw" class="social-icon">
+                <i class="fab fa-discord"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-reddit"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Middle Row -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-10 text-center">
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Tools</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="#">Check & Compare</a>
+                </li>
+                <li>
+                  <a href="../tanks.html">Tank Statistics</a>
+                </li>
+                <li>
+                  <a href="#">Player Statistics</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Community</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../guides.html">Community Guides</a>
+                </li>
+                <li>
+                  <a href="#">Common Builds</a>
+                </li>
+                <li>
+                  <a href="../maps.html">Map Knowledge</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">PCWStats</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../about-us.html">About The Project</a>
+                </li>
+                <li>
+                  <a href="../credits.html">Community Credits</a>
+                </li>
+                <li>
+                  <a href="https://github.com/PCWStats">Source Code</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Legal</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../legal/privacy-policy.html">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="../legal/terms-of-service.html">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="../legal/project-license.html">Project License</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Contact Row -->
+          <div class="text-center">
+            <h3 class="text-lg font-semibold mb-1">Contact</h3>
+            <p class="text-gray-400 mb-2">Have suggestions or found a bug?</p>
+            <a href="#" class="btn-accent mt-4">
+              <i class="fas fa-envelope mr-2"></i>Send Feedback </a>
+          </div>
+          <!-- Bottom Disclaimer -->
+          <div class="text-center text-sm text-gray-500 space-y-1 border-t border-gray-700 pt-4">
+            <p>PCWStats is a community-made project and is not associated with, endorsed by, or affiliated with Project CW or Wargaming.net.</p>
+            <p>&copy; 2025 PCWStats. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="../js/main.js"></script>
+  </body>
+</html>
