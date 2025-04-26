@@ -3,32 +3,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Theme toggle functionality
     const themeToggle = document.getElementById('themeToggle');
     const themeToggleMobile = document.getElementById('themeToggleMobile');
-    const body = document.body;
+    const html = document.documentElement;
 
-    // Check for saved theme preference or use system preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        body.className = savedTheme;
-        updateThemeIcon(savedTheme === 'dark-theme');
-    } else {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (prefersDark) {
-            body.className = 'dark-theme';
-            updateThemeIcon(true);
-        }
-    }
+    // Initialize theme icons based on current theme
+    updateThemeIcon(html.classList.contains('dark-theme'));
 
     // Theme toggle click handler
     function toggleTheme() {
-        const isDark = body.classList.contains('dark-theme');
+        const isDark = html.classList.contains('dark-theme');
         if (isDark) {
-            body.classList.remove('dark-theme');
-            body.classList.add('light-theme');
+            html.classList.remove('dark-theme');
+            html.classList.add('light-theme');
             localStorage.setItem('theme', 'light-theme');
             updateThemeIcon(false);
         } else {
-            body.classList.remove('light-theme');
-            body.classList.add('dark-theme');
+            html.classList.remove('light-theme');
+            html.classList.add('dark-theme');
             localStorage.setItem('theme', 'dark-theme');
             updateThemeIcon(true);
         }
@@ -49,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Improved Sidebar functionality
+    // Sidebar functionality
     const hamburgerBtn = document.getElementById('openSidebar');
     const closeSidebarBtn = document.getElementById('closeSidebar');
     const sidebar = document.getElementById('sidebar');
@@ -89,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         isSidebarOpen = false;
     }
 
-    // Improved click handlers with better event delegation
+    // Click handlers for sidebar
     if (hamburgerBtn) {
         hamburgerBtn.addEventListener('click', function(e) {
             e.stopPropagation();
