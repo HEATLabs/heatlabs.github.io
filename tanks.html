@@ -150,20 +150,72 @@
       <section id="main" class="section">
         <div class="container mx-auto px-4">
           <h2 class="section-title">All Tanks</h2>
+          <!-- Filters Section -->
+          <div class="filters-section">
+            <div class="container mx-auto px-4">
+              <!-- Filter Buttons Grid -->
+              <div class="filters-container">
+                <!-- Nation Filters -->
+                <div class="filter-group">
+                  <h3 class="filter-group-title">NATION</h3>
+                  <div class="filter-buttons-grid">
+                    <button class="filter-btn nation-filter" data-nation="USSR">
+                      <i class="fas fa-flag"></i> USSR </button>
+                    <button class="filter-btn nation-filter" data-nation="USA">
+                      <i class="fas fa-flag"></i> USA </button>
+                    <button class="filter-btn nation-filter" data-nation="China">
+                      <i class="fas fa-flag"></i> China </button>
+                    <button class="filter-btn nation-filter" data-nation="Germany">
+                      <i class="fas fa-flag"></i> Germany </button>
+                    <button class="filter-btn nation-filter" data-nation="UK">
+                      <i class="fas fa-flag"></i> UK </button>
+                    <button class="filter-btn nation-filter" data-nation="Unknown">
+                      <i class="fas fa-question"></i> Unknown </button>
+                  </div>
+                </div>
+                <!-- Type Filters -->
+                <div class="filter-group">
+                  <h3 class="filter-group-title">TYPE</h3>
+                  <div class="filter-buttons-grid">
+                    <button class="filter-btn type-filter" data-type="Assault">
+                      <i class="fas fa-shield-alt"></i> Assault </button>
+                    <button class="filter-btn type-filter" data-type="Defender">
+                      <i class="fas fa-fort-awesome"></i> Defender </button>
+                    <button class="filter-btn type-filter" data-type="Marksman">
+                      <i class="fas fa-crosshairs"></i> Marksman </button>
+                    <button class="filter-btn type-filter" data-type="Support">
+                      <i class="fas fa-medkit"></i> Support </button>
+                    <button class="filter-btn type-filter" data-type="Unknown-1">
+                      <i class="fas fa-question"></i> Unknown-1 </button>
+                    <button class="filter-btn type-filter" data-type="Unknown-2">
+                      <i class="fas fa-question"></i> Unknown-2 </button>
+                    <div class="filter-btn" style="visibility: hidden;"></div>
+                    <div class="filter-btn" style="visibility: hidden;"></div>
+                  </div>
+                </div>
+              </div>
+              <!-- Active Filters -->
+              <div class="active-filters-container">
+                <div class="active-filters">
+                  <div class="no-filters-message">No filters selected</div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="tanks-grid text-center">
             <!-- Tank Card 1 -->
-            <div class="tank-card">
+            <div class="tank-card" data-nation="USSR" data-type="Assault">
               <div class="tank-img-container">
-                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Jagdpanzer E100" class="tank-img">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Tank Preview" class="tank-img">
                 <div class="tank-tier">Tank Class</div>
               </div>
               <div class="tank-info">
                 <h3>Placeholder Tank</h3>
                 <div class="tank-meta">
                   <span>
-                    <i class="fas fa-flag"></i> Tank Nation </span>
+                    <i class="fas fa-flag"></i> USSR </span>
                   <span>
-                    <i class="fas fa-layer-group"></i> Tank Type </span>
+                    <i class="fas fa-layer-group"></i> Assault </span>
                 </div>
                 <div class="tank-stats">
                   <div class="stat">
@@ -189,7 +241,7 @@
                   </div>
                 </div>
                 <div class="tank-buttons">
-                  <a href="tanks/jagdpanzer-e100.html" class="btn-accent">
+                  <a href="tanks/placeholder-tank.html" class="btn-accent">
                     <i class="fas fa-chart-bar mr-2"></i>Statistics </a>
                   <a href="#" class="btn-outline compare-btn">
                     <i class="fas fa-exchange-alt mr-2"></i>Compare </a>
@@ -197,18 +249,18 @@
               </div>
             </div>
             <!-- Tank Card 2 -->
-            <div class="tank-card">
+            <div class="tank-card" data-nation="USA" data-type="Defender">
               <div class="tank-img-container">
-                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Jagdpanzer E100" class="tank-img">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Tank Preview" class="tank-img">
                 <div class="tank-tier">Tank Class</div>
               </div>
               <div class="tank-info">
                 <h3>Placeholder Tank</h3>
                 <div class="tank-meta">
                   <span>
-                    <i class="fas fa-flag"></i> Tank Nation </span>
+                    <i class="fas fa-flag"></i> USA </span>
                   <span>
-                    <i class="fas fa-layer-group"></i> Tank Type </span>
+                    <i class="fas fa-layer-group"></i> Defender </span>
                 </div>
                 <div class="tank-stats">
                   <div class="stat">
@@ -234,7 +286,7 @@
                   </div>
                 </div>
                 <div class="tank-buttons">
-                  <a href="tanks/jagdpanzer-e100.html" class="btn-accent">
+                  <a href="tanks/placeholder-tank.html" class="btn-accent">
                     <i class="fas fa-chart-bar mr-2"></i>Statistics </a>
                   <a href="#" class="btn-outline compare-btn">
                     <i class="fas fa-exchange-alt mr-2"></i>Compare </a>
@@ -242,18 +294,18 @@
               </div>
             </div>
             <!-- Tank Card 3 -->
-            <div class="tank-card">
+            <div class="tank-card" data-nation="GERMANY" data-type="Marksman">
               <div class="tank-img-container">
-                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Jagdpanzer E100" class="tank-img">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Tank Preview" class="tank-img">
                 <div class="tank-tier">Tank Class</div>
               </div>
               <div class="tank-info">
                 <h3>Placeholder Tank</h3>
                 <div class="tank-meta">
                   <span>
-                    <i class="fas fa-flag"></i> Tank Nation </span>
+                    <i class="fas fa-flag"></i> Germany </span>
                   <span>
-                    <i class="fas fa-layer-group"></i> Tank Type </span>
+                    <i class="fas fa-layer-group"></i> Marksman </span>
                 </div>
                 <div class="tank-stats">
                   <div class="stat">
@@ -279,7 +331,7 @@
                   </div>
                 </div>
                 <div class="tank-buttons">
-                  <a href="tanks/jagdpanzer-e100.html" class="btn-accent">
+                  <a href="tanks/placeholder-tank.html" class="btn-accent">
                     <i class="fas fa-chart-bar mr-2"></i>Statistics </a>
                   <a href="#" class="btn-outline compare-btn">
                     <i class="fas fa-exchange-alt mr-2"></i>Compare </a>
@@ -287,18 +339,18 @@
               </div>
             </div>
             <!-- Tank Card 4 -->
-            <div class="tank-card">
+            <div class="tank-card" data-nation="UK" data-type="Support">
               <div class="tank-img-container">
-                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Jagdpanzer E100" class="tank-img">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Tank Preview" class="tank-img">
                 <div class="tank-tier">Tank Class</div>
               </div>
               <div class="tank-info">
                 <h3>Placeholder Tank</h3>
                 <div class="tank-meta">
                   <span>
-                    <i class="fas fa-flag"></i> Tank Nation </span>
+                    <i class="fas fa-flag"></i> UK </span>
                   <span>
-                    <i class="fas fa-layer-group"></i> Tank Type </span>
+                    <i class="fas fa-layer-group"></i> Support </span>
                 </div>
                 <div class="tank-stats">
                   <div class="stat">
@@ -324,7 +376,7 @@
                   </div>
                 </div>
                 <div class="tank-buttons">
-                  <a href="tanks/jagdpanzer-e100.html" class="btn-accent">
+                  <a href="tanks/placeholder-tank.html" class="btn-accent">
                     <i class="fas fa-chart-bar mr-2"></i>Statistics </a>
                   <a href="#" class="btn-outline compare-btn">
                     <i class="fas fa-exchange-alt mr-2"></i>Compare </a>
@@ -332,18 +384,18 @@
               </div>
             </div>
             <!-- Tank Card 5 -->
-            <div class="tank-card">
+            <div class="tank-card" data-nation="CHINA" data-type="Assault">
               <div class="tank-img-container">
-                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Jagdpanzer E100" class="tank-img">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Tank Preview" class="tank-img">
                 <div class="tank-tier">Tank Class</div>
               </div>
               <div class="tank-info">
                 <h3>Placeholder Tank</h3>
                 <div class="tank-meta">
                   <span>
-                    <i class="fas fa-flag"></i> Tank Nation </span>
+                    <i class="fas fa-flag"></i> China </span>
                   <span>
-                    <i class="fas fa-layer-group"></i> Tank Type </span>
+                    <i class="fas fa-layer-group"></i> Assault </span>
                 </div>
                 <div class="tank-stats">
                   <div class="stat">
@@ -369,7 +421,7 @@
                   </div>
                 </div>
                 <div class="tank-buttons">
-                  <a href="tanks/jagdpanzer-e100.html" class="btn-accent">
+                  <a href="tanks/placeholder-tank.html" class="btn-accent">
                     <i class="fas fa-chart-bar mr-2"></i>Statistics </a>
                   <a href="#" class="btn-outline compare-btn">
                     <i class="fas fa-exchange-alt mr-2"></i>Compare </a>
@@ -377,18 +429,18 @@
               </div>
             </div>
             <!-- Tank Card 6 -->
-            <div class="tank-card">
+            <div class="tank-card" data-nation="USSR" data-type="Defender">
               <div class="tank-img-container">
-                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Jagdpanzer E100" class="tank-img">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Tank Preview" class="tank-img">
                 <div class="tank-tier">Tank Class</div>
               </div>
               <div class="tank-info">
                 <h3>Placeholder Tank</h3>
                 <div class="tank-meta">
                   <span>
-                    <i class="fas fa-flag"></i> Tank Nation </span>
+                    <i class="fas fa-flag"></i> USSR </span>
                   <span>
-                    <i class="fas fa-layer-group"></i> Tank Type </span>
+                    <i class="fas fa-layer-group"></i> Defender </span>
                 </div>
                 <div class="tank-stats">
                   <div class="stat">
@@ -414,7 +466,7 @@
                   </div>
                 </div>
                 <div class="tank-buttons">
-                  <a href="tanks/jagdpanzer-e100.html" class="btn-accent">
+                  <a href="tanks/placeholder-tank.html" class="btn-accent">
                     <i class="fas fa-chart-bar mr-2"></i>Statistics </a>
                   <a href="#" class="btn-outline compare-btn">
                     <i class="fas fa-exchange-alt mr-2"></i>Compare </a>
@@ -422,18 +474,18 @@
               </div>
             </div>
             <!-- Tank Card 7 -->
-            <div class="tank-card">
+            <div class="tank-card" data-nation="USA" data-type="Unknown-1">
               <div class="tank-img-container">
-                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Jagdpanzer E100" class="tank-img">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Tank Preview" class="tank-img">
                 <div class="tank-tier">Tank Class</div>
               </div>
               <div class="tank-info">
                 <h3>Placeholder Tank</h3>
                 <div class="tank-meta">
                   <span>
-                    <i class="fas fa-flag"></i> Tank Nation </span>
+                    <i class="fas fa-flag"></i> USA </span>
                   <span>
-                    <i class="fas fa-layer-group"></i> Tank Type </span>
+                    <i class="fas fa-layer-group"></i> Unknown-1 </span>
                 </div>
                 <div class="tank-stats">
                   <div class="stat">
@@ -459,7 +511,7 @@
                   </div>
                 </div>
                 <div class="tank-buttons">
-                  <a href="tanks/jagdpanzer-e100.html" class="btn-accent">
+                  <a href="tanks/placeholder-tank.html" class="btn-accent">
                     <i class="fas fa-chart-bar mr-2"></i>Statistics </a>
                   <a href="#" class="btn-outline compare-btn">
                     <i class="fas fa-exchange-alt mr-2"></i>Compare </a>
@@ -467,18 +519,18 @@
               </div>
             </div>
             <!-- Tank Card 8 -->
-            <div class="tank-card">
+            <div class="tank-card" data-nation="Unknown" data-type="Unknown-2">
               <div class="tank-img-container">
-                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Jagdpanzer E100" class="tank-img">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Tank Preview" class="tank-img">
                 <div class="tank-tier">Tank Class</div>
               </div>
               <div class="tank-info">
                 <h3>Placeholder Tank</h3>
                 <div class="tank-meta">
                   <span>
-                    <i class="fas fa-flag"></i> Tank Nation </span>
+                    <i class="fas fa-flag"></i> Unknown </span>
                   <span>
-                    <i class="fas fa-layer-group"></i> Tank Type </span>
+                    <i class="fas fa-layer-group"></i> Unknown-2 </span>
                 </div>
                 <div class="tank-stats">
                   <div class="stat">
