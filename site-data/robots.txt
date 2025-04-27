@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pcwstats.github.io/site-data/sitemap.xml

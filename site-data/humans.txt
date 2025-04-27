@@ -1,0 +1,14 @@
+/* TEAM */
+  Creator: ThatSINEWAVE
+  GitHub: https://github.com/ThatSINEWAVE
+  Contact: sinewave_ (Discord)
+
+/* THANKS */
+  Tailwind CSS: https://tailwindcss.com/
+  GitHub Pages: https://pages.github.com/
+
+/* SITE */
+  Last update: 2025/04/27
+  Language: English
+  Doctype: HTML5
+  IDE: WebStorm
