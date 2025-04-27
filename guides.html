@@ -13,7 +13,6 @@
         try {
           const savedTheme = localStorage.getItem('theme');
           const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
           // Default to dark theme if saved or system preference
           if (savedTheme === 'dark-theme' || (!savedTheme && prefersDark)) {
             document.documentElement.classList.add('dark-theme');
@@ -392,9 +391,12 @@
         <div class="container mx-auto px-4 text-center">
           <h2>Submit Your Own Guide</h2>
           <p class="text-lg mb-8 max-w-2xl mx-auto">Have expertise to share with the community? Submit your own guide and help other players improve!</p>
-          <a href="#" class="cta-button inline-flex items-center px-6 py-3 bg-accent-color text-white rounded-lg font-medium hover:bg-accent-color-dark transition-colors">
-            <i class="fas fa-pen-fancy mr-2"></i> Submit Guide
-          </a>
+          <div class="flex justify-center gap-4 flex-wrap">
+            <a href="https://discord.com/invite/2nHHHBWNDw" class="cta-button inline-flex items-center px-6 py-3 bg-discord-color text-white rounded-lg font-medium hover:bg-discord-color-dark transition-colors">
+              <i class="fab fa-discord mr-2"></i> Join Our Discord </a>
+            <a href="#" class="cta-button inline-flex items-center px-6 py-3 bg-accent-color text-white rounded-lg font-medium hover:bg-accent-color-dark transition-colors">
+              <i class="fas fa-pen-fancy mr-2"></i> Submit Guide </a>
+          </div>
         </div>
       </section>
       <!-- Search Modal -->

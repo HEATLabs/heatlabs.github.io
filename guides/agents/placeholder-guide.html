@@ -13,7 +13,6 @@
         try {
           const savedTheme = localStorage.getItem('theme');
           const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
           // Default to dark theme if saved or system preference
           if (savedTheme === 'dark-theme' || (!savedTheme && prefersDark)) {
             document.documentElement.classList.add('dark-theme');
