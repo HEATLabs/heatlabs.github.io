@@ -7,8 +7,8 @@
     "orientation": "any",
     "lang": "en-US",
     "id": "/PCWStats",
-    "theme_color": "#4338ca",
-    "background_color": "#4338ca",
+    "theme_color": "#141312",
+    "background_color": "#141312",
     "icons": [
         {
             "src": "https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/android/android-chrome-192x192.png",
