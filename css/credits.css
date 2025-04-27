@@ -1,22 +1,4 @@
-/* credits.css - Styles for the Community Credits page */
-
-/* Hero Section */
-.credits-hero {
-	position: relative;
-	height: 100vh;
-	min-height: 600px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/home/hero-background.png');
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
-	color: white;
-	text-align: center;
-	padding-top: 60px;
-}
-
+/* Styles for the Community Credits page */
 h2 {
 	font-size: 1.75rem;
 	font-weight: 700;

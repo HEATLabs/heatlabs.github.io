@@ -1,38 +1,4 @@
 /* Tanks Page Specific Styles */
-.tanks-hero {
-	position: relative;
-	height: 100vh;
-	min-height: 600px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/home/hero-background.png');
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
-	color: white;
-	text-align: center;
-	padding-top: 60px;
-}
-
-.tanks-hero .hero-content {
-	max-width: 800px;
-	padding: 2rem;
-	z-index: 1;
-}
-
-.tanks-hero h1 {
-	font-size: 3rem;
-	font-weight: bold;
-	margin-bottom: 1.5rem;
-}
-
-.tanks-hero p {
-	font-size: 1.5rem;
-	margin-bottom: 2rem;
-	opacity: 0.9;
-}
-
 /* Tanks Grid */
 .tanks-grid {
 	display: grid;
