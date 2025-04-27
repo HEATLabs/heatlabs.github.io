@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/map.css">
+    <link rel="stylesheet" href="../css/search.css">
   </head>
   <body>
     <!-- Sidebar Overlay -->
@@ -126,10 +127,9 @@
               </div>
             </div>
             <div class="flex items-center space-x-6">
-              <div class="search-box">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" placeholder="Search anything..." class="search-input">
-              </div>
+              <button id="openSearch" class="search-button">
+                <i class="fas fa-search"></i>
+              </button>
               <div class="theme-toggle-mobile" id="themeToggleMobile">
                 <i class="fas fa-moon"></i>
               </div>
@@ -148,7 +148,7 @@
               <i class="fas fa-users mr-1"></i> 10v10 </span>
           </div>
           <h1 class="map-title">Friendship Dam</h1>
-          <p class="map-description">An industrial map featuring a massive dam structure, providing vertical gameplay opportunities and strategic chokepoints.</p>
+          <p class="map-description">An industrial map featuring a massive dam structure, providing vertical gameplay opportunities and strategic choke points.</p>
         </div>
       </section>
       <!-- Map Content -->
@@ -169,10 +169,9 @@
               <!-- Map Introduction -->
               <div class="mb-12">
                 <h2 id="map-introduction">Map Introduction</h2>
-                <p class="mb-4 text-center">Friendship Dam (also referred to as Nexus Dam) is a map set in a developing country where playes can fight for several key positions that revolve around the dam itself. There are positions best suited for brawling heavy tanks, fast medium/light tanks, and sniping tank destroyers.</p>
+                <p class="mb-4 text-center">Nexus Dam (Also known as Friendship Dam) was a “friendly collaboration” between one of two rivaling global powers and a developing country. Meant to provide electricity via modern power station to a brand-new town, the place is now a peaceful climate research centre amongst old caves that used to harbour insurgents – and just one good hit at a dam could start a catastrophe. There are plenty of high spots for long-range snipers as well as hiding places for heavier armored tanks to take those marksmen down. Dominate the high ground or crush still while rumbling through riverbed valleys and ramming snipers off the cliffs!</p>
                 <div class="map-image my-6">
                   <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/maps/Friendship_Dam.png" alt="Map Overview" class="rounded-lg shadow-lg">
-                  <p class="text-center text-sm text-gray-500 mt-2">Full map overview showing major landmarks and areas</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8 text-center">
                   <div class="feature-card">
@@ -180,7 +179,7 @@
                       <i class="fas fa-mountain"></i>
                     </div>
                     <h3>Terrain Features</h3>
-                    <p>Mostly rocky mountain terrain with a mix of a small town and village on one side with the dam and powerplant occupying the other side.</p>
+                    <p>Mostly rocky mountain terrain with a mix of a small town and village on one side with the dam and power plant occupying the other side.</p>
                   </div>
                   <div class="feature-card">
                     <div class="icon-wrapper">
@@ -253,7 +252,7 @@
                       <i class="fas fa-lightbulb"></i>
                       <h3>Pro Tip: Standard Battle</h3>
                     </div>
-                    <p>Point A/Powerplant is a point that many often forget about and has been the reason for loosing battles. It is best to keep an eye on it incase you notice an opening.</p>
+                    <p>Point A/Power plant is a point that many often forget about and has been the reason for loosing battles. It is best to keep an eye on it incase you notice an opening.</p>
                   </div>
                 </div>
                 <!-- Encounter Battle Content -->
@@ -405,7 +404,7 @@
                       <h4 class="font-bold">Recommended Areas:</h4>
                       <ul class="list-disc pl-6 mb-4">
                         <li>Flanking area around point C</li>
-                        <li>Contesting point A/Powerplant</li>
+                        <li>Contesting point A/Power plant</li>
                         <li>Using the riverbed to flank behind points B, D, E</li>
                       </ul>
                       <h4 class="font-bold">Best Performers:</h4>
@@ -443,7 +442,7 @@
                       <h4 class="font-bold">Recommended Areas:</h4>
                       <ul class="list-disc pl-6 mb-4">
                         <li>Respective Spawn cliffs</li>
-                        <li>Point A/Powerplant cliff</li>
+                        <li>Point A/Power plant cliff</li>
                         <li>CPoint C Cliff</li>
                       </ul>
                       <h4 class="font-bold">Best Performers:</h4>
@@ -621,6 +620,26 @@
           </div>
         </div>
       </section>
+      <!-- Search Modal -->
+      <div class="search-overlay" id="searchOverlay"></div>
+      <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+          <div class="search-input-container">
+            <i class="fas fa-search search-modal-icon"></i>
+            <input type="text" placeholder="Search tanks, maps, guides..." class="search-modal-input" autofocus>
+          </div>
+          <div class="search-suggestions text-center">
+            <p class="search-suggestions-title">Please note that search functionality is not yet implemented</p>
+            <div class="search-tags">
+              <span class="search-tag">Chopper</span>
+              <span class="search-tag">Defender Tanks</span>
+              <span class="search-tag">Flanking</span>
+              <span class="search-tag">Meta Builds</span>
+              <span class="search-tag">Tactics</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Footer -->
       <footer class="footer bg-gray-900 text-white py-10">
         <div class="container mx-auto px-10 space-y-10">
@@ -740,5 +759,6 @@
     </div>
     <script src="../js/main.js"></script>
     <script src="../js/map.js"></script>
+    <script src="../js/search.js"></script>
   </body>
 </html>
