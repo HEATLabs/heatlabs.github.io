@@ -1,0 +1,38 @@
+/* Header/Navbar */
+.navbar {
+	background-color: var(--header-bg);
+	backdrop-filter: blur(10px);
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+	border-bottom: 1px solid var(--border-color);
+	transition: all var(--transition-speed);
+	box-shadow: var(--shadow);
+}
+
+.navbar.scrolled {
+	box-shadow: var(--shadow);
+}
+
+.brand-logo {
+	display: flex;
+	align-items: center;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: var(--text-primary);
+}
+
+.brand-logo i {
+	margin-right: 0.5rem;
+	font-size: 1.2em;
+}
+
+.beta-tag {
+	background-color: var(--accent-color);
+	color: white;
+	font-size: 0.7rem;
+	padding: 0.2rem 0.6rem;
+	border-radius: 1rem;
+	margin-left: 0.5rem;
+	font-weight: bold;
+}
