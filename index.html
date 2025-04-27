@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/tanks.css">
-    <link rel="stylesheet" href="css/search.css">
   </head>
   <body>
     <!-- Sidebar Overlay -->
@@ -127,9 +126,10 @@
               </div>
             </div>
             <div class="flex items-center space-x-6">
-              <button id="openSearch" class="search-button">
-                <i class="fas fa-search"></i>
-              </button>
+              <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Search anything..." class="search-input">
+              </div>
               <div class="theme-toggle-mobile" id="themeToggleMobile">
                 <i class="fas fa-moon"></i>
               </div>
@@ -225,7 +225,7 @@
             <div class="tank-card">
               <div class="tank-img-container">
                 <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Jagdpanzer E100" class="tank-img">
-                <div class="tank-class">Tank Class</div>
+                <div class="tank-tier">Tank Class</div>
               </div>
               <div class="tank-info">
                 <h3>Placeholder Tank</h3>
@@ -270,7 +270,7 @@
             <div class="tank-card">
               <div class="tank-img-container">
                 <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Jagdpanzer E100" class="tank-img">
-                <div class="tank-class">Tank Class</div>
+                <div class="tank-tier">Tank Class</div>
               </div>
               <div class="tank-info">
                 <h3>Placeholder Tank</h3>
@@ -315,7 +315,7 @@
             <div class="tank-card">
               <div class="tank-img-container">
                 <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Jagdpanzer E100" class="tank-img">
-                <div class="tank-class">Tank Class</div>
+                <div class="tank-tier">Tank Class</div>
               </div>
               <div class="tank-info">
                 <h3>Placeholder Tank</h3>
@@ -360,7 +360,7 @@
             <div class="tank-card">
               <div class="tank-img-container">
                 <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Jagdpanzer E100" class="tank-img">
-                <div class="tank-class">Tank Class</div>
+                <div class="tank-tier">Tank Class</div>
               </div>
               <div class="tank-info">
                 <h3>Placeholder Tank</h3>
@@ -428,26 +428,6 @@
             <i class="fab fa-discord mr-2"></i> Join Discord </a>
         </div>
       </section>
-      <!-- Search Modal -->
-      <div class="search-overlay" id="searchOverlay"></div>
-      <div class="search-modal" id="searchModal">
-        <div class="search-modal-content">
-          <div class="search-input-container">
-            <i class="fas fa-search search-modal-icon"></i>
-            <input type="text" placeholder="Search tanks, maps, guides..." class="search-modal-input" autofocus>
-          </div>
-          <div class="search-suggestions text-center">
-            <p class="search-suggestions-title">Please note that search functionality is not yet implemented</p>
-            <div class="search-tags">
-              <span class="search-tag">Chopper</span>
-              <span class="search-tag">Defender Tanks</span>
-              <span class="search-tag">Flanking</span>
-              <span class="search-tag">Meta Builds</span>
-              <span class="search-tag">Tactics</span>
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- Footer -->
       <footer class="footer bg-gray-900 text-white py-10">
         <div class="container mx-auto px-10 space-y-10">
@@ -547,6 +527,5 @@
       </footer>
     </div>
     <script src="js/main.js"></script>
-    <script src="js/search.js"></script>
   </body>
 </html>
