@@ -186,6 +186,10 @@ body {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 2rem;
+	justify-items: center;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 1rem;
 }
 
 .feature-card {
@@ -236,6 +240,21 @@ body {
 .feature-card p {
 	color: var(--text-secondary);
 	margin-bottom: 1.5rem;
+}
+
+.tanks-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 2rem;
+	justify-items: center;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 1rem;
+}
+
+.tank-card {
+	width: 100%;
+	max-width: 350px;
 }
 
 /* Buttons */
