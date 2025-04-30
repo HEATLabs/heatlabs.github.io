@@ -165,6 +165,17 @@
 	color: var(--text-primary);
 }
 
+.no-guides-placeholder h3::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 0px;
+	height: 0px;
+	background-color: var(--accent-color);
+	border-radius: 0px;
+}
+
 .no-guides-placeholder p {
 	color: var(--text-secondary);
 	margin-bottom: 1rem;
