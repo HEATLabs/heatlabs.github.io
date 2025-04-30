@@ -159,9 +159,14 @@
 }
 
 /* Stats Grid */
+.full-width-stats-category {
+	grid-column: 1 / -1;
+}
+
 .stats-grid {
 	display: grid;
-	grid-template-columns: 1fr;
+	grid-template-columns: 1fr 1fr;
+	align-items: start;
 	gap: 1.5rem;
 	margin-top: 2rem;
 }
@@ -176,8 +181,14 @@
 
 .stats-header {
 	background-color: var(--accent-color);
-	color: white;
+	justify-content: space-between;
 	padding: 1rem 1.5rem;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.stats-header-left {
 	display: flex;
 	align-items: center;
 	gap: 0.75rem;
@@ -834,213 +845,213 @@ p {
 
 /* Agent Modal Styles */
 .agent-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	z-index: 1000;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .agent-modal-overlay.active,
 .agent-modal.active {
-    opacity: 1;
-    visibility: visible;
+	opacity: 1;
+	visibility: visible;
 }
 
 .agent-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 900px;
-    max-height: 90vh;
-    background-color: var(--card-bg);
-    border-radius: 0.75rem;
-    box-shadow: var(--shadow-lg);
-    z-index: 1001;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    overflow-y: auto;
-    border: 1px solid var(--border-color);
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 90%;
+	max-width: 900px;
+	max-height: 90vh;
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	box-shadow: var(--shadow-lg);
+	z-index: 1001;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+	overflow-y: auto;
+	border: 1px solid var(--border-color);
 }
 
 .agent-modal-content {
-    padding: 2rem;
+	padding: 2rem;
 }
 
 .agent-modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 40px;
-    height: 40px;
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 1.25rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    transition: background-color 0.3s ease;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	width: 40px;
+	height: 40px;
+	background-color: var(--accent-color);
+	color: white;
+	border: none;
+	border-radius: 50%;
+	font-size: 1.25rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10;
+	transition: background-color 0.3s ease;
 }
 
 .agent-modal-close:hover {
-    background-color: var(--accent-color-dark);
+	background-color: var(--accent-color-dark);
 }
 
 .agent-modal-header {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	margin-bottom: 2rem;
 }
 
 @media (min-width: 768px) {
-    .agent-modal-header {
-        flex-direction: row;
-        align-items: flex-start;
-    }
+	.agent-modal-header {
+		flex-direction: row;
+		align-items: flex-start;
+	}
 }
 
 .agent-modal-image-container {
-    flex-shrink: 0;
-    width: 250px;
-    height: 250px;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    border: 2px solid var(--accent-color);
-    box-shadow: var(--shadow);
+	flex-shrink: 0;
+	width: 250px;
+	height: 250px;
+	border-radius: 0.5rem;
+	overflow: hidden;
+	border: 2px solid var(--accent-color);
+	box-shadow: var(--shadow);
 }
 
 .agent-modal-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .agent-modal-info {
-    flex-grow: 1;
+	flex-grow: 1;
 }
 
 .agent-modal-info h2 {
-    font-size: 1.75rem;
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-    text-align: left;
+	font-size: 1.75rem;
+	margin-top: 0;
+	margin-bottom: 0.5rem;
+	color: var(--text-primary);
+	text-align: left;
 }
 
 .agent-modal-info h2::after {
-    display: none;
+	display: none;
 }
 
 .agent-modal-specialty {
-    font-size: 1.1rem;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-    font-weight: 500;
+	font-size: 1.1rem;
+	color: var(--accent-color);
+	margin-bottom: 1rem;
+	font-weight: 500;
 }
 
 .agent-modal-description {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
+	font-size: 1rem;
+	color: var(--text-secondary);
+	line-height: 1.6;
 }
 
 .agent-modal-body {
-    margin-top: 2rem;
+	margin-top: 2rem;
 }
 
 .agent-modal-body h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-    text-align: left;
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+	color: var(--text-primary);
+	text-align: left;
 }
 
 .agent-modal-body h3::after {
-    content: '';
-    display: block;
-    width: 50px;
-    height: 3px;
-    background-color: var(--accent-color);
-    margin: 0.5rem 0 1rem;
+	content: '';
+	display: block;
+	width: 50px;
+	height: 3px;
+	background-color: var(--accent-color);
+	margin: 0.5rem 0 1rem;
 }
 
 .agent-modal-body p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
+	font-size: 1rem;
+	line-height: 1.7;
+	color: var(--text-secondary);
+	margin-bottom: 1.5rem;
 }
 
 .agent-modal-tanks {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 1.5rem;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.5rem;
+	margin-top: 1.5rem;
 }
 
 .agent-modal-tank {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+	text-align: center;
 }
 
 .agent-modal-tank img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 0.5rem;
-    border: 1px solid var(--border-color);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+	width: 100%;
+	height: 120px;
+	object-fit: cover;
+	border-radius: 0.5rem;
+	border: 1px solid var(--border-color);
+	transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .agent-modal-tank:hover img {
-    transform: scale(1.05);
-    border-color: var(--accent-color);
+	transform: scale(1.05);
+	border-color: var(--accent-color);
 }
 
 .agent-modal-tank span {
-    font-size: 0.95rem;
-    color: var(--text-primary);
-    font-weight: 500;
+	font-size: 0.95rem;
+	color: var(--text-primary);
+	font-weight: 500;
 }
 
 @media (max-width: 768px) {
-    .agent-modal-image-container {
-        width: 200px;
-        height: 200px;
-    }
+	.agent-modal-image-container {
+		width: 200px;
+		height: 200px;
+	}
 
-    .agent-modal-tanks {
-        grid-template-columns: repeat(2, 1fr);
-    }
+	.agent-modal-tanks {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 
 @media (max-width: 576px) {
-    .agent-modal-header {
-        flex-direction: column;
-    }
+	.agent-modal-header {
+		flex-direction: column;
+	}
 
-    .agent-modal-image-container {
-        width: 100%;
-        height: 200px;
-    }
+	.agent-modal-image-container {
+		width: 100%;
+		height: 200px;
+	}
 
-    .agent-modal-tanks {
-        grid-template-columns: 1fr;
-    }
+	.agent-modal-tanks {
+		grid-template-columns: 1fr;
+	}
 }
