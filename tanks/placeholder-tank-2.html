@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="../../css/modules/cta.css">
     <link rel="stylesheet" href="../../css/modules/no-scrollbar.css">
     <link rel="stylesheet" href="../../css/modules/search.css">
+    <link rel="stylesheet" href="../../css/modules/tooltip.css">
     <!-- Favicon for all browsers -->
     <link rel="icon" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon.ico" type="image/x-icon">
     <!-- Apple Touch Icons (for iOS home screen bookmarks) -->
@@ -189,7 +190,7 @@
             <span>
               <i class="fas fa-users mr-1"></i> 2 Agents </span>
           </div>
-          <h1 class="tank-title">Test Tank 2</h1>
+          <h1 class="tank-title">M1E1</h1>
           <p class="tank-description">A heavily armored defender tank with devastating firepower but limited mobility</p>
         </div>
       </section>
@@ -248,14 +249,20 @@
                   <!-- Firepower -->
                   <div class="stats-category">
                     <div class="stats-header">
-                      <i class="fas fa-fire"></i>
-                      <h3>Firepower <span class="score">383</span>
-                      </h3>
+                      <div class="stats-header-left">
+                        <i class="fas fa-fire"></i>
+                        <h3>Firepower</h3>
+                      </div>
+                      <span class="score">383</span>
                     </div>
                     <div class="stats-content">
                       <div class="stat-item">
                         <span class="stat-name">Damage</span>
                         <span class="stat-value">550</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Penetration</span>
+                        <span class="stat-value">320</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Aiming Speed</span>
@@ -302,99 +309,31 @@
                         <span class="stat-value">3.5</span>
                       </div>
                       <div class="stat-item">
-                        <span class="stat-name">Turret Traverse Speed</span>
-                        <span class="stat-value">14</span>
+                        <span class="stat-name">Turret Traverse Speed, Degrees/Second</span>
+                        <span class="stat-value">14°</span>
                       </div>
                       <div class="stat-item">
-                        <span class="stat-name">Gun Elevation, Degrees/Second</span>
-                        <span class="stat-value">30</span>
+                        <span class="stat-name">Gun Elevation Speed, Degrees/Second</span>
+                        <span class="stat-value">30°</span>
                       </div>
                       <div class="stat-item">
-                        <span class="stat-name">Gun Depression, Front</span>
-                        <span class="stat-value">-8°</span>
+                        <span class="stat-name">Gun Depression(F/S/R)</span>
+                        <span class="stat-value">-8°/-8°/5°</span>
                       </div>
                       <div class="stat-item">
-                        <span class="stat-name">Gun Depression, Side</span>
-                        <span class="stat-value">-8°</span>
-                      </div>
-                      <div class="stat-item">
-                        <span class="stat-name">Gun Depression, Rear</span>
-                        <span class="stat-value">5°</span>
-                      </div>
-                      <div class="stat-item">
-                        <span class="stat-name">Gun Elevation, Front</span>
-                        <span class="stat-value">20°</span>
-                      </div>
-                      <div class="stat-item">
-                        <span class="stat-name">Gun Elevation, Side</span>
-                        <span class="stat-value">20°</span>
-                      </div>
-                      <div class="stat-item">
-                        <span class="stat-name">Gun Elevation, Rear</span>
-                        <span class="stat-value">20°</span>
-                      </div>
-                      <div class="stat-item">
-                        <span class="stat-name">Penetration</span>
-                        <span class="stat-value">320</span>
-                      </div>
-                      <div class="stat-item">
-                        <span class="stat-name">Module Damage</span>
-                        <span class="stat-value">Unknown</span>
-                      </div>
-                      <div class="stat-item">
-                        <span class="stat-name">Shell Speed, Meter/Second</span>
-                        <span class="stat-value">Unknown</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Mobility -->
-                  <div class="stats-category">
-                    <div class="stats-header">
-                      <i class="fas fa-tachometer-alt"></i>
-                      <h3>Mobility <span class="score">286</span>
-                      </h3>
-                    </div>
-                    <div class="stats-content">
-                      <div class="stat-item">
-                        <span class="stat-name">Forward Speed, km/h</span>
-                        <span class="stat-value">46.8</span>
-                      </div>
-                      <div class="stat-item">
-                        <span class="stat-name">Reverse Speed, km/h</span>
-                        <span class="stat-value">14.4</span>
-                      </div>
-                      <div class="stat-item">
-                        <span class="stat-name">Base Acceleration</span>
-                        <span class="stat-value">70</span>
-                      </div>
-                      <div class="stat-item">
-                        <span class="stat-name">Traverse Speed</span>
-                        <span class="stat-value">25.78</span>
-                      </div>
-                      <div class="stat-item">
-                        <span class="stat-name">Sprint Energy Cost</span>
-                        <span class="stat-value">10</span>
-                      </div>
-                      <div class="stat-item">
-                        <span class="stat-name">Sprint Energy Volume</span>
-                        <span class="stat-value">100</span>
-                      </div>
-                      <div class="stat-item">
-                        <span class="stat-name">Sprint Regen Rate</span>
-                        <span class="stat-value">5</span>
-                      </div>
-                      <div class="stat-item">
-                        <span class="stat-name">Ramming Mass Measure</span>
-                        <span class="stat-value">60</span>
+                        <span class="stat-name">Gun Elevation (F/S/R)</span>
+                        <span class="stat-value">20°/20°/20°</span>
                       </div>
                     </div>
                   </div>
                   <!-- Survivability -->
                   <div class="stats-category">
                     <div class="stats-header">
-                      <i class="fas fa-shield-alt"></i>
-                      <h3>Survivability <span class="score">621</span>
-                      </h3>
+                      <div class="stats-header-left">
+                        <i class="fas fa-fire"></i>
+                        <h3>Survivability</h3>
+                      </div>
+                      <span class="score">621</span>
                     </div>
                     <div class="stats-content">
                       <div class="stat-item">
@@ -467,12 +406,60 @@
                       </div>
                     </div>
                   </div>
+                  <!-- Mobility -->
+                  <div class="full-width-stats-category">
+                    <div class="stats-category">
+                      <div class="stats-header">
+                        <div class="stats-header-left">
+                          <i class="fas fa-fire"></i>
+                          <h3>Mobility</h3>
+                        </div>
+                        <span class="score">286</span>
+                      </div>
+                      <div class="stats-content">
+                        <div class="stat-item">
+                          <span class="stat-name">Forward Speed, km/h</span>
+                          <span class="stat-value">46.8</span>
+                        </div>
+                        <div class="stat-item">
+                          <span class="stat-name">Reverse Speed, km/h</span>
+                          <span class="stat-value">14.4</span>
+                        </div>
+                        <div class="stat-item">
+                          <span class="stat-name">Base Acceleration</span>
+                          <span class="stat-value">70</span>
+                        </div>
+                        <div class="stat-item">
+                          <span class="stat-name">Traverse Speed</span>
+                          <span class="stat-value">25.78</span>
+                        </div>
+                        <div class="stat-item">
+                          <span class="stat-name">Sprint Energy Cost</span>
+                          <span class="stat-value">10</span>
+                        </div>
+                        <div class="stat-item">
+                          <span class="stat-name">Sprint Energy Volume</span>
+                          <span class="stat-value">100</span>
+                        </div>
+                        <div class="stat-item">
+                          <span class="stat-name">Sprint Regen Rate</span>
+                          <span class="stat-value">5</span>
+                        </div>
+                        <div class="stat-item">
+                          <span class="stat-name">Ramming Mass Measure</span>
+                          <span class="stat-value">60</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <!-- Recon -->
                   <div class="stats-category">
                     <div class="stats-header">
-                      <i class="fas fa-binoculars"></i>
-                      <h3>Recon <span class="score">31</span>
-                      </h3>
+                      <div class="stats-header-left">
+                        <i class="fas fa-fire"></i>
+                        <h3>Recon</h3>
+                      </div>
+                      <span class="score">31</span>
                     </div>
                     <div class="stats-content">
                       <div class="stat-item">
@@ -500,9 +487,11 @@
                   <!-- Utility -->
                   <div class="stats-category">
                     <div class="stats-header">
-                      <i class="fas fa-tools"></i>
-                      <h3>Utility <span class="score">48</span>
-                      </h3>
+                      <div class="stats-header-left">
+                        <i class="fas fa-fire"></i>
+                        <h3>Utility</h3>
+                      </div>
+                      <span class="score">48</span>
                     </div>
                     <div class="stats-content">
                       <div class="stat-item">
@@ -863,5 +852,6 @@
     <script src="../../js/theme-loader.js"></script>
     <script src="../../js/tank.js"></script>
     <script src="../../js/search.js"></script>
+    <script src="../../js/tooltip.js"></script>
   </body>
 </html>
