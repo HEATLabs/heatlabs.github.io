@@ -80,7 +80,7 @@
 	transform: scale(1.05);
 }
 
-.tournament-tag {
+.ongoing-tournament-tag {
 	position: absolute;
 	top: 0.5rem;
 	right: 0.5rem;
@@ -90,6 +90,19 @@
 	border-radius: 1rem;
 	font-size: 0.75rem;
 	font-weight: bold;
+}
+
+.ended-tournament-tag {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	background-color: var(--bg-dark);
+	color: var(--ongoing-accent-color);
+	padding: 0.25rem 0.75rem;
+	border-radius: 1rem;
+	font-size: 0.75rem;
+	font-weight: bold;
+	border: 1px solid var(--ongoing-accent-color);
 }
 
 .tournament-info {
