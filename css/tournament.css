@@ -1,12 +1,12 @@
 /* Tank Detail Page Styles */
-.tank-header {
+.tournament-header {
 	padding: 3rem 0;
 	background-color: var(--bg-secondary);
 	border-bottom: 1px solid var(--border-color);
 	margin-top: 4rem;
 }
 
-.tank-meta {
+.tournament-meta {
 	display: flex;
 	align-items: center;
 	gap: 1rem;
@@ -16,11 +16,11 @@
 	flex-wrap: wrap;
 }
 
-.tank-meta i {
+.tournament-meta i {
 	margin-right: 0.25rem;
 }
 
-.tank-type-badge {
+.tournament-type-badge {
 	background-color: var(--accent-color);
 	color: white;
 	padding: 0.25rem 0.75rem;
@@ -31,7 +31,7 @@
 	letter-spacing: 0.5px;
 }
 
-.tank-title {
+.tournament-title {
 	font-size: 2.5rem;
 	font-weight: 800;
 	margin-bottom: 1rem;
@@ -41,7 +41,7 @@
 	padding-bottom: 0.5rem;
 }
 
-.tank-title::after {
+.tournament-title::after {
 	content: '';
 	position: absolute;
 	bottom: 0;
@@ -52,7 +52,7 @@
 	border-radius: 2px;
 }
 
-.tank-description {
+.tournament-description {
 	font-size: 1.15rem;
 	color: var(--text-secondary);
 	max-width: 800px;
@@ -60,23 +60,23 @@
 	margin-top: 1.5rem;
 }
 
-.tank-content-wrapper {
+.tournament-content-wrapper {
 	display: flex;
 	flex-direction: column;
 	gap: 3rem;
 }
 
 @media (min-width: 1024px) {
-	.tank-content-wrapper {
+	.tournament-content-wrapper {
 		flex-direction: row;
 		gap: 4rem;
 	}
 
-	.tank-main-content {
+	.tournament-main-content {
 		flex: 3;
 	}
 
-	.tank-sidebar {
+	.tournament-sidebar {
 		flex: 1;
 		position: sticky;
 		top: 6rem;
@@ -87,12 +87,12 @@
 }
 
 /* Tank Image */
-.tank-image {
+.tournament-image {
 	margin: 2rem 0;
 	position: relative;
 }
 
-.tank-image img {
+.tournament-image img {
 	width: 100%;
 	border-radius: 0.75rem;
 	box-shadow: var(--shadow-lg);
@@ -100,7 +100,7 @@
 	transition: transform 0.3s ease;
 }
 
-.tank-image img:hover {
+.tournament-image img:hover {
 	transform: scale(1.01);
 }
 
@@ -421,7 +421,7 @@ p {
 }
 
 /* Sidebar Styles */
-.tank-sidebar {
+.tournament-sidebar {
 	display: none;
 }
 
@@ -579,7 +579,7 @@ p {
 
 /* Mobile Sidebar Content (Show sidebar on desktop) */
 @media (min-width: 1024px) {
-	.tank-sidebar {
+	.tournament-sidebar {
 		display: block;
 	}
 
@@ -590,16 +590,16 @@ p {
 
 /* Responsive Adjustments */
 @media (max-width: 1023px) {
-	.tank-header {
+	.tournament-header {
 		padding: 2.5rem 0;
 		margin-top: 3.5rem;
 	}
 
-	.tank-title {
+	.tournament-title {
 		font-size: 2rem;
 	}
 
-	.tank-description {
+	.tournament-description {
 		font-size: 1.05rem;
 	}
 }
@@ -619,21 +619,21 @@ p {
 }
 
 @media (max-width: 640px) {
-	.tank-header {
+	.tournament-header {
 		padding: 2rem 0;
 		margin-top: 3rem;
 	}
 
-	.tank-title {
+	.tournament-title {
 		font-size: 1.75rem;
 	}
 
-	.tank-meta {
+	.tournament-meta {
 		font-size: 0.85rem;
 		gap: 0.75rem;
 	}
 
-	.tank-description {
+	.tournament-description {
 		font-size: 1rem;
 	}
 
@@ -644,7 +644,7 @@ p {
 
 /* Fix for iOS scrolling */
 @supports (-webkit-touch-callout: none) {
-	.tank-sidebar {
+	.tournament-sidebar {
 		position: -webkit-sticky;
 	}
 }
@@ -995,14 +995,14 @@ p {
 	margin-bottom: 1.5rem;
 }
 
-.agent-modal-tanks {
+.agent-modal-tournament {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 1.5rem;
 	margin-top: 1.5rem;
 }
 
-.agent-modal-tank {
+.agent-modal-tournament {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -1010,7 +1010,7 @@ p {
 	text-align: center;
 }
 
-.agent-modal-tank img {
+.agent-modal-tournament img {
 	width: 100%;
 	height: 120px;
 	object-fit: cover;
@@ -1019,12 +1019,12 @@ p {
 	transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.agent-modal-tank:hover img {
+.agent-modal-tournament:hover img {
 	transform: scale(1.05);
 	border-color: var(--accent-color);
 }
 
-.agent-modal-tank span {
+.agent-modal-tournament span {
 	font-size: 0.95rem;
 	color: var(--text-primary);
 	font-weight: 500;
@@ -1036,7 +1036,7 @@ p {
 		height: 200px;
 	}
 
-	.agent-modal-tanks {
+	.agent-modal-tournament {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
@@ -1051,7 +1051,7 @@ p {
 		height: 200px;
 	}
 
-	.agent-modal-tanks {
+	.agent-modal-tournament {
 		grid-template-columns: 1fr;
 	}
 }

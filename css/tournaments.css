@@ -1,6 +1,6 @@
-/* Maps Page Specific Styles */
-/* Maps Filter */
-.maps-filter {
+/* Tournaments Page Specific Styles */
+/* Tournament Filter */
+.tournament-filter {
 	display: flex;
 	justify-content: center;
 	gap: 2rem;
@@ -36,13 +36,13 @@
 }
 
 /* Maps Grid */
-.maps-grid {
+.tournament-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	gap: 2rem;
 }
 
-.map-card {
+.tournament-card {
 	background-color: var(--card-bg);
 	border-radius: 0.75rem;
 	overflow: hidden;
@@ -53,34 +53,34 @@
 	transform: translateY(20px);
 }
 
-.map-card.animated {
+.tournament-card.animated {
 	opacity: 1;
 	transform: translateY(0);
 	transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.map-card:hover {
+.tournament-card:hover {
 	box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
 }
 
-.map-img-container {
+.tournament-img-container {
 	position: relative;
 	height: 180px;
 	overflow: hidden;
 }
 
-.map-img {
+.tournament-img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	transition: transform var(--transition-speed);
 }
 
-.map-card:hover .map-img {
+.tournament-card:hover .tournament-img {
 	transform: scale(1.05);
 }
 
-.map-tag {
+.tournament-tag {
 	position: absolute;
 	top: 0.5rem;
 	right: 0.5rem;
@@ -92,31 +92,31 @@
 	font-weight: bold;
 }
 
-.map-info {
+.tournament-info {
 	padding: 1.5rem;
 	display: flex;
 	flex-direction: column;
 	height: calc(100% - 180px);
 }
 
-.map-info h3 {
+.tournament-info h3 {
 	font-weight: bold;
 	font-size: 1.25rem;
 	margin-bottom: 0.5rem;
 }
 
-.map-meta {
+.tournament-meta {
 	gap: 1rem;
 	margin-bottom: 1rem;
 	font-size: 0.85rem;
 	color: var(--text-secondary);
 }
 
-.map-meta i {
+.tournament-meta i {
 	margin-right: 0.25rem;
 }
 
-.map-desc {
+.tournament-desc {
 	color: var(--text-secondary);
 	margin-bottom: 1rem;
 	line-height: 1.5;
@@ -124,27 +124,27 @@
 	flex-grow: 1;
 }
 
-.btn-map {
+.btn-tournament {
 	width: 100%;
 	justify-content: center;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-	.maps-hero {
+	.tournament-hero {
 		height: 50vh;
 		min-height: 350px;
 	}
 
-	.maps-hero h1 {
+	.tournament-hero h1 {
 		font-size: 2rem;
 	}
 
-	.maps-hero p {
+	.tournament-hero p {
 		font-size: 1.1rem;
 	}
 
-	.maps-filter {
+	.tournament-filter {
 		flex-direction: column;
 		align-items: center;
 		gap: 1rem;
@@ -155,22 +155,22 @@
 		max-width: 300px;
 	}
 
-	.maps-grid {
+	.tournament-grid {
 		grid-template-columns: 1fr;
 	}
 }
 
 @media (max-width: 480px) {
-	.maps-hero {
+	.tournament-hero {
 		height: 40vh;
 		min-height: 300px;
 	}
 
-	.maps-hero h1 {
+	.tournament-hero h1 {
 		font-size: 1.75rem;
 	}
 
-	.maps-hero p {
+	.tournament-hero p {
 		font-size: 1rem;
 	}
 }
