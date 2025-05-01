@@ -8,7 +8,90 @@ document.addEventListener('DOMContentLoaded', function() {
     // DOM elements
     const activeFiltersContainer = document.querySelector('.active-filters');
     const noFiltersMessage = document.querySelector('.no-filters-message');
-    const tankCards = document.querySelectorAll('.tank-card');
+    const tanksGrid = document.querySelector('.tanks-grid');
+    let tankCards = []; // Will store references to all tank cards
+
+    // Fetch tank data from JSON file
+    async function fetchTankData() {
+        try {
+            const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+            if (!response.ok) {
+                throw new Error('Failed to load tank data');
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error loading tank data:', error);
+            return []; // Return empty array if there's an error
+        }
+    }
+
+    // Create tank card HTML
+    function createTankCard(tank) {
+        const card = document.createElement('div');
+        card.className = 'tank-card';
+        card.setAttribute('data-nation', tank.nation);
+        card.setAttribute('data-type', tank.type);
+
+        card.innerHTML = `
+            <div class="tank-img-container">
+                <img src="${tank.image}" alt="${tank.name} Preview" class="tank-img" onerror="this.src='https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png'">
+                <div class="tank-class">${tank.class}</div>
+            </div>
+            <div class="tank-info">
+                <h3>${tank.name}</h3>
+                <div class="tank-meta">
+                    <span><i class="fas fa-flag"></i> ${tank.nation}</span>
+                    <span><i class="fas fa-layer-group"></i> ${tank.type}</span>
+                </div>
+                <div class="tank-buttons">
+                    <a href="tanks/${tank.slug}.html" class="btn-accent">
+                        <i class="fas fa-chart-bar mr-2"></i>Statistics
+                    </a>
+                    <a href="#" class="btn-outline compare-btn" data-tank-id="${tank.id}">
+                        <i class="fas fa-exchange-alt mr-2"></i>Compare
+                    </a>
+                </div>
+            </div>
+        `;
+
+        return card;
+    }
+
+    // Animate tank cards into view
+    function animateTankCards() {
+        tankCards.forEach((card, index) => {
+            setTimeout(() => {
+                card.classList.add('animated');
+            }, index * 100); // Stagger the animations
+        });
+    }
+
+    // Render all tank cards
+    async function renderTankCards() {
+        const tanks = await fetchTankData();
+        tanksGrid.innerHTML = ''; // Clear existing cards
+
+        if (!tanks || tanks.length === 0) {
+            tanksGrid.innerHTML = '<p class="text-center py-10">Failed to load tank data. Please try again later.</p>';
+            return;
+        }
+
+        // Create and append cards for each tank
+        tanks.forEach(tank => {
+            const card = createTankCard(tank);
+            tanksGrid.appendChild(card);
+        });
+
+        // Store references to all tank cards
+        tankCards = Array.from(document.querySelectorAll('.tank-card'));
+
+        // Animate the cards into view
+        animateTankCards();
+
+        // Initialize filter functionality
+        initFilterButtons();
+    }
 
     // Initialize filter buttons
     function initFilterButtons() {
@@ -29,6 +112,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 filterTanks();
             });
         });
+
+        // Initialize active filters display
+        updateActiveFilters();
     }
 
     // Toggle filter on/off
@@ -105,6 +191,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Filter tanks based on active filters
     function filterTanks() {
+        if (tankCards.length === 0) return;
+
         tankCards.forEach(card => {
             const cardNation = card.getAttribute('data-nation');
             const cardType = card.getAttribute('data-type');
@@ -120,6 +208,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize
-    initFilterButtons();
+    // Initialize the page
+    renderTankCards();
 });
