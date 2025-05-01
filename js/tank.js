@@ -67,15 +67,15 @@ function initializeAgentModals() {
             story: "A frontline fighter who calls in air support to hold the line. He is a bear of a man on his chrome-plated bike, but appearances deceive. Big personality, heart of gold: devoted to friends, lethal to enemies. A father figure to many Agents, hes a down-to-earth family man who signed up to provide for his kids education, yet this practical soul has a literary quote ready for any moment. But cross this bear at your own peril.",
             compatibleTanks: [{
                     name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/placeholder-chopper.png"
+                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
                 },
                 {
                     name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/placeholder-chopper.png"
+                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
                 },
                 {
                     name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/placeholder-chopper.png"
+                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
                 }
             ]
         },
@@ -86,15 +86,15 @@ function initializeAgentModals() {
             story: "A frontline fighter who calls in air support to hold the line. He is a bear of a man on his chrome-plated bike, but appearances deceive. Big personality, heart of gold: devoted to friends, lethal to enemies. A father figure to many Agents, hes a down-to-earth family man who signed up to provide for his kids education, yet this practical soul has a literary quote ready for any moment. But cross this bear at your own peril.",
             compatibleTanks: [{
                     name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/placeholder-chopper.png"
+                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
                 },
                 {
                     name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/placeholder-chopper.png"
+                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
                 },
                 {
                     name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/placeholder-chopper.png"
+                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
                 }
             ]
         },
@@ -105,15 +105,15 @@ function initializeAgentModals() {
             story: "A frontline fighter who calls in air support to hold the line. He is a bear of a man on his chrome-plated bike, but appearances deceive. Big personality, heart of gold: devoted to friends, lethal to enemies. A father figure to many Agents, hes a down-to-earth family man who signed up to provide for his kids education, yet this practical soul has a literary quote ready for any moment. But cross this bear at your own peril.",
             compatibleTanks: [{
                     name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/placeholder-chopper.png"
+                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
                 },
                 {
                     name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/placeholder-chopper.png"
+                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
                 },
                 {
                     name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/placeholder-chopper.png"
+                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
                 }
             ]
         }
