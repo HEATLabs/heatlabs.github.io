@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Page title displayed in the browser tab -->
-    <title>M1E1 - PCWStats</title>
+    <title>Tank - PCWStats</title>
     <!-- Theme Checker -->
     <script>
       // Immediately set theme class before rendering begins
@@ -61,16 +61,18 @@
     <!-- Defines the color of the browser UI elements -->
     <meta name="theme-color" content="#141312">
     <!-- Open Graph Meta Tags (for social media sharing, mainly Facebook) -->
-    <meta property="og:title" content="PCWStats - M1E1">
+    <meta property="og:title" content="PCWStats - Placeholder Tank">
     <meta property="og:description" content="Your one-stop solution for comprehensive statistics insights and guides for Project CW">
     <meta property="og:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
     <meta property="og:url" content="https://pcwstats.github.io/tanks/placeholder-tank.html">
     <meta property="og:type" content="website">
     <!-- Twitter Card Meta Tags (for better sharing on Twitter) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="PCWStats - M1E1">
+    <meta name="twitter:title" content="PCWStats - Placeholder Tank">
     <meta name="twitter:description" content="Your one-stop solution for comprehensive statistics insights and guides for Project CW">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
+    <!-- Tank ID for JavaScript -->
+    <meta id="tank-id" name="tank-id" content="2">
   </head>
   <body>
     <!-- Sidebar Overlay -->
@@ -190,13 +192,13 @@
       <section class="tank-header">
         <div class="container mx-auto px-4">
           <div class="tank-meta">
-            <span class="tank-type-badge">Defender</span>
+            <span class="tank-type-badge">Unknown</span>
             <span>
-              <i class="fas fa-flag mr-1"></i> USA </span>
+              <i class="fas fa-flag mr-1"></i> Nation </span>
             <span>
               <i class="fas fa-users mr-1"></i> 2 Agents </span>
           </div>
-          <h1 class="tank-title">M1E1</h1>
+          <h1 class="tank-title">Tank</h1>
           <p class="tank-description">A heavily armored defender tank with devastating firepower but limited mobility</p>
         </div>
       </section>
@@ -208,12 +210,12 @@
             <div class="tank-main-content">
               <!-- Tank Image -->
               <div class="tank-image mb-8">
-                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png" alt="M1E1 Tank" class="rounded-lg shadow-lg">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="M1E1 Tank" class="rounded-lg shadow-lg">
               </div>
               <!-- Compatible Agents -->
               <div class="mb-12">
                 <h2 id="compatible-agents">Compatible Agents</h2>
-                <p class="mb-4 text-center">Section Description</p>
+                <p class="mb-4 text-center">All agents that can use this vehicle</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
                   <div class="agent-card">
                     <div class="agent-image">
@@ -250,7 +252,7 @@
               <!-- Tank Stats -->
               <div class="mb-12">
                 <h2 id="tank-stats">Tank Statistics</h2>
-                <p class="mb-4 text-center">Stock Configuration Placeholder Text</p>
+                <p class="mb-4 text-center">Base statistics without upgrades or perks</p>
                 <div class="stats-grid">
                   <!-- Firepower -->
                   <div class="stats-category">
@@ -260,77 +262,77 @@
                         <h3>Firepower</h3>
                       </div>
                       <div class="tooltip-container text-center" style="display: inline-block">
-                        <span class="score" data-tooltip="The Global Statistics Score (GSS) is a dynamic rating system that evaluates each stat category by comparing it across all tanks of the same type. Each category receives a score from 1 to 1000, with 1 representing the weakest performance and 1000 the best. These scores are automatically calculated based on how a tank’s stats stack up against others in its class." data-tooltip-pos="top">383</span>
+                        <span class="score" data-tooltip="The Global Statistics Score (GSS) is a dynamic rating system that evaluates each stat category by comparing it across all tanks of the same type. Each category receives a score from 1 to 1000, with 1 representing the weakest performance and 1000 the best. These scores are automatically calculated based on how a tank’s stats stack up against others in its class." data-tooltip-pos="top">0</span>
                       </div>
                     </div>
                     <div class="stats-content">
                       <div class="stat-item">
                         <span class="stat-name">Damage</span>
-                        <span class="stat-value">550</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Penetration</span>
-                        <span class="stat-value">320</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Aiming Speed</span>
-                        <span class="stat-value">1.5</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Reload Time</span>
-                        <span class="stat-value">8.5s</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Time Between Shots</span>
-                        <span class="stat-value">8.5s</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Shells in Magazine</span>
-                        <span class="stat-value">1</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Magazine Count</span>
-                        <span class="stat-value">1</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Time to Load Next Magazine</span>
-                        <span class="stat-value">8.5s</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Reticle Size, Moving</span>
-                        <span class="stat-value">1.5</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Reticle Size, Rotating Hull</span>
-                        <span class="stat-value">1.5</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Reticle Size, Standing</span>
-                        <span class="stat-value">0.5</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Reticle Size, After Shot</span>
-                        <span class="stat-value">0.38</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Reticle Size, Max</span>
-                        <span class="stat-value">3.5</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Turret Traverse Speed, Degrees/Second</span>
-                        <span class="stat-value">14°</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Gun Elevation Speed, Degrees/Second</span>
-                        <span class="stat-value">30°</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Gun Depression(F/S/R)</span>
-                        <span class="stat-value">-8°/-8°/5°</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Gun Elevation (F/S/R)</span>
-                        <span class="stat-value">20°/20°/20°</span>
+                        <span class="stat-value">0</span>
                       </div>
                     </div>
                   </div>
@@ -342,37 +344,37 @@
                         <h3>Survivability</h3>
                       </div>
                       <div class="tooltip-container text-center" style="display: inline-block">
-                        <span class="score" data-tooltip="The Global Statistics Score (GSS) is a dynamic rating system that evaluates each stat category by comparing it across all tanks of the same type. Each category receives a score from 1 to 1000, with 1 representing the weakest performance and 1000 the best. These scores are automatically calculated based on how a tank’s stats stack up against others in its class." data-tooltip-pos="top">621</span>
+                        <span class="score" data-tooltip="The Global Statistics Score (GSS) is a dynamic rating system that evaluates each stat category by comparing it across all tanks of the same type. Each category receives a score from 1 to 1000, with 1 representing the weakest performance and 1000 the best. These scores are automatically calculated based on how a tank’s stats stack up against others in its class." data-tooltip-pos="top">0</span>
                       </div>
                     </div>
                     <div class="stats-content">
                       <div class="stat-item">
                         <span class="stat-name">Hit Points</span>
-                        <span class="stat-value">2400</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Incoming Crit Damage, Ammo Rack</span>
-                        <span class="stat-value">1.2</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Track Repair Time, Seconds</span>
-                        <span class="stat-value">8</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Crew Hit Points</span>
-                        <span class="stat-value">200</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Crew Recovery Time, Seconds</span>
-                        <span class="stat-value">8</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Incoming Crit Damage, Engine</span>
-                        <span class="stat-value">1</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Engine Hit Points</span>
-                        <span class="stat-value">2</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Engine Repair Time, Seconds</span>
@@ -380,15 +382,15 @@
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Fire Duration, Seconds</span>
-                        <span class="stat-value">8</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Fire Damage</span>
-                        <span class="stat-value">8</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Incoming Crit Damage, Fuel Tank</span>
-                        <span class="stat-value">4</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Fire Damage Rate</span>
@@ -396,7 +398,7 @@
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Ramming Damage Resistance, Front</span>
-                        <span class="stat-value">1</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Ramming Damage Bonus</span>
@@ -404,15 +406,15 @@
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Repair Kit Cooldown, Seconds</span>
-                        <span class="stat-value">1</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Track Hit Points</span>
-                        <span class="stat-value">145</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Ltrackamounttoregen</span>
-                        <span class="stat-value">200</span>
+                        <span class="stat-value">0</span>
                       </div>
                     </div>
                   </div>
@@ -425,41 +427,41 @@
                           <h3>Mobility</h3>
                         </div>
                         <div class="tooltip-container text-center" style="display: inline-block">
-                          <span class="score" data-tooltip="The Global Statistics Score (GSS) is a dynamic rating system that evaluates each stat category by comparing it across all tanks of the same type. Each category receives a score from 1 to 1000, with 1 representing the weakest performance and 1000 the best. These scores are automatically calculated based on how a tank’s stats stack up against others in its class." data-tooltip-pos="top">286</span>
+                          <span class="score" data-tooltip="The Global Statistics Score (GSS) is a dynamic rating system that evaluates each stat category by comparing it across all tanks of the same type. Each category receives a score from 1 to 1000, with 1 representing the weakest performance and 1000 the best. These scores are automatically calculated based on how a tank’s stats stack up against others in its class." data-tooltip-pos="top">0</span>
                         </div>
                       </div>
                       <div class="stats-content">
                         <div class="stat-item">
                           <span class="stat-name">Forward Speed, km/h</span>
-                          <span class="stat-value">46.8</span>
+                          <span class="stat-value">0</span>
                         </div>
                         <div class="stat-item">
                           <span class="stat-name">Reverse Speed, km/h</span>
-                          <span class="stat-value">14.4</span>
+                          <span class="stat-value">0</span>
                         </div>
                         <div class="stat-item">
                           <span class="stat-name">Base Acceleration</span>
-                          <span class="stat-value">70</span>
+                          <span class="stat-value">0</span>
                         </div>
                         <div class="stat-item">
                           <span class="stat-name">Traverse Speed</span>
-                          <span class="stat-value">25.78</span>
+                          <span class="stat-value">0</span>
                         </div>
                         <div class="stat-item">
                           <span class="stat-name">Sprint Energy Cost</span>
-                          <span class="stat-value">10</span>
+                          <span class="stat-value">0</span>
                         </div>
                         <div class="stat-item">
                           <span class="stat-name">Sprint Energy Volume</span>
-                          <span class="stat-value">100</span>
+                          <span class="stat-value">0</span>
                         </div>
                         <div class="stat-item">
                           <span class="stat-name">Sprint Regen Rate</span>
-                          <span class="stat-value">5</span>
+                          <span class="stat-value">0</span>
                         </div>
                         <div class="stat-item">
                           <span class="stat-name">Ramming Mass Measure</span>
-                          <span class="stat-value">60</span>
+                          <span class="stat-value">0</span>
                         </div>
                       </div>
                     </div>
@@ -472,29 +474,29 @@
                         <h3>Recon</h3>
                       </div>
                       <div class="tooltip-container text-center" style="display: inline-block">
-                        <span class="score" data-tooltip="The Global Statistics Score (GSS) is a dynamic rating system that evaluates each stat category by comparing it across all tanks of the same type. Each category receives a score from 1 to 1000, with 1 representing the weakest performance and 1000 the best. These scores are automatically calculated based on how a tank’s stats stack up against others in its class." data-tooltip-pos="top">31</span>
+                        <span class="score" data-tooltip="The Global Statistics Score (GSS) is a dynamic rating system that evaluates each stat category by comparing it across all tanks of the same type. Each category receives a score from 1 to 1000, with 1 representing the weakest performance and 1000 the best. These scores are automatically calculated based on how a tank’s stats stack up against others in its class." data-tooltip-pos="top">0</span>
                       </div>
                     </div>
                     <div class="stats-content">
                       <div class="stat-item">
                         <span class="stat-name">Spotting Angle, Degrees</span>
-                        <span class="stat-value">25</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Spotting Range, Meters</span>
-                        <span class="stat-value">300</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Spotting Duration, Seconds</span>
-                        <span class="stat-value">2.8</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Signal Range, Meters</span>
-                        <span class="stat-value">100</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">X-Ray Radius, Meters</span>
-                        <span class="stat-value">30</span>
+                        <span class="stat-value">0</span>
                       </div>
                     </div>
                   </div>
@@ -506,29 +508,29 @@
                         <h3>Utility</h3>
                       </div>
                       <div class="tooltip-container text-center" style="display: inline-block">
-                        <span class="score" data-tooltip="The Global Statistics Score (GSS) is a dynamic rating system that evaluates each stat category by comparing it across all tanks of the same type. Each category receives a score from 1 to 1000, with 1 representing the weakest performance and 1000 the best. These scores are automatically calculated based on how a tank’s stats stack up against others in its class." data-tooltip-pos="top">48</span>
+                        <span class="score" data-tooltip="The Global Statistics Score (GSS) is a dynamic rating system that evaluates each stat category by comparing it across all tanks of the same type. Each category receives a score from 1 to 1000, with 1 representing the weakest performance and 1000 the best. These scores are automatically calculated based on how a tank’s stats stack up against others in its class." data-tooltip-pos="top">0</span>
                       </div>
                     </div>
                     <div class="stats-content">
                       <div class="stat-item">
                         <span class="stat-name">Energy Points</span>
-                        <span class="stat-value">100</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Energy Regeneration</span>
-                        <span class="stat-value">1</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Smoke Cooldown, Seconds</span>
-                        <span class="stat-value">25</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Smoke Energy Cost</span>
-                        <span class="stat-value">40</span>
+                        <span class="stat-value">0</span>
                       </div>
                       <div class="stat-item">
                         <span class="stat-name">Smoke Use Count</span>
-                        <span class="stat-value">1</span>
+                        <span class="stat-value">0</span>
                       </div>
                     </div>
                   </div>
@@ -537,7 +539,7 @@
               <!-- Strengths & Weaknesses -->
               <div class="mt-16 mb-12">
                 <h2 id="strengths-weaknesses">Strengths & Weaknesses</h2>
-                <p class="mb-4 text-center">Section Description</p>
+                <p class="mb-4 text-center">Strengths and weaknesses based on community feedback</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
                   <div class="strengths-card">
                     <div class="strengths-header">
@@ -610,7 +612,7 @@
               <!-- Tips from Top Players -->
               <div class="mt-16 mb-12">
                 <h2 id="pro-tips">Tips from Top Players</h2>
-                <p class="mb-4 text-center">Strategic advice from players with high win rates in the M1E1:</p>
+                <p class="mb-4 text-center">Strategic advice from players with high win rates in this vehicle:</p>
                 <div class="grid grid-cols-1 md:grid-cols-1 gap-8 my-8">
                   <div class="pro-tip-card">
                     <div class="pro-tip-header">
@@ -670,16 +672,16 @@
                 <h3>Tank Gallery</h3>
                 <div class="grid grid-cols-2 gap-2">
                   <a href="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" class="gallery-thumbnail">
-                    <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="M1E1 Front View">
+                    <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt=" Front View">
                   </a>
                   <a href="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" class="gallery-thumbnail">
-                    <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="M1E1 Side View">
+                    <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt=" Front View">
                   </a>
                   <a href="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" class="gallery-thumbnail">
-                    <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="M1E1 Rear View">
+                    <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt=" Front View">
                   </a>
                   <a href="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" class="gallery-thumbnail">
-                    <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="M1E1 Top View">
+                    <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt=" Front View">
                   </a>
                 </div>
               </div>
