@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Main meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title displayed in the browser tab -->
+    <title>Tank - PCWStats</title>
+    <!-- Theme Checker -->
+    <script>
+      // Immediately set theme class before rendering begins
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          // Default to dark theme if saved or system preference
+          if (savedTheme === 'dark-theme' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark-theme');
+          } else {
+            document.documentElement.classList.add('light-theme');
+          }
+        } catch (e) {
+          console.error('Theme initialization error:', e);
+          document.documentElement.classList.add('light-theme');
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/tank.css">
+    <link rel="stylesheet" href="../css/modules/header.css">
+    <link rel="stylesheet" href="../css/modules/footer.css">
+    <link rel="stylesheet" href="../css/modules/sidebar.css">
+    <link rel="stylesheet" href="../css/modules/cta.css">
+    <link rel="stylesheet" href="../css/modules/no-scrollbar.css">
+    <link rel="stylesheet" href="../css/modules/search.css">
+    <link rel="stylesheet" href="../css/modules/tooltip.css">
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon.ico" type="image/x-icon">
+    <!-- Apple Touch Icons (for iOS home screen bookmarks) -->
+    <link rel="apple-touch-icon" sizes="57x57" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-180x180.png">
+    <!-- Favicons for different devices -->
+    <link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/android/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon-16x16.png">
+    <!-- Web Manifest -->
+    <link rel="manifest" href="../site-data/site.manifest">
+    <!-- Windows-specific tiles (for pinned sites in Windows Start menu) -->
+    <meta name="msapplication-TileColor" content="#141312">
+    <meta name="msapplication-TileImage" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/microsoft/ms-icon-144x144.png">
+    <!-- Defines the color of the browser UI elements -->
+    <meta name="theme-color" content="#141312">
+    <!-- Open Graph Meta Tags (for social media sharing, mainly Facebook) -->
+    <meta property="og:title" content="PCWStats - T-64B">
+    <meta property="og:description" content="Your one-stop solution for comprehensive statistics insights and guides for Project CW">
+    <meta property="og:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
+    <meta property="og:url" content="https://pcwstats.github.io/tanks/placeholder-tank.html">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card Meta Tags (for better sharing on Twitter) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PCWStats - T-64B">
+    <meta name="twitter:description" content="Your one-stop solution for comprehensive statistics insights and guides for Project CW">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
+    <!-- Tank ID for JavaScript -->
+    <meta id="tank-id" name="tank-id" content="21">
+  </head>
+  <body>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="flex items-center justify-between">
+          <button id="closeSidebar" class="sidebar-close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <nav class="flex-grow">
+        <ul class="space-y-2">
+          <li>
+            <a href="../index.html" class="sidebar-link">
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="../tanks.html" class="sidebar-link active">
+              <i class="fas fa-shield-alt"></i>
+              <span>Tank Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="../maps.html" class="sidebar-link">
+              <i class="fas fa-map"></i>
+              <span>Map Knowledge</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link">
+              <i class="fas fa-check-double"></i>
+              <span>Check & Compare</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link">
+              <i class="fas fa-wrench"></i>
+              <span>Common Builds</span>
+            </a>
+          </li>
+          <li>
+            <a href="../guides.html" class="sidebar-link">
+              <i class="fas fa-book-open"></i>
+              <span>Community Guides</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link">
+              <i class="fas fa-user-friends"></i>
+              <span>Player Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="../credits.html" class="sidebar-link">
+              <i class="fas fa-users"></i>
+              <span>Community Credits</span>
+            </a>
+          </li>
+          <li>
+            <a href="../tournaments.html" class="sidebar-link">
+              <i class="fa-solid fa-trophy"></i>
+              <span>Tournaments</span>
+            </a>
+          </li>
+          <li>
+            <a href="../about-us.html" class="sidebar-link">
+              <i class="fas fa-info-circle"></i>
+              <span>About the Project</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="theme-toggle-container">
+          <span class="theme-toggle-label">Dark Mode</span>
+          <div class="theme-toggle-switch" id="themeToggle">
+            <div class="toggle-thumb"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="content-wrapper">
+      <!-- Header/Navbar -->
+      <header class="navbar">
+        <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center py-3">
+            <div class="flex items-center space-x-4">
+              <button id="openSidebar" class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <a href="../index.html" class="brand-logo">
+                <i class="fas fa-tank text-accent-color"></i>
+                <span>PCWStats</span>
+                <span class="beta-tag">BETA</span>
+              </a>
+            </div>
+            <div class="flex items-center space-x-6">
+              <button id="openSearch" class="search-button">
+                <i class="fas fa-search"></i>
+              </button>
+              <div class="theme-toggle-mobile" id="themeToggleMobile">
+                <i class="fas fa-moon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Tank Header -->
+      <section class="tank-header">
+        <div class="container mx-auto px-4">
+          <div class="tank-meta">
+            <span class="tank-type-badge">Unknown</span>
+            <span>
+              <i class="fas fa-flag mr-1"></i> Nation </span>
+            <span>
+              <i class="fas fa-users mr-1"></i> 2 Agents </span>
+          </div>
+          <h1 class="tank-title">Tank</h1>
+          <p class="tank-description">A heavily armored defender tank with devastating firepower but limited mobility</p>
+        </div>
+      </section>
+      <!-- Tank Content -->
+      <section class="section py-8">
+        <div class="container mx-auto px-4">
+          <div class="tank-content-wrapper">
+            <!-- Main Content -->
+            <div class="tank-main-content">
+              <!-- Tank Image -->
+              <div class="tank-image mb-8">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="M1E1 Tank" class="rounded-lg shadow-lg">
+              </div>
+              <!-- Compatible Agents -->
+              <div class="mb-12">
+                <h2 id="compatible-agents">Compatible Agents</h2>
+                <p class="mb-4 text-center">All agents that can use this vehicle</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
+                  <div class="agent-card">
+                    <div class="agent-image">
+                      <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/agents/Chopper.png" alt="Agent 1">
+                    </div>
+                    <div class="agent-info">
+                      <h3>Chopper 1</h3>
+                      <p class="agent-specialty">Ability: Shock and Awe</p>
+                      <p class="agent-description">Call in the support of Chopper's friend in the Air Force, the bomber will fly to the targeted position deal a lot of damage, and become dazed.</p>
+                    </div>
+                  </div>
+                  <div class="agent-card">
+                    <div class="agent-image">
+                      <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/agents/Chopper.png" alt="Agent 2">
+                    </div>
+                    <div class="agent-info">
+                      <h3>Chopper 2</h3>
+                      <p class="agent-specialty">Ability: Shock and Awe</p>
+                      <p class="agent-description">Call in the support of Chopper's friend in the Air Force, the bomber will fly to the targeted position deal a lot of damage, and become dazed.</p>
+                    </div>
+                  </div>
+                  <div class="agent-card">
+                    <div class="agent-image">
+                      <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/agents/Chopper.png" alt="Agent 3">
+                    </div>
+                    <div class="agent-info">
+                      <h3>Chopper 3</h3>
+                      <p class="agent-specialty">Ability: Shock and Awe</p>
+                      <p class="agent-description">Call in the support of Chopper's friend in the Air Force, the bomber will fly to the targeted position deal a lot of damage, and become dazed.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Tank Stats -->
+              <div class="mb-12">
+                <h2 id="tank-stats">Tank Statistics</h2>
+                <p class="mb-4 text-center">Base statistics without upgrades or perks</p>
+                <div class="stats-grid">
+                  <!-- Firepower -->
+                  <div class="stats-category">
+                    <div class="stats-header">
+                      <div class="stats-header-left">
+                        <i class="fas fa-fire"></i>
+                        <h3>Firepower</h3>
+                      </div>
+                      <div class="tooltip-container text-center" style="display: inline-block">
+                        <span class="score" data-tooltip="The Global Statistics Score (GSS) is a dynamic rating system that evaluates each stat category by comparing it across all tanks of the same type. Each category receives a score from 1 to 1000, with 1 representing the weakest performance and 1000 the best. These scores are automatically calculated based on how a tank’s stats stack up against others in its class." data-tooltip-pos="top">0</span>
+                      </div>
+                    </div>
+                    <div class="stats-content">
+                      <div class="stat-item">
+                        <span class="stat-name">Damage</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Penetration</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Aiming Speed</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Reload Time</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Time Between Shots</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Shells in Magazine</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Magazine Count</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Time to Load Next Magazine</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Reticle Size, Moving</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Reticle Size, Rotating Hull</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Reticle Size, Standing</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Reticle Size, After Shot</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Reticle Size, Max</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Turret Traverse Speed, Degrees/Second</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Gun Elevation Speed, Degrees/Second</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Gun Depression(F/S/R)</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Gun Elevation (F/S/R)</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Survivability -->
+                  <div class="stats-category">
+                    <div class="stats-header">
+                      <div class="stats-header-left">
+                        <i class="fas fa-fire"></i>
+                        <h3>Survivability</h3>
+                      </div>
+                      <div class="tooltip-container text-center" style="display: inline-block">
+                        <span class="score" data-tooltip="The Global Statistics Score (GSS) is a dynamic rating system that evaluates each stat category by comparing it across all tanks of the same type. Each category receives a score from 1 to 1000, with 1 representing the weakest performance and 1000 the best. These scores are automatically calculated based on how a tank’s stats stack up against others in its class." data-tooltip-pos="top">0</span>
+                      </div>
+                    </div>
+                    <div class="stats-content">
+                      <div class="stat-item">
+                        <span class="stat-name">Hit Points</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Incoming Crit Damage, Ammo Rack</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Track Repair Time, Seconds</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Crew Hit Points</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Crew Recovery Time, Seconds</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Incoming Crit Damage, Engine</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Engine Hit Points</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Engine Repair Time, Seconds</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Fire Duration, Seconds</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Fire Damage</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Incoming Crit Damage, Fuel Tank</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Fire Damage Rate</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Ramming Damage Resistance, Front</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Ramming Damage Bonus</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Repair Kit Cooldown, Seconds</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Track Hit Points</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Ltrackamounttoregen</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Mobility -->
+                  <div class="full-width-stats-category">
+                    <div class="stats-category">
+                      <div class="stats-header">
+                        <div class="stats-header-left">
+                          <i class="fas fa-fire"></i>
+                          <h3>Mobility</h3>
+                        </div>
+                        <div class="tooltip-container text-center" style="display: inline-block">
+                          <span class="score" data-tooltip="The Global Statistics Score (GSS) is a dynamic rating system that evaluates each stat category by comparing it across all tanks of the same type. Each category receives a score from 1 to 1000, with 1 representing the weakest performance and 1000 the best. These scores are automatically calculated based on how a tank’s stats stack up against others in its class." data-tooltip-pos="top">0</span>
+                        </div>
+                      </div>
+                      <div class="stats-content">
+                        <div class="stat-item">
+                          <span class="stat-name">Forward Speed, km/h</span>
+                          <span class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                          <span class="stat-name">Reverse Speed, km/h</span>
+                          <span class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                          <span class="stat-name">Base Acceleration</span>
+                          <span class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                          <span class="stat-name">Traverse Speed</span>
+                          <span class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                          <span class="stat-name">Sprint Energy Cost</span>
+                          <span class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                          <span class="stat-name">Sprint Energy Volume</span>
+                          <span class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                          <span class="stat-name">Sprint Regen Rate</span>
+                          <span class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                          <span class="stat-name">Ramming Mass Measure</span>
+                          <span class="stat-value">0</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Recon -->
+                  <div class="stats-category">
+                    <div class="stats-header">
+                      <div class="stats-header-left">
+                        <i class="fas fa-fire"></i>
+                        <h3>Recon</h3>
+                      </div>
+                      <div class="tooltip-container text-center" style="display: inline-block">
+                        <span class="score" data-tooltip="The Global Statistics Score (GSS) is a dynamic rating system that evaluates each stat category by comparing it across all tanks of the same type. Each category receives a score from 1 to 1000, with 1 representing the weakest performance and 1000 the best. These scores are automatically calculated based on how a tank’s stats stack up against others in its class." data-tooltip-pos="top">0</span>
+                      </div>
+                    </div>
+                    <div class="stats-content">
+                      <div class="stat-item">
+                        <span class="stat-name">Spotting Angle, Degrees</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Spotting Range, Meters</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Spotting Duration, Seconds</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Signal Range, Meters</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">X-Ray Radius, Meters</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Utility -->
+                  <div class="stats-category">
+                    <div class="stats-header">
+                      <div class="stats-header-left">
+                        <i class="fas fa-fire"></i>
+                        <h3>Utility</h3>
+                      </div>
+                      <div class="tooltip-container text-center" style="display: inline-block">
+                        <span class="score" data-tooltip="The Global Statistics Score (GSS) is a dynamic rating system that evaluates each stat category by comparing it across all tanks of the same type. Each category receives a score from 1 to 1000, with 1 representing the weakest performance and 1000 the best. These scores are automatically calculated based on how a tank’s stats stack up against others in its class." data-tooltip-pos="top">0</span>
+                      </div>
+                    </div>
+                    <div class="stats-content">
+                      <div class="stat-item">
+                        <span class="stat-name">Energy Points</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Energy Regeneration</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Smoke Cooldown, Seconds</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Smoke Energy Cost</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-name">Smoke Use Count</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Strengths & Weaknesses -->
+              <div class="mt-16 mb-12">
+                <h2 id="strengths-weaknesses">Strengths & Weaknesses</h2>
+                <p class="mb-4 text-center">Strengths and weaknesses based on community feedback</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
+                  <div class="strengths-card">
+                    <div class="strengths-header">
+                      <i class="fas fa-thumbs-up"></i>
+                      <h3>Strengths</h3>
+                    </div>
+                    <div class="strengths-content">
+                      <ul class="list-disc pl-6 space-y-2">
+                        <li>
+                          <strong>Strength 1:</strong> Strength Text
+                        </li>
+                        <li>
+                          <strong>Strength 2:</strong> Strength Text
+                        </li>
+                        <li>
+                          <strong>Strength 3:</strong> Strength Text
+                        </li>
+                        <li>
+                          <strong>Strength 4:</strong> Strength Text
+                        </li>
+                        <li>
+                          <strong>Strength 5:</strong> Strength Text
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="weaknesses-card">
+                    <div class="weaknesses-header">
+                      <i class="fas fa-thumbs-down"></i>
+                      <h3>Weaknesses</h3>
+                    </div>
+                    <div class="weaknesses-content">
+                      <ul class="list-disc pl-6 space-y-2">
+                        <li>
+                          <strong>Weakness 1:</strong> Weakness Text
+                        </li>
+                        <li>
+                          <strong>Weakness 2:</strong> Weakness Text
+                        </li>
+                        <li>
+                          <strong>Weakness 3:</strong> Weakness Text
+                        </li>
+                        <li>
+                          <strong>Weakness 4:</strong> Weakness Text
+                        </li>
+                        <li>
+                          <strong>Weakness 5:</strong> Weakness Text
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Community Feedback -->
+              <div class="mt-16 mb-12">
+                <h2 id="community-feedback">Community Feedback</h2>
+                <p class="mb-4 text-center">Player opinions and ratings based on community surveys:</p>
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-8 my-8">
+                  <div class="feedback-card">
+                    <h3>Common Player Feedback</h3>
+                    <div class="feedback-item positive">
+                      <i class="fas fa-thumbs-up"></i>
+                      <div>
+                        <p>"Your insights could be featured here, tell us what stands out to you about this tank!"</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Tips from Top Players -->
+              <div class="mt-16 mb-12">
+                <h2 id="pro-tips">Tips from Top Players</h2>
+                <p class="mb-4 text-center">Strategic advice from players with high win rates in this vehicle:</p>
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-8 my-8">
+                  <div class="pro-tip-card">
+                    <div class="pro-tip-header">
+                      <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/team-members/SINEWAVE.png" alt="Player Avatar" class="avatar">
+                      <div>
+                        <h4>SINEWAVE</h4>
+                        <span>Lead Developer</span>
+                      </div>
+                    </div>
+                    <div class="pro-tip">
+                      <p>Got strategic insights or know a high-level player who does? Help us grow this section by submitting tips that make a real difference on this tank. If you're a seasoned player with a strong win rate, we'd love to feature your advice, get in touch!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Conclusion Section -->
+              <div class="mt-16 mb-12">
+                <h2 id="conclusion">Conclusion</h2>
+                <p class="mb-4 text-center">Conclusion Paragraph 1</p>
+                <p class="mb-4 text-center">Conclusion Paragraph 2</p>
+                <div class="action-buttons text-center my-8">
+                  <a href="../tanks.html" class="btn-accent mt-4">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Tank List </a>
+                  <a href="#" class="btn-accent mt-4">
+                    <i class="fas fa-thumbs-up mr-2"></i>Rate This Tank </a>
+                </div>
+              </div>
+            </div>
+            <!-- Desktop Sidebar -->
+            <div class="tank-sidebar hidden lg:block">
+              <!-- Quick Actions -->
+              <div class="sidebar-card">
+                <h3>Quick Actions</h3>
+                <div class="quick-actions">
+                  <a href="#" class="quick-action-btn build-btn">
+                    <i class="fas fa-wrench"></i>
+                    <span>Build</span>
+                  </a>
+                  <a href="#" class="quick-action-btn compare-btn">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Compare</span>
+                  </a>
+                </div>
+              </div>
+              <!-- Tank Guides -->
+              <div class="sidebar-card">
+                <h3>Related Guides</h3>
+                <div class="related-guide">
+                  <h4>
+                    <a>No guides found</a>
+                  </h4>
+                  <p>No guides for this tank yet</p>
+                </div>
+              </div>
+              <!-- Tank Gallery -->
+              <div class="sidebar-card">
+                <h3>Tank Gallery</h3>
+                <div class="grid grid-cols-2 gap-2">
+                  <a href="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" class="gallery-thumbnail">
+                    <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt=" Front View">
+                  </a>
+                  <a href="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" class="gallery-thumbnail">
+                    <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt=" Front View">
+                  </a>
+                  <a href="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" class="gallery-thumbnail">
+                    <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt=" Front View">
+                  </a>
+                  <a href="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" class="gallery-thumbnail">
+                    <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt=" Front View">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Search Modal -->
+      <div class="search-overlay" id="searchOverlay"></div>
+      <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+          <div class="search-input-container">
+            <i class="fas fa-search search-modal-icon"></i>
+            <input type="text" placeholder="Search tanks, maps, guides..." class="search-modal-input" autofocus>
+          </div>
+          <div class="search-suggestions text-center">
+            <p class="search-suggestions-title">Please note that search functionality is not yet implemented</p>
+            <div class="search-tags">
+              <span class="search-tag">Chopper</span>
+              <span class="search-tag">Defender Tanks</span>
+              <span class="search-tag">Flanking</span>
+              <span class="search-tag">Meta Builds</span>
+              <span class="search-tag">Tactics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <footer class="footer bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-10 space-y-10">
+          <!-- Top Row -->
+          <div class="footer-brand flex flex-col items-center text-center">
+            <div>
+              <h3 class="text-2xl font-semibold">PCWStats</h3>
+              <p class="text-gray-400">Your go-to resource for Project CW statistics and gameplay information.</p>
+            </div>
+            <div class="flex space-x-4 text-xl">
+              <a href="https://discord.com/invite/2nHHHBWNDw" class="social-icon">
+                <i class="fab fa-discord"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fas fa-reddit"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Middle Row -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-10 text-center">
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Tools</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="#">Check & Compare</a>
+                </li>
+                <li>
+                  <a href="../tanks.html">Tank Statistics</a>
+                </li>
+                <li>
+                  <a href="#">Player Statistics</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Community</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../guides.html">Community Guides</a>
+                </li>
+                <li>
+                  <a href="#">Common Builds</a>
+                </li>
+                <li>
+                  <a href="../maps.html">Map Knowledge</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">PCWStats</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../about-us.html">About The Project</a>
+                </li>
+                <li>
+                  <a href="../credits.html">Community Credits</a>
+                </li>
+                <li>
+                  <a href="https://github.com/PCWStats">Source Code</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Legal</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../legal/privacy-policy.html">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="../legal/terms-of-service.html">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="../legal/project-license.html">Project License</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Contact Row -->
+          <div class="text-center">
+            <h3 class="text-lg font-semibold mb-1">Contact</h3>
+            <p class="text-gray-400 mb-2">Have suggestions or found a bug?</p>
+            <a href="#" class="btn-accent mt-4">
+              <i class="fas fa-envelope mr-2"></i>Send Feedback </a>
+          </div>
+          <!-- Bottom Disclaimer -->
+          <div class="text-center text-sm text-gray-500 space-y-1 border-t border-gray-700 pt-4">
+            <p>PCWStats is a community-made project and is not associated with, endorsed by, or affiliated with Project CW or Wargaming.net.</p>
+            <p>&copy; 2025 PCWStats by SINEWAVE Development. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- Image Gallery Modal -->
+    <div class="gallery-modal" id="galleryModal">
+      <div class="gallery-modal-content">
+        <button class="gallery-close-btn" id="galleryCloseBtn">
+          <i class="fas fa-times"></i>
+        </button>
+        <button class="gallery-nav-btn gallery-prev-btn" id="galleryPrevBtn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="gallery-main-image-container">
+          <img id="galleryMainImage" src="" alt="Gallery Image">
+          <div class="gallery-image-caption" id="galleryImageCaption"></div>
+        </div>
+        <button class="gallery-nav-btn gallery-next-btn" id="galleryNextBtn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="gallery-thumbnails-container" id="galleryThumbnailsContainer"></div>
+      </div>
+    </div>
+    <!-- Agent Modal -->
+    <div class="agent-modal-overlay" id="agentModalOverlay"></div>
+    <div class="agent-modal" id="agentModal">
+      <button class="agent-modal-close" id="agentModalClose">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="agent-modal-content">
+        <div class="agent-modal-header">
+          <div class="agent-modal-image-container">
+            <img id="agentModalImage" src="" alt="Agent Image" class="agent-modal-image">
+          </div>
+          <div class="agent-modal-info">
+            <h2 id="agentModalName">Agent Name</h2>
+            <p class="agent-modal-specialty" id="agentModalSpecialty">Ability: Name</p>
+            <p class="agent-modal-description" id="agentModalDescription">Ability Description</p>
+          </div>
+        </div>
+        <div class="agent-modal-body">
+          <h3>Background Story</h3>
+          <p id="agentModalStory">Agent's background story goes here...</p>
+          <h3>Compatible Tanks</h3>
+          <div class="agent-modal-tanks" id="agentModalTanksContainer">
+            <!-- Tank images will be inserted here by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../js/main.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/theme-loader.js"></script>
+    <script src="../js/tank.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/tooltip.js"></script>
+  </body>
+</html>
