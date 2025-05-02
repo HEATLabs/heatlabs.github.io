@@ -1,5 +1,14 @@
 // Tank Page JS for PCWStats
 document.addEventListener('DOMContentLoaded', function() {
+    // Get tank ID from meta tag
+    const tankIdMeta = document.querySelector('meta[name="tank-id"]');
+    const tankId = tankIdMeta ? tankIdMeta.content : null;
+
+    // If tank ID is specified, fetch and populate tank data
+    if (tankId) {
+        fetchTankData(tankId);
+    }
+
     // Initialize gamemode selector functionality
     const gamemodeButtons = document.querySelectorAll('.gamemode-btn');
     const gamemodeSections = document.querySelectorAll('.gamemode-section');
@@ -45,6 +54,185 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize any interactive elements specific to tank pages
     initializeTankPageElements();
 });
+
+// Function to fetch tank data based on ID
+async function fetchTankData(tankId) {
+    try {
+        // First fetch the tanks.json to get the tank details
+        const tanksResponse = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+        const tanksData = await tanksResponse.json();
+
+        // Find the tank with matching ID
+        const tank = tanksData.find(t => t.id.toString() === tankId.toString());
+
+        if (!tank) {
+            console.error('Tank not found with ID:', tankId);
+            return;
+        }
+
+        // Update page title and meta tags
+        document.title = `${tank.name} - PCWStats`;
+        document.querySelector('meta[property="og:title"]').content = `PCWStats - ${tank.name}`;
+        document.querySelector('meta[name="twitter:title"]').content = `PCWStats - ${tank.name}`;
+
+        // Update tank header information
+        const tankHeader = document.querySelector('.tank-header');
+        if (tankHeader) {
+            const typeBadge = tankHeader.querySelector('.tank-type-badge');
+            if (typeBadge && tank.type !== "Unknown") {
+                typeBadge.textContent = tank.type;
+            }
+
+            const nationSpan = tankHeader.querySelector('.tank-meta span:nth-child(2)');
+            if (nationSpan) {
+                nationSpan.innerHTML = `<i class="fas fa-flag mr-1"></i> ${tank.nation}`;
+            }
+
+            const tankTitle = tankHeader.querySelector('.tank-title');
+            if (tankTitle) {
+                tankTitle.textContent = tank.name;
+            }
+        }
+
+        // Update tank image
+        const tankImage = document.querySelector('.tank-image img');
+        if (tankImage) {
+            tankImage.src = tank.image;
+            tankImage.alt = tank.name;
+        }
+
+        // Fetch stock data if available
+        if (tank.stock) {
+            try {
+                const stockResponse = await fetch(tank.stock);
+                const stockData = await stockResponse.json();
+                populateTankStats(stockData);
+            } catch (error) {
+                console.error('Error fetching stock data:', error);
+            }
+        }
+
+    } catch (error) {
+        console.error('Error fetching tank data:', error);
+    }
+}
+
+// Function to populate tank stats from stock data
+function populateTankStats(stockData) {
+    // Helper function to update stat values
+    function updateStat(category, statName, value) {
+        // Find all stat categories
+        const categories = document.querySelectorAll('.stats-category');
+
+        // Find the matching category
+        let targetCategory = null;
+        categories.forEach(cat => {
+            const h3 = cat.querySelector('h3');
+            if (h3 && h3.textContent.includes(category)) {
+                targetCategory = cat;
+            }
+        });
+
+        if (!targetCategory) return;
+
+        // Find all stat items in this category
+        const statItems = targetCategory.querySelectorAll('.stat-item');
+
+        // Find the matching stat item
+        let targetItem = null;
+        statItems.forEach(item => {
+            const nameElement = item.querySelector('.stat-name');
+            if (nameElement && nameElement.textContent.includes(statName)) {
+                targetItem = item;
+            }
+        });
+
+        if (!targetItem) return;
+
+        // Update the value
+        const valueElement = targetItem.querySelector('.stat-value');
+        if (valueElement) {
+            valueElement.textContent = value;
+        }
+    }
+
+    // Firepower stats
+    if (stockData.FIREPOWER) {
+        const fp = stockData.FIREPOWER;
+        updateStat('Firepower', 'Damage', fp.DAMAGE);
+        updateStat('Firepower', 'Penetration', fp.PENETRATION);
+        updateStat('Firepower', 'Aiming Speed', fp["AIMING SPEED"]);
+        updateStat('Firepower', 'Reload Time', fp["RELOAD TIME"]);
+        updateStat('Firepower', 'Time Between Shots', fp["TIME BETWEEN SHOTS"]);
+        updateStat('Firepower', 'Shells in Magazine', fp["SHELLS IN MAGAZINE"]);
+        updateStat('Firepower', 'Magazine Count', fp["MAGAZINE COUNT"]);
+        updateStat('Firepower', 'Time to Load Next Magazine', fp["TIME TO LOAD NEXT MAGAZINE"]);
+        updateStat('Firepower', 'Reticle Size, Moving', fp["RETICLE SIZE, MOVING"]);
+        updateStat('Firepower', 'Reticle Size, Rotating Hull', fp["RETICLE SIZE, ROTATING HULL"]);
+        updateStat('Firepower', 'Reticle Size, Standing', fp["RETICLE SIZE, STANDING"]);
+        updateStat('Firepower', 'Reticle Size, After Shot', fp["RETICLE SIZE, AFTER SHOT"]);
+        updateStat('Firepower', 'Reticle Size, Max', fp["RETICLE SIZE, MAX"]);
+        updateStat('Firepower', 'Turret Traverse Speed, Degrees/Second', fp["TURRET TRAVERSE SPEED"]);
+        updateStat('Firepower', 'Gun Elevation Speed, Degrees/Second', fp["GUN ELEVATION, DEGREES/SECOND"]);
+        updateStat('Firepower', 'Gun Depression(F/S/R)', fp["GUN DEPRESSION, FSR"]);
+        updateStat('Firepower', 'Gun Elevation (F/S/R)', fp["GUN ELEVATION, FSR"]);
+    }
+
+    // Mobility stats
+    if (stockData.MOBILITY) {
+        const mob = stockData.MOBILITY;
+        updateStat('Mobility', 'Forward Speed, km/h', mob["FORWARD SPEED, KM/H"]);
+        updateStat('Mobility', 'Reverse Speed, km/h', mob["REVERSE SPEED, KM/H"]);
+        updateStat('Mobility', 'Base Acceleration', mob["BASE ACCELERATION"]);
+        updateStat('Mobility', 'Traverse Speed', mob["TRAVERSE SPEED"]);
+        updateStat('Mobility', 'Sprint Energy Cost', mob["SPRINT ENERGY COST"]);
+        updateStat('Mobility', 'Sprint Energy Volume', mob["SPRINT ENERGY VOLUME"]);
+        updateStat('Mobility', 'Sprint Regen Rate', mob["SPRINT REGEN RATE"]);
+        updateStat('Mobility', 'Ramming Mass Measure', mob["RAMMING MASS MEASURE"]);
+    }
+
+    // Survivability stats
+    if (stockData.SURVIVABILITY) {
+        const surv = stockData.SURVIVABILITY;
+        updateStat('Survivability', 'Hit Points', surv["HIT POINTS"]);
+        updateStat('Survivability', 'Incoming Crit Damage, Ammo Rack', surv["INCOMING CRIT DAMAGE, AMMO RACK"]);
+        updateStat('Survivability', 'Track Repair Time, Seconds', surv["TRACK REPAIR TIME, SECONDS"]);
+        updateStat('Survivability', 'Crew Hit Points', surv["CREW HIT POINTS"]);
+        updateStat('Survivability', 'Crew Recovery Time, Seconds', surv["CREW RECOVERY TIME, SECONDS"]);
+        updateStat('Survivability', 'Incoming Crit Damage, Engine', surv["INCOMING CRIT DAMAGE, ENGINE"]);
+        updateStat('Survivability', 'Engine Hit Points', surv["ENGINE HIT POINTS"]);
+        updateStat('Survivability', 'Engine Repair Time, Seconds', surv["ENGINE REPAIR TIME, SECONDS"]);
+        updateStat('Survivability', 'Fire Duration, Seconds', surv["FIRE DURATION, SECONDS"]);
+        updateStat('Survivability', 'Fire Damage', surv["FIRE DAMAGE"]);
+        updateStat('Survivability', 'Incoming Crit Damage, Fuel Tank', surv["INCOMING CRIT DAMAGE, FUEL TANK"]);
+        updateStat('Survivability', 'Fire Damage Rate', surv["FIRE DAMAGE RATE"]);
+        updateStat('Survivability', 'Ramming Damage Resistance, Front', surv["RAMMING DAMAGE RESISTANCE, FRONT"]);
+        updateStat('Survivability', 'Ramming Damage Bonus', surv["RAMMING DAMAGE BONUS"]);
+        updateStat('Survivability', 'Repair Kit Cooldown, Seconds', surv["REPAIR KIT COOLDOWN, SECONDS"]);
+        updateStat('Survivability', 'Track Hit Points', surv["TRACK HIT POINTS"]);
+        updateStat('Survivability', 'Ltrackamounttoregen', surv["LTRACKAMOUNTTOREGEN"]);
+    }
+
+    // Recon stats
+    if (stockData.RECON) {
+        const recon = stockData.RECON;
+        updateStat('Recon', 'Spotting Angle, Degrees', recon["SPOTTING ANGLE, DEGREES"]);
+        updateStat('Recon', 'Spotting Range, Meters', recon["SPOTTING RANGE, METERS"]);
+        updateStat('Recon', 'Spotting Duration, Seconds', recon["SPOTTING DURATION, SECONDS"]);
+        updateStat('Recon', 'Signal Range, Meters', recon["SIGNAL RANGE, METERS"]);
+        updateStat('Recon', 'X-Ray Radius, Meters', recon["X-RAY RADIUS, METERS"]);
+    }
+
+    // Utility stats
+    if (stockData.UTILITY) {
+        const util = stockData.UTILITY;
+        updateStat('Utility', 'Energy Points', util["ENERGY POINTS"]);
+        updateStat('Utility', 'Energy Regeneration', util["ENERGY REGENERATION"]);
+        updateStat('Utility', 'Smoke Cooldown, Seconds', util["SMOKE COOLDOWN, SECONDS"]);
+        updateStat('Utility', 'Smoke Energy Cost', util["SMOKE ENERGY COST"]);
+        updateStat('Utility', 'Smoke Use Count', util["SMOKE USE COUNT"]);
+    }
+}
 
 function initializeAgentModals() {
     // Agent modal elements
