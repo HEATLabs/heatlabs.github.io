@@ -106,7 +106,14 @@ async function fetchTankData(tankId) {
             try {
                 const stockResponse = await fetch(tank.stock);
                 const stockData = await stockResponse.json();
-                populateTankStats(stockData);
+
+                // Get the data for this specific tank from the new format
+                const tankStats = stockData[tankId.toLowerCase()];
+                if (tankStats) {
+                    populateTankStats(tankStats);
+                } else {
+                    console.error('No stats found for tank ID:', tankId);
+                }
             } catch (error) {
                 console.error('Error fetching stock data:', error);
             }
@@ -118,7 +125,7 @@ async function fetchTankData(tankId) {
 }
 
 // Function to populate tank stats from stock data
-function populateTankStats(stockData) {
+function populateTankStats(tankStats) {
     // Helper function to update stat values
     function updateStat(category, statName, value) {
         // Find all stat categories
@@ -157,8 +164,8 @@ function populateTankStats(stockData) {
     }
 
     // Firepower stats
-    if (stockData.FIREPOWER) {
-        const fp = stockData.FIREPOWER;
+    if (tankStats.FIREPOWER) {
+        const fp = tankStats.FIREPOWER;
         updateStat('Firepower', 'Damage', fp.DAMAGE);
         updateStat('Firepower', 'Penetration', fp.PENETRATION);
         updateStat('Firepower', 'Aiming Speed', fp["AIMING SPEED"]);
@@ -179,8 +186,8 @@ function populateTankStats(stockData) {
     }
 
     // Mobility stats
-    if (stockData.MOBILITY) {
-        const mob = stockData.MOBILITY;
+    if (tankStats.MOBILITY) {
+        const mob = tankStats.MOBILITY;
         updateStat('Mobility', 'Forward Speed, km/h', mob["FORWARD SPEED, KM/H"]);
         updateStat('Mobility', 'Reverse Speed, km/h', mob["REVERSE SPEED, KM/H"]);
         updateStat('Mobility', 'Base Acceleration', mob["BASE ACCELERATION"]);
@@ -192,8 +199,8 @@ function populateTankStats(stockData) {
     }
 
     // Survivability stats
-    if (stockData.SURVIVABILITY) {
-        const surv = stockData.SURVIVABILITY;
+    if (tankStats.SURVIVABILITY) {
+        const surv = tankStats.SURVIVABILITY;
         updateStat('Survivability', 'Hit Points', surv["HIT POINTS"]);
         updateStat('Survivability', 'Incoming Crit Damage, Ammo Rack', surv["INCOMING CRIT DAMAGE, AMMO RACK"]);
         updateStat('Survivability', 'Track Repair Time, Seconds', surv["TRACK REPAIR TIME, SECONDS"]);
@@ -214,8 +221,8 @@ function populateTankStats(stockData) {
     }
 
     // Recon stats
-    if (stockData.RECON) {
-        const recon = stockData.RECON;
+    if (tankStats.RECON) {
+        const recon = tankStats.RECON;
         updateStat('Recon', 'Spotting Angle, Degrees', recon["SPOTTING ANGLE, DEGREES"]);
         updateStat('Recon', 'Spotting Range, Meters', recon["SPOTTING RANGE, METERS"]);
         updateStat('Recon', 'Spotting Duration, Seconds', recon["SPOTTING DURATION, SECONDS"]);
@@ -224,8 +231,8 @@ function populateTankStats(stockData) {
     }
 
     // Utility stats
-    if (stockData.UTILITY) {
-        const util = stockData.UTILITY;
+    if (tankStats.UTILITY) {
+        const util = tankStats.UTILITY;
         updateStat('Utility', 'Energy Points', util["ENERGY POINTS"]);
         updateStat('Utility', 'Energy Regeneration', util["ENERGY REGENERATION"]);
         updateStat('Utility', 'Smoke Cooldown, Seconds', util["SMOKE COOLDOWN, SECONDS"]);
