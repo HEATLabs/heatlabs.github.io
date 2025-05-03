@@ -589,6 +589,16 @@ p {
 	transform: scale(1.1);
 }
 
+/* Media Gallery*/
+.media-gallery-thumbnail {
+	display: block;
+	border-radius: 0.5rem;
+	overflow: hidden;
+	border: 1px solid var(--border-color);
+	transition: transform var(--transition-speed);
+	height: 150px;
+}
+
 /* Mobile Sidebar Content (Show sidebar on desktop) */
 @media (min-width: 1024px) {
 	.tournament-sidebar {
