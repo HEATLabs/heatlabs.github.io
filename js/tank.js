@@ -70,46 +70,17 @@ async function fetchTankData(tankId) {
             return;
         }
 
-        // Update page title and meta tags
-        document.title = `${tank.name} - PCWStats`;
-        document.querySelector('meta[property="og:title"]').content = `PCWStats - ${tank.name}`;
-        document.querySelector('meta[name="twitter:title"]').content = `PCWStats - ${tank.name}`;
+        // Update page elements with tank data
+        updateTankPageElements(tank);
 
-        // Update tank header information
-        const tankHeader = document.querySelector('.tank-header');
-        if (tankHeader) {
-            const typeBadge = tankHeader.querySelector('.tank-type-badge');
-            if (typeBadge && tank.type !== "Unknown") {
-                typeBadge.textContent = tank.type;
-            }
-
-            const nationSpan = tankHeader.querySelector('.tank-meta span:nth-child(2)');
-            if (nationSpan) {
-                nationSpan.innerHTML = `<i class="fas fa-flag mr-1"></i> ${tank.nation}`;
-            }
-
-            const tankTitle = tankHeader.querySelector('.tank-title');
-            if (tankTitle) {
-                tankTitle.textContent = tank.name;
-            }
-        }
-
-        // Update tank image
-        const tankImage = document.querySelector('.tank-image img');
-        if (tankImage) {
-            tankImage.src = tank.image;
-            tankImage.alt = tank.name;
+        // Fetch and populate agents data if available
+        if (tank.agents) {
+            await fetchAndPopulateAgents(tank.agents, tank.id);
         }
 
         // Fetch stock data if available
         if (tank.stock) {
-            try {
-                const stockResponse = await fetch(tank.stock);
-                const stockData = await stockResponse.json();
-                populateTankStats(stockData);
-            } catch (error) {
-                console.error('Error fetching stock data:', error);
-            }
+            await fetchAndPopulateStockData(tank.stock, tank.id, tank.slug);
         }
 
     } catch (error) {
@@ -117,8 +88,249 @@ async function fetchTankData(tankId) {
     }
 }
 
+async function fetchAndPopulateStockData(stockUrl, tankId, tankSlug) {
+    try {
+        const stockResponse = await fetch(stockUrl);
+        const stockData = await stockResponse.json();
+
+        console.log('Stock data loaded:', stockData);
+
+        // Try different ways to find the tank stats
+        let tankStats;
+
+        // Try by exact ID match first
+        if (stockData[tankId]) {
+            tankStats = stockData[tankId];
+        }
+        // Try by slug if ID didn't work
+        else if (tankSlug && stockData[tankSlug]) {
+            tankStats = stockData[tankSlug];
+        }
+        // Try case-insensitive ID match
+        else {
+            const tankKey = Object.keys(stockData).find(key =>
+                key.toLowerCase() === tankId.toString().toLowerCase() ||
+                (tankSlug && key.toLowerCase() === tankSlug.toLowerCase())
+            );
+
+            if (tankKey) {
+                tankStats = stockData[tankKey];
+            }
+        }
+
+        if (tankStats) {
+            console.log('Found tank stats:', tankStats);
+            populateTankStats(tankStats);
+        } else {
+            console.error('No stats found for tank:', {
+                id: tankId,
+                slug: tankSlug,
+                availableKeys: Object.keys(stockData)
+            });
+        }
+    } catch (error) {
+        console.error('Error fetching stock data:', error);
+    }
+}
+
+async function fetchAndPopulateAgents(agentsUrl, tankId) {
+    try {
+        const agentsResponse = await fetch(agentsUrl);
+        const agentsData = await agentsResponse.json();
+
+        if (agentsData && agentsData.agents && agentsData.agents.length > 0) {
+            populateAgents(agentsData.agents);
+
+            // Update agent count in header
+            const agentCountSpan = document.querySelector('.tank-header .tank-meta span:nth-child(3)');
+            if (agentCountSpan) {
+                agentCountSpan.innerHTML = `<i class="fas fa-users mr-1"></i> ${agentsData.agents.length} Agents`;
+            }
+
+            // Reinitialize agent modals after populating agents
+            initializeAgentModals();
+        } else {
+            console.warn('No agents data found in:', agentsUrl);
+        }
+    } catch (error) {
+        console.error('Error fetching agents data:', error);
+    }
+}
+
+function populateAgents(agents) {
+    // Look for the container by its ID instead of using the adjacent selector
+    const agentsContainer = document.getElementById('agents-container');
+    if (!agentsContainer) {
+        console.error('Agents container not found');
+        return;
+    }
+
+    // Clear existing content
+    agentsContainer.innerHTML = '';
+
+    // Create agent cards for each agent
+    agents.forEach(agent => {
+        const agentCard = document.createElement('div');
+        agentCard.className = 'agent-card';
+
+        agentCard.innerHTML = `
+            <div class="agent-image">
+                <img src="${agent.image}" alt="${agent.name}">
+            </div>
+            <div class="agent-info">
+                <h3>${agent.name}</h3>
+                <p class="agent-specialty">${agent.specialty}</p>
+                <p class="agent-description">${agent.description}</p>
+            </div>
+        `;
+
+        agentsContainer.appendChild(agentCard);
+    });
+}
+
+function updateTankPageElements(tank) {
+    // Update page title and meta tags
+    document.title = `${tank.name} - PCWStats`;
+    document.querySelector('meta[property="og:title"]').content = `PCWStats - ${tank.name}`;
+    document.querySelector('meta[name="twitter:title"]').content = `PCWStats - ${tank.name}`;
+
+    // Update tank header information
+    const tankHeader = document.querySelector('.tank-header');
+    if (tankHeader) {
+        const typeBadge = tankHeader.querySelector('.tank-type-badge');
+        if (typeBadge && tank.type !== "Unknown") {
+            typeBadge.textContent = tank.type;
+        }
+
+        const nationSpan = tankHeader.querySelector('.tank-meta span:nth-child(2)');
+        if (nationSpan) {
+            nationSpan.innerHTML = `<i class="fas fa-flag mr-1"></i> ${tank.nation}`;
+        }
+
+        const tankTitle = tankHeader.querySelector('.tank-title');
+        if (tankTitle) {
+            tankTitle.textContent = tank.name;
+        }
+    }
+
+    // Update tank image
+    const tankImage = document.querySelector('.tank-image img');
+    if (tankImage) {
+        tankImage.src = tank.image;
+        tankImage.alt = tank.name;
+    }
+}
+
+function initializeAgentModals() {
+    // Agent modal elements
+    const agentModal = document.getElementById('agentModal');
+    const agentModalOverlay = document.getElementById('agentModalOverlay');
+    const agentModalClose = document.getElementById('agentModalClose');
+    const agentModalImage = document.getElementById('agentModalImage');
+    const agentModalName = document.getElementById('agentModalName');
+    const agentModalSpecialty = document.getElementById('agentModalSpecialty');
+    const agentModalDescription = document.getElementById('agentModalDescription');
+    const agentModalStory = document.getElementById('agentModalStory');
+    const agentModalTanksContainer = document.getElementById('agentModalTanksContainer');
+
+    // Set up click handlers for all agent cards
+    document.querySelectorAll('.agent-card').forEach(card => {
+        card.addEventListener('click', async function() {
+            const agentName = this.querySelector('h3').textContent;
+
+            // Get the tank ID to fetch the correct agents.json
+            const tankIdMeta = document.querySelector('meta[name="tank-id"]');
+            const tankId = tankIdMeta ? tankIdMeta.content : null;
+
+            if (!tankId) {
+                console.error('No tank ID found');
+                return;
+            }
+
+            try {
+                // First get the tank data to find the agents URL
+                const tanksResponse = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+                const tanksData = await tanksResponse.json();
+                const tank = tanksData.find(t => t.id.toString() === tankId.toString());
+
+                if (!tank || !tank.agents) {
+                    console.error('Tank or agents URL not found');
+                    return;
+                }
+
+                // Fetch the agents data
+                const agentsResponse = await fetch(tank.agents);
+                const agentsData = await agentsResponse.json();
+
+                // Find the clicked agent
+                const agent = agentsData.agents.find(a => a.name === agentName);
+
+                if (!agent) {
+                    console.error('Agent not found:', agentName);
+                    return;
+                }
+
+                // Populate modal with agent data
+                agentModalImage.src = agent.image;
+                agentModalImage.alt = agentName;
+                agentModalName.textContent = agentName;
+                agentModalSpecialty.textContent = agent.specialty;
+                agentModalDescription.textContent = agent.description;
+                agentModalStory.textContent = agent.story;
+
+                // Clear previous tank images
+                agentModalTanksContainer.innerHTML = '';
+
+                // Add compatible tanks
+                if (agent.compatibleTanks && agent.compatibleTanks.length > 0) {
+                    agent.compatibleTanks.forEach(tank => {
+                        const tankElement = document.createElement('div');
+                        tankElement.className = 'agent-modal-tank';
+
+                        const tankImg = document.createElement('img');
+                        tankImg.src = tank.image;
+                        tankImg.alt = tank.name;
+
+                        const tankName = document.createElement('span');
+                        tankName.textContent = tank.name;
+
+                        tankElement.appendChild(tankImg);
+                        tankElement.appendChild(tankName);
+                        agentModalTanksContainer.appendChild(tankElement);
+                    });
+                }
+
+                // Show modal
+                agentModal.classList.add('active');
+                agentModalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+
+            } catch (error) {
+                console.error('Error loading agent data:', error);
+            }
+        });
+    });
+
+    // Close modal handlers
+    agentModalOverlay.addEventListener('click', closeAgentModal);
+    agentModalClose.addEventListener('click', closeAgentModal);
+
+    // Close with ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && agentModal.classList.contains('active')) {
+            closeAgentModal();
+        }
+    });
+
+    function closeAgentModal() {
+        agentModal.classList.remove('active');
+        agentModalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
 // Function to populate tank stats from stock data
-function populateTankStats(stockData) {
+function populateTankStats(tankStats) {
     // Helper function to update stat values
     function updateStat(category, statName, value) {
         // Find all stat categories
@@ -157,8 +369,8 @@ function populateTankStats(stockData) {
     }
 
     // Firepower stats
-    if (stockData.FIREPOWER) {
-        const fp = stockData.FIREPOWER;
+    if (tankStats.FIREPOWER) {
+        const fp = tankStats.FIREPOWER;
         updateStat('Firepower', 'Damage', fp.DAMAGE);
         updateStat('Firepower', 'Penetration', fp.PENETRATION);
         updateStat('Firepower', 'Aiming Speed', fp["AIMING SPEED"]);
@@ -178,22 +390,9 @@ function populateTankStats(stockData) {
         updateStat('Firepower', 'Gun Elevation (F/S/R)', fp["GUN ELEVATION, FSR"]);
     }
 
-    // Mobility stats
-    if (stockData.MOBILITY) {
-        const mob = stockData.MOBILITY;
-        updateStat('Mobility', 'Forward Speed, km/h', mob["FORWARD SPEED, KM/H"]);
-        updateStat('Mobility', 'Reverse Speed, km/h', mob["REVERSE SPEED, KM/H"]);
-        updateStat('Mobility', 'Base Acceleration', mob["BASE ACCELERATION"]);
-        updateStat('Mobility', 'Traverse Speed', mob["TRAVERSE SPEED"]);
-        updateStat('Mobility', 'Sprint Energy Cost', mob["SPRINT ENERGY COST"]);
-        updateStat('Mobility', 'Sprint Energy Volume', mob["SPRINT ENERGY VOLUME"]);
-        updateStat('Mobility', 'Sprint Regen Rate', mob["SPRINT REGEN RATE"]);
-        updateStat('Mobility', 'Ramming Mass Measure', mob["RAMMING MASS MEASURE"]);
-    }
-
     // Survivability stats
-    if (stockData.SURVIVABILITY) {
-        const surv = stockData.SURVIVABILITY;
+    if (tankStats.SURVIVABILITY) {
+        const surv = tankStats.SURVIVABILITY;
         updateStat('Survivability', 'Hit Points', surv["HIT POINTS"]);
         updateStat('Survivability', 'Incoming Crit Damage, Ammo Rack', surv["INCOMING CRIT DAMAGE, AMMO RACK"]);
         updateStat('Survivability', 'Track Repair Time, Seconds', surv["TRACK REPAIR TIME, SECONDS"]);
@@ -213,9 +412,22 @@ function populateTankStats(stockData) {
         updateStat('Survivability', 'Ltrackamounttoregen', surv["LTRACKAMOUNTTOREGEN"]);
     }
 
+    // Mobility stats
+    if (tankStats.MOBILITY) {
+        const mob = tankStats.MOBILITY;
+        updateStat('Mobility', 'Forward Speed, km/h', mob["FORWARD SPEED, KM/H"]);
+        updateStat('Mobility', 'Reverse Speed, km/h', mob["REVERSE SPEED, KM/H"]);
+        updateStat('Mobility', 'Base Acceleration', mob["BASE ACCELERATION"]);
+        updateStat('Mobility', 'Traverse Speed', mob["TRAVERSE SPEED"]);
+        updateStat('Mobility', 'Sprint Energy Cost', mob["SPRINT ENERGY COST"]);
+        updateStat('Mobility', 'Sprint Energy Volume', mob["SPRINT ENERGY VOLUME"]);
+        updateStat('Mobility', 'Sprint Regen Rate', mob["SPRINT REGEN RATE"]);
+        updateStat('Mobility', 'Ramming Mass Measure', mob["RAMMING MASS MEASURE"]);
+    }
+
     // Recon stats
-    if (stockData.RECON) {
-        const recon = stockData.RECON;
+    if (tankStats.RECON) {
+        const recon = tankStats.RECON;
         updateStat('Recon', 'Spotting Angle, Degrees', recon["SPOTTING ANGLE, DEGREES"]);
         updateStat('Recon', 'Spotting Range, Meters', recon["SPOTTING RANGE, METERS"]);
         updateStat('Recon', 'Spotting Duration, Seconds', recon["SPOTTING DURATION, SECONDS"]);
@@ -224,147 +436,13 @@ function populateTankStats(stockData) {
     }
 
     // Utility stats
-    if (stockData.UTILITY) {
-        const util = stockData.UTILITY;
+    if (tankStats.UTILITY) {
+        const util = tankStats.UTILITY;
         updateStat('Utility', 'Energy Points', util["ENERGY POINTS"]);
         updateStat('Utility', 'Energy Regeneration', util["ENERGY REGENERATION"]);
         updateStat('Utility', 'Smoke Cooldown, Seconds', util["SMOKE COOLDOWN, SECONDS"]);
         updateStat('Utility', 'Smoke Energy Cost', util["SMOKE ENERGY COST"]);
         updateStat('Utility', 'Smoke Use Count', util["SMOKE USE COUNT"]);
-    }
-}
-
-function initializeAgentModals() {
-    // Agent modal elements
-    const agentModal = document.getElementById('agentModal');
-    const agentModalOverlay = document.getElementById('agentModalOverlay');
-    const agentModalClose = document.getElementById('agentModalClose');
-    const agentModalImage = document.getElementById('agentModalImage');
-    const agentModalName = document.getElementById('agentModalName');
-    const agentModalSpecialty = document.getElementById('agentModalSpecialty');
-    const agentModalDescription = document.getElementById('agentModalDescription');
-    const agentModalStory = document.getElementById('agentModalStory');
-    const agentModalTanksContainer = document.getElementById('agentModalTanksContainer');
-
-    // Sample data - in the final implementation this data would be fetched from the CDN
-    const agentsData = {
-        "Chopper 1": {
-            image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/agents/Chopper.png",
-            specialty: "Ability: Shock and Awe",
-            description: "Call in the support of Chopper's friend in the Air Force, the bomber will fly to the targeted position deal a lot of damage, and become dazed.",
-            story: "A frontline fighter who calls in air support to hold the line. He is a bear of a man on his chrome-plated bike, but appearances deceive. Big personality, heart of gold: devoted to friends, lethal to enemies. A father figure to many Agents, hes a down-to-earth family man who signed up to provide for his kids education, yet this practical soul has a literary quote ready for any moment. But cross this bear at your own peril.",
-            compatibleTanks: [{
-                    name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
-                },
-                {
-                    name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
-                },
-                {
-                    name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
-                }
-            ]
-        },
-        "Chopper 2": {
-            image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/agents/Chopper.png",
-            specialty: "Ability: Shock and Awe",
-            description: "Call in the support of Chopper's friend in the Air Force, the bomber will fly to the targeted position deal a lot of damage, and become dazed.",
-            story: "A frontline fighter who calls in air support to hold the line. He is a bear of a man on his chrome-plated bike, but appearances deceive. Big personality, heart of gold: devoted to friends, lethal to enemies. A father figure to many Agents, hes a down-to-earth family man who signed up to provide for his kids education, yet this practical soul has a literary quote ready for any moment. But cross this bear at your own peril.",
-            compatibleTanks: [{
-                    name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
-                },
-                {
-                    name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
-                },
-                {
-                    name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
-                }
-            ]
-        },
-        "Chopper 3": {
-            image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/agents/Chopper.png",
-            specialty: "Ability: Shock and Awe",
-            description: "Call in the support of Chopper's friend in the Air Force, the bomber will fly to the targeted position deal a lot of damage, and become dazed.",
-            story: "A frontline fighter who calls in air support to hold the line. He is a bear of a man on his chrome-plated bike, but appearances deceive. Big personality, heart of gold: devoted to friends, lethal to enemies. A father figure to many Agents, hes a down-to-earth family man who signed up to provide for his kids education, yet this practical soul has a literary quote ready for any moment. But cross this bear at your own peril.",
-            compatibleTanks: [{
-                    name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
-                },
-                {
-                    name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
-                },
-                {
-                    name: "M1E1",
-                    image: "https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png"
-                }
-            ]
-        }
-    };
-
-    // Set up click handlers for all agent cards
-    document.querySelectorAll('.agent-card').forEach(card => {
-        card.addEventListener('click', function() {
-            const agentName = this.querySelector('h3').textContent;
-            const agentData = agentsData[agentName];
-
-            if (agentData) {
-                // Populate modal with agent data
-                agentModalImage.src = agentData.image;
-                agentModalImage.alt = agentName;
-                agentModalName.textContent = agentName;
-                agentModalSpecialty.textContent = agentData.specialty;
-                agentModalDescription.textContent = agentData.description;
-                agentModalStory.textContent = agentData.story;
-
-                // Clear previous tank images
-                agentModalTanksContainer.innerHTML = '';
-
-                // Add compatible tanks
-                agentData.compatibleTanks.forEach(tank => {
-                    const tankElement = document.createElement('div');
-                    tankElement.className = 'agent-modal-tank';
-
-                    const tankImg = document.createElement('img');
-                    tankImg.src = tank.image;
-                    tankImg.alt = tank.name;
-
-                    const tankName = document.createElement('span');
-                    tankName.textContent = tank.name;
-
-                    tankElement.appendChild(tankImg);
-                    tankElement.appendChild(tankName);
-                    agentModalTanksContainer.appendChild(tankElement);
-                });
-
-                // Show modal
-                agentModal.classList.add('active');
-                agentModalOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        });
-    });
-
-    // Close modal handlers
-    agentModalOverlay.addEventListener('click', closeAgentModal);
-    agentModalClose.addEventListener('click', closeAgentModal);
-
-    // Close with ESC key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && agentModal.classList.contains('active')) {
-            closeAgentModal();
-        }
-    });
-
-    function closeAgentModal() {
-        agentModal.classList.remove('active');
-        agentModalOverlay.classList.remove('active');
-        document.body.style.overflow = '';
     }
 }
 
