@@ -1,4 +1,4 @@
-/* Tank Detail Page Styles */
+/* Tournament Detail Page Styles */
 .tournament-header {
 	padding: 3rem 0;
 	background-color: var(--bg-secondary);
@@ -98,26 +98,8 @@
 	}
 }
 
-/* Tank Image */
-.tournament-image {
-	margin: 2rem 0;
-	position: relative;
-}
-
-.tournament-image img {
-	width: 100%;
-	border-radius: 0.75rem;
-	box-shadow: var(--shadow-lg);
-	border: 1px solid var(--border-color);
-	transition: transform 0.3s ease;
-}
-
-.tournament-image img:hover {
-	transform: scale(1.01);
-}
-
-/* Agent Cards */
-.agent-card {
+/* Team Cards */
+.team-card {
 	background-color: var(--card-bg);
 	border-radius: 0.75rem;
 	overflow: hidden;
@@ -126,45 +108,45 @@
 	transition: transform 0.3s ease;
 }
 
-.agent-card:hover {
+.team-card:hover {
 	transform: translateY(-5px);
 	box-shadow: var(--shadow-lg);
 }
 
-.agent-image {
+.team-image {
 	height: 200px;
 	overflow: hidden;
 }
 
-.agent-image img {
+.team-image img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	transition: transform 0.3s ease;
 }
 
-.agent-card:hover .agent-image img {
+.team-card:hover .team-image img {
 	transform: scale(1.05);
 }
 
-.agent-info {
+.team-info {
 	padding: 1.5rem;
 }
 
-.agent-info h3 {
+.team-info h3 {
 	margin: 0 0 0.5rem;
 	font-size: 1.25rem;
 	color: var(--text-primary);
 }
 
-.agent-specialty {
+.team-captain {
 	font-size: 0.9rem;
 	color: var(--accent-color);
 	margin-bottom: 0.5rem;
 	font-weight: 500;
 }
 
-.agent-description {
+.team-motto {
 	font-size: 0.95rem;
 	color: var(--text-secondary);
 	margin-bottom: 0;
@@ -589,16 +571,6 @@ p {
 	transform: scale(1.1);
 }
 
-/* Media Gallery*/
-.media-gallery-thumbnail {
-	display: block;
-	border-radius: 0.5rem;
-	overflow: hidden;
-	border: 1px solid var(--border-color);
-	transition: transform var(--transition-speed);
-	height: 150px;
-}
-
 /* Mobile Sidebar Content (Show sidebar on desktop) */
 @media (min-width: 1024px) {
 	.tournament-sidebar {
@@ -631,11 +603,11 @@ p {
 		grid-template-columns: 1fr;
 	}
 
-	.agent-card {
+	.team-card {
 		margin-bottom: 1.5rem;
 	}
 
-	.agent-card:last-child {
+	.team-card:last-child {
 		margin-bottom: 0;
 	}
 }
@@ -865,8 +837,8 @@ p {
 	}
 }
 
-/* Agent Modal Styles */
-.agent-modal-overlay {
+/* Team Modal Styles */
+.team-modal-overlay {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -879,13 +851,13 @@ p {
 	transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.agent-modal-overlay.active,
-.agent-modal.active {
+.team-modal-overlay.active,
+.team-modal.active {
 	opacity: 1;
 	visibility: visible;
 }
 
-.agent-modal {
+.team-modal {
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -904,11 +876,11 @@ p {
 	border: 1px solid var(--border-color);
 }
 
-.agent-modal-content {
+.team-modal-content {
 	padding: 2rem;
 }
 
-.agent-modal-close {
+.team-modal-close {
 	position: absolute;
 	top: 1rem;
 	right: 1rem;
@@ -927,11 +899,11 @@ p {
 	transition: background-color 0.3s ease;
 }
 
-.agent-modal-close:hover {
+.team-modal-close:hover {
 	background-color: var(--accent-color-dark);
 }
 
-.agent-modal-header {
+.team-modal-header {
 	display: flex;
 	flex-direction: column;
 	gap: 1.5rem;
@@ -939,13 +911,13 @@ p {
 }
 
 @media (min-width: 768px) {
-	.agent-modal-header {
+	.team-modal-header {
 		flex-direction: row;
 		align-items: flex-start;
 	}
 }
 
-.agent-modal-image-container {
+.team-modal-image-container {
 	flex-shrink: 0;
 	width: 250px;
 	height: 250px;
@@ -955,17 +927,17 @@ p {
 	box-shadow: var(--shadow);
 }
 
-.agent-modal-image {
+.team-modal-image {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
 
-.agent-modal-info {
+.team-modal-info {
 	flex-grow: 1;
 }
 
-.agent-modal-info h2 {
+.team-modal-info h2 {
 	font-size: 1.75rem;
 	margin-top: 0;
 	margin-bottom: 0.5rem;
@@ -973,35 +945,35 @@ p {
 	text-align: left;
 }
 
-.agent-modal-info h2::after {
+.team-modal-info h2::after {
 	display: none;
 }
 
-.agent-modal-specialty {
+.team-modal-captain {
 	font-size: 1.1rem;
 	color: var(--accent-color);
 	margin-bottom: 1rem;
 	font-weight: 500;
 }
 
-.agent-modal-description {
+.team-modal-description {
 	font-size: 1rem;
 	color: var(--text-secondary);
 	line-height: 1.6;
 }
 
-.agent-modal-body {
+.team-modal-body {
 	margin-top: 2rem;
 }
 
-.agent-modal-body h3 {
+.team-modal-body h3 {
 	font-size: 1.5rem;
 	margin-bottom: 1rem;
 	color: var(--text-primary);
 	text-align: left;
 }
 
-.agent-modal-body h3::after {
+.team-modal-body h3::after {
 	content: '';
 	display: block;
 	width: 50px;
@@ -1010,21 +982,21 @@ p {
 	margin: 0.5rem 0 1rem;
 }
 
-.agent-modal-body p {
+.team-modal-body p {
 	font-size: 1rem;
 	line-height: 1.7;
 	color: var(--text-secondary);
 	margin-bottom: 1.5rem;
 }
 
-.agent-modal-tournament {
+.team-modal-tanks {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 1.5rem;
 	margin-top: 1.5rem;
 }
 
-.agent-modal-tournament {
+.team-modal-tank {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -1032,7 +1004,7 @@ p {
 	text-align: center;
 }
 
-.agent-modal-tournament img {
+.team-modal-tank img {
 	width: 100%;
 	height: 120px;
 	object-fit: cover;
@@ -1041,39 +1013,39 @@ p {
 	transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.agent-modal-tournament:hover img {
+.team-modal-tank:hover img {
 	transform: scale(1.05);
 	border-color: var(--accent-color);
 }
 
-.agent-modal-tournament span {
+.team-modal-tank span {
 	font-size: 0.95rem;
 	color: var(--text-primary);
 	font-weight: 500;
 }
 
 @media (max-width: 768px) {
-	.agent-modal-image-container {
+	.team-modal-image-container {
 		width: 200px;
 		height: 200px;
 	}
 
-	.agent-modal-tournament {
+	.team-modal-tanks {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
 
 @media (max-width: 576px) {
-	.agent-modal-header {
+	.team-modal-header {
 		flex-direction: column;
 	}
 
-	.agent-modal-image-container {
+	.team-modal-image-container {
 		width: 100%;
 		height: 200px;
 	}
 
-	.agent-modal-tournament {
+	.team-modal-tanks {
 		grid-template-columns: 1fr;
 	}
 }

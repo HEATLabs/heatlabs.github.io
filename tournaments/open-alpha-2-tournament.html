@@ -71,6 +71,8 @@
     <meta name="twitter:title" content="PCWStats - OAT2">
     <meta name="twitter:description" content="Your one-stop solution for comprehensive statistics insights and guides for Project CW">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
+    <!-- Tournament ID for JavaScript -->
+    <meta id="tournament-id" name="tournament-id" content="OAT2">
   </head>
   <body>
     <!-- Sidebar Overlay -->
@@ -210,43 +212,43 @@
               <div class="tournament-image mb-8">
                 <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/tournaments/OAT2/Tournament_announcement-2.png" alt="Open Alpha 2 tournament announcement image" class="rounded-lg shadow-lg">
               </div>
-              <!-- Tournament Top Three -->
-              <div class="mb-12">
-                <h2 id="compatible-agents">Top 3</h2>
-                <p class="mb-4 text-center">The top 3 winning teams from the second Open Alpha Tournament</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-                  <div class="agent-card">
-                    <div class="agent-image">
-                      <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Podium: 1st Place">
-                    </div>
-                    <div class="agent-info">
-                      <h3>3Mid</h3>
-                      <p class="agent-specialty">Team Captain: Inkorlet</p>
-                      <p class="agent-description">N/A</p>
-                    </div>
-                  </div>
-                  <div class="agent-card">
-                    <div class="agent-image">
-                      <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png" alt="Podium: 2nd Place">
-                    </div>
-                    <div class="agent-info">
-                      <h3>Large</h3>
-                      <p class="agent-specialty">Team Captain: Metaphorism</p>
-                      <p class="agent-description">[Team Motto]</p>
-                    </div>
-                  </div>
-                  <div class="agent-card">
-                    <div class="agent-image">
-                      <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tournament-team-logos/team48.png" alt="Podium: 3rd Place">
-                    </div>
-                    <div class="agent-info">
-                      <h3>TEAM48</h3>
-                      <p class="agent-specialty">Team Captain: __4lpha__</p>
-                      <p class="agent-description">"REP 48!"</p>
-                    </div>
+              <!-- Tournament Top Teams Section -->
+              <div class="mt-16 mb-12">
+                <h2 id="top-teams">Top Teams</h2>
+                <p class="mb-4 text-center">The top performing teams from this tournament</p>
+                <!-- Teams Grid Container -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-8" id="top-teams-container">
+                  <!-- Team cards will be dynamically inserted here by JavaScript -->
+                  <!-- Loading Placeholder (shown until data loads) -->
+                  <div class="col-span-full text-center py-8">
+                    <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-accent-color"></div>
+                    <p class="mt-2">Loading tournament data...</p>
                   </div>
                 </div>
               </div>
+              <!-- Team Cards Template (hidden, used by JavaScript) -->
+              <template id="team-card-template">
+                <div class="team-card cursor-pointer">
+                  <div class="team-image">
+                    <img src="" alt="Team Logo" class="team-logo-img">
+                  </div>
+                  <div class="team-info">
+                    <h3 class="team-name"></h3>
+                    <p class="team-captain"></p>
+                    <p class="team-motto"></p>
+                    <div class="flex justify-between items-center mt-2">
+                      <span class="text-xs bg-accent-color text-white px-2 py-1 rounded-full">
+                        <i class="fas fa-trophy mr-1"></i>
+                        <span class="team-placement"></span>
+                      </span>
+                      <span class="text-xs text-gray-500">
+                        <i class="fas fa-users mr-1"></i>
+                        <span class="team-member-count"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </template>
               <!-- Final Match Setup -->
               <div class="mt-16 mb-12">
                 <h2 id="strengths-weaknesses">Final Match Setup</h2>
@@ -310,6 +312,12 @@
                   </div>
                 </div>
               </div>
+              <!-- Tournament Recap Section -->
+              <div class="mt-16 mb-12">
+                <h2 id="conclusion">Tournament Recap</h2>
+                <p class="mb-4 text-center">Tournament Recap Paragraph 1</p>
+                <p class="mb-4 text-center">Tournament Recap Paragraph 2</p>
+              </div>
               <!-- Insights from Team Captains -->
               <div class="mt-16 mb-12">
                 <h2 id="pro-tips">Insights from Team Captains</h2>
@@ -369,17 +377,11 @@
                   </div>
                 </div>
               </div>
-              <!-- Tournament Recap Section -->
-              <div class="mt-16 mb-12">
-                <h2 id="conclusion">Tournament Recap</h2>
-                <p class="mb-4 text-center">Tournament Recap Paragraph 1</p>
-                <p class="mb-4 text-center">Tournament Recap Paragraph 2</p>
-                <div class="action-buttons text-center my-8">
-                  <a href="../tanks.html" class="btn-accent mt-4">
-                    <i class="fas fa-arrow-left mr-2"></i>Back to Tournament List </a>
-                  <!--<a href="#" class="btn-accent mt-4">-->
-                  <!--<i class="fas fa-thumbs-up mr-2"></i>Rate This Tank </a>-->
-                </div>
+              <div class="action-buttons text-center my-8">
+                <a href="../tournaments.html" class="btn-accent mt-4">
+                  <i class="fas fa-arrow-left mr-2"></i>Back to Tournament List </a>
+                <!--<a href="#" class="btn-accent mt-4">-->
+                <!--<i class="fas fa-thumbs-up mr-2"></i>Rate This Tank </a>-->
               </div>
             </div>
             <!-- Desktop Sidebar -->
@@ -583,28 +585,29 @@
         <div class="gallery-thumbnails-container" id="galleryThumbnailsContainer"></div>
       </div>
     </div>
-    <!-- Agent Modal -->
-    <div class="agent-modal-overlay" id="agentModalOverlay"></div>
-    <div class="agent-modal" id="agentModal">
-      <button class="agent-modal-close" id="agentModalClose">
+    <!-- Team Modal -->
+    <div class="team-modal-overlay" id="teamModalOverlay"></div>
+    <div class="team-modal" id="teamModal">
+      <button class="team-modal-close" id="teamModalClose">
         <i class="fas fa-times"></i>
       </button>
-      <div class="agent-modal-content">
-        <div class="agent-modal-header">
-          <div class="agent-modal-image-container">
-            <img id="agentModalImage" src="" alt="Agent Image" class="agent-modal-image">
+      <div class="team-modal-content">
+        <div class="team-modal-header">
+          <div class="team-modal-image-container">
+            <img id="teamModalImage" src="" alt="Team Logo" class="team-modal-image">
           </div>
-          <div class="agent-modal-info">
-            <h2 id="agentModalName">Agent Name</h2>
-            <p class="agent-modal-specialty" id="agentModalSpecialty">Ability: Name</p>
-            <p class="agent-modal-description" id="agentModalDescription">Ability Description</p>
+          <div class="team-modal-info">
+            <h2 id="teamModalName">Team Name</h2>
+            <p class="team-modal-captain" id="teamModalCaptain">Captain: Name</p>
+            <p class="team-modal-motto" id="teamModalMotto">"Team Motto"</p>
+            <p class="team-modal-description" id="teamModalDescription">Team description goes here...</p>
           </div>
         </div>
-        <div class="agent-modal-body">
-          <h3>Background Story</h3>
-          <p id="agentModalStory">Agent's background story goes here...</p>
-          <h3>Compatible Tanks</h3>
-          <div class="agent-modal-tournament" id="agentModalTanksContainer">
+        <div class="team-modal-body">
+          <h3>Team Members</h3>
+          <p id="teamModalMembers">Member 1, Member 2, Member 3, Member 4, Member 5, Member 6</p>
+          <h3>Team Composition</h3>
+          <div class="team-modal-tanks" id="teamModalTanksContainer">
             <!-- Tank images will be inserted here by JavaScript -->
           </div>
         </div>
@@ -613,7 +616,7 @@
     <script src="../js/main.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/theme-loader.js"></script>
-    <script src="../js/tank.js"></script>
+    <script src="../js/tournament.js"></script>
     <script src="../js/search.js"></script>
     <script src="../js/tooltip.js"></script>
   </body>
