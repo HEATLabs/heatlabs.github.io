@@ -84,8 +84,17 @@ function updateTournamentPageElements(tournamentId, tournamentData) {
 
         // Update team count in header
         const teamCountSpan = tournamentHeader.querySelector('.tournament-meta span:nth-child(3)');
-        if (teamCountSpan && tournamentData.top_3_teams) {
-            teamCountSpan.innerHTML = `<i class="fas fa-users mr-1"></i> ${tournamentData.top_3_teams.length} Teams`;
+        if (teamCountSpan && tournamentData.total_teams) {
+            teamCountSpan.innerHTML = `<i class="fas fa-users mr-1"></i> ${tournamentData.total_teams} Teams`;
+        }
+
+        // Also update quick facts in sidebar
+        const quickFacts = document.querySelector('.sidebar-card ul');
+        if (quickFacts && tournamentData.total_teams) {
+            const teamCountItem = quickFacts.querySelector('li:first-child');
+            if (teamCountItem) {
+                teamCountItem.innerHTML = `<strong>Number of Teams:</strong> ${tournamentData.total_teams}`;
+            }
         }
     }
 
