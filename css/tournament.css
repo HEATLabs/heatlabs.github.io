@@ -20,7 +20,7 @@
 	margin-right: 0.25rem;
 }
 
-.tournament-type-badge {
+.ongoing-tournament-type-badge {
 	background-color: var(--accent-color);
 	color: white;
 	padding: 0.25rem 0.75rem;
@@ -29,6 +29,18 @@
 	font-size: 0.8rem;
 	text-transform: uppercase;
 	letter-spacing: 0.5px;
+}
+
+.ended-tournament-type-badge {
+	background-color: var(--bg-dark);
+	color: var(--ongoing-accent-color);
+	padding: 0.25rem 0.75rem;
+	border-radius: 1rem;
+	font-weight: bold;
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	border: 1px solid var(--ongoing-accent-color);
 }
 
 .tournament-title {
