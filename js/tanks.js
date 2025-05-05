@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         card.innerHTML = `
             <div class="tank-img-container">
-                <img src="${tank.image}" alt="${tank.name} Preview" class="tank-img" onerror="this.src='https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png'">
+                <img src="${tank.image}" alt="${tank.name} Preview" class="tank-img" onerror="this.src='https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/imagefailedtoload.png'">
                 <div class="tank-class">${tank.class}</div>
             </div>
             <div class="tank-info">

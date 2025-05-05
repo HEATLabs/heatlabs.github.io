@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         card.innerHTML = `
             <div class="tankopedia-img-container">
-                <img src="${item.image}" alt="${item.name}" class="tankopedia-img" onerror="this.src='https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png'">
+                <img src="${item.image}" alt="${item.name}" class="tankopedia-img" onerror="this.src='https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/imagefailedtoload.png'">
             </div>
             <div class="tankopedia-info">
                 <h3>${item.name}</h3>
