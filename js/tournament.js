@@ -78,9 +78,6 @@ function updateTournamentPageElements(tournamentId, tournamentData) {
     const tournamentHeader = document.querySelector('.tournament-header');
     if (tournamentHeader) {
         const tournamentTitle = tournamentHeader.querySelector('.tournament-title');
-        if (tournamentTitle) {
-            tournamentTitle.textContent = tournamentId;
-        }
 
         // Update team count in header
         const teamCountSpan = tournamentHeader.querySelector('.tournament-meta span:nth-child(3)');
