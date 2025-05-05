@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/tanks.css">
+    <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/modules/header.css">
     <link rel="stylesheet" href="css/modules/footer.css">
     <link rel="stylesheet" href="css/modules/sidebar.css">
@@ -202,206 +202,146 @@
             <i class="fas fa-chart-line mr-2"></i>Get Started </a>
         </div>
       </section>
-      <!-- Features Section -->
-      <section id="features" class="section">
+      <!-- Quick Access Section -->
+      <section class="quick-access-section">
         <div class="container mx-auto px-4">
-          <h2 class="section-title">Features</h2>
-          <div class="features-grid">
-            <!-- Feature 1 -->
-            <div class="feature-card text-center">
-              <div class="feature-icon">
+          <div class="quick-access-grid">
+            <a href="tanks.html" class="quick-access-item">
+              <div class="quick-access-icon">
                 <i class="fas fa-shield-alt"></i>
               </div>
-              <h3>Tank Statistics</h3>
-              <p>Compare armor, firepower, speed, and other tank stats across all available vehicles.</p>
-              <a href="tanks.html" class="btn-accent"> Explore Tank Stats <i class="fas fa-arrow-right ml-2"></i>
-              </a>
-            </div>
-            <!-- Feature 2 -->
-            <div class="feature-card text-center">
-              <div class="feature-icon">
+              <span>Tank Statistics</span>
+            </a>
+            <a href="maps.html" class="quick-access-item">
+              <div class="quick-access-icon">
                 <i class="fas fa-map"></i>
               </div>
-              <h3>Map Knowledge</h3>
-              <p>Get tactical insights for each map, including choke points, ambush zones, and more tips.</p>
-              <a href="maps.html" class="btn-accent"> Learn the Maps <i class="fas fa-arrow-right ml-2"></i>
-              </a>
-            </div>
-            <!-- Feature 3 -->
-            <div class="feature-card text-center">
-              <div class="feature-icon">
-                <i class="fas fa-check-double"></i>
-              </div>
-              <h3>Check & Compare</h3>
-              <p>Analyze and contrast tanks, gear, or loadouts side-by-side to optimize your gameplay.</p>
-              <a href="#" class="btn-accent"> Start Comparing <i class="fas fa-arrow-right ml-2"></i>
-              </a>
-            </div>
-            <!-- Feature 4 -->
-            <div class="feature-card text-center">
-              <div class="feature-icon">
-                <i class="fas fa-wrench"></i>
-              </div>
-              <h3>Common Builds</h3>
-              <p>Browse the most popular builds used by top players, optimized for all playstyles.</p>
-              <a href="#" class="btn-accent"> View Top Builds <i class="fas fa-arrow-right ml-2"></i>
-              </a>
-            </div>
-            <!-- Feature 5 -->
-            <div class="feature-card text-center">
-              <div class="feature-icon">
+              <span>Map Knowledge</span>
+            </a>
+            <a href="guides.html" class="quick-access-item">
+              <div class="quick-access-icon">
                 <i class="fas fa-book-open"></i>
               </div>
-              <h3>Community Guides</h3>
-              <p>Read strategies written by players on how to master tanks, tactics, and team synergy.</p>
-              <a href="guides.html" class="btn-accent"> Read the Guides <i class="fas fa-arrow-right ml-2"></i>
-              </a>
-            </div>
-            <!-- Feature 6 -->
-            <div class="feature-card text-center">
-              <div class="feature-icon">
+              <span>Community Guides</span>
+            </a>
+            <a href="tournaments.html" class="quick-access-item">
+              <div class="quick-access-icon">
                 <i class="fa-solid fa-trophy"></i>
               </div>
-              <h3>Tournaments</h3>
-              <p>View information about recent and ongoing tournaments.</p>
-              <a href="tournaments.html" class="btn-accent"> Get Competitive <i class="fas fa-arrow-right ml-2"></i>
-              </a>
-            </div>
-            <!-- Feature 7 -->
-            <div class="feature-card text-center">
-              <div class="feature-icon">
-                <i class="fa-solid fa-newspaper"></i>
-              </div>
-              <h3>Game News</h3>
-              <p>Get the latest news from the developers of Project CW.</p>
-              <a href="#" class="btn-accent"> Read the News <i class="fas fa-arrow-right ml-2"></i>
-              </a>
-            </div>
-            <!-- Feature 8 -->
-            <div class="feature-card text-center">
-              <div class="feature-icon">
-                <i class="fa-solid fa-database"></i>
-              </div>
-              <h3>Tankopedia</h3>
-              <p>Discover everything Project CW has offer including hidden elements.</p>
-              <a href="#" class="btn-accent"> Explore the Game <i class="fas fa-arrow-right ml-2"></i>
-              </a>
-            </div>
-            <!-- Feature 9 -->
-            <div class="feature-card text-center">
-              <div class="feature-icon">
-                <i class="fa-solid fa-blog"></i>
-              </div>
-              <h3>Official Blog</h3>
-              <p>Read what the developers of PCWStats have to say.</p>
-              <a href="#" class="btn-accent"> Discover Insights <i class="fas fa-arrow-right ml-2"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Trending Tanks Section -->
-      <section class="section bg-gray-50">
-        <div class="container mx-auto px-4">
-          <h2 class="section-title">Trending Tanks</h2>
-          <div class="tanks-grid text-center">
-            <!-- Tank Card 1 -->
-            <div class="tank-card">
-              <div class="tank-img-container">
-                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/t-62a/icon_t-62a.png" alt="T-62A" class="tank-img">
-                <div class="tank-class">Tank Class</div>
-              </div>
-              <div class="tank-info">
-                <h3>T-62A</h3>
-                <div class="tank-meta">
-                  <span>
-                    <i class="fas fa-flag"></i> USSR </span>
-                  <span>
-                    <i class="fas fa-layer-group"></i> Tank Type </span>
-                </div>
-                <div class="tank-buttons">
-                  <a href="tanks/t-62a.html" class="btn-accent">
-                    <i class="fas fa-chart-bar mr-2"></i>Statistics </a>
-                  <a href="#" class="btn-outline compare-btn">
-                    <i class="fas fa-exchange-alt mr-2"></i>Compare </a>
-                </div>
-              </div>
-            </div>
-            <!-- Tank Card 2 -->
-            <div class="tank-card">
-              <div class="tank-img-container">
-                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png" alt="M1E1" class="tank-img">
-                <div class="tank-class">Tank Class</div>
-              </div>
-              <div class="tank-info">
-                <h3>M1E1</h3>
-                <div class="tank-meta">
-                  <span>
-                    <i class="fas fa-flag"></i> USA </span>
-                  <span>
-                    <i class="fas fa-layer-group"></i> Tank Type </span>
-                </div>
-                <div class="tank-buttons">
-                  <a href="tanks/m1e1.html" class="btn-accent">
-                    <i class="fas fa-chart-bar mr-2"></i>Statistics </a>
-                  <a href="#" class="btn-outline compare-btn">
-                    <i class="fas fa-exchange-alt mr-2"></i>Compare </a>
-                </div>
-              </div>
-            </div>
-            <!-- Tank Card 3 -->
-            <div class="tank-card">
-              <div class="tank-img-container">
-                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/xm1-v/icon_xm1-v.png" alt="XM1-V" class="tank-img">
-                <div class="tank-class">Tank Class</div>
-              </div>
-              <div class="tank-info">
-                <h3>XM1-V</h3>
-                <div class="tank-meta">
-                  <span>
-                    <i class="fas fa-flag"></i> USA </span>
-                  <span>
-                    <i class="fas fa-layer-group"></i> Tank Type </span>
-                </div>
-                <div class="tank-buttons">
-                  <a href="tanks/xm1-v.html" class="btn-accent">
-                    <i class="fas fa-chart-bar mr-2"></i>Statistics </a>
-                  <a href="#" class="btn-outline compare-btn">
-                    <i class="fas fa-exchange-alt mr-2"></i>Compare </a>
-                </div>
-              </div>
-            </div>
-            <!-- Tank Card 4 -->
-            <div class="tank-card">
-              <div class="tank-img-container">
-                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/leopard-1a6/icon_leopard-1a6.png" alt="Leopard 1A6" class="tank-img">
-                <div class="tank-class">Tank Class</div>
-              </div>
-              <div class="tank-info">
-                <h3>Leopard 1A6</h3>
-                <div class="tank-meta">
-                  <span>
-                    <i class="fas fa-flag"></i> Germany </span>
-                  <span>
-                    <i class="fas fa-layer-group"></i> Tank Type </span>
-                </div>
-                <div class="tank-buttons">
-                  <a href="tanks/leopard-1a6.html" class="btn-accent">
-                    <i class="fas fa-chart-bar mr-2"></i>Statistics </a>
-                  <a href="#" class="btn-outline compare-btn">
-                    <i class="fas fa-exchange-alt mr-2"></i>Compare </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="text-center mt-16">
-            <a href="tanks.html" class="btn-accent"> View All Tanks <i class="fas fa-arrow-right ml-2"></i>
+              <span>Tournaments</span>
             </a>
           </div>
         </div>
       </section>
+      <!-- Features Section -->
+      <section id="features" class="features-section">
+        <div class="container mx-auto px-4">
+          <h2 class="section-title">Explore PCWStats</h2>
+          <div class="features-container">
+            <!-- Core Features -->
+            <div class="features-category">
+              <h3 class="category-title">Core Tools</h3>
+              <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card text-center">
+                  <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                  </div>
+                  <h4>Tank Statistics</h4>
+                  <p>Compare armor, firepower, speed, and other tank stats across all available vehicles.</p>
+                  <a href="tanks.html" class="btn-accent"> View Stats </a>
+                </div>
+                <!-- Feature 2 -->
+                <div class="feature-card text-center">
+                  <div class="feature-icon">
+                    <i class="fas fa-map"></i>
+                  </div>
+                  <h4>Map Knowledge</h4>
+                  <p>Get tactical insights for each map, including choke points, ambush zones, and more tips.</p>
+                  <a href="maps.html" class="btn-accent"> Explore Maps </a>
+                </div>
+                <!-- Feature 3 -->
+                <div class="feature-card text-center">
+                  <div class="feature-icon">
+                    <i class="fas fa-check-double"></i>
+                  </div>
+                  <h4>Check & Compare</h4>
+                  <p>Analyze and contrast tanks, gear, or loadouts side-by-side to optimize your gameplay.</p>
+                  <a href="#" class="btn-accent"> Compare Now </a>
+                </div>
+              </div>
+            </div>
+            <!-- Player Resources -->
+            <div class="features-category">
+              <h3 class="category-title">Player Resources</h3>
+              <div class="features-grid">
+                <!-- Feature 4 -->
+                <div class="feature-card text-center">
+                  <div class="feature-icon">
+                    <i class="fas fa-wrench"></i>
+                  </div>
+                  <h4>Common Builds</h4>
+                  <p>Browse the most popular builds used by top players, optimized for all playstyles.</p>
+                  <a href="#" class="btn-accent"> View Builds </a>
+                </div>
+                <!-- Feature 5 -->
+                <div class="feature-card text-center">
+                  <div class="feature-icon">
+                    <i class="fas fa-book-open"></i>
+                  </div>
+                  <h4>Community Guides</h4>
+                  <p>Read strategies written by players on how to master tanks, tactics, and team synergy.</p>
+                  <a href="guides.html" class="btn-accent"> Read Guides </a>
+                </div>
+                <!-- Feature 6 -->
+                <div class="feature-card text-center">
+                  <div class="feature-icon">
+                    <i class="fa-solid fa-trophy"></i>
+                  </div>
+                  <h4>Tournaments</h4>
+                  <p>View information about recent and ongoing tournaments in the Project CW community.</p>
+                  <a href="tournaments.html" class="btn-accent"> Get Competitive </a>
+                </div>
+              </div>
+            </div>
+            <!-- Game Content -->
+            <div class="features-category">
+              <h3 class="category-title">Additional Content</h3>
+              <div class="features-grid">
+                <!-- Feature 7 -->
+                <div class="feature-card text-center">
+                  <div class="feature-icon">
+                    <i class="fa-solid fa-newspaper"></i>
+                  </div>
+                  <h4>Game News</h4>
+                  <p>Get the latest news and updates from the developers of Project CW.</p>
+                  <a href="#" class="btn-accent"> Read News </a>
+                </div>
+                <!-- Feature 8 -->
+                <div class="feature-card text-center">
+                  <div class="feature-icon">
+                    <i class="fa-solid fa-database"></i>
+                  </div>
+                  <h4>Tankopedia</h4>
+                  <p>Discover everything Project CW has to offer including hidden elements and secrets.</p>
+                  <a href="#" class="btn-accent"> Explore Game </a>
+                </div>
+                <!-- Feature 9 -->
+                <div class="feature-card text-center">
+                  <div class="feature-icon">
+                    <i class="fa-solid fa-blog"></i>
+                  </div>
+                  <h4>Official Blog</h4>
+                  <p>Read what the developers of PCWStats have to say about upcoming features and changes.</p>
+                  <a href="#" class="btn-accent"> Read Blog </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <!-- About Section -->
-      <section class="section">
+      <section class="about-section">
         <div class="container mx-auto px-4 text-center">
           <div class="about-content">
             <h2 class="section-title">About PCWStats</h2>
