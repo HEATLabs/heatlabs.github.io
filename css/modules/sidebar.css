@@ -5,7 +5,7 @@
 	left: -100%;
 	width: var(--sidebar-width);
 	height: 100vh;
-	background-color: var(--bg-secondary);
+	background-color: var(--bg-primary);
 	z-index: 1000;
 	transition: all var(--transition-speed) ease;
 	box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
