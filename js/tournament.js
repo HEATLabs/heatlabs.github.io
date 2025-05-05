@@ -62,18 +62,6 @@ async function fetchTournamentData(tournamentId) {
 }
 
 function updateTournamentPageElements(tournamentId, tournamentData) {
-    // Safely update page title and meta tags
-    try {
-        document.title = `${tournamentId} - PCWStats`;
-        const ogTitle = document.querySelector('meta[property="og:title"]');
-        const twitterTitle = document.querySelector('meta[name="twitter:title"]');
-
-        if (ogTitle) ogTitle.content = `PCWStats - ${tournamentId}`;
-        if (twitterTitle) twitterTitle.content = `PCWStats - ${tournamentId}`;
-    } catch (e) {
-        console.error('Error updating meta tags:', e);
-    }
-
     // Update tournament header information
     const tournamentHeader = document.querySelector('.tournament-header');
     if (tournamentHeader) {
