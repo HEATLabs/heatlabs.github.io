@@ -194,6 +194,21 @@ h2::after {
 	border: 1px solid var(--border-color);
 }
 
+/* Beta Testers */
+.content-creators {
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+.content-creators span {
+	background-color: var(--card-bg);
+	padding: 0.5rem 1rem;
+	border-radius: 2rem;
+	font-size: 0.9rem;
+	color: var(--text-secondary);
+	border: 1px solid var(--border-color);
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
 	.credits-hero {
