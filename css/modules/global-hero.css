@@ -5,7 +5,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/home/hero-background.png');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/hero-background/1.png');
 	background-size: cover;
 	background-position: center;
 	color: white;
@@ -38,7 +38,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/home/hero-background.png');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/hero-background/1.png');
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
