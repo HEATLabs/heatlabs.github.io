@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Only proceed if we found hero elements
     if (heroes.length > 0) {
         // Generate a random number between 1 and 46
-        const randomImageNumber = Math.floor(Math.random() * 36) + 1;
+        const randomImageNumber = Math.floor(Math.random() * 34) + 1;
 
         // Construct the new image URL
-        const newImageUrl = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/hero-background/${randomImageNumber}.png')`;
+        const newImageUrl = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/hero-background/${randomImageNumber}.png')`;
 
         // Apply the new background image to all hero elements
         heroes.forEach(hero => {
