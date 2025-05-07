@@ -29,7 +29,8 @@
 
 .news-img-container {
 	position: relative;
-	height: 220px;
+	width: 100%;
+	aspect-ratio: 16 / 9;
 	overflow: hidden;
 }
 
@@ -60,7 +61,6 @@
 	padding: 1.5rem;
 	display: flex;
 	flex-direction: column;
-	height: calc(100% - 220px);
 }
 
 .news-info h3 {
