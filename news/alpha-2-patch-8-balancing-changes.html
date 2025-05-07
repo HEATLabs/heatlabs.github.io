@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Main meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title displayed in the browser tab -->
+    <title>Patch #8 Balancing Changes (Alpha 2) - PCWStats</title>
+    <!-- Theme Checker -->
+    <script>
+      // Immediately set theme class before rendering begins
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          // Default to dark theme if saved or system preference
+          if (savedTheme === 'dark-theme' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark-theme');
+          } else {
+            document.documentElement.classList.add('light-theme');
+          }
+        } catch (e) {
+          console.error('Theme initialization error:', e);
+          document.documentElement.classList.add('light-theme');
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/news-pages.css">
+    <link rel="stylesheet" href="../css/modules/header.css">
+    <link rel="stylesheet" href="../css/modules/footer.css">
+    <link rel="stylesheet" href="../css/modules/sidebar.css">
+    <link rel="stylesheet" href="../css/modules/cta.css">
+    <link rel="stylesheet" href="../css/modules/no-scrollbar.css">
+    <link rel="stylesheet" href="../css/modules/search.css">
+    <link rel="stylesheet" href="../css/modules/warning.css">
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon.ico" type="image/x-icon">
+    <!-- Apple Touch Icons (for iOS home screen bookmarks) -->
+    <link rel="apple-touch-icon" sizes="57x57" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-180x180.png">
+    <!-- Favicons for different devices -->
+    <link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/android/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon-16x16.png">
+    <!-- Web Manifest -->
+    <link rel="manifest" href="../site-data/site.manifest">
+    <!-- Windows-specific tiles (for pinned sites in Windows Start menu) -->
+    <meta name="msapplication-TileColor" content="#141312">
+    <meta name="msapplication-TileImage" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/microsoft/ms-icon-144x144.png">
+    <!-- Defines the color of the browser UI elements -->
+    <meta name="theme-color" content="#141312">
+    <!-- Open Graph Meta Tags (for social media sharing, mainly Facebook) -->
+    <meta property="og:title" content="PCWStats - Patch #8 Balancing Changes (Alpha 2)">
+    <meta property="og:description" content="Your one-stop solution for comprehensive statistics insights and news for Project CW">
+    <meta property="og:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
+    <meta property="og:url" content="https://pcwstats.github.io/news/placeholder-news.html">
+    <meta property="og:type" content="article">
+    <!-- Twitter Card Meta Tags (for better sharing on Twitter) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PCWStats - Patch #8 Balancing Changes (Alpha 2)">
+    <meta name="twitter:description" content="Your one-stop solution for comprehensive statistics insights and news for Project CW">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
+  </head>
+  <body>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="flex items-center justify-between">
+          <button id="closeSidebar" class="sidebar-close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <nav class="flex-grow">
+        <ul class="space-y-2">
+          <li>
+            <a href="../index.html" class="sidebar-link">
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="../tanks.html" class="sidebar-link">
+              <i class="fas fa-shield-alt"></i>
+              <span>Tank Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="../maps.html" class="sidebar-link">
+              <i class="fas fa-map"></i>
+              <span>Map Knowledge</span>
+            </a>
+          </li>
+          <li>
+            <a href="../check-compare.html" class="sidebar-link">
+              <i class="fas fa-check-double"></i>
+              <span>Check & Compare</span>
+            </a>
+          </li>
+          <li>
+            <a href="../builds.html" class="sidebar-link">
+              <i class="fas fa-wrench"></i>
+              <span>Common Builds</span>
+            </a>
+          </li>
+          <li>
+            <a href="../guides.html" class="sidebar-link">
+              <i class="fas fa-book-open"></i>
+              <span>Community Guides</span>
+            </a>
+          </li>
+          <li>
+            <a href="../credits.html" class="sidebar-link">
+              <i class="fas fa-users"></i>
+              <span>Community Credits</span>
+            </a>
+          </li>
+          <li>
+            <a href="../tournaments.html" class="sidebar-link">
+              <i class="fa-solid fa-trophy"></i>
+              <span>Tournaments</span>
+            </a>
+          </li>
+          <li>
+            <a href="../news.html" class="sidebar-link active">
+              <i class="fas fa-newspaper"></i>
+              <span>Game News</span>
+            </a>
+          </li>
+          <li>
+            <a href="../tankopedia.html" class="sidebar-link">
+              <i class="fas fa-database"></i>
+              <span>Tankopedia</span>
+            </a>
+          </li>
+          <li>
+            <a href="../blog.html" class="sidebar-link">
+              <i class="fas fa-blog"></i>
+              <span>Official Blog</span>
+            </a>
+          </li>
+          <li>
+            <a href="../about-us.html" class="sidebar-link">
+              <i class="fas fa-info-circle"></i>
+              <span>About the Project</span>
+            </a>
+          </li>
+          <li>
+            <a href="../legal.html" class="sidebar-link">
+              <i class="fas fa-balance-scale"></i>
+              <span>Project Policies</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="theme-toggle-container">
+          <span class="theme-toggle-label">Dark Mode</span>
+          <div class="theme-toggle-switch" id="themeToggle">
+            <div class="toggle-thumb"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="content-wrapper">
+      <!-- Header/Navbar -->
+      <header class="navbar">
+        <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center py-3">
+            <div class="flex items-center space-x-4">
+              <button id="openSidebar" class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <a href="../../index.html" class="brand-logo">
+                <i class="fas fa-tank text-accent-color"></i>
+                <span>PCWStats</span>
+                <span class="beta-tag">BETA</span>
+              </a>
+            </div>
+            <div class="flex items-center space-x-6">
+              <button id="openSearch" class="search-button">
+                <i class="fas fa-search"></i>
+              </button>
+              <div class="theme-toggle-mobile" id="themeToggleMobile">
+                <i class="fas fa-moon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- News Header -->
+      <section class="news-header">
+        <div class="container mx-auto px-4">
+          <div class="news-meta">
+            <span class="news-type-badge">News</span>
+            <span>
+              <i class="far fa-clock mr-1"></i> 5 min read </span>
+            <span>
+              <i class="far fa-calendar-alt mr-1"></i>February 26, 2025 </span>
+          </div>
+          <h1 class="news-title">Patch #8 - Balancing Changes - Alpha 2</h1>
+          <div class="news-author">
+            <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/news-announcement/author/lynxcarpathicus.png" alt="Author" class="author-avatar">
+            <div>
+              <p class="author-name">lynxcarpathicus</p>
+              <p class="author-title">Community Manager</p>
+              <p class="author-title">Official Discord Server</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- News Content -->
+      <section class="section py-8">
+        <div class="container mx-auto px-4">
+          <div class="news-content-wrapper">
+            <!-- Main Content -->
+            <div class="news-main-content">
+              <div class="news-text">
+                <!-- Section 1 -->
+                <h2 id="section-1">Patch Details</h2>
+                <p>Let's dive into it!</p>
+                <div class="news-image my-6">
+                  <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/news-announcement/news_58_1.png" alt="PATCH NOTES #8" class="rounded-lg">
+                  <p class="text-center text-sm text-gray-500 mt-2">PATCH NOTES #8</p>
+                </div>
+                <h2 id="section-2">Kent • XM1 90</h2>
+                <div class="highlight-takeaways">
+                  <p class="title">Firepower</p>
+                  <ul class="list-disc">
+                    <li>Fixed camera zoom parameters to 3x and 10x magnifications (was 2x, 4x, 8x) </li>
+                  </ul>
+                </div>
+                <div class="highlight-takeaways">
+                  <p class="title">Toughness</p>
+                  <ul class="list-disc">
+                    <li>Upper glacis armor thickness increased and will now stop autocannon shell penetration </li>
+                  </ul>
+                </div>
+                <div class="highlight-takeaways">
+                  <p class="title">Upgrades / Modules</p>
+                  <p class="title">ABILITY MOD</p>
+                  <ul class="list-disc">
+                    <li>Increase ATGM 385 damage → 650 damage</li>
+                    <li>Increase canister penetration 82 mm → 97 mm</li>
+                    <li>HESH explosion radius 6 m → 4.5m</li>
+                    <li>HESH explosion damage 150 → 260</li>
+                    <li>HESH damage multiplier against shell screens 2→  0</li>
+                    <li>HESH critical modules damage count 3 → 1</li>
+                    <li>HESH damage modules count 1 → 3</li>
+                    <li>HESH ammunition critical damage modifier 2 → 2.5</li>
+                    <li>HESH engine critical damage modifier 1.45 → 1.7</li>
+                    <li>HESH fuel critical damage modifier 1.25 → 1.4</li>
+                  </ul>
+                  <p class="title">FIREPOWERED MOD</p>
+                  <ul class="list-disc">
+                    <li>ENLARGED GUN BREECH - Reduced Turret breech armor debuff 10% → 7.5%</li>
+                    <li>ENLARGED GUN BREECH - Reduced amount of Conditional stacks to trigger Empowered 4 → 3</li>
+                    <li>ENLARGED GUN BREECH - Conditional modifier Empowered now applies damage boost to explosion damage.</li>
+                    <li>MEMENTO MORI - Removed incoming crit. multiplier</li>
+                    <li>MEMENTO MORI - Added Repair Kit cooldown +20%</li>
+                    <li>MEMENTO MORI -Reduced Repair Kit heal 50% → 20%</li>
+                  </ul>
+                </div>
+                <h2 id="section-3">Kent • HSTV-L</h2>
+                <div class="highlight-takeaways">
+                  <p class="title">Toughness</p>
+                  <ul class="list-disc">
+                    <li>HP increased 1900 → 2300</li>
+                  </ul>
+                </div>
+                <div class="highlight-takeaways">
+                  <p class="title">Mobility</p>
+                  <ul class="list-disc">
+                    <li>Maximum speed increased 65 → 74</li>
+                  </ul>
+                </div>
+                <div class="highlight-takeaways">
+                  <p class="title">Upgrades / Modules</p>
+                  <p class="title">ABILITY MOD</p>
+                  <ul class="list-disc">
+                    <li>Grenade Machinegun range increased </li>
+                    <li>Smoke Mortars range increased</li>
+                  </ul>
+                </div>
+                <h2 id="section-4">Reaper • LEO 2K14</h2>
+                <div class="highlight-takeaways">
+                  <p class="title">Firepower</p>
+                  <ul class="list-disc">
+                    <li>Reduced penetration base 280 mm → 200 mm</li>
+                  </ul>
+                </div>
+                <h2 id="section-5">Raketa • T-62AV</h2>
+                <div class="highlight-takeaways">
+                  <p class="title">Firepower</p>
+                  <ul class="list-disc">
+                    <li>Base shell penetration decrease 300 → 240</li>
+                    <li>Shell reload increased 5 sec → 6 sec</li>
+                  </ul>
+                </div>
+                <div class="highlight-takeaways">
+                  <p class="title">Toughness</p>
+                  <ul class="list-disc">
+                    <li>Tweak turret armor thickness</li>
+                  </ul>
+                </div>
+                <div class="highlight-takeaways">
+                  <p class="title">Mobility</p>
+                  <ul class="list-disc">
+                    <li>Hull traverse decrease 51.5 → 41.2 deg/s</li>
+                  </ul>
+                </div>
+                <div class="highlight-takeaways">
+                  <p class="title">Upgrades / Modules</p>
+                  <p class="title">ABILITY MOD</p>
+                  <ul class="list-disc">
+                    <li>Rocket barrage cooldown reduce 90 sec → 80 sec</li>
+                    <li>Rocket barrage energy cost reduce 75 → 70</li>
+                  </ul>
+                  <p class="title">ORO 57K</p>
+                  <ul class="list-disc">
+                    <li>Conditional changed to “Each rocket deals 85 fire status points”</li>
+                  </ul>
+                  <p>Game Designer note: “That’s not a 85 damage, that’s +85 fire status points to fire progress bar, when it will be 1000 – enemy tank sat on fire. Don’t forget that Rocket Pods have 24 missiles in it”</p>
+                  <p class="title">THUNDERSTORM</p>
+                  <ul class="list-disc">
+                    <li>Add rocket pod cooldown -10%</li>
+                    <li>Conditional changed to “When an enemy is destroyed by Rocket Barrage, gives 25 Energy”</li>
+                  </ul>
+                  <p class="title">SAMIDARE HEAT</p>
+                  <ul class="list-disc">
+                    <li>Number of rockets -8 → -6</li>
+                  </ul>
+                  <p class="title">LEAPFROG XPD</p>
+                  <ul class="list-disc">
+                    <li>Add +5% movement speed buff</li>
+                    <li>Increase sprint acceleration +20% → +25%</li>
+                  </ul>
+                  <p class="title">IDATEN</p>
+                  <ul class="list-disc">
+                    <li>Add -5% sprint energy consumption buff</li>
+                  </ul>
+                  <p class="title">U-WALGT</p>
+                  <ul class="list-disc">
+                    <li>Increase conditional “Deals +15% fire damage” to “Deals +35% fire damage”</li>
+                  </ul>
+                  <p class="title">RAKETE-P</p>
+                  <ul class="list-disc">
+                    <li>Increase speed acceleration +35% → +40%</li>
+                    <li>Increase Sprint stamina debuff -5% → -10%</li>
+                  </ul>
+                  <p class="title">PYLTSA</p>
+                  <ul class="list-disc">
+                    <li>Conditional changed to “Applies +500 fire status points when an enemy fuel tank is critically hit”</li>
+                  </ul>
+                </div>
+                <h2 id="section-6">Chopper • M1E1</h2>
+                <div class="highlight-takeaways">
+                  <p class="title">Upgrades / Modules</p>
+                  <p class="title">Barrell M256</p>
+                  <ul class="list-disc">
+                    <li>Bug fixed, -6% now a positive buff</li>
+                  </ul>
+                  <p class="title">X22-Flamethrower</p>
+                  <ul class="list-disc">
+                    <li>Gatling penetration debuff -10% → -8%</li>
+                  </ul>
+                  <p class="title">CX-5 Magnesium</p>
+                  <ul class="list-disc">
+                    <li>Increase conditional “Per each internal module/shell screen destroyed regain 2 mana (Energy) points”</li>
+                  </ul>
+                  <p class="title">EXGG Berserk</p>
+                  <ul class="list-disc">
+                    <li>Reduce Gatling damage +25% → +15%</li>
+                    <li>Reduce reticle side buff -15% → 10%</li>
+                    <li>Increase Gatling penetration +10% → +15%</li>
+                    <li>Conditional changed to “Allowed to use Gatling gun when APS is active”</li>
+                  </ul>
+                  <p class="title">NBC-S M1FT2</p>
+                  <ul class="list-disc">
+                    <li>Increased Fire resistance +5% → +7%</li>
+                  </ul>
+                  <p class="title">CPS/2 DEW</p>
+                  <ul class="list-disc">
+                    <li>Increased conditional cooldown 30 sec → 45 sec</li>
+                  </ul>
+                  <p class="title">RST/55-2</p>
+                  <ul class="list-disc">
+                    <li>Reload time decreased -6% → -5%</li>
+                  </ul>
+                  <p class="title">VMG-1</p>
+                  <ul class="list-disc">
+                    <li>Display attribute bug fix</li>
+                  </ul>
+                </div>
+                <h2 id="section-7">Chopper • XM1 V</h2>
+                <div class="highlight-takeaways">
+                  <p class="title">Firepower</p>
+                  <ul class="list-disc">
+                    <li>Increase base damage on "Demolition Charges" by 5%</li>
+                  </ul>
+                  <p class="title">Toughness</p>
+                  <ul class="list-disc">
+                    <li>Turret armor thickness reworked</li>
+                    <li>Hull armor thickness reworked, slight modification made to lower hull and side armor thickness, which will provide better protection against all defender and assault shells</li>
+                  </ul>
+                  <p class="title">Upgrades / Modules</p>
+                  <p class="title">VESUVIUS</p>
+                  <ul class="list-disc">
+                    <li>Prepare time decreased -50% → -90%</li>
+                  </ul>
+                  <p class="title">REVITALIX</p>
+                  <ul class="list-disc">
+                    <li>Hull frontal armor  +15% changed to → Hit points +15%</li>
+                  </ul>
+                  <p class="title">AEGIS</p>
+                  <ul class="list-disc">
+                    <li>Buff time increased 15 seconds → 30 seconds</li>
+                  </ul>
+                  <p class="title">CPS/2 DEW</p>
+                  <ul class="list-disc">
+                    <li>Increased conditional cooldown 30 sec → 45 sec</li>
+                  </ul>
+                  <p class="title">BULWARK</p>
+                  <ul class="list-disc">
+                    <li>Hull frontal armor -10% → -7%</li>
+                    <li>Hull side armor -10% → -7%</li>
+                    <li>Hull rear armor -10% → -7%</li>
+                  </ul>
+                  <p class="title">FORTIFIER</p>
+                  <ul class="list-disc">
+                    <li>Buff time increased 20 seconds → 30 seconds</li>
+                    <li>Hit points -15% changed to → Hull traverse -20%</li>
+                    <li>Hull frontal armour +25% changed to → Turret side armour +20%</li>
+                  </ul>
+                  <p class="title">TREBUCHET</p>
+                  <ul class="list-disc">
+                    <li>Reload time +4% changed to → Reticle standing +4%</li>
+                  </ul>
+                </div>
+                <h2 id="section-8">Ember • M60A3E2</h2>
+                <div class="highlight-takeaways">
+                  <p class="title">Firepower</p>
+                  <ul class="list-disc">
+                    <li>Fixed shell ammo critical multiplier x4.5 → x2.5</li>
+                  </ul>
+                  <p class="title">Upgrades / Modules</p>
+                  <p class="title">THORN 7-2</p>
+                  <ul class="list-disc">
+                    <li>Min. damage buff +4% → +6%</li>
+                  </ul>
+                  <p class="title">THORN 9-4</p>
+                  <ul class="list-disc">
+                    <li>Prepare time buff -7% → -10%</li>
+                  </ul>
+                  <p class="title">DTS-X2</p>
+                  <ul class="list-disc">
+                    <li>Cooldown reduction buff -7% → -10%</li>
+                    <li>Now applying slow as description states</li>
+                  </ul>
+                  <p class="title">C-HAZE</p>
+                  <ul class="list-disc">
+                    <li>Fire resistance buff +4% → +7%</li>
+                    <li>Blast resistance buff +4% →+7%</li>
+                  </ul>
+                  <p class="title">L-Aegis</p>
+                  <ul class="list-disc">
+                    <li>Engine power -5% changed to → Fire rate -5%</li>
+                    <li>Expeditious buff increased 4 sec → 5 sec</li>
+                  </ul>
+                  <p class="title">EMP-R2</p>
+                  <ul class="list-disc">
+                    <li>Buffed repair kit cooldown -10% → -15%</li>
+                  </ul>
+                  <p class="title">Paladin-7</p>
+                  <ul class="list-disc">
+                    <li>Reduced buff time 15 sec → 10 sec</li>
+                  </ul>
+                  <p class="title">RT/L-4</p>
+                  <ul class="list-disc">
+                    <li>Increased repair kit shield restoring 20% → 30%</li>
+                  </ul>
+                  <p class="title">Ironclad-X</p>
+                  <ul class="list-disc">
+                    <li>Reduced buff time 15 sec → 10 sec</li>
+                  </ul>
+                  <p class="title">Iron Wall ERA</p>
+                  <ul class="list-disc">
+                    <li>Buffed effect damage 400 → 600</li>
+                  </ul>
+                  <p class="title">X-700</p>
+                  <ul class="list-disc">
+                    <li>Buff time turret rotation speed increased 25% → 35%</li>
+                  </ul>
+                  <p class="title">LPC</p>
+                  <ul class="list-disc">
+                    <li>Clarified effect description</li>
+                  </ul>
+                  <p class="title">IMBAS</p>
+                  <ul class="list-disc">
+                    <li>Reload time buffed -5% → -7%</li>
+                  </ul>
+                  <p class="title">EAGLE-EYE</p>
+                  <ul class="list-disc">
+                    <li>Reticle size (standing) buffed -4% → -8%</li>
+                    <li>Aiming speed buffed +4% → +8%</li>
+                  </ul>
+                  <p class="title">FCS-37</p>
+                  <ul class="list-disc">
+                    <li>Buff effect changed from restoring 25 energy points → 40 energy points</li>
+                  </ul>
+                </div>
+                <h2 id="section-9">Ember • BAT-4M</h2>
+                <div class="highlight-takeaways">
+                  <p class="title">Toughness</p>
+                  <ul class="list-disc">
+                    <li>Increased frontal and side armor</li>
+                    <li>Size of ammo bay module is decreased</li>
+                  </ul>
+                </div>
+                <h2 id="section-10">Hound • LEO 1A6A1</h2>
+                <div class="highlight-takeaways">
+                  <p class="title">Firepower</p>
+                  <ul class="list-disc">
+                    <li>Standard shell DM12 velocity increased 1050 m/s → 1250 m/s</li>
+                    <li>Standard shell DM12 ballistic pre-simulation disabled</li>
+                    <li>Standard shell DM12 ballistic dispersion when stationary fixed</li>
+                    <li>Gun dispersion normalization rate increased 1.75 → 1.9</li>
+                  </ul>
+                  <p class="title">Upgrades / Modules</p>
+                  <p>Set base Trapping Shot modules damage to 40, base explosive damage to 55</p>
+                  <p class="title">WOLKENBOMBE</p>
+                  <ul class="list-disc">
+                    <li>Removed current conditional, added “Apply Fragility effect on hit (can’t stack, Fragility – increase all critical damage received by 7.5% for 10 sec)</li>
+                  </ul>
+                  <p class="title">RENNPANZER</p>
+                  <ul class="list-disc">
+                    <li>Removed reticle size (standing) debuff</li>
+                    <li>Removed reticle size (moving) debuff</li>
+                    <li>Removed forward speed buff</li>
+                    <li>Add reverse speed debuff</li>
+                    <li>Hull traverse deg/s buffed +4% → +5%</li>
+                  </ul>
+                  <p class="title">KLARHEITSSYSTEM</p>
+                  <ul class="list-disc">
+                    <li>Add spotting duration buff, +8%</li>
+                  </ul>
+                  <p class="title">TARNUNGSMODUL</p>
+                  <ul class="list-disc">
+                    <li>Removed spotting duration buff</li>
+                    <li>Added zoom factor x2</li>
+                  </ul>
+                  <p class="title">VIPER AUGE</p>
+                  <ul class="list-disc">
+                    <li>Zoom factor x2 → x4</li>
+                  </ul>
+                  <p class="title">UMFANG-400</p>
+                  <ul class="list-disc">
+                    <li>Removed conditional buff</li>
+                    <li>Zoom factor x4 → x6</li>
+                  </ul>
+                  <p class="title">EISENBLITZ</p>
+                  <ul class="list-disc">
+                    <li>Removed shell fuel crit. multiplier</li>
+                    <li>Added penetration buff +9%</li>
+                  </ul>
+                  <p class="title">KREUZFEUER</p>
+                  <ul class="list-disc">
+                    <li>Conditional changed to "If you hit an enemy while they are obscured deal 15% more alpha damage with that shot”</li>
+                  </ul>
+                  <p class="title">NACHTFEUER</p>
+                  <ul class="list-disc">
+                    <li>Shell fuel crit. multiplier decreased +5% → +4%</li>
+                  </ul>
+                  <p class="title">PANZERTOD</p>
+                  <ul class="list-disc">
+                    <li>Removed +4% Damage buff</li>
+                    <li>Added +4% Penetration buff</li>
+                  </ul>
+                  <p class="title">DRACHENZAHN</p>
+                  <ul class="list-disc">
+                    <li>Removed +7% Penetration power buff</li>
+                    <li>Added +7% Standing dispersion buff</li>
+                  </ul>
+                  <p class="title">TODESBISS</p>
+                  <ul class="list-disc">
+                    <li>Removed reticle size standing debuff</li>
+                    <li>Added engine force debuff -10%</li>
+                    <li>Removed existing conditional “When moving above 60km/h increase Ammo crit, Fuel crit and Engine crit by 25%”</li>
+                    <li>Added “Damaging enemies at a distance larger than 120m increases conditional gain by x2”</li>
+                  </ul>
+                  <p class="title">SCHENELLFEUER</p>
+                  <ul class="list-disc">
+                    <li>Conditional changed to “While the vehicle is obscured, increase alpha damage by 15%”</li>
+                  </ul>
+                  <p class="title">BLITZKANONE</p>
+                  <ul class="list-disc">
+                    <li>Removed damage and module damage buff</li>
+                  </ul>
+                </div>
+                <h2 id="section-11">Hound • LEO 2FK</h2>
+                <div class="highlight-takeaways">
+                  <p class="title">Firepower</p>
+                  <ul class="list-disc">
+                    <li>Increase Missile responsiveness</li>
+                    <li>Decreased reload time 15 sec →10 sec</li>
+                    <li>Decreased missile load time 7.5 sec → 5 sec</li>
+                  </ul>
+                </div>
+                <h2 id="section-12">Anansi • AGDS</h2>
+                <div class="highlight-takeaways">
+                  <p class="title">Firepower</p>
+                  <ul class="list-disc">
+                    <li>Increased Reload time between shots 0.1 sec → 0.25 sec</li>
+                  </ul>
+                  <p class="title">Toughness</p>
+                  <ul class="list-disc">
+                    <li>Adjusted ammo bay positions and size</li>
+                  </ul>
+                </div>
+                <h2 id="section-13">Blitz • LEO 1A1B</h2>
+                <div class="highlight-takeaways">
+                  <p class="title">Firepower</p>
+                  <ul class="list-disc">
+                    <li>Basic Shell damage increased 400 DMG → 550 DMG</li>
+                    <li>Penetration increased 320 → 360 </li>
+                  </ul>
+                  <p class="title">Toughness</p>
+                  <ul class="list-disc">
+                    <li>Front and side armor slight buff </li>
+                  </ul>
+                  <p class="title">Upgrades / Modules</p>
+                  <p class="title">Deadzone Gerat</p>
+                  <ul class="list-disc">
+                    <li>Increased 125 damage per 1.5 sec → 45 damage per 0.2 sec</li>
+                    <li>Increased radius 14 m → 16m</li>
+                    <li>Decreased cooldown 60 sec → 45 sec</li>
+                  </ul>
+                  <p class="title">Vampyr Drone</p>
+                  <ul class="list-disc">
+                    <li>Increased heal amount 100 HP per 2 sec → 135 HP per 1 sec</li>
+                    <li>Increased default drone 35 damage → 45 damage</li>
+                    <li>Decreased cooldown 60 sec → 45 sec</li>
+                  </ul>
+                </div>
+                <h2 id="disclaimer">Disclaimer</h2>
+                <p>This article was generated based on official announcements and news shared by community managers in the official Project CW Discord server. While we strive for accuracy, please refer to the official server for the most up-to-date information.</p>
+              </div>
+              <!-- Mobile Sidebar Content -->
+              <div class="mobile-sidebar-content lg:hidden mt-12">
+                <!-- Author Info -->
+                <div class="sidebar-card">
+                  <h3>About the Author</h3>
+                  <div class="author-info">
+                    <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/news-announcement/author/lynxcarpathicus.png" alt="Author">
+                    <div>
+                      <h4>lynxcarpathicus</h4>
+                      <p>Community Manager</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Table of Contents -->
+                <div class="sidebar-card">
+                  <h3>Table of Contents</h3>
+                  <ul class="space-y-2">
+                    <li>
+                      <a href="#section-1" class="hover:text-accent-color">Patch Details</a>
+                    </li>
+                    <li>
+                      <a href="#section-2" class="hover:text-accent-color">Kent • XM1 90</a>
+                    </li>
+                    <li>
+                      <a href="#section-3" class="hover:text-accent-color">Kent • HSTV-L</a>
+                    </li>
+                    <li>
+                      <a href="#section-4" class="hover:text-accent-color">Reaper • LEO 2K14</a>
+                    </li>
+                    <li>
+                      <a href="#section-5" class="hover:text-accent-color">Raketa • T-62AV</a>
+                    </li>
+                    <li>
+                      <a href="#section-6" class="hover:text-accent-color">Chopper • M1E1</a>
+                    </li>
+                    <li>
+                      <a href="#section-7" class="hover:text-accent-color">Chopper • XM1V</a>
+                    </li>
+                    <li>
+                      <a href="#section-8" class="hover:text-accent-color">Ember • M60A3E2</a>
+                    </li>
+                    <li>
+                      <a href="#section-9" class="hover:text-accent-color">Ember • BAT-4M</a>
+                    </li>
+                    <li>
+                      <a href="#section-10" class="hover:text-accent-color">Hound • LEO 1A6A1</a>
+                    </li>
+                    <li>
+                      <a href="#section-11" class="hover:text-accent-color">Hound • LEO 2FK</a>
+                    </li>
+                    <li>
+                      <a href="#section-12" class="hover:text-accent-color">Anansi • AGDS</a>
+                    </li>
+                    <li>
+                      <a href="#section-13" class="hover:text-accent-color">Blitz • LEO 1A1B</a>
+                    </li>
+                    <li>
+                      <a href="#disclaimer" class="hover:text-accent-color">Disclaimer</a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- Related News -->
+                <div class="sidebar-card">
+                  <h3>Related Articles</h3>
+                  <div class="related-news">
+                    <h4>
+                      <a href="placeholder-news.html" class="hover:text-accent-color">Placeholder Article 1</a>
+                    </h4>
+                    <p>Placeholder Article Description</p>
+                  </div>
+                  <div class="related-news">
+                    <h4>
+                      <a href="placeholder-news.html" class="hover:text-accent-color">Placeholder Article 2</a>
+                    </h4>
+                    <p>Placeholder Article Description</p>
+                  </div>
+                  <div class="related-news">
+                    <h4>
+                      <a href="placeholder-news.html" class="hover:text-accent-color">Placeholder Article 3</a>
+                    </h4>
+                    <p>Placeholder Article Description</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Desktop Sidebar -->
+            <div class="news-sidebar hidden lg:block">
+              <!-- Author Info -->
+              <div class="sidebar-card">
+                <h3>About the Author</h3>
+                <div class="author-info">
+                  <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/news-announcement/author/lynxcarpathicus.png" alt="Author">
+                  <div>
+                    <h4>lynxcarpathicus</h4>
+                    <p>Community Manager</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Table of Contents -->
+              <div class="sidebar-card">
+                <h3>Table of Contents</h3>
+                <ul class="space-y-2">
+                  <li>
+                    <a href="#section-1" class="hover:text-accent-color">Patch Details</a>
+                  </li>
+                  <li>
+                    <a href="#section-2" class="hover:text-accent-color">Kent • XM1 90</a>
+                  </li>
+                  <li>
+                    <a href="#section-3" class="hover:text-accent-color">Kent • HSTV-L</a>
+                  </li>
+                  <li>
+                    <a href="#section-4" class="hover:text-accent-color">Reaper • LEO 2K14</a>
+                  </li>
+                  <li>
+                    <a href="#section-5" class="hover:text-accent-color">Raketa • T-62AV</a>
+                  </li>
+                  <li>
+                    <a href="#section-6" class="hover:text-accent-color">Chopper • M1E1</a>
+                  </li>
+                  <li>
+                    <a href="#section-7" class="hover:text-accent-color">Chopper • XM1V</a>
+                  </li>
+                  <li>
+                    <a href="#section-8" class="hover:text-accent-color">Ember • M60A3E2</a>
+                  </li>
+                  <li>
+                    <a href="#section-9" class="hover:text-accent-color">Ember • BAT-4M</a>
+                  </li>
+                  <li>
+                    <a href="#section-10" class="hover:text-accent-color">Hound • LEO 1A6A1</a>
+                  </li>
+                  <li>
+                    <a href="#section-11" class="hover:text-accent-color">Hound • LEO 2FK</a>
+                  </li>
+                  <li>
+                    <a href="#section-12" class="hover:text-accent-color">Anansi • AGDS</a>
+                  </li>
+                  <li>
+                    <a href="#section-13" class="hover:text-accent-color">Blitz • LEO 1A1B</a>
+                  </li>
+                  <li>
+                    <a href="#disclaimer" class="hover:text-accent-color">Disclaimer</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- Related News -->
+              <div class="sidebar-card">
+                <h3>Related Articles</h3>
+                <div class="related-news">
+                  <h4>
+                    <a href="placeholder-news.html" class="hover:text-accent-color">Placeholder Article 1</a>
+                  </h4>
+                  <p>Placeholder Article Description</p>
+                </div>
+                <div class="related-news">
+                  <h4>
+                    <a href="placeholder-news.html" class="hover:text-accent-color">Placeholder Article 2</a>
+                  </h4>
+                  <p>Placeholder Article Description</p>
+                </div>
+                <div class="related-news">
+                  <h4>
+                    <a href="placeholder-news.html" class="hover:text-accent-color">Placeholder Article 3</a>
+                  </h4>
+                  <p>Placeholder Article Description</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Search Modal -->
+      <div class="search-overlay" id="searchOverlay"></div>
+      <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+          <div class="search-input-container">
+            <i class="fas fa-search search-modal-icon"></i>
+            <input type="text" placeholder="Search tanks, maps, guides..." class="search-modal-input" autofocus>
+          </div>
+          <div class="search-suggestions text-center">
+            <p class="search-suggestions-title">Please note that search functionality is not yet implemented</p>
+            <div class="search-tags">
+              <span class="search-tag">Chopper</span>
+              <span class="search-tag">Defender Tanks</span>
+              <span class="search-tag">Flanking</span>
+              <span class="search-tag">Meta Builds</span>
+              <span class="search-tag">Tactics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <footer class="footer bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-10 space-y-10">
+          <!-- Top Row -->
+          <div class="footer-brand flex flex-col items-center text-center">
+            <div>
+              <h3 class="text-2xl font-semibold">PCWStats</h3>
+              <p class="text-gray-400">Your go-to resource for Project CW statistics and gameplay information.</p>
+            </div>
+            <div class="flex space-x-4 text-xl">
+              <a href="https://discord.com/invite/2nHHHBWNDw" class="social-icon">
+                <i class="fab fa-discord"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://github.com/PCWStats" class="social-icon">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Middle Row -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-10 text-center">
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Tools</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../check-compare.html">Check & Compare</a>
+                </li>
+                <li>
+                  <a href="../tanks.html">Tank Statistics</a>
+                </li>
+                <li>
+                  <a href="../news.html">Game News</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Community</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../guides.html">Community Guides</a>
+                </li>
+                <li>
+                  <a href="../builds.html">Common Builds</a>
+                </li>
+                <li>
+                  <a href="../maps.html">Map Knowledge</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">PCWStats</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../about-us.html">About The Project</a>
+                </li>
+                <li>
+                  <a href="../credits.html">Community Credits</a>
+                </li>
+                <li>
+                  <a href="https://github.com/PCWStats">Source Code</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Legal</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../legal/privacy-policy.html">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="../legal/terms-of-service.html">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="../legal/project-license.html">Project License</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Contact Row -->
+          <div class="text-center">
+            <h3 class="text-lg font-semibold mb-1">Contact</h3>
+            <p class="text-gray-400 mb-2">Have suggestions or found a bug?</p>
+            <a href="#" class="btn-accent mt-4">
+              <i class="fas fa-envelope mr-2"></i>Send Feedback </a>
+          </div>
+          <!-- Bottom Disclaimer -->
+          <div class="text-center text-sm text-gray-500 space-y-1 border-t border-gray-700 pt-4">
+            <p>PCWStats is a community-made project and is not associated with, endorsed by, or affiliated with Project CW or Wargaming.net.</p>
+            <p>&copy; 2025 PCWStats by SINEWAVE Development. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="../js/main.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/theme-loader.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/warning.js"></script>
+  </body>
+</html>
