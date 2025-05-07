@@ -1,0 +1,146 @@
+/* Banner Styles */
+.site-banner {
+	width: 100%;
+	background-color: var(--bg-tertiary, #e9ecef);
+	color: var(--text-primary, #333);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.75rem 1.5rem;
+	position: sticky;
+	top: 60px;
+	z-index: 19;
+	border-bottom: 1px solid var(--border-color, #eaeaea);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.site-banner.banner-visible {
+	opacity: 1;
+}
+
+.site-banner.banner-dismissed {
+	display: none;
+}
+
+.banner-content {
+	flex: 1;
+	margin-right: 1rem;
+}
+
+.banner-content p {
+	margin: 0;
+	line-height: 1.4;
+	font-size: 0.95rem;
+}
+
+.banner-content p strong {
+	font-weight: 600;
+}
+
+.banner-buttons {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	flex-shrink: 0;
+}
+
+.banner-cta-button {
+	background-color: var(--accent-color, #ff8300);
+	color: white;
+	padding: 0.5rem 1rem;
+	border-radius: 0.25rem;
+	font-weight: 500;
+	font-size: 0.9rem;
+	transition: all 0.2s ease;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	white-space: nowrap;
+}
+
+.banner-cta-button:hover {
+	background-color: var(--accent-color-hover, #e67600);
+	transform: translateY(-1px);
+}
+
+.banner-close-button {
+	background: transparent;
+	border: none;
+	color: var(--text-secondary, #666);
+	width: 2rem;
+	height: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+	flex-shrink: 0;
+}
+
+.banner-close-button:hover {
+	background-color: rgba(0, 0, 0, 0.05);
+	color: var(--text-primary, #333);
+}
+
+/* Ensure FA icons are displayed correctly */
+.banner-close-button i {
+	font-size: 1rem;
+}
+
+/* Apply custom background and text colors from JSON */
+.site-banner[data-custom-style="true"] {
+	background-color: attr(data-bg);
+	color: attr(data-text);
+}
+
+/* Dark theme styles */
+.dark-theme .site-banner {
+	background-color: var(--bg-dark-secondary, #1e1e1e);
+}
+
+.dark-theme .banner-close-button:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.site-banner {
+		top: 54px;
+		flex-direction: column;
+		padding: 0.75rem 1rem;
+		text-align: center;
+	}
+
+	.banner-content {
+		margin-right: 0;
+		margin-bottom: 0.75rem;
+	}
+
+	.banner-buttons {
+		width: 100%;
+		justify-content: center;
+	}
+
+	/* Make the banner stick properly on mobile */
+	.site-banner.banner-visible {
+		position: sticky;
+	}
+}
+
+/* For very small screens */
+@media (max-width: 350px) {
+	.banner-buttons {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.banner-cta-button {
+		width: 100%;
+	}
+}
