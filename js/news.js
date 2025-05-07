@@ -1,6 +1,29 @@
 // Store original cards array
 let originalCards = [];
 
+// Function to format date as "Month Day, Year"
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+    return date.toLocaleDateString('en-US', options);
+}
+
+// Function to update date displays in cards
+function updateCardDates(cards) {
+    cards.forEach(card => {
+        const dateElement = card.querySelector('.news-meta span');
+        if (dateElement) {
+            const dateString = card.dataset.date;
+            const formattedDate = formatDate(dateString);
+            dateElement.innerHTML = `<i class="fa-solid fa-calendar"></i> ${formattedDate}`;
+        }
+    });
+}
+
 // Function to sort and filter news cards
 function updateNewsDisplay() {
     const sortFilter = document.getElementById('sortFilter');
@@ -13,6 +36,8 @@ function updateNewsDisplay() {
     // If originalCards is empty (first load), store the initial cards
     if (originalCards.length === 0) {
         originalCards = Array.from(newsGrid.querySelectorAll('.news-card'));
+        // Update dates in original cards
+        updateCardDates(originalCards);
     }
 
     // Filter cards by type
@@ -35,12 +60,16 @@ function updateNewsDisplay() {
 
     // Add filtered and sorted cards back to the grid
     filteredCards.forEach(card => {
-        newsGrid.appendChild(card.cloneNode(true));
+        const clonedCard = card.cloneNode(true);
+        newsGrid.appendChild(clonedCard);
     });
+
+    // Update dates in the newly added cards
+    const currentCards = newsGrid.querySelectorAll('.news-card');
+    updateCardDates(currentCards);
 
     // Reinitialize animations
     setTimeout(() => {
-        const currentCards = newsGrid.querySelectorAll('.news-card');
         currentCards.forEach(card => {
             card.classList.add('animated');
         });
