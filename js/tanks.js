@@ -11,6 +11,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const tanksGrid = document.querySelector('.tanks-grid');
     let tankCards = []; // Will store references to all tank cards
 
+    // Comparison elements and data
+    const comparisonModal = document.getElementById('comparisonModal');
+    const comparisonTanksContainer = document.getElementById('comparisonTanksContainer');
+    const clearComparisonBtn = document.getElementById('clearComparison');
+    const openComparisonBtn = document.getElementById('openComparison');
+    const comparisonCount = document.getElementById('comparisonCount');
+    let comparisonData = [];
+
     // Fetch tank data from JSON file
     async function fetchTankData() {
         try {
@@ -32,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         card.className = 'tank-card';
         card.setAttribute('data-nation', tank.nation);
         card.setAttribute('data-type', tank.type);
+        card.setAttribute('data-tank-id', tank.id);
 
         card.innerHTML = `
             <div class="tank-img-container">
@@ -108,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.type-filter').forEach(button => {
             button.addEventListener('click', function() {
                 const type = this.getAttribute('data-type');
-                toggleFilter('type', type, this);
+                toggleFilter('nation', type, this);
                 filterTanks();
             });
         });
@@ -208,6 +217,96 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Load comparison data from localStorage
+    function loadComparisonData() {
+        const savedComparison = localStorage.getItem('tankComparison');
+        if (savedComparison) {
+            comparisonData = JSON.parse(savedComparison);
+            updateComparisonModal();
+        }
+    }
+
+    // Save comparison data to localStorage
+    function saveComparisonData() {
+        localStorage.setItem('tankComparison', JSON.stringify(comparisonData));
+        updateComparisonModal();
+    }
+
+    // Update the comparison modal display
+    function updateComparisonModal() {
+        comparisonTanksContainer.innerHTML = '';
+
+        comparisonData.forEach(tankId => {
+            const tankCard = document.querySelector(`.tank-card[data-tank-id="${tankId}"]`);
+            if (tankCard) {
+                const tankName = tankCard.querySelector('h3').textContent;
+                const tankImg = tankCard.querySelector('.tank-img').src;
+
+                const tankElement = document.createElement('div');
+                tankElement.className = 'comparison-tank';
+                tankElement.innerHTML = `
+                    <img src="${tankImg}" alt="${tankName}">
+                    <span>${tankName}</span>
+                    <button class="remove-tank" data-tank-id="${tankId}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+
+                comparisonTanksContainer.appendChild(tankElement);
+
+                tankElement.querySelector('.remove-tank').addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    removeTankFromComparison(tankId);
+                });
+            }
+        });
+
+        comparisonCount.textContent = comparisonData.length;
+
+        if (comparisonData.length > 0) {
+            comparisonModal.style.display = 'flex';
+        } else {
+            comparisonModal.style.display = 'none';
+        }
+    }
+
+    // Add tank to comparison
+    function addTankToComparison(tankId) {
+        if (!comparisonData.includes(tankId)) {
+            comparisonData.push(tankId);
+            saveComparisonData();
+        }
+    }
+
+    // Remove tank from comparison
+    function removeTankFromComparison(tankId) {
+        comparisonData = comparisonData.filter(id => id !== tankId);
+        saveComparisonData();
+    }
+
+    // Clear all tanks from comparison
+    function clearComparison() {
+        comparisonData = [];
+        saveComparisonData();
+    }
+
     // Initialize the page
     renderTankCards();
+    loadComparisonData();
+
+    // Event delegation for compare buttons
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.compare-btn')) {
+            const tankId = e.target.closest('.compare-btn').getAttribute('data-tank-id');
+            addTankToComparison(tankId);
+        }
+    });
+
+    // Event listeners for comparison modal buttons
+    clearComparisonBtn.addEventListener('click', clearComparison);
+    openComparisonBtn.addEventListener('click', function() {
+        if (comparisonData.length > 0) {
+            window.location.href = 'check-compare.html';
+        }
+    });
 });
