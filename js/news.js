@@ -1,5 +1,7 @@
 // Store original cards array
 let originalCards = [];
+let currentPage = 1;
+let postsPerPage = 12;
 
 // Function to format date as "Month Day, Year"
 function formatDate(dateString) {
@@ -24,14 +26,106 @@ function updateCardDates(cards) {
     });
 }
 
+// Function to update pagination controls
+function updatePaginationControls(totalPages) {
+    const paginationContainer = document.querySelector('.pagination-controls');
+    if (!paginationContainer) return;
+
+    paginationContainer.innerHTML = '';
+
+    // Previous button
+    const prevButton = document.createElement('button');
+    prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+    prevButton.className = 'pagination-button';
+    prevButton.disabled = currentPage === 1;
+    prevButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            updateNewsDisplay();
+        }
+    });
+    paginationContainer.appendChild(prevButton);
+
+    // Page numbers
+    const maxVisiblePages = 3;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+    if (endPage - startPage + 1 < maxVisiblePages) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
+    if (startPage > 1) {
+        const firstPageButton = document.createElement('button');
+        firstPageButton.textContent = '1';
+        firstPageButton.className = 'pagination-button';
+        firstPageButton.addEventListener('click', () => {
+            currentPage = 1;
+            updateNewsDisplay();
+        });
+        paginationContainer.appendChild(firstPageButton);
+
+        if (startPage > 2) {
+            const ellipsis = document.createElement('span');
+            ellipsis.textContent = '...';
+            ellipsis.className = 'pagination-ellipsis';
+            paginationContainer.appendChild(ellipsis);
+        }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.className = `pagination-button ${i === currentPage ? 'active' : ''}`;
+        pageButton.addEventListener('click', () => {
+            currentPage = i;
+            updateNewsDisplay();
+        });
+        paginationContainer.appendChild(pageButton);
+    }
+
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            const ellipsis = document.createElement('span');
+            ellipsis.textContent = '...';
+            ellipsis.className = 'pagination-ellipsis';
+            paginationContainer.appendChild(ellipsis);
+        }
+
+        const lastPageButton = document.createElement('button');
+        lastPageButton.textContent = totalPages;
+        lastPageButton.className = 'pagination-button';
+        lastPageButton.addEventListener('click', () => {
+            currentPage = totalPages;
+            updateNewsDisplay();
+        });
+        paginationContainer.appendChild(lastPageButton);
+    }
+
+    // Next button
+    const nextButton = document.createElement('button');
+    nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+    nextButton.className = 'pagination-button';
+    nextButton.disabled = currentPage === totalPages;
+    nextButton.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            updateNewsDisplay();
+        }
+    });
+    paginationContainer.appendChild(nextButton);
+}
+
 // Function to sort and filter news cards
 function updateNewsDisplay() {
     const sortFilter = document.getElementById('sortFilter');
     const typeFilter = document.getElementById('typeFilter');
+    const postsPerPageFilter = document.getElementById('postsPerPage');
     const newsGrid = document.querySelector('.news-grid');
 
     const sortValue = sortFilter.value;
     const typeValue = typeFilter.value;
+    postsPerPage = postsPerPageFilter.value === 'all' ? originalCards.length : parseInt(postsPerPageFilter.value);
 
     // If originalCards is empty (first load), store the initial cards
     if (originalCards.length === 0) {
@@ -53,13 +147,19 @@ function updateNewsDisplay() {
         return sortValue === 'latest' ? dateB - dateA : dateA - dateB;
     });
 
+    // Calculate pagination
+    const totalPages = Math.ceil(filteredCards.length / postsPerPage);
+    const startIndex = (currentPage - 1) * postsPerPage;
+    const endIndex = Math.min(startIndex + postsPerPage, filteredCards.length);
+    const paginatedCards = filteredCards.slice(startIndex, endIndex);
+
     // Clear the grid
     while (newsGrid.firstChild) {
         newsGrid.removeChild(newsGrid.firstChild);
     }
 
-    // Add filtered and sorted cards back to the grid
-    filteredCards.forEach(card => {
+    // Add paginated cards back to the grid
+    paginatedCards.forEach(card => {
         const clonedCard = card.cloneNode(true);
         newsGrid.appendChild(clonedCard);
     });
@@ -67,6 +167,9 @@ function updateNewsDisplay() {
     // Update dates in the newly added cards
     const currentCards = newsGrid.querySelectorAll('.news-card');
     updateCardDates(currentCards);
+
+    // Update pagination controls
+    updatePaginationControls(totalPages);
 
     // Reinitialize animations
     setTimeout(() => {
@@ -80,13 +183,24 @@ function updateNewsDisplay() {
 document.addEventListener('DOMContentLoaded', function() {
     const sortFilter = document.getElementById('sortFilter');
     const typeFilter = document.getElementById('typeFilter');
+    const postsPerPageFilter = document.getElementById('postsPerPage');
 
     // Initialize with default sorting
     updateNewsDisplay();
 
     // Add event listeners for filter changes
-    sortFilter.addEventListener('change', updateNewsDisplay);
-    typeFilter.addEventListener('change', updateNewsDisplay);
+    sortFilter.addEventListener('change', () => {
+        currentPage = 1;
+        updateNewsDisplay();
+    });
+    typeFilter.addEventListener('change', () => {
+        currentPage = 1;
+        updateNewsDisplay();
+    });
+    postsPerPageFilter.addEventListener('change', () => {
+        currentPage = 1;
+        updateNewsDisplay();
+    });
 
     // Initialize animations after page load
     setTimeout(() => {

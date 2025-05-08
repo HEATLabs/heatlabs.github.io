@@ -70,22 +70,22 @@
 }
 
 .news-meta {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    flex-wrap: wrap;
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	margin-bottom: 1rem;
+	font-size: 0.85rem;
+	color: var(--text-secondary);
+	flex-wrap: wrap;
 }
 
 .news-meta span {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .news-meta i {
-    margin-right: 0.25rem;
+	margin-right: 0.25rem;
 }
 
 .news-desc {
@@ -139,6 +139,92 @@
 	outline: none;
 	border-color: var(--accent-color);
 	box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
+}
+
+/* Pagination Styles */
+.pagination-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 2rem;
+	flex-wrap: wrap;
+	gap: 1rem;
+	width: 100%;
+}
+
+.pagination-controls {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+	justify-content: center;
+}
+
+.pagination-button {
+	background-color: var(--card-bg);
+	border: 1px solid var(--border-color);
+	color: var(--text-primary);
+	padding: 0.5rem 0.75rem;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	transition: all var(--transition-speed);
+	min-width: 2.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.pagination-button:hover:not(:disabled) {
+	background-color: var(--accent-color);
+	color: white;
+	border-color: var(--accent-color);
+}
+
+.pagination-button.active {
+	background-color: var(--accent-color);
+	color: white;
+	border-color: var(--accent-color);
+	font-weight: bold;
+}
+
+.pagination-button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.pagination-ellipsis {
+	padding: 0 0.5rem;
+	color: var(--text-secondary);
+}
+
+.posts-per-page-selector {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.posts-per-page-label {
+	font-weight: 600;
+	color: var(--text-primary);
+}
+
+.posts-per-page-select {
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	border: 1px solid var(--border-color);
+	background-color: var(--card-bg);
+	color: var(--text-primary);
+	cursor: pointer;
+}
+
+@media (max-width: 768px) {
+	.pagination-container {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.posts-per-page-selector {
+		justify-content: center;
+	}
 }
 
 /* Responsive Styles */
