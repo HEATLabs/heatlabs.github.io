@@ -40,20 +40,19 @@
 
 .tankopedia-img-container {
 	position: relative;
-	height: 180px;
+	height: 0;
+	padding-bottom: 100%;
 	overflow: hidden;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	background-color: var(--bg-tertiary);
 }
 
 .tankopedia-img {
-	width: auto;
-	height: auto;
-	max-width: 100%;
-	max-height: 100%;
-	object-fit: contain;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 	transition: transform var(--transition-speed);
 }
 
@@ -191,11 +190,9 @@
 }
 
 .tankopedia-modal-image {
-	width: auto;
-	height: auto;
-	max-width: 100%;
-	max-height: 100%;
-	object-fit: contain;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .tankopedia-modal-info {
@@ -248,7 +245,8 @@
 @media (max-width: 768px) {
 	.tankopedia-modal-image-container {
 		width: 100%;
-		height: 250px;
+		height: auto;
+		aspect-ratio: 1/1;
 	}
 
 	.tankopedia-grid {
