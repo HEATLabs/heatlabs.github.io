@@ -217,7 +217,7 @@
       <section id="main" class="section">
         <div class="container mx-auto px-4">
           <h2 class="section-title">Latest Posts</h2>
-          <!-- blog Filters -->
+          <!-- Blog Filters -->
           <div class="blog-filters">
             <div class="filter-group">
               <span class="filter-label">Sort by:</span>
@@ -233,6 +233,15 @@
                 <option value="type-1">Type 1</option>
                 <option value="type-2">Type 2</option>
                 <option value="type-3">Type 3</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">Posts per page:</span>
+              <select id="postsPerPage" class="filter-select">
+                <option value="12">12</option>
+                <option value="24">24</option>
+                <option value="48">48</option>
+                <option value="all">All</option>
               </select>
             </div>
           </div>
@@ -314,6 +323,10 @@
               </div>
             </div>
           </div>
+        </div>
+        <!-- Pagination -->
+        <div class="pagination-container">
+          <div class="pagination-controls"></div>
         </div>
       </section>
       <!-- CTA Section -->
