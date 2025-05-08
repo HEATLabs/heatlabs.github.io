@@ -241,6 +241,74 @@
 	margin-bottom: 1.5rem;
 }
 
+/* Filter Styles */
+.filter-container {
+	padding-top: 2rem;
+}
+
+.filter-wrapper {
+	gap: 0.75rem;
+}
+
+.filter-button {
+	background-color: var(--bg-secondary);
+	color: var(--text-primary);
+	border: 1px solid var(--border-color);
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	transition: all var(--transition-speed);
+	cursor: pointer;
+}
+
+.filter-button:hover {
+	background-color: var(--bg-tertiary);
+}
+
+.filter-button.active {
+	background-color: var(--accent-color);
+	color: white;
+	border-color: var(--accent-color);
+}
+
+.filter-button .item-count {
+	background-color: var(--bg-primary);
+	color: var(--text-primary);
+	border-radius: 9999px;
+	padding: 0.15rem 0.5rem;
+	font-size: 0.8rem;
+	transition: all var(--transition-speed);
+}
+
+.filter-button.active .item-count {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: white;
+}
+
+.category-section {
+	margin-bottom: 3rem;
+}
+
+.category-description {
+	color: var(--text-secondary);
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+	.filter-wrapper {
+		gap: 0.5rem;
+	}
+
+	.filter-button {
+		padding: 0.5rem 1rem;
+		font-size: 0.9rem;
+	}
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
 	.tankopedia-modal-image-container {

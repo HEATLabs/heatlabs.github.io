@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
             return data;
         } catch (error) {
             console.error('Error loading tankopedia data:', error);
-            return { category_order: [], categories: [] };
+            return {
+                category_order: [],
+                categories: []
+            };
         }
     }
 
@@ -35,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
         // Add click event to open modal
-        card.addEventListener('click', () => {
+        card.addEventListener('click', function() {
             openTankopediaModal(item);
         });
 
@@ -44,18 +47,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Sort items alphabetically by name
     function sortItemsAlphabetically(items) {
-        return items.sort((a, b) => a.name.localeCompare(b.name));
+        return items.sort(function(a, b) {
+            return a.name.localeCompare(b.name);
+        });
     }
 
     // Create category section
     function createCategorySection(category) {
         const section = document.createElement('section');
-        section.className = 'section';
+        section.className = 'category-section';
+        section.setAttribute('data-category', category.name);
 
         section.innerHTML = `
             <div class="container mx-auto px-4">
                 <h2 class="section-title">${category.name}</h2>
-                ${category.description ? `<p class="text-center mb-10">${category.description}</p>` : ''}
+                ${category.description ? `<p class="category-description text-center mb-10">${category.description}</p>` : ''}
                 <div class="tankopedia-grid">
                     <!-- Items will be loaded here -->
                 </div>
@@ -68,14 +74,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const sortedItems = sortItemsAlphabetically(category.items);
 
         // Create and append cards for each item
-        sortedItems.forEach((item, index) => {
+        sortedItems.forEach(function(item, index) {
             // Add category info to each item for modal
             item.category = category.name;
             const card = createTankopediaCard(item);
             grid.appendChild(card);
 
             // Animate card into view
-            setTimeout(() => {
+            setTimeout(function() {
                 card.style.opacity = '1';
                 card.style.transform = 'translateY(0)';
                 card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -85,30 +91,109 @@ document.addEventListener('DOMContentLoaded', function() {
         return section;
     }
 
+    // Create filter buttons
+    function createFilterButtons(categories) {
+        const filterContainer = document.createElement('div');
+        filterContainer.className = 'filter-container container mx-auto px-4 mb-10';
+
+        const filterWrapper = document.createElement('div');
+        filterWrapper.className = 'filter-wrapper flex flex-wrap justify-center gap-3';
+
+        // Sort categories by item count (descending)
+        const sortedCategories = categories.slice().sort(function(a, b) {
+            return b.items.length - a.items.length;
+        });
+
+        sortedCategories.forEach(function(category) {
+            const button = document.createElement('button');
+            button.className = 'filter-button px-4 py-2 rounded-full transition-colors';
+            button.innerHTML = `
+                <span>${category.name}</span>
+                <span class="item-count">${category.items.length}</span>
+            `;
+            button.setAttribute('data-category', category.name);
+
+            button.addEventListener('click', function() {
+                filterByCategory(category.name);
+            });
+
+            filterWrapper.appendChild(button);
+        });
+
+        // Add "All" button
+        const allButton = document.createElement('button');
+        allButton.className = 'filter-button active px-4 py-2 rounded-full transition-colors';
+        allButton.innerHTML = `
+            <span>All</span>
+            <span class="item-count">${categories.reduce(function(acc, cat) {
+                return acc + cat.items.length;
+            }, 0)}</span>
+        `;
+        allButton.addEventListener('click', function() {
+            filterByCategory('all');
+        });
+
+        filterWrapper.prepend(allButton);
+        filterContainer.appendChild(filterWrapper);
+        return filterContainer;
+    }
+
+    // Filter items by category
+    function filterByCategory(categoryName) {
+        const buttons = document.querySelectorAll('.filter-button');
+        const sections = document.querySelectorAll('.category-section');
+
+        // Update active button
+        buttons.forEach(function(button) {
+            button.classList.remove('active');
+            if ((categoryName === 'all' && button.textContent.includes('All')) ||
+                button.getAttribute('data-category') === categoryName) {
+                button.classList.add('active');
+            }
+        });
+
+        // Show/hide sections
+        sections.forEach(function(section) {
+            if (categoryName === 'all' || section.getAttribute('data-category') === categoryName) {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        });
+
+        // Reinitialize intersection observer for new visible elements
+        initIntersectionObserver();
+    }
+
     // Render all category sections
     async function renderTankopediaSections() {
         const data = await fetchTankopediaData();
-        const { category_order, categories } = data;
+        const category_order = data.category_order || [];
+        const categories = data.categories || [];
         const categoriesContainer = document.querySelector('#categories-container');
 
-        if (!categories || categories.length === 0) {
+        if (categories.length === 0) {
             categoriesContainer.innerHTML = '<p class="text-center py-10">Failed to load tankopedia data. Please try again later.</p>';
             return;
         }
 
         // Create a map of category name to category data for easy lookup
         const categoryMap = {};
-        categories.forEach(category => {
+        categories.forEach(function(category) {
             categoryMap[category.name] = category;
         });
 
         // Clear container
         categoriesContainer.innerHTML = '';
 
+        // Add filter buttons
+        const filterButtons = createFilterButtons(categories);
+        categoriesContainer.appendChild(filterButtons);
+
         // If category_order exists, use it to order the sections
-        if (category_order && category_order.length > 0) {
+        if (category_order.length > 0) {
             // First add categories that are in the order list
-            category_order.forEach(categoryName => {
+            category_order.forEach(function(categoryName) {
                 if (categoryMap[categoryName]) {
                     const section = createCategorySection(categoryMap[categoryName]);
                     categoriesContainer.appendChild(section);
@@ -118,13 +203,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // Then add any remaining categories not in the order list
-            Object.values(categoryMap).forEach(category => {
-                const section = createCategorySection(category);
+            Object.keys(categoryMap).forEach(function(categoryName) {
+                const section = createCategorySection(categoryMap[categoryName]);
                 categoriesContainer.appendChild(section);
             });
         } else {
             // Fallback to original behavior if no category_order
-            categories.forEach(category => {
+            categories.forEach(function(category) {
                 const section = createCategorySection(category);
                 categoriesContainer.appendChild(section);
             });
@@ -136,8 +221,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize intersection observer for scroll animations
     function initIntersectionObserver() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animated');
                     observer.unobserve(entry.target);
@@ -147,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
             threshold: 0.1
         });
 
-        document.querySelectorAll('.tankopedia-card').forEach(card => {
+        document.querySelectorAll('.tankopedia-card').forEach(function(card) {
             observer.observe(card);
         });
     }
@@ -183,9 +268,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Populate modal with item data
         modalImage.src = item.image;
         modalImage.alt = item.name;
-        modalId.textContent = `ID: ${item.id}`;
+        modalId.textContent = 'ID: ' + item.id;
         modalName.textContent = item.name;
-        modalCategory.textContent = `Category: ${item.category}`;
+        modalCategory.textContent = 'Category: ' + item.category;
         modalDescription.textContent = item.description;
 
         // Show modal
