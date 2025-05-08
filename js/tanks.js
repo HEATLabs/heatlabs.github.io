@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     <a href="tanks/${tank.slug}.html" class="btn-accent">
                         <i class="fas fa-chart-bar mr-2"></i>Statistics
                     </a>
-                    <a href="#" class="btn-outline compare-btn" data-tank-id="${tank.id}">
+                    <button class="btn-outline compare-btn" data-tank-id="${tank.id}">
                         <i class="fas fa-exchange-alt mr-2"></i>Compare
-                    </a>
+                    </button>
                 </div>
             </div>
         `;
