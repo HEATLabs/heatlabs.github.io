@@ -1,8 +1,8 @@
 // Now you see me now you dont type script
 document.addEventListener('DOMContentLoaded', function() {
     // Get all option cards and select buttons
-    const optionCards = document.querySelectorAll('.option-card');
-    const selectButtons = document.querySelectorAll('.option-select-btn');
+    const optionCards = document.querySelectorAll('.option-card:not(.other-option)');
+    const selectButtons = document.querySelectorAll('.option-card:not(.other-option) .option-select-btn');
     const backToOptionsButtons = document.querySelectorAll('.back-to-options');
 
     // Get all containers
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Add hover effects to option cards
-    optionCards.forEach(card => {
+    document.querySelectorAll('.option-card').forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-5px)';
             this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.15)';
