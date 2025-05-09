@@ -5,6 +5,30 @@
 	border-radius: 0.5rem;
 	border: 1px solid var(--border-color);
 	background-color: var(--card-bg);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-legend {
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+	padding: 0.75rem;
+	background-color: var(--bg-secondary);
+	border-radius: 0.5rem;
+}
+
+.comparison-legend-item {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+	font-size: 0.8rem;
+}
+
+.comparison-legend-color {
+	width: 1rem;
+	height: 1rem;
+	border-radius: 0.25rem;
 }
 
 .comparison-table-container {
@@ -14,7 +38,9 @@
 
 .comparison-table {
 	width: 100%;
-	border-collapse: collapse;
+	border-collapse: separate;
+	border-spacing: 0;
+	font-size: 0.9rem;
 }
 
 .comparison-table th,
@@ -22,7 +48,8 @@
 	padding: 0.75rem 1rem;
 	text-align: left;
 	border-bottom: 1px solid var(--border-color);
-	min-width: 150px;
+	min-width: 180px;
+	position: relative;
 }
 
 .comparison-table th {
@@ -31,53 +58,114 @@
 	position: sticky;
 	left: 0;
 	z-index: 2;
+	min-width: 200px;
+	border-right: 1px solid var(--border-color);
 }
 
-.comparison-table tr:hover td {
-	background-color: var(--bg-tertiary);
+.comparison-table td {
+	border-right: 1px solid var(--border-color);
 }
 
-.comparison-table tr:hover th {
-	background-color: var(--bg-secondary-dark);
+/* Updated hover effect - only for stat rows */
+.comparison-table tr:not(.stat-category):hover td:not([colspan]) {
+	outline: 2px solid var(--accent-color);
+	outline-offset: -2px;
+	position: relative;
+	z-index: 1;
+}
+
+.comparison-table tr:not(.stat-category):hover th {
+	outline: 2px solid var(--accent-color);
+	outline-offset: -2px;
+	position: relative;
+	z-index: 1;
 }
 
 .comparison-table .stat-category {
 	font-weight: bold;
 	background-color: var(--bg-secondary-dark);
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	font-size: 0.8rem;
+	color: var(--text-secondary);
+	position: relative;
 }
 
-.comparison-table .best-stat {
+.comparison-table .stat-category td {
+	padding-top: 1.5rem;
+	padding-bottom: 0.75rem;
+	border-top: 2px solid var(--border-color);
+}
+
+.comparison-table .stat-category:first-child td {
+	border-top: none;
+}
+
+/* Stat coloring - 7-step gradient */
+.comparison-table .stat-1 {
+	background-color: rgba(76, 175, 80, 0.3);
+}
+
+/* Best */
+.comparison-table .stat-2 {
+	background-color: rgba(76, 175, 80, 0.25);
+}
+
+.comparison-table .stat-3 {
 	background-color: rgba(76, 175, 80, 0.2);
 }
 
-.comparison-table .worst-stat {
+.comparison-table .stat-4 {
+	background-color: rgba(255, 235, 59, 0.2);
+}
+
+/* Middle */
+.comparison-table .stat-5 {
 	background-color: rgba(244, 67, 54, 0.2);
 }
 
+.comparison-table .stat-6 {
+	background-color: rgba(244, 67, 54, 0.25);
+}
+
+.comparison-table .stat-7 {
+	background-color: rgba(244, 67, 54, 0.3);
+}
+
+/* Worst */
 .comparison-table .tank-header {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 0.5rem;
 	padding: 1rem;
+	position: relative;
 }
 
 .comparison-table .tank-header img {
-	width: 80px;
-	height: 60px;
+	width: 100px;
+	height: 75px;
 	object-fit: contain;
+	transition: transform 0.2s ease;
+}
+
+.comparison-table .tank-header:hover img {
+	transform: scale(1.05);
 }
 
 .comparison-table .tank-header .tank-name {
 	font-weight: 600;
 	text-align: center;
+	font-size: 1rem;
 }
 
 .comparison-table .tank-header .tank-meta {
 	display: flex;
-	gap: 0.5rem;
-	font-size: 0.8rem;
+	gap: 0.75rem;
+	font-size: 0.75rem;
 	color: var(--text-secondary);
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .comparison-table .remove-tank {
@@ -86,38 +174,51 @@
 	color: var(--text-secondary);
 	cursor: pointer;
 	padding: 0.25rem;
-	margin-left: 0.5rem;
+	position: absolute;
+	top: 0.25rem;
+	right: 0.25rem;
+	opacity: 0.7;
+	transition: opacity 0.2s ease;
 }
 
 .comparison-table .remove-tank:hover {
 	color: var(--accent-color);
+	opacity: 1;
 }
 
 /* Comparison Modal */
 .comparison-modal {
 	position: fixed;
-	bottom: 1rem;
+	bottom: 1.5rem;
 	left: 50%;
 	transform: translateX(-50%);
 	background-color: var(--card-bg);
 	border: 1px solid var(--border-color);
-	border-radius: 0.5rem;
-	padding: 0.75rem 1rem;
+	border-radius: 0.75rem;
+	padding: 0.75rem 1.5rem;
 	display: flex;
 	align-items: center;
 	gap: 1rem;
-	box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
 	z-index: 1000;
-	max-width: 90%;
+	max-width: calc(100% - 2rem);
+	transition: all 0.3s ease;
+	width: auto;
+	min-width: 300px;
 }
 
 .comparison-tanks-container {
 	display: flex;
 	gap: 0.5rem;
-	overflow-x: auto;
-	max-width: calc(90vw - 200px);
+	overflow-x: hidden;
+	max-width: 600px;
 	padding: 0.25rem;
-	scrollbar-width: thin;
+	scroll-behavior: smooth;
+	scrollbar-width: none;
+}
+
+.comparison-tanks-container::-webkit-scrollbar {
+	display: none;
 }
 
 .comparison-tank {
@@ -128,13 +229,25 @@
 	padding: 0.25rem 0.75rem 0.25rem 0.25rem;
 	font-size: 0.9rem;
 	white-space: nowrap;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	flex: 0 0 auto;
+	max-width: 180px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.comparison-tank:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .comparison-tank img {
-	width: 24px;
-	height: 24px;
+	width: 28px;
+	height: 28px;
 	margin-right: 0.5rem;
 	border-radius: 0.25rem;
+	object-fit: contain;
 }
 
 .comparison-tank .remove-tank {
@@ -144,21 +257,75 @@
 	cursor: pointer;
 	margin-left: 0.5rem;
 	padding: 0.25rem;
+	opacity: 0.7;
+	transition: opacity 0.2s ease;
 }
 
 .comparison-tank .remove-tank:hover {
 	color: var(--accent-color);
+	opacity: 1;
 }
 
 .comparison-actions {
 	display: flex;
 	gap: 0.5rem;
+	margin-left: 0.5rem;
 }
 
 .comparison-actions button {
 	padding: 0.5rem 0.75rem;
 	font-size: 0.9rem;
 	white-space: nowrap;
+	transition: all 0.2s ease;
+}
+
+.comparison-nav-btn {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	background-color: var(--bg-secondary);
+	border: none;
+	color: var(--text-primary);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0.8;
+	transition: opacity 0.2s ease, background-color 0.2s ease;
+	z-index: 10;
+}
+
+.comparison-nav-btn:hover {
+	opacity: 1;
+	background-color: var(--bg-tertiary);
+}
+
+.comparison-nav-prev {
+	left: 0.5rem;
+}
+
+.comparison-nav-next {
+	right: 0.5rem;
+}
+
+/* Empty state */
+.comparison-empty {
+	text-align: center;
+	padding: 2rem;
+	color: var(--text-secondary);
+}
+
+.comparison-empty a {
+	color: var(--accent-color);
+	text-decoration: none;
+	font-weight: 500;
+}
+
+.comparison-empty a:hover {
+	text-decoration: underline;
 }
 
 /* Responsive adjustments */
@@ -166,15 +333,69 @@
 	.comparison-modal {
 		flex-direction: column;
 		align-items: stretch;
-		width: 90%;
+		width: calc(100% - 1rem);
+		bottom: 0.5rem;
+		padding: 0.75rem;
 	}
 
 	.comparison-tanks-container {
 		max-width: 100%;
 		margin-bottom: 0.5rem;
+		order: -1;
 	}
 
 	.comparison-actions {
+		width: 100%;
 		justify-content: center;
+	}
+
+	.comparison-nav-btn {
+		top: 40%;
+	}
+
+	.comparison-nav-prev {
+		left: 0.25rem;
+	}
+
+	.comparison-nav-next {
+		right: 0.25rem;
+	}
+
+	.comparison-table th,
+	.comparison-table td {
+		min-width: 150px;
+	}
+
+	.comparison-table .tank-header img {
+		width: 80px;
+		height: 60px;
+	}
+}
+
+@media (max-width: 480px) {
+	.comparison-table th {
+		min-width: 160px;
+	}
+
+	.comparison-table .tank-header {
+		padding: 0.75rem 0.5rem;
+	}
+
+	.comparison-table .tank-header img {
+		width: 70px;
+		height: 50px;
+	}
+
+	.comparison-table .tank-name {
+		font-size: 0.9rem;
+	}
+
+	.comparison-table .tank-meta {
+		font-size: 0.7rem;
+		gap: 0.25rem;
+	}
+
+	.comparison-tank {
+		max-width: 140px;
 	}
 }

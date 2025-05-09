@@ -95,7 +95,7 @@
             </a>
           </li>
           <li>
-            <a href="#" class="sidebar-link active">
+            <a href="tanks.html" class="sidebar-link">
               <i class="fas fa-shield-alt"></i>
               <span>Tank Statistics</span>
             </a>
@@ -107,7 +107,7 @@
             </a>
           </li>
           <li>
-            <a href="check-compare.html" class="sidebar-link">
+            <a href="check-compare.html" class="sidebar-link active">
               <i class="fas fa-check-double"></i>
               <span>Check & Compare</span>
             </a>
@@ -210,17 +210,21 @@
       <section class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-          <h1>PROTOTYPE PAGE - NOT FINAL</h1>
-          <p>PROTOTYPE PAGE - NOT FINAL</p>
+          <h1>Tank Comparison</h1>
+          <p>Compare stats between different tanks side by side</p>
         </div>
       </section>
       <!-- Comparison Section -->
       <section class="section">
         <div class="container mx-auto px-4">
-          <div class="flex justify-between items-center mb-6">
-            <h2 class="section-title">PROTOTYPE PAGE - NOT FINAL</h2>
-            <button id="clearAllComparison" class="btn-outline">
-              <i class="fas fa-trash-alt mr-2"></i> Clear Comparison </button>
+          <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+            <h2 class="section-title">Tank Comparison</h2>
+            <div class="flex gap-2">
+              <a href="tanks.html" class="btn-outline">
+                <i class="fas fa-plus mr-2"></i> Add More Tanks </a>
+              <button id="clearAllComparison" class="btn-outline">
+                <i class="fas fa-trash-alt mr-2"></i> Clear All </button>
+            </div>
           </div>
           <div class="comparison-container">
             <div class="comparison-table-container">
@@ -294,7 +298,7 @@
               <h3 class="text-lg font-semibold mb-2">Tools</h3>
               <ul class="footer-links text-gray-400">
                 <li>
-                  <a href="#">Check & Compare</a>
+                  <a href="check-compare.html">Check & Compare</a>
                 </li>
                 <li>
                   <a href="tanks.html">Tank Statistics</a>
@@ -311,7 +315,7 @@
                   <a href="guides.html">Community Guides</a>
                 </li>
                 <li>
-                  <a href="#">Common Builds</a>
+                  <a href="builds.html">Common Builds</a>
                 </li>
                 <li>
                   <a href="maps.html">Map Knowledge</a>
@@ -361,6 +365,22 @@
           </div>
         </div>
       </footer>
+    </div>
+    <!-- Comparison Modal -->
+    <div class="comparison-modal" id="comparisonModal">
+      <button class="comparison-nav-btn comparison-nav-prev" id="comparisonNavPrev">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="comparison-tanks-container" id="comparisonTanksContainer"></div>
+      <button class="comparison-nav-btn comparison-nav-next" id="comparisonNavNext">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <div class="comparison-actions">
+        <button class="btn-outline" id="clearComparison">
+          <i class="fas fa-trash-alt"></i> Clear </button>
+        <button class="btn-accent" id="openComparison">
+          <i class="fas fa-exchange-alt"></i> Compare ( <span id="comparisonCount">0</span>) </button>
+      </div>
     </div>
     <script src="js/main.js"></script>
     <script src="js/sidebar.js"></script>

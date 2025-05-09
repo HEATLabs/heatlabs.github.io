@@ -1,20 +1,92 @@
 document.addEventListener('DOMContentLoaded', function() {
     const comparisonTable = document.getElementById('comparisonTable');
     const clearAllBtn = document.getElementById('clearAllComparison');
+    const comparisonModal = document.getElementById('comparisonModal');
+    const comparisonTanksContainer = document.getElementById('comparisonTanksContainer');
+    const comparisonCount = document.getElementById('comparisonCount');
+    const clearComparisonBtn = document.getElementById('clearComparison');
+    const openComparisonBtn = document.getElementById('openComparison');
+    const comparisonNavPrev = document.getElementById('comparisonNavPrev');
+    const comparisonNavNext = document.getElementById('comparisonNavNext');
+
     let comparisonData = [];
     let tankDetails = {};
+    let currentScrollPosition = 0;
 
     // Load comparison data from localStorage
     function loadComparison() {
         const savedComparison = localStorage.getItem('tankComparison');
         if (savedComparison) {
             comparisonData = JSON.parse(savedComparison);
+            updateComparisonModal();
         }
     }
 
     // Save comparison data to localStorage
     function saveComparison() {
         localStorage.setItem('tankComparison', JSON.stringify(comparisonData));
+        updateComparisonModal();
+    }
+
+    // Update the comparison modal
+    function updateComparisonModal() {
+        comparisonTanksContainer.innerHTML = '';
+
+        if (comparisonData.length === 0) {
+            comparisonModal.style.display = 'none';
+            comparisonCount.textContent = '0';
+            return;
+        }
+
+        comparisonModal.style.display = 'flex';
+        comparisonCount.textContent = comparisonData.length;
+
+        // Create tank elements for the modal
+        comparisonData.forEach(tankId => {
+            const tank = tankDetails[tankId];
+            if (!tank) return;
+
+            const tankElement = document.createElement('div');
+            tankElement.className = 'comparison-tank';
+            tankElement.innerHTML = `
+                <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/imagefailedtoload.png'">
+                <span>${tank.name}</span>
+                <button class="remove-tank" data-tank-id="${tank.id}">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+
+            comparisonTanksContainer.appendChild(tankElement);
+        });
+
+        // Add event listeners to remove buttons in modal
+        document.querySelectorAll('#comparisonTanksContainer .remove-tank').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const tankId = this.getAttribute('data-tank-id');
+                removeTankFromComparison(tankId);
+            });
+        });
+    }
+
+    // Scroll comparison modal
+    function scrollComparison(direction) {
+        const container = comparisonTanksContainer;
+        const scrollAmount = 200;
+
+        if (direction === 'prev') {
+            currentScrollPosition = Math.max(0, currentScrollPosition - scrollAmount);
+        } else {
+            currentScrollPosition = Math.min(
+                container.scrollWidth - container.clientWidth,
+                currentScrollPosition + scrollAmount
+            );
+        }
+
+        container.scrollTo({
+            left: currentScrollPosition,
+            behavior: 'smooth'
+        });
     }
 
     // Fetch tank details
@@ -52,8 +124,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (comparisonData.length === 0) {
             comparisonTable.innerHTML = `
                 <tr>
-                    <td colspan="100" class="text-center py-10">
-                        No tanks selected for comparison. <a href="tanks.html" class="text-accent-color">Go back to tanks</a>
+                    <td colspan="100" class="comparison-empty py-10">
+                        No tanks selected for comparison.<br>
+                        <a href="tanks.html">Browse tanks to compare</a>
                     </td>
                 </tr>
             `;
@@ -67,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (validTanks.length === 0) {
             comparisonTable.innerHTML = `
                 <tr>
-                    <td colspan="100" class="text-center py-10">
+                    <td colspan="100" class="comparison-empty py-10">
                         Failed to load tank data. Please try again later.
                     </td>
                 </tr>
@@ -76,10 +149,43 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Generate table HTML
-        let tableHTML = '';
+        let tableHTML = `
+            <thead>
+                <tr>
+                    <th colspan="${validTanks.length + 1}">
+                        <div class="comparison-legend">
+                            <div class="comparison-legend-item">
+                                <div class="comparison-legend-color" style="background-color: rgba(76, 175, 80, 0.3)"></div>
+                                <span>Best</span>
+                            </div>
+                            <div class="comparison-legend-item">
+                                <div class="comparison-legend-color" style="background-color: rgba(76, 175, 80, 0.25)"></div>
+                            </div>
+                            <div class="comparison-legend-item">
+                                <div class="comparison-legend-color" style="background-color: rgba(76, 175, 80, 0.2)"></div>
+                            </div>
+                            <div class="comparison-legend-item">
+                                <div class="comparison-legend-color" style="background-color: rgba(255, 235, 59, 0.2)"></div>
+                                <span>Middle</span>
+                            </div>
+                            <div class="comparison-legend-item">
+                                <div class="comparison-legend-color" style="background-color: rgba(244, 67, 54, 0.2)"></div>
+                            </div>
+                            <div class="comparison-legend-item">
+                                <div class="comparison-legend-color" style="background-color: rgba(244, 67, 54, 0.25)"></div>
+                            </div>
+                            <div class="comparison-legend-item">
+                                <div class="comparison-legend-color" style="background-color: rgba(244, 67, 54, 0.3)"></div>
+                                <span>Worst</span>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th>Stat</th>
+        `;
 
-        // Add headers row
-        tableHTML += '<thead><tr><th>Stat</th>';
+        // Add tank headers
         validTanks.forEach(tank => {
             tableHTML += `
                 <th>
@@ -115,22 +221,36 @@ document.addEventListener('DOMContentLoaded', function() {
                     return isNaN(value) ? value : parseFloat(value);
                 });
 
-                // Determine best and worst values for highlighting
+                // Determine value range for coloring
                 const numericValues = values.filter(v => !isNaN(v));
-                const maxValue = numericValues.length > 0 ? Math.max(...numericValues) : null;
-                const minValue = numericValues.length > 0 ? Math.min(...numericValues) : null;
+                if (numericValues.length > 0) {
+                    const maxValue = Math.max(...numericValues);
+                    const minValue = Math.min(...numericValues);
+                    const valueRange = maxValue - minValue;
+                    const step = valueRange / 6; // 7 steps (0-6)
 
-                tableHTML += `<tr><td>${stat}</td>`;
+                    tableHTML += `<tr><td>${formatStatName(stat)}</td>`;
 
-                values.forEach((value, i) => {
-                    let cellClass = '';
-                    if (!isNaN(value)) {
-                        if (value === maxValue) cellClass = 'best-stat';
-                        if (value === minValue && maxValue !== minValue) cellClass = 'worst-stat';
-                    }
+                    values.forEach((value, i) => {
+                        let cellClass = '';
+                        if (!isNaN(value)) {
+                            if (valueRange > 0) {
+                                const stepIndex = Math.floor((value - minValue) / step);
+                                cellClass = `stat-${7 - Math.min(6, stepIndex)}`; // 1-7 where 1 is best
+                            } else {
+                                cellClass = 'stat-4'; // All values equal
+                            }
+                        }
 
-                    tableHTML += `<td class="${cellClass}">${value}</td>`;
-                });
+                        tableHTML += `<td class="${cellClass}">${formatStatValue(stat, value)}</td>`;
+                    });
+                } else {
+                    // Non-numeric values
+                    tableHTML += `<tr><td>${formatStatName(stat)}</td>`;
+                    values.forEach(value => {
+                        tableHTML += `<td>${value}</td>`;
+                    });
+                }
 
                 tableHTML += '</tr>';
             });
@@ -146,6 +266,42 @@ document.addEventListener('DOMContentLoaded', function() {
                 removeTankFromComparison(tankId);
             });
         });
+    }
+
+    // Format stat names for display
+    function formatStatName(stat) {
+        // Convert from ALL CAPS to Title Case
+        return stat.toLowerCase()
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    }
+
+    // Format stat values for display
+    function formatStatValue(stat, value) {
+        if (isNaN(value)) return value;
+
+        // Add units for specific stats
+        if (stat.includes('SPEED') && stat.includes('AIMING')) {
+            return `${value} s`;
+        }
+        if (stat.includes('TRAVERSE SPEED') || stat.includes('TURRET TRAVERSE SPEED')) {
+            return `${value} °/s`;
+        }
+        if (stat.includes('SPEED') || stat.includes('RANGE') || stat.includes('RADIUS')) {
+            return `${value} m`;
+        }
+        if (stat.includes('DEGREES')) {
+            return `${value}°`;
+        }
+        if (stat.includes('SECONDS') || stat.includes('TIME')) {
+            return `${value} s`;
+        }
+        if (stat.includes('DAMAGE') || stat.includes('HIT POINTS')) {
+            return Math.round(value);
+        }
+
+        return value;
     }
 
     // Remove tank from comparison
@@ -168,4 +324,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event listeners
     clearAllBtn.addEventListener('click', clearAllComparison);
+    clearComparisonBtn.addEventListener('click', clearAllComparison);
+    openComparisonBtn.addEventListener('click', function() {
+        if (comparisonData.length > 0) {
+            window.location.href = 'check-compare.html';
+        }
+    });
+
+    // Navigation buttons for comparison modal
+    comparisonNavPrev.addEventListener('click', () => scrollComparison('prev'));
+    comparisonNavNext.addEventListener('click', () => scrollComparison('next'));
+
+    // Hide modal if no tanks to compare
+    if (comparisonData.length === 0) {
+        comparisonModal.style.display = 'none';
+    }
 });
