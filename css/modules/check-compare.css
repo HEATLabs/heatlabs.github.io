@@ -66,7 +66,7 @@
 	border-right: 1px solid var(--border-color);
 }
 
-/* Updated hover effect - only for stat rows */
+/* Hover effect only for stat rows */
 .comparison-table tr:not(.stat-category):hover td:not([colspan]) {
 	outline: 2px solid var(--accent-color);
 	outline-offset: -2px;
@@ -195,26 +195,44 @@
 	background-color: var(--card-bg);
 	border: 1px solid var(--border-color);
 	border-radius: 0.75rem;
-	padding: 0.75rem 1.5rem;
+	padding: 0.75rem;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	gap: 1rem;
+	gap: 0.75rem;
 	box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
 	z-index: 1000;
 	max-width: calc(100% - 2rem);
-	transition: all 0.3s ease;
 	width: auto;
 	min-width: 300px;
+}
+
+.comparison-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	gap: 0.75rem;
+}
+
+.comparison-carousel {
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
 }
 
 .comparison-tanks-container {
 	display: flex;
 	gap: 0.5rem;
 	overflow-x: hidden;
-	max-width: 600px;
+	width: calc(100% - 4rem);
 	padding: 0.25rem;
 	scroll-behavior: smooth;
 	scrollbar-width: none;
+	justify-content: flex-start;
 }
 
 .comparison-tanks-container::-webkit-scrollbar {
@@ -232,9 +250,12 @@
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	flex: 0 0 auto;
-	max-width: 180px;
+	width: calc(33.333% - 0.5rem);
+	min-width: 100px;
+	max-width: 120px;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	position: relative;
 }
 
 .comparison-tank:hover {
@@ -259,24 +280,22 @@
 	padding: 0.25rem;
 	opacity: 0.7;
 	transition: opacity 0.2s ease;
+	position: absolute;
+	top: -0.25rem;
+	right: -0.25rem;
+	background-color: var(--bg-secondary-dark);
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.7rem;
 }
 
 .comparison-tank .remove-tank:hover {
 	color: var(--accent-color);
 	opacity: 1;
-}
-
-.comparison-actions {
-	display: flex;
-	gap: 0.5rem;
-	margin-left: 0.5rem;
-}
-
-.comparison-actions button {
-	padding: 0.5rem 0.75rem;
-	font-size: 0.9rem;
-	white-space: nowrap;
-	transition: all 0.2s ease;
 }
 
 .comparison-nav-btn {
@@ -296,6 +315,7 @@
 	opacity: 0.8;
 	transition: opacity 0.2s ease, background-color 0.2s ease;
 	z-index: 10;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .comparison-nav-btn:hover {
@@ -304,11 +324,31 @@
 }
 
 .comparison-nav-prev {
-	left: 0.5rem;
+	left: 0;
 }
 
 .comparison-nav-next {
-	right: 0.5rem;
+	right: 0;
+}
+
+.comparison-actions {
+	display: flex;
+	gap: 0.75rem;
+	width: 100%;
+	justify-content: center;
+}
+
+.comparison-actions button {
+	padding: 0.5rem 1rem;
+	font-size: 0.9rem;
+	white-space: nowrap;
+	transition: all 0.2s ease;
+	border-radius: 0.5rem;
+}
+
+.comparison-count {
+	font-weight: 600;
+	color: var(--accent-color);
 }
 
 /* Empty state */
@@ -331,71 +371,40 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
 	.comparison-modal {
-		flex-direction: column;
-		align-items: stretch;
 		width: calc(100% - 1rem);
 		bottom: 0.5rem;
 		padding: 0.75rem;
 	}
 
-	.comparison-tanks-container {
-		max-width: 100%;
-		margin-bottom: 0.5rem;
-		order: -1;
-	}
-
-	.comparison-actions {
-		width: 100%;
-		justify-content: center;
+	.comparison-tank {
+		width: calc(33.333% - 0.33rem);
+		max-width: none;
 	}
 
 	.comparison-nav-btn {
-		top: 40%;
-	}
-
-	.comparison-nav-prev {
-		left: 0.25rem;
-	}
-
-	.comparison-nav-next {
-		right: 0.25rem;
-	}
-
-	.comparison-table th,
-	.comparison-table td {
-		min-width: 150px;
-	}
-
-	.comparison-table .tank-header img {
-		width: 80px;
-		height: 60px;
+		width: 28px;
+		height: 28px;
+		font-size: 0.8rem;
 	}
 }
 
 @media (max-width: 480px) {
-	.comparison-table th {
-		min-width: 160px;
-	}
-
-	.comparison-table .tank-header {
-		padding: 0.75rem 0.5rem;
-	}
-
-	.comparison-table .tank-header img {
-		width: 70px;
-		height: 50px;
-	}
-
-	.comparison-table .tank-name {
-		font-size: 0.9rem;
-	}
-
-	.comparison-table .tank-meta {
-		font-size: 0.7rem;
-		gap: 0.25rem;
-	}
-
 	.comparison-tank {
-		max-width: 140px;
+		font-size: 0.8rem;
+		padding: 0.25rem 0.5rem 0.25rem 0.25rem;
+	}
+
+	.comparison-tank img {
+		width: 24px;
+		height: 24px;
+	}
+
+	.comparison-actions {
+		gap: 0.5rem;
+	}
+
+	.comparison-actions button {
+		padding: 0.5rem;
+		font-size: 0.8rem;
 	}
 }

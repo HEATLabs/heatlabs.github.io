@@ -67,26 +67,55 @@ document.addEventListener('DOMContentLoaded', function() {
                 removeTankFromComparison(tankId);
             });
         });
+
+        // Update carousel navigation
+        updateCarouselNavigation();
+    }
+
+    // Update carousel navigation buttons
+    function updateCarouselNavigation() {
+        const container = comparisonTanksContainer;
+        const containerWidth = container.clientWidth;
+        const contentWidth = container.scrollWidth;
+
+        comparisonNavPrev.style.display = currentScrollPosition > 0 ? 'flex' : 'none';
+        comparisonNavNext.style.display = contentWidth > containerWidth + currentScrollPosition ? 'flex' : 'none';
     }
 
     // Scroll comparison modal
     function scrollComparison(direction) {
         const container = comparisonTanksContainer;
         const scrollAmount = 200;
+        const maxScroll = container.scrollWidth - container.clientWidth;
 
         if (direction === 'prev') {
             currentScrollPosition = Math.max(0, currentScrollPosition - scrollAmount);
         } else {
-            currentScrollPosition = Math.min(
-                container.scrollWidth - container.clientWidth,
-                currentScrollPosition + scrollAmount
-            );
+            currentScrollPosition = Math.min(maxScroll, currentScrollPosition + scrollAmount);
         }
 
         container.scrollTo({
             left: currentScrollPosition,
             behavior: 'smooth'
         });
+
+        // Update buttons after scroll completes
+        setTimeout(updateCarouselNavigation, 300);
+    }
+
+    // Handle container resize
+    function handleResize() {
+        updateCarouselNavigation();
+    }
+
+    // Initialize carousel
+    function initCarousel() {
+        comparisonTanksContainer.addEventListener('scroll', function() {
+            currentScrollPosition = this.scrollLeft;
+            updateCarouselNavigation();
+        });
+
+        window.addEventListener('resize', handleResize);
     }
 
     // Fetch tank details
@@ -268,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 if (isDepression) {
                                     // For depression: more negative = better
                                     stepIndex = Math.floor((maxValue - value) / step);
-                                    cellClass = `stat-${7 - Math.min(6, stepIndex)}`;
+                                    cellClass = `stat-${Math.min(6, stepIndex) + 1}`;
                                 } else if (isElevation) {
                                     // For elevation: more positive = better
                                     stepIndex = Math.floor((value - minValue) / step);
@@ -372,6 +401,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize
     loadComparison();
     renderComparisonTable();
+    initCarousel();
 
     // Event listeners
     clearAllBtn.addEventListener('click', clearAllComparison);
