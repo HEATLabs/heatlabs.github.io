@@ -217,15 +217,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
             stats.forEach(stat => {
                 const values = validTanks.map(tank => {
-                    const value = tank.stats[category][stat];
-                    return isNaN(value) ? value : parseFloat(value);
+                    const rawValue = tank.stats[category][stat];
+                    // Handle string values with + or - signs
+                    if (typeof rawValue === 'string') {
+                        // For depression/elevation values that include + or -
+                        if (rawValue.includes('+') || rawValue.includes('-')) {
+                            return parseFloat(rawValue);
+                        }
+                        // For other numeric values that might be strings
+                        return isNaN(rawValue) ? rawValue : parseFloat(rawValue);
+                    }
+                    return isNaN(rawValue) ? rawValue : parseFloat(rawValue);
                 });
 
                 // Determine value range for coloring
                 const numericValues = values.filter(v => !isNaN(v));
                 if (numericValues.length > 0) {
-                    const maxValue = Math.max(...numericValues);
-                    const minValue = Math.min(...numericValues);
+                    // Special handling for gun depression and elevation stats
+                    const isDepression = stat.includes('DEPRESSION');
+                    const isElevation = stat.includes('ELEVATION') && !stat.includes('DEGREES/SECOND');
+
+                    let maxValue, minValue;
+
+                    if (isDepression) {
+                        // For depression, lower (more negative) is better
+                        maxValue = Math.min(...numericValues); // Best value (most negative)
+                        minValue = Math.max(...numericValues); // Worst value (least negative)
+                    } else if (isElevation) {
+                        // For elevation, higher (more positive) is better
+                        maxValue = Math.max(...numericValues); // Best value (most positive)
+                        minValue = Math.min(...numericValues); // Worst value (least positive)
+                    } else {
+                        // For all other stats, higher is better (default behavior)
+                        maxValue = Math.max(...numericValues);
+                        minValue = Math.min(...numericValues);
+                    }
+
                     const valueRange = maxValue - minValue;
                     const step = valueRange / 6; // 7 steps (0-6)
 
@@ -233,16 +260,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     values.forEach((value, i) => {
                         let cellClass = '';
+                        let displayValue = value;
+
                         if (!isNaN(value)) {
                             if (valueRange > 0) {
-                                const stepIndex = Math.floor((value - minValue) / step);
-                                cellClass = `stat-${7 - Math.min(6, stepIndex)}`; // 1-7 where 1 is best
+                                let stepIndex;
+                                if (isDepression) {
+                                    // For depression: more negative = better
+                                    stepIndex = Math.floor((maxValue - value) / step);
+                                    cellClass = `stat-${7 - Math.min(6, stepIndex)}`;
+                                } else if (isElevation) {
+                                    // For elevation: more positive = better
+                                    stepIndex = Math.floor((value - minValue) / step);
+                                    cellClass = `stat-${7 - Math.min(6, stepIndex)}`;
+                                } else {
+                                    // Default behavior for other stats
+                                    stepIndex = Math.floor((value - minValue) / step);
+                                    cellClass = `stat-${7 - Math.min(6, stepIndex)}`;
+                                }
                             } else {
                                 cellClass = 'stat-4'; // All values equal
                             }
+
+                            // Format display value with + or - for elevation/depression
+                            if (isDepression || isElevation) {
+                                displayValue = value >= 0 ? `+${value}` : value.toString();
+                            }
                         }
 
-                        tableHTML += `<td class="${cellClass}">${formatStatValue(stat, value)}</td>`;
+                        tableHTML += `<td class="${cellClass}">${formatStatValue(stat, displayValue)}</td>`;
                     });
                 } else {
                     // Non-numeric values
@@ -280,6 +326,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Format stat values for display
     function formatStatValue(stat, value) {
         if (isNaN(value)) return value;
+
+        // For depression/elevation values that already have + or -, just add °
+        if (typeof value === 'string' && (value.includes('+') || value.includes('-'))) {
+            return `${value}°`;
+        }
 
         // Add units for specific stats
         if (stat.includes('SPEED') && stat.includes('AIMING')) {
