@@ -1,0 +1,207 @@
+/* Work Content */
+.work-content {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.work-intro {
+	margin-bottom: 4rem;
+	text-align: center;
+}
+
+.work-intro h2 {
+	font-size: 2rem;
+	font-weight: bold;
+	margin-bottom: 1.5rem;
+	color: var(--accent-color);
+}
+
+.work-intro p {
+	font-size: 1.1rem;
+	line-height: 1.7;
+	color: var(--text-secondary);
+	max-width: 800px;
+	margin: 0 auto 2rem;
+}
+
+/* Opportunities Section */
+.opportunities-section {
+	margin-bottom: 4rem;
+}
+
+.opportunities-section h2 {
+	text-align: center;
+	margin-bottom: 2rem;
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.opportunities-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 2rem;
+}
+
+.opportunity-card {
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	padding: 2rem;
+	box-shadow: var(--shadow);
+	border: 1px solid var(--border-color);
+	transition: all var(--transition-speed);
+	display: flex;
+	flex-direction: column;
+}
+
+.opportunity-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.opportunity-icon {
+	color: var(--accent-color);
+	font-size: 2rem;
+	margin-bottom: 1.5rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 4rem;
+	height: 4rem;
+	border-radius: 50%;
+	background-color: var(--accent-color-light);
+}
+
+.opportunity-card h3 {
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+	color: var(--text-primary);
+}
+
+.opportunity-card p {
+	font-size: 1rem;
+	color: var(--text-secondary);
+	margin-bottom: 1.5rem;
+	line-height: 1.6;
+	flex-grow: 1;
+}
+
+.skills {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.skills span {
+	background-color: var(--bg-tertiary);
+	color: var(--text-primary);
+	padding: 0.25rem 0.75rem;
+	border-radius: 1rem;
+	font-size: 0.8rem;
+}
+
+/* Benefits Section */
+.benefits-section {
+	margin-bottom: 4rem;
+}
+
+.benefits-section h2 {
+	text-align: center;
+	margin-bottom: 2rem;
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.benefits-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 2rem;
+}
+
+.benefit-item {
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	padding: 1.5rem;
+	box-shadow: var(--shadow);
+	border: 1px solid var(--border-color);
+	text-align: center;
+}
+
+.benefit-item i {
+	color: var(--accent-color);
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+
+.benefit-item h3 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+	color: var(--text-primary);
+}
+
+.benefit-item p {
+	font-size: 0.95rem;
+	color: var(--text-secondary);
+	line-height: 1.6;
+}
+
+/* Getting Started */
+.getting-started {
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	padding: 2rem;
+	box-shadow: var(--shadow);
+	border: 1px solid var(--border-color);
+	text-align: center;
+	margin-top: 4rem;
+}
+
+.getting-started h2 {
+	font-size: 1.75rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+}
+
+.getting-started p {
+	font-size: 1.1rem;
+	color: var(--text-secondary);
+	max-width: 600px;
+	margin: 0 auto 1.5rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+
+	.work-intro h2,
+	.opportunities-section h2,
+	.benefits-section h2 {
+		font-size: 1.75rem;
+	}
+
+	.opportunity-card {
+		padding: 1.5rem;
+	}
+
+	.getting-started {
+		padding: 1.5rem;
+	}
+}
+
+@media (max-width: 480px) {
+
+	.work-intro h2,
+	.opportunities-section h2,
+	.benefits-section h2 {
+		font-size: 1.5rem;
+	}
+
+	.opportunities-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.benefits-grid {
+		grid-template-columns: 1fr;
+	}
+}
