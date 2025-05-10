@@ -1,0 +1,243 @@
+/* Support Content */
+.support-content {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.support-intro {
+	margin-bottom: 4rem;
+	text-align: center;
+}
+
+.support-intro h2 {
+	font-size: 2rem;
+	font-weight: bold;
+	margin-bottom: 1.5rem;
+	color: var(--accent-color);
+}
+
+.support-intro p {
+	font-size: 1.1rem;
+	line-height: 1.7;
+	color: var(--text-secondary);
+	max-width: 800px;
+	margin: 0 auto 2rem;
+}
+
+/* Support Options */
+.support-options {
+	margin-bottom: 4rem;
+}
+
+.support-options h2 {
+	text-align: center;
+	margin-bottom: 2rem;
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.options-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 2rem;
+}
+
+.option-card {
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	padding: 2rem;
+	box-shadow: var(--shadow);
+	border: 1px solid var(--border-color);
+	transition: all var(--transition-speed);
+	display: flex;
+	flex-direction: column;
+}
+
+.option-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.option-icon {
+	color: var(--accent-color);
+	font-size: 2rem;
+	margin-bottom: 1.5rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 4rem;
+	height: 4rem;
+	border-radius: 50%;
+	background-color: var(--accent-color-light);
+}
+
+.option-card h3 {
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+	color: var(--text-primary);
+}
+
+.option-card p {
+	font-size: 1rem;
+	color: var(--text-secondary);
+	margin-bottom: 1.5rem;
+	line-height: 1.6;
+	flex-grow: 1;
+}
+
+.donation-methods {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	margin-bottom: 1.5rem;
+}
+
+.donation-method {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.75rem 1rem;
+	background-color: var(--bg-tertiary);
+	border-radius: 0.5rem;
+	color: var(--text-primary);
+	transition: all var(--transition-speed);
+}
+
+.donation-method:hover {
+	background-color: var(--accent-color-light);
+	color: var(--accent-color);
+}
+
+.donation-method i {
+	font-size: 1.25rem;
+}
+
+.social-share {
+	display: flex;
+	gap: 0.75rem;
+	justify-content: center;
+	margin-bottom: 1.5rem;
+}
+
+.social-share-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	background-color: var(--bg-tertiary);
+	color: var(--text-primary);
+	font-size: 1.25rem;
+	transition: all var(--transition-speed);
+}
+
+.social-share-btn:hover {
+	transform: translateY(-3px);
+	color: var(--accent-color);
+}
+
+/* Support Disclaimer */
+.support-disclaimer {
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	padding: 2rem;
+	box-shadow: var(--shadow);
+	border: 1px solid var(--border-color);
+	margin-bottom: 4rem;
+}
+
+.support-disclaimer h2 {
+	text-align: center;
+	margin-bottom: 2rem;
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.disclaimer-content {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 2rem;
+}
+
+.promise-item {
+	display: flex;
+	gap: 1rem;
+	align-items: flex-start;
+}
+
+.promise-item i {
+	color: var(--accent-color);
+	font-size: 1.5rem;
+	margin-top: 0.25rem;
+}
+
+.promise-item h3 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+	color: var(--text-primary);
+}
+
+.promise-item p {
+	font-size: 0.95rem;
+	color: var(--text-secondary);
+	line-height: 1.6;
+}
+
+/* Support Thanks */
+.support-thanks {
+	text-align: center;
+}
+
+.support-thanks h2 {
+	font-size: 2rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+}
+
+.support-thanks p {
+	font-size: 1.1rem;
+	color: var(--text-secondary);
+	max-width: 600px;
+	margin: 0 auto 1.5rem;
+	line-height: 1.7;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+
+	.support-intro h2,
+	.support-options h2,
+	.support-disclaimer h2,
+	.support-thanks h2 {
+		font-size: 1.75rem;
+	}
+
+	.option-card {
+		padding: 1.5rem;
+	}
+
+	.support-disclaimer {
+		padding: 1.5rem;
+	}
+}
+
+@media (max-width: 480px) {
+
+	.support-intro h2,
+	.support-options h2,
+	.support-disclaimer h2,
+	.support-thanks h2 {
+		font-size: 1.5rem;
+	}
+
+	.options-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.disclaimer-content {
+		grid-template-columns: 1fr;
+	}
+}
