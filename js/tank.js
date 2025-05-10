@@ -386,8 +386,12 @@ function populateTankStats(tankStats) {
         updateStat('Firepower', 'Reticle Size, Max', fp["RETICLE SIZE, MAX"]);
         updateStat('Firepower', 'Turret Traverse Speed, Degrees/Second', fp["TURRET TRAVERSE SPEED"]);
         updateStat('Firepower', 'Gun Elevation Speed, Degrees/Second', fp["GUN ELEVATION, DEGREES/SECOND"]);
-        updateStat('Firepower', 'Gun Depression(F/S/R)', fp["GUN DEPRESSION, FSR"]);
-        updateStat('Firepower', 'Gun Elevation (F/S/R)', fp["GUN ELEVATION, FSR"]);
+        updateStat('Firepower', 'Gun Depression (Front)', fp["GUN DEPRESSION, FRONT"]);
+        updateStat('Firepower', 'Gun Depression (Side)', fp["GUN DEPRESSION, SIDE"]);
+        updateStat('Firepower', 'Gun Depression (Rear)', fp["GUN DEPRESSION, REAR"]);
+        updateStat('Firepower', 'Gun Elevation (Front)', fp["GUN ELEVATION, FRONT"]);
+        updateStat('Firepower', 'Gun Elevation (Side)', fp["GUN ELEVATION, SIDE"]);
+        updateStat('Firepower', 'Gun Elevation (Rear)', fp["GUN ELEVATION, REAR"]);
     }
 
     // Survivability stats
