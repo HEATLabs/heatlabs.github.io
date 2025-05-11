@@ -218,15 +218,6 @@
           <div class="map-content-wrapper">
             <!-- Main Content -->
             <div class="map-main-content">
-              <!-- Gamemode Selector -->
-              <div class="gamemode-selector items-center text-center">
-                <h2>Select Gamemode</h2>
-                <div class="gamemode-buttons">
-                  <button class="gamemode-btn active" data-gamemode="standard">Standard Battle</button>
-                  <button class="gamemode-btn" data-gamemode="encounter">Encounter</button>
-                  <button class="gamemode-btn" data-gamemode="assault">Assault</button>
-                </div>
-              </div>
               <!-- Map Introduction -->
               <div class="mb-12">
                 <h2 id="map-introduction">Map Introduction</h2>
@@ -306,121 +297,6 @@
                       <h3>Pro Tip: Standard Battle</h3>
                     </div>
                     <p>The central square often becomes a deadlock early in the match. Consider sending a small force through the eastern alley to break the enemy's concentration and create opportunities for your main force to advance.</p>
-                  </div>
-                </div>
-                <!-- Encounter Battle Content -->
-                <div class="gamemode-section" id="encounter">
-                  <h2 id="encounter-overview">Encounter Battle Overview</h2>
-                  <p>In Encounter mode, the focus shifts to capturing a single central point while defending against enemy attacks from multiple directions.</p>
-                  <div class="map-image my-6">
-                    <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/imagecomingsoon.png" alt="Encounter Battle Map" class="rounded-lg shadow-lg">
-                    <p class="text-center text-sm text-gray-500 mt-2">Encounter Battle key positions and routes</p>
-                  </div>
-                  <h3 id="encounter-key-positions">Key Positions</h3>
-                  <p>These areas are crucial for controlling the capture point:</p>
-                  <ul class="list-disc pl-6 my-4">
-                    <li>
-                      <strong>Capture Zone:</strong> Heavily contested area requiring coordinated pushes
-                    </li>
-                    <li>
-                      <strong>Northern Approach:</strong> Provides cover for medium tanks to support
-                    </li>
-                    <li>
-                      <strong>Southern Flank:</strong> Fast route for light tanks to disrupt enemy
-                    </li>
-                  </ul>
-                  <h3 id="encounter-tactics">Advanced Tactics</h3>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
-                    <div>
-                      <h4 class="font-bold text-lg mb-2">Capture Strategy</h4>
-                      <ul class="list-disc pl-6 space-y-2">
-                        <li>Fast cap requires at least 3 tanks in circle</li>
-                        <li>Staged approach with defenders on perimeter</li>
-                        <li>Use smoke to conceal capping vehicles</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 class="font-bold text-lg mb-2">Defense Strategy</h4>
-                      <ul class="list-disc pl-6 space-y-2">
-                        <li>Establish crossfire covering cap circle</li>
-                        <li>Position TDs with clear lines of sight</li>
-                        <li>Set up early warning system with scouts</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="tip-box my-8">
-                    <div class="tip-header">
-                      <i class="fas fa-lightbulb"></i>
-                      <h3>Pro Tip: Encounter</h3>
-                    </div>
-                    <p>Don't commit too many tanks to the capture point early in the match. It's better to secure the surrounding areas first and then move in to capture when you have established position control.</p>
-                  </div>
-                </div>
-                <!-- Assault Battle Content -->
-                <div class="gamemode-section" id="assault">
-                  <h2 id="assault-overview">Assault Battle Overview</h2>
-                  <p>Assault mode transforms the map into an attacker/defender scenario, with one team attempting to capture the base while the other defends.</p>
-                  <div class="map-image my-6">
-                    <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/imagecomingsoon.png" alt="Assault Battle Map" class="rounded-lg shadow-lg">
-                    <p class="text-center text-sm text-gray-500 mt-2">Assault Battle key positions and routes</p>
-                  </div>
-                  <h3 id="assault-key-positions">Key Positions</h3>
-                  <p>Different strategies for attackers and defenders:</p>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
-                    <div>
-                      <h4>Attackers</h4>
-                      <ul class="list-disc pl-6">
-                        <li>
-                          <strong>Eastern Push:</strong> Main assault route with cover
-                        </li>
-                        <li>
-                          <strong>Western Flank:</strong> Secondary route to divide defenses
-                        </li>
-                        <li>
-                          <strong>Artillery Support:</strong> Key for suppressing defenders
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4>Defenders</h4>
-                      <ul class="list-disc pl-6">
-                        <li>
-                          <strong>Central Bunker:</strong> Strong defensive position
-                        </li>
-                        <li>
-                          <strong>Flank Watchers:</strong> Prevent enemy flanking maneuvers
-                        </li>
-                        <li>
-                          <strong>Fallback Positions:</strong> Secondary defensive lines
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <h3 id="assault-tactics">Advanced Tactics</h3>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
-                    <div>
-                      <h4 class="font-bold text-lg mb-2">Attacker Tactics</h4>
-                      <ul class="list-disc pl-6 space-y-2">
-                        <li>Coordinated push with multiple tank types</li>
-                        <li>Use smoke shells to create advancing cover</li>
-                        <li>Maintain pressure on all fronts to divide defense</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 class="font-bold text-lg mb-2">Defender Tactics</h4>
-                      <ul class="list-disc pl-6 space-y-2">
-                        <li>Preset firing positions with overlapping fields</li>
-                        <li>Flexible response force for breakthrough points</li>
-                        <li>Conservative HP management for late-game defense</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="tip-box my-8">
-                    <div class="tip-header">
-                      <i class="fas fa-lightbulb"></i>
-                      <h3>Pro Tip: Assault</h3>
-                    </div>
-                    <p>As a defender, avoid the temptation to chase fleeing attackers. Maintaining your defensive line is more important than securing individual kills.</p>
                   </div>
                 </div>
               </div>
