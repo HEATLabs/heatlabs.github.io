@@ -534,7 +534,7 @@ p {
 }
 
 .sidebar-card a {
-	color: var(--text-secondary);
+	color: var(--text-primary);
 	transition: color var(--transition-speed);
 }
 
@@ -570,26 +570,10 @@ p {
 	font-weight: 500;
 }
 
-.build-btn {
-	background-color: var(--accent-color-light);
-	color: var(--accent-color);
-	border: 1px solid var(--accent-color);
-}
-
-.build-btn:hover {
-	background-color: var(--accent-color);
-	color: white;
-}
-
 .compare-btn {
 	background-color: var(--accent-color-light);
 	color: var(--accent-color);
 	border: 1px solid var(--accent-color);
-}
-
-.compare-btn:hover {
-	background-color: var(--accent-color);
-	color: white;
 }
 
 .quick-stats {
