@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const generalFormContainer = document.getElementById('generalFormContainer');
     const tankFormContainer = document.getElementById('tankFormContainer');
     const mapFormContainer = document.getElementById('mapFormContainer');
+    const involvedFormContainer = document.getElementById('involvedFormContainer');
 
     // Add click event listeners to all select buttons
     selectButtons.forEach(button => {
@@ -27,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
             tankFormContainer.classList.add('hidden');
             mapFormContainer.classList.remove('active');
             mapFormContainer.classList.add('hidden');
+            involvedFormContainer.classList.remove('active');
+            involvedFormContainer.classList.add('hidden');
 
             // Show the selected form container
             switch (optionType) {
@@ -41,6 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 case 'map':
                     mapFormContainer.classList.remove('hidden');
                     mapFormContainer.classList.add('active');
+                    break;
+                case 'involved':
+                    involvedFormContainer.classList.remove('hidden');
+                    involvedFormContainer.classList.add('active');
                     break;
             }
 
@@ -61,6 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
             tankFormContainer.classList.add('hidden');
             mapFormContainer.classList.remove('active');
             mapFormContainer.classList.add('hidden');
+            involvedFormContainer.classList.remove('active');
+            involvedFormContainer.classList.add('hidden');
 
             // Show the options container
             contactOptions.classList.remove('hidden');
