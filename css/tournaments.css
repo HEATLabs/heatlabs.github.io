@@ -120,7 +120,7 @@
 
 .tournament-meta {
 	gap: 1rem;
-	margin-bottom: 1rem;
+	margin-bottom: 0.5rem;
 	font-size: 0.85rem;
 	color: var(--text-secondary);
 }
