@@ -660,7 +660,7 @@ p {
 }
 
 .sidebar-card a {
-	color: var(--text-secondary);
+	color: var(--text-primary);
 	transition: color var(--transition-speed);
 }
 
