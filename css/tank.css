@@ -533,6 +533,15 @@ p {
 	border-bottom: 2px solid var(--accent-color);
 }
 
+.sidebar-card a {
+	color: var(--text-secondary);
+	transition: color var(--transition-speed);
+}
+
+.sidebar-card a:hover {
+	color: var(--accent-color);
+}
+
 .quick-actions {
 	display: grid;
 	grid-template-columns: 1fr;
