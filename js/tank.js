@@ -121,6 +121,9 @@ async function fetchAndPopulateStockData(stockUrl, tankId, tankSlug) {
         if (tankStats) {
             console.log('Found tank stats:', tankStats);
             populateTankStats(tankStats);
+
+            // Calculate and display GSS scores
+            calculateAndDisplayGSS(tankStats, tankId);
         } else {
             console.error('No stats found for tank:', {
                 id: tankId,
@@ -131,6 +134,176 @@ async function fetchAndPopulateStockData(stockUrl, tankId, tankSlug) {
     } catch (error) {
         console.error('Error fetching stock data:', error);
     }
+}
+
+async function calculateAndDisplayGSS(currentTankStats, currentTankId) {
+    try {
+        // First fetch all tanks data
+        const tanksResponse = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+        const tanksData = await tanksResponse.json();
+
+        // Then fetch all stock data for comparison
+        const allStockData = {};
+        const stockPromises = tanksData.map(async tank => {
+            try {
+                const response = await fetch(tank.stock);
+                const data = await response.json();
+                // Try different ways to get the stats for this tank
+                const tankStats = data[tank.id] || data[tank.slug] || Object.values(data)[0];
+                if (tankStats) {
+                    allStockData[tank.id] = tankStats;
+                }
+            } catch (error) {
+                console.error(`Error fetching stock data for tank ${tank.id}:`, error);
+            }
+        });
+
+        await Promise.all(stockPromises);
+
+        // Filter out unreleased tanks (all stats = 0)
+        const validTanks = {};
+        for (const [tankId, stats] of Object.entries(allStockData)) {
+            if (!isUnreleasedTank(stats)) {
+                validTanks[tankId] = stats;
+            }
+        }
+
+        // If no valid tanks to compare with, set all scores to 0
+        if (Object.keys(validTanks).length === 0) {
+            updateGSSScores({
+                FIREPOWER: 0,
+                SURVIVABILITY: 0,
+                MOBILITY: 0,
+                RECON: 0,
+                UTILITY: 0
+            });
+            return;
+        }
+
+        // Calculate GSS for each category
+        const gssScores = {
+            FIREPOWER: calculateCategoryGSS(currentTankStats.FIREPOWER, validTanks, 'FIREPOWER'),
+            SURVIVABILITY: calculateCategoryGSS(currentTankStats.SURVIVABILITY, validTanks, 'SURVIVABILITY'),
+            MOBILITY: calculateCategoryGSS(currentTankStats.MOBILITY, validTanks, 'MOBILITY'),
+            RECON: calculateCategoryGSS(currentTankStats.RECON, validTanks, 'RECON'),
+            UTILITY: calculateCategoryGSS(currentTankStats.UTILITY, validTanks, 'UTILITY')
+        };
+
+        // Update the GSS scores in the UI
+        updateGSSScores(gssScores);
+
+    } catch (error) {
+        console.error('Error calculating GSS:', error);
+        // Set all scores to 0 if there's an error
+        updateGSSScores({
+            FIREPOWER: 0,
+            SURVIVABILITY: 0,
+            MOBILITY: 0,
+            RECON: 0,
+            UTILITY: 0
+        });
+    }
+}
+
+function isUnreleasedTank(stats) {
+    // Check if all stats are 0 (unreleased tank)
+    if (!stats) return true;
+
+    for (const category in stats) {
+        for (const stat in stats[category]) {
+            const value = parseFloat(stats[category][stat]);
+            if (value !== 0 && !isNaN(value)) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function calculateCategoryGSS(currentCategoryStats, allTanksStats, categoryName) {
+    if (!currentCategoryStats) return 0;
+
+    // Collect all values for each stat in this category across all tanks
+    const statValues = {};
+
+    // Initialize statValues with current tank's stats
+    for (const stat in currentCategoryStats) {
+        statValues[stat] = [];
+    }
+
+    // Add stats from all other tanks
+    for (const tankId in allTanksStats) {
+        const tankStats = allTanksStats[tankId];
+        if (tankStats && tankStats[categoryName]) {
+            for (const stat in currentCategoryStats) {
+                if (tankStats[categoryName][stat] !== undefined) {
+                    const value = parseFloat(tankStats[categoryName][stat]);
+                    if (!isNaN(value)) {
+                        statValues[stat].push(value);
+                    }
+                }
+            }
+        }
+    }
+
+    // Calculate normalized scores for each stat (0-1000)
+    const normalizedScores = {};
+    for (const stat in statValues) {
+        const values = statValues[stat];
+        if (values.length === 0) continue;
+
+        const currentValue = parseFloat(currentCategoryStats[stat]);
+        if (isNaN(currentValue)) continue;
+
+        const min = Math.min(...values);
+        const max = Math.max(...values);
+
+        // Handle case where all values are the same
+        if (min === max) {
+            normalizedScores[stat] = 500; // Average score if all values are equal
+        } else {
+            // Calculate normalized score (0-1000)
+            normalizedScores[stat] = Math.round(((currentValue - min) / (max - min)) * 1000);
+            // Ensure score is within bounds
+            normalizedScores[stat] = Math.max(0, Math.min(1000, normalizedScores[stat]));
+        }
+    }
+
+    // Calculate average score for the category
+    const statCount = Object.keys(normalizedScores).length;
+    if (statCount === 0) return 0;
+
+    const sum = Object.values(normalizedScores).reduce((a, b) => a + b, 0);
+    return Math.round(sum / statCount);
+}
+
+function updateGSSScores(gssScores) {
+    // Get all stat categories in the DOM
+    const statCategories = document.querySelectorAll('.stats-category');
+
+    statCategories.forEach(category => {
+        const header = category.querySelector('h3');
+        if (!header) return;
+
+        const categoryName = header.textContent.trim().toUpperCase();
+        const scoreElement = category.querySelector('.score');
+
+        if (scoreElement && gssScores[categoryName] !== undefined) {
+            const score = gssScores[categoryName];
+            scoreElement.textContent = score;
+
+            // Add color coding based on score (not implemented)
+            if (score >= 750) {
+                scoreElement.style.color = '#e0e0e0'; // Green for high scores
+            } else if (score >= 500) {
+                scoreElement.style.color = '#e0e0e0'; // Yellow for medium-high scores
+            } else if (score >= 250) {
+                scoreElement.style.color = '#e0e0e0'; // Orange for medium-low scores
+            } else {
+                scoreElement.style.color = '#e0e0e0'; // Red for low scores
+            }
+        }
+    });
 }
 
 async function fetchAndPopulateAgents(agentsUrl, tankId) {
