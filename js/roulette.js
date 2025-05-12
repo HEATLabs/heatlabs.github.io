@@ -2,25 +2,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Configuration settings - adjust these to fine-tune the roulette behavior
     const rouletteConfig = {
         // Base speed (higher = faster)
-        baseSpeed: 40,
+        baseSpeed: 50,
 
         // Minimum speed when slowing down (lower = slower final spin)
-        minSpeed: 10,
+        minSpeed: 25,
 
         // Duration range in milliseconds (min and max spin time)
-        minDuration: 3000, // 3 seconds minimum
+        minDuration: 5000, // 3 seconds minimum
         maxDuration: 10000, // 10 seconds maximum
 
         // Speed reduction factors (how quickly it slows down)
         // Mess with those to create the illusion of rigging
-        initialSlowdownFactor: 25, // How much to reduce speed during first 80% of spin
-        finalSlowdownFactor: 10, // How much to reduce speed during last 20% of spin
+        initialSlowdownFactor: 45, // How much to reduce speed during first 80% of spin
+        finalSlowdownFactor: 25, // How much to reduce speed during last 20% of spin
 
         // Sound effect volume (0 to 1)
         soundVolume: 0.5,
 
         // Animation smoothness (higher = smoother but more CPU intensive)
-        animationInterval: 25, //
+        animationInterval: 25,
 
         // Special prize configuration
         specialPrize: {
@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const itemId = item.getAttribute('data-item-id');
 
             // If item is within 30px of center, highlight it
-            if (Math.abs(itemCenter - viewportCenter) < 30) {
+            if (Math.abs(itemCenter - viewportCenter) < 50) {
                 item.classList.add('highlighted');
 
                 // Play sound if this is a new item crossing the center
