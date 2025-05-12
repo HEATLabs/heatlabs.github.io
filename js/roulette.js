@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         baseSpeed: 50,
 
         // Minimum speed when slowing down (lower = slower final spin)
-        minSpeed: 25,
+        minSpeed: 15,
 
         // Duration range in milliseconds (min and max spin time)
         minDuration: 5000, // 3 seconds minimum
