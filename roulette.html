@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Main meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title displayed in the browser tab -->
+    <title>Tank Roulette - PCWStats</title>
+    <!-- Theme Checker -->
+    <script>
+      // Immediately set theme class before rendering begins
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          // Default to dark theme if saved or system preference
+          if (savedTheme === 'dark-theme' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark-theme');
+          } else {
+            document.documentElement.classList.add('light-theme');
+          }
+        } catch (e) {
+          console.error('Theme initialization error:', e);
+          document.documentElement.classList.add('light-theme');
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/roulette.css">
+    <link rel="stylesheet" href="css/modules/header.css">
+    <link rel="stylesheet" href="css/modules/footer.css">
+    <link rel="stylesheet" href="css/modules/sidebar.css">
+    <link rel="stylesheet" href="css/modules/cta.css">
+    <link rel="stylesheet" href="css/modules/no-scrollbar.css">
+    <link rel="stylesheet" href="css/modules/search.css">
+    <link rel="stylesheet" href="css/modules/global-hero.css">
+    <link rel="stylesheet" href="css/modules/warning.css">
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon.ico" type="image/x-icon">
+    <!-- Apple Touch Icons (for iOS home screen bookmarks) -->
+    <link rel="apple-touch-icon" sizes="57x57" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-180x180.png">
+    <!-- Favicons for different devices -->
+    <link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/android/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon-16x16.png">
+    <!-- Web Manifest -->
+    <link rel="manifest" href="site-data/site.manifest">
+    <!-- Windows-specific tiles (for pinned sites in Windows Start menu) -->
+    <meta name="msapplication-TileColor" content="#141312">
+    <meta name="msapplication-TileImage" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/microsoft/ms-icon-144x144.png">
+    <!-- Defines the color of the browser UI elements -->
+    <meta name="theme-color" content="#141312">
+    <!-- Open Graph Meta Tags (for social media sharing, mainly Facebook) -->
+    <meta property="og:title" content="PCWStats - Tank Roulette">
+    <meta property="og:description" content="Your one-stop solution for comprehensive statistics insights and guides for Project CW">
+    <meta property="og:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
+    <meta property="og:url" content="https://pcwstats.github.io/roulette.html">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card Meta Tags (for better sharing on Twitter) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PCWStats - Tank Roulette">
+    <meta name="twitter:description" content="Your one-stop solution for comprehensive statistics insights and guides for Project CW">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
+  </head>
+  <body>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="flex items-center justify-between">
+          <button id="closeSidebar" class="sidebar-close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <nav class="flex-grow">
+        <ul class="space-y-2">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="tanks.html" class="sidebar-link">
+              <i class="fas fa-shield-alt"></i>
+              <span>Tank Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="maps.html" class="sidebar-link">
+              <i class="fas fa-map"></i>
+              <span>Map Knowledge</span>
+            </a>
+          </li>
+          <li>
+            <a href="builds.html" class="sidebar-link">
+              <i class="fas fa-wrench"></i>
+              <span>Common Builds</span>
+            </a>
+          </li>
+          <li>
+            <a href="guides.html" class="sidebar-link">
+              <i class="fas fa-book-open"></i>
+              <span>Community Guides</span>
+            </a>
+          </li>
+          <li>
+            <a href="credits.html" class="sidebar-link">
+              <i class="fas fa-users"></i>
+              <span>Community Credits</span>
+            </a>
+          </li>
+          <li>
+            <a href="tournaments.html" class="sidebar-link">
+              <i class="fa-solid fa-trophy"></i>
+              <span>Tournaments</span>
+            </a>
+          </li>
+          <li>
+            <a href="news.html" class="sidebar-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Game News</span>
+            </a>
+          </li>
+          <li>
+            <a href="tankopedia.html" class="sidebar-link">
+              <i class="fas fa-database"></i>
+              <span>Tankopedia</span>
+            </a>
+          </li>
+          <li>
+            <a href="blog.html" class="sidebar-link">
+              <i class="fas fa-blog"></i>
+              <span>Official Blog</span>
+            </a>
+          </li>
+          <li>
+            <a href="about-us.html" class="sidebar-link">
+              <i class="fas fa-info-circle"></i>
+              <span>About the Project</span>
+            </a>
+          </li>
+          <li>
+            <a href="legal.html" class="sidebar-link">
+              <i class="fas fa-balance-scale"></i>
+              <span>Project Policies</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="theme-toggle-container">
+          <span class="theme-toggle-label">Dark Mode</span>
+          <div class="theme-toggle-switch" id="themeToggle">
+            <div class="toggle-thumb"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="content-wrapper">
+      <!-- Header/Navbar -->
+      <header class="navbar">
+        <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center py-3">
+            <div class="flex items-center space-x-4">
+              <button id="openSidebar" class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <a href="index.html" class="brand-logo">
+                <i class="fas fa-tank text-accent-color"></i>
+                <span>PCWStats</span>
+                <span class="beta-tag">BETA</span>
+              </a>
+            </div>
+            <div class="flex items-center space-x-6">
+              <button id="openSearch" class="search-button">
+                <i class="fas fa-search"></i>
+              </button>
+              <div class="theme-toggle-mobile" id="themeToggleMobile">
+                <i class="fas fa-moon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1>Tank Roulette</h1>
+          <p>Spin the wheel to get a random tank to play!</p>
+        </div>
+      </section>
+      <!-- Roulette Section -->
+      <section id="main" class="section">
+        <div class="container mx-auto px-4">
+          <div class="roulette-container">
+            <h2 class="section-title">Random Tank Selector</h2>
+            <p class="text-center mb-8 max-w-2xl mx-auto">Can't decide which tank to play? Let fate choose for you!</p>
+            <div class="roulette-wrapper">
+              <div class="roulette-arrow"></div>
+              <div class="roulette-wheel" id="rouletteWheel"></div>
+            </div>
+            <div class="result-container" id="resultContainer">
+              <div class="result-card hidden" id="resultCard">
+                <div class="result-image-container">
+                  <img id="resultImage" src="" alt="Selected Tank" class="result-image">
+                </div>
+                <div class="result-info">
+                  <h3 id="resultName"></h3>
+                  <div class="result-meta">
+                    <span id="resultNation"></span>
+                    <span id="resultType"></span>
+                  </div>
+                  <a href="#" id="resultLink" class="btn-accent">
+                    <i class="fas fa-chart-bar mr-2"></i>View Stats </a>
+                </div>
+              </div>
+            </div>
+            <div class="spin-container">
+              <button class="btn-accent spin-button" id="spinButton">
+                <i class="fas fa-random mr-2"></i>Spin the Wheel </button>
+              <div class="spin-counter" id="spinCounter"> Spins: <span id="spinCount">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Roulette Prizes Section -->
+      <section class="section prizes-section">
+        <div class="container mx-auto px-4">
+          <h2 class="section-title">Roulette Prizes & Chances</h2>
+          <p class="text-center mb-8 max-w-2xl mx-auto">Here's what you could win (or not win) in the Tank Roulette!</p>
+          <div class="prizes-grid">
+            <!-- Special Prize (joke) -->
+            <div class="prize-card special-prize">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/roulette/special.png" alt="Special Prize" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>Special Prize</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> Mystery </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Legendary </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">0.0001%</span>
+                </div>
+              </div>
+            </div>
+            <!-- All Regular Tanks -->
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/agds/icon_agds.png" alt="AGDS" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>AGDS</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USA </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Marksman </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">4.2%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/alvt/icon_alvt.png" alt="ALVT" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>ALVT</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USA </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Unknown </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">4.1%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/bat-4m/icon_bat-4m.png" alt="BAT-4M" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>BAT-4M</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USSR </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Defender </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">4.0%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/challenger/icon_challenger.png" alt="Challenger" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>Challenger</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> UK </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Unknown </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">4.0%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/hstv-l/icon_hstv-l.png" alt="HSTV-L" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>HSTV-L</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USA </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Assault </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.9%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/leopard-1a1/icon_leopard-1a1.png" alt="Leopard 1A1" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>Leopard 1A1</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> Germany </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Marksman </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.9%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/leopard-1a6/icon_leopard-1a6.png" alt="Leopard 1A6" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>Leopard 1A6</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> Germany </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Marksman </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.8%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/leopard-2k/icon_leopard-2k.png" alt="Leopard 2K" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>Leopard 2K</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> Germany </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Assault </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.8%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/leopard-2k-atgm/icon_leopard-2k-atgm.png" alt="Leopard 2K ATGM" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>Leopard 2K ATGM</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> Germany </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Marksman </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.7%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1-railgun/icon_m1-railgun.png" alt="M1 Railgun" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>M1 Railgun</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USA </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Unknown </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.7%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m1e1/icon_m1e1.png" alt="M1E1" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>M1E1</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USA </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Defender </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.6%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m3-bradley/icon_m3-bradley.png" alt="M3 Bradley" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>M3 Bradley</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USA </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Unknown </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.6%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m60a1/icon_m60a1.png" alt="M60A1" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>M60A1</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USA </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Defender </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.5%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m60a3/icon_m60a3.png" alt="M60A3" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>M60A3</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USA </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Assault </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.5%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/m551/icon_m551.png" alt="M551" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>M551</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USA </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Unknown </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.4%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/object-279/icon_object-279.png" alt="Object 279" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>Object 279</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USSR </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Unknown </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.4%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/object-287/icon_object-287.png" alt="Object 287" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>Object 287</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USSR </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Unknown </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.3%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/ptz89/icon_ptz89.png" alt="PTZ-89" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>PTZ-89</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> China </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Unknown </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.3%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/t-62a/icon_t-62a.png" alt="T-62A" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>T-62A</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USSR </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Assault </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.2%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/t-64a/icon_t-64a.png" alt="T-64A" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>T-64A</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USSR </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Unknown </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.2%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/t-64b/icon_t-64b.png" alt="T-64B" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>T-64B</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USSR </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Unknown </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.1%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/t-72a/icon_t-72a.png" alt="T-72A" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>T-72A</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USSR </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Unknown </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.1%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/t-72b/icon_t-72b.png" alt="T-72B" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>T-72B</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USSR </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Unknown </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.0%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/xm1-90/icon_xm1-90.png" alt="XM1-90" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>XM1-90</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USA </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Assault </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">3.0%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/xm1-v/icon_xm1-v.png" alt="XM1-V" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>XM1-V</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USA </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Defender </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">2.9%</span>
+                </div>
+              </div>
+            </div>
+            <div class="prize-card">
+              <div class="prize-image-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/xm808-twister/icon_xm808-twister.png" alt="XM808 Twister" class="prize-image">
+              </div>
+              <div class="prize-info">
+                <h3>XM808 Twister</h3>
+                <div class="prize-meta">
+                  <span>
+                    <i class="fas fa-flag"></i> USA </span>
+                  <span>
+                    <i class="fas fa-tag"></i> Unknown </span>
+                </div>
+                <div class="prize-chance">
+                  <span class="chance-label">Chance:</span>
+                  <span class="chance-value">2.9%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-center text-sm text-gray-500 mt-8">* There are no actual chances, this is fully random and you won't ever get the special prize. These percentages are just for fun.</p>
+        </div>
+      </section>
+      <!-- CTA Section -->
+      <section class="cta-section">
+        <div class="container mx-auto px-4 text-center">
+          <h2>Enjoying the Roulette?</h2>
+          <p class="text-lg mb-8 max-w-2xl mx-auto">Join our community to suggest improvements or report any issues with the roulette feature.</p>
+          <div class="flex justify-center gap-4 flex-wrap">
+            <a href="https://discord.com/invite/2nHHHBWNDw" class="cta-button inline-flex items-center px-6 py-3 bg-discord-color text-white rounded-lg font-medium hover:bg-discord-color-dark transition-colors">
+              <i class="fab fa-discord mr-2"></i> Join Our Discord </a>
+            <a href="contact-us.html" class="cta-button inline-flex items-center px-6 py-3 bg-accent-color text-white rounded-lg font-medium hover:bg-accent-color-dark transition-colors">
+              <i class="fas fa-comment mr-2"></i> Give Feedback </a>
+          </div>
+        </div>
+      </section>
+      <!-- Search Modal -->
+      <div class="search-overlay" id="searchOverlay"></div>
+      <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+          <div class="search-input-container">
+            <i class="fas fa-search search-modal-icon"></i>
+            <input type="text" placeholder="Search tanks, maps, guides..." class="search-modal-input" autofocus>
+          </div>
+          <div class="search-suggestions text-center">
+            <p class="search-suggestions-title">Please note that search functionality is not yet implemented</p>
+            <div class="search-tags">
+              <span class="search-tag">Chopper</span>
+              <span class="search-tag">Defender Tanks</span>
+              <span class="search-tag">Flanking</span>
+              <span class="search-tag">Meta Builds</span>
+              <span class="search-tag">Tactics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <footer class="footer bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-10 space-y-10">
+          <!-- Top Row -->
+          <div class="footer-brand flex flex-col items-center text-center">
+            <div>
+              <h3 class="text-2xl font-semibold">PCWStats</h3>
+              <p class="text-gray-400">Your go-to resource for Project CW statistics and gameplay information.</p>
+            </div>
+            <div class="flex space-x-4 text-xl">
+              <a href="https://discord.com/invite/2nHHHBWNDw" class="social-icon">
+                <i class="fab fa-discord"></i>
+              </a>
+              <a href="https://x.com/PCWStats" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://github.com/PCWStats" class="social-icon">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.youtube.com/@PCWStats" class="social-icon">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Middle Row -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-10 text-center">
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Tools</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="maps.html">Map Knowledge</a>
+                </li>
+                <li>
+                  <a href="tanks.html">Tank Statistics</a>
+                </li>
+                <li>
+                  <a href="tankopedia.html">Tankopedia</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Community</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="guides.html">Community Guides</a>
+                </li>
+                <li>
+                  <a href="builds.html">Common Builds</a>
+                </li>
+                <li>
+                  <a href="tournaments.html">Tournaments</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">PCWStats</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="about-us.html">About the Project</a>
+                </li>
+                <li>
+                  <a href="blog.html">Official Blog</a>
+                </li>
+                <li>
+                  <a href="news.html">Game News</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Fun</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="roulette.html">Tank Roulette</a>
+                </li>
+                <li>
+                  <a href="credits.html">Community Credits</a>
+                </li>
+                <li>
+                  <a href="contact-us.html">Contact Us</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Legal</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="legal/terms-of-service.html">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="legal/project-license.html">Project License</a>
+                </li>
+                <li>
+                  <a href="legal/privacy-policy.html">Privacy Policy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Contact Row -->
+          <div class="text-center">
+            <h3 class="text-lg font-semibold mb-1">Contact</h3>
+            <p class="text-gray-400 mb-2">Have suggestions, found a bug or want to help?</p>
+            <a href="contact-us.html" class="btn-accent mt-4">
+              <i class="fas fa-envelope mr-2"></i>Send Feedback </a>
+            <a href="get-involved.html" class="btn-accent mt-4">
+              <i class="fas fa-users mr-2"></i>Get Involved </a>
+          </div>
+          <!-- Bottom Disclaimer -->
+          <div class="text-center text-sm text-gray-500 space-y-1 border-t border-gray-700 pt-4">
+            <p>PCWStats is a community-made project and is not associated with, endorsed by, or affiliated with Project CW or Wargaming.net.</p>
+            <p>&copy; 2025 PCWStats by SINEWAVE Development. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/theme-loader.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/warning.js"></script>
+    <script src="js/global-hero.js"></script>
+    <script src="js/roulette.js"></script>
+  </body>
+</html>
