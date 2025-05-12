@@ -317,7 +317,7 @@ async function fetchAndPopulateAgents(agentsUrl, tankId) {
             // Update agent count in header
             const agentCountSpan = document.querySelector('.tank-header .tank-meta span:nth-child(3)');
             if (agentCountSpan) {
-                agentCountSpan.innerHTML = `<i class="fas fa-users mr-1"></i> ${agentsData.agents.length} Agents`;
+                agentCountSpan.innerHTML = `<i class="fas fa-users mr-1"></i> Number of Agents: ${agentsData.agents.length}`;
             }
 
             // Reinitialize agent modals after populating agents
