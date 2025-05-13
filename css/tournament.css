@@ -28,7 +28,7 @@
 	font-weight: bold;
 	font-size: 0.8rem;
 	text-transform: uppercase;
-	letter-spacing: 0.5px;
+	letter-spacing: 1px;
 }
 
 .ended-tournament-type-badge {
@@ -39,7 +39,7 @@
 	font-weight: bold;
 	font-size: 0.8rem;
 	text-transform: uppercase;
-	letter-spacing: 0.5px;
+	letter-spacing: 1px;
 	border: 1px solid var(--ongoing-accent-color);
 }
 

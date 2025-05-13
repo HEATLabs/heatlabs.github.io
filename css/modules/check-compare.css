@@ -85,7 +85,7 @@
 	font-weight: bold;
 	background-color: var(--bg-secondary-dark);
 	text-transform: uppercase;
-	letter-spacing: 0.5px;
+	letter-spacing: 1px;
 	font-size: 0.8rem;
 	color: var(--text-secondary);
 	position: relative;
