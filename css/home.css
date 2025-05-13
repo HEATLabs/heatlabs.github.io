@@ -211,6 +211,75 @@
 	margin-bottom: 0;
 }
 
+/* Fun Facts Section */
+.fun-facts-section {
+	padding-bottom: 6rem;
+	background-color: var(--bg-primary);
+	border-bottom: 1px solid var(--border-color);
+}
+
+.fun-facts-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 1rem;
+}
+
+.fun-facts-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 2rem;
+	text-align: center;
+}
+
+.fun-fact-item {
+	padding: 2rem 1rem;
+	border-radius: 1rem;
+	background-color: var(--card-bg);
+	border: 1px solid var(--border-color);
+	box-shadow: var(--shadow);
+	transition: all 0.3s ease;
+}
+
+.fun-fact-item:hover {
+	transform: translateY(-5px);
+	box-shadow: var(--shadow-lg);
+	border-color: var(--accent-color);
+}
+
+.fun-fact-number {
+	font-size: 3rem;
+	font-weight: 700;
+	color: var(--accent-color);
+	margin-bottom: 0.5rem;
+	transition: all 0.3s ease;
+}
+
+.fun-fact-item:hover .fun-fact-number {
+	transform: scale(1.05);
+}
+
+.fun-fact-label {
+	font-size: 1.125rem;
+	color: var(--text-secondary);
+	font-weight: 500;
+}
+
+@media (max-width: 768px) {
+	.fun-facts-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 480px) {
+	.fun-facts-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.fun-fact-number {
+		font-size: 2.5rem;
+	}
+}
+
 /* Animations */
 @keyframes fadeIn {
 	from {
