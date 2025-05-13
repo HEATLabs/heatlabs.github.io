@@ -307,29 +307,59 @@ body {
 	line-height: 1.6;
 }
 
-/* Version Info Styles */
-.version-info {
-    font-size: 0.9rem;
-    text-align: center;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-color);
-    margin-top: 1rem;
+/* Version Info Container */
+.version-info-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 1.5rem;
 }
 
-.version-info a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    text-decoration: none;
+.version-info-item {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 0.9rem;
+	color: var(--text-primary);
+	margin-bottom: 1.5rem;
 }
 
-.version-info i {
-    font-size: 0.8em;
-    opacity: 0.7;
+.version-info-item .version-label {
+	font-weight: 500;
+	color: var(--text-dark);
 }
 
-.dark-theme .version-info {
-    border-top-color: rgba(255, 255, 255, 0.1);
+.version-info-item .version-value {
+	color: var(--accent-color);
+	font-weight: 500;
+}
+
+.version-info-link {
+	color: var(--accent-color);
+	text-decoration: none;
+	transition: color var(--transition-speed);
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.25rem;
+}
+
+.version-info-link:hover {
+	color: var(--accent-color-hover);
+	background-color: var(--accent-color-light);
+}
+
+.version-info-link i {
+	font-size: 0.7em;
+	opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+	.version-info-container {
+		flex-direction: column;
+		gap: 0.75rem;
+		align-items: center;
+	}
 }
 
 /* Responsive Styles */

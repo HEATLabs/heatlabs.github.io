@@ -83,46 +83,57 @@ function addVersionToFooter(update, isFallback = false) {
         console.warn('Could not find footer disclaimer div');
         return;
     }
+
     // Create a container for the version info
     const versionContainer = document.createElement('div');
-    versionContainer.className = 'version-info mt-4';
+    versionContainer.className = 'version-info-container';
 
     // Format the date
     const formattedDate = formatDate(update.date);
+    const currentDate = formatDate(new Date().toISOString().split('T')[0]);
 
-    // Create the version text with link
-    const versionLink = document.createElement('a');
-    versionLink.href = 'https://pcwstats.github.io/changelog.html';
-    versionLink.className = 'text-gray-400 hover:text-accent-color transition-colors';
-    versionLink.title = 'View full changelog';
+    // Create version info element
+    const versionInfo = document.createElement('div');
+    versionInfo.className = 'version-info-item';
+    versionInfo.innerHTML = `
+        <span class="version-label">Version:</span>
+        <span class="version-value">v${update.version}</span>
+    `;
 
-    if (isFallback) {
-        versionLink.innerHTML = `
-            <span class="font-medium">Version</span>: v${update.version}
-            <span class="opacity-75">(offline)</span>
-        `;
-    } else {
-        versionLink.innerHTML = `
-            <span class="font-medium">Latest version</span>: v${update.version}
-            <span class="opacity-75">(${formattedDate})</span>
-        `;
-    }
+    // Create last updated element
+    const updatedInfo = document.createElement('div');
+    updatedInfo.className = 'version-info-item';
+    updatedInfo.innerHTML = `
+        <span class="version-label">Last Updated:</span>
+        <span class="version-value">${isFallback ? currentDate : formattedDate}</span>
+    `;
 
-    // Add click event to scroll to top when going to changelog
-    versionLink.addEventListener('click', function(e) {
-        // Only prevent default if we're not falling back
-        if (!isFallback) {
-            e.preventDefault();
-            window.location.href = 'https://pcwstats.github.io/changelog.html';
-            window.scrollTo(0, 0);
-        }
-    });
+    // Create changelog link
+    const changelogLink = document.createElement('a');
+    changelogLink.className = 'version-info-item version-info-link';
+    changelogLink.href = 'https://pcwstats.github.io/changelog.html';
+    changelogLink.innerHTML = `
+        <span>View Changelog</span>
+        <i class="fas fa-external-link-alt"></i>
+    `;
+    changelogLink.title = 'View full changelog';
+    changelogLink.target = '_blank';
+    changelogLink.rel = 'noopener noreferrer';
 
-    versionContainer.appendChild(versionLink);
-    disclaimerDiv.appendChild(versionContainer);
+    // Append all elements to container
+    versionContainer.appendChild(versionInfo);
+    versionContainer.appendChild(updatedInfo);
+    versionContainer.appendChild(changelogLink);
+
+    // Insert after disclaimer
+    disclaimerDiv.parentNode.insertBefore(versionContainer, disclaimerDiv.nextSibling);
 }
 
 function formatDate(dateString) {
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    };
     return new Date(dateString).toLocaleDateString(undefined, options);
 }
