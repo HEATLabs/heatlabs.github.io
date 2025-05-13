@@ -116,28 +116,5 @@ function formatDate(dateString) {
   return new Date(dateString).toLocaleDateString(undefined, options);
 }
 
-function setupBackToTop() {
-  const backToTopBtn = document.createElement('button');
-  backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-  backToTopBtn.className = 'back-to-top';
-  backToTopBtn.title = 'Back to top';
-  document.body.appendChild(backToTopBtn);
-
-  window.addEventListener('scroll', function() {
-    if (window.pageYOffset > 300) {
-      backToTopBtn.style.display = 'block';
-    } else {
-      backToTopBtn.style.display = 'none';
-    }
-  });
-
-  backToTopBtn.addEventListener('click', function() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-}
-
 // Make fetchChangelogData available globally for retry button
 window.fetchChangelogData = fetchChangelogData;
