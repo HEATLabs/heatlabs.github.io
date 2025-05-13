@@ -307,6 +307,31 @@ body {
 	line-height: 1.6;
 }
 
+/* Version Info Styles */
+.version-info {
+    font-size: 0.9rem;
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 1rem;
+}
+
+.version-info a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    text-decoration: none;
+}
+
+.version-info i {
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+.dark-theme .version-info {
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
 /* Responsive Styles */
 @media (max-width: 1024px) {
 	.hero h1 {
