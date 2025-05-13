@@ -51,13 +51,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle Enter key to open first result
     searchInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && currentResults.length > 0) {
-            // Navigate to the first result
-            window.location.href = currentResults[0].path;
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Prevent default form submission
 
-            // Save search term to past searches
             const query = searchInput.value.trim().toLowerCase();
-            saveToPastSearches(query);
+
+            // Perform search immediately to ensure currentResults is up-to-date
+            currentResults = searchPages(query);
+
+            if (currentResults.length > 0) {
+                // Save search term to past searches
+                saveToPastSearches(query);
+
+                // Navigate to the first result
+                window.location.href = currentResults[0].path;
+            }
         }
     });
 
@@ -170,6 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const resultElement = document.createElement('a');
             resultElement.href = result.path;
             resultElement.className = 'search-result-item';
+
             resultElement.innerHTML = `
                 <h4>${result.name}</h4>
                 <p>${result.description}</p>
@@ -189,11 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Clear results
     function clearResults() {
-        currentResults = []; // Clear current results tracking
-        const existingResults = document.querySelector('.search-results');
-        if (existingResults) {
-            existingResults.remove();
-        }
+        searchResultsContainer.querySelectorAll('.search-results').forEach(el => el.remove());
 
         searchPlaceholder.style.display = 'flex';
         searchPlaceholder.innerHTML = `
