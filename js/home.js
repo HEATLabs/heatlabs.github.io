@@ -31,7 +31,7 @@ function initializeCounters() {
 }
 
 function calculateDaysSinceCreation() {
-    const creationDate = new Date('May 30, 2024 00:00:00');
+    const creationDate = new Date('April 24, 2025 00:00:00');
     const today = new Date();
     const diffTime = today - creationDate;
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
