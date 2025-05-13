@@ -20,7 +20,6 @@
 	border-radius: 0.75rem;
 	overflow: hidden;
 	box-shadow: var(--shadow);
-	transition: all var(--transition-speed);
 	border: 1px solid var(--border-color);
 	cursor: pointer;
 	opacity: 0;

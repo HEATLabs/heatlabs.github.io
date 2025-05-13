@@ -63,7 +63,7 @@
 	font-size: 0.75rem;
 	font-weight: bold;
 	text-transform: uppercase;
-	letter-spacing: 0.5px;
+	letter-spacing: 1px;
 }
 
 .guide-content {
@@ -170,10 +170,10 @@
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	width: 0px;
-	height: 0px;
+	width: 0;
+	height: 0;
 	background-color: var(--accent-color);
-	border-radius: 0px;
+	border-radius: 0;
 }
 
 .no-guides-placeholder p {

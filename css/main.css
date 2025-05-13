@@ -18,7 +18,6 @@ html {
 	--text-light-secondary: #666;
 	--shadow-light: 0 4px 6px rgba(0, 0, 0, 0.05);
 	--shadow-dark: 0 4px 6px rgba(0, 0, 0, 0.2);
-	--transition-speed: 0.3s;
 	--sidebar-width: 280px;
 	--highlight-bg: rgba(239, 246, 255, 1);
 	--highlight-border: var(--accent-color);
