@@ -623,9 +623,71 @@ function populateTankStats(tankStats) {
     }
 }
 
+function initializeAccordions() {
+    // Initialize strengths accordion
+    const strengthsAccordion = document.querySelector('.strengths-accordion');
+    if (strengthsAccordion) {
+        const strengthItems = strengthsAccordion.querySelectorAll('.accordion-item');
+
+        strengthItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+
+            header.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Close all other items in this accordion
+                strengthItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        });
+    }
+
+    // Initialize weaknesses accordion
+    const weaknessesAccordion = document.querySelector('.weaknesses-accordion');
+    if (weaknessesAccordion) {
+        const weaknessItems = weaknessesAccordion.querySelectorAll('.accordion-item');
+
+        weaknessItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+
+            header.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Close all other items in this accordion
+                weaknessItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        });
+    }
+}
+
+// Update the initializeTankPageElements function to include the accordion initialization
 function initializeTankPageElements() {
     // Initialize image gallery
     initializeImageGallery();
+
+    // Initialize accordions
+    initializeAccordions();
 
     // FAQ Accordion functionality
     const faqItems = document.querySelectorAll('.faq-item');
