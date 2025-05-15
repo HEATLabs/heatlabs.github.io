@@ -1,19 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
-    const initialChoiceModal = document.getElementById('initialChoiceModal');
-    const createNewPlanBtn = document.getElementById('createNewPlanBtn');
-    const loadExistingPlanBtn = document.getElementById('loadExistingPlanBtn');
-    const mapSelectionGrid = document.getElementById('mapSelectionGrid');
+    const mapSelectionGrid = document.querySelector('.map-grid');
     const strategyPlanner = document.getElementById('strategyPlanner');
-    const loadPlanModal = document.getElementById('loadPlanModal');
-    const loadPlanBtn = document.getElementById('loadPlanBtn');
-    const cancelLoadBtn = document.getElementById('cancelLoadBtn');
     const planCodeInput = document.getElementById('planCodeInput');
-    const backToMapsBtn = document.getElementById('backToMapsBtn');
+    const loadPlanBtn = document.getElementById('loadPlanBtn');
+    const backToPlansBtn = document.getElementById('backToPlansBtn');
     const savePlanBtn = document.getElementById('savePlanBtn');
     const clearCanvasBtn = document.getElementById('clearCanvasBtn');
     const planTitle = document.getElementById('planTitle');
     const planDescription = document.getElementById('planDescription');
+    const titleCharCount = document.getElementById('titleCharCount');
+    const descCharCount = document.getElementById('descCharCount');
     const shareCode = document.getElementById('shareCode');
     const copyShareCode = document.getElementById('copyShareCode');
     const mapImage = document.getElementById('mapImage');
@@ -26,6 +23,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const addLayerBtn = document.getElementById('addLayerBtn');
     const deleteLayerBtn = document.getElementById('deleteLayerBtn');
     const layersList = document.getElementById('layersList');
+    const customNotification = document.getElementById('customNotification');
+    const notificationMessage = document.getElementById('notificationMessage');
+    const notificationIcon = document.getElementById('notificationIcon');
+    const textInputModal = document.getElementById('textInputModal');
+    const textInputField = document.getElementById('textInputField');
+    const confirmTextBtn = document.getElementById('confirmTextBtn');
+    const cancelTextBtn = document.getElementById('cancelTextBtn');
+    const confirmationModal = document.getElementById('confirmationModal');
+    const confirmationTitle = document.getElementById('confirmationTitle');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    const confirmActionBtn = document.getElementById('confirmActionBtn');
+    const cancelActionBtn = document.getElementById('cancelActionBtn');
+    const loadPlanSection = document.querySelector('.load-plan-section');
+    const createPlanSection = document.querySelector('.create-plan-section');
 
     // State variables
     let currentTool = 'select';
@@ -40,6 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentMap = '';
     let canvasStates = [];
     let currentStateIndex = -1;
+    let pendingTextPosition = {
+        x: 0,
+        y: 0
+    };
 
     // Map data
     const maps = [{
@@ -71,17 +86,13 @@ document.addEventListener('DOMContentLoaded', function() {
         setupCanvas();
         addInitialLayer();
         updateShareCode();
+        updateCharCounts();
     }
 
     // Set up event listeners
     function setupEventListeners() {
-        // Initial choice modal
-        createNewPlanBtn.addEventListener('click', showMapSelection);
-        loadExistingPlanBtn.addEventListener('click', showLoadPlanModal);
-
-        // Load plan modal
+        // Load plan
         loadPlanBtn.addEventListener('click', loadPlanFromCode);
-        cancelLoadBtn.addEventListener('click', hideLoadPlanModal);
         planCodeInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 loadPlanFromCode();
@@ -89,9 +100,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Planner actions
-        backToMapsBtn.addEventListener('click', showMapSelection);
+        backToPlansBtn.addEventListener('click', showPlansSection);
         savePlanBtn.addEventListener('click', savePlan);
-        clearCanvasBtn.addEventListener('click', clearCanvas);
+        clearCanvasBtn.addEventListener('click', confirmClearCanvas);
         copyShareCode.addEventListener('click', copyCodeToClipboard);
 
         // Tool buttons
@@ -116,13 +127,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Layer controls
         addLayerBtn.addEventListener('click', addNewLayer);
-        deleteLayerBtn.addEventListener('click', deleteCurrentLayer);
+        deleteLayerBtn.addEventListener('click', confirmDeleteLayer);
+
+        // Text input modal
+        confirmTextBtn.addEventListener('click', confirmTextInput);
+        cancelTextBtn.addEventListener('click', hideTextInputModal);
+        textInputField.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                confirmTextInput();
+            }
+        });
+
+        // Confirmation modal
+        confirmActionBtn.addEventListener('click', executeConfirmedAction);
+        cancelActionBtn.addEventListener('click', hideConfirmationModal);
+
+        // Character count updates
+        planTitle.addEventListener('input', updateCharCounts);
+        planDescription.addEventListener('input', updateCharCounts);
+    }
+
+    // Update character counts
+    function updateCharCounts() {
+        const titleLength = planTitle.value.length;
+        const descLength = planDescription.value.length;
+
+        titleCharCount.textContent = `${titleLength}/100`;
+        descCharCount.textContent = `${descLength}/250`;
+
+        if (titleLength >= 100) {
+            titleCharCount.classList.add('text-red-400');
+        } else {
+            titleCharCount.classList.remove('text-red-400');
+        }
+
+        if (descLength >= 250) {
+            descCharCount.classList.add('text-red-400');
+        } else {
+            descCharCount.classList.remove('text-red-400');
+        }
     }
 
     // Render the map selection grid
     function renderMapGrid() {
-        const mapGrid = document.querySelector('.map-grid');
-        mapGrid.innerHTML = '';
+        mapSelectionGrid.innerHTML = '';
 
         maps.forEach(map => {
             const mapItem = document.createElement('div');
@@ -135,51 +183,51 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
             mapItem.addEventListener('click', () => selectMap(map.id));
-            mapGrid.appendChild(mapItem);
+            mapSelectionGrid.appendChild(mapItem);
         });
     }
 
-    // Show map selection grid
-    function showMapSelection() {
-        initialChoiceModal.classList.remove('active');
-        mapSelectionGrid.classList.remove('hidden');
+    // Show plans section (load/create)
+    function showPlansSection() {
         strategyPlanner.classList.add('hidden');
-        loadPlanModal.classList.add('hidden');
+        loadPlanSection.classList.remove('hidden');
+        createPlanSection.classList.remove('hidden');
+        document.querySelector('.load-plan-section').scrollIntoView({
+            behavior: 'smooth'
+        });
     }
 
     // Select a map and show the planner
     function selectMap(mapId) {
         const selectedMap = maps.find(map => map.id === mapId);
         if (!selectedMap) return;
-
         currentMap = mapId;
         mapImage.src = selectedMap.image;
-        mapSelectionGrid.classList.add('hidden');
         strategyPlanner.classList.remove('hidden');
-
+        loadPlanSection.classList.add('hidden');
+        createPlanSection.classList.add('hidden');
         // Reset canvas size based on the image
         setTimeout(() => {
             resizeCanvas();
             redrawCanvas();
+            // Check if the element exists before scrolling
+            const sectionElement = document.getElementById('planTitle');
+            if (sectionElement) {
+                sectionElement.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                // Fallback to scrolling to top if element doesn't exist
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }, 100);
-    }
-
-    // Show load plan modal
-    function showLoadPlanModal() {
-        initialChoiceModal.classList.remove('active');
-        loadPlanModal.classList.remove('hidden');
-        planCodeInput.focus();
-    }
-
-    // Hide load plan modal
-    function hideLoadPlanModal() {
-        loadPlanModal.classList.add('hidden');
     }
 
     // Load plan from share code
     function loadPlanFromCode() {
         const code = planCodeInput.value.trim();
-        if (!code) return;
+        if (!code) {
+            showNotification('Please enter a share code', 'error');
+            return;
+        }
 
         try {
             const planData = decodePlan(code);
@@ -188,6 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentMap = planData.map;
             planTitle.value = planData.title || '';
             planDescription.value = planData.description || '';
+            updateCharCounts();
 
             const selectedMap = maps.find(map => map.id === currentMap);
             if (selectedMap) {
@@ -204,20 +253,25 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Show the planner
-            initialChoiceModal.classList.remove('active');
-            mapSelectionGrid.classList.add('hidden');
-            loadPlanModal.classList.add('hidden');
             strategyPlanner.classList.remove('hidden');
+            loadPlanSection.classList.add('hidden');
+            createPlanSection.classList.add('hidden');
+            planCodeInput.value = '';
 
             // Redraw canvas
             setTimeout(() => {
                 resizeCanvas();
                 redrawCanvas();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                showNotification('Plan loaded successfully', 'success');
             }, 100);
 
         } catch (error) {
-            alert('Failed to load plan. Please check the share code and try again.');
             console.error('Error loading plan:', error);
+            showNotification('Failed to load plan. Please check the share code.', 'error');
         }
     }
 
@@ -277,23 +331,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // For text tool, prompt for text
+        // For text tool, show text input modal
         if (currentTool === 'text') {
-            const text = prompt('Enter text:', '');
-            if (text) {
-                const currentLayer = layers[currentLayerIndex];
-                currentLayer.drawing = currentLayer.drawing || [];
-                currentLayer.drawing.push({
-                    type: 'text',
-                    x: lastX,
-                    y: lastY,
-                    text: text,
-                    color: currentColor,
-                    width: currentWidth,
-                    opacity: currentOpacity
-                });
-                redrawCanvas();
-            }
+            pendingTextPosition = {
+                x: lastX,
+                y: lastY
+            };
+            showTextInputModal();
             isDrawing = false;
         }
     }
@@ -676,18 +720,29 @@ document.addEventListener('DOMContentLoaded', function() {
         layers.push(newLayer);
         currentLayerIndex = layers.length - 1;
         renderLayersList();
+        showNotification('New layer added', 'success');
     }
 
-    // Delete current layer
-    function deleteCurrentLayer() {
-        if (layers.length <= 1) return;
-
-        layers.splice(currentLayerIndex, 1);
-        if (currentLayerIndex >= layers.length) {
-            currentLayerIndex = layers.length - 1;
+    // Confirm layer deletion
+    function confirmDeleteLayer() {
+        if (layers.length <= 1) {
+            showNotification('Cannot delete the last layer', 'warning');
+            return;
         }
-        renderLayersList();
-        redrawCanvas();
+
+        showConfirmationModal(
+            'Delete Layer',
+            'Are you sure you want to delete this layer? All drawings on this layer will be lost.',
+            () => {
+                layers.splice(currentLayerIndex, 1);
+                if (currentLayerIndex >= layers.length) {
+                    currentLayerIndex = layers.length - 1;
+                }
+                renderLayersList();
+                redrawCanvas();
+                showNotification('Layer deleted', 'success');
+            }
+        );
     }
 
     // Render layers list
@@ -767,18 +822,36 @@ document.addEventListener('DOMContentLoaded', function() {
         redrawCanvas();
     }
 
+    // Confirm canvas clearing
+    function confirmClearCanvas() {
+        showConfirmationModal(
+            'Clear Canvas',
+            'Are you sure you want to clear the current layer? All drawings will be lost.',
+            clearCanvas
+        );
+    }
+
     // Clear canvas
     function clearCanvas() {
-        if (!confirm('Are you sure you want to clear the canvas?')) return;
-
         const currentLayer = layers[currentLayerIndex];
         currentLayer.drawing = [];
         saveCanvasState();
         redrawCanvas();
+        showNotification('Canvas cleared', 'success');
     }
 
     // Save plan
     function savePlan() {
+        if (planTitle.value.length > 100) {
+            showNotification('Plan title must be 100 characters or less', 'error');
+            return;
+        }
+
+        if (planDescription.value.length > 250) {
+            showNotification('Plan description must be 250 characters or less', 'error');
+            return;
+        }
+
         const planData = {
             map: currentMap,
             title: planTitle.value,
@@ -788,7 +861,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         updateShareCode();
-        alert('Plan saved! Use the share code to load it later or share with others.');
+        showNotification('Plan saved! Use the share code to load it later.', 'success');
     }
 
     // Update share code
@@ -842,6 +915,104 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             copyShareCode.innerHTML = originalText;
         }, 2000);
+
+        showNotification('Share code copied to clipboard', 'success');
+    }
+
+    // Show text input modal
+    function showTextInputModal() {
+        textInputField.value = '';
+        textInputModal.classList.remove('hidden');
+        textInputField.focus();
+    }
+
+    // Hide text input modal
+    function hideTextInputModal() {
+        textInputModal.classList.add('hidden');
+    }
+
+    // Confirm text input
+    function confirmTextInput() {
+        const text = textInputField.value.trim();
+        if (text) {
+            const currentLayer = layers[currentLayerIndex];
+            currentLayer.drawing = currentLayer.drawing || [];
+            currentLayer.drawing.push({
+                type: 'text',
+                x: pendingTextPosition.x,
+                y: pendingTextPosition.y,
+                text: text,
+                color: currentColor,
+                width: currentWidth,
+                opacity: currentOpacity
+            });
+            redrawCanvas();
+            hideTextInputModal();
+        }
+    }
+
+    // Show confirmation modal
+    function showConfirmationModal(title, message, callback) {
+        confirmationTitle.textContent = title;
+        confirmationMessage.textContent = message;
+        confirmationModal.classList.remove('hidden');
+
+        // Store the callback
+        confirmActionBtn.onclick = () => {
+            callback();
+            hideConfirmationModal();
+        };
+    }
+
+    // Hide confirmation modal
+    function hideConfirmationModal() {
+        confirmationModal.classList.add('hidden');
+    }
+
+    // Execute confirmed action
+    function executeConfirmedAction() {
+        hideConfirmationModal();
+    }
+
+    // Show custom notification
+    function showNotification(message, type = 'info') {
+        notificationMessage.textContent = message;
+
+        // Set icon and color based on type
+        let iconClass = 'fa-info-circle';
+        let notificationClass = 'info';
+
+        switch (type) {
+            case 'success':
+                iconClass = 'fa-check-circle';
+                notificationClass = 'success';
+                break;
+            case 'error':
+                iconClass = 'fa-exclamation-circle';
+                notificationClass = 'error';
+                break;
+            case 'warning':
+                iconClass = 'fa-exclamation-triangle';
+                notificationClass = 'warning';
+                break;
+        }
+
+        notificationIcon.className = `fas ${iconClass} mr-3`;
+        customNotification.className = `fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg border border-gray-700 transform translate-y-10 opacity-0 transition-all duration-300 z-50 ${notificationClass}`;
+
+        // Show notification
+        customNotification.classList.remove('hidden');
+        setTimeout(() => {
+            customNotification.classList.add('show');
+        }, 10);
+
+        // Hide after 5 seconds
+        setTimeout(() => {
+            customNotification.classList.remove('show');
+            setTimeout(() => {
+                customNotification.classList.add('hidden');
+            }, 300);
+        }, 5000);
     }
 
     // Initialize the app

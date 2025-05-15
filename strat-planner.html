@@ -208,24 +208,33 @@
           <p>Plan and share your Project CW strategies with the community</p>
         </div>
       </section>
-      <!-- Main Content -->
+      <!-- Strategy Planner -->
       <section class="section">
         <div class="container mx-auto px-4">
-          <!-- Initial Choice Modal -->
-          <div id="initialChoiceModal" class="modal-overlay active">
-            <div class="modal-content">
-              <h2 class="modal-title">What would you like to do?</h2>
-              <div class="modal-buttons">
-                <button id="createNewPlanBtn" class="btn-accent">
-                  <i class="fas fa-plus mr-2"></i>Create New Plan </button>
-                <button id="loadExistingPlanBtn" class="btn-secondary">
-                  <i class="fas fa-folder-open mr-2"></i>Load Existing Plan </button>
+          <!-- Load Existing Plan Section -->
+          <div class="load-plan-section mb-16">
+            <div class="flex justify-center items-center mb-6">
+              <h2 class="section-title">Load Existing Plan</h2>
+            </div>
+            <div class="load-plan-card bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-700">
+              <p class="text-gray-300 mb-4 text-center">Enter a share code below to load an existing strategy plan created by you or other players.</p>
+              <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex-grow">
+                  <input type="text" id="planCodeInput" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-accent-color focus:border-transparent" placeholder="Paste your share code here">
+                </div>
+                <button id="loadPlanBtn" class="btn-accent px-6 py-3 rounded-lg font-medium flex items-center justify-center whitespace-nowrap">
+                  <i class="fas fa-folder-open mr-2"></i>Load Plan </button>
               </div>
+              <p class="text-sm text-gray-400 mt-3 text-center">Share codes look like: PCWSTRAT-ABC123...</p>
             </div>
           </div>
-          <!-- Map Selection Grid -->
-          <div id="mapSelectionGrid" class="hidden">
-            <h2 class="section-title">Select a Map</h2>
+          <!-- Create New Plan Section -->
+          <div class="create-plan-section">
+            <div class="flex justify-center items-center mb-6">
+              <h2 class="section-title">Create New Plan</h2>
+            </div>
+            <p class="text-gray-300 mb-6 text-center">Select a map below to start creating your strategy. Draw paths, mark positions, and share with your team.</p>
+            <!-- Map Selection Grid -->
             <div class="map-grid">
               <!-- Maps will be populated by JavaScript -->
             </div>
@@ -234,8 +243,14 @@
           <div id="strategyPlanner" class="hidden">
             <div class="planner-header">
               <div class="planner-title-container">
-                <input type="text" id="planTitle" class="plan-title" placeholder="Untitled Plan">
-                <textarea id="planDescription" class="plan-description" placeholder="Add a description..."></textarea>
+                <div class="relative mb-4">
+                  <input type="text" id="planTitle" class="plan-title" placeholder="Untitled Plan" maxlength="100">
+                  <span id="titleCharCount" class="absolute right-0 bottom-0 text-xs text-gray-400">0/100</span>
+                </div>
+                <div class="relative">
+                  <textarea id="planDescription" class="plan-description" placeholder="Add a description..." maxlength="250"></textarea>
+                  <span id="descCharCount" class="absolute right-0 bottom-0 text-xs text-gray-400">0/250</span>
+                </div>
               </div>
               <div class="share-code-container">
                 <div class="share-code-box">
@@ -243,9 +258,9 @@
                   <div class="share-code-input">
                     <input type="text" id="shareCode" readonly>
                     <button id="copyShareCode" class="copy-btn">
-                      <i class="fas fa-copy"></i>
-                    </button>
+                      <i class="fas fa-copy"></i> Copy </button>
                   </div>
+                  <p class="text-xs text-gray-400 mt-2">Share this code to let others view your strategy</p>
                 </div>
               </div>
             </div>
@@ -336,28 +351,51 @@
                 <i class="fas fa-save mr-2"></i>Save Plan </button>
               <button id="clearCanvasBtn" class="btn-secondary">
                 <i class="fas fa-trash-alt mr-2"></i>Clear Canvas </button>
-              <button id="backToMapsBtn" class="btn-secondary">
-                <i class="fas fa-arrow-left mr-2"></i>Change Map </button>
-            </div>
-          </div>
-          <!-- Load Plan Modal -->
-          <div id="loadPlanModal" class="modal-overlay hidden">
-            <div class="modal-content">
-              <h2 class="modal-title">Load Existing Plan</h2>
-              <div class="modal-input-group">
-                <label for="planCodeInput">Enter Share Code:</label>
-                <input type="text" id="planCodeInput" placeholder="Paste the share code here">
-              </div>
-              <div class="modal-buttons">
-                <button id="loadPlanBtn" class="btn-accent">
-                  <i class="fas fa-folder-open mr-2"></i>Load Plan </button>
-                <button id="cancelLoadBtn" class="btn-secondary">
-                  <i class="fas fa-times mr-2"></i>Cancel </button>
-              </div>
+              <button id="backToPlansBtn" class="btn-secondary">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Plans </button>
             </div>
           </div>
         </div>
       </section>
+      <!-- Custom Notification -->
+      <div id="customNotification" class="fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg border border-gray-700 transform translate-y-10 opacity-0 transition-all duration-300 z-50 hidden">
+        <div class="flex items-center">
+          <i id="notificationIcon" class="fas fa-info-circle mr-3"></i>
+          <span id="notificationMessage"></span>
+        </div>
+      </div>
+      <!-- Text Input Modal -->
+      <div id="textInputModal" class="modal-overlay hidden">
+        <div class="modal-content">
+          <h2 class="modal-title">Enter Text</h2>
+          <div class="modal-input-group">
+            <input type="text" id="textInputField" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-accent-color focus:border-transparent" placeholder="Type your text here">
+          </div>
+          <div class="modal-buttons">
+            <button id="confirmTextBtn" class="btn-accent">
+              <i class="fas fa-check mr-2"></i>Confirm
+            </button>
+            <button id="cancelTextBtn" class="btn-secondary">
+              <i class="fas fa-times mr-2"></i>Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Confirmation Modal -->
+      <div id="confirmationModal" class="modal-overlay hidden">
+        <div class="modal-content">
+          <h2 class="modal-title" id="confirmationTitle"></h2>
+          <p class="text-gray-300 mb-6" id="confirmationMessage"></p>
+          <div class="modal-buttons">
+            <button id="confirmActionBtn" class="btn-accent">
+              <i class="fas fa-check mr-2"></i>Confirm
+            </button>
+            <button id="cancelActionBtn" class="btn-secondary">
+              <i class="fas fa-times mr-2"></i>Cancel
+            </button>
+          </div>
+        </div>
+      </div>
       <!-- Search Modal -->
       <div class="search-overlay" id="searchOverlay"></div>
       <div class="search-modal" id="searchModal">
