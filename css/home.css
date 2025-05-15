@@ -211,10 +211,10 @@
 	margin-bottom: 0;
 }
 
-/* Fun Facts Section */
+/* Enhanced Fun Facts Section */
 .fun-facts-section {
-	padding-bottom: 6rem;
-	background-color: var(--bg-primary);
+	padding: 5rem 0;
+	background-color: var(--bg-secondary);
 	border-bottom: 1px solid var(--border-color);
 }
 
@@ -232,12 +232,15 @@
 }
 
 .fun-fact-item {
-	padding: 2rem 1rem;
+	padding: 2rem 1.5rem;
 	border-radius: 1rem;
 	background-color: var(--card-bg);
 	border: 1px solid var(--border-color);
 	box-shadow: var(--shadow);
 	transition: all 0.3s ease;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .fun-fact-item:hover {
@@ -260,24 +263,18 @@
 
 .fun-fact-label {
 	font-size: 1.125rem;
+	color: var(--text-primary);
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+
+.fun-fact-description {
+	font-size: 0.9rem;
 	color: var(--text-secondary);
-	font-weight: 500;
-}
-
-@media (max-width: 768px) {
-	.fun-facts-grid {
-		grid-template-columns: repeat(2, 1fr);
-	}
-}
-
-@media (max-width: 480px) {
-	.fun-facts-grid {
-		grid-template-columns: 1fr;
-	}
-
-	.fun-fact-number {
-		font-size: 2.5rem;
-	}
+	line-height: 1.5;
+	font-style: italic;
+	opacity: 0.9;
+	margin-top: auto;
 }
 
 /* Animations */
@@ -331,6 +328,9 @@
 		grid-template-columns: 1fr;
 	}
 
+	.fun-facts-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 
 @media (max-width: 575px) {
@@ -351,5 +351,13 @@
 
 	.section-title {
 		font-size: 2rem;
+	}
+
+	.fun-facts-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.fun-fact-number {
+		font-size: 2.5rem;
 	}
 }
