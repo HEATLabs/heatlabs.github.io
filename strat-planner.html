@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Main meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title displayed in the browser tab -->
+    <title>Strategy Planner - PCWStats</title>
+    <!-- Theme Checker -->
+    <script>
+      // Immediately set theme class before rendering begins
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          // Default to dark theme if saved or system preference
+          if (savedTheme === 'dark-theme' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark-theme');
+          } else {
+            document.documentElement.classList.add('light-theme');
+          }
+        } catch (e) {
+          console.error('Theme initialization error:', e);
+          document.documentElement.classList.add('light-theme');
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/strat-planner.css">
+    <link rel="stylesheet" href="css/modules/header.css">
+    <link rel="stylesheet" href="css/modules/footer.css">
+    <link rel="stylesheet" href="css/modules/sidebar.css">
+    <link rel="stylesheet" href="css/modules/cta.css">
+    <link rel="stylesheet" href="css/modules/no-scrollbar.css">
+    <link rel="stylesheet" href="css/modules/search.css">
+    <link rel="stylesheet" href="css/modules/global-hero.css">
+    <link rel="stylesheet" href="css/modules/warning.css">
+    <link rel="stylesheet" href="css/modules/banner.css">
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon.ico" type="image/x-icon">
+    <!-- Apple Touch Icons (for iOS home screen bookmarks) -->
+    <link rel="apple-touch-icon" sizes="57x57" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-180x180.png">
+    <!-- Favicons for different devices -->
+    <link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/android/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon-16x16.png">
+    <!-- Web Manifest -->
+    <link rel="manifest" href="site-data/site.manifest">
+    <!-- Windows-specific tiles (for pinned sites in Windows Start menu) -->
+    <meta name="msapplication-TileColor" content="#141312">
+    <meta name="msapplication-TileImage" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/microsoft/ms-icon-144x144.png">
+    <!-- Defines the color of the browser UI elements -->
+    <meta name="theme-color" content="#141312">
+    <!-- Open Graph Meta Tags (for social media sharing, mainly Facebook) -->
+    <meta property="og:title" content="PCWStats - Strategy Planner">
+    <meta property="og:description" content="Your one-stop solution for comprehensive statistics insights and guides for Project CW">
+    <meta property="og:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
+    <meta property="og:url" content="https://pcwstats.github.io/strat-planner.html">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card Meta Tags (for better sharing on Twitter) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PCWStats - Strategy Planner">
+    <meta name="twitter:description" content="Your one-stop solution for comprehensive statistics insights and guides for Project CW">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
+  </head>
+  <body>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="flex items-center justify-between">
+          <button id="closeSidebar" class="sidebar-close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <nav class="flex-grow">
+        <ul class="space-y-2">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="tanks.html" class="sidebar-link">
+              <i class="fas fa-shield-alt"></i>
+              <span>Tank Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="maps.html" class="sidebar-link">
+              <i class="fas fa-map"></i>
+              <span>Map Knowledge</span>
+            </a>
+          </li>
+          <li>
+            <a href="builds.html" class="sidebar-link">
+              <i class="fas fa-wrench"></i>
+              <span>Common Builds</span>
+            </a>
+          </li>
+          <li>
+            <a href="guides.html" class="sidebar-link">
+              <i class="fas fa-book-open"></i>
+              <span>Community Guides</span>
+            </a>
+          </li>
+          <li>
+            <a href="credits.html" class="sidebar-link">
+              <i class="fas fa-users"></i>
+              <span>Community Credits</span>
+            </a>
+          </li>
+          <li>
+            <a href="tournaments.html" class="sidebar-link">
+              <i class="fa-solid fa-trophy"></i>
+              <span>Tournaments</span>
+            </a>
+          </li>
+          <li>
+            <a href="news.html" class="sidebar-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Game News</span>
+            </a>
+          </li>
+          <li>
+            <a href="tankopedia.html" class="sidebar-link">
+              <i class="fas fa-database"></i>
+              <span>Tankopedia</span>
+            </a>
+          </li>
+          <li>
+            <a href="blog.html" class="sidebar-link">
+              <i class="fas fa-blog"></i>
+              <span>Official Blog</span>
+            </a>
+          </li>
+          <li>
+            <a href="about-us.html" class="sidebar-link">
+              <i class="fas fa-info-circle"></i>
+              <span>About the Project</span>
+            </a>
+          </li>
+          <li>
+            <a href="legal.html" class="sidebar-link">
+              <i class="fas fa-balance-scale"></i>
+              <span>Project Policies</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="theme-toggle-container">
+          <span class="theme-toggle-label">Dark Mode</span>
+          <div class="theme-toggle-switch" id="themeToggle">
+            <div class="toggle-thumb"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="content-wrapper">
+      <!-- Header/Navbar -->
+      <header class="navbar">
+        <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center py-3">
+            <div class="flex items-center space-x-4">
+              <button id="openSidebar" class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <a href="index.html" class="brand-logo">
+                <i class="fas fa-tank text-accent-color"></i>
+                <span>PCWStats</span>
+                <span class="beta-tag">BETA</span>
+              </a>
+            </div>
+            <div class="flex items-center space-x-6">
+              <button id="openSearch" class="search-button">
+                <i class="fas fa-search"></i>
+              </button>
+              <div class="theme-toggle-mobile" id="themeToggleMobile">
+                <i class="fas fa-moon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1>Strategy Planner</h1>
+          <p>Plan and share your Project CW strategies with the community</p>
+        </div>
+      </section>
+      <!-- Main Content -->
+      <section class="section">
+        <div class="container mx-auto px-4">
+          <!-- Initial Choice Modal -->
+          <div id="initialChoiceModal" class="modal-overlay active">
+            <div class="modal-content">
+              <h2 class="modal-title">What would you like to do?</h2>
+              <div class="modal-buttons">
+                <button id="createNewPlanBtn" class="btn-accent">
+                  <i class="fas fa-plus mr-2"></i>Create New Plan </button>
+                <button id="loadExistingPlanBtn" class="btn-secondary">
+                  <i class="fas fa-folder-open mr-2"></i>Load Existing Plan </button>
+              </div>
+            </div>
+          </div>
+          <!-- Map Selection Grid -->
+          <div id="mapSelectionGrid" class="hidden">
+            <h2 class="section-title">Select a Map</h2>
+            <div class="map-grid">
+              <!-- Maps will be populated by JavaScript -->
+            </div>
+          </div>
+          <!-- Strategy Planner Interface -->
+          <div id="strategyPlanner" class="hidden">
+            <div class="planner-header">
+              <div class="planner-title-container">
+                <input type="text" id="planTitle" class="plan-title" placeholder="Untitled Plan">
+                <textarea id="planDescription" class="plan-description" placeholder="Add a description..."></textarea>
+              </div>
+              <div class="share-code-container">
+                <div class="share-code-box">
+                  <label for="shareCode">Share Code:</label>
+                  <div class="share-code-input">
+                    <input type="text" id="shareCode" readonly>
+                    <button id="copyShareCode" class="copy-btn">
+                      <i class="fas fa-copy"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="planner-main">
+              <!-- Tools Panel -->
+              <div class="tools-panel">
+                <div class="tool-section">
+                  <h3>Drawing Tools</h3>
+                  <div class="tool-buttons">
+                    <button class="tool-btn active" data-tool="select">
+                      <i class="fas fa-mouse-pointer"></i>
+                      <span>Select</span>
+                    </button>
+                    <button class="tool-btn" data-tool="line">
+                      <i class="fas fa-slash"></i>
+                      <span>Line</span>
+                    </button>
+                    <button class="tool-btn" data-tool="arrow">
+                      <i class="fas fa-arrow-right"></i>
+                      <span>Arrow</span>
+                    </button>
+                    <button class="tool-btn" data-tool="rectangle">
+                      <i class="far fa-square"></i>
+                      <span>Rectangle</span>
+                    </button>
+                    <button class="tool-btn" data-tool="circle">
+                      <i class="far fa-circle"></i>
+                      <span>Circle</span>
+                    </button>
+                    <button class="tool-btn" data-tool="text">
+                      <i class="fas fa-font"></i>
+                      <span>Text</span>
+                    </button>
+                    <button class="tool-btn" data-tool="freehand">
+                      <i class="fas fa-pencil-alt"></i>
+                      <span>Freehand</span>
+                    </button>
+                    <button class="tool-btn" data-tool="erase">
+                      <i class="fas fa-eraser"></i>
+                      <span>Eraser</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="tool-section">
+                  <h3>Properties</h3>
+                  <div class="property-controls">
+                    <div class="property-group">
+                      <label>Color</label>
+                      <input type="color" id="colorPicker" value="#ff8300">
+                    </div>
+                    <div class="property-group">
+                      <label>Width</label>
+                      <input type="range" id="widthSlider" min="1" max="10" value="3">
+                    </div>
+                    <div class="property-group">
+                      <label>Opacity</label>
+                      <input type="range" id="opacitySlider" min="10" max="100" value="100">
+                    </div>
+                  </div>
+                </div>
+                <div class="tool-section">
+                  <h3>Layers</h3>
+                  <div class="layers-container">
+                    <div class="layer-controls">
+                      <button id="addLayerBtn" class="layer-btn">
+                        <i class="fas fa-plus"></i> Add Layer </button>
+                      <button id="deleteLayerBtn" class="layer-btn">
+                        <i class="fas fa-trash"></i> Delete </button>
+                    </div>
+                    <div class="layers-list" id="layersList">
+                      <!-- Layers will be added here -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Canvas Area -->
+              <div class="canvas-container">
+                <div class="canvas-wrapper">
+                  <canvas id="strategyCanvas"></canvas>
+                  <div class="map-image-container">
+                    <img id="mapImage" src="" alt="Selected Map" class="map-image">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="planner-actions">
+              <button id="savePlanBtn" class="btn-accent">
+                <i class="fas fa-save mr-2"></i>Save Plan </button>
+              <button id="clearCanvasBtn" class="btn-secondary">
+                <i class="fas fa-trash-alt mr-2"></i>Clear Canvas </button>
+              <button id="backToMapsBtn" class="btn-secondary">
+                <i class="fas fa-arrow-left mr-2"></i>Change Map </button>
+            </div>
+          </div>
+          <!-- Load Plan Modal -->
+          <div id="loadPlanModal" class="modal-overlay hidden">
+            <div class="modal-content">
+              <h2 class="modal-title">Load Existing Plan</h2>
+              <div class="modal-input-group">
+                <label for="planCodeInput">Enter Share Code:</label>
+                <input type="text" id="planCodeInput" placeholder="Paste the share code here">
+              </div>
+              <div class="modal-buttons">
+                <button id="loadPlanBtn" class="btn-accent">
+                  <i class="fas fa-folder-open mr-2"></i>Load Plan </button>
+                <button id="cancelLoadBtn" class="btn-secondary">
+                  <i class="fas fa-times mr-2"></i>Cancel </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Search Modal -->
+      <div class="search-overlay" id="searchOverlay"></div>
+      <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+          <div class="search-input-container">
+            <i class="fas fa-search search-modal-icon"></i>
+            <input type="text" placeholder="Search tanks, maps, guides..." class="search-modal-input" autofocus>
+          </div>
+          <div class="search-suggestions">
+            <p class="search-suggestions-title">Past Searches</p>
+            <div class="past-searches-tags">
+              <!-- Past searches will be dynamically inserted here -->
+            </div>
+            <div class="search-results-container">
+              <div class="search-results-placeholder">
+                <i class="fas fa-search"></i>
+                <p>Your search results will appear here</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <footer class="footer bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-10 space-y-10">
+          <!-- Top Row -->
+          <div class="footer-brand flex flex-col items-center text-center">
+            <div>
+              <h3 class="text-2xl font-semibold">PCWStats</h3>
+              <p class="text-gray-400">Your go-to resource for Project CW statistics and gameplay information.</p>
+            </div>
+            <div class="flex space-x-4 text-xl">
+              <a href="https://discord.com/invite/2nHHHBWNDw" class="social-icon">
+                <i class="fab fa-discord"></i>
+              </a>
+              <a href="https://x.com/PCWStats" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://github.com/PCWStats" class="social-icon">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.youtube.com/@PCWStats" class="social-icon">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Middle Row -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-10 text-center">
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Tools</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="maps.html">Map Knowledge</a>
+                </li>
+                <li>
+                  <a href="tanks.html">Tank Statistics</a>
+                </li>
+                <li>
+                  <a href="tankopedia.html">Tankopedia</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Community</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="guides.html">Community Guides</a>
+                </li>
+                <li>
+                  <a href="builds.html">Common Builds</a>
+                </li>
+                <li>
+                  <a href="tournaments.html">Tournaments</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">PCWStats</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="about-us.html">About the Project</a>
+                </li>
+                <li>
+                  <a href="blog.html">Official Blog</a>
+                </li>
+                <li>
+                  <a href="news.html">Game News</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Credits</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="credits.html">Community Credits</a>
+                </li>
+                <li>
+                  <a href="support-us.html">Support the Project</a>
+                </li>
+                <li>
+                  <a href="contact-us.html">Contact Us</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Legal</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="legal/terms-of-service.html">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="legal/project-license.html">Project License</a>
+                </li>
+                <li>
+                  <a href="legal/privacy-policy.html">Privacy Policy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Contact Row -->
+          <div class="text-center">
+            <h3 class="text-lg font-semibold mb-1">Contact</h3>
+            <p class="text-gray-400 mb-2">Have suggestions, found a bug or want to help?</p>
+            <a href="contact-us.html" class="btn-accent mt-4">
+              <i class="fas fa-envelope mr-2"></i>Send Feedback </a>
+            <a href="get-involved.html" class="btn-accent mt-4">
+              <i class="fas fa-users mr-2"></i>Get Involved </a>
+          </div>
+          <!-- Bottom Disclaimer -->
+          <div class="text-center text-sm text-gray-500 space-y-1 border-t border-gray-700 pt-1">
+            <p>PCWStats is a community-made project and is not associated with, endorsed by, or affiliated with Project CW or Wargaming.net.</p>
+            <p>&copy; 2025 PCWStats by SINEWAVE Development. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="js/strat-planner.js"></script>
+    <script src="js/libraries/lz-string.js"></script>
+    <script src="js/modules/sidebar.js"></script>
+    <script src="js/modules/theme-loader.js"></script>
+    <script src="js/modules/search.js"></script>
+    <script src="js/modules/warning.js"></script>
+    <script src="js/modules/global-hero.js"></script>
+    <script src="js/modules/banner.js"></script>
+  </body>
+</html>
