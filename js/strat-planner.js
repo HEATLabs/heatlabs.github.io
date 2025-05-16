@@ -66,6 +66,72 @@ document.addEventListener('DOMContentLoaded', function() {
         x: 0,
         y: 0
     };
+    let selectedItem = null;
+    let tempShape = null;
+    let isDragging = false;
+    let dragOffsetX = 0;
+    let dragOffsetY = 0;
+    let isResizing = false;
+    let isRotating = false;
+    let resizeHandle = null;
+    let rotationHandle = null;
+    let originalAngle = 0;
+    let originalWidth = 0;
+    let originalHeight = 0;
+    let originalPoints = [];
+
+    // Constants for selection box
+    const HANDLE_SIZE = 8;
+    const ROTATION_HANDLE_DISTANCE = 30;
+    const RESIZE_HANDLES = [{
+            id: 'nw',
+            x: 0,
+            y: 0,
+            cursor: 'nw-resize'
+        },
+        {
+            id: 'ne',
+            x: 1,
+            y: 0,
+            cursor: 'ne-resize'
+        },
+        {
+            id: 'sw',
+            x: 0,
+            y: 1,
+            cursor: 'sw-resize'
+        },
+        {
+            id: 'se',
+            x: 1,
+            y: 1,
+            cursor: 'se-resize'
+        },
+        {
+            id: 'n',
+            x: 0.5,
+            y: 0,
+            cursor: 'n-resize'
+        },
+        {
+            id: 's',
+            x: 0.5,
+            y: 1,
+            cursor: 's-resize'
+        },
+        {
+            id: 'w',
+            x: 0,
+            y: 0.5,
+            cursor: 'w-resize'
+        },
+        {
+            id: 'e',
+            x: 1,
+            y: 0.5,
+            cursor: 'e-resize'
+        }
+    ];
 
     // Map data
     const maps = [{
@@ -128,16 +194,28 @@ document.addEventListener('DOMContentLoaded', function() {
         // Property controls
         colorPicker.addEventListener('input', function() {
             currentColor = this.value;
+            if (selectedItem) {
+                selectedItem.color = currentColor;
+                redrawCanvas();
+            }
         });
 
         widthSlider.addEventListener('input', function() {
             currentWidth = this.value;
             widthValue.textContent = currentWidth;
+            if (selectedItem) {
+                selectedItem.width = currentWidth;
+                redrawCanvas();
+            }
         });
 
         opacitySlider.addEventListener('input', function() {
             currentOpacity = this.value / 100;
             opacityValue.textContent = `${this.value}%`;
+            if (selectedItem) {
+                selectedItem.opacity = currentOpacity;
+                redrawCanvas();
+            }
         });
 
         // Layer controls
@@ -405,6 +483,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Start drawing
     function startDrawing(e) {
+        if (currentTool === 'select') {
+            const pos = getCanvasPosition(e);
+
+            // Check if we're clicking on a resize handle
+            if (selectedItem) {
+                const handle = getResizeHandleAtPosition(pos.x, pos.y);
+                if (handle) {
+                    isResizing = true;
+                    resizeHandle = handle;
+                    originalWidth = selectedItem.width || (selectedItem.x2 - selectedItem.x1);
+                    originalHeight = selectedItem.height || (selectedItem.y2 - selectedItem.y1);
+                    originalPoints = selectedItem.points ? [...selectedItem.points] : null;
+                    saveCanvasState();
+                    return;
+                }
+
+                // Check if we're clicking on the rotation handle
+                if (isPointNearRotationHandle(pos.x, pos.y)) {
+                    isRotating = true;
+                    const center = getItemCenter(selectedItem);
+                    originalAngle = Math.atan2(pos.y - center.y, pos.x - center.x);
+                    if (selectedItem.angle) {
+                        originalAngle -= selectedItem.angle;
+                    }
+                    saveCanvasState();
+                    return;
+                }
+            }
+
+            // Check if we're clicking on an item
+            selectedItem = findItemAtPosition(pos.x, pos.y);
+
+            if (selectedItem) {
+                isDragging = true;
+                const center = getItemCenter(selectedItem);
+                dragOffsetX = pos.x - center.x;
+                dragOffsetY = pos.y - center.y;
+                saveCanvasState();
+            }
+            redrawCanvas();
+            return;
+        }
+
         if (currentTool === 'select') return;
 
         isDrawing = true;
@@ -440,11 +561,25 @@ document.addEventListener('DOMContentLoaded', function() {
             showTextInputModal();
             isDrawing = false;
         }
+
+        // For shape tools, create a temporary shape
+        if (['line', 'arrow', 'rectangle', 'circle'].includes(currentTool)) {
+            tempShape = {
+                type: currentTool,
+                x1: lastX,
+                y1: lastY,
+                x2: lastX,
+                y2: lastY,
+                color: currentColor,
+                width: currentWidth,
+                opacity: currentOpacity
+            };
+        }
     }
 
     // Draw on canvas
     function draw(e) {
-        if (!isDrawing) return;
+        if (!isDrawing && !isDragging && !isResizing && !isRotating) return;
 
         const pos = getCanvasPosition(e);
         const x = pos.x;
@@ -452,22 +587,135 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const currentLayer = layers[currentLayerIndex];
 
+        if (isDragging && selectedItem) {
+            // Move the selected item
+            const newCenterX = x - dragOffsetX;
+            const newCenterY = y - dragOffsetY;
+
+            if (selectedItem.type === 'line' || selectedItem.type === 'arrow') {
+                const width = selectedItem.x2 - selectedItem.x1;
+                const height = selectedItem.y2 - selectedItem.y1;
+                selectedItem.x1 = newCenterX - width / 2;
+                selectedItem.y1 = newCenterY - height / 2;
+                selectedItem.x2 = newCenterX + width / 2;
+                selectedItem.y2 = newCenterY + height / 2;
+            } else if (selectedItem.type === 'rect') {
+                selectedItem.x = newCenterX - selectedItem.width / 2;
+                selectedItem.y = newCenterY - selectedItem.height / 2;
+            } else if (selectedItem.type === 'circle') {
+                selectedItem.x = newCenterX;
+                selectedItem.y = newCenterY;
+            } else if (selectedItem.type === 'text') {
+                selectedItem.x = newCenterX;
+                selectedItem.y = newCenterY;
+            } else if (selectedItem.type === 'path') {
+                const center = getItemCenter(selectedItem);
+                const offsetX = newCenterX - center.x;
+                const offsetY = newCenterY - center.y;
+
+                selectedItem.points.forEach(point => {
+                    point.x += offsetX;
+                    point.y += offsetY;
+                });
+            }
+            redrawCanvas();
+            return;
+        }
+
+        if (isResizing && selectedItem && resizeHandle) {
+            const center = getItemCenter(selectedItem);
+            const angle = selectedItem.angle || 0;
+
+            // Transform mouse coordinates to item's local space
+            const localX = (x - center.x) * Math.cos(-angle) - (y - center.y) * Math.sin(-angle);
+            const localY = (x - center.x) * Math.sin(-angle) + (y - center.y) * Math.cos(-angle);
+
+            // Calculate new width and height based on resize handle
+            let newWidth = originalWidth;
+            let newHeight = originalHeight;
+
+            if (resizeHandle.id === 'nw' || resizeHandle.id === 'w' || resizeHandle.id === 'sw') {
+                newWidth = originalWidth - (localX + originalWidth / 2);
+            } else if (resizeHandle.id === 'ne' || resizeHandle.id === 'e' || resizeHandle.id === 'se') {
+                newWidth = localX + originalWidth / 2;
+            }
+
+            if (resizeHandle.id === 'nw' || resizeHandle.id === 'n' || resizeHandle.id === 'ne') {
+                newHeight = originalHeight - (localY + originalHeight / 2);
+            } else if (resizeHandle.id === 'sw' || resizeHandle.id === 's' || resizeHandle.id === 'se') {
+                newHeight = localY + originalHeight / 2;
+            }
+
+            // Apply minimum size
+            newWidth = Math.max(newWidth, 5);
+            newHeight = Math.max(newHeight, 5);
+
+            // Apply scaling to the item
+            if (selectedItem.type === 'rect') {
+                selectedItem.width = newWidth;
+                selectedItem.height = newHeight;
+            } else if (selectedItem.type === 'circle') {
+                selectedItem.radius = newWidth / 2;
+            } else if (selectedItem.type === 'line' || selectedItem.type === 'arrow') {
+                const scaleX = newWidth / originalWidth;
+                const scaleY = newHeight / originalHeight;
+
+                const centerX = (selectedItem.x1 + selectedItem.x2) / 2;
+                const centerY = (selectedItem.y1 + selectedItem.y2) / 2;
+
+                selectedItem.x1 = centerX + (selectedItem.x1 - centerX) * scaleX;
+                selectedItem.y1 = centerY + (selectedItem.y1 - centerY) * scaleY;
+                selectedItem.x2 = centerX + (selectedItem.x2 - centerX) * scaleX;
+                selectedItem.y2 = centerY + (selectedItem.y2 - centerY) * scaleY;
+            } else if (selectedItem.type === 'text') {
+                selectedItem.width = Math.max(1, Math.min(10, newWidth / 20));
+            } else if (selectedItem.type === 'path' && originalPoints) {
+                const center = getItemCenter(selectedItem);
+                const scaleX = newWidth / originalWidth;
+                const scaleY = newHeight / originalHeight;
+
+                selectedItem.points = originalPoints.map(point => {
+                    return {
+                        x: center.x + (point.x - center.x) * scaleX,
+                        y: center.y + (point.y - center.y) * scaleY
+                    };
+                });
+            }
+
+            redrawCanvas();
+            return;
+        }
+
+        if (isRotating && selectedItem) {
+            const center = getItemCenter(selectedItem);
+            const newAngle = Math.atan2(y - center.y, x - center.x) - originalAngle;
+            selectedItem.angle = newAngle;
+            redrawCanvas();
+            return;
+        }
+
         switch (currentTool) {
             case 'line':
             case 'arrow':
-                // For line/arrow, we'll draw it on mouse up
+                // Update temp shape
+                tempShape.x2 = x;
+                tempShape.y2 = y;
                 redrawCanvas();
-                drawTempLine(lastX, lastY, x, y, currentTool === 'arrow');
                 break;
 
             case 'rectangle':
+                // Update temp shape
+                tempShape.x = Math.min(lastX, x);
+                tempShape.y = Math.min(lastY, y);
+                tempShape.width = Math.abs(x - lastX);
+                tempShape.height = Math.abs(y - lastY);
                 redrawCanvas();
-                drawTempRect(lastX, lastY, x, y);
                 break;
 
             case 'circle':
+                // Update temp shape
+                tempShape.radius = Math.sqrt(Math.pow(x - lastX, 2) + Math.pow(y - lastY, 2));
                 redrawCanvas();
-                drawTempCircle(lastX, lastY, x, y);
                 break;
 
             case 'freehand':
@@ -488,48 +736,296 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Stop drawing
     function stopDrawing() {
+        if (isDragging || isResizing || isRotating) {
+            isDragging = false;
+            isResizing = false;
+            isRotating = false;
+            resizeHandle = null;
+            return;
+        }
+
         if (!isDrawing) return;
         isDrawing = false;
 
         const currentLayer = layers[currentLayerIndex];
+        currentLayer.drawing = currentLayer.drawing || [];
 
         // For shapes, add them to the layer when done
-        if (currentTool === 'line' || currentTool === 'arrow') {
-            currentLayer.drawing = currentLayer.drawing || [];
-            currentLayer.drawing.push({
-                type: currentTool,
-                x1: lastX,
-                y1: lastY,
-                x2: lastX,
-                y2: lastY,
-                color: currentColor,
-                width: currentWidth,
-                opacity: currentOpacity
+        if (tempShape) {
+            if (tempShape.type === 'rectangle') {
+                currentLayer.drawing.push({
+                    type: 'rect',
+                    x: tempShape.x,
+                    y: tempShape.y,
+                    width: tempShape.width,
+                    height: tempShape.height,
+                    color: tempShape.color,
+                    width: tempShape.width,
+                    opacity: tempShape.opacity
+                });
+            } else if (tempShape.type === 'circle') {
+                currentLayer.drawing.push({
+                    type: 'circle',
+                    x: tempShape.x1,
+                    y: tempShape.y1,
+                    radius: tempShape.radius,
+                    color: tempShape.color,
+                    width: tempShape.width,
+                    opacity: tempShape.opacity
+                });
+            } else if (tempShape.type === 'line' || tempShape.type === 'arrow') {
+                currentLayer.drawing.push({
+                    type: tempShape.type,
+                    x1: tempShape.x1,
+                    y1: tempShape.y1,
+                    x2: tempShape.x2,
+                    y2: tempShape.y2,
+                    color: tempShape.color,
+                    width: tempShape.width,
+                    opacity: tempShape.opacity
+                });
+            }
+
+            tempShape = null;
+            redrawCanvas();
+        }
+    }
+
+    // Get the center of an item
+    function getItemCenter(item) {
+        if (item.type === 'rect') {
+            return {
+                x: item.x + item.width / 2,
+                y: item.y + item.height / 2
+            };
+        } else if (item.type === 'circle') {
+            return {
+                x: item.x,
+                y: item.y
+            };
+        } else if (item.type === 'line' || item.type === 'arrow') {
+            return {
+                x: (item.x1 + item.x2) / 2,
+                y: (item.y1 + item.y2) / 2
+            };
+        } else if (item.type === 'text') {
+            ctx.save();
+            ctx.font = `${item.width * 5}px Arial`;
+            const metrics = ctx.measureText(item.text);
+            ctx.restore();
+            return {
+                x: item.x + metrics.width / 2,
+                y: item.y - metrics.actualBoundingBoxAscent / 2
+            };
+        } else if (item.type === 'path' && item.points && item.points.length > 0) {
+            let minX = Infinity,
+                maxX = -Infinity,
+                minY = Infinity,
+                maxY = -Infinity;
+            item.points.forEach(point => {
+                minX = Math.min(minX, point.x);
+                maxX = Math.max(maxX, point.x);
+                minY = Math.min(minY, point.y);
+                maxY = Math.max(maxY, point.y);
             });
-        } else if (currentTool === 'rectangle') {
-            currentLayer.drawing.push({
-                type: 'rect',
-                x: lastX,
-                y: lastY,
-                width: 0,
-                height: 0,
-                color: currentColor,
-                width: currentWidth,
-                opacity: currentOpacity
+            return {
+                x: (minX + maxX) / 2,
+                y: (minY + maxY) / 2
+            };
+        }
+        return {
+            x: 0,
+            y: 0
+        };
+    }
+
+    // Get the bounding box of an item
+    function getItemBoundingBox(item) {
+        if (item.type === 'rect') {
+            return {
+                x: item.x,
+                y: item.y,
+                width: item.width,
+                height: item.height
+            };
+        } else if (item.type === 'circle') {
+            return {
+                x: item.x - item.radius,
+                y: item.y - item.radius,
+                width: item.radius * 2,
+                height: item.radius * 2
+            };
+        } else if (item.type === 'line' || item.type === 'arrow') {
+            return {
+                x: Math.min(item.x1, item.x2) - 10,
+                y: Math.min(item.y1, item.y2) - 10,
+                width: Math.abs(item.x2 - item.x1) + 20,
+                height: Math.abs(item.y2 - item.y1) + 20
+            };
+        } else if (item.type === 'text') {
+            ctx.save();
+            ctx.font = `${item.width * 5}px Arial`;
+            const metrics = ctx.measureText(item.text);
+            ctx.restore();
+            return {
+                x: item.x,
+                y: item.y - metrics.actualBoundingBoxAscent,
+                width: metrics.width,
+                height: metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent
+            };
+        } else if (item.type === 'path' && item.points && item.points.length > 0) {
+            let minX = Infinity,
+                maxX = -Infinity,
+                minY = Infinity,
+                maxY = -Infinity;
+            item.points.forEach(point => {
+                minX = Math.min(minX, point.x);
+                maxX = Math.max(maxX, point.x);
+                minY = Math.min(minY, point.y);
+                maxY = Math.max(maxY, point.y);
             });
-        } else if (currentTool === 'circle') {
-            currentLayer.drawing.push({
-                type: 'circle',
-                x: lastX,
-                y: lastY,
-                radius: 0,
-                color: currentColor,
-                width: currentWidth,
-                opacity: currentOpacity
-            });
+            return {
+                x: minX,
+                y: minY,
+                width: maxX - minX,
+                height: maxY - minY
+            };
+        }
+        return {
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0
+        };
+    }
+
+    // Find item at position
+    function findItemAtPosition(x, y) {
+        const currentLayer = layers[currentLayerIndex];
+        if (!currentLayer || !currentLayer.drawing) return null;
+
+        // Check from newest to oldest (top to bottom in z-order)
+        for (let i = currentLayer.drawing.length - 1; i >= 0; i--) {
+            const item = currentLayer.drawing[i];
+            const bbox = getItemBoundingBox(item);
+            const angle = item.angle || 0;
+
+            // Transform point to item's local space
+            const center = getItemCenter(item);
+            const localX = (x - center.x) * Math.cos(-angle) - (y - center.y) * Math.sin(-angle) + center.x;
+            const localY = (x - center.x) * Math.sin(-angle) + (y - center.y) * Math.cos(-angle) + center.y;
+
+            switch (item.type) {
+                case 'line':
+                case 'arrow':
+                    if (isPointNearLine(localX, localY, item.x1, item.y1, item.x2, item.y2, currentWidth * 2)) {
+                        return item;
+                    }
+                    break;
+                case 'rect':
+                    if (isPointInRect(localX, localY, bbox.x, bbox.y, bbox.width, bbox.height, 0)) {
+                        return item;
+                    }
+                    break;
+                case 'circle':
+                    if (isPointInCircle(localX, localY, item.x, item.y, item.radius, 0)) {
+                        return item;
+                    }
+                    break;
+                case 'text':
+                    if (isPointInRect(localX, localY, bbox.x, bbox.y, bbox.width, bbox.height, 0)) {
+                        return item;
+                    }
+                    break;
+                case 'path':
+                    if (isPointNearPath(localX, localY, item.points, currentWidth * 2)) {
+                        return item;
+                    }
+                    break;
+            }
         }
 
-        redrawCanvas();
+        return null;
+    }
+
+    // Check if point is near a resize handle
+    function getResizeHandleAtPosition(x, y) {
+        if (!selectedItem) return null;
+
+        const bbox = getItemBoundingBox(selectedItem);
+        const center = getItemCenter(selectedItem);
+        const angle = selectedItem.angle || 0;
+
+        // For lines and arrows, use special handles at the endpoints
+        if (selectedItem.type === 'line' || selectedItem.type === 'arrow') {
+            const x1 = selectedItem.x1;
+            const y1 = selectedItem.y1;
+            const x2 = selectedItem.x2;
+            const y2 = selectedItem.y2;
+
+            // Check if near first endpoint
+            if (Math.sqrt(Math.pow(x - x1, 2) + Math.pow(y - y1, 2)) < HANDLE_SIZE * 2) {
+                return {
+                    id: 'start',
+                    x: x1,
+                    y: y1,
+                    cursor: 'move'
+                };
+            }
+            // Check if near second endpoint
+            if (Math.sqrt(Math.pow(x - x2, 2) + Math.pow(y - y2, 2)) < HANDLE_SIZE * 2) {
+                return {
+                    id: 'end',
+                    x: x2,
+                    y: y2,
+                    cursor: 'move'
+                };
+            }
+            return null;
+        }
+
+        // For other items, use standard resize handles
+        for (const handle of RESIZE_HANDLES) {
+            // Position in item's local space (before rotation)
+            const handleX = bbox.x + bbox.width * handle.x - (handle.x === 0.5 ? HANDLE_SIZE / 2 : 0);
+            const handleY = bbox.y + bbox.height * handle.y - (handle.y === 0.5 ? HANDLE_SIZE / 2 : 0);
+
+            // Rotate the handle position around the center
+            const rotatedX = center.x + (handleX - center.x) * Math.cos(angle) - (handleY - center.y) * Math.sin(angle);
+            const rotatedY = center.y + (handleX - center.x) * Math.sin(angle) + (handleY - center.y) * Math.cos(angle);
+
+            // Check if point is near the handle
+            if (Math.abs(x - rotatedX) < HANDLE_SIZE && Math.abs(y - rotatedY) < HANDLE_SIZE) {
+                return handle;
+            }
+        }
+
+        return null;
+    }
+
+    // Check if point is near the rotation handle
+    function isPointNearRotationHandle(x, y) {
+        if (!selectedItem) return false;
+
+        // For lines and arrows, don't show rotation handle
+        if (selectedItem.type === 'line' || selectedItem.type === 'arrow') {
+            return false;
+        }
+
+        const bbox = getItemBoundingBox(selectedItem);
+        const center = getItemCenter(selectedItem);
+        const angle = selectedItem.angle || 0;
+
+        // Position of rotation handle (top center, above the bounding box)
+        const handleX = bbox.x + bbox.width / 2;
+        const handleY = bbox.y - ROTATION_HANDLE_DISTANCE;
+
+        // Rotate the handle position around the center
+        const rotatedX = center.x + (handleX - center.x) * Math.cos(angle) - (handleY - center.y) * Math.sin(angle);
+        const rotatedY = center.y + (handleX - center.x) * Math.sin(angle) + (handleY - center.y) * Math.cos(angle);
+
+        // Check if point is near the handle
+        return Math.sqrt(Math.pow(x - rotatedX, 2) + Math.pow(y - rotatedY, 2)) < HANDLE_SIZE;
     }
 
     // Get canvas position from event
@@ -719,11 +1215,107 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
+
+        // Draw temporary shape (for preview while drawing)
+        if (tempShape) {
+            drawCanvasItem(tempShape);
+        }
+
+        // Draw selection box if an item is selected
+        if (selectedItem) {
+            drawSelectionBox(selectedItem);
+        }
+    }
+
+    // Draw selection box around an item
+    function drawSelectionBox(item) {
+        ctx.save();
+        ctx.strokeStyle = '#00ffff';
+        ctx.lineWidth = 1;
+        ctx.globalAlpha = 1;
+
+        if (item.type === 'line' || item.type === 'arrow') {
+            // Special handling for lines and arrows - just show handles at endpoints
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(item.x1, item.y1);
+            ctx.lineTo(item.x2, item.y2);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Draw handles at endpoints
+            ctx.fillStyle = '#00ffff';
+            ctx.beginPath();
+            ctx.arc(item.x1, item.y1, HANDLE_SIZE, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(item.x2, item.y2, HANDLE_SIZE, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+        } else {
+            // Standard selection box for other items
+            const bbox = getItemBoundingBox(item);
+            const center = getItemCenter(item);
+            const angle = item.angle || 0;
+
+            // Transform to item's rotation
+            ctx.translate(center.x, center.y);
+            ctx.rotate(angle);
+            ctx.translate(-center.x, -center.y);
+
+            // Draw bounding box
+            ctx.setLineDash([5, 5]);
+            ctx.strokeRect(bbox.x - 5, bbox.y - 5, bbox.width + 10, bbox.height + 10);
+            ctx.setLineDash([]);
+
+            // Draw resize handles (except for text)
+            if (item.type !== 'text') {
+                ctx.fillStyle = '#00ffff';
+                for (const handle of RESIZE_HANDLES) {
+                    const handleX = bbox.x + bbox.width * handle.x - (handle.x === 0.5 ? HANDLE_SIZE / 2 : 0);
+                    const handleY = bbox.y + bbox.height * handle.y - (handle.y === 0.5 ? HANDLE_SIZE / 2 : 0);
+
+                    ctx.fillRect(handleX - HANDLE_SIZE / 2, handleY - HANDLE_SIZE / 2, HANDLE_SIZE, HANDLE_SIZE);
+                    ctx.strokeRect(handleX - HANDLE_SIZE / 2, handleY - HANDLE_SIZE / 2, HANDLE_SIZE, HANDLE_SIZE);
+                }
+            }
+
+            // Draw rotation handle (except for text and lines/arrows)
+            if (item.type !== 'text' && item.type !== 'line' && item.type !== 'arrow') {
+                const rotationHandleX = bbox.x + bbox.width / 2;
+                const rotationHandleY = bbox.y - ROTATION_HANDLE_DISTANCE;
+
+                // Draw line to rotation handle
+                ctx.beginPath();
+                ctx.moveTo(bbox.x + bbox.width / 2, bbox.y);
+                ctx.lineTo(rotationHandleX, rotationHandleY);
+                ctx.stroke();
+
+                // Draw rotation handle circle
+                ctx.beginPath();
+                ctx.arc(rotationHandleX, rotationHandleY, HANDLE_SIZE / 2, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+            }
+        }
+
+        ctx.restore();
     }
 
     // Draw a single canvas item
     function drawCanvasItem(item) {
         ctx.save();
+
+        // Apply rotation if the item has an angle
+        if (item.angle) {
+            const center = getItemCenter(item);
+            ctx.translate(center.x, center.y);
+            ctx.rotate(item.angle);
+            ctx.translate(-center.x, -center.y);
+        }
+
         ctx.strokeStyle = item.color;
         ctx.fillStyle = item.color;
         ctx.lineWidth = item.width;
@@ -780,6 +1372,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set current tool
     function setCurrentTool(tool) {
         currentTool = tool;
+        selectedItem = null; // Deselect when switching tools
 
         // Update active state of buttons
         toolButtons.forEach(button => {
@@ -797,6 +1390,8 @@ document.addEventListener('DOMContentLoaded', function() {
             default:
                 strategyCanvas.style.cursor = 'crosshair';
         }
+
+        redrawCanvas();
     }
 
     // Add initial layer
@@ -859,6 +1454,7 @@ document.addEventListener('DOMContentLoaded', function() {
             layerItem.addEventListener('click', () => {
                 currentLayerIndex = index;
                 renderLayersList();
+                redrawCanvas();
             });
 
             const visibilityIcon = layerItem.querySelector('.layer-visibility');
@@ -908,6 +1504,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const state = canvasStates[currentStateIndex];
         layers = JSON.parse(JSON.stringify(state.layers));
         currentLayerIndex = state.currentLayerIndex;
+        selectedItem = null;
 
         renderLayersList();
         redrawCanvas();
@@ -921,6 +1518,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const state = canvasStates[currentStateIndex];
         layers = JSON.parse(JSON.stringify(state.layers));
         currentLayerIndex = state.currentLayerIndex;
+        selectedItem = null;
 
         renderLayersList();
         redrawCanvas();
@@ -939,6 +1537,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function clearCanvas() {
         const currentLayer = layers[currentLayerIndex];
         currentLayer.drawing = [];
+        selectedItem = null;
         saveCanvasState();
         redrawCanvas();
         showNotification('Canvas cleared', 'success');
