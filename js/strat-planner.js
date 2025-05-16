@@ -630,56 +630,60 @@ document.addEventListener('DOMContentLoaded', function() {
             const localX = (x - center.x) * Math.cos(-angle) - (y - center.y) * Math.sin(-angle);
             const localY = (x - center.x) * Math.sin(-angle) + (y - center.y) * Math.cos(-angle);
 
-            // Calculate new width and height based on resize handle
-            let newWidth = originalWidth;
-            let newHeight = originalHeight;
-
-            if (resizeHandle.id === 'nw' || resizeHandle.id === 'w' || resizeHandle.id === 'sw') {
-                newWidth = originalWidth - (localX + originalWidth / 2);
-            } else if (resizeHandle.id === 'ne' || resizeHandle.id === 'e' || resizeHandle.id === 'se') {
-                newWidth = localX + originalWidth / 2;
+            // For lines/arrows, just move the endpoints directly
+            if (selectedItem.type === 'line' || selectedItem.type === 'arrow') {
+                if (resizeHandle.id === 'start') {
+                    selectedItem.x1 = x;
+                    selectedItem.y1 = y;
+                } else if (resizeHandle.id === 'end') {
+                    selectedItem.x2 = x;
+                    selectedItem.y2 = y;
+                }
             }
+            // For freehand paths, calculate scale factors and transform points
+            else if (selectedItem.type === 'path') {
+                // Calculate scale factors based on mouse movement
+                const scaleX = (localX + originalWidth / 2) / (originalWidth / 2);
+                const scaleY = (localY + originalHeight / 2) / (originalHeight / 2);
 
-            if (resizeHandle.id === 'nw' || resizeHandle.id === 'n' || resizeHandle.id === 'ne') {
-                newHeight = originalHeight - (localY + originalHeight / 2);
-            } else if (resizeHandle.id === 'sw' || resizeHandle.id === 's' || resizeHandle.id === 'se') {
-                newHeight = localY + originalHeight / 2;
-            }
-
-            // Apply minimum size
-            newWidth = Math.max(newWidth, 5);
-            newHeight = Math.max(newHeight, 5);
-
-            // Apply scaling to the item
-            if (selectedItem.type === 'rect') {
-                selectedItem.width = newWidth;
-                selectedItem.height = newHeight;
-            } else if (selectedItem.type === 'circle') {
-                selectedItem.radius = newWidth / 2;
-            } else if (selectedItem.type === 'line' || selectedItem.type === 'arrow') {
-                const scaleX = newWidth / originalWidth;
-                const scaleY = newHeight / originalHeight;
-
-                const centerX = (selectedItem.x1 + selectedItem.x2) / 2;
-                const centerY = (selectedItem.y1 + selectedItem.y2) / 2;
-
-                selectedItem.x1 = centerX + (selectedItem.x1 - centerX) * scaleX;
-                selectedItem.y1 = centerY + (selectedItem.y1 - centerY) * scaleY;
-                selectedItem.x2 = centerX + (selectedItem.x2 - centerX) * scaleX;
-                selectedItem.y2 = centerY + (selectedItem.y2 - centerY) * scaleY;
-            } else if (selectedItem.type === 'text') {
-                selectedItem.width = Math.max(1, Math.min(10, newWidth / 20));
-            } else if (selectedItem.type === 'path' && originalPoints) {
-                const center = getItemCenter(selectedItem);
-                const scaleX = newWidth / originalWidth;
-                const scaleY = newHeight / originalHeight;
-
+                // Apply scaling to all points relative to the center
                 selectedItem.points = originalPoints.map(point => {
                     return {
                         x: center.x + (point.x - center.x) * scaleX,
                         y: center.y + (point.y - center.y) * scaleY
                     };
                 });
+            }
+            // For other items (rectangles, circles, text)
+            else {
+                let newWidth = originalWidth;
+                let newHeight = originalHeight;
+
+                if (resizeHandle.id === 'nw' || resizeHandle.id === 'w' || resizeHandle.id === 'sw') {
+                    newWidth = originalWidth - (localX + originalWidth / 2);
+                } else if (resizeHandle.id === 'ne' || resizeHandle.id === 'e' || resizeHandle.id === 'se') {
+                    newWidth = localX + originalWidth / 2;
+                }
+
+                if (resizeHandle.id === 'nw' || resizeHandle.id === 'n' || resizeHandle.id === 'ne') {
+                    newHeight = originalHeight - (localY + originalHeight / 2);
+                } else if (resizeHandle.id === 'sw' || resizeHandle.id === 's' || resizeHandle.id === 'se') {
+                    newHeight = localY + originalHeight / 2;
+                }
+
+                // Apply minimum size
+                newWidth = Math.max(newWidth, 5);
+                newHeight = Math.max(newHeight, 5);
+
+                // Apply scaling to the item
+                if (selectedItem.type === 'rect') {
+                    selectedItem.width = newWidth;
+                    selectedItem.height = newHeight;
+                } else if (selectedItem.type === 'circle') {
+                    selectedItem.radius = newWidth / 2;
+                } else if (selectedItem.type === 'text') {
+                    selectedItem.width = Math.max(1, Math.min(10, newWidth / 20));
+                }
             }
 
             redrawCanvas();
@@ -1218,7 +1222,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Draw temporary shape (for preview while drawing)
         if (tempShape) {
-            drawCanvasItem(tempShape);
+            if (tempShape.type === 'rectangle') {
+                ctx.strokeStyle = tempShape.color;
+                ctx.lineWidth = tempShape.width;
+                ctx.globalAlpha = tempShape.opacity;
+                ctx.beginPath();
+                ctx.rect(tempShape.x, tempShape.y, tempShape.width, tempShape.height);
+                ctx.stroke();
+            } else if (tempShape.type === 'circle') {
+                ctx.strokeStyle = tempShape.color;
+                ctx.lineWidth = tempShape.width;
+                ctx.globalAlpha = tempShape.opacity;
+                ctx.beginPath();
+                ctx.arc(tempShape.x1, tempShape.y1, tempShape.radius, 0, Math.PI * 2);
+                ctx.stroke();
+            } else if (tempShape.type === 'line') {
+                drawTempLine(tempShape.x1, tempShape.y1, tempShape.x2, tempShape.y2, false);
+            } else if (tempShape.type === 'arrow') {
+                drawTempLine(tempShape.x1, tempShape.y1, tempShape.x2, tempShape.y2, true);
+            }
         }
 
         // Draw selection box if an item is selected
