@@ -321,9 +321,11 @@
                   <div class="layers-container">
                     <div class="layer-controls">
                       <button id="addLayerBtn" class="layer-btn">
-                        <i class="fas fa-plus"></i> Add Layer </button>
+                        <i class="fas fa-plus"></i> Add </button>
                       <button id="deleteLayerBtn" class="layer-btn">
                         <i class="fas fa-trash"></i> Delete </button>
+                      <button id="renameLayerBtn" class="layer-btn">
+                        <i class="fas fa-pen"></i> Rename </button>
                     </div>
                     <div class="layers-list" id="layersList">
                       <!-- Layers will be added here -->
@@ -350,65 +352,79 @@
                 <i class="fas fa-arrow-left mr-2"></i>Back to Plans </button>
             </div>
           </div>
-        </div>
-      </section>
-      <!-- Share Code Modal -->
-      <div id="shareCodeModal" class="modal-overlay hidden">
-        <div class="modal-content">
-          <h2 class="modal-title">Plan Saved Successfully!</h2>
-          <p class="text-gray-300 mb-4">Use this share code to access your plan later or share it with others:</p>
-          <div class="share-code-box bg-gray-800 p-4 rounded-lg border border-gray-700 mb-4">
-            <div class="share-code-input flex items-center">
-              <input type="text" id="shareCodeDisplay" readonly class="flex-1 px-3 py-2 bg-gray-700 text-white rounded-l-lg">
-              <button id="copyShareCodeBtn" class="bg-accent-color hover:bg-accent-color-hover text-white px-4 py-2 rounded-r-lg">
-                <i class="fas fa-copy mr-2"></i>Copy </button>
+          <!-- Rename Layer Modal -->
+          <div id="renameLayerModal" class="modal-overlay hidden">
+            <div class="modal-content">
+              <h2 class="modal-title" id="renameLayerTitle">Rename Layer</h2>
+              <div class="modal-input-group">
+                <input type="text" id="renameLayerInput" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-accent-color focus:border-transparent" placeholder="Enter new layer name" maxlength="25">
+                <div class="text-xs text-gray-400 mt-1 text-right">
+                  <span id="renameLayerCharCount">0/25</span>
+                </div>
+              </div>
+              <div class="modal-buttons">
+                <button id="confirmRenameBtn" class="btn-accent">
+                  <i class="fas fa-check mr-2"></i>Rename </button>
+                <button id="cancelRenameBtn" class="btn-secondary">
+                  <i class="fas fa-times mr-2"></i>Cancel </button>
+              </div>
             </div>
           </div>
-          <div class="modal-buttons">
-            <button id="closeShareCodeModal" class="btn-accent">
-              <i class="fas fa-check mr-2"></i>Done </button>
+          <!-- Share Code Modal -->
+          <div id="shareCodeModal" class="modal-overlay hidden">
+            <div class="modal-content">
+              <h2 class="modal-title">Plan Saved Successfully!</h2>
+              <p class="text-gray-300 mb-4">Use this share code to access your plan later or share it with others:</p>
+              <div class="share-code-box bg-gray-800 p-4 rounded-lg border border-gray-700 mb-4">
+                <div class="share-code-input flex items-center">
+                  <input type="text" id="shareCodeDisplay" readonly class="flex-1 px-3 py-2 bg-gray-700 text-white rounded-l-lg">
+                  <button id="copyShareCodeBtn" class="bg-accent-color hover:bg-accent-color-hover text-white px-4 py-2 rounded-r-lg">
+                    <i class="fas fa-copy mr-2"></i>Copy </button>
+                </div>
+              </div>
+              <div class="modal-buttons">
+                <button id="closeShareCodeModal" class="btn-accent">
+                  <i class="fas fa-check mr-2"></i>Done </button>
+              </div>
+            </div>
+          </div>
+          <!-- Text Input Modal -->
+          <div id="textInputModal" class="modal-overlay hidden">
+            <div class="modal-content">
+              <h2 class="modal-title">Enter Text</h2>
+              <div class="modal-input-group">
+                <input type="text" id="textInputField" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-accent-color focus:border-transparent" placeholder="Type your text here">
+              </div>
+              <div class="modal-buttons">
+                <button id="confirmTextBtn" class="btn-accent">
+                  <i class="fas fa-check mr-2"></i>Confirm </button>
+                <button id="cancelTextBtn" class="btn-secondary">
+                  <i class="fas fa-times mr-2"></i>Cancel </button>
+              </div>
+            </div>
+          </div>
+          <!-- Confirmation Modal -->
+          <div id="confirmationModal" class="modal-overlay hidden">
+            <div class="modal-content">
+              <h2 class="modal-title" id="confirmationTitle"></h2>
+              <p class="text-gray-300 mb-6" id="confirmationMessage"></p>
+              <div class="modal-buttons">
+                <button id="confirmActionBtn" class="btn-accent">
+                  <i class="fas fa-check mr-2"></i>Confirm </button>
+                <button id="cancelActionBtn" class="btn-secondary">
+                  <i class="fas fa-times mr-2"></i>Cancel </button>
+              </div>
+            </div>
+          </div>
+          <!-- Custom Notification -->
+          <div id="customNotification" class="fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg border border-gray-700 transform translate-y-10 opacity-0 transition-all duration-300 z-50 hidden">
+            <div class="flex items-center">
+              <i id="notificationIcon" class="fas fa-info-circle mr-3"></i>
+              <span id="notificationMessage"></span>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- Custom Notification -->
-      <div id="customNotification" class="fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg border border-gray-700 transform translate-y-10 opacity-0 transition-all duration-300 z-50 hidden">
-        <div class="flex items-center">
-          <i id="notificationIcon" class="fas fa-info-circle mr-3"></i>
-          <span id="notificationMessage"></span>
-        </div>
-      </div>
-      <!-- Text Input Modal -->
-      <div id="textInputModal" class="modal-overlay hidden">
-        <div class="modal-content">
-          <h2 class="modal-title">Enter Text</h2>
-          <div class="modal-input-group">
-            <input type="text" id="textInputField" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-accent-color focus:border-transparent" placeholder="Type your text here">
-          </div>
-          <div class="modal-buttons">
-            <button id="confirmTextBtn" class="btn-accent">
-              <i class="fas fa-check mr-2"></i>Confirm
-            </button>
-            <button id="cancelTextBtn" class="btn-secondary">
-              <i class="fas fa-times mr-2"></i>Cancel
-            </button>
-          </div>
-        </div>
-      </div>
-      <!-- Confirmation Modal -->
-      <div id="confirmationModal" class="modal-overlay hidden">
-        <div class="modal-content">
-          <h2 class="modal-title" id="confirmationTitle"></h2>
-          <p class="text-gray-300 mb-6" id="confirmationMessage"></p>
-          <div class="modal-buttons">
-            <button id="confirmActionBtn" class="btn-accent">
-              <i class="fas fa-check mr-2"></i>Confirm
-            </button>
-            <button id="cancelActionBtn" class="btn-secondary">
-              <i class="fas fa-times mr-2"></i>Cancel
-            </button>
-          </div>
-        </div>
-      </div>
+      </section>
       <!-- Search Modal -->
       <div class="search-overlay" id="searchOverlay"></div>
       <div class="search-modal" id="searchModal">

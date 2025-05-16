@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const opacityValue = document.getElementById('opacityValue');
     const addLayerBtn = document.getElementById('addLayerBtn');
     const deleteLayerBtn = document.getElementById('deleteLayerBtn');
+    const renameLayerBtn = document.getElementById('renameLayerBtn');
     const layersList = document.getElementById('layersList');
     const customNotification = document.getElementById('customNotification');
     const notificationMessage = document.getElementById('notificationMessage');
@@ -41,6 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const shareCodeDisplay = document.getElementById('shareCodeDisplay');
     const copyShareCodeBtn = document.getElementById('copyShareCodeBtn');
     const closeShareCodeModal = document.getElementById('closeShareCodeModal');
+    const renameLayerModal = document.getElementById('renameLayerModal');
+    const renameLayerInput = document.getElementById('renameLayerInput');
+    const renameLayerTitle = document.getElementById('renameLayerTitle');
+    const renameLayerCharCount = document.getElementById('renameLayerCharCount');
+    const confirmRenameBtn = document.getElementById('confirmRenameBtn');
+    const cancelRenameBtn = document.getElementById('cancelRenameBtn');
 
     // State variables
     let currentTool = 'select';
@@ -136,6 +143,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // Layer controls
         addLayerBtn.addEventListener('click', addNewLayer);
         deleteLayerBtn.addEventListener('click', confirmDeleteLayer);
+        renameLayerBtn.addEventListener('click', showRenameLayerModal);
+        renameLayerInput.addEventListener('input', updateRenameCharCount);
+        confirmRenameBtn.addEventListener('click', confirmLayerRename);
+        cancelRenameBtn.addEventListener('click', hideRenameLayerModal);
+        renameLayerInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                confirmLayerRename();
+            }
+        });
 
         // Text input modal
         confirmTextBtn.addEventListener('click', confirmTextInput);
@@ -153,6 +169,51 @@ document.addEventListener('DOMContentLoaded', function() {
         // Character count updates
         planTitle.addEventListener('input', updateCharCounts);
         planDescription.addEventListener('input', updateCharCounts);
+    }
+
+    // Show rename layer modal
+    function showRenameLayerModal() {
+        if (layers.length === 0) return;
+
+        const currentLayer = layers[currentLayerIndex];
+        renameLayerInput.value = currentLayer.name;
+        renameLayerTitle.textContent = `Rename "${currentLayer.name}"`;
+        renameLayerCharCount.textContent = `${currentLayer.name.length}/25`;
+        renameLayerModal.classList.remove('hidden');
+        renameLayerInput.focus();
+    }
+
+    // Hide rename layer modal
+    function hideRenameLayerModal() {
+        renameLayerModal.classList.add('hidden');
+    }
+
+    // Confirm layer rename
+    function confirmLayerRename() {
+        const newName = renameLayerInput.value.trim();
+        if (newName && layers[currentLayerIndex]) {
+            if (newName.length > 25) {
+                showNotification('Layer name must be 25 characters or less', 'error');
+                return;
+            }
+
+            layers[currentLayerIndex].name = newName;
+            renderLayersList();
+            hideRenameLayerModal();
+            showNotification('Layer renamed successfully', 'success');
+        }
+    }
+
+    // Update rename layer character count
+    function updateRenameCharCount() {
+        const length = renameLayerInput.value.length;
+        renameLayerCharCount.textContent = `${length}/25`;
+
+        if (length >= 25) {
+            renameLayerCharCount.classList.add('text-red-400');
+        } else {
+            renameLayerCharCount.classList.remove('text-red-400');
+        }
     }
 
     // Update character counts
@@ -810,6 +871,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             layersList.appendChild(layerItem);
         });
+
+        // Disable delete/rename buttons if only one layer exists
+        deleteLayerBtn.disabled = layers.length <= 1;
+        renameLayerBtn.disabled = layers.length === 0;
     }
 
     // Save canvas state for undo
