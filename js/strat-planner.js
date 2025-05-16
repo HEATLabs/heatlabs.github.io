@@ -11,8 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const planDescription = document.getElementById('planDescription');
     const titleCharCount = document.getElementById('titleCharCount');
     const descCharCount = document.getElementById('descCharCount');
-    const shareCode = document.getElementById('shareCode');
-    const copyShareCode = document.getElementById('copyShareCode');
     const mapImage = document.getElementById('mapImage');
     const strategyCanvas = document.getElementById('strategyCanvas');
     const ctx = strategyCanvas.getContext('2d');
@@ -20,6 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const colorPicker = document.getElementById('colorPicker');
     const widthSlider = document.getElementById('widthSlider');
     const opacitySlider = document.getElementById('opacitySlider');
+    const widthValue = document.getElementById('widthValue');
+    const opacityValue = document.getElementById('opacityValue');
     const addLayerBtn = document.getElementById('addLayerBtn');
     const deleteLayerBtn = document.getElementById('deleteLayerBtn');
     const layersList = document.getElementById('layersList');
@@ -37,6 +37,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const cancelActionBtn = document.getElementById('cancelActionBtn');
     const loadPlanSection = document.querySelector('.load-plan-section');
     const createPlanSection = document.querySelector('.create-plan-section');
+    const shareCodeModal = document.getElementById('shareCodeModal');
+    const shareCodeDisplay = document.getElementById('shareCodeDisplay');
+    const copyShareCodeBtn = document.getElementById('copyShareCodeBtn');
+    const closeShareCodeModal = document.getElementById('closeShareCodeModal');
 
     // State variables
     let currentTool = 'select';
@@ -85,7 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
         renderMapGrid();
         setupCanvas();
         addInitialLayer();
-        updateShareCode();
         updateCharCounts();
     }
 
@@ -103,7 +106,10 @@ document.addEventListener('DOMContentLoaded', function() {
         backToPlansBtn.addEventListener('click', showPlansSection);
         savePlanBtn.addEventListener('click', savePlan);
         clearCanvasBtn.addEventListener('click', confirmClearCanvas);
-        copyShareCode.addEventListener('click', copyCodeToClipboard);
+
+        // Share code modal
+        copyShareCodeBtn.addEventListener('click', copyCodeToClipboard);
+        closeShareCodeModal.addEventListener('click', hideShareCodeModal);
 
         // Tool buttons
         toolButtons.forEach(button => {
@@ -119,10 +125,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         widthSlider.addEventListener('input', function() {
             currentWidth = this.value;
+            widthValue.textContent = currentWidth;
         });
 
         opacitySlider.addEventListener('input', function() {
             currentOpacity = this.value / 100;
+            opacityValue.textContent = `${this.value}%`;
         });
 
         // Layer controls
@@ -166,6 +174,32 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             descCharCount.classList.remove('text-red-400');
         }
+    }
+
+    // Show share code modal
+    function showShareCodeModal(code) {
+        shareCodeDisplay.value = code;
+        shareCodeModal.classList.remove('hidden');
+    }
+
+    // Hide share code modal
+    function hideShareCodeModal() {
+        shareCodeModal.classList.add('hidden');
+    }
+
+    // Copy code to clipboard
+    function copyCodeToClipboard() {
+        shareCodeDisplay.select();
+        document.execCommand('copy');
+
+        // Show feedback
+        const originalText = copyShareCodeBtn.innerHTML;
+        copyShareCodeBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        setTimeout(() => {
+            copyShareCodeBtn.innerHTML = originalText;
+        }, 2000);
+
+        showNotification('Share code copied to clipboard', 'success');
     }
 
     // Render the map selection grid
@@ -213,10 +247,15 @@ document.addEventListener('DOMContentLoaded', function() {
             // Check if the element exists before scrolling
             const sectionElement = document.getElementById('planTitle');
             if (sectionElement) {
-                sectionElement.scrollIntoView({ behavior: 'smooth' });
+                sectionElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
             } else {
                 // Fallback to scrolling to top if element doesn't exist
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             }
         }, 100);
     }
@@ -860,20 +899,8 @@ document.addEventListener('DOMContentLoaded', function() {
             createdAt: new Date().toISOString()
         };
 
-        updateShareCode();
-        showNotification('Plan saved! Use the share code to load it later.', 'success');
-    }
-
-    // Update share code
-    function updateShareCode() {
-        const planData = {
-            map: currentMap,
-            title: planTitle.value,
-            description: planDescription.value,
-            layers: layers
-        };
-
-        shareCode.value = encodePlan(planData);
+        const shareCode = encodePlan(planData);
+        showShareCodeModal(shareCode);
     }
 
     // Encode plan data to a shareable code
@@ -902,21 +929,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error decoding plan:', error);
             return null;
         }
-    }
-
-    // Copy share code to clipboard
-    function copyCodeToClipboard() {
-        shareCode.select();
-        document.execCommand('copy');
-
-        // Show feedback
-        const originalText = copyShareCode.innerHTML;
-        copyShareCode.innerHTML = '<i class="fas fa-check"></i> Copied!';
-        setTimeout(() => {
-            copyShareCode.innerHTML = originalText;
-        }, 2000);
-
-        showNotification('Share code copied to clipboard', 'success');
     }
 
     // Show text input modal
