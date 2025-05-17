@@ -3,27 +3,55 @@ let originalCards = [];
 let currentPage = 1;
 let postsPerPage = 12;
 
-// Function to format date as "Month Day, Year"
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    const options = {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    };
-    return date.toLocaleDateString('en-US', options);
-}
+// Function to update devs display
+function updatedevsDisplay() {
+    const sortFilter = document.getElementById('sortFilter');
+    const postsPerPageFilter = document.getElementById('postsPerPage');
+    const devGrid = document.querySelector('.dev-grid');
 
-// Function to update date displays in cards
-function updateCardDates(cards) {
-    cards.forEach(card => {
-        const dateElement = card.querySelector('.devs-meta span');
-        if (dateElement) {
-            const dateString = card.dataset.date;
-            const formattedDate = formatDate(dateString);
-            dateElement.innerHTML = `<i class="fa-solid fa-calendar"></i> ${formattedDate}`;
-        }
+    const sortValue = sortFilter.value;
+    postsPerPage = postsPerPageFilter.value === 'all' ? originalCards.length : parseInt(postsPerPageFilter.value);
+
+    // If originalCards is empty (first load), store the initial cards
+    if (originalCards.length === 0) {
+        originalCards = Array.from(devGrid.querySelectorAll('.dev-card'));
+    }
+
+    // Sort cards alphabetically
+    let sortedCards = [...originalCards];
+    sortedCards.sort((a, b) => {
+        const titleA = a.querySelector('h3').textContent.toLowerCase();
+        const titleB = b.querySelector('h3').textContent.toLowerCase();
+        return sortValue === 'z-a' ? titleB.localeCompare(titleA) : titleA.localeCompare(titleB);
     });
+
+    // Calculate pagination
+    const totalPages = Math.ceil(sortedCards.length / postsPerPage);
+    const startIndex = (currentPage - 1) * postsPerPage;
+    const endIndex = Math.min(startIndex + postsPerPage, sortedCards.length);
+    const paginatedCards = sortedCards.slice(startIndex, endIndex);
+
+    // Clear the grid
+    while (devGrid.firstChild) {
+        devGrid.removeChild(devGrid.firstChild);
+    }
+
+    // Add paginated cards back to the grid
+    paginatedCards.forEach(card => {
+        const clonedCard = card.cloneNode(true);
+        devGrid.appendChild(clonedCard);
+    });
+
+    // Update pagination controls
+    updatePaginationControls(totalPages);
+
+    // Reinitialize animations
+    setTimeout(() => {
+        const currentCards = devGrid.querySelectorAll('.dev-card');
+        currentCards.forEach(card => {
+            card.classList.add('animated');
+        });
+    }, 50);
 }
 
 // Function to update pagination controls
@@ -116,73 +144,9 @@ function updatePaginationControls(totalPages) {
     paginationContainer.appendChild(nextButton);
 }
 
-// Function to sort and filter devs cards
-function updatedevsDisplay() {
-    const sortFilter = document.getElementById('sortFilter');
-    const typeFilter = document.getElementById('typeFilter');
-    const postsPerPageFilter = document.getElementById('postsPerPage');
-    const devGrid = document.querySelector('.dev-grid');
-
-    const sortValue = sortFilter.value;
-    const typeValue = typeFilter.value;
-    postsPerPage = postsPerPageFilter.value === 'all' ? originalCards.length : parseInt(postsPerPageFilter.value);
-
-    // If originalCards is empty (first load), store the initial cards
-    if (originalCards.length === 0) {
-        originalCards = Array.from(devGrid.querySelectorAll('.dev-card'));
-        // Update dates in original cards
-        updateCardDates(originalCards);
-    }
-
-    // Filter cards by type
-    let filteredCards = originalCards;
-    if (typeValue !== 'all') {
-        filteredCards = originalCards.filter(card => card.dataset.type === typeValue);
-    }
-
-    // Sort cards by date
-    filteredCards.sort((a, b) => {
-        const dateA = new Date(a.dataset.date);
-        const dateB = new Date(b.dataset.date);
-        return sortValue === 'latest' ? dateB - dateA : dateA - dateB;
-    });
-
-    // Calculate pagination
-    const totalPages = Math.ceil(filteredCards.length / postsPerPage);
-    const startIndex = (currentPage - 1) * postsPerPage;
-    const endIndex = Math.min(startIndex + postsPerPage, filteredCards.length);
-    const paginatedCards = filteredCards.slice(startIndex, endIndex);
-
-    // Clear the grid
-    while (devGrid.firstChild) {
-        devGrid.removeChild(devGrid.firstChild);
-    }
-
-    // Add paginated cards back to the grid
-    paginatedCards.forEach(card => {
-        const clonedCard = card.cloneNode(true);
-        devGrid.appendChild(clonedCard);
-    });
-
-    // Update dates in the newly added cards
-    const currentCards = devGrid.querySelectorAll('.dev-card');
-    updateCardDates(currentCards);
-
-    // Update pagination controls
-    updatePaginationControls(totalPages);
-
-    // Reinitialize animations
-    setTimeout(() => {
-        currentCards.forEach(card => {
-            card.classList.add('animated');
-        });
-    }, 50);
-}
-
 // Initialize dev functionality
 document.addEventListener('DOMContentLoaded', function() {
     const sortFilter = document.getElementById('sortFilter');
-    const typeFilter = document.getElementById('typeFilter');
     const postsPerPageFilter = document.getElementById('postsPerPage');
 
     // Initialize with default sorting
@@ -190,10 +154,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add event listeners for filter changes
     sortFilter.addEventListener('change', () => {
-        currentPage = 1;
-        updatedevsDisplay();
-    });
-    typeFilter.addEventListener('change', () => {
         currentPage = 1;
         updatedevsDisplay();
     });
