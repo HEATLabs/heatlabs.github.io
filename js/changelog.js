@@ -1,36 +1,36 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Fetch changelog data from GitHub
-  fetchChangelogData();
+    // Fetch changelog data from GitHub
+    fetchChangelogData();
 
-  // Add event listeners for back to top button
-  setupBackToTop();
+    // Add event listeners for back to top button
+    setupBackToTop();
 });
 
 function fetchChangelogData() {
-  const changelogUrl = 'https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/changelog.json';
-  const changelogContainer = document.getElementById('changelogContainer');
+    const changelogUrl = 'https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/changelog.json';
+    const changelogContainer = document.getElementById('changelogContainer');
 
-  // Show loading state
-  changelogContainer.innerHTML = `
+    // Show loading state
+    changelogContainer.innerHTML = `
     <div class="loading-spinner">
       <div class="spinner"></div>
       <p>Loading changelog...</p>
     </div>
   `;
 
-  fetch(changelogUrl)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      renderChangelog(data.updates);
-    })
-    .catch(error => {
-      console.error('Error fetching changelog:', error);
-      changelogContainer.innerHTML = `
+    fetch(changelogUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            renderChangelog(data.updates);
+        })
+        .catch(error => {
+            console.error('Error fetching changelog:', error);
+            changelogContainer.innerHTML = `
         <div class="error-message text-center py-10">
           <i class="fas fa-exclamation-triangle text-3xl text-red-500 mb-4"></i>
           <h3 class="text-xl font-semibold mb-2">Failed to load changelog</h3>
@@ -40,27 +40,27 @@ function fetchChangelogData() {
           </button>
         </div>
       `;
-    });
+        });
 }
 
 function renderChangelog(updates) {
-  const changelogContainer = document.getElementById('changelogContainer');
+    const changelogContainer = document.getElementById('changelogContainer');
 
-  if (!updates || updates.length === 0) {
-    changelogContainer.innerHTML = `
+    if (!updates || updates.length === 0) {
+        changelogContainer.innerHTML = `
       <div class="empty-state text-center py-10">
         <i class="fas fa-clipboard-list text-3xl text-gray-400 mb-4"></i>
         <h3 class="text-xl font-semibold mb-2">No updates yet</h3>
         <p class="text-gray-500">Check back later for updates to the project.</p>
       </div>
     `;
-    return;
-  }
+        return;
+    }
 
-  // Calculate statistics
-  const stats = calculateStats(updates);
+    // Calculate statistics
+    const stats = calculateStats(updates);
 
-  let html = `
+    let html = `
     <div class="changelog-stats">
       <div class="stat-card additions">
         <div class="stat-value">${stats.totalAdded}</div>
@@ -81,8 +81,8 @@ function renderChangelog(updates) {
     </div>
   `;
 
-  updates.forEach(update => {
-    html += `
+    updates.forEach(update => {
+        html += `
       <div class="update-card">
         <div class="update-header">
           <h3 class="update-title">${update.title}</h3>
@@ -128,33 +128,37 @@ function renderChangelog(updates) {
         </div>
       </div>
     `;
-  });
+    });
 
-  changelogContainer.innerHTML = html;
+    changelogContainer.innerHTML = html;
 }
 
 function calculateStats(updates) {
-  let totalAdded = 0;
-  let totalChanged = 0;
-  let totalRemoved = 0;
+    let totalAdded = 0;
+    let totalChanged = 0;
+    let totalRemoved = 0;
 
-  updates.forEach(update => {
-    totalAdded += update.added.length;
-    totalChanged += update.changed.length;
-    totalRemoved += update.removed.length;
-  });
+    updates.forEach(update => {
+        totalAdded += update.added.length;
+        totalChanged += update.changed.length;
+        totalRemoved += update.removed.length;
+    });
 
-  return {
-    totalAdded,
-    totalChanged,
-    totalRemoved,
-    totalUpdates: updates.length
-  };
+    return {
+        totalAdded,
+        totalChanged,
+        totalRemoved,
+        totalUpdates: updates.length
+    };
 }
 
 function formatDate(dateString) {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  return new Date(dateString).toLocaleDateString(undefined, options);
+    const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
 }
 
 // Make fetchChangelogData available globally for retry button
