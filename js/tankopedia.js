@@ -264,6 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalId = document.getElementById('tankopediaModalId');
         const modalCategory = document.getElementById('tankopediaModalCategory');
         const modalDescription = document.getElementById('tankopediaModalDescription');
+        const modalHowToObtain = document.getElementById('tankopediaModalHowToObtain');
 
         // Populate modal with item data
         modalImage.src = item.image;
@@ -272,6 +273,17 @@ document.addEventListener('DOMContentLoaded', function() {
         modalName.textContent = item.name;
         modalCategory.textContent = 'Category: ' + item.category;
         modalDescription.textContent = item.description;
+
+        // Add How to Obtain section
+        if (item.howto) {
+            modalHowToObtain.innerHTML = `
+                <h3>How to Obtain</h3>
+                <p>${item.howto}</p>
+            `;
+            modalHowToObtain.style.display = 'block';
+        } else {
+            modalHowToObtain.style.display = 'none';
+        }
 
         // Show modal
         modal.classList.add('active');

@@ -218,26 +218,19 @@
 }
 
 .tankopedia-modal-body h3 {
-	font-size: 1.5rem;
-	margin-bottom: 1rem;
+	font-size: 1.25rem;
+	margin-top: 1.5rem;
+	margin-bottom: 0.75rem;
 	color: var(--text-primary);
-	text-align: left;
-}
-
-.tankopedia-modal-body h3::after {
-	content: '';
-	display: block;
-	width: 50px;
-	height: 3px;
-	background-color: var(--accent-color);
-	margin: 0.5rem 0 1rem;
+	border-bottom: 2px solid var(--accent-color);
+	padding-bottom: 0.5rem;
 }
 
 .tankopedia-modal-body p {
 	font-size: 1rem;
-	line-height: 1.7;
+	line-height: 1.6;
 	color: var(--text-secondary);
-	margin-bottom: 1.5rem;
+	margin-bottom: 1rem;
 }
 
 /* Filter Styles */
