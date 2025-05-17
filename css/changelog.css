@@ -189,6 +189,73 @@
 	margin-bottom: 1rem;
 }
 
+/* Changelog Stats */
+.changelog-stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 1.5rem;
+	margin-bottom: 2rem;
+}
+
+.stat-card {
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	padding: 1.5rem;
+	box-shadow: var(--shadow);
+	border: 1px solid var(--border-color);
+	text-align: center;
+	transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+	transform: translateY(-5px);
+}
+
+.stat-value {
+	font-size: 2.5rem;
+	font-weight: 700;
+	color: var(--accent-color);
+	margin-bottom: 0.5rem;
+	line-height: 1;
+}
+
+.stat-label {
+	font-size: 1rem;
+	color: var(--text-secondary);
+}
+
+.stat-card.additions {
+	border-top: 4px solid #4CAF50;
+}
+
+.stat-card.changes {
+	border-top: 4px solid #FFC107;
+}
+
+.stat-card.removals {
+	border-top: 4px solid #F44336;
+}
+
+.stat-card.updates {
+	border-top: 4px solid #2196F3;
+}
+
+@media (max-width: 768px) {
+	.changelog-stats {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (max-width: 480px) {
+	.changelog-stats {
+		grid-template-columns: 1fr;
+	}
+
+	.stat-value {
+		font-size: 2rem;
+	}
+}
+
 @keyframes spin {
 	0% {
 		transform: rotate(0deg);

@@ -57,7 +57,29 @@ function renderChangelog(updates) {
     return;
   }
 
-  let html = '';
+  // Calculate statistics
+  const stats = calculateStats(updates);
+
+  let html = `
+    <div class="changelog-stats">
+      <div class="stat-card additions">
+        <div class="stat-value">${stats.totalAdded}</div>
+        <div class="stat-label">Additions</div>
+      </div>
+      <div class="stat-card changes">
+        <div class="stat-value">${stats.totalChanged}</div>
+        <div class="stat-label">Changes</div>
+      </div>
+      <div class="stat-card removals">
+        <div class="stat-value">${stats.totalRemoved}</div>
+        <div class="stat-label">Removals</div>
+      </div>
+      <div class="stat-card updates">
+        <div class="stat-value">${stats.totalUpdates}</div>
+        <div class="stat-label">Updates</div>
+      </div>
+    </div>
+  `;
 
   updates.forEach(update => {
     html += `
@@ -109,6 +131,25 @@ function renderChangelog(updates) {
   });
 
   changelogContainer.innerHTML = html;
+}
+
+function calculateStats(updates) {
+  let totalAdded = 0;
+  let totalChanged = 0;
+  let totalRemoved = 0;
+
+  updates.forEach(update => {
+    totalAdded += update.added.length;
+    totalChanged += update.changed.length;
+    totalRemoved += update.removed.length;
+  });
+
+  return {
+    totalAdded,
+    totalChanged,
+    totalRemoved,
+    totalUpdates: updates.length
+  };
 }
 
 function formatDate(dateString) {
