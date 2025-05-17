@@ -17,7 +17,7 @@ function formatDate(dateString) {
 // Function to update date displays in cards
 function updateCardDates(cards) {
     cards.forEach(card => {
-        const dateElement = card.querySelector('.tournaments-meta span');
+        const dateElement = card.querySelector('.devs-meta span');
         if (dateElement) {
             const dateString = card.dataset.date;
             const formattedDate = formatDate(dateString);
@@ -41,7 +41,7 @@ function updatePaginationControls(totalPages) {
     prevButton.addEventListener('click', () => {
         if (currentPage > 1) {
             currentPage--;
-            updateTournamentsDisplay();
+            updatedevsDisplay();
         }
     });
     paginationContainer.appendChild(prevButton);
@@ -61,7 +61,7 @@ function updatePaginationControls(totalPages) {
         firstPageButton.className = 'pagination-button';
         firstPageButton.addEventListener('click', () => {
             currentPage = 1;
-            updateTournamentsDisplay();
+            updatedevsDisplay();
         });
         paginationContainer.appendChild(firstPageButton);
 
@@ -79,7 +79,7 @@ function updatePaginationControls(totalPages) {
         pageButton.className = `pagination-button ${i === currentPage ? 'active' : ''}`;
         pageButton.addEventListener('click', () => {
             currentPage = i;
-            updateTournamentsDisplay();
+            updatedevsDisplay();
         });
         paginationContainer.appendChild(pageButton);
     }
@@ -97,7 +97,7 @@ function updatePaginationControls(totalPages) {
         lastPageButton.className = 'pagination-button';
         lastPageButton.addEventListener('click', () => {
             currentPage = totalPages;
-            updateTournamentsDisplay();
+            updatedevsDisplay();
         });
         paginationContainer.appendChild(lastPageButton);
     }
@@ -110,18 +110,18 @@ function updatePaginationControls(totalPages) {
     nextButton.addEventListener('click', () => {
         if (currentPage < totalPages) {
             currentPage++;
-            updateTournamentsDisplay();
+            updatedevsDisplay();
         }
     });
     paginationContainer.appendChild(nextButton);
 }
 
-// Function to sort and filter tournaments cards
-function updateTournamentsDisplay() {
+// Function to sort and filter devs cards
+function updatedevsDisplay() {
     const sortFilter = document.getElementById('sortFilter');
     const typeFilter = document.getElementById('typeFilter');
     const postsPerPageFilter = document.getElementById('postsPerPage');
-    const tournamentGrid = document.querySelector('.tournament-grid');
+    const devGrid = document.querySelector('.dev-grid');
 
     const sortValue = sortFilter.value;
     const typeValue = typeFilter.value;
@@ -129,7 +129,7 @@ function updateTournamentsDisplay() {
 
     // If originalCards is empty (first load), store the initial cards
     if (originalCards.length === 0) {
-        originalCards = Array.from(tournamentGrid.querySelectorAll('.tournament-card'));
+        originalCards = Array.from(devGrid.querySelectorAll('.dev-card'));
         // Update dates in original cards
         updateCardDates(originalCards);
     }
@@ -154,18 +154,18 @@ function updateTournamentsDisplay() {
     const paginatedCards = filteredCards.slice(startIndex, endIndex);
 
     // Clear the grid
-    while (tournamentGrid.firstChild) {
-        tournamentGrid.removeChild(tournamentGrid.firstChild);
+    while (devGrid.firstChild) {
+        devGrid.removeChild(devGrid.firstChild);
     }
 
     // Add paginated cards back to the grid
     paginatedCards.forEach(card => {
         const clonedCard = card.cloneNode(true);
-        tournamentGrid.appendChild(clonedCard);
+        devGrid.appendChild(clonedCard);
     });
 
     // Update dates in the newly added cards
-    const currentCards = tournamentGrid.querySelectorAll('.tournament-card');
+    const currentCards = devGrid.querySelectorAll('.dev-card');
     updateCardDates(currentCards);
 
     // Update pagination controls
@@ -179,33 +179,33 @@ function updateTournamentsDisplay() {
     }, 50);
 }
 
-// Initialize tournament functionality
+// Initialize dev functionality
 document.addEventListener('DOMContentLoaded', function() {
     const sortFilter = document.getElementById('sortFilter');
     const typeFilter = document.getElementById('typeFilter');
     const postsPerPageFilter = document.getElementById('postsPerPage');
 
     // Initialize with default sorting
-    updateTournamentsDisplay();
+    updatedevsDisplay();
 
     // Add event listeners for filter changes
     sortFilter.addEventListener('change', () => {
         currentPage = 1;
-        updateTournamentsDisplay();
+        updatedevsDisplay();
     });
     typeFilter.addEventListener('change', () => {
         currentPage = 1;
-        updateTournamentsDisplay();
+        updatedevsDisplay();
     });
     postsPerPageFilter.addEventListener('change', () => {
         currentPage = 1;
-        updateTournamentsDisplay();
+        updatedevsDisplay();
     });
 
     // Initialize animations after page load
     setTimeout(() => {
-        const tournamentCards = document.querySelectorAll('.tournament-card');
-        tournamentCards.forEach(card => {
+        const devCards = document.querySelectorAll('.dev-card');
+        devCards.forEach(card => {
             card.classList.add('animated');
         });
     }, 300);
