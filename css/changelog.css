@@ -173,6 +173,8 @@
 
 .update-section.fixed {
 	border-left: 3px solid #9C27B0;
+	position: relative;
+	/* Changed from fixed to relative */
 }
 
 .loading-spinner {

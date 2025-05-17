@@ -70,13 +70,13 @@ function renderChangelog(updates) {
         <div class="stat-value">${stats.totalChanged}</div>
         <div class="stat-label">Changes</div>
       </div>
-      <div class="stat-card removals">
-        <div class="stat-value">${stats.totalRemoved}</div>
-        <div class="stat-label">Removals</div>
-      </div>
       <div class="stat-card fixes">
         <div class="stat-value">${stats.totalFixed}</div>
         <div class="stat-label">Fixes</div>
+      </div>
+      <div class="stat-card removals">
+        <div class="stat-value">${stats.totalRemoved}</div>
+        <div class="stat-label">Removals</div>
       </div>
       <div class="stat-card updates">
         <div class="stat-value">${stats.totalUpdates}</div>
@@ -121,6 +121,15 @@ function renderChangelog(updates) {
             </div>
           ` : ''}
 
+          ${update.fixed && update.fixed.length > 0 ? `
+            <div class="update-section fixed">
+              <h4><i class="fas fa-bug"></i> Fixed</h4>
+              <ul class="update-list">
+                ${update.fixed.map(item => `<li>${item}</li>`).join('')}
+              </ul>
+            </div>
+          ` : ''}
+
           ${update.removed && update.removed.length > 0 ? `
             <div class="update-section removed">
               <h4><i class="fas fa-minus-circle"></i> Removed</h4>
@@ -130,14 +139,6 @@ function renderChangelog(updates) {
             </div>
           ` : ''}
 
-          ${update.fixed && update.fixed.length > 0 ? `
-            <div class="update-section fixed">
-              <h4><i class="fas fa-bug"></i> Fixed</h4>
-              <ul class="update-list">
-                ${update.fixed.map(item => `<li>${item}</li>`).join('')}
-              </ul>
-            </div>
-          ` : ''}
         </div>
       </div>
     `;
