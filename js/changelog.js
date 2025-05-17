@@ -74,6 +74,10 @@ function renderChangelog(updates) {
         <div class="stat-value">${stats.totalRemoved}</div>
         <div class="stat-label">Removals</div>
       </div>
+      <div class="stat-card fixes">
+        <div class="stat-value">${stats.totalFixed}</div>
+        <div class="stat-label">Fixes</div>
+      </div>
       <div class="stat-card updates">
         <div class="stat-value">${stats.totalUpdates}</div>
         <div class="stat-label">Updates</div>
@@ -99,7 +103,7 @@ function renderChangelog(updates) {
         <p class="update-description">${update.description}</p>
 
         <div class="update-details">
-          ${update.added.length > 0 ? `
+          ${update.added && update.added.length > 0 ? `
             <div class="update-section added">
               <h4><i class="fas fa-plus-circle"></i> Added</h4>
               <ul class="update-list">
@@ -108,7 +112,7 @@ function renderChangelog(updates) {
             </div>
           ` : ''}
 
-          ${update.changed.length > 0 ? `
+          ${update.changed && update.changed.length > 0 ? `
             <div class="update-section changed">
               <h4><i class="fas fa-exchange-alt"></i> Changed</h4>
               <ul class="update-list">
@@ -117,11 +121,20 @@ function renderChangelog(updates) {
             </div>
           ` : ''}
 
-          ${update.removed.length > 0 ? `
+          ${update.removed && update.removed.length > 0 ? `
             <div class="update-section removed">
               <h4><i class="fas fa-minus-circle"></i> Removed</h4>
               <ul class="update-list">
                 ${update.removed.map(item => `<li>${item}</li>`).join('')}
+              </ul>
+            </div>
+          ` : ''}
+
+          ${update.fixed && update.fixed.length > 0 ? `
+            <div class="update-section fixed">
+              <h4><i class="fas fa-bug"></i> Fixed</h4>
+              <ul class="update-list">
+                ${update.fixed.map(item => `<li>${item}</li>`).join('')}
               </ul>
             </div>
           ` : ''}
@@ -137,17 +150,20 @@ function calculateStats(updates) {
     let totalAdded = 0;
     let totalChanged = 0;
     let totalRemoved = 0;
+    let totalFixed = 0;
 
     updates.forEach(update => {
-        totalAdded += update.added.length;
-        totalChanged += update.changed.length;
-        totalRemoved += update.removed.length;
+        totalAdded += update.added?.length || 0;
+        totalChanged += update.changed?.length || 0;
+        totalRemoved += update.removed?.length || 0;
+        totalFixed += update.fixed?.length || 0;
     });
 
     return {
         totalAdded,
         totalChanged,
         totalRemoved,
+        totalFixed,
         totalUpdates: updates.length
     };
 }
@@ -159,6 +175,27 @@ function formatDate(dateString) {
         day: 'numeric'
     };
     return new Date(dateString).toLocaleDateString(undefined, options);
+}
+
+function setupBackToTop() {
+    // Implementation for back to top button
+    const backToTopButton = document.getElementById('backToTop');
+    if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 }
 
 // Make fetchChangelogData available globally for retry button
