@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="tankopedia-info">
                 <h3>${item.name}</h3>
                 <p>${item.description.substring(0, 60)}</p>
+                <p>${item.acquire.substring(0, 60)}</p>
             </div>
         `;
 
