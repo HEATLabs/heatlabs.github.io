@@ -1,0 +1,294 @@
+/* Console Modal Styles */
+#consoleModal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80%;
+	max-width: 800px;
+	height: 70vh;
+	background-color: #000;
+	border: 2px solid #333;
+	border-radius: 5px;
+	box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+	z-index: 1001;
+	display: none;
+	flex-direction: column;
+	font-family: 'Courier New', monospace;
+	overflow: hidden;
+}
+
+#consoleModal.active {
+	display: flex;
+	animation: consoleFlicker 0.5s;
+}
+
+#consoleOverlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 1000;
+	display: none;
+}
+
+#consoleOverlay.active {
+	display: block;
+}
+
+#consoleContent {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	background-color: #000;
+	color: #0f0;
+	overflow: hidden;
+}
+
+#consoleOutput {
+	flex: 1;
+	overflow-y: auto;
+	padding: 5px;
+	font-size: 14px;
+	line-height: 1.4;
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+#consoleInput {
+	background-color: transparent;
+	border: 1px solid #333;
+	color: #0f0;
+	padding: 8px;
+	font-family: 'Courier New', monospace;
+	font-size: 14px;
+	margin-top: 5px;
+	outline: none;
+}
+
+#consoleInput:focus {
+	border-color: #0f0;
+}
+
+/* Console Text Styles */
+.boot-line {
+	color: #0f0;
+	animation: blink 1s infinite;
+}
+
+.command-line {
+	color: #0f0;
+}
+
+.prompt {
+	color: #0f0;
+	font-weight: bold;
+}
+
+.error {
+	color: #f00;
+}
+
+.warning {
+	color: #ff0;
+}
+
+.output-header {
+	color: #0ff;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.help-header {
+	color: #0ff;
+	font-weight: bold;
+}
+
+.help-line {
+	margin-left: 20px;
+}
+
+.command-name {
+	color: #0f0;
+	font-weight: bold;
+}
+
+.tank-item {
+	margin-left: 20px;
+}
+
+.tank-stat {
+	margin-left: 20px;
+}
+
+.stat-category {
+	color: #0ff;
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+.stat-item {
+	margin-left: 20px;
+}
+
+.version-info {
+	margin-left: 20px;
+}
+
+.about-line {
+	margin-left: 20px;
+}
+
+.echo-output {
+	color: #0f0;
+}
+
+.matrix-line {
+	color: #0f0;
+	font-family: 'Courier New', monospace;
+}
+
+.roulette-line {
+	color: #0f0;
+}
+
+.roulette-spin {
+	color: #0f0;
+	animation: spin 0.1s;
+}
+
+.roulette-result {
+	color: #0ff;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.roulette-highlight {
+	color: #f0f;
+	font-weight: bold;
+	font-size: 16px;
+	text-align: center;
+	margin: 10px 0;
+}
+
+.roulette-link {
+	color: #0f0;
+	text-align: center;
+}
+
+.secret-line {
+	color: #0f0;
+}
+
+.secret-message {
+	color: #f0f;
+	font-style: italic;
+	margin-left: 30px;
+}
+
+.sudo-line {
+	color: #0f0;
+}
+
+.sudo-error {
+	color: #f00;
+	font-weight: bold;
+}
+
+.hack-line {
+	color: #0f0;
+}
+
+.hack-progress {
+	color: #0f0;
+	animation: progress 0.3s;
+}
+
+.hack-success {
+	color: #0f0;
+	font-weight: bold;
+}
+
+.command-link {
+	color: #0ff;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.command-link:hover {
+	color: #f0f;
+}
+
+/* Animations */
+@keyframes blink {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.5;
+	}
+}
+
+@keyframes consoleFlicker {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	20%,
+	60% {
+		opacity: 0.8;
+	}
+
+	40%,
+	80% {
+		opacity: 0.5;
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: translateY(-5px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes progress {
+	0% {
+		opacity: 0.5;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+/* Scrollbar styling */
+#consoleOutput::-webkit-scrollbar {
+	width: 8px;
+}
+
+#consoleOutput::-webkit-scrollbar-track {
+	background: #111;
+}
+
+#consoleOutput::-webkit-scrollbar-thumb {
+	background: #333;
+	border-radius: 4px;
+}
+
+#consoleOutput::-webkit-scrollbar-thumb:hover {
+	background: #444;
+}

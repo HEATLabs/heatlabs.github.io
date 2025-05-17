@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="css/modules/global-hero.css">
     <link rel="stylesheet" href="css/modules/warning.css">
     <link rel="stylesheet" href="css/modules/banner.css">
+    <link rel="stylesheet" href="css/easter-eggs/console.css">
     <!-- Favicon for all browsers -->
     <link rel="icon" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon.ico" type="image/x-icon">
     <!-- Apple Touch Icons (for iOS home screen bookmarks) -->
@@ -436,6 +437,14 @@
           </div>
         </div>
       </div>
+      <!-- Console Modal -->
+      <div class="console-overlay" id="consoleOverlay"></div>
+      <div class="console-modal" id="consoleModal">
+        <div class="console-content" id="consoleContent">
+          <div class="console-output" id="consoleOutput"></div>
+          <input type="text" class="console-input" id="consoleInput" autocomplete="off" spellcheck="false">
+        </div>
+      </div>
       <!-- Footer -->
       <footer class="footer bg-gray-900 text-white py-10">
         <div class="container mx-auto px-10 space-y-10">
@@ -558,5 +567,6 @@
     <script src="js/modules/warning.js"></script>
     <script src="js/modules/global-hero.js"></script>
     <script src="js/modules/banner.js"></script>
+    <script src="js/easter-eggs/console.js"></script>
   </body>
 </html>
