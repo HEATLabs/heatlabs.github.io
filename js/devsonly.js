@@ -146,7 +146,7 @@ function updatePaginationControls(totalPages) {
 
 // Development Progress Functionality
 function initializeDevelopmentProgress() {
-    fetch('development.json')
+    fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/development.json')
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById('progressContainer');
