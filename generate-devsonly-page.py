@@ -4,13 +4,14 @@ from pathlib import Path
 
 def find_html_files(directory):
     """Find all HTML files in directory and subdirectories, sorted alphabetically"""
+    """Notice: This script needs to be ran in the root directory of the repo."""
     html_files = []
     for root, _, files in os.walk(directory):
         for file in files:
             if file.lower().endswith('.html'):
                 full_path = os.path.join(root, file)
-                # Skip the devsonly.html file itself to avoid recursion
-                if os.path.basename(full_path).lower() != 'devsonly.html':
+                # Skip the devsonly_OG.html file itself (what I rename it to when checking if it updated correctly)
+                if os.path.basename(full_path).lower() != 'devsonly_OG.html':
                     html_files.append(full_path)
     return sorted(html_files)
 
