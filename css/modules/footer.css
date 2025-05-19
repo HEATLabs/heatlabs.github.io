@@ -91,3 +91,16 @@
 .footer-bottom p {
 	margin: 0.5rem 0;
 }
+
+/* Disclaimer link */
+.disclaimer-link {
+	color: var(--accent-color);
+	text-decoration: none;
+	border-bottom: 2px solid transparent;
+	transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.disclaimer-link:hover {
+	border-color: var(---accent-color-hover);
+	color: var(--accent-color-hover);
+}
