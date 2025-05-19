@@ -629,6 +629,40 @@
 	flex-grow: 1;
 }
 
+.progress-legend {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--background-secondary);
+    border-radius: 8px;
+}
+
+.progress-legend h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-emoji {
+    font-size: 1.2rem;
+}
+
+.legend-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
 .status-not-started {
 	color: var(--text-secondary);
 }

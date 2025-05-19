@@ -151,6 +151,40 @@ function initializeDevelopmentProgress() {
         .then(data => {
             const container = document.getElementById('progressContainer');
 
+            // Create legend section
+            const legendContainer = document.createElement('div');
+            legendContainer.className = 'progress-legend';
+
+            // Add legend title
+            const legendTitle = document.createElement('h3');
+            legendTitle.textContent = 'Status Legend';
+            legendContainer.appendChild(legendTitle);
+
+            // Create legend items
+            const legendItems = document.createElement('div');
+            legendItems.className = 'legend-items';
+
+            // Add each status to the legend
+            Object.entries(data.stages).forEach(([emoji, description]) => {
+                const legendItem = document.createElement('div');
+                legendItem.className = 'legend-item';
+
+                const emojiSpan = document.createElement('span');
+                emojiSpan.className = 'legend-emoji';
+                emojiSpan.textContent = emoji;
+
+                const descSpan = document.createElement('span');
+                descSpan.className = 'legend-desc';
+                descSpan.textContent = description;
+
+                legendItem.appendChild(emojiSpan);
+                legendItem.appendChild(descSpan);
+                legendItems.appendChild(legendItem);
+            });
+
+            legendContainer.appendChild(legendItems);
+            container.appendChild(legendContainer);
+
             // Calculate stats
             let totalTasks = 0;
             const statusCounts = {};
@@ -168,7 +202,8 @@ function initializeDevelopmentProgress() {
             const completedPercentage = Math.round((statusCounts["🟢"] / totalTasks) * 100);
 
             // Create progress bar and stats
-            container.innerHTML = `
+            const progressSection = document.createElement('div');
+            progressSection.innerHTML = `
                 <div class="progress-bar-container">
                     <div class="progress-bar" style="width: ${completedPercentage}%"></div>
                 </div>
@@ -195,6 +230,7 @@ function initializeDevelopmentProgress() {
                     </div>
                 </div>
             `;
+            container.appendChild(progressSection);
 
             // Create task lists
             data.categories.forEach(category => {
