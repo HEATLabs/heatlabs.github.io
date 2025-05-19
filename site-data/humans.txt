@@ -8,7 +8,7 @@
   GitHub Pages: https://pages.github.com/
 
 /* SITE */
-  Last update: 2025/05/13
+  Last update: 2025/05/19
   Language: English
   Doctype: HTML5
   IDE: WebStorm

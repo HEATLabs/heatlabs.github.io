@@ -3,9 +3,282 @@
 	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<!-- Home Page -->
 	<url>
-		<loc>https://pcwstats.github.io/index.html</loc>
-		<lastmod>2025-05-13</lastmod>
+		<loc>https://pcwstats.github.io</loc>
+		<lastmod>2025-05-19</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1.0</priority>
+	</url>
+	<!-- Tank Statistics Page -->
+	<url>
+		<loc>https://pcwstats.github.io/tanks.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Map Knowledge Page -->
+	<url>
+		<loc>https://pcwstats.github.io/maps.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Nord Oko Page -->
+	<url>
+		<loc>https://pcwstats.github.io/maps/nord-oko.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Project Phoenix Page -->
+	<url>
+		<loc>https://pcwstats.github.io/maps/project-phoenix.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Sunstroke Page -->
+	<url>
+		<loc>https://pcwstats.github.io/maps/sunstroke.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Blossom Crash Page -->
+	<url>
+		<loc>https://pcwstats.github.io/maps/blossom-crash.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Scarred City Page -->
+	<url>
+		<loc>https://pcwstats.github.io/maps/scarred-city.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Nexus Dam Page -->
+	<url>
+		<loc>https://pcwstats.github.io/maps/nexus-dam.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Aircraft Carrier Page -->
+	<url>
+		<loc>https://pcwstats.github.io/maps/aircraft-carrier.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Military Training Page -->
+	<url>
+		<loc>https://pcwstats.github.io/maps/military-training.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Baikonur Page -->
+	<url>
+		<loc>https://pcwstats.github.io/maps/baikonur.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Inferno Page -->
+	<url>
+		<loc>https://pcwstats.github.io/maps/inferno.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Moonshot Page -->
+	<url>
+		<loc>https://pcwstats.github.io/maps/moonshot.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Ballistic Range Page -->
+	<url>
+		<loc>https://pcwstats.github.io/maps/ballistic-range.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Common Builds Page -->
+	<url>
+		<loc>https://pcwstats.github.io/builds.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- PCW Bug Hunting Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Community Guides Page -->
+	<url>
+		<loc>https://pcwstats.github.io/guides.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- General Guides Page -->
+	<url>
+		<loc>https://pcwstats.github.io/guides/general.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Map Guides Page -->
+	<url>
+		<loc>https://pcwstats.github.io/guides/maps.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Tank Guides Page -->
+	<url>
+		<loc>https://pcwstats.github.io/guides/tanks.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Community Credits Page -->
+	<url>
+		<loc>https://pcwstats.github.io/credits.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Tournaments Page -->
+	<url>
+		<loc>https://pcwstats.github.io/tournaments.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Alpha #1 Tournament Page -->
+	<url>
+		<loc>https://pcwstats.github.io/tournaments/open-alpha-1-tournament.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Alpha #2 Tournament Page -->
+	<url>
+		<loc>https://pcwstats.github.io/tournaments/open-alpha-2-tournament.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Game News Page -->
+	<url>
+		<loc>https://pcwstats.github.io/news.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Tankopedia Page -->
+	<url>
+		<loc>https://pcwstats.github.io/tankopedia.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Official Blog Page -->
+	<url>
+		<loc>https://pcwstats.github.io/blog.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- New Feature: Tournaments Page -->
+	<url>
+		<loc>https://pcwstats.github.io/blog/tournament-feature-blog.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- About PCWStats Page -->
+	<url>
+		<loc>https://pcwstats.github.io/about-us.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Project Policies Page -->
+	<url>
+		<loc>https://pcwstats.github.io/legal.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Privacy Policy Page -->
+	<url>
+		<loc>https://pcwstats.github.io/legal/privacy-policy.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Terms of Service Page -->
+	<url>
+		<loc>https://pcwstats.github.io/legal/terms-of-service.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Project License Page -->
+	<url>
+		<loc>https://pcwstats.github.io/legal/project-license.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Code of Conduct Page -->
+	<url>
+		<loc>https://pcwstats.github.io/legal/code-of-conduct.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Project Contributions Page -->
+	<url>
+		<loc>https://pcwstats.github.io/legal/project-contributions.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Project Security Page -->
+	<url>
+		<loc>https://pcwstats.github.io/legal/project-security.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Contact Us Page -->
+	<url>
+		<loc>https://pcwstats.github.io/contact-us.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Support PCWStats Page -->
+	<url>
+		<loc>https://pcwstats.github.io/support-us.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Changelog Page -->
+	<url>
+		<loc>https://pcwstats.github.io/changelog.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
 	</url>
 </urlset>
