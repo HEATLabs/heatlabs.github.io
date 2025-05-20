@@ -841,7 +841,8 @@ document.addEventListener('DOMContentLoaded', function() {
             "Why did the tank cross the road? To get to the other side... of the battlefield.",
             "What do you call a tank that tells jokes? A pun-isher!",
             "How does a tank answer the phone? 'Shell-o!'",
-            "Why was the tank always calm? It had great armor control."
+            "Why was the tank always calm? It had great armor control.",
+            "What's the favorite drink of PCW? Jäger-meister"
         ];
 
         const joke = jokes[Math.floor(Math.random() * jokes.length)];
