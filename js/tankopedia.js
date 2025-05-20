@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     async function fetchTankopediaData() {
         try {
             const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tankopedia.json');
+
+            //Uncomment line below to check using local JSON
+            // const response = await fetch('../Website-Configs/tankopedia.json');
+
             if (!response.ok) {
                 throw new Error('Failed to load tankopedia data');
             }
