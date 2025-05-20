@@ -183,6 +183,83 @@
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
+	<!--  Page -->
+	<url>
+		<loc>https://pcwstats.github.io/news/</loc>
+		<lastmod>2025-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- alpha-1-announcement-1 Page -->
+	<url>
+		<loc>https://pcwstats.github.io/announcements/alpha-1-announcement-1.html</loc>
+		<lastmod>2025-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- alpha-1-announcement-2 Page -->
+	<url>
+		<loc>https://pcwstats.github.io/announcements/alpha-1-announcement-2.html</loc>
+		<lastmod>2025-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- alpha-2-facts-figures Page -->
+	<url>
+		<loc>https://pcwstats.github.io/announcements/alpha-2-facts-figures.html</loc>
+		<lastmod>2025-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- alpha-2-has-ended Page -->
+	<url>
+		<loc>https://pcwstats.github.io/announcements/alpha-2-has-ended.html</loc>
+		<lastmod>2025-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- alpha-2-livestream Page -->
+	<url>
+		<loc>https://pcwstats.github.io/announcements/alpha-2-livestream.html</loc>
+		<lastmod>2025-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- alpha-2-tournament Page -->
+	<url>
+		<loc>https://pcwstats.github.io/announcements/alpha-2-tournament.html</loc>
+		<lastmod>2025-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- jamess-introduction Page -->
+	<url>
+		<loc>https://pcwstats.github.io/announcements/jamess-introduction.html</loc>
+		<lastmod>2025-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- last-day-of-alpha-2 Page -->
+	<url>
+		<loc>https://pcwstats.github.io/announcements/last-day-of-alpha-2.html</loc>
+		<lastmod>2025-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- voreksis-introduction Page -->
+	<url>
+		<loc>https://pcwstats.github.io/announcements/voreksis-introduction.html</loc>
+		<lastmod>2025-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- winter-wargames-tournament-1 Page -->
+	<url>
+		<loc>https://pcwstats.github.io/announcements/winter-wargames-tournament-1.html</loc>
+		<lastmod>2025-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
 	<!-- Tankopedia Page -->
 	<url>
 		<loc>https://pcwstats.github.io/tankopedia.html</loc>
