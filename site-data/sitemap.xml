@@ -15,6 +15,20 @@
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
+	<!-- Devs Only Page -->
+	<url>
+		<loc>https://pcwstats.github.io/devsonly.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Strategy Planner Page -->
+	<url>
+		<loc>https://pcwstats.github.io/strat-planner.html</loc>
+		<lastmod>2025-05-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
 	<!-- Map Knowledge Page -->
 	<url>
 		<loc>https://pcwstats.github.io/maps.html</loc>
