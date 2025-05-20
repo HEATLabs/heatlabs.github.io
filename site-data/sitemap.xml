@@ -281,6 +281,27 @@
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
+	<!-- Meet the Team - SINEWAVE Page -->
+	<url>
+		<loc>https://pcwstats.github.io/blog/meet-the-team-sinewave.html</loc>
+		<lastmod>2025-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Meet the Team - ven0m Page -->
+	<url>
+		<loc>https://pcwstats.github.io/blog/meet-the-team-ven0m.html</loc>
+		<lastmod>2025-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Meet the Team - esmatty Page -->
+	<url>
+		<loc>https://pcwstats.github.io/blog/meet-the-team-esmatty.html</loc>
+		<lastmod>2025-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
 	<!-- About PCWStats Page -->
 	<url>
 		<loc>https://pcwstats.github.io/about-us.html</loc>
