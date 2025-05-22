@@ -103,11 +103,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const filterWrapper = document.createElement('div');
         filterWrapper.className = 'filter-wrapper flex flex-wrap justify-center gap-3';
 
-        // Sort categories by item count (descending)
+        // Sort categories alphabetically by name
         const sortedCategories = categories.slice().sort(function(a, b) {
-            return b.items.length - a.items.length;
+            return a.name.localeCompare(b.name);
         });
 
+        // Create category buttons (sorted alphabetically)
         sortedCategories.forEach(function(category) {
             const button = document.createElement('button');
             button.className = 'filter-button px-4 py-2 rounded-full transition-colors';
@@ -126,18 +127,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Add "All" button
         const allButton = document.createElement('button');
-        allButton.className = 'filter-button active px-4 py-2 rounded-full transition-colors';
+        allButton.className = 'filter-button px-4 py-2 rounded-full transition-colors';
         allButton.innerHTML = `
             <span>All</span>
             <span class="item-count">${categories.reduce(function(acc, cat) {
                 return acc + cat.items.length;
             }, 0)}</span>
         `;
+        allButton.setAttribute('data-category', 'all');
         allButton.addEventListener('click', function() {
             filterByCategory('all');
         });
 
-        filterWrapper.prepend(allButton);
+        filterWrapper.appendChild(allButton);
+
+        // Set the first category as active by default and filter by it
+        if (sortedCategories.length > 0) {
+            const firstCategoryButton = filterWrapper.querySelector(`[data-category="${sortedCategories[0].name}"]`);
+            if (firstCategoryButton) {
+                firstCategoryButton.classList.add('active');
+            }
+        }
+
         filterContainer.appendChild(filterWrapper);
         return filterContainer;
     }
@@ -150,8 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update active button
         buttons.forEach(function(button) {
             button.classList.remove('active');
-            if ((categoryName === 'all' && button.textContent.includes('All')) ||
-                button.getAttribute('data-category') === categoryName) {
+            if (button.getAttribute('data-category') === categoryName) {
                 button.classList.add('active');
             }
         });
@@ -221,6 +231,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Initialize intersection observer for scroll animations
         initIntersectionObserver();
+
+        // Apply default filter to first category after all sections are created
+        const sortedCategories = categories.slice().sort(function(a, b) {
+            return a.name.localeCompare(b.name);
+        });
+
+        if (sortedCategories.length > 0) {
+            filterByCategory(sortedCategories[0].name);
+        }
     }
 
     // Initialize intersection observer for scroll animations
