@@ -301,6 +301,224 @@
 	}
 }
 
+/* Modal Overlay (shared by all modals) */
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	z-index: 1000;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* Shared Modal Styles */
+.modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	box-shadow: var(--shadow-lg);
+	z-index: 1001;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+	overflow-y: auto;
+	border: 1px solid var(--border-color);
+}
+
+.modal.active {
+	opacity: 1;
+	visibility: visible;
+}
+
+.modal-close {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	width: 40px;
+	height: 40px;
+	background-color: var(--accent-color);
+	color: white;
+	border: none;
+	border-radius: 50%;
+	font-size: 1.25rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10;
+	transition: background-color 0.3s ease;
+}
+
+.modal-close:hover {
+	background-color: var(--accent-color-dark);
+}
+
+.modal-header {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	margin-bottom: 2rem;
+}
+
+.modal-info h2 {
+	font-size: 1.75rem;
+	margin-top: 0;
+	margin-bottom: 0.5rem;
+	color: var(--text-primary);
+	text-align: left;
+}
+
+.modal-category {
+	font-size: 1.1rem;
+	color: var(--accent-color);
+	margin-bottom: 1rem;
+	font-weight: 500;
+}
+
+.modal-id {
+	font-size: 0.9rem;
+	color: var(--text-secondary);
+	margin-bottom: 0.5rem;
+}
+
+.modal-description {
+	font-size: 1rem;
+	line-height: 1.7;
+	color: var(--text-secondary);
+	margin-top: 1rem;
+}
+
+/* Standard Modal */
+#tankopediaModalStandard {
+	width: 90%;
+	max-width: 800px;
+	max-height: 90vh;
+}
+
+.tankopedia-modal-image-container {
+	flex-shrink: 0;
+	width: 300px;
+	height: 300px;
+	border-radius: 0.5rem;
+	overflow: hidden;
+	border: 2px solid var(--accent-color);
+	box-shadow: var(--shadow);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--bg-tertiary);
+}
+
+.tankopedia-modal-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Banner Modal */
+#tankopediaModalBanner {
+	width: 90%;
+	max-width: 1000px;
+	max-height: 90vh;
+}
+
+.banner-modal-image-container {
+	width: 100%;
+	aspect-ratio: 16/9;
+	border-radius: 0.5rem;
+	overflow: hidden;
+	border: 2px solid var(--accent-color);
+	box-shadow: var(--shadow);
+	background-color: var(--bg-tertiary);
+}
+
+.banner-modal-image {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+/* Video Modal */
+#tankopediaModalVideo {
+	width: 90%;
+	max-width: 1000px;
+	max-height: 90vh;
+}
+
+.video-modal-container {
+	width: 100%;
+	aspect-ratio: 16/9;
+	border-radius: 0.5rem;
+	overflow: hidden;
+	border: 2px solid var(--accent-color);
+	box-shadow: var(--shadow);
+	background-color: var(--bg-tertiary);
+}
+
+.video-modal-element {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+/* 360 Modal */
+#tankopediaModal360 {
+	width: 90%;
+	max-width: 800px;
+	max-height: 90vh;
+}
+
+.modal-360-container {
+	width: 100%;
+	aspect-ratio: 1/1;
+	border-radius: 0.5rem;
+	overflow: hidden;
+	border: 2px solid var(--accent-color);
+	box-shadow: var(--shadow);
+	background-color: var(--bg-tertiary);
+}
+
+.modal-360-image {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+	.modal-header {
+		flex-direction: row;
+		align-items: flex-start;
+	}
+}
+
+@media (max-width: 768px) {
+
+	.tankopedia-modal-image-container,
+	.banner-modal-image-container,
+	.video-modal-container,
+	.modal-360-container {
+		width: 100%;
+		height: auto;
+	}
+
+	.tankopedia-modal-image-container {
+		aspect-ratio: 1/1;
+	}
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
 	.tankopedia-modal-image-container {

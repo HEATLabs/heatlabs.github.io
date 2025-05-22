@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tankopedia.json');
 
-            //Uncomment line below to check using local JSON
+            // Uncomment line below to check using local JSON
             // const response = await fetch('../Website-Configs/tankopedia.json');
 
             if (!response.ok) {
@@ -241,36 +241,78 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize modal
-    function initTankopediaModal() {
-        const modalOverlay = document.getElementById('tankopediaModalOverlay');
-        const modal = document.getElementById('tankopediaModal');
-        const modalClose = document.getElementById('tankopediaModalClose');
+    // Initialize modals
+    function initTankopediaModals() {
+        const modalOverlays = document.querySelectorAll('.modal-overlay');
+        const modalCloses = document.querySelectorAll('.modal-close');
 
         // Close modal handlers
-        modalOverlay.addEventListener('click', closeTankopediaModal);
-        modalClose.addEventListener('click', closeTankopediaModal);
+        modalOverlays.forEach(overlay => {
+            overlay.addEventListener('click', closeAllModals);
+        });
+
+        modalCloses.forEach(closeBtn => {
+            closeBtn.addEventListener('click', closeAllModals);
+        });
 
         // Close with ESC key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                closeTankopediaModal();
+            if (e.key === 'Escape') {
+                closeAllModals();
             }
+        });
+    }
+
+    // Close all modals
+    function closeAllModals() {
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.classList.remove('active');
+        });
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.classList.remove('active');
+        });
+        document.body.style.overflow = '';
+
+        // Pause any playing videos
+        document.querySelectorAll('.modal-video').forEach(video => {
+            video.pause();
         });
     }
 
     // Open modal with item data
     function openTankopediaModal(item) {
-        const modal = document.getElementById('tankopediaModal');
-        const modalOverlay = document.getElementById('tankopediaModalOverlay');
-        const modalImage = document.getElementById('tankopediaModalImage');
-        const modalName = document.getElementById('tankopediaModalName');
-        const modalId = document.getElementById('tankopediaModalId');
-        const modalCategory = document.getElementById('tankopediaModalCategory');
-        const modalDescription = document.getElementById('tankopediaModalDescription');
-        const modalHowToObtain = document.getElementById('tankopediaModalHowToObtain');
+        // Determine which modal to show based on item.modalType or default to standard
+        const modalType = item.modalType || 'standard';
 
-        // Populate modal with item data
+        // Hide all modals first
+        closeAllModals();
+
+        // Show the specific modal
+        switch (modalType) {
+            case 'banner':
+                openBannerModal(item);
+                break;
+            case 'video':
+                openVideoModal(item);
+                break;
+            case '360':
+                open360Modal(item);
+                break;
+            default:
+                openStandardModal(item);
+        }
+    }
+
+    // Standard Modal
+    function openStandardModal(item) {
+        const modal = document.getElementById('tankopediaModalStandard');
+        const modalOverlay = document.getElementById('tankopediaModalOverlay');
+        const modalImage = document.getElementById('tankopediaModalStandardImage');
+        const modalName = document.getElementById('tankopediaModalStandardName');
+        const modalId = document.getElementById('tankopediaModalStandardId');
+        const modalCategory = document.getElementById('tankopediaModalStandardCategory');
+        const modalDescription = document.getElementById('tankopediaModalStandardDescription');
+        const modalHowToObtain = document.getElementById('tankopediaModalStandardHowToObtain');
         modalImage.src = item.image;
         modalImage.alt = item.name;
         modalId.textContent = 'ID: ' + item.id;
@@ -295,16 +337,76 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = 'hidden';
     }
 
-    function closeTankopediaModal() {
-        const modal = document.getElementById('tankopediaModal');
+    // Banner Modal
+    function openBannerModal(item) {
+        const modal = document.getElementById('tankopediaModalBanner');
         const modalOverlay = document.getElementById('tankopediaModalOverlay');
+        const modalImage = document.getElementById('tankopediaModalBannerImage');
+        const modalName = document.getElementById('tankopediaModalBannerName');
+        const modalId = document.getElementById('tankopediaModalBannerId');
+        const modalCategory = document.getElementById('tankopediaModalBannerCategory');
 
-        modal.classList.remove('active');
-        modalOverlay.classList.remove('active');
-        document.body.style.overflow = '';
+        modalImage.src = item.image;
+        modalImage.alt = item.name;
+        modalId.textContent = 'ID: ' + item.id;
+        modalName.textContent = item.name;
+        modalCategory.textContent = 'Category: ' + item.category;
+
+        modal.classList.add('active');
+        modalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Video Modal
+    function openVideoModal(item) {
+        const modal = document.getElementById('tankopediaModalVideo');
+        const modalOverlay = document.getElementById('tankopediaModalOverlay');
+        const modalVideo = document.getElementById('tankopediaModalVideoElement');
+        const modalName = document.getElementById('tankopediaModalVideoName');
+        const modalId = document.getElementById('tankopediaModalVideoId');
+        const modalCategory = document.getElementById('tankopediaModalVideoCategory');
+
+        modalVideo.src = item.videoUrl || item.image;
+        modalVideo.setAttribute('poster', item.image);
+        modalId.textContent = 'ID: ' + item.id;
+        modalName.textContent = item.name;
+        modalCategory.textContent = 'Category: ' + item.category;
+
+        modal.classList.add('active');
+        modalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // 360 Modal
+    function open360Modal(item) {
+        const modal = document.getElementById('tankopediaModal360');
+        const modalOverlay = document.getElementById('tankopediaModalOverlay');
+        const modalImage = document.getElementById('tankopediaModal360Image');
+        const modalName = document.getElementById('tankopediaModal360Name');
+        const modalId = document.getElementById('tankopediaModal360Id');
+        const modalCategory = document.getElementById('tankopediaModal360Category');
+
+        modalImage.src = item.image;
+        modalImage.alt = item.name;
+        modalId.textContent = 'ID: ' + item.id;
+        modalName.textContent = item.name;
+        modalCategory.textContent = 'Category: ' + item.category;
+
+        modal.classList.add('active');
+        modalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Initialize 360 viewer if needed
+        if (window.Pannellum) {
+            pannellum.viewer('tankopediaModal360Image', {
+                type: 'equirectangular',
+                panorama: item.image,
+                autoLoad: true
+            });
+        }
     }
 
     // Initialize the page
     renderTankopediaSections();
-    initTankopediaModal();
+    initTankopediaModals();
 });

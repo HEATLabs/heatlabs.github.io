@@ -73,6 +73,8 @@
     <meta name="twitter:title" content="PCWStats - Tankopedia">
     <meta name="twitter:description" content="Your one-stop solution for comprehensive statistics insights and guides for Project CW">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
+    <!-- Pannellum for 360 viewer -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
   </head>
   <body>
     <!-- Sidebar Overlay -->
@@ -355,32 +357,86 @@
           </div>
           <!-- Bottom Disclaimer -->
           <div class="text-center text-sm text-gray-500 space-y-1 border-t border-gray-700 pt-1">
-            <p> PCWStats is a community-made project and is not associated with, endorsed by, or affiliated with <a href="https://projectcw.dev" class="disclaimer-link">Project CW</a> or <a href="https://www.wargaming.net" class="disclaimer-link">Wargaming.net</a>.</p>
+            <p> PCWStats is a community-made project and is not associated with, endorsed by, or affiliated with <a href="https://projectcw.dev" class="disclaimer-link">Project CW</a> or <a href="https://www.wargaming.net" class="disclaimer-link">Wargaming.net</a>. </p>
             <p>&copy; 2025 PCWStats by SINEWAVE Development. All rights reserved.</p>
           </div>
         </div>
       </footer>
     </div>
-    <!-- Tankopedia Modal -->
-    <div class="tankopedia-modal-overlay" id="tankopediaModalOverlay"></div>
-    <div class="tankopedia-modal" id="tankopediaModal">
-      <button class="tankopedia-modal-close" id="tankopediaModalClose">
+    <!-- Standard Modal -->
+    <div class="modal-overlay" id="tankopediaModalOverlay"></div>
+    <div class="modal" id="tankopediaModalStandard">
+      <button class="modal-close">
         <i class="fas fa-times"></i>
       </button>
       <div class="tankopedia-modal-content">
-        <div class="tankopedia-modal-header">
+        <div class="modal-header">
           <div class="tankopedia-modal-image-container">
-            <img id="tankopediaModalImage" src="" alt="Item Image" class="tankopedia-modal-image">
+            <img id="tankopediaModalStandardImage" src="" alt="Item Image" class="tankopedia-modal-image">
           </div>
-          <div class="tankopedia-modal-info">
-            <p class="tankopedia-modal-id" id="tankopediaModalId">ID: loading...</p>
-            <h2 id="tankopediaModalName">Item Name</h2>
-            <p class="tankopedia-modal-category" id="tankopediaModalCategory">Category: loading...</p>
-            <p class="tankopedia-modal-description" id="tankopediaModalDescription">Item description goes here</p>
+          <div class="modal-info">
+            <p class="modal-id" id="tankopediaModalStandardId">ID: loading...</p>
+            <h2 id="tankopediaModalStandardName">Item Name</h2>
+            <p class="modal-category" id="tankopediaModalStandardCategory">Category: loading...</p>
+            <p class="modal-description" id="tankopediaModalStandardDescription">Item description goes here</p>
           </div>
         </div>
         <div class="tankopedia-modal-body">
-          <div id="tankopediaModalHowToObtain" style="display: none;"></div>
+          <div id="tankopediaModalStandardHowToObtain" style="display: none;"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Banner Modal -->
+    <div class="modal" id="tankopediaModalBanner">
+      <button class="modal-close">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="tankopedia-modal-content">
+        <div class="modal-header">
+          <div class="banner-modal-image-container">
+            <img id="tankopediaModalBannerImage" src="" alt="Item Image" class="banner-modal-image">
+          </div>
+          <div class="modal-info">
+            <p class="modal-id" id="tankopediaModalBannerId">ID: loading...</p>
+            <h2 id="tankopediaModalBannerName">Item Name</h2>
+            <p class="modal-category" id="tankopediaModalBannerCategory">Category: loading...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Video Modal -->
+    <div class="modal" id="tankopediaModalVideo">
+      <button class="modal-close">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="tankopedia-modal-content">
+        <div class="modal-header">
+          <div class="video-modal-container">
+            <video id="tankopediaModalVideoElement" class="video-modal-element" controls> Your browser does not support the video tag. </video>
+          </div>
+          <div class="modal-info">
+            <p class="modal-id" id="tankopediaModalVideoId">ID: loading...</p>
+            <h2 id="tankopediaModalVideoName">Item Name</h2>
+            <p class="modal-category" id="tankopediaModalVideoCategory">Category: loading...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 360 Modal -->
+    <div class="modal" id="tankopediaModal360">
+      <button class="modal-close">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="tankopedia-modal-content">
+        <div class="modal-header">
+          <div class="modal-360-container">
+            <div id="tankopediaModal360Image" class="modal-360-image"></div>
+          </div>
+          <div class="modal-info">
+            <p class="modal-id" id="tankopediaModal360Id">ID: loading...</p>
+            <h2 id="tankopediaModal360Name">Item Name</h2>
+            <p class="modal-category" id="tankopediaModal360Category">Category: loading...</p>
+          </div>
         </div>
       </div>
     </div>
@@ -392,5 +448,6 @@
     <script src="js/modules/warning.js"></script>
     <script src="js/modules/global-hero.js"></script>
     <script src="js/modules/banner.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
   </body>
 </html>
