@@ -47,6 +47,7 @@ def generate_html_content(html_files, base_dir):
     <link rel="stylesheet" href="css/libraries/tailwind.css">
     <link rel="stylesheet" href="css/libraries/font-awesome/all.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/misc.css">
     <link rel="stylesheet" href="css/devsonly.css">
     <link rel="stylesheet" href="css/modules/header.css">
     <link rel="stylesheet" href="css/modules/footer.css">
@@ -120,15 +121,15 @@ def generate_html_content(html_files, base_dir):
             </a>
           </li>
           <li>
-            <a href="maps.html" class="sidebar-link">
-              <i class="fas fa-map"></i>
-              <span>Map Knowledge</span>
+            <a href="players.html" class="sidebar-link wip">
+              <i class="fas fa-user"></i>
+              <span>Player Statistics</span>
             </a>
           </li>
           <li>
-            <a href="builds.html" class="sidebar-link">
-              <i class="fas fa-wrench"></i>
-              <span>Common Builds</span>
+            <a href="maps.html" class="sidebar-link">
+              <i class="fas fa-map"></i>
+              <span>Map Knowledge</span>
             </a>
           </li>
           <li>
@@ -138,9 +139,15 @@ def generate_html_content(html_files, base_dir):
             </a>
           </li>
           <li>
-            <a href="credits.html" class="sidebar-link">
-              <i class="fas fa-users"></i>
-              <span>Community Credits</span>
+            <a href="strategy-planner.html" class="sidebar-link wip">
+              <i class="fas fa-chess"></i>
+              <span>Strategy Planner</span>
+            </a>
+          </li>
+          <li>
+            <a href="builds.html" class="sidebar-link wip">
+              <i class="fas fa-wrench"></i>
+              <span>Common Builds</span>
             </a>
           </li>
           <li>
@@ -156,9 +163,27 @@ def generate_html_content(html_files, base_dir):
             </a>
           </li>
           <li>
+            <a href="bug-hunting.html" class="sidebar-link">
+              <i class="fas fa-bug"></i>
+              <span>Bug Hunting</span>
+            </a>
+          </li>
+          <li>
+            <a href="tournaments.html" class="sidebar-link">
+              <i class="fas fa-trophy"></i>
+              <span>Tournaments</span>
+            </a>
+          </li>
+          <li>
             <a href="blog.html" class="sidebar-link">
               <i class="fas fa-blog"></i>
               <span>Official Blog</span>
+            </a>
+          </li>
+          <li>
+            <a href="legal.html" class="sidebar-link">
+              <i class="fas fa-balance-scale"></i>
+              <span>Project Policies</span>
             </a>
           </li>
           <li>
@@ -168,21 +193,13 @@ def generate_html_content(html_files, base_dir):
             </a>
           </li>
           <li>
-            <a href="legal.html" class="sidebar-link">
-              <i class="fas fa-balance-scale"></i>
-              <span>Project Policies</span>
+            <a href="credits.html" class="sidebar-link">
+              <i class="fas fa-users"></i>
+              <span>Community Credits</span>
             </a>
           </li>
         </ul>
       </nav>
-      <div class="sidebar-footer">
-        <div class="theme-toggle-container">
-          <span class="theme-toggle-label">Dark Mode</span>
-          <div class="theme-toggle-switch" id="themeToggle">
-            <div class="toggle-thumb"></div>
-          </div>
-        </div>
-      </div>
     </div>
     <!-- Main Content -->
     <div class="content-wrapper">
@@ -468,6 +485,7 @@ def generate_html_content(html_files, base_dir):
       </footer>
     </div>
     <script src="js/main.js"></script>
+    <script src="js/misc.js"></script>
     <script src="js/modules/sidebar.js"></script>
     <script src="js/modules/theme-loader.js"></script>
     <script src="js/maps.js"></script>
