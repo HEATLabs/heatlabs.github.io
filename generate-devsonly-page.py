@@ -23,8 +23,19 @@ def generate_html_content(html_files, base_dir):
     <!-- Main meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Page title displayed in the browser tab -->
     <title>Devs Only - PCWStats</title>
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="PCWStats - Devs Only">
+    <meta name="description" content="PCWStats developer tools and project management dashboard. Internal resources and progress tracking for Project CW community contributors.">
+    <meta name="author" content="PCWStats Team">
+    <meta name="copyright" content="© 2025 PCWStats by SINEWAVE Development. All rights reserved.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="language" content="English">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://pcwstats.github.io/devsonly.html">
     <!-- Theme Checker -->
     <script>
       // Immediately set theme class before rendering begins
@@ -44,6 +55,7 @@ def generate_html_content(html_files, base_dir):
         }
       })();
     </script>
+    <!-- Main stylesheets -->
     <link rel="stylesheet" href="css/libraries/tailwind.css">
     <link rel="stylesheet" href="css/libraries/font-awesome/all.css">
     <link rel="stylesheet" href="css/main.css">
@@ -60,6 +72,7 @@ def generate_html_content(html_files, base_dir):
     <link rel="stylesheet" href="css/modules/banner.css">
     <!-- Favicon for all browsers -->
     <link rel="icon" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon.ico" type="image/x-icon">
     <!-- Apple Touch Icons (for iOS home screen bookmarks) -->
     <link rel="apple-touch-icon" sizes="57x57" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-60x60.png">
@@ -80,19 +93,33 @@ def generate_html_content(html_files, base_dir):
     <!-- Windows-specific tiles (for pinned sites in Windows Start menu) -->
     <meta name="msapplication-TileColor" content="#141312">
     <meta name="msapplication-TileImage" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/microsoft/ms-icon-144x144.png">
-    <!-- Defines the color of the browser UI elements -->
+    <meta name="msapplication-config" content="site-data/browserconfig.xml">
+    <!-- Safari-specific meta tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="PCWStats">
+    <!-- Browser UI color -->
     <meta name="theme-color" content="#141312">
+    <meta name="msapplication-navbutton-color" content="#141312">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#141312">
     <!-- Open Graph Meta Tags (for social media sharing, mainly Facebook) -->
     <meta property="og:title" content="PCWStats - Devs Only">
-    <meta property="og:description" content="Your one-stop solution for comprehensive statistics insights and guides for Project CW">
+    <meta property="og:description" content="PCWStats developer tools and project management dashboard. Internal resources and progress tracking for Project CW community contributors.">
     <meta property="og:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
     <meta property="og:url" content="https://pcwstats.github.io/devsonly.html">
     <meta property="og:type" content="website">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="PCWStats">
+    <meta property="og:locale" content="en_US">
     <!-- Twitter Card Meta Tags (for better sharing on Twitter) -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@PCWStats">
+    <meta name="twitter:creator" content="@PCWStats">
     <meta name="twitter:title" content="PCWStats - Devs Only">
-    <meta name="twitter:description" content="Your one-stop solution for comprehensive statistics insights and guides for Project CW">
+    <meta name="twitter:description" content="PCWStats developer tools and project management dashboard. Internal resources and progress tracking for Project CW community contributors.">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
+    <meta name="twitter:image:alt" content="PCWStats - Your one-stop solution for comprehensive statistics insights and guides for Project CW">
   </head>
   <body>
     <!-- Sidebar Overlay -->
