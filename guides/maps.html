@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="../css/libraries/font-awesome/all.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/misc.css">
-    <link rel="stylesheet" href="../css/guides.css">
+    <link rel="stylesheet" href="../css/guide-category.css">
     <link rel="stylesheet" href="../css/modules/header.css">
     <link rel="stylesheet" href="../css/modules/footer.css">
     <link rel="stylesheet" href="../css/modules/sidebar.css">
@@ -248,18 +248,59 @@
       </section>
       <!-- Guides Section -->
       <section id="main" class="section">
-        <div class="guides-grid">
-          <div class="no-guides-placeholder">
-            <div class="placeholder-icon">
-              <i class="fas fa-book-open"></i>
+        <div class="container mx-auto px-4">
+          <h2 class="section-title">Latest Guides</h2>
+          <!-- Guide Filters -->
+          <div class="guide-filters">
+            <div class="filter-group">
+              <span class="filter-label">Sort by:</span>
+              <select id="sortFilter" class="filter-select">
+                <option value="latest">Latest First</option>
+                <option value="oldest">Oldest First</option>
+              </select>
             </div>
-            <h3>No guides available for this category yet</h3>
-            <p>We've just launched and are looking for experienced players to share their knowledge with the community. If you're an experienced player with insights to share, please consider submitting your own guide.</p>
-            <p class="scroll-hint">Scroll down to learn how to contribute!</p>
-            <div class="placeholder-arrow">
-              <i class="fas fa-arrow-down"></i>
+            <div class="filter-group">
+              <span class="filter-label">Filter by:</span>
+              <select id="typeFilter" class="filter-select">
+                <option value="all">All Guides</option>
+                <option value="soon">Coming Soon</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">Guides per page:</span>
+              <select id="postsPerPage" class="filter-select">
+                <option value="12">12</option>
+                <option value="24">24</option>
+                <option value="48">48</option>
+                <option value="all">All</option>
+              </select>
             </div>
           </div>
+          <div class="guide-grid text-center">
+            <!-- Placeholder -->
+            <div class="guide-card" data-date="2025-02-20" data-type="soon">
+              <div class="guide-img-container">
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/placeholder/imagecomingsoon.png" alt="Update 1.5" class="guide-img">
+                <div class="guide-tag">Soon™</div>
+              </div>
+              <div class="guide-info">
+                <h3>No Guides Yet</h3>
+                <div class="guide-meta">
+                  <span>
+                    <i class="fa-solid fa-calendar"></i> February 20, 2025 </span>
+                  <span>
+                    <i class="fa-solid fa-at"></i> PCWStats Team </span>
+                </div>
+                <p class="guide-desc">Guides for this category are coming soon! Stay tuned!</p>
+                <a href="#" class="btn-accent btn-guide">
+                  <i class="fas fa-newspaper mr-2"></i>Coming Soon™ </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Pagination -->
+        <div class="pagination-container">
+          <div class="pagination-controls"></div>
         </div>
       </section>
       <!-- CTA Section -->
@@ -417,6 +458,7 @@
     <script src="../js/modules/theme-loader.js"></script>
     <script src="../js/modules/search.js"></script>
     <script src="../js/modules/warning.js"></script>
+    <script src="../js/guide-category.js"></script>
     <script src="../js/modules/global-hero.js"></script>
     <script src="../js/modules/banner.js"></script>
   </body>

@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="../css/libraries/font-awesome/all.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/misc.css">
-    <link rel="stylesheet" href="../css/guides.css">
+    <link rel="stylesheet" href="../css/guide-category.css">
     <link rel="stylesheet" href="../css/modules/header.css">
     <link rel="stylesheet" href="../css/modules/footer.css">
     <link rel="stylesheet" href="../css/modules/sidebar.css">
@@ -248,25 +248,60 @@
       </section>
       <!-- Guides Section -->
       <section id="main" class="section">
-        <div class="container mx-auto px-4 py-8">
-          <div class="container mx-auto px-4">
-            <h2 class="section-title">All Tank Guides</h2>
+        <div class="container mx-auto px-4">
+          <h2 class="section-title">Latest Guides</h2>
+          <!-- Guide Filters -->
+          <div class="guide-filters">
+            <div class="filter-group">
+              <span class="filter-label">Sort by:</span>
+              <select id="sortFilter" class="filter-select">
+                <option value="latest">Latest First</option>
+                <option value="oldest">Oldest First</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">Filter by:</span>
+              <select id="typeFilter" class="filter-select">
+                <option value="all">All Guides</option>
+                <option value="xm1v">XM1-V</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">Guides per page:</span>
+              <select id="postsPerPage" class="filter-select">
+                <option value="12">12</option>
+                <option value="24">24</option>
+                <option value="48">48</option>
+                <option value="all">All</option>
+              </select>
+            </div>
           </div>
-          <div class="guides-grid text-center">
-            <!-- Guide 1 -->
-            <div class="guide-card">
+          <!-- Guide Grid -->
+          <div class="guide-grid text-center">
+            <!-- ssmatty's XM1-V Guide -->
+            <div class="guide-card" data-date="2025-02-20" data-type="xm1v">
               <div class="guide-img-container">
-                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/main/guides/tanks/esmattys-xm1-v-guide/xm1v.png" alt="esmatty's XM1-V Guide">
-                <span class="guide-date">February 20, 2025</span>
+                <img src="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/guides/tanks/esmattys-xm1-v-guide/xm1v.png" alt="Update 1.5" class="guide-img">
+                <div class="guide-tag">XM1-V</div>
               </div>
-              <div class="guide-content">
-                <h4>esmatty's XM1-V Guide</h4>
-                <p class="guide-author">By: esmatty</p>
-                <p class="guide-excerpt">A versatile defensive tank, the XM1-V trades raw power for battlefield control and strategic advantage.</p>
-                <a href="tanks/esmattys-xm1-v-guide.html" class="btn-accent">Read Guide</a>
+              <div class="guide-info">
+                <h3>ssmatty's XM1-V Guide</h3>
+                <div class="guide-meta">
+                  <span>
+                    <i class="fa-solid fa-calendar"></i> February 20, 2025 </span>
+                  <span>
+                    <i class="fa-solid fa-at"></i> esmatty </span>
+                </div>
+                <p class="guide-desc">A versatile defensive tank, the XM1-V trades raw power for battlefield control and strategic advantage.</p>
+                <a href="tanks/esmattys-xm1-v-guide.html" class="btn-accent btn-guide">
+                  <i class="fas fa-newspaper mr-2"></i>Read More </a>
               </div>
             </div>
           </div>
+        </div>
+        <!-- Pagination -->
+        <div class="pagination-container">
+          <div class="pagination-controls"></div>
         </div>
       </section>
       <!-- CTA Section -->
@@ -275,7 +310,7 @@
           <h2 class="text-3xl font-bold mb-4">Can't Find What You're Looking For?</h2>
           <p class="text-lg mb-8 max-w-2xl mx-auto">Request a specific guide or submit your own to help the community!</p>
           <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="contact-us.html" class="cta-button inline-flex items-center px-6 py-3 bg-accent-color text-white rounded-lg font-medium hover:bg-accent-color-dark transition-colors">
+            <a href="../contact-us.html" class="cta-button inline-flex items-center px-6 py-3 bg-accent-color text-white rounded-lg font-medium hover:bg-accent-color-dark transition-colors">
               <i class="fas fa-pen-fancy mr-2"></i> Submit Guide </a>
             <a href="https://discord.com/invite/2nHHHBWNDw" class="cta-button inline-flex items-center px-6 py-3 bg-discord-color text-white rounded-lg font-medium hover:bg-discord-color-dark transition-colors">
               <i class="fab fa-discord mr-2"></i> Join Our Discord </a>
@@ -424,6 +459,7 @@
     <script src="../js/modules/theme-loader.js"></script>
     <script src="../js/modules/search.js"></script>
     <script src="../js/modules/warning.js"></script>
+    <script src="../js/guide-category.js"></script>
     <script src="../js/modules/global-hero.js"></script>
     <script src="../js/modules/banner.js"></script>
   </body>
