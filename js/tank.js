@@ -311,7 +311,20 @@ function updateGSSScores(gssScores) {
     });
 }
 
+// Global toggle for builds placeholder - set to true to always show placeholder
+const FORCE_BUILDS_PLACEHOLDER = true;
+
 async function fetchAndPopulateBuilds(buildsUrl, tankId) {
+    const buildsContainer = document.getElementById('builds-container');
+    const viewAllButton = document.querySelector('.action-buttons .btn-accent:first-child');
+
+    // Check global toggle first
+    if (FORCE_BUILDS_PLACEHOLDER || !buildsUrl) {
+        showBuildsPlaceholder();
+        if (viewAllButton) viewAllButton.style.display = 'none';
+        return;
+    }
+
     try {
         const buildsResponse = await fetch(buildsUrl);
         const buildsData = await buildsResponse.json();
@@ -319,15 +332,16 @@ async function fetchAndPopulateBuilds(buildsUrl, tankId) {
         // If the builds data is in the expected format, populate it
         if (buildsData && buildsData.buildList && buildsData.buildList.length > 0) {
             populateBuilds(buildsData.buildList);
+            if (viewAllButton) viewAllButton.style.display = 'inline-block';
         } else {
             console.warn('No builds data found in:', buildsUrl);
-            // Show placeholder if no builds available
             showBuildsPlaceholder();
+            if (viewAllButton) viewAllButton.style.display = 'none';
         }
     } catch (error) {
         console.error('Error fetching builds data:', error);
-        // Show placeholder if there's an error
         showBuildsPlaceholder();
+        if (viewAllButton) viewAllButton.style.display = 'none';
     }
 }
 
@@ -336,82 +350,82 @@ function populateBuilds(builds) {
     if (!buildsContainer) {
         console.error('Builds container not found');
         return;
-      setTimeout(adjustTooltipPosition, 0);
     }
 
     // Clear existing content
     buildsContainer.innerHTML = '';
 
     // Create build cards for each build
-    const buildsToShow = builds.slice(0, 3);
+    const buildsToShow = builds.slice(0, 3); // Show max 3 builds
 
     buildsToShow.forEach(build => {
         const buildCard = document.createElement('div');
         buildCard.className = 'build-card';
-
         buildCard.innerHTML = `
-      <div class="build-header">
-        ${build.buildName}
-      </div>
-      <div class="build-content">
-        <div class="build-section">
-          <div class="build-section-title">
-            <i class="fas fa-puzzle-piece"></i>
-            <span>Modules</span>
-          </div>
-          <div class="build-items">
-            ${build.modules.map(module => `
-              <div class="build-item">
-                <img src="${module.moduleIcon}" alt="${module.moduleName}">
-                <div class="build-item-tooltip">
-                  <div class="build-item-name">${module.moduleName}</div>
-                  <div class="build-item-description">${module.moduleDescription}</div>
+            <div class="build-header">
+                ${build.buildName}
+            </div>
+            <div class="build-content">
+                <div class="build-section">
+                    <div class="build-section-title">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <span>Modules</span>
+                    </div>
+                    <div class="build-items">
+                        ${build.modules.map(module => `
+                            <div class="build-item">
+                                <img src="${module.moduleIcon}" alt="${module.moduleName}">
+                                <div class="build-item-tooltip">
+                                    <div class="build-item-name">${module.moduleName}</div>
+                                    <div class="build-item-description">${module.moduleDescription}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
 
-        <div class="build-section">
-          <div class="build-section-title">
-            <i class="fas fa-toolbox"></i>
-            <span>Equipment</span>
-          </div>
-          <div class="build-items equipment-items">
-            ${build.equipments.map(equipment => `
-              <div class="build-item">
-                <img src="${equipment.equipmentIcon}" alt="${equipment.equipmentName}">
-                <div class="build-item-tooltip">
-                  <div class="build-item-name">${equipment.equipmentName}</div>
-                  <div class="build-item-description">${equipment.equipmentDescription}</div>
+                <div class="build-section">
+                    <div class="build-section-title">
+                        <i class="fas fa-toolbox"></i>
+                        <span>Equipment</span>
+                    </div>
+                    <div class="build-items equipment-items">
+                        ${build.equipments.map(equipment => `
+                            <div class="build-item">
+                                <img src="${equipment.equipmentIcon}" alt="${equipment.equipmentName}">
+                                <div class="build-item-tooltip">
+                                    <div class="build-item-name">${equipment.equipmentName}</div>
+                                    <div class="build-item-description">${equipment.equipmentDescription}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
 
-        <div class="build-section">
-          <div class="build-section-title">
-            <i class="fas fa-star"></i>
-            <span>Perks</span>
-          </div>
-          <div class="build-items perk-items">
-            ${build.perks.map(perk => `
-              <div class="build-item">
-                <img src="${perk.perkIcon}" alt="${perk.perkName}">
-                <div class="build-item-tooltip">
-                  <div class="build-item-name">${perk.perkName}</div>
-                  <div class="build-item-description">${perk.perkDescription}</div>
+                <div class="build-section">
+                    <div class="build-section-title">
+                        <i class="fas fa-star"></i>
+                        <span>Perks</span>
+                    </div>
+                    <div class="build-items perk-items">
+                        ${build.perks.map(perk => `
+                            <div class="build-item">
+                                <img src="${perk.perkIcon}" alt="${perk.perkName}">
+                                <div class="build-item-tooltip">
+                                    <div class="build-item-name">${perk.perkName}</div>
+                                    <div class="build-item-description">${perk.perkDescription}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      </div>
-    `;
-
+            </div>
+        `;
         buildsContainer.appendChild(buildCard);
     });
+
+    // Adjust tooltip positions after DOM update
+    setTimeout(adjustTooltipPosition, 0);
 }
 
 function showBuildsPlaceholder() {
@@ -419,58 +433,81 @@ function showBuildsPlaceholder() {
     if (!buildsContainer) return;
 
     buildsContainer.innerHTML = `
-    <div class="text-center py-8">
-      <i class="fas fa-tools text-4xl text-gray-500 mb-4"></i>
-      <h3 class="text-xl font-semibold text-gray-400 mb-2">Builds Coming Soon</h3>
-      <p class="text-gray-500 max-w-md mx-auto">
-        We're currently collecting and analyzing the best builds for this tank.
-        Check back soon or contribute your own build!
-      </p>
-      <a href="../contact-us.html" class="btn-accent mt-4 inline-block">
-        <i class="fas fa-share mr-2"></i>Submit Your Build
-      </a>
-    </div>
-  `;
+        <div class="builds-placeholder">
+            <div class="placeholder-content">
+                <i class="fas fa-tools"></i>
+                <h3>Builds Coming Soon</h3>
+                <p>We're currently collecting and analyzing the best builds for this tank. Check back soon or contribute your own build!</p>
+                <a href="../contact-us.html#main" class="btn-accent">
+                    <i></i> Submit Your Build
+                </a>
+            </div>
+        </div>
+    `;
 }
 
 function adjustTooltipPosition() {
-  document.querySelectorAll('.build-item').forEach(item => {
-    item.addEventListener('mouseenter', function() {
-      const tooltip = this.querySelector('.build-item-tooltip');
-      if (!tooltip) return;
+    document.querySelectorAll('.build-item').forEach(item => {
+        const tooltip = item.querySelector('.build-item-tooltip');
+        if (!tooltip) return;
 
-      // Force tooltip to be visible for measurements
-      tooltip.style.visibility = 'visible';
-      tooltip.style.opacity = '1';
+        item.addEventListener('mouseenter', function() {
+            // Make tooltip visible temporarily for measurements
+            tooltip.style.visibility = 'visible';
+            tooltip.style.opacity = '1';
 
-      const tooltipRect = tooltip.getBoundingClientRect();
-      const viewportWidth = window.innerWidth;
+            const tooltipRect = tooltip.getBoundingClientRect();
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            const itemRect = item.getBoundingClientRect();
 
-      // Check if tooltip goes off right edge
-      if (tooltipRect.right > viewportWidth) {
-        tooltip.style.left = 'auto';
-        tooltip.style.right = '0';
-        tooltip.style.transform = 'translateX(0)';
-        tooltip.querySelector('::after').style.left = 'auto';
-        tooltip.querySelector('::after').style.right = '20px';
-      }
+            // Reset positioning
+            tooltip.style.left = '50%';
+            tooltip.style.right = 'auto';
+            tooltip.style.bottom = 'calc(100% + 10px)';
+            tooltip.style.top = 'auto';
+            tooltip.style.transform = 'translateX(-50%)';
 
-      // Check if tooltip goes off left edge
-      if (tooltipRect.left < 0) {
-        tooltip.style.left = '0';
-        tooltip.style.right = 'auto';
-        tooltip.style.transform = 'translateX(0)';
-        tooltip.querySelector('::after').style.left = '20px';
-        tooltip.querySelector('::after').style.right = 'auto';
-      }
+            // Check right edge overflow
+            if (tooltipRect.right > viewportWidth) {
+                tooltip.style.left = 'auto';
+                tooltip.style.right = '0';
+                tooltip.style.transform = 'none';
+            }
 
-      // Reset visibility until hover
-      tooltip.style.visibility = '';
-      tooltip.style.opacity = '';
+            // Check left edge overflow
+            if (tooltipRect.left < 0) {
+                tooltip.style.left = '0';
+                tooltip.style.right = 'auto';
+                tooltip.style.transform = 'none';
+            }
+
+            // Check if tooltip would go above viewport
+            if (tooltipRect.top < 0) {
+                tooltip.style.bottom = 'auto';
+                tooltip.style.top = 'calc(100% + 10px)';
+                tooltip.style.transform = 'translateX(-50%)';
+
+                // Adjust arrow position
+                const arrow = tooltip.querySelector(':after') || document.createElement('div');
+                arrow.style.content = '';
+                arrow.style.position = 'absolute';
+                arrow.style.bottom = '100%';
+                arrow.style.left = '50%';
+                arrow.style.transform = 'translateX(-50%)';
+                arrow.style.borderWidth = '8px';
+                arrow.style.borderStyle = 'solid';
+                arrow.style.borderColor = 'transparent transparent var(--card-bg) transparent';
+            }
+        });
+
+        item.addEventListener('mouseleave', function() {
+            // Reset tooltip visibility
+            tooltip.style.visibility = '';
+            tooltip.style.opacity = '';
+        });
     });
-  });
 }
-
 
 async function fetchAndPopulateAgents(agentsUrl, tankId) {
     try {
