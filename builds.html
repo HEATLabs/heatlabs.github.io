@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Main meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Page title displayed in the browser tab -->
+    <title>Common Builds - PCWStats</title>
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="PCWStats - Common Builds">
+    <meta name="description" content="Discover and share the most effective tank builds for Project CW. Filter by tank, nation, and type to find optimal configurations.">
+    <meta name="author" content="PCWStats Team">
+    <meta name="copyright" content="© 2025 PCWStats by SINEWAVE Development. All rights reserved.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="language" content="English">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://pcwstats.github.io/builds.html">
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" href="site-data/sitemap.xml">
+    <!-- Theme Checker -->
+    <script>
+      // Immediately set theme class before rendering begins
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          // Default to dark theme if saved or system preference
+          if (savedTheme === 'dark-theme' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark-theme');
+          } else {
+            document.documentElement.classList.add('light-theme');
+          }
+        } catch (e) {
+          console.error('Theme initialization error:', e);
+          document.documentElement.classList.add('light-theme');
+        }
+      })();
+    </script>
+    <!-- Main stylesheets -->
+    <link rel="stylesheet" href="css/libraries/tailwind.css">
+    <link rel="stylesheet" href="css/libraries/font-awesome/all.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/misc.css">
+    <link rel="stylesheet" href="css/builds.css">
+    <link rel="stylesheet" href="css/modules/header.css">
+    <link rel="stylesheet" href="css/modules/footer.css">
+    <link rel="stylesheet" href="css/modules/sidebar.css">
+    <link rel="stylesheet" href="css/modules/cta.css">
+    <link rel="stylesheet" href="css/modules/no-scrollbar.css">
+    <link rel="stylesheet" href="css/modules/search.css">
+    <link rel="stylesheet" href="css/modules/global-hero.css">
+    <link rel="stylesheet" href="css/modules/warning.css">
+    <link rel="stylesheet" href="css/modules/banner.css">
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon.ico" type="image/x-icon">
+    <!-- Apple Touch Icons (for iOS home screen bookmarks) -->
+    <link rel="apple-touch-icon" sizes="57x57" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/apple/apple-icon-180x180.png">
+    <!-- Favicons for different devices -->
+    <link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/android/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/favicons/favicon-16x16.png">
+    <!-- Web Manifest -->
+    <link rel="manifest" href="site-data/site.manifest">
+    <!-- Windows-specific tiles (for pinned sites in Windows Start menu) -->
+    <meta name="msapplication-TileColor" content="#141312">
+    <meta name="msapplication-TileImage" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/microsoft/ms-icon-144x144.png">
+    <meta name="msapplication-config" content="site-data/browserconfig.xml">
+    <!-- Safari-specific meta tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="PCWStats">
+    <!-- Browser UI color -->
+    <meta name="theme-color" content="#141312">
+    <meta name="msapplication-navbutton-color" content="#141312">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#141312">
+    <!-- Open Graph Meta Tags (for social media sharing, mainly Facebook) -->
+    <meta property="og:title" content="PCWStats - Common Builds">
+    <meta property="og:description" content="Discover and share the most effective tank builds for Project CW. Filter by tank, nation, and type to find optimal configurations.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
+    <meta property="og:url" content="https://pcwstats.github.io/builds.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="PCWStats">
+    <meta property="og:locale" content="en_US">
+    <!-- Twitter Card Meta Tags (for better sharing on Twitter) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@PCWStats">
+    <meta name="twitter:creator" content="@PCWStats">
+    <meta name="twitter:title" content="PCWStats - Common Builds">
+    <meta name="twitter:description" content="Discover and share the most effective tank builds for Project CW. Filter by tank, nation, and type to find optimal configurations.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png">
+    <meta name="twitter:image:alt" content="PCWStats - Your one-stop solution for comprehensive statistics insights and guides for Project CW">
+  </head>
+  <body>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="flex items-center justify-between">
+          <button id="closeSidebar" class="sidebar-close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <nav class="flex-grow">
+        <ul class="space-y-2">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="tanks.html" class="sidebar-link">
+              <i class="fas fa-shield-alt"></i>
+              <span>Tank Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="players.html" class="sidebar-link wip">
+              <i class="fas fa-user"></i>
+              <span>Player Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="maps.html" class="sidebar-link">
+              <i class="fas fa-map"></i>
+              <span>Map Knowledge</span>
+            </a>
+          </li>
+          <li>
+            <a href="guides.html" class="sidebar-link">
+              <i class="fas fa-book-open"></i>
+              <span>Community Guides</span>
+            </a>
+          </li>
+          <li>
+            <a href="strategy-planner.html" class="sidebar-link wip">
+              <i class="fas fa-chess"></i>
+              <span>Strategy Planner</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link active">
+              <i class="fas fa-wrench"></i>
+              <span>Common Builds</span>
+            </a>
+          </li>
+          <li>
+            <a href="news.html" class="sidebar-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Game News</span>
+            </a>
+          </li>
+          <li>
+            <a href="tankopedia.html" class="sidebar-link">
+              <i class="fas fa-database"></i>
+              <span>Tankopedia</span>
+            </a>
+          </li>
+          <li>
+            <a href="bug-hunting.html" class="sidebar-link">
+              <i class="fas fa-bug"></i>
+              <span>Bug Hunting</span>
+            </a>
+          </li>
+          <li>
+            <a href="tournaments.html" class="sidebar-link">
+              <i class="fas fa-trophy"></i>
+              <span>Tournaments</span>
+            </a>
+          </li>
+          <li>
+            <a href="blog.html" class="sidebar-link">
+              <i class="fas fa-blog"></i>
+              <span>Official Blog</span>
+            </a>
+          </li>
+          <li>
+            <a href="legal.html" class="sidebar-link">
+              <i class="fas fa-balance-scale"></i>
+              <span>Project Policies</span>
+            </a>
+          </li>
+          <li>
+            <a href="about-us.html" class="sidebar-link">
+              <i class="fas fa-info-circle"></i>
+              <span>About the Project</span>
+            </a>
+          </li>
+          <li>
+            <a href="credits.html" class="sidebar-link">
+              <i class="fas fa-users"></i>
+              <span>Community Credits</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- Main Content -->
+    <div class="content-wrapper">
+      <!-- Header/Navbar -->
+      <header class="navbar">
+        <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center py-3">
+            <div class="flex items-center space-x-4">
+              <button id="openSidebar" class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <a href="index.html" class="brand-logo">
+                <i class="fas fa-tank text-accent-color"></i>
+                <span>PCWStats</span>
+                <span class="beta-tag">BETA</span>
+              </a>
+            </div>
+            <div class="flex items-center space-x-6">
+              <button id="openSearch" class="search-button">
+                <i class="fas fa-search"></i>
+              </button>
+              <div class="theme-toggle-mobile" id="themeToggleMobile">
+                <i class="fas fa-moon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1>Common Builds</h1>
+          <p>Discover and share the most effective tank builds for Project CW</p>
+        </div>
+      </section>
+      <!-- Builds Section -->
+      <section id="main" class="section">
+        <div class="container mx-auto px-4">
+          <h2 class="section-title">Tank Builds</h2>
+          <p class="text-center max-w-3xl mx-auto mb-8">Browse through community-vetted builds for each tank. Filter by tank, nation, or type to find the perfect configuration for your playstyle.</p>
+          <!-- Build Filters -->
+          <div class="build-filters">
+            <div class="filter-group">
+              <span class="filter-label">Sort by:</span>
+              <select id="sortFilter" class="filter-select">
+                <option value="popular">Most Popular</option>
+                <option value="recent">Most Recent</option>
+                <option value="rating">Highest Rated</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">Filter by Tank:</span>
+              <select id="tankFilter" class="filter-select">
+                <option value="all">All Tanks</option>
+                <!-- Will be populated by JavaScript -->
+              </select>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">Filter by Nation:</span>
+              <select id="nationFilter" class="filter-select">
+                <option value="all">All Nations</option>
+                <option value="USA">USA</option>
+                <option value="USSR">USSR</option>
+                <option value="Germany">Germany</option>
+                <option value="UK">UK</option>
+                <option value="China">China</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">Filter by Type:</span>
+              <select id="typeFilter" class="filter-select">
+                <option value="all">All Types</option>
+                <option value="Assault">Assault</option>
+                <option value="Defender">Defender</option>
+                <option value="Marksman">Marksman</option>
+                <option value="Support">Support</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">Builds per page:</span>
+              <select id="buildsPerPage" class="filter-select">
+                <option value="12">12</option>
+                <option value="24">24</option>
+                <option value="48">48</option>
+                <option value="all">All</option>
+              </select>
+            </div>
+          </div>
+          <!-- Builds Grid -->
+          <div class="builds-grid">
+            <!-- Build cards will be inserted here by JavaScript -->
+          </div>
+          <!-- Pagination -->
+          <div class="pagination-container">
+            <div class="pagination-controls"></div>
+          </div>
+        </div>
+      </section>
+      <!-- CTA Section -->
+      <section class="cta-section">
+        <div class="container mx-auto px-4 text-center">
+          <h2>Join the Community</h2>
+          <p class="text-lg mb-8 max-w-2xl mx-auto">Join our Discord server to discuss builds, strategies, and stay updated on the latest Project CW developments.</p>
+          <a href="https://discord.com/invite/2nHHHBWNDw" class="cta-button">
+            <i class="fab fa-discord mr-2"></i> Join Discord </a>
+          <a href="contact-us.html" class="cta-button">
+            <i class="fab fa-plus mr-2"></i> Submit a Build </a>
+        </div>
+      </section>
+      <!-- Search Modal -->
+      <div class="search-overlay" id="searchOverlay"></div>
+      <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+          <div class="search-input-container">
+            <i class="fas fa-search search-modal-icon"></i>
+            <input type="text" placeholder="Search tanks, builds, modules..." class="search-modal-input" autofocus>
+          </div>
+          <div class="search-suggestions">
+            <p class="search-suggestions-title">Past Searches</p>
+            <div class="past-searches-tags">
+              <!-- Past searches will be dynamically inserted here -->
+            </div>
+            <div class="search-results-container">
+              <div class="search-results-placeholder">
+                <i class="fas fa-search"></i>
+                <p>Your search results will appear here</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <footer class="footer bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-10 space-y-10">
+          <!-- Top Row -->
+          <div class="footer-brand flex flex-col items-center text-center">
+            <div>
+              <h3 class="text-2xl font-semibold">PCWStats</h3>
+              <p class="text-gray-400">Your go-to resource for Project CW statistics and gameplay information.</p>
+            </div>
+            <div class="flex space-x-4 text-xl">
+              <a href="https://discord.com/invite/2nHHHBWNDw" class="social-icon">
+                <i class="fab fa-discord"></i>
+              </a>
+              <a href="https://x.com/PCWStats" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://github.com/PCWStats" class="social-icon">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.youtube.com/@PCWStats" class="social-icon">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Middle Row -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-10 text-center">
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Tools</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="maps.html">Map Knowledge</a>
+                </li>
+                <li>
+                  <a href="tanks.html">Tank Statistics</a>
+                </li>
+                <li>
+                  <a href="tankopedia.html">Tankopedia</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Community</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="guides.html">Community Guides</a>
+                </li>
+                <li>
+                  <a href="builds.html">Common Builds</a>
+                </li>
+                <li>
+                  <a href="tournaments.html">Tournaments</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">PCWStats</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="about-us.html">About the Project</a>
+                </li>
+                <li>
+                  <a href="blog.html">Official Blog</a>
+                </li>
+                <li>
+                  <a href="news.html">Game News</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Credits</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="credits.html">Community Credits</a>
+                </li>
+                <li>
+                  <a href="support-us.html">Support the Project</a>
+                </li>
+                <li>
+                  <a href="contact-us.html">Contact Us</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Legal</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="legal/terms-of-service.html">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="legal/project-license.html">Project License</a>
+                </li>
+                <li>
+                  <a href="legal/privacy-policy.html">Privacy Policy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Contact Row -->
+          <div class="text-center">
+            <h3 class="text-lg font-semibold mb-1">Contact</h3>
+            <p class="text-gray-400 mb-2">Have suggestions, found a bug or want to help?</p>
+            <a href="contact-us.html" class="btn-accent mt-4">
+              <i class="fas fa-envelope mr-2"></i>Send Feedback </a>
+            <a href="get-involved.html" class="btn-accent mt-4">
+              <i class="fas fa-users mr-2"></i>Get Involved </a>
+          </div>
+          <!-- Bottom Disclaimer -->
+          <div class="text-center text-sm text-gray-500 space-y-1 border-t border-gray-700 pt-1">
+            <p>PCWStats is a community-made project and is not associated with, endorsed by, or affiliated with <a href="https://projectcw.dev" class="disclaimer-link">Project CW</a> or <a href="https://www.wargaming.net" class="disclaimer-link">Wargaming.net</a>. </p>
+            <p>&copy; 2025 PCWStats by SINEWAVE Development. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- JavaScript Files -->
+    <script src="js/main.js"></script>
+    <script src="js/misc.js"></script>
+    <script src="js/builds.js"></script>
+    <script src="js/modules/sidebar.js"></script>
+    <script src="js/modules/theme-loader.js"></script>
+    <script src="js/modules/search.js"></script>
+    <script src="js/modules/warning.js"></script>
+    <script src="js/modules/global-hero.js"></script>
+    <script src="js/modules/banner.js"></script>
+  </body>
+</html>
