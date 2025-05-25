@@ -24,10 +24,33 @@ document.addEventListener('DOMContentLoaded', function() {
         <button class="wip-modal-close" id="wipModalClose">Got it!</button>
     `;
 
+    // Create experimental warning modal elements
+    const experimentalModalOverlay = document.createElement('div');
+    experimentalModalOverlay.className = 'wip-modal-overlay experimental-overlay';
+    experimentalModalOverlay.id = 'experimentalModalOverlay';
+
+    const experimentalModal = document.createElement('div');
+    experimentalModal.className = 'wip-modal experimental-modal';
+    experimentalModal.id = 'experimentalModal';
+    experimentalModal.innerHTML = `
+        <h3 class="wip-modal-title">Experimental Feature Warning</h3>
+        <p class="wip-modal-content">You're about to visit an experimental page that is in active development.
+        This feature is not ready for release and might not be fully functional. You may encounter bugs,
+        incomplete content, or other issues.</p>
+        <div class="experimental-modal-buttons">
+            <button class="wip-modal-close experimental-cancel" id="experimentalModalCancel">Cancel</button>
+            <button class="wip-modal-close experimental-confirm" id="experimentalModalConfirm">Visit Page</button>
+        </div>
+    `;
+
     document.body.appendChild(wipModalOverlay);
     document.body.appendChild(wipModal);
+    document.body.appendChild(experimentalModalOverlay);
+    document.body.appendChild(experimentalModal);
 
     const wipModalCloseBtn = document.getElementById('wipModalClose');
+    const experimentalModalCancel = document.getElementById('experimentalModalCancel');
+    const experimentalModalConfirm = document.getElementById('experimentalModalConfirm');
 
     function openSidebar() {
         if (isSidebarOpen) return;
@@ -78,6 +101,27 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
     }
 
+    function openExperimentalModal(href) {
+        experimentalModalOverlay.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
+        experimentalModal.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
+
+        experimentalModalOverlay.classList.add('open');
+        experimentalModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+
+        // Store the href in the confirm button's data attribute
+        experimentalModalConfirm.dataset.href = href;
+    }
+
+    function closeExperimentalModal() {
+        experimentalModalOverlay.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
+        experimentalModal.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
+
+        experimentalModalOverlay.classList.remove('open');
+        experimentalModal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
     // Click handlers for sidebar
     if (hamburgerBtn) {
         hamburgerBtn.addEventListener('click', function(e) {
@@ -106,6 +150,24 @@ document.addEventListener('DOMContentLoaded', function() {
         wipModalOverlay.addEventListener('click', closeWipModal);
     }
 
+    // Experimental modal handlers
+    if (experimentalModalCancel) {
+        experimentalModalCancel.addEventListener('click', closeExperimentalModal);
+    }
+
+    if (experimentalModalOverlay) {
+        experimentalModalOverlay.addEventListener('click', closeExperimentalModal);
+    }
+
+    if (experimentalModalConfirm) {
+        experimentalModalConfirm.addEventListener('click', function() {
+            const href = this.dataset.href;
+            if (href) {
+                window.location.href = href;
+            }
+        });
+    }
+
     // Prevent clicks inside sidebar from closing it
     if (sidebar) {
         sidebar.addEventListener('click', function(e) {
@@ -113,9 +175,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Prevent clicks inside WIP modal from closing it
+    // Prevent clicks inside modals from closing them
     if (wipModal) {
         wipModal.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+
+    if (experimentalModal) {
+        experimentalModal.addEventListener('click', function(e) {
             e.stopPropagation();
         });
     }
@@ -127,13 +195,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Close sidebar on escape key press
+    // Close modals on escape key press
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && isSidebarOpen) {
             closeSidebar();
         }
         if (e.key === 'Escape' && wipModalOverlay.classList.contains('open')) {
             closeWipModal();
+        }
+        if (e.key === 'Escape' && experimentalModalOverlay.classList.contains('open')) {
+            closeExperimentalModal();
         }
     });
 
@@ -143,6 +214,13 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', function(e) {
             // Check if link is WIP
             if (this.classList.contains('wip')) {
+                // Check for CTRL+SHIFT bypass
+                if (e.ctrlKey && e.shiftKey) {
+                    e.preventDefault();
+                    openExperimentalModal(this.getAttribute('href'));
+                    return;
+                }
+
                 e.preventDefault();
                 openWipModal();
                 return;
