@@ -668,70 +668,70 @@ p {
 /* Strengths & Weaknesses Accordion */
 .strengths-accordion,
 .weaknesses-accordion {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
 }
 
 .accordion-item {
-    background-color: var(--card-bg);
-    border-radius: 0.5rem;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-    transition: all 0.3s ease;
+	background-color: var(--card-bg);
+	border-radius: 0.5rem;
+	overflow: hidden;
+	border: 1px solid var(--border-color);
+	transition: all 0.3s ease;
 }
 
 .accordion-header {
-    padding: 1rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    font-weight: 500;
-    color: var(--text-primary);
-    transition: background-color 0.3s ease;
+	padding: 1rem 1.5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+	font-weight: 500;
+	color: var(--text-primary);
+	transition: background-color 0.3s ease;
 }
 
 .accordion-header:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+	background-color: rgba(255, 255, 255, 0.05);
 }
 
 .accordion-header i {
-    transition: transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .accordion-item.active .accordion-header i {
-    transform: rotate(180deg);
+	transform: rotate(180deg);
 }
 
 .strengths-accordion .accordion-header {
-    background-color: rgba(76, 175, 80, 0.1);
-    border-left: 4px solid #4CAF50;
+	background-color: rgba(76, 175, 80, 0.1);
+	border-left: 4px solid #4CAF50;
 }
 
 .weaknesses-accordion .accordion-header {
-    background-color: rgba(244, 67, 54, 0.1);
-    border-left: 4px solid #F44336;
+	background-color: rgba(244, 67, 54, 0.1);
+	border-left: 4px solid #F44336;
 }
 
 .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-    padding: 0 1.5rem;
-    border-top: 1px solid transparent;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.3s ease, padding 0.3s ease;
+	padding: 0 1.5rem;
+	border-top: 1px solid transparent;
 }
 
 .accordion-item.active .accordion-content {
-    max-height: 500px;
-    padding: 0 1.5rem 1.5rem;
-    border-top-color: var(--border-color);
+	max-height: 500px;
+	padding: 0 1.5rem 1.5rem;
+	border-top-color: var(--border-color);
 }
 
 .accordion-content p {
-    margin: 1rem 0 0;
-    color: var(--text-secondary);
-    line-height: 1.6;
+	margin: 1rem 0 0;
+	color: var(--text-secondary);
+	line-height: 1.6;
 }
 
 /* Mobile Sidebar Content (Show sidebar on desktop) */
