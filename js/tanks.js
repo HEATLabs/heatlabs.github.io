@@ -42,10 +42,14 @@ document.addEventListener('DOMContentLoaded', function() {
         card.setAttribute('data-type', tank.type);
         card.setAttribute('data-tank-id', tank.id);
 
+        // Only show tank class (bubble) if it exists and isn't empty
+        const tankClassHTML = tank.class && tank.class.trim() !== '' ?
+            `<div class="tank-class">${tank.class}</div>` : '';
+
         card.innerHTML = `
             <div class="tank-img-container">
                 <img src="${tank.image}" alt="${tank.name} Preview" class="tank-img" onerror="this.src='https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/imagefailedtoload.png'">
-                <div class="tank-class">${tank.class}</div>
+                ${tankClassHTML}
             </div>
             <div class="tank-info">
                 <h3>${tank.name}</h3>
