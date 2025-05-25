@@ -1,4 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap');
+/* Montserrat - Regular 400 */
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 400;
+	src: url('fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
+/* Montserrat - Medium 500 */
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 500;
+	src: url('fonts/Montserrat-Medium.ttf') format('truetype');
+}
+
+/* Montserrat - SemiBold 600 */
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 600;
+	src: url('fonts/Montserrat-SemiBold.ttf') format('truetype');
+}
+
+/* Montserrat - Bold 700 */
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 700;
+	src: url('fonts/Montserrat-Bold.ttf') format('truetype');
+}
+
+/* Open Sans - Regular 400 */
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: url('fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
+/* Open Sans - Medium 500 */
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 500;
+	src: url('fonts/OpenSans-Medium.ttf') format('truetype');
+}
+
+/* Open Sans - SemiBold 600 */
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 600;
+	src: url('fonts/OpenSans-SemiBold.ttf') format('truetype');
+}
+
+/* Roboto Mono - Regular 400 */
+@font-face {
+	font-family: 'Roboto Mono';
+	font-style: normal;
+	font-weight: 400;
+	src: url('fonts/RobotoMono-Regular.ttf') format('truetype');
+}
+
+/* Roboto Mono - Medium 500 */
+@font-face {
+	font-family: 'Roboto Mono';
+	font-style: normal;
+	font-weight: 500;
+	src: url('fonts/RobotoMono-Medium.ttf') format('truetype');
+}
 
 html {
 	scroll-behavior: smooth;
