@@ -387,24 +387,6 @@ function populateBuilds(builds) {
 
                 <div class="build-section">
                     <div class="build-section-title">
-                        <i class="fas fa-toolbox"></i>
-                        <span>Equipment</span>
-                    </div>
-                    <div class="build-items equipment-items">
-                        ${build.equipments.map(equipment => `
-                            <div class="build-item">
-                                <img src="${equipment.equipmentIcon}" alt="${equipment.equipmentName}">
-                                <div class="build-item-tooltip">
-                                    <div class="build-item-name">${equipment.equipmentName}</div>
-                                    <div class="build-item-description">${equipment.equipmentDescription}</div>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-
-                <div class="build-section">
-                    <div class="build-section-title">
                         <i class="fas fa-star"></i>
                         <span>Perks</span>
                     </div>
@@ -415,6 +397,24 @@ function populateBuilds(builds) {
                                 <div class="build-item-tooltip">
                                     <div class="build-item-name">${perk.perkName}</div>
                                     <div class="build-item-description">${perk.perkDescription}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="build-section">
+                    <div class="build-section-title">
+                        <i class="fas fa-toolbox"></i>
+                        <span>Equipment</span>
+                    </div>
+                    <div class="build-items equipment-items">
+                        ${build.equipments.map(equipment => `
+                            <div class="build-item">
+                                <img src="${equipment.equipmentIcon}" alt="${equipment.equipmentName}">
+                                <div class="build-item-tooltip">
+                                    <div class="build-item-name">${equipment.equipmentName}</div>
+                                    <div class="build-item-description">${equipment.equipmentDescription}</div>
                                 </div>
                             </div>
                         `).join('')}
