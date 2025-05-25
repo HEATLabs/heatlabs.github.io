@@ -83,6 +83,11 @@ async function fetchTankData(tankId) {
             await fetchAndPopulateStockData(tank.stock, tank.id, tank.slug);
         }
 
+        // Fetch builds data if available
+        if (tank.builds) {
+            await fetchAndPopulateBuilds(tank.builds, tank.id);
+        }
+
     } catch (error) {
         console.error('Error fetching tank data:', error);
     }
@@ -305,6 +310,167 @@ function updateGSSScores(gssScores) {
         }
     });
 }
+
+async function fetchAndPopulateBuilds(buildsUrl, tankId) {
+    try {
+        const buildsResponse = await fetch(buildsUrl);
+        const buildsData = await buildsResponse.json();
+
+        // If the builds data is in the expected format, populate it
+        if (buildsData && buildsData.buildList && buildsData.buildList.length > 0) {
+            populateBuilds(buildsData.buildList);
+        } else {
+            console.warn('No builds data found in:', buildsUrl);
+            // Show placeholder if no builds available
+            showBuildsPlaceholder();
+        }
+    } catch (error) {
+        console.error('Error fetching builds data:', error);
+        // Show placeholder if there's an error
+        showBuildsPlaceholder();
+    }
+}
+
+function populateBuilds(builds) {
+    const buildsContainer = document.getElementById('builds-container');
+    if (!buildsContainer) {
+        console.error('Builds container not found');
+        return;
+      setTimeout(adjustTooltipPosition, 0);
+    }
+
+    // Clear existing content
+    buildsContainer.innerHTML = '';
+
+    // Create build cards for each build
+    const buildsToShow = builds.slice(0, 3);
+
+    buildsToShow.forEach(build => {
+        const buildCard = document.createElement('div');
+        buildCard.className = 'build-card';
+
+        buildCard.innerHTML = `
+      <div class="build-header">
+        ${build.buildName}
+      </div>
+      <div class="build-content">
+        <div class="build-section">
+          <div class="build-section-title">
+            <i class="fas fa-puzzle-piece"></i>
+            <span>Modules</span>
+          </div>
+          <div class="build-items">
+            ${build.modules.map(module => `
+              <div class="build-item">
+                <img src="${module.moduleIcon}" alt="${module.moduleName}">
+                <div class="build-item-tooltip">
+                  <div class="build-item-name">${module.moduleName}</div>
+                  <div class="build-item-description">${module.moduleDescription}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="build-section">
+          <div class="build-section-title">
+            <i class="fas fa-toolbox"></i>
+            <span>Equipment</span>
+          </div>
+          <div class="build-items equipment-items">
+            ${build.equipments.map(equipment => `
+              <div class="build-item">
+                <img src="${equipment.equipmentIcon}" alt="${equipment.equipmentName}">
+                <div class="build-item-tooltip">
+                  <div class="build-item-name">${equipment.equipmentName}</div>
+                  <div class="build-item-description">${equipment.equipmentDescription}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="build-section">
+          <div class="build-section-title">
+            <i class="fas fa-star"></i>
+            <span>Perks</span>
+          </div>
+          <div class="build-items perk-items">
+            ${build.perks.map(perk => `
+              <div class="build-item">
+                <img src="${perk.perkIcon}" alt="${perk.perkName}">
+                <div class="build-item-tooltip">
+                  <div class="build-item-name">${perk.perkName}</div>
+                  <div class="build-item-description">${perk.perkDescription}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+
+        buildsContainer.appendChild(buildCard);
+    });
+}
+
+function showBuildsPlaceholder() {
+    const buildsContainer = document.getElementById('builds-container');
+    if (!buildsContainer) return;
+
+    buildsContainer.innerHTML = `
+    <div class="text-center py-8">
+      <i class="fas fa-tools text-4xl text-gray-500 mb-4"></i>
+      <h3 class="text-xl font-semibold text-gray-400 mb-2">Builds Coming Soon</h3>
+      <p class="text-gray-500 max-w-md mx-auto">
+        We're currently collecting and analyzing the best builds for this tank.
+        Check back soon or contribute your own build!
+      </p>
+      <a href="../contact-us.html" class="btn-accent mt-4 inline-block">
+        <i class="fas fa-share mr-2"></i>Submit Your Build
+      </a>
+    </div>
+  `;
+}
+
+function adjustTooltipPosition() {
+  document.querySelectorAll('.build-item').forEach(item => {
+    item.addEventListener('mouseenter', function() {
+      const tooltip = this.querySelector('.build-item-tooltip');
+      if (!tooltip) return;
+
+      // Force tooltip to be visible for measurements
+      tooltip.style.visibility = 'visible';
+      tooltip.style.opacity = '1';
+
+      const tooltipRect = tooltip.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+
+      // Check if tooltip goes off right edge
+      if (tooltipRect.right > viewportWidth) {
+        tooltip.style.left = 'auto';
+        tooltip.style.right = '0';
+        tooltip.style.transform = 'translateX(0)';
+        tooltip.querySelector('::after').style.left = 'auto';
+        tooltip.querySelector('::after').style.right = '20px';
+      }
+
+      // Check if tooltip goes off left edge
+      if (tooltipRect.left < 0) {
+        tooltip.style.left = '0';
+        tooltip.style.right = 'auto';
+        tooltip.style.transform = 'translateX(0)';
+        tooltip.querySelector('::after').style.left = '20px';
+        tooltip.querySelector('::after').style.right = 'auto';
+      }
+
+      // Reset visibility until hover
+      tooltip.style.visibility = '';
+      tooltip.style.opacity = '';
+    });
+  });
+}
+
 
 async function fetchAndPopulateAgents(agentsUrl, tankId) {
     try {

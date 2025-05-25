@@ -1198,6 +1198,167 @@ p {
 	font-weight: 500;
 }
 
+/* Builds Section Styles */
+.builds-container {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 2rem;
+	margin-top: 2rem;
+}
+
+@media (min-width: 1024px) {
+	.builds-container {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+.build-card {
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	box-shadow: var(--shadow);
+	border: 1px solid var(--border-color);
+	overflow: hidden;
+	transition: transform 0.3s ease;
+}
+
+.build-header {
+	background-color: var(--accent-color);
+	padding: 1rem 1.5rem;
+	color: white;
+	font-weight: 600;
+	font-size: 1.1rem;
+	text-align: center;
+}
+
+.build-content {
+	padding: 1.5rem;
+}
+
+.build-section {
+	margin-bottom: 1.5rem;
+}
+
+.build-section:last-child {
+	margin-bottom: 0;
+}
+
+.build-section-title {
+	font-size: 1rem;
+	font-weight: 600;
+	margin-bottom: 0.75rem;
+	color: var(--text-primary);
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 1px solid var(--border-color);
+}
+
+.build-section-title i {
+	color: var(--accent-color);
+}
+
+.build-items {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0.75rem;
+}
+
+.build-item {
+	position: relative;
+	cursor: pointer;
+	transition: transform 0.2s ease;
+}
+
+.build-item:hover {
+	transform: scale(1.05);
+}
+
+.build-item img {
+	width: 100%;
+	aspect-ratio: 1;
+	object-fit: contain;
+	background-color: var(--bg-secondary);
+	border-radius: 0.5rem;
+	padding: 0.5rem;
+	border: 1px solid var(--border-color);
+}
+
+.build-item-tooltip {
+	position: absolute;
+	bottom: calc(100% + 10px);
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: var(--card-bg);
+	color: var(--text-primary);
+	padding: 0.75rem 1rem;
+	border-radius: 0.5rem;
+	box-shadow: var(--shadow-lg);
+	border: 1px solid var(--border-color);
+	width: 250px;
+	z-index: 100;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.2s ease, visibility 0.2s ease;
+	pointer-events: none;
+}
+
+.build-item:hover .build-item-tooltip {
+	opacity: 1;
+	visibility: visible;
+}
+
+.build-item-tooltip::after {
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	border-width: 8px;
+	border-style: solid;
+	border-color: var(--card-bg) transparent transparent transparent;
+}
+
+.build-item-name {
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+	color: var(--accent-color);
+}
+
+.build-item-description {
+	font-size: 0.85rem;
+	color: var(--text-secondary);
+	line-height: 1.5;
+}
+
+/* Equipment specific styling */
+.equipment-items {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 0.75rem;
+}
+
+.equipment-item img {
+	aspect-ratio: 1.5;
+}
+
+/* Perks specific styling */
+.perk-items {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 0.75rem;
+}
+
+@media (max-width: 768px) {
+	.builds-container {
+		grid-template-columns: 1fr;
+	}
+
+	.perk-items {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
 @media (max-width: 768px) {
 	.agent-modal-image-container {
 		width: 200px;
