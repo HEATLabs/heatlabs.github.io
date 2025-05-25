@@ -312,6 +312,7 @@ function updateGSSScores(gssScores) {
 }
 
 // Global toggle for builds placeholder - set to true to always show placeholder
+// This is a temporary solution, in the final version we will use the buildDisplay key from builds.json
 const FORCE_BUILDS_PLACEHOLDER = true;
 
 async function fetchAndPopulateBuilds(buildsUrl, tankId) {
