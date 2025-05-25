@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.type-filter').forEach(button => {
             button.addEventListener('click', function() {
                 const type = this.getAttribute('data-type');
-                toggleFilter('nation', type, this);
+                toggleFilter('type', type, this);
                 filterTanks();
             });
         });
