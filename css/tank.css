@@ -1200,12 +1200,18 @@ p {
 
 /* Builds Section Styles */
 .builds-container {
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-columns: 1fr;
 	gap: 2rem;
 	margin-top: 2rem;
 	position: relative;
 	z-index: 1;
+}
+
+@media (min-width: 1024px) {
+	.builds-container:not(.placeholder-mode) {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
 
 .builds-placeholder {
@@ -1218,6 +1224,7 @@ p {
 	border-radius: 0.75rem;
 	box-shadow: var(--shadow);
 	border: 1px solid var(--border-color);
+	grid-column: 1 / -1;
 }
 
 .placeholder-content {
