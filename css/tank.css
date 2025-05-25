@@ -1206,6 +1206,10 @@ p {
 	margin-top: 2rem;
 	position: relative;
 	z-index: 1;
+	width: 100%;
+	overflow: hidden;
+	padding: 0 1rem;
+	box-sizing: border-box;
 }
 
 @media (min-width: 1024px) {
