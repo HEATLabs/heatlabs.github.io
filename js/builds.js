@@ -22,7 +22,7 @@ const loaderMessages = [
 async function fetchTankData() {
     try {
         showLoader();
-        const response = await fetch('../Website-Configs/tanks.json');
+        const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
         tankData = await response.json();
         populateTankFilter();
         fetchBuildsData();
