@@ -86,12 +86,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     easterEgg.style.display = 'flex';
 
                     // Set timeout to hide after 6 seconds from when sound started
-                    timeoutId = setTimeout(hideEasterEgg, 6000);
+                    timeoutId = setTimeout(hideEasterEgg, 9000);
                 }).catch(e => {
                     console.log("Sound play failed:", e);
                     // Fallback: show GIF anyway if sound fails
                     easterEgg.style.display = 'flex';
-                    timeoutId = setTimeout(hideEasterEgg, 6000);
+                    timeoutId = setTimeout(hideEasterEgg, 9000);
                 });
 
                 // Reset for next time
