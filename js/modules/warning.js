@@ -35,6 +35,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         <i class="fas fa-paint-brush"></i>
                         <span>Design elements may change</span>
                     </li>
+                    <li>
+                        <i class="fa-brands fa-firefox-browser"></i>
+                        <span>Firefox users are encouraged to keep hardware acceleration enabled</span>
+                    </li>
                 </ul>
 
                 <p><i class="fas fa-hard-hat"></i> We're working hard to improve the site and appreciate your patience. Your feedback is welcome!</p>
