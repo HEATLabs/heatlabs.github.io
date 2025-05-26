@@ -3,6 +3,10 @@ let originalBuilds = [];
 let tankData = [];
 let currentPage = 1;
 let buildsPerPage = 12;
+let isLoading = false;
+let hasMoreBuilds = true;
+const MAX_CONCURRENT_REQUESTS = 3;
+const REQUEST_DELAY = 500; // 0.5s between batches
 const loaderMessages = [
     "Loading tank components...",
     "Assembling modules...",
@@ -18,31 +22,76 @@ const loaderMessages = [
     "Testing your patience..."
 ];
 
-// Function to fetch tank data
+// Function to fetch tank data with error handling and retries
 async function fetchTankData() {
     try {
         showLoader();
-        const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+        const response = await fetchWithRetry(
+            'https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json',
+            3 // retry 3 times
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         tankData = await response.json();
         populateTankFilter();
         fetchBuildsData();
     } catch (error) {
         console.error('Error fetching tank data:', error);
+        showError("Failed to load tank data. Please try again later.");
         hideLoader();
     }
 }
 
+// Helper function for fetch with retry
+async function fetchWithRetry(url, retries, delay = 1000) {
+    try {
+        const response = await fetch(url);
+        if (response.ok) return response;
+
+        if (retries > 0) {
+            await new Promise(resolve => setTimeout(resolve, delay));
+            return fetchWithRetry(url, retries - 1, delay * 2); // exponential backoff
+        }
+        throw new Error(`Failed after ${retries} retries`);
+    } catch (error) {
+        throw error;
+    }
+}
+
 // Function to show loader with random message
-function showLoader() {
+function showLoader(message) {
     const buildsGrid = document.querySelector('.builds-grid');
     if (!buildsGrid) return;
 
     buildsGrid.innerHTML = `
         <div class="builds-loader">
             <div class="loader-spinner"></div>
-            <p class="loader-message">${loaderMessages[Math.floor(Math.random() * loaderMessages.length)]}</p>
+            <p class="loader-message">${message || loaderMessages[Math.floor(Math.random() * loaderMessages.length)]}</p>
         </div>
     `;
+}
+
+// Function to show error message
+function showError(message) {
+    const buildsGrid = document.querySelector('.builds-grid');
+    if (!buildsGrid) return;
+
+    buildsGrid.innerHTML = `
+        <div class="builds-loader">
+            <i class="fas fa-exclamation-triangle text-red-500 text-4xl mb-4"></i>
+            <p class="loader-message">${message}</p>
+            <button id="retryLoading" class="btn-accent mt-4">
+                <i class="fas fa-sync-alt mr-2"></i> Retry
+            </button>
+        </div>
+    `;
+
+    document.getElementById('retryLoading').addEventListener('click', () => {
+        fetchTankData();
+    });
 }
 
 // Function to hide loader
@@ -71,43 +120,74 @@ function populateTankFilter() {
     });
 }
 
-// Function to fetch builds data from each tank's builds.json
+// Function to fetch builds data in batches to avoid rate limits
 async function fetchBuildsData() {
+    if (isLoading) return;
+    isLoading = true;
+
     try {
-        originalBuilds = [];
+        // Show initial loading message
+        showLoader("Loading tank builds...");
 
-        // Fetch builds for each tank
-        for (const tank of tankData) {
-            try {
-                const response = await fetch(tank.builds);
-                if (!response.ok) continue;
+        // Process tanks in batches
+        const batchSize = MAX_CONCURRENT_REQUESTS;
+        let processedTanks = 0;
 
-                const buildsData = await response.json();
-                if (buildsData.buildList && buildsData.buildList.length > 0) {
-                    buildsData.buildList.forEach(build => {
-                        if (build.buildDisplay) { // Only include builds marked for display
-                            originalBuilds.push({
-                                ...build,
-                                tankId: tank.id,
-                                tankName: tank.name,
-                                tankNation: tank.nation,
-                                tankType: tank.type,
-                                tankImage: tank.image,
-                                tankSlug: tank.slug
-                            });
-                        }
-                    });
-                }
-            } catch (error) {
-                console.error(`Error fetching builds for ${tank.name}:`, error);
+        while (processedTanks < tankData.length) {
+            const batch = tankData.slice(processedTanks, processedTanks + batchSize);
+
+            // Process current batch
+            await Promise.all(batch.map(tank => processTankBuilds(tank)));
+
+            processedTanks += batchSize;
+
+            // Update UI with what we have so far
+            updateBuildsDisplay();
+
+            // Show progress
+            showLoader(`Loading builds... (${processedTanks}/${tankData.length})`);
+
+            // Delay before next batch if there's more to process
+            if (processedTanks < tankData.length) {
+                await new Promise(resolve => setTimeout(resolve, REQUEST_DELAY));
             }
         }
 
+        hasMoreBuilds = false;
         updateBuildsDisplay();
     } catch (error) {
         console.error('Error fetching builds data:', error);
+        showError("Failed to load some builds. Showing available data...");
     } finally {
+        isLoading = false;
         hideLoader();
+    }
+}
+
+// Process builds for a single tank
+async function processTankBuilds(tank) {
+    try {
+        const response = await fetchWithRetry(tank.builds, 2);
+        if (!response.ok) return;
+
+        const buildsData = await response.json();
+        if (buildsData.buildList && buildsData.buildList.length > 0) {
+            buildsData.buildList.forEach(build => {
+                if (build.buildDisplay) {
+                    originalBuilds.push({
+                        ...build,
+                        tankId: tank.id,
+                        tankName: tank.name,
+                        tankNation: tank.nation,
+                        tankType: tank.type,
+                        tankImage: tank.image,
+                        tankSlug: tank.slug
+                    });
+                }
+            });
+        }
+    } catch (error) {
+        console.error(`Error fetching builds for ${tank.name}:`, error);
     }
 }
 
@@ -367,6 +447,23 @@ function updateBuildsDisplay() {
 
     // Clear the grid
     buildsGrid.innerHTML = '';
+
+    // If no builds found
+    if (paginatedBuilds.length === 0) {
+        if (filteredBuilds.length === 0 && originalBuilds.length > 0) {
+            buildsGrid.innerHTML = `
+                <div class="builds-loader">
+                    <i class="fas fa-search text-4xl mb-4 text-gray-400"></i>
+                    <p class="loader-message">No builds match your filters. Try adjusting your criteria.</p>
+                </div>
+            `;
+        } else if (isLoading) {
+            showLoader("Loading more builds...");
+        } else if (originalBuilds.length === 0) {
+            showError("No builds available. Please check back later.");
+        }
+        return;
+    }
 
     // Add builds to grid
     paginatedBuilds.forEach(build => {
