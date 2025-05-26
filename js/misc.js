@@ -3,13 +3,9 @@
 (() => {
     const secretCodes = {
         'youtube': 'https://www.youtube.com/@PCWStats',
-        'yt': 'https://www.youtube.com/@PCWStats',
         'twitter': 'https://x.com/PCWStats',
-        'twt': 'https://x.com/PCWStats',
         'github': 'https://github.com/PCWStats',
-        'gh': 'https://github.com/PCWStats',
-        'discord': 'https://discord.com/invite/2nHHHBWNDw',
-        'dc': 'https://discord.com/invite/2nHHHBWNDw'
+        'discord': 'https://discord.com/invite/2nHHHBWNDw'
     };
 
     let inputBuffer = '';
