@@ -17,10 +17,9 @@ function formatDate(dateString) {
 // Function to update date displays in cards
 function updateCardDates(cards) {
     cards.forEach(card => {
-        const dateElement = card.querySelector('.tournaments-meta span');
-        if (dateElement) {
-            const dateString = card.dataset.date;
-            const formattedDate = formatDate(dateString);
+        const dateElement = card.querySelector('.tournament-meta span');
+        if (dateElement && card.dataset.date) {
+            const formattedDate = formatDate(card.dataset.date);
             dateElement.innerHTML = `<i class="fa-solid fa-calendar"></i> ${formattedDate}`;
         }
     });
@@ -124,15 +123,8 @@ function updateTournamentsDisplay() {
     const tournamentGrid = document.querySelector('.tournament-grid');
 
     const sortValue = sortFilter.value;
-    const typeValue = typeFilter.value;
+    const typeValue = typeFilter.value.toLowerCase();
     postsPerPage = postsPerPageFilter.value === 'all' ? originalCards.length : parseInt(postsPerPageFilter.value);
-
-    // If originalCards is empty (first load), store the initial cards
-    if (originalCards.length === 0) {
-        originalCards = Array.from(tournamentGrid.querySelectorAll('.tournament-card'));
-        // Update dates in original cards
-        updateCardDates(originalCards);
-    }
 
     // Filter cards by type
     let filteredCards = originalCards;
@@ -154,29 +146,15 @@ function updateTournamentsDisplay() {
     const paginatedCards = filteredCards.slice(startIndex, endIndex);
 
     // Clear the grid
-    while (tournamentGrid.firstChild) {
-        tournamentGrid.removeChild(tournamentGrid.firstChild);
-    }
+    tournamentGrid.innerHTML = '';
 
     // Add paginated cards back to the grid
     paginatedCards.forEach(card => {
-        const clonedCard = card.cloneNode(true);
-        tournamentGrid.appendChild(clonedCard);
+        tournamentGrid.appendChild(card.cloneNode(true));
     });
-
-    // Update dates in the newly added cards
-    const currentCards = tournamentGrid.querySelectorAll('.tournament-card');
-    updateCardDates(currentCards);
 
     // Update pagination controls
     updatePaginationControls(totalPages);
-
-    // Reinitialize animations
-    setTimeout(() => {
-        currentCards.forEach(card => {
-            card.classList.add('animated');
-        });
-    }, 50);
 }
 
 // Initialize tournament functionality
@@ -185,8 +163,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const typeFilter = document.getElementById('typeFilter');
     const postsPerPageFilter = document.getElementById('postsPerPage');
 
-    // Initialize with default sorting
-    updateTournamentsDisplay();
+    // Wait for cards to be loaded before initializing
+    document.addEventListener('tournamentCardsLoaded', function() {
+        const tournamentGrid = document.querySelector('.tournament-grid');
+        originalCards = Array.from(tournamentGrid.querySelectorAll('.tournament-card'));
+        updateTournamentsDisplay();
+    });
 
     // Add event listeners for filter changes
     sortFilter.addEventListener('change', () => {
@@ -201,12 +183,4 @@ document.addEventListener('DOMContentLoaded', function() {
         currentPage = 1;
         updateTournamentsDisplay();
     });
-
-    // Initialize animations after page load
-    setTimeout(() => {
-        const tournamentCards = document.querySelectorAll('.tournament-card');
-        tournamentCards.forEach(card => {
-            card.classList.add('animated');
-        });
-    }, 300);
 });
