@@ -6,21 +6,23 @@ let postsPerPage = 12;
 // Function to format date as "Month Day, Year"
 function formatDate(dateString) {
     const date = new Date(dateString);
-    const options = {
+    if (isNaN(date.getTime())) {
+        console.warn("Invalid date format:", dateString);
+        return dateString; // Return original if invalid
+    }
+    return date.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
-    };
-    return date.toLocaleDateString('en-US', options);
+    });
 }
 
 // Function to update date displays in cards
-function updateCardDates(cards) {
-    cards.forEach(card => {
-        const dateElement = card.querySelector('.tournament-meta span');
-        if (dateElement && card.dataset.date) {
-            const formattedDate = formatDate(card.dataset.date);
-            dateElement.innerHTML = `<i class="fa-solid fa-calendar"></i> ${formattedDate}`;
+function updateCardDates() {
+    document.querySelectorAll('.tournament-date').forEach(dateElement => {
+        const rawDate = dateElement.closest('.tournament-card').dataset.date;
+        if (rawDate) {
+            dateElement.innerHTML = `<i class="fa-solid fa-calendar"></i> ${formatDate(rawDate)}`;
         }
     });
 }
@@ -152,6 +154,9 @@ function updateTournamentsDisplay() {
     paginatedCards.forEach(card => {
         tournamentGrid.appendChild(card.cloneNode(true));
     });
+
+    // Format card dates
+    updateCardDates();
 
     // Update pagination controls
     updatePaginationControls(totalPages);

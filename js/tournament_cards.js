@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="tournament-info">
                 <h3>${tournament.name}</h3>
                 <div class="tournament-meta items-center">
-                    <span><i class="fa-solid fa-calendar"></i> ${tournament.date}</span>
+                    <span class="tournament-date"><i class="fa-solid fa-calendar"></i> ${tournament.date}</span>
                 </div>
                 <div class="tournament-meta items-center">    
                     <span><i class="fa-solid fa-bomb"></i> ${tournament.mode}</span>
