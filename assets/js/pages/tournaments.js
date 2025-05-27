@@ -166,7 +166,7 @@ function updateTournamentsDisplay() {
 // Fetch tournament data from JSON file
 async function fetchTournamentData() {
     try {
-        const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tournament-cards.json');
+        const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tournaments.json');
         if (!response.ok) {
             throw new Error('Failed to load tournament data');
         }
