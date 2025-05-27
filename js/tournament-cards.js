@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch tournament data from JSON file
     async function fetchTournamentData() {
         try {
-            const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tournament_cards.json');
+            const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tournament-cards.json');
             if (!response.ok) {
                 throw new Error('Failed to load tournament data');
             }
