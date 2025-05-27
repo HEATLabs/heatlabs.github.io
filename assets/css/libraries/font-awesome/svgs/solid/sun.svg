@@ -1,0 +1,24 @@
+{
+    "m1e1": {
+        "FIREPOWER": {
+            "DAMAGE": "550",
+            "PENETRATION": "320",
+            "AIMING SPEED": "1.5",
+            "RELOAD TIME": "8.5",
+            "TIME BETWEEN SHOTS": "8.5",
+            "SHELLS IN MAGAZINE": "1",
+            "MAGAZINE COUNT": "1",
+            "TIME TO LOAD NEXT MAGAZINE": "8.5",
+            "RETICLE SIZE, MOVING": "1.5",
+            "RETICLE SIZE, ROTATING HULL": "1.5",
+            "RETICLE SIZE, STANDING": "0.5",
+            "RETICLE SIZE, AFTER SHOT": "0.38",
+            "RETICLE SIZE, MAX": "3.5",
+            "TURRET TRAVERSE SPEED": "14",
+            "GUN ELEVATION, DEGREES/SECOND": "30",
+            "GUN DEPRESSION, FRONT": "-8",
+            "GUN DEPRESSION, SIDE": "-8",
+            "GUN DEPRESSION, REAR": "+5",
+            "GUN ELEVATION, FRONT": "+20",
+            "GUN ELEVATION, SIDE": "+20",
+            

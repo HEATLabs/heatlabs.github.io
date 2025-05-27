@@ -1,0 +1,22 @@
+{
+    "leopard-1a1b": {
+        "FIREPOWER": {
+            "DAMAGE": "300",
+            "PENETRATION": "0",
+            "AIMING SPEED": "1.45",
+            "RELOAD TIME": "6.5",
+            "TIME BETWEEN SHOTS": "6.5",
+            "SHELLS IN MAGAZINE": "1",
+            "MAGAZINE COUNT": "1",
+            "TIME TO LOAD NEXT MAGAZINE": "6.5",
+            "RETICLE SIZE, MOVING": "1",
+            "RETICLE SIZE, ROTATING HULL": "1",
+            "RETICLE SIZE, STANDING": "0.35",
+            "RETICLE SIZE, AFTER SHOT": "2.5",
+            "RETICLE SIZE, MAX": "1.75",
+            "TURRET TRAVERSE SPEED": "45",
+            "GUN ELEVATION, DEGREES/SECOND": "40",
+            "GUN DEPRESSION, FRONT": "-10",
+            "GUN DEPRESSION, SIDE": "-10",
+            "GUN DEPRESSION, REAR": "+5",
+            
