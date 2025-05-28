@@ -1,3 +1,10 @@
+// Initialize charts
+let firepowerChart, survivabilityChart, mobilityChart, utilityChart;
+let allTanksData = [];
+let currentTankId = null;
+let currentTankType = 'Unknown';
+let currentTankAgents = [];
+
 // Tank Page JS for PCWStats
 document.addEventListener('DOMContentLoaded', function() {
     // Get tank ID from meta tag
@@ -53,7 +60,567 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize any interactive elements specific to tank pages
     initializeTankPageElements();
+
+    // Initialize charts
+    initializeCharts();
 });
+
+// Chart.js configuration
+const chartColors = [
+    'rgba(255, 99, 132, 0.7)',    // Red
+    'rgba(54, 162, 235, 0.7)',    // Blue
+    'rgba(255, 206, 86, 0.7)',    // Yellow
+    'rgba(75, 192, 192, 0.7)',    // Teal
+    'rgba(153, 102, 255, 0.7)',   // Purple
+    'rgba(255, 159, 64, 0.7)',    // Orange
+    'rgba(100, 200, 100, 0.7)',   // Green
+    'rgba(200, 100, 200, 0.7)',   // Pink
+    'rgba(100, 100, 255, 0.7)',   // Light Blue
+    'rgba(255, 100, 100, 0.7)'    // Light Red
+];
+
+const chartBorderColors = [
+    'rgba(255, 99, 132, 1)',
+    'rgba(54, 162, 235, 1)',
+    'rgba(255, 206, 86, 1)',
+    'rgba(75, 192, 192, 1)',
+    'rgba(153, 102, 255, 1)',
+    'rgba(255, 159, 64, 1)',
+    'rgba(100, 200, 100, 1)',
+    'rgba(200, 100, 200, 1)',
+    'rgba(100, 100, 255, 1)',
+    'rgba(255, 100, 100, 1)'
+];
+
+// Chart configuration
+const chartConfig = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            display: true
+        },
+        tooltip: {
+            callbacks: {
+                label: function(context) {
+                    return `${context.dataset.label}: ${context.raw}`;
+                }
+            },
+            bodyFont: {
+                color: 'var(--text-primary)'
+            },
+            titleFont: {
+                color: 'var(--text-primary)'
+            }
+        },
+        title: {
+            display: false,
+            color: 'var(--text-primary)'
+        }
+    },
+    scales: {
+        y: {
+            beginAtZero: true,
+            grid: {
+                color: 'rgba(200, 200, 200, 0.1)'
+            },
+            ticks: {
+                color: 'var(--text-secondary)'
+            }
+        },
+        x: {
+            grid: {
+                color: 'rgba(200, 200, 200, 0.1)'
+            },
+            ticks: {
+                color: 'var(--text-secondary)'
+            }
+        }
+    }
+};
+
+function isValidTankStats(stats) {
+    if (!stats) return false;
+
+    // Check each category for non-zero values
+    const categories = ['FIREPOWER', 'MOBILITY', 'SURVIVABILITY', 'RECON', 'UTILITY'];
+    return categories.some(category => {
+        if (!stats[category]) return false;
+        return Object.values(stats[category]).some(val => {
+            const num = parseFloat(val);
+            // Also check for negative values (like gun depression which shows as "-0")
+            return !isNaN(num) && num !== 0;
+        });
+    });
+}
+
+async function initializeCharts() {
+    // Get tank ID from meta tag
+    const tankIdMeta = document.querySelector('meta[name="tank-id"]');
+    currentTankId = tankIdMeta ? tankIdMeta.content : null;
+
+    if (!currentTankId) {
+        showNoDataMessage();
+        return;
+    }
+
+    try {
+        // First fetch the tanks.json to get the tank details
+        const tanksResponse = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+        const tanksData = await tanksResponse.json();
+
+        // Find current tank to get type and agents
+        const currentTank = tanksData.find(t => t.id.toString() === currentTankId.toString());
+        if (currentTank) {
+            currentTankType = currentTank.type || 'Unknown';
+            currentTankAgents = [];
+
+            // Get agents for this tank if available
+            if (currentTank.agents) {
+                try {
+                    const agentsResponse = await fetch(currentTank.agents);
+                    const agentsData = await agentsResponse.json();
+                    if (agentsData && agentsData.agents) {
+                        currentTankAgents = agentsData.agents.map(a => a.name);
+                    }
+                } catch (error) {
+                    console.error('Error fetching agents:', error);
+                }
+            }
+        }
+
+        // Fetch all stock data for comparison
+        const stockPromises = tanksData.map(async tank => {
+            try {
+                const response = await fetch(tank.stock);
+                const data = await response.json();
+
+                // Try different ways to get the stats for this tank
+                const tankStats = data[tank.id] || data[tank.slug] || Object.values(data)[0];
+
+                if (tankStats && isValidTankStats(tankStats)) {
+                    return {
+                        id: tank.id,
+                        name: tank.name,
+                        type: tank.type || 'Unknown',
+                        stats: tankStats,
+                        agentsUrl: tank.agents
+                    };
+                }
+            } catch (error) {
+                console.error(`Error fetching stock data for tank ${tank.id}:`, error);
+                return null;
+            }
+            return null;
+        });
+
+        const stockData = await Promise.all(stockPromises);
+        allTanksData = stockData.filter(tank => tank !== null);
+
+        // Check if current tank has valid stats - CRITICAL FIX HERE
+        const currentTankData = allTanksData.find(tank =>
+            tank && tank.id && tank.id.toString() === currentTankId.toString()
+        );
+
+        // If current tank doesn't exist in valid data or has no valid stats, show no data message
+        if (!currentTankData) {
+            showNoDataMessage();
+            return;
+        }
+
+        // Initialize chart filter buttons
+        setupChartFilters();
+
+        // Create initial charts (compare with all tanks)
+        updateCharts('all');
+
+    } catch (error) {
+        console.error('Error initializing charts:', error);
+        showNoDataMessage();
+    }
+}
+
+function setupChartFilters() {
+    const filterButtons = document.querySelectorAll('.chart-filter-btn');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Add active class to clicked button
+            this.classList.add('active');
+
+            // Get the comparison type
+            const compareType = this.dataset.compareType;
+
+            // Update charts
+            updateCharts(compareType);
+        });
+    });
+}
+
+async function updateCharts(compareType) {
+    if (!allTanksData.length || !currentTankId) {
+        showNoDataMessage();
+        return;
+    }
+
+    // Find current tank data - ENHANCED CHECK HERE
+    const currentTank = allTanksData.find(tank =>
+        tank && tank.id && tank.id.toString() === currentTankId.toString()
+    );
+
+    // If current tank has invalid stats or doesn't exist, show no data message
+    if (!currentTank || !currentTank.stats || !isValidTankStats(currentTank.stats)) {
+        showNoDataMessage();
+        return;
+    }
+
+    // Filter tanks based on comparison type
+    let tanksToCompare = [];
+
+    switch (compareType) {
+        case 'agent':
+            // Compare with tanks that share at least one agent
+            if (currentTankAgents.length > 0) {
+                // First get all tanks that share any agent with current tank
+                const agentTankPromises = allTanksData.map(async tank => {
+                    if (!tank.agentsUrl || tank.id.toString() === currentTankId.toString()) {
+                        return null;
+                    }
+
+                    try {
+                        const response = await fetch(tank.agentsUrl);
+                        const agentsData = await response.json();
+                        if (agentsData && agentsData.agents) {
+                            const sharedAgents = agentsData.agents.filter(agent =>
+                                currentTankAgents.includes(agent.name)
+                            );
+                            return sharedAgents.length > 0 ? tank : null;
+                        }
+                    } catch (error) {
+                        console.error(`Error fetching agents for tank ${tank.id}:`, error);
+                        return null;
+                    }
+                    return null;
+                });
+
+                const agentTanks = await Promise.all(agentTankPromises);
+                tanksToCompare = agentTanks.filter(tank => tank !== null);
+            } else {
+                // Fallback to all tanks if no agent data
+                tanksToCompare = allTanksData.filter(tank =>
+                    tank && tank.id && tank.id.toString() !== currentTankId.toString()
+                );
+            }
+            break;
+        case 'type':
+            // Compare with tanks of the same type
+            if (currentTankType !== 'Unknown') {
+                tanksToCompare = allTanksData.filter(tank =>
+                    tank && tank.type === currentTankType && tank.id.toString() !== currentTankId.toString()
+                );
+            } else {
+                tanksToCompare = allTanksData.filter(tank =>
+                    tank && tank.id && tank.id.toString() !== currentTankId.toString()
+                );
+            }
+            break;
+        default:
+            // Compare with all tanks except current
+            tanksToCompare = allTanksData.filter(tank =>
+                tank && tank.id && tank.id.toString() !== currentTankId.toString()
+            );
+    }
+
+    // Filter out tanks with invalid stats
+    tanksToCompare = tanksToCompare.filter(tank =>
+        tank && tank.stats && isValidTankStats(tank.stats)
+    );
+
+    // Limit to top 50 tanks plus current tank for better visualization
+    tanksToCompare = tanksToCompare.slice(0, 50);
+
+    // Prepare data for charts
+    const labels = tanksToCompare.map(tank => tank ? tank.name : 'Unknown');
+    labels.unshift(currentTank.name);
+
+    // Firepower data - damage, reload time, aiming speed
+    const firepowerDamage = tanksToCompare.map(tank => {
+        if (!tank || !tank.stats || !tank.stats.FIREPOWER) return 0;
+        return parseFloat(tank.stats.FIREPOWER.DAMAGE) || 0;
+    });
+    const firepowerReload = tanksToCompare.map(tank => {
+        if (!tank || !tank.stats || !tank.stats.FIREPOWER) return 0;
+        return parseFloat(tank.stats.FIREPOWER["RELOAD TIME"]) || 0;
+    });
+    const firepowerAiming = tanksToCompare.map(tank => {
+        if (!tank || !tank.stats || !tank.stats.FIREPOWER) return 0;
+        return parseFloat(tank.stats.FIREPOWER["AIMING SPEED"]) || 0;
+    });
+
+    // Survivability data - hit points only
+    const survivabilityHp = tanksToCompare.map(tank => {
+        if (!tank || !tank.stats || !tank.stats.SURVIVABILITY) return 0;
+        return parseFloat(tank.stats.SURVIVABILITY["HIT POINTS"]) || 0;
+    });
+
+    // Mobility data - forward and reverse speed
+    const mobilityForward = tanksToCompare.map(tank => {
+        if (!tank || !tank.stats || !tank.stats.MOBILITY) return 0;
+        return parseFloat(tank.stats.MOBILITY["FORWARD SPEED, KM/H"]) || 0;
+    });
+    const mobilityReverse = tanksToCompare.map(tank => {
+        if (!tank || !tank.stats || !tank.stats.MOBILITY) return 0;
+        return parseFloat(tank.stats.MOBILITY["REVERSE SPEED, KM/H"]) || 0;
+    });
+
+    // Utility data - energy points and regen
+    const utilityEnergy = tanksToCompare.map(tank => {
+        if (!tank || !tank.stats || !tank.stats.UTILITY) return 0;
+        return parseFloat(tank.stats.UTILITY["ENERGY POINTS"]) || 0;
+    });
+    const utilityRegen = tanksToCompare.map(tank => {
+        if (!tank || !tank.stats || !tank.stats.UTILITY) return 0;
+        return parseFloat(tank.stats.UTILITY["ENERGY REGENERATION"]) || 0;
+    });
+
+    // Add current tank data - we already verified it has valid stats above
+    const currentFpStats = currentTank.stats.FIREPOWER;
+    const currentSurvStats = currentTank.stats.SURVIVABILITY;
+    const currentMobStats = currentTank.stats.MOBILITY;
+    const currentUtilStats = currentTank.stats.UTILITY;
+
+    firepowerDamage.unshift(currentFpStats ? parseFloat(currentFpStats.DAMAGE) || 0 : 0);
+    firepowerReload.unshift(currentFpStats ? parseFloat(currentFpStats["RELOAD TIME"]) || 0 : 0);
+    firepowerAiming.unshift(currentFpStats ? parseFloat(currentFpStats["AIMING SPEED"]) || 0 : 0);
+
+    survivabilityHp.unshift(currentSurvStats ? parseFloat(currentSurvStats["HIT POINTS"]) || 0 : 0);
+
+    mobilityForward.unshift(currentMobStats ? parseFloat(currentMobStats["FORWARD SPEED, KM/H"]) || 0 : 0);
+    mobilityReverse.unshift(currentMobStats ? parseFloat(currentMobStats["REVERSE SPEED, KM/H"]) || 0 : 0);
+
+    utilityEnergy.unshift(currentUtilStats ? parseFloat(currentUtilStats["ENERGY POINTS"]) || 0 : 0);
+    utilityRegen.unshift(currentUtilStats ? parseFloat(currentUtilStats["ENERGY REGENERATION"]) || 0 : 0);
+
+    // Create or update charts with the new data structure
+    updateChart('firepowerChart', 'Firepower',
+        [
+            {label: 'Damage', data: firepowerDamage},
+            {label: 'Reload Time', data: firepowerReload},
+            {label: 'Aiming Speed', data: firepowerAiming}
+        ],
+        labels
+    );
+
+    updateChart('survivabilityChart', 'Survivability',
+        [
+            {label: 'Hit Points', data: survivabilityHp}
+        ],
+        labels
+    );
+
+    updateChart('mobilityChart', 'Mobility',
+        [
+            {label: 'Forward Speed', data: mobilityForward},
+            {label: 'Reverse Speed', data: mobilityReverse}
+        ],
+        labels
+    );
+
+    updateChart('utilityChart', 'Utility',
+        [
+            {label: 'Energy Points', data: utilityEnergy},
+            {label: 'Energy Regen', data: utilityRegen}
+        ],
+        labels
+    );
+}
+
+function sortChartData(labels, datasets, currentTankIndex = 0) {
+    // Create array of objects with label and values
+    const data = labels.map((label, i) => ({
+        label,
+        values: datasets.map(dataset => dataset.data[i]),
+        isCurrentTank: i === currentTankIndex
+    }));
+
+    // Calculate average value for each tank
+    const averages = data.map((item, i) => {
+        const sum = item.values.reduce((a, b) => a + b, 0);
+        return {
+            index: i,
+            value: sum / item.values.length,
+            isCurrentTank: item.isCurrentTank
+        };
+    });
+
+    // Sort by average value (lowest to highest)
+    averages.sort((a, b) => a.value - b.value);
+
+    // Reorder all data based on sorted indices
+    const sortedIndices = averages.map(item => item.index);
+
+    return {
+        sortedLabels: sortedIndices.map(i => data[i].label),
+        sortedDatasets: datasets.map(dataset => ({
+            ...dataset,
+            data: sortedIndices.map(i => dataset.data[i])
+        })),
+        currentTankNewIndex: sortedIndices.findIndex(i => i === currentTankIndex)
+    };
+}
+
+function updateChart(chartId, chartName, datasets, labels) {
+    const canvas = document.getElementById(chartId);
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const legendContainer = document.getElementById(`${chartId}Legend`);
+
+    // Clear previous legend
+    if (legendContainer) {
+        legendContainer.innerHTML = '';
+    }
+
+    // Sort the data (current tank will be sorted naturally)
+    const { sortedLabels, sortedDatasets, currentTankNewIndex } = sortChartData(labels, datasets);
+
+    // Prepare datasets with different colors
+    const chartDatasets = sortedDatasets.map((dataset, index) => ({
+        label: dataset.label,
+        data: dataset.data,
+        backgroundColor: sortedLabels.map((_, labelIndex) =>
+            labelIndex === currentTankNewIndex
+                ? 'rgba(75, 192, 192, 0.7)' // Current tank - teal
+                : chartColors[index % chartColors.length]
+        ),
+        borderColor: sortedLabels.map((_, labelIndex) =>
+            labelIndex === currentTankNewIndex
+                ? 'rgba(75, 192, 192, 1)' // Current tank - teal border
+                : chartBorderColors[index % chartBorderColors.length]
+        ),
+        borderWidth: sortedLabels.map((_, labelIndex) =>
+            labelIndex === currentTankNewIndex ? 2 : 1 // Thicker border for current tank
+        )
+    }));
+
+    // Create legend items
+    if (legendContainer) {
+        sortedLabels.forEach((label, index) => {
+            const legendItem = document.createElement('div');
+            legendItem.className = 'chart-legend-item';
+
+            // Add special styling for current tank
+            if (index === currentTankNewIndex) {
+                legendItem.classList.add('current-tank');
+            }
+
+            const colorBox = document.createElement('div');
+            colorBox.className = 'chart-legend-color';
+            colorBox.style.backgroundColor = index === currentTankNewIndex
+                ? 'rgba(75, 192, 192, 0.7)' // Current tank - teal
+                : chartColors[0];
+
+            // Add border to current tank legend color box
+            if (index === currentTankNewIndex) {
+                colorBox.style.border = '2px solid rgba(75, 192, 192, 1)';
+            }
+
+            const labelSpan = document.createElement('span');
+            labelSpan.textContent = label || 'Unknown';
+
+            // Add indicator for current tank
+            if (index === currentTankNewIndex) {
+                labelSpan.textContent += ' (Current)';
+                labelSpan.style.fontWeight = 'bold';
+            }
+
+            legendItem.appendChild(colorBox);
+            legendItem.appendChild(labelSpan);
+            legendContainer.appendChild(legendItem);
+        });
+    }
+
+    // Destroy previous chart if it exists
+    if (chartId === 'firepowerChart' && firepowerChart) {
+        firepowerChart.destroy();
+    } else if (chartId === 'survivabilityChart' && survivabilityChart) {
+        survivabilityChart.destroy();
+    } else if (chartId === 'mobilityChart' && mobilityChart) {
+        mobilityChart.destroy();
+    } else if (chartId === 'utilityChart' && utilityChart) {
+        utilityChart.destroy();
+    }
+
+    // Create new chart
+    const newChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: sortedLabels,
+            datasets: chartDatasets
+        },
+        options: {
+            ...chartConfig,
+            plugins: {
+                ...chartConfig.plugins,
+                title: {
+                    display: true
+                },
+                tooltip: {
+                    ...chartConfig.plugins.tooltip,
+                    callbacks: {
+                        label: function(context) {
+                            const isCurrentTank = context.dataIndex === currentTankNewIndex;
+                            const prefix = isCurrentTank ? '★ ' : '';
+                            return `${prefix}${context.dataset.label}: ${context.raw}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                ...chartConfig.scales,
+                x: {
+                    ...chartConfig.scales.x,
+                    stacked: true
+                },
+                y: {
+                    ...chartConfig.scales.y,
+                    stacked: false
+                }
+            }
+        }
+    });
+
+    // Store reference to the chart
+    if (chartId === 'firepowerChart') {
+        firepowerChart = newChart;
+    } else if (chartId === 'survivabilityChart') {
+        survivabilityChart = newChart;
+    } else if (chartId === 'mobilityChart') {
+        mobilityChart = newChart;
+    } else if (chartId === 'utilityChart') {
+        utilityChart = newChart;
+    }
+}
+
+function showNoDataMessage() {
+    const chartContainers = document.querySelectorAll('.chart-container');
+
+    chartContainers.forEach(container => {
+        if (!container.querySelector('.chart-no-data')) {
+            const noDataDiv = document.createElement('div');
+            noDataDiv.className = 'chart-no-data';
+            noDataDiv.innerHTML = `
+                <i class="fas fa-exclamation-circle"></i>
+                <p>No comparison data available</p>
+            `;
+            container.innerHTML = '';
+            container.appendChild(noDataDiv);
+        }
+    });
+}
 
 // Function to fetch tank data based on ID
 async function fetchTankData(tankId) {

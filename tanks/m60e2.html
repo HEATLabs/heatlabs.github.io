@@ -287,6 +287,59 @@
                     <i class="fas fa-wrench mr-2"></i>View All Builds </a>
                 </div>
               </div>
+              <!-- Tank Performance Charts -->
+              <div class="charts-section">
+                <div class="charts-header">
+                  <h2 class="charts-title">Performance Comparison</h2>
+                  <div class="chart-filters">
+                    <button class="chart-filter-btn active" data-compare-type="all">All Tanks</button>
+                    <button class="chart-filter-btn" data-compare-type="agent">Same Agent</button>
+                    <button class="chart-filter-btn" data-compare-type="type">Same Type</button>
+                  </div>
+                </div>
+                <div class="charts-grid">
+                  <!-- Firepower Comparison -->
+                  <div class="chart-card">
+                    <h3 class="chart-title">
+                      <i class="fas fa-fire"></i> Firepower Comparison
+                    </h3>
+                    <div class="chart-container">
+                      <canvas id="firepowerChart"></canvas>
+                      <div class="chart-legend" id="firepowerLegend"></div>
+                    </div>
+                  </div>
+                  <!-- Survivability Comparison -->
+                  <div class="chart-card">
+                    <h3 class="chart-title">
+                      <i class="fas fa-shield-alt"></i> Survivability Comparison
+                    </h3>
+                    <div class="chart-container">
+                      <canvas id="survivabilityChart"></canvas>
+                      <div class="chart-legend" id="survivabilityLegend"></div>
+                    </div>
+                  </div>
+                  <!-- Mobility Comparison -->
+                  <div class="chart-card">
+                    <h3 class="chart-title">
+                      <i class="fas fa-tachometer-alt"></i> Mobility Comparison
+                    </h3>
+                    <div class="chart-container">
+                      <canvas id="mobilityChart"></canvas>
+                      <div class="chart-legend" id="mobilityLegend"></div>
+                    </div>
+                  </div>
+                  <!-- Utility Comparison -->
+                  <div class="chart-card">
+                    <h3 class="chart-title">
+                      <i class="fas fa-cogs"></i> Utility Comparison
+                    </h3>
+                    <div class="chart-container">
+                      <canvas id="utilityChart"></canvas>
+                      <div class="chart-legend" id="utilityLegend"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <!-- Tank Stats -->
               <div class="mb-12">
                 <h2 id="tank-stats">Tank Statistics</h2>
@@ -1028,6 +1081,7 @@
     </div>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/misc.js"></script>
+    <script src="../assets/js/libraries/chart.js"></script>
     <script src="../assets/js/modules/sidebar.js"></script>
     <script src="../assets/js/modules/theme-loader.js"></script>
     <script src="../assets/js/pages/tank.js"></script>
