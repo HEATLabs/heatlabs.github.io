@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch tank data from JSON file
     async function fetchTankData() {
         try {
-            const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
             if (!response.ok) {
                 throw new Error('Failed to load tank data');
             }
