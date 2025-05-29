@@ -1,0 +1,194 @@
+/* Game Data Page Specific Styles */
+.data-section {
+	margin-bottom: 3rem;
+	padding: 1.5rem;
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	box-shadow: var(--shadow);
+	border: 1px solid var(--border-color);
+}
+
+.data-section h2 {
+	margin-bottom: 1rem;
+	color: var(--text-primary);
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.data-description {
+	margin-bottom: 1.5rem;
+	color: var(--text-secondary);
+	font-size: 1rem;
+	line-height: 1.6;
+}
+
+.loading-spinner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.75rem;
+	padding: 2rem;
+	color: var(--text-secondary);
+}
+
+.loading-spinner i {
+	font-size: 1.5rem;
+}
+
+/* Missions Container Styles */
+.missions-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 1.5rem;
+}
+
+.mission-card {
+	background-color: var(--bg-secondary);
+	border-radius: 0.5rem;
+	padding: 1.25rem;
+	border: 1px solid var(--border-color);
+	transition: all var(--transition-speed);
+}
+
+.mission-card:hover {
+	transform: translateY(-0.25rem);
+	box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+}
+
+.mission-name {
+	font-weight: bold;
+	font-size: 1.1rem;
+	margin-bottom: 0.5rem;
+	color: var(--text-primary);
+}
+
+.mission-code {
+	font-family: monospace;
+	font-size: 0.85rem;
+	color: var(--text-secondary);
+	margin-bottom: 0.75rem;
+	word-break: break-all;
+}
+
+.mission-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-top: 0.75rem;
+}
+
+.mission-tag {
+	background-color: var(--accent-color);
+	color: white;
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.25rem;
+	font-size: 0.75rem;
+}
+
+/* Matchmaker Container Styles */
+.matchmaker-container {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.matchmaker-section {
+	background-color: var(--bg-secondary);
+	border-radius: 0.5rem;
+	padding: 1.5rem;
+	border: 1px solid var(--border-color);
+}
+
+.matchmaker-section h3 {
+	font-size: 1.25rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+	color: var(--text-primary);
+	border-bottom: 1px solid var(--border-color);
+	padding-bottom: 0.5rem;
+}
+
+.matchmaker-item {
+	margin-bottom: 1.5rem;
+}
+
+.matchmaker-item h4 {
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+	color: var(--text-primary);
+}
+
+.matchmaker-item p {
+	color: var(--text-secondary);
+	margin-bottom: 0.5rem;
+	line-height: 1.5;
+}
+
+.matchmaker-list {
+	list-style-type: none;
+	padding-left: 0;
+	margin-top: 0.5rem;
+}
+
+.matchmaker-list li {
+	padding: 0.5rem 0;
+	border-bottom: 1px dashed var(--border-color);
+	display: flex;
+	justify-content: space-between;
+}
+
+.matchmaker-list li:last-child {
+	border-bottom: none;
+}
+
+.matchmaker-key {
+	font-weight: bold;
+	color: var(--text-primary);
+}
+
+.matchmaker-value {
+	color: var(--text-secondary);
+	text-align: right;
+	max-width: 60%;
+	word-break: break-word;
+}
+
+.matchmaker-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 1rem;
+}
+
+.matchmaker-table th,
+.matchmaker-table td {
+	padding: 0.75rem;
+	text-align: left;
+	border-bottom: 1px solid var(--border-color);
+}
+
+.matchmaker-table th {
+	background-color: var(--bg-tertiary);
+	font-weight: bold;
+	color: var(--text-primary);
+}
+
+.matchmaker-table tr:hover {
+	background-color: var(--bg-tertiary);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+	.missions-container {
+		grid-template-columns: 1fr;
+	}
+
+	.matchmaker-list li {
+		flex-direction: column;
+	}
+
+	.matchmaker-value {
+		max-width: 100%;
+		text-align: left;
+		margin-top: 0.25rem;
+	}
+}
