@@ -878,31 +878,33 @@ function updateGSSScores(gssScores) {
     });
 }
 
-// Global toggle for builds placeholder - set to true to always show placeholder
-// This is a temporary solution, in the final version we will use the buildDisplay key from builds.json
-const FORCE_BUILDS_PLACEHOLDER = true;
-
 async function fetchAndPopulateBuilds(buildsUrl, tankId) {
     const buildsContainer = document.getElementById('builds-container');
     const viewAllButton = document.querySelector('.action-buttons .btn-accent:first-child');
-
-    // Check global toggle first
-    if (FORCE_BUILDS_PLACEHOLDER || !buildsUrl) {
-        showBuildsPlaceholder();
-        if (viewAllButton) viewAllButton.style.display = 'none';
-        return;
-    }
 
     try {
         const buildsResponse = await fetch(buildsUrl);
         const buildsData = await buildsResponse.json();
 
-        // If the builds data is in the expected format, populate it
-        if (buildsData && buildsData.buildList && buildsData.buildList.length > 0) {
-            populateBuilds(buildsData.buildList);
+        // Filter builds to only include those with buildFeatured: true
+        const featuredBuilds = buildsData.buildList.filter(build => build.buildFeatured === true);
+
+        // If there are featured builds, show them (max 3, sorted by date)
+        if (featuredBuilds.length > 0) {
+            // Sort builds by date (newest first)
+            featuredBuilds.sort((a, b) => {
+                const dateA = new Date(a.buildDate.split('-').reverse().join('-'));
+                const dateB = new Date(b.buildDate.split('-').reverse().join('-'));
+                return dateB - dateA;
+            });
+
+            // Show only the latest 3 featured builds
+            const buildsToShow = featuredBuilds.slice(0, 3);
+            populateBuilds(buildsToShow);
+
             if (viewAllButton) viewAllButton.style.display = 'inline-block';
         } else {
-            console.warn('No builds data found in:', buildsUrl);
+            // No featured builds available, show placeholder
             showBuildsPlaceholder();
             if (viewAllButton) viewAllButton.style.display = 'none';
         }
@@ -924,9 +926,7 @@ function populateBuilds(builds) {
     buildsContainer.innerHTML = '';
 
     // Create build cards for each build
-    const buildsToShow = builds.slice(0, 3); // Show max 3 builds
-
-    buildsToShow.forEach(build => {
+    builds.forEach(build => {
         const buildCard = document.createElement('div');
         buildCard.className = 'build-card';
         buildCard.innerHTML = `
