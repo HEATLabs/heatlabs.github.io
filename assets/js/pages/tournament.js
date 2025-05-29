@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function fetchTournamentData(tournamentId) {
     try {
         // First fetch the tournaments.json to get the tournament details
-        const tournamentsResponse = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tournaments.json');
+        const tournamentsResponse = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tournaments.json');
         if (!tournamentsResponse.ok) {
             throw new Error(`Failed to fetch tournaments list: ${tournamentsResponse.status}`);
         }
@@ -121,7 +121,7 @@ function populateTopTeams(teams) {
         // Set team data on the card
         if (teamCard) teamCard.dataset.team = JSON.stringify(team);
         if (teamImage) {
-            teamImage.src = team.team_logo || 'https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png';
+            teamImage.src = team.team_logo || 'https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/placeholder-image.png';
             teamImage.alt = `${team.team_name} Logo` || 'Team Logo';
         }
         if (teamName) teamName.textContent = team.team_name || 'Unknown Team';
@@ -219,7 +219,7 @@ function openTeamModal(team) {
 
     // Populate modal with team data
     if (teamModalImage) {
-        teamModalImage.src = team.team_logo || 'https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/placeholder-image.png';
+        teamModalImage.src = team.team_logo || 'https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/placeholder-image.png';
         teamModalImage.alt = team.team_name || 'Team Logo';
     }
     if (teamModalName) teamModalName.textContent = team.team_name || 'Unknown Team';
@@ -239,7 +239,7 @@ function openTeamModal(team) {
                 tankElement.className = 'team-modal-tank';
 
                 const tankImg = document.createElement('img');
-                tankImg.src = tank.tank_image || 'https://raw.githubusercontent.com/PCWStats/Website-Images/main/tanks/placeholder-image.png';
+                tankImg.src = tank.tank_image || 'https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/tanks/placeholder-image.png';
                 tankImg.alt = tank.tank_name || 'Tank Image';
                 tankImg.loading = 'lazy';
 

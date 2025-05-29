@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Load missions data
-    fetch('https://raw.githubusercontent.com/PCWStats/Database-Files/refs/heads/main/game-data/missions.json')
+    fetch('https://cdn.jsdelivr.net/gh/PCWStats/Database-Files@main/game-data/missions.json')
         .then(response => response.json())
         .then(data => displayMissions(data.entitlements))
         .catch(error => {
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
     // Load matchmaker data
-    fetch('https://raw.githubusercontent.com/PCWStats/Database-Files/refs/heads/main/game-data/matchmaker.json')
+    fetch('https://cdn.jsdelivr.net/gh/PCWStats/Database-Files@main/game-data/matchmaker.json')
         .then(response => response.json())
         .then(data => displayMatchmakerData(data))
         .catch(error => {

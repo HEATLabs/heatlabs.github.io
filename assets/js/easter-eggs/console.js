@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // List all tanks
     async function listTanks() {
         try {
-            const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Database-Files@main/tanks.json');
             if (!response.ok) throw new Error('Failed to load tank data');
 
             const data = await response.json();
@@ -391,7 +391,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const tankName = args.join(' ');
 
         try {
-            const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
             if (!response.ok) throw new Error('Failed to load tank data');
 
             const data = await response.json();
@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const tank2Name = args[1];
 
         try {
-            const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
             if (!response.ok) throw new Error('Failed to load tank data');
 
             const data = await response.json();
@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // List tournaments
     async function listTournaments() {
         try {
-            const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tournaments.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tournaments.json');
             if (!response.ok) throw new Error('Failed to load tournament data');
 
             const data = await response.json();
@@ -551,7 +551,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Show version info
     async function showVersion() {
         try {
-            const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/changelog.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/changelog.json');
             if (!response.ok) throw new Error('Failed to load version data');
 
             const data = await response.json();
@@ -693,7 +693,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Tank roulette
     async function tankRoulette() {
         try {
-            const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
             if (!response.ok) throw new Error('Failed to load tank data');
 
             const data = await response.json();

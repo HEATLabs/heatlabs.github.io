@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch tank data from JSON file
     async function fetchTankData() {
         try {
-            const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
             if (!response.ok) {
                 throw new Error('Failed to load tank data');
             }
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
             item.setAttribute('data-is-special', tank.isSpecial || false);
 
             item.innerHTML = `
-                <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://raw.githubusercontent.com/PCWStats/Website-Images/main/placeholder/imagefailedtoload.png'">
+                <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.png'">
                 <h4>${tank.name}</h4>
             `;
 

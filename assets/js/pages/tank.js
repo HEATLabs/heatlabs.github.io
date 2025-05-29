@@ -166,7 +166,7 @@ async function initializeCharts() {
 
     try {
         // First fetch the tanks.json to get the tank details
-        const tanksResponse = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+        const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
         const tanksData = await tanksResponse.json();
 
         // Find current tank to get type and agents
@@ -626,7 +626,7 @@ function showNoDataMessage() {
 async function fetchTankData(tankId) {
     try {
         // First fetch the tanks.json to get the tank details
-        const tanksResponse = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+        const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
         const tanksData = await tanksResponse.json();
 
         // Find the tank with matching ID
@@ -711,7 +711,7 @@ async function fetchAndPopulateStockData(stockUrl, tankId, tankSlug) {
 async function calculateAndDisplayGSS(currentTankStats, currentTankId) {
     try {
         // First fetch all tanks data
-        const tanksResponse = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+        const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
         const tanksData = await tanksResponse.json();
 
         // Then fetch all stock data for comparison
@@ -1193,7 +1193,7 @@ function initializeAgentModals() {
 
             try {
                 // First get the tank data to find the agents URL
-                const tanksResponse = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
+                const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
                 const tanksData = await tanksResponse.json();
                 const tank = tanksData.find(t => t.id.toString() === tankId.toString());
 
