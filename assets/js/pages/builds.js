@@ -104,20 +104,7 @@ function hideLoader() {
 
 // Function to populate tank filter dropdown
 function populateTankFilter() {
-    const tankFilter = document.getElementById('tankFilter');
-
-    // Clear existing options except the first one
-    while (tankFilter.options.length > 1) {
-        tankFilter.remove(1);
-    }
-
-    // Add tanks to filter
-    tankData.forEach(tank => {
-        const option = document.createElement('option');
-        option.value = tank.id;
-        option.textContent = tank.name;
-        tankFilter.appendChild(option);
-    });
+    updateFilterOptions();
 }
 
 // Function to fetch builds data in batches to avoid rate limits
@@ -533,6 +520,117 @@ function updateBuildsDisplay() {
     }, 50);
 }
 
+// Function to update filter options based on current selections
+function updateFilterOptions() {
+    const tankFilter = document.getElementById('tankFilter');
+    const nationFilter = document.getElementById('nationFilter');
+    const typeFilter = document.getElementById('typeFilter');
+
+    // Get current filter values
+    const currentNation = nationFilter.value;
+    const currentType = typeFilter.value;
+
+    // Filter tanks based on current nation and type selections
+    let filteredTanks = tankData;
+
+    if (currentNation !== 'all') {
+        filteredTanks = filteredTanks.filter(tank => tank.nation === currentNation);
+    }
+
+    if (currentType !== 'all') {
+        filteredTanks = filteredTanks.filter(tank => tank.type === currentType);
+    }
+
+    // Update tank filter options
+    while (tankFilter.options.length > 1) {
+        tankFilter.remove(1);
+    }
+
+    filteredTanks.forEach(tank => {
+        const option = document.createElement('option');
+        option.value = tank.id;
+        option.textContent = tank.name;
+        tankFilter.appendChild(option);
+    });
+
+    // If only one tank remains, select it automatically
+    if (filteredTanks.length === 1 && tankFilter.value !== filteredTanks[0].id.toString()) {
+        tankFilter.value = filteredTanks[0].id.toString();
+    }
+
+    // Update nation filter options based on available types
+    updateNationOptions();
+
+    // Update type filter options based on available nations
+    updateTypeOptions();
+}
+
+// Function to update nation options based on current type selection
+function updateNationOptions() {
+    const nationFilter = document.getElementById('nationFilter');
+    const typeFilter = document.getElementById('typeFilter');
+    const currentType = typeFilter.value;
+
+    // Get all unique nations from tank data
+    let availableNations = [...new Set(tankData.map(tank => tank.nation))];
+
+    // If a type is selected, filter nations that have that type
+    if (currentType !== 'all') {
+        availableNations = [...new Set(
+            tankData
+                .filter(tank => tank.type === currentType)
+                .map(tank => tank.nation)
+        )];
+    }
+
+    // Store current selection
+    const currentNation = nationFilter.value;
+
+    // Update options
+    for (let i = 1; i < nationFilter.options.length; i++) {
+        const option = nationFilter.options[i];
+        option.disabled = !availableNations.includes(option.value);
+    }
+
+    // If current selection is no longer available, reset to 'all'
+    if (currentNation !== 'all' && !availableNations.includes(currentNation)) {
+        nationFilter.value = 'all';
+    }
+}
+
+// Function to update type options based on current nation selection
+function updateTypeOptions() {
+    const typeFilter = document.getElementById('typeFilter');
+    const nationFilter = document.getElementById('nationFilter');
+    const currentNation = nationFilter.value;
+
+    // Get all unique types from tank data
+    let availableTypes = [...new Set(tankData.map(tank => tank.type))];
+
+    // If a nation is selected, filter types that exist for that nation
+    if (currentNation !== 'all') {
+        availableTypes = [...new Set(
+            tankData
+                .filter(tank => tank.nation === currentNation)
+                .map(tank => tank.type)
+        )];
+    }
+
+    // Store current selection
+    const currentType = typeFilter.value;
+
+    // Update options
+    for (let i = 1; i < typeFilter.options.length; i++) {
+        const option = typeFilter.options[i];
+        option.disabled = !availableTypes.includes(option.value);
+    }
+
+    // If current selection is no longer available, reset to 'all'
+    if (currentType !== 'all' && !availableTypes.includes(currentType)) {
+        typeFilter.value = 'all';
+    }
+}
+
 // Function to update pagination controls
 function updatePaginationControls(totalPages) {
     const paginationContainer = document.querySelector('.pagination-controls');
@@ -647,11 +745,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     nationFilter.addEventListener('change', () => {
         currentPage = 1;
+        updateFilterOptions();
         updateBuildsDisplay();
     });
 
     typeFilter.addEventListener('change', () => {
         currentPage = 1;
+        updateFilterOptions();
         updateBuildsDisplay();
     });
 
