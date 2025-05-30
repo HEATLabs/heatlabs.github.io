@@ -113,6 +113,9 @@ async function fetchBuildsData() {
     isLoading = true;
 
     try {
+        // Choose a random loader message
+        const randomMessage = loaderMessages[Math.floor(Math.random() * loaderMessages.length)];
+
         // Show initial loading message
         showLoader("Loading tank builds...");
 
@@ -132,7 +135,7 @@ async function fetchBuildsData() {
             updateBuildsDisplay();
 
             // Show progress
-            showLoader(`Loading builds... (${processedTanks}/${tankData.length})`);
+            showLoader(`${randomMessage} (${processedTanks}/${tankData.length})`);
 
             // Delay before next batch if there's more to process
             if (processedTanks < tankData.length) {
