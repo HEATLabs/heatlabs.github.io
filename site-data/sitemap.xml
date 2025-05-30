@@ -15,6 +15,13 @@
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
+	<!-- Tank Roulette Page -->
+	<url>
+		<loc>https://pcwstats.github.io/roulette.html</loc>
+		<lastmod>2025-05-23</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
 	<!-- Devs Only Page -->
 	<url>
 		<loc>https://pcwstats.github.io/devsonly.html</loc>
@@ -24,7 +31,7 @@
 	</url>
 	<!-- Strategy Planner Page -->
 	<url>
-		<loc>https://pcwstats.github.io/strat-planner.html</loc>
+		<loc>https://pcwstats.github.io/strategy-planner.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
@@ -143,24 +150,38 @@
 	</url>
 	<!-- General Guides Page -->
 	<url>
-		<loc>https://pcwstats.github.io/guides/general.html</loc>
+		<loc>https://pcwstats.github.io/guides/general-guides.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Map Guides Page -->
 	<url>
-		<loc>https://pcwstats.github.io/guides/maps.html</loc>
+		<loc>https://pcwstats.github.io/guides/map-guides.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Tank Guides Page -->
 	<url>
-		<loc>https://pcwstats.github.io/guides/tanks.html</loc>
+		<loc>https://pcwstats.github.io/guides/tank-guides.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
+	</url>
+	<!-- XM1-V Build Guide Page -->
+	<url>
+		<loc>https://pcwstats.github.io/guides/tank-guides/xm1-v-build-guide.html</loc>
+		<lastmod>2025-05-31</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.4</priority>
+	</url>
+	<!-- BAT-4M Basic Guide Page -->
+	<url>
+		<loc>https://pcwstats.github.io/guides/tank-guides/bat-4m-basic-guide.html</loc>
+		<lastmod>2025-05-31</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.4</priority>
 	</url>
 	<!-- Community Credits Page -->
 	<url>
@@ -568,9 +589,23 @@
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
-	<!-- long-time-no-see Page -->
+	<!-- project-cw-debrief-1 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/long-time-no-see.html</loc>
+		<loc>https://pcwstats.github.io/news/project-cw-debrief-1.html</loc>
+		<lastmod>2025-05-23</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- project-cw-debrief-2 Page -->
+	<url>
+		<loc>https://pcwstats.github.io/news/project-cw-debrief-2.html</loc>
+		<lastmod>2025-05-23</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- project-cw-gamescom-2025 Page -->
+	<url>
+		<loc>https://pcwstats.github.io/news/project-cw-gamescom-2025.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
