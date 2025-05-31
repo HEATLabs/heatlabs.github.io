@@ -110,17 +110,10 @@ const chartConfig = {
                 label: function(context) {
                     return `${context.dataset.label}: ${context.raw}`;
                 }
-            },
-            bodyFont: {
-                color: 'var(--text-primary)'
-            },
-            titleFont: {
-                color: 'var(--text-primary)'
             }
         },
         title: {
-            display: false,
-            color: 'var(--text-primary)'
+            display: false
         }
     },
     scales: {
@@ -128,17 +121,11 @@ const chartConfig = {
             beginAtZero: true,
             grid: {
                 color: 'rgba(200, 200, 200, 0.1)'
-            },
-            ticks: {
-                color: 'var(--text-secondary)'
             }
         },
         x: {
             grid: {
                 color: 'rgba(200, 200, 200, 0.1)'
-            },
-            ticks: {
-                color: 'var(--text-secondary)'
             }
         }
     }
