@@ -65,8 +65,6 @@ function updateTournamentPageElements(tournamentId, tournamentData) {
     // Update tournament header information
     const tournamentHeader = document.querySelector('.tournament-header');
     if (tournamentHeader) {
-        const tournamentTitle = tournamentHeader.querySelector('.tournament-title');
-
         // Update team count in header
         const teamCountSpan = tournamentHeader.querySelector('.tournament-meta span:nth-child(3)');
         if (teamCountSpan && tournamentData.total_teams) {
@@ -83,9 +81,46 @@ function updateTournamentPageElements(tournamentId, tournamentData) {
         }
     }
 
+    // Fetch and display view count
+    fetchViewCount().then(views => {
+        const tournamentMeta = document.querySelector('.tournament-meta');
+        if (tournamentMeta) {
+            const viewCounter = document.createElement('span');
+            viewCounter.className = 'tournament-views-counter';
+            viewCounter.innerHTML = `
+                <i class="fas fa-eye"></i>
+                <span class="tournament-views-count">${views.totalViews.toLocaleString()}</span> views
+            `;
+            tournamentMeta.appendChild(viewCounter);
+        }
+    });
+
     // Populate top teams
     if (tournamentData.top_3_teams && tournamentData.top_3_teams.length > 0) {
         populateTopTeams(tournamentData.top_3_teams);
+    }
+}
+
+// Function to fetch view count from API
+async function fetchViewCount() {
+    try {
+        // Get the tracking pixel URL from the meta tag
+        const trackingPixel = document.querySelector('.pcwstats-tracking-pixel');
+        if (!trackingPixel || !trackingPixel.src) {
+            return { totalViews: 0 };
+        }
+
+        // Convert tracking URL to stats API URL
+        const statsApiUrl = trackingPixel.src.replace('/track/', '/api/stats?image=');
+        const response = await fetch(statsApiUrl);
+
+        if (!response.ok) {
+            throw new Error('Failed to load view count');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error loading view count:', error);
+        return { totalViews: 0 }; // Return 0 if there's an error
     }
 }
 

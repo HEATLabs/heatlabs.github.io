@@ -191,8 +191,15 @@ function createTournamentCard(tournament) {
     const tournamentTypeHTML = tournament.type && tournament.type.trim() !== '' ?
         `<div class="${tournamentTag}-tournament-tag">${tournament.type}</div>` : '';
 
+    // Add view counter placeholder (we'll update this later)
+    const viewCounterHTML = `<div class="tournament-views-counter">
+        <i class="fas fa-eye"></i>
+        <span class="views-count">0</span>
+    </div>`;
+
     card.innerHTML = `
         <div class="tournament-img-container">
+            ${viewCounterHTML}
             <img src="${tournament.image}" alt="${tournament.name} Preview" class="tournament-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.png'">
             ${tournamentTypeHTML}
         </div>
@@ -212,7 +219,31 @@ function createTournamentCard(tournament) {
             </div>
         </div>
     `;
+
+    // After creating the card, fetch and update the view count
+    if (tournament['tournament-views']) {
+        fetchViewCount(tournament['tournament-views']).then(views => {
+            const viewsElement = card.querySelector('.views-count');
+            if (viewsElement) {
+                viewsElement.textContent = views.totalViews.toLocaleString();
+            }
+        });
+    }
+
     return card;
+}
+
+async function fetchViewCount(apiUrl) {
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error('Failed to load view count');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error loading view count:', error);
+        return { totalViews: 0 }; // Return 0 if there's an error
+    }
 }
 
 // Render all tournament cards
