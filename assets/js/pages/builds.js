@@ -25,7 +25,7 @@ const loaderMessages = [
     // Easter Egg Messages
     "Reading IAmEdWards 15000 word feedback... ",
     "Finding Shockwave's AllSpark... ",
-    // "antitank99... ",
+    "Pushing antitank99 out of bounds... ",
     "Forcing Wargaming to hire Anuraen... ",
     "Getting esmatty more explosives... ",
     "Messaging SINEWAVE... ",
