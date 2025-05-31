@@ -3,6 +3,50 @@ let originalCards = [];
 let currentPage = 1;
 let postsPerPage = 12;
 
+// Function to fetch view count from API
+async function fetchBugViewCount(bugName) {
+    try {
+        // Remove any path prefixes and .html extension
+        const baseName = bugName.replace(/^.*[\\\/]/, '').replace('.html', '');
+        const response = await fetch(`https://pcwstats-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${baseName}.png`);
+        if (!response.ok) {
+            throw new Error('Failed to load view count');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error loading view count:', error);
+        return {
+            totalViews: 0
+        }; // Return 0 if there's an error
+    }
+}
+
+// Function to update view counters on all bug cards
+async function updateBugViewCounters() {
+    const bugCards = document.querySelectorAll('.bug-card');
+
+    for (const card of bugCards) {
+        const bugLink = card.querySelector('a.btn-bug');
+        if (bugLink) {
+            // Get the href attribute which contains the bug path
+            const href = bugLink.getAttribute('href');
+
+            // Fetch the view count using the corrected href
+            const viewsData = await fetchBugViewCount(href);
+            const viewsElement = card.querySelector('.views-count');
+
+            if (viewsElement) {
+                viewsElement.textContent = viewsData.totalViews.toLocaleString();
+            }
+        }
+    }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    updateBugViewCounters();
+});
+
 // Function to format date as "Month Day, Year"
 function formatDate(dateString) {
     const date = new Date(dateString);
@@ -41,7 +85,7 @@ function updatePaginationControls(totalPages) {
     prevButton.addEventListener('click', () => {
         if (currentPage > 1) {
             currentPage--;
-            updatebugDisplay();
+            updateBugDisplay();
         }
     });
     paginationContainer.appendChild(prevButton);
@@ -61,7 +105,7 @@ function updatePaginationControls(totalPages) {
         firstPageButton.className = 'pagination-button';
         firstPageButton.addEventListener('click', () => {
             currentPage = 1;
-            updatebugDisplay();
+            updateBugDisplay();
         });
         paginationContainer.appendChild(firstPageButton);
 
@@ -79,7 +123,7 @@ function updatePaginationControls(totalPages) {
         pageButton.className = `pagination-button ${i === currentPage ? 'active' : ''}`;
         pageButton.addEventListener('click', () => {
             currentPage = i;
-            updatebugDisplay();
+            updateBugDisplay();
         });
         paginationContainer.appendChild(pageButton);
     }
@@ -97,7 +141,7 @@ function updatePaginationControls(totalPages) {
         lastPageButton.className = 'pagination-button';
         lastPageButton.addEventListener('click', () => {
             currentPage = totalPages;
-            updatebugDisplay();
+            updateBugDisplay();
         });
         paginationContainer.appendChild(lastPageButton);
     }
@@ -110,14 +154,14 @@ function updatePaginationControls(totalPages) {
     nextButton.addEventListener('click', () => {
         if (currentPage < totalPages) {
             currentPage++;
-            updatebugDisplay();
+            updateBugDisplay();
         }
     });
     paginationContainer.appendChild(nextButton);
 }
 
 // Function to sort and filter bug cards
-function updatebugDisplay() {
+function updateBugDisplay() {
     const sortFilter = document.getElementById('sortFilter');
     const typeFilter = document.getElementById('typeFilter');
     const postsPerPageFilter = document.getElementById('postsPerPage');
@@ -171,7 +215,9 @@ function updatebugDisplay() {
     // Update pagination controls
     updatePaginationControls(totalPages);
 
-    // Reinitialize animations
+    // Update view counters for the newly added cards
+    updateBugViewCounters();
+
     setTimeout(() => {
         currentCards.forEach(card => {
             card.classList.add('animated');
@@ -186,20 +232,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const postsPerPageFilter = document.getElementById('postsPerPage');
 
     // Initialize with default sorting
-    updatebugDisplay();
+    updateBugDisplay();
 
     // Add event listeners for filter changes
     sortFilter.addEventListener('change', () => {
         currentPage = 1;
-        updatebugDisplay();
+        updateBugDisplay();
     });
     typeFilter.addEventListener('change', () => {
         currentPage = 1;
-        updatebugDisplay();
+        updateBugDisplay();
     });
     postsPerPageFilter.addEventListener('change', () => {
         currentPage = 1;
-        updatebugDisplay();
+        updateBugDisplay();
     });
 
     // Initialize animations after page load

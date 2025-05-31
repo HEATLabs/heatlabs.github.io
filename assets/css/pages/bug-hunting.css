@@ -216,6 +216,32 @@
 	cursor: pointer;
 }
 
+/* View Counter Styles */
+.bug-views-counter {
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	background-color: rgba(0, 0, 0, 0.7);
+	color: white;
+	padding: 0.25rem 0.75rem;
+	border-radius: 1rem;
+	font-size: 0.75rem;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+	backdrop-filter: blur(2px);
+	z-index: 1;
+}
+
+.bug-views-counter i {
+	font-size: 0.65rem;
+}
+
+.bug-views-counter .views-count {
+	font-weight: bold;
+}
+
 @media (max-width: 768px) {
 	.pagination-container {
 		flex-direction: column;
