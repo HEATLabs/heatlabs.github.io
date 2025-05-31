@@ -3,6 +3,38 @@ let originalCards = [];
 let currentPage = 1;
 let postsPerPage = 12;
 
+async function fetchGuideViewCount(guideName) {
+    try {
+        const response = await fetch(`https://pcwstats-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-guide-${guideName}.png`);
+        if (!response.ok) {
+            throw new Error('Failed to load view count');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error loading view count:', error);
+        return {
+            totalViews: 0
+        };
+    }
+}
+
+async function updateGuideViewCounters(cards) {
+    for (const card of cards) {
+        const guideLink = card.querySelector('a.btn-guide');
+        if (guideLink) {
+            const guidePath = guideLink.getAttribute('href');
+            const guideName = guidePath.split('/').pop().replace('.html', '');
+
+            const viewsData = await fetchGuideViewCount(guideName);
+            const viewsElement = card.querySelector('.guide-views-counter .views-count');
+
+            if (viewsElement) {
+                viewsElement.textContent = viewsData.totalViews.toLocaleString();
+            }
+        }
+    }
+}
+
 // Function to format date as "Month Day, Year"
 function formatDate(dateString) {
     const date = new Date(dateString);
