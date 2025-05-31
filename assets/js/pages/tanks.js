@@ -34,6 +34,42 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    async function fetchViewCount(imageName) {
+        try {
+            const response = await fetch(`https://pcwstats-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${imageName}.png`);
+            if (!response.ok) {
+                throw new Error('Failed to load view count');
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Error loading view count:', error);
+            return {
+                totalViews: 0
+            }; // Return 0 if there's an error
+        }
+    }
+
+    // Function to update view counters on all tank cards
+    async function updateTankViewCounters() {
+        const tankCards = document.querySelectorAll('.tank-card');
+
+        for (const card of tankCards) {
+            const tankLink = card.querySelector('a.btn-accent');
+            if (tankLink) {
+                // Extract the tank name from the href (e.g., "tanks/t-72.html" -> "t-72")
+                const tankName = tankLink.getAttribute('href').split('/').pop().replace('.html', '');
+
+                // Fetch the view count
+                const viewsData = await fetchViewCount(tankName);
+                const viewsElement = card.querySelector('.views-count');
+
+                if (viewsElement) {
+                    viewsElement.textContent = viewsData.totalViews.toLocaleString();
+                }
+            }
+        }
+    }
+
     // Create tank card HTML
     function createTankCard(tank) {
         const card = document.createElement('div');
@@ -48,6 +84,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         card.innerHTML = `
             <div class="tank-img-container">
+                <div class="tank-views-counter">
+                    <i class="fas fa-eye"></i>
+                    <span class="views-count">0</span>
+                </div>
                 <img src="${tank.image}" alt="${tank.name} Preview" class="tank-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.png'">
                 ${tankClassHTML}
             </div>
@@ -104,6 +144,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Initialize filter functionality
         initFilterButtons();
+
+        // Update view counters
+        updateTankViewCounters();
     }
 
     // Initialize filter buttons

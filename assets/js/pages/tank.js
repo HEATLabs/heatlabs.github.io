@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const tankIdMeta = document.querySelector('meta[name="tank-id"]');
     const tankId = tankIdMeta ? tankIdMeta.content : null;
 
+    // Fetch and display view count
+    fetchViewCount().then(views => {
+        displayViewCounter(views);
+    });
+
     // If tank ID is specified, fetch and populate tank data
     if (tankId) {
         fetchTankData(tankId);
@@ -67,16 +72,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Chart.js configuration
 const chartColors = [
-    'rgba(255, 99, 132, 0.7)',    // Red
-    'rgba(54, 162, 235, 0.7)',    // Blue
-    'rgba(255, 206, 86, 0.7)',    // Yellow
-    'rgba(75, 192, 192, 0.7)',    // Teal
-    'rgba(153, 102, 255, 0.7)',   // Purple
-    'rgba(255, 159, 64, 0.7)',    // Orange
-    'rgba(100, 200, 100, 0.7)',   // Green
-    'rgba(200, 100, 200, 0.7)',   // Pink
-    'rgba(100, 100, 255, 0.7)',   // Light Blue
-    'rgba(255, 100, 100, 0.7)'    // Light Red
+    'rgba(255, 99, 132, 0.7)', // Red
+    'rgba(54, 162, 235, 0.7)', // Blue
+    'rgba(255, 206, 86, 0.7)', // Yellow
+    'rgba(75, 192, 192, 0.7)', // Teal
+    'rgba(153, 102, 255, 0.7)', // Purple
+    'rgba(255, 159, 64, 0.7)', // Orange
+    'rgba(100, 200, 100, 0.7)', // Green
+    'rgba(200, 100, 200, 0.7)', // Pink
+    'rgba(100, 100, 255, 0.7)', // Light Blue
+    'rgba(255, 100, 100, 0.7)' // Light Red
 ];
 
 const chartBorderColors = [
@@ -138,6 +143,52 @@ const chartConfig = {
         }
     }
 };
+
+async function fetchViewCount() {
+    try {
+        // Get the tracking pixel URL from the meta tag
+        const trackingPixel = document.querySelector('.pcwstats-tracking-pixel');
+        if (!trackingPixel || !trackingPixel.src) {
+            return {
+                totalViews: 0
+            };
+        }
+
+        // Extract the image filename from the tracking pixel URL
+        const imageName = trackingPixel.src.split('/').pop();
+
+        // Build the stats API URL
+        const statsApiUrl = `https://pcwstats-pixel-api.vercel.app/api/stats?image=${imageName}`;
+        const response = await fetch(statsApiUrl);
+
+        if (!response.ok) {
+            throw new Error('Failed to load view count');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error loading view count:', error);
+        return {
+            totalViews: 0
+        }; // Return 0 if there's an error
+    }
+}
+
+// Function to display view counter in the tank header
+function displayViewCounter(views) {
+    const tankMeta = document.querySelector('.tank-meta');
+    if (tankMeta) {
+        // Check if view counter already exists
+        if (!tankMeta.querySelector('.map-views-counter')) {
+            const viewCounter = document.createElement('span');
+            viewCounter.className = 'map-views-counter';
+            viewCounter.innerHTML = `
+                <i class="fas fa-eye"></i>
+                <span class="map-views-count">${views.totalViews.toLocaleString()}</span> views
+            `;
+            tankMeta.appendChild(viewCounter);
+        }
+    }
+}
 
 function isValidTankStats(stats) {
     if (!stats) return false;
@@ -406,33 +457,52 @@ async function updateCharts(compareType) {
 
     // Create or update charts with the new data structure
     updateChart('firepowerChart', 'Firepower',
-        [
-            {label: 'Damage', data: firepowerDamage},
-            {label: 'Reload Time', data: firepowerReload},
-            {label: 'Aiming Speed', data: firepowerAiming}
+        [{
+                label: 'Damage',
+                data: firepowerDamage
+            },
+            {
+                label: 'Reload Time',
+                data: firepowerReload
+            },
+            {
+                label: 'Aiming Speed',
+                data: firepowerAiming
+            }
         ],
         labels
     );
 
     updateChart('survivabilityChart', 'Survivability',
-        [
-            {label: 'Hit Points', data: survivabilityHp}
-        ],
+        [{
+            label: 'Hit Points',
+            data: survivabilityHp
+        }],
         labels
     );
 
     updateChart('mobilityChart', 'Mobility',
-        [
-            {label: 'Forward Speed', data: mobilityForward},
-            {label: 'Reverse Speed', data: mobilityReverse}
+        [{
+                label: 'Forward Speed',
+                data: mobilityForward
+            },
+            {
+                label: 'Reverse Speed',
+                data: mobilityReverse
+            }
         ],
         labels
     );
 
     updateChart('utilityChart', 'Utility',
-        [
-            {label: 'Energy Points', data: utilityEnergy},
-            {label: 'Energy Regen', data: utilityRegen}
+        [{
+                label: 'Energy Points',
+                data: utilityEnergy
+            },
+            {
+                label: 'Energy Regen',
+                data: utilityRegen
+            }
         ],
         labels
     );
@@ -485,21 +555,27 @@ function updateChart(chartId, chartName, datasets, labels) {
     }
 
     // Sort the data (current tank will be sorted naturally)
-    const { sortedLabels, sortedDatasets, currentTankNewIndex } = sortChartData(labels, datasets);
+    const {
+        sortedLabels,
+        sortedDatasets,
+        currentTankNewIndex
+    } = sortChartData(labels, datasets);
 
     // Prepare datasets with different colors
     const chartDatasets = sortedDatasets.map((dataset, index) => ({
         label: dataset.label,
         data: dataset.data,
         backgroundColor: sortedLabels.map((_, labelIndex) =>
-            labelIndex === currentTankNewIndex
-                ? 'rgba(75, 192, 192, 0.7)' // Current tank - teal
-                : chartColors[index % chartColors.length]
+            labelIndex === currentTankNewIndex ?
+            'rgba(75, 192, 192, 0.7)' // Current tank - teal
+            :
+            chartColors[index % chartColors.length]
         ),
         borderColor: sortedLabels.map((_, labelIndex) =>
-            labelIndex === currentTankNewIndex
-                ? 'rgba(75, 192, 192, 1)' // Current tank - teal border
-                : chartBorderColors[index % chartBorderColors.length]
+            labelIndex === currentTankNewIndex ?
+            'rgba(75, 192, 192, 1)' // Current tank - teal border
+            :
+            chartBorderColors[index % chartBorderColors.length]
         ),
         borderWidth: sortedLabels.map((_, labelIndex) =>
             labelIndex === currentTankNewIndex ? 2 : 1 // Thicker border for current tank
@@ -519,9 +595,10 @@ function updateChart(chartId, chartName, datasets, labels) {
 
             const colorBox = document.createElement('div');
             colorBox.className = 'chart-legend-color';
-            colorBox.style.backgroundColor = index === currentTankNewIndex
-                ? 'rgba(75, 192, 192, 0.7)' // Current tank - teal
-                : chartColors[0];
+            colorBox.style.backgroundColor = index === currentTankNewIndex ?
+                'rgba(75, 192, 192, 0.7)' // Current tank - teal
+                :
+                chartColors[0];
 
             // Add border to current tank legend color box
             if (index === currentTankNewIndex) {
