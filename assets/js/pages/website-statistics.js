@@ -325,16 +325,17 @@ document.addEventListener('DOMContentLoaded', function() {
         for (const page of pageData) {
             const row = document.createElement('tr');
             row.innerHTML = `
-        <td>${page.pageName}</td>
-        <td>${page.totalViews.toLocaleString()}</td>
-        <td>${page.todaysViews.toLocaleString()}</td>
-        <td>${page.last7DaysViews.toLocaleString()}</td>
-        <td>
-          <button class="view-details-btn" data-page="${page.pageName}">
-            <i class="fas fa-chart-line mr-1"></i>Details
-          </button>
-        </td>
-      `;
+                <td>${page.pageName}</td>
+                <td>${page.todaysViews.toLocaleString()}</td>
+                <td>${page.totalViews.toLocaleString()}</td>
+                <td>${page.last7DaysViews.toLocaleString()}</td>
+                <td>${page.last30DaysViews.toLocaleString()}</td>
+                <td>
+                    <button class="view-details-btn" data-page="${page.pageName}">
+                        <i class="fas fa-chart-line mr-1"></i>Details
+                    </button>
+                </td>
+            `;
             statsTableBody.appendChild(row);
         }
 
