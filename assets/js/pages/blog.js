@@ -3,6 +3,46 @@ let originalCards = [];
 let currentPage = 1;
 let postsPerPage = 12;
 
+// Function to fetch view count from API
+async function fetchBlogViewCount(blogName) {
+    try {
+        const response = await fetch(`https://pcwstats-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${blogName}.png`);
+        if (!response.ok) {
+            throw new Error('Failed to load view count');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error loading view count:', error);
+        return { totalViews: 0 }; // Return 0 if there's an error
+    }
+}
+
+// Function to update view counters on all blog cards
+async function updateBlogViewCounters() {
+    const blogCards = document.querySelectorAll('.blog-card');
+
+    for (const card of blogCards) {
+        const blogLink = card.querySelector('a.btn-blog');
+        if (blogLink) {
+            // Extract the blog name from the href (e.g., "blog/meet-the-team-sinewave.html" -> "meet-the-team-sinewave")
+            const blogName = blogLink.getAttribute('href').split('/').pop().replace('.html', '');
+
+            // Fetch the view count
+            const viewsData = await fetchBlogViewCount(blogName);
+            const viewsElement = card.querySelector('.views-count');
+
+            if (viewsElement) {
+                viewsElement.textContent = viewsData.totalViews.toLocaleString();
+            }
+        }
+    }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    updateBlogViewCounters();
+});
+
 // Function to format date as "Month Day, Year"
 function formatDate(dateString) {
     const date = new Date(dateString);
