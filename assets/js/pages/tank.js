@@ -131,6 +131,34 @@ const chartConfig = {
     }
 };
 
+// Super mega ultra aggressive overrides for chart theme colors
+function updateChartColors() {
+    if (firepowerChart) {
+        firepowerChart.options.scales.x.ticks.color = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
+        firepowerChart.options.scales.y.ticks.color = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
+        firepowerChart.update();
+    }
+    if (survivabilityChart) {
+        survivabilityChart.options.scales.x.ticks.color = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
+        survivabilityChart.options.scales.y.ticks.color = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
+        survivabilityChart.update();
+    }
+    if (mobilityChart) {
+        mobilityChart.options.scales.x.ticks.color = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
+        mobilityChart.options.scales.y.ticks.color = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
+        mobilityChart.update();
+    }
+    if (utilityChart) {
+        utilityChart.options.scales.x.ticks.color = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
+        utilityChart.options.scales.y.ticks.color = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
+        utilityChart.update();
+    }
+
+    // Force redraw
+    document.body.classList.add('chart-theme-updated');
+    setTimeout(() => document.body.classList.remove('chart-theme-updated'), 100);
+}
+
 async function fetchViewCount() {
     try {
         // Get the tracking pixel URL from the meta tag
@@ -293,7 +321,10 @@ function setupChartFilters() {
             const compareType = this.dataset.compareType;
 
             // Update charts
-            updateCharts(compareType);
+            updateCharts(compareType).then(() => {
+                // Ensure colors are updated after charts are rendered
+                setTimeout(updateChartColors, 1);
+            });
         });
     });
 }

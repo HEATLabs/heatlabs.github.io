@@ -1,4 +1,4 @@
-// Theme functionality + Easter Egg for PCWStats
+// Theme functionality + Easter Egg for PCWStats with Chart.js support
 document.addEventListener('DOMContentLoaded', function() {
     // Constants for Easter Egg
     const MAX_TOGGLES = 10;
@@ -49,6 +49,12 @@ document.addEventListener('DOMContentLoaded', function() {
             updateThemeIcon(true);
         }
 
+        // Update charts when theme changes
+        updateChartColors();
+
+        // Dispatch event for other components to listen to
+        document.dispatchEvent(new CustomEvent('themeChanged'));
+
         toggleCount++;
         clearTimeout(toggleTimer);
         toggleTimer = setTimeout(() => toggleCount = 0, TOGGLE_TIMEOUT);
@@ -76,6 +82,43 @@ document.addEventListener('DOMContentLoaded', function() {
         html.classList.add('light-theme');
         localStorage.setItem('theme', 'light-theme');
         updateThemeIcon(false);
+        updateChartColors();
+    }
+
+    // Update chart colors when theme changes
+    function updateChartColors() {
+        const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-primary');
+        const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--border-color');
+
+        // Get all Chart.js instances on the page
+        const charts = Chart.instances;
+
+        // Update each chart
+        Object.values(charts).forEach(chart => {
+            if (chart.options && chart.options.scales) {
+                // Update axis colors
+                if (chart.options.scales.x) {
+                    chart.options.scales.x.grid.color = gridColor;
+                    chart.options.scales.x.ticks.color = textColor;
+                }
+                if (chart.options.scales.y) {
+                    chart.options.scales.y.grid.color = gridColor;
+                    chart.options.scales.y.ticks.color = textColor;
+                }
+
+                // Update title and legend colors
+                if (chart.options.plugins) {
+                    if (chart.options.plugins.title) {
+                        chart.options.plugins.title.color = textColor;
+                    }
+                    if (chart.options.plugins.legend) {
+                        chart.options.plugins.legend.labels.color = textColor;
+                    }
+                }
+
+                chart.update();
+            }
+        });
     }
 
     // Trigger the Easter Egg
@@ -211,4 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const mins = Math.floor((remaining % 3600000) / 60000);
         return `Time left: ${hrs}h ${mins}m`;
     }
+
+    // Initialize chart colors on first load
+    setTimeout(updateChartColors, 500);
 });
