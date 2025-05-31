@@ -1,7 +1,7 @@
 // Function to fetch view count from API
 async function fetchGuideViewCount(guideName) {
     try {
-        const response = await fetch(`https://pcwstats-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-guide-${guideName}.png`);
+        const response = await fetch(`https://pcwstats-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${guideName}.png`);
         if (!response.ok) {
             throw new Error('Failed to load view count');
         }
@@ -16,27 +16,27 @@ async function fetchGuideViewCount(guideName) {
 
 // Function to update view counters on all guide cards
 async function updateGuideViewCounters() {
-        const guideCards = document.querySelectorAll('.guide-card');
+    const guideCards = document.querySelectorAll('.guide-card');
 
-        for (const card of guideCards) {
-            const guideLink = card.querySelector('a.btn-accent');
-            if (guideLink) {
-                // Extract the guide name from the href (e.g., "guides/tank-guides/xm1-v-build-guide.html" -> "xm1-v-build-guide")
-                const guidePath = guideLink.getAttribute('href');
-                const guideName = guidePath.split('/').pop().replace('.html', ');
+    for (const card of guideCards) {
+        const guideLink = card.querySelector('a.btn-accent');
+        if (guideLink) {
+            // Extract the guide name from the href (e.g., "guides/tank-guides/xm1-v-build-guide.html" -> "xm1-v-build-guide")
+            const guidePath = guideLink.getAttribute('href');
+            const guideName = guidePath.split('/').pop().replace('.html', '');
 
-                    // Fetch the view count
-                    const viewsData = await fetchGuideViewCount(guideName);
-                    const viewsElement = card.querySelector('.views-count');
+            // Fetch the view count
+            const viewsData = await fetchGuideViewCount(guideName);
+            const viewsElement = card.querySelector('.views-count');
 
-                    if (viewsElement) {
-                        viewsElement.textContent = viewsData.totalViews.toLocaleString();
-                    }
-                }
+            if (viewsElement) {
+                viewsElement.textContent = viewsData.totalViews.toLocaleString();
             }
         }
+    }
+}
 
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            updateGuideViewCounters();
-        });
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    updateGuideViewCounters();
+});

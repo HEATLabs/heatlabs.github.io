@@ -6,14 +6,18 @@ let postsPerPage = 12;
 // Function to fetch view count from API
 async function fetchBlogViewCount(blogName) {
     try {
-        const response = await fetch(`https://pcwstats-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${blogName}.png`);
+        // Remove any path prefixes and .html extension
+        const baseName = blogName.replace(/^.*[\\\/]/, '').replace('.html', '');
+        const response = await fetch(`https://pcwstats-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${baseName}.png`);
         if (!response.ok) {
             throw new Error('Failed to load view count');
         }
         return await response.json();
     } catch (error) {
         console.error('Error loading view count:', error);
-        return { totalViews: 0 }; // Return 0 if there's an error
+        return {
+            totalViews: 0
+        }; // Return 0 if there's an error
     }
 }
 
@@ -24,11 +28,11 @@ async function updateBlogViewCounters() {
     for (const card of blogCards) {
         const blogLink = card.querySelector('a.btn-blog');
         if (blogLink) {
-            // Extract the blog name from the href (e.g., "blog/meet-the-team-sinewave.html" -> "meet-the-team-sinewave")
-            const blogName = blogLink.getAttribute('href').split('/').pop().replace('.html', '');
+            // Get the href attribute which contains the blog path
+            const href = blogLink.getAttribute('href');
 
-            // Fetch the view count
-            const viewsData = await fetchBlogViewCount(blogName);
+            // Fetch the view count using the corrected href
+            const viewsData = await fetchBlogViewCount(href);
             const viewsElement = card.querySelector('.views-count');
 
             if (viewsElement) {
@@ -211,7 +215,9 @@ function updateBlogDisplay() {
     // Update pagination controls
     updatePaginationControls(totalPages);
 
-    // Reinitialize animations
+    // Update view counters for the newly added cards
+    updateBlogViewCounters();
+
     setTimeout(() => {
         currentCards.forEach(card => {
             card.classList.add('animated');

@@ -5,7 +5,9 @@ let postsPerPage = 12;
 
 async function fetchGuideViewCount(guideName) {
     try {
-        const response = await fetch(`https://pcwstats-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-guide-${guideName}.png`);
+        // Extract the guide name from the path (e.g., "tank-guides/xm1-v-build-guide.html" -> "xm1-v-build-guide")
+        const baseName = guideName.split('/').pop().replace('.html', '');
+        const response = await fetch(`https://pcwstats-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${baseName}.png`);
         if (!response.ok) {
             throw new Error('Failed to load view count');
         }
@@ -22,10 +24,11 @@ async function updateGuideViewCounters(cards) {
     for (const card of cards) {
         const guideLink = card.querySelector('a.btn-guide');
         if (guideLink) {
-            const guidePath = guideLink.getAttribute('href');
-            const guideName = guidePath.split('/').pop().replace('.html', '');
+            // Get the href attribute which contains the guide path
+            const href = guideLink.getAttribute('href');
 
-            const viewsData = await fetchGuideViewCount(guideName);
+            // Fetch the view count using the corrected href
+            const viewsData = await fetchGuideViewCount(href);
             const viewsElement = card.querySelector('.guide-views-counter .views-count');
 
             if (viewsElement) {
@@ -199,6 +202,9 @@ function updateguideDisplay() {
     // Update dates in the newly added cards
     const currentCards = guideGrid.querySelectorAll('.guide-card');
     updateCardDates(currentCards);
+
+    // Update view counters for the newly added cards
+    updateGuideViewCounters(currentCards);
 
     // Update pagination controls
     updatePaginationControls(totalPages);
