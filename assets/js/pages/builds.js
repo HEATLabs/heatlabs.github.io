@@ -360,7 +360,10 @@ function findBuildByParams(tankSlug, buildNumber) {
 
 // Function to handle URL parameters on page load
 function handleUrlParams() {
-    const { tank, build } = getUrlParams();
+    const {
+        tank,
+        build
+    } = getUrlParams();
 
     if (tank && build) {
         // Wait for builds to load before trying to find the specific build
@@ -374,6 +377,7 @@ function handleUrlParams() {
                     document.getElementById('tankFilter').value = targetBuild.tankId;
                     document.getElementById('nationFilter').value = targetBuild.tankNation;
                     document.getElementById('typeFilter').value = targetBuild.tankType;
+                    document.getElementById('sortFilter').value = 'featured';
 
                     // Update the display and then show the modal
                     updateBuildsDisplay();
@@ -479,15 +483,20 @@ function updateBuildsDisplay() {
 
     // Sort builds
     filteredBuilds.sort((a, b) => {
-        if (sortValue === 'recent') {
-            return new Date(b.buildDate.split('-').reverse().join('-')) - new Date(a.buildDate.split('-').reverse().join('-'));
-        } else if (sortValue === 'oldest') {
-            return new Date(a.buildDate.split('-').reverse().join('-')) - new Date(b.buildDate.split('-').reverse().join('-'));
-        } else {
-            // Default: featured first, then by date (newest first)
+        // Parse dates to Date objects for comparison
+        const dateA = new Date(a.buildDate.split('-').reverse().join('-'));
+        const dateB = new Date(b.buildDate.split('-').reverse().join('-'));
+
+        if (sortValue === 'oldest') {
+            return dateA - dateB; // Oldest first
+        } else if (sortValue === 'featured') {
+            // Featured first, then by date (newest first)
             if (a.buildFeatured && !b.buildFeatured) return -1;
             if (!a.buildFeatured && b.buildFeatured) return 1;
-            return new Date(b.buildDate.split('-').reverse().join('-')) - new Date(a.buildDate.split('-').reverse().join('-'));
+            return dateB - dateA;
+        } else {
+            // Default: newest first
+            return dateB - dateA;
         }
     });
 
@@ -643,8 +652,8 @@ function updateNationOptions() {
     if (currentType !== 'all') {
         availableNations = [...new Set(
             tankData
-                .filter(tank => tank.type === currentType)
-                .map(tank => tank.nation)
+            .filter(tank => tank.type === currentType)
+            .map(tank => tank.nation)
         )];
     }
 
@@ -676,8 +685,8 @@ function updateTypeOptions() {
     if (currentNation !== 'all') {
         availableTypes = [...new Set(
             tankData
-                .filter(tank => tank.nation === currentNation)
-                .map(tank => tank.type)
+            .filter(tank => tank.nation === currentNation)
+            .map(tank => tank.type)
         )];
     }
 
