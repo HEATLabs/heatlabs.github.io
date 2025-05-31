@@ -1259,7 +1259,7 @@ function initializeAgentModals() {
         card.addEventListener('click', async function() {
             const agentName = this.querySelector('h3').textContent;
 
-            // Get the tank ID to fetch the correct agents.json
+            // Get the tank ID from meta tag to fetch the correct agents.json
             const tankIdMeta = document.querySelector('meta[name="tank-id"]');
             const tankId = tankIdMeta ? tankIdMeta.content : null;
 
@@ -1302,21 +1302,31 @@ function initializeAgentModals() {
                 // Clear previous tank images
                 agentModalTanksContainer.innerHTML = '';
 
-                // Add compatible tanks
+                // Add compatible tanks with clickable links
                 if (agent.compatibleTanks && agent.compatibleTanks.length > 0) {
                     agent.compatibleTanks.forEach(tank => {
                         const tankElement = document.createElement('div');
                         tankElement.className = 'agent-modal-tank';
 
+                        // Create link to tank page
+                        const tankLink = document.createElement('a');
+                        tankLink.href = `../tanks/${tank.slug}.html`; // Using slug for URL
+                        tankLink.style.display = 'contents'; // Makes link inherit parent's display
+
+                        // Create tank image
                         const tankImg = document.createElement('img');
                         tankImg.src = tank.image;
                         tankImg.alt = tank.name;
+                        tankImg.loading = 'lazy'; // Lazy loading for better performance
 
+                        // Create tank name
                         const tankName = document.createElement('span');
                         tankName.textContent = tank.name;
 
-                        tankElement.appendChild(tankImg);
-                        tankElement.appendChild(tankName);
+                        // Append elements
+                        tankLink.appendChild(tankImg);
+                        tankLink.appendChild(tankName);
+                        tankElement.appendChild(tankLink);
                         agentModalTanksContainer.appendChild(tankElement);
                     });
                 }
