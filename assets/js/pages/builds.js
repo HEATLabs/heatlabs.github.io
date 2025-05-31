@@ -21,10 +21,10 @@ const loaderMessages = [
     "Testing your patience...",
     // Easter Egg Messages
     "Reading IAmEdWards 15000 word feedback...",
-    // "Shockwave...",
+    "Finding Shockwave's AllSpark...",
     // "antitank99...",
-    // "Anuraen...",
-    // "esmatty...",
+    "Forcing Wargaming to hire Anuraen...",
+    "Getting esmatty more explosives...",
     "Messaging SINEWAVE...",
     "Confusing VEN0M..."
 ];
