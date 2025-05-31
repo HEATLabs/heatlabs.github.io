@@ -320,7 +320,7 @@ function showBuildDetailModal(build) {
 
     // Copy build link functionality
     document.getElementById('copyBuildLink').addEventListener('click', () => {
-        const buildUrl = `${window.location.origin}/builds.html?tank=${build.tankSlug}&build=${build.buildNumber}`;
+        const buildUrl = `${window.location.origin}${window.location.pathname}?tank=${build.tankSlug}&build=${build.buildNumber}`;
         navigator.clipboard.writeText(buildUrl).then(() => {
             const button = document.getElementById('copyBuildLink');
             const originalText = button.innerHTML;
@@ -336,6 +336,58 @@ function showBuildDetailModal(build) {
         overlay.classList.add('visible');
         modal.classList.add('visible');
     }, 10);
+}
+
+// Function to parse URL parameters
+function getUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        tank: params.get('tank'),
+        build: params.get('build')
+    };
+}
+
+// Function to find a build by tank slug and build number
+function findBuildByParams(tankSlug, buildNumber) {
+    return originalBuilds.find(build =>
+        build.tankSlug === tankSlug &&
+        build.buildNumber.toString() === buildNumber.toString()
+    );
+}
+
+// Function to handle URL parameters on page load
+function handleUrlParams() {
+    const { tank, build } = getUrlParams();
+
+    if (tank && build) {
+        // Wait for builds to load before trying to find the specific build
+        const checkBuildsLoaded = setInterval(() => {
+            if (originalBuilds.length > 0 || !hasMoreBuilds) {
+                clearInterval(checkBuildsLoaded);
+                const targetBuild = findBuildByParams(tank, build);
+
+                if (targetBuild) {
+                    // Set filters to match the build's tank
+                    document.getElementById('tankFilter').value = targetBuild.tankId;
+                    document.getElementById('nationFilter').value = targetBuild.tankNation;
+                    document.getElementById('typeFilter').value = targetBuild.tankType;
+
+                    // Update the display and then show the modal
+                    updateBuildsDisplay();
+
+                    // Small delay to ensure DOM is updated
+                    setTimeout(() => {
+                        showBuildDetailModal(targetBuild);
+
+                        // Update URL without reloading
+                        history.replaceState({}, '',
+                            `${window.location.pathname}?tank=${tank}&build=${build}`
+                        );
+                    }, 100);
+                }
+            }
+        }, 100);
+    }
 }
 
 // Function to initialize tooltips
@@ -776,4 +828,7 @@ document.addEventListener('DOMContentLoaded', function() {
             card.classList.add('animated');
         });
     }, 300);
+
+    // Handle URL parameters after everything is loaded
+    handleUrlParams();
 });
