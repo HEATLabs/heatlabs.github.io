@@ -80,7 +80,7 @@
 }
 
 .stats-description a:hover {
-	color: var(--accent-color-dark);
+	color: var(--accent-color-hover);
 	text-decoration: underline;
 }
 
