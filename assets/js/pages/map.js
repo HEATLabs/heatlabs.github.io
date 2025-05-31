@@ -39,9 +39,49 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Fetch and display view count
+    fetchViewCount().then(views => {
+        const mapMeta = document.querySelector('.map-meta');
+        if (mapMeta) {
+            const viewCounter = document.createElement('span');
+            viewCounter.className = 'map-views-counter';
+            viewCounter.innerHTML = `
+                <i class="fas fa-eye"></i>
+                <span class="map-views-count">${views.totalViews.toLocaleString()}</span> views
+            `;
+            mapMeta.appendChild(viewCounter);
+        }
+    });
+
     // Initialize any interactive elements specific to map pages
     initializeMapPageElements();
 });
+
+// Function to fetch view count from API
+async function fetchViewCount() {
+    try {
+        // Get the tracking pixel URL from the meta tag
+        const trackingPixel = document.querySelector('.pcwstats-tracking-pixel');
+        if (!trackingPixel || !trackingPixel.src) {
+            return { totalViews: 0 };
+        }
+
+        // Extract the image filename from the tracking pixel URL
+        const imageName = trackingPixel.src.split('/').pop();
+
+        // Build the stats API URL
+        const statsApiUrl = `https://pcwstats-pixel-api.vercel.app/api/stats?image=${imageName}`;
+        const response = await fetch(statsApiUrl);
+
+        if (!response.ok) {
+            throw new Error('Failed to load view count');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error loading view count:', error);
+        return { totalViews: 0 }; // Return 0 if there's an error
+    }
+}
 
 function initializeMapPageElements() {
     // Initialize image gallery
