@@ -558,7 +558,7 @@ function updateBuildsDisplay() {
                     <button class="btn-accent btn-view-build" data-build-id="${build.buildNumber}">
                         <i class="fas fa-search mr-1"></i> View Build
                     </button>
-                    ${build.buildFeatured ? '<span class="featured-badge">Featured</span>' : ''}
+                    ${build.buildFeatured ? '<span class="featured-badge"><i class="fas fa-star"></i> Featured</span>' : ''}
                 </div>
             </div>
         `;
