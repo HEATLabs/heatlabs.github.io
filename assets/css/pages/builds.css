@@ -15,6 +15,9 @@
 	border: 1px solid var(--border-color);
 	opacity: 0;
 	transform: translateY(20px);
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 }
 
 .build-card.animated {
@@ -84,6 +87,15 @@
 
 .build-content {
 	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.build-description {
+	flex-grow: 1;
+	min-height: 60px;
+	margin-bottom: 1rem;
 }
 
 .build-title {
@@ -164,7 +176,7 @@
 .build-actions {
 	display: flex;
 	justify-content: space-between;
-	margin-top: 1rem;
+	margin-top: auto;
 	padding-top: 1rem;
 	border-top: 1px solid var(--border-color);
 }
