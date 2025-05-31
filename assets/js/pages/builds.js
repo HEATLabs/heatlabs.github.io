@@ -20,7 +20,7 @@ const loaderMessages = [
     "Running final diagnostics...",
     "Testing your patience...",
     // Easter Egg Messages
-    "Waiting for IAmEdWards...",
+    "Reading IAmEdWards 15000 word feedback...",
     // "Shockwave...",
     // "antitank99...",
     // "Anuraen...",
