@@ -3,6 +3,44 @@ let originalCards = [];
 let currentPage = 1;
 let postsPerPage = 12;
 
+// Function to fetch view count from API
+async function fetchNewsViewCount(newsName) {
+    try {
+        const response = await fetch(`https://pcwstats-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${newsName}.png`);
+        if (!response.ok) {
+            throw new Error('Failed to load view count');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error loading view count:', error);
+        return {
+            totalViews: 0
+        }; // Return 0 if there's an error
+    }
+}
+
+// Function to update view counters on all news cards
+async function updateNewsViewCounters() {
+    const newsCards = document.querySelectorAll('.news-card');
+
+    for (const card of newsCards) {
+        const newsLink = card.querySelector('a.btn-news');
+        if (newsLink) {
+            // Extract the news name from the href (e.g., "news/agent-spotlight-akira.html" -> "agent-spotlight-akira")
+            const newsPath = newsLink.getAttribute('href');
+            const newsName = newsPath.split('/').pop().replace('.html', '');
+
+            // Fetch the view count
+            const viewsData = await fetchNewsViewCount(newsName);
+            const viewsElement = card.querySelector('.views-count');
+
+            if (viewsElement) {
+                viewsElement.textContent = viewsData.totalViews.toLocaleString();
+            }
+        }
+    }
+}
+
 // Function to format date as "Month Day, Year"
 function formatDate(dateString) {
     const date = new Date(dateString);
@@ -167,6 +205,9 @@ function updateNewsDisplay() {
     // Update dates in the newly added cards
     const currentCards = newsGrid.querySelectorAll('.news-card');
     updateCardDates(currentCards);
+
+    // Update view counters
+    updateNewsViewCounters();
 
     // Update pagination controls
     updatePaginationControls(totalPages);

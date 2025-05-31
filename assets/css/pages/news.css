@@ -216,6 +216,30 @@
 	cursor: pointer;
 }
 
+/* View counter styles */
+.news-views-counter {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    z-index: 10;
+}
+
+.news-views-counter i {
+    font-size: 0.75rem;
+}
+
+.news-img-container {
+    position: relative;
+}
+
 @media (max-width: 768px) {
 	.pagination-container {
 		flex-direction: column;
