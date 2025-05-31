@@ -8,27 +8,27 @@ let hasMoreBuilds = true;
 const MAX_CONCURRENT_REQUESTS = 10;
 const REQUEST_DELAY = 500; // 0.5s between batches
 const loaderMessages = [
-    "Crafting lore out of patch notes...",
-    "Tracking Chopper's 12th rework...",
-    "Testing bugs before the bugs test us...",
-    "Loading textures... hopefully this time...",
-    "Inspecting grenades for personality...",
-    "Replacing the coffee with diesel...",
-    "Debating if Chopper is still OP...",
-    "Rebinding every control to 'E'...",
-    "Asking when is the next playtest...",
-    "Sending Titan dummies to therapy...",
-    "Breaking something to prove it’s fixed...",
-    "Watching the server hamster do laps...",
-    "Slowly testing your patience...",
+    "Crafting lore out of patch notes... ",
+    "Tracking Chopper's 12th rework... ",
+    "Testing bugs before the bugs test us... ",
+    "Loading textures... hopefully this time... ",
+    "Inspecting grenades for personality... ",
+    "Replacing the coffee with diesel... ",
+    "Debating if Chopper is still OP... ",
+    "Rebinding every control to 'E'... ",
+    "Asking when is the next playtest... ",
+    "Sending Titan dummies to therapy... ",
+    "Breaking something to prove it’s fixed... ",
+    "Watching the server hamster do laps... ",
+    "Slowly testing your patience... ",
     // Easter Egg Messages
-    "Reading IAmEdWards 15000 word feedback...",
-    "Finding Shockwave's AllSpark...",
-    // "antitank99...",
-    "Forcing Wargaming to hire Anuraen...",
-    "Getting esmatty more explosives...",
-    "Messaging SINEWAVE...",
-    "Confusing VEN0M..."
+    "Reading IAmEdWards 15000 word feedback... ",
+    "Finding Shockwave's AllSpark... ",
+    // "antitank99... ",
+    "Forcing Wargaming to hire Anuraen... ",
+    "Getting esmatty more explosives... ",
+    "Messaging SINEWAVE... ",
+    "Confusing VEN0M... "
 ];
 
 // Function to fetch tank data with error handling and retries
