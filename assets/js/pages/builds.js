@@ -21,6 +21,7 @@ const loaderMessages = [
     "Breaking something to prove it’s fixed... ",
     "Watching the server hamster do laps... ",
     "Slowly testing your patience... ",
+    "It still works on our machine... ",
     // Easter Egg Messages
     "Reading IAmEdWards 15000 word feedback... ",
     "Finding Shockwave's AllSpark... ",
