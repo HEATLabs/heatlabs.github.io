@@ -5,7 +5,7 @@ let currentPage = 1;
 let buildsPerPage = 12;
 let isLoading = false;
 let hasMoreBuilds = true;
-const MAX_CONCURRENT_REQUESTS = 3;
+const MAX_CONCURRENT_REQUESTS = 10;
 const REQUEST_DELAY = 500; // 0.5s between batches
 const loaderMessages = [
     "Loading tank components...",
