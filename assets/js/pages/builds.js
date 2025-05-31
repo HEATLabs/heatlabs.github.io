@@ -13,13 +13,20 @@ const loaderMessages = [
     "Calibrating gun sights...",
     "Fueling up the engines...",
     "Training the agents...",
-    "Messaging SINEWAVE...",
     "Plotting battle strategies...",
     "Using bug spray...",
     "Optimizing armor angles...",
     "Syncing with command center...",
     "Running final diagnostics...",
-    "Testing your patience..."
+    "Testing your patience...",
+    // Easter Egg Messages
+    "Waiting for IAmEdWards...",
+    // "Shockwave...",
+    // "antitank99...",
+    // "Anuraen...",
+    // "esmatty...",
+    "Messaging SINEWAVE...",
+    "Confusing VEN0M..."
 ];
 
 // Function to fetch tank data with error handling and retries
