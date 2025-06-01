@@ -625,3 +625,14 @@
 	font-size: 0.95rem !important;
 	color: var(--text-secondary);
 }
+
+.bug-text a {
+	color: var(--accent-color);
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.bug-text a:hover {
+	color: var(--accent-color-hover);
+	text-decoration: underline;
+}
