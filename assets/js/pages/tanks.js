@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize filters
     const filters = {
         nation: [],
-        type: []
+        type: [],
+        status: []
     };
 
     // DOM elements
@@ -76,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
         card.className = 'tank-card';
         card.setAttribute('data-nation', tank.nation);
         card.setAttribute('data-type', tank.type);
+        card.setAttribute('data-status', tank.class);
         card.setAttribute('data-tank-id', tank.id);
 
         // Only show tank class (bubble) if it exists and isn't empty
@@ -160,6 +162,15 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
+        // Status filter buttons
+        document.querySelectorAll('.status-filter').forEach(button => {
+            button.addEventListener('click', function() {
+                const status = this.getAttribute('data-status');
+                toggleFilter('status', status, this);
+                filterTanks();
+            });
+        });
+
         // Type filter buttons
         document.querySelectorAll('.type-filter').forEach(button => {
             button.addEventListener('click', function() {
@@ -193,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
         activeFiltersContainer.innerHTML = '';
 
         // Check if any filters are active
-        const hasFilters = filters.nation.length > 0 || filters.type.length > 0;
+        const hasFilters = filters.nation.length > 0 || filters.type.length > 0 || filters.status.length > 0;
 
         if (!hasFilters) {
             activeFiltersContainer.innerHTML = '<div class="no-filters-message">No filters selected</div>';
@@ -209,6 +220,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add type filters
         filters.type.forEach(type => {
             const pill = createFilterPill(type, 'type');
+            activeFiltersContainer.appendChild(pill);
+        });
+
+        // Add status filters
+        filters.status.forEach(status => {
+            const pill = createFilterPill(status, 'status');
             activeFiltersContainer.appendChild(pill);
         });
     }
@@ -252,11 +269,14 @@ document.addEventListener('DOMContentLoaded', function() {
         tankCards.forEach(card => {
             const cardNation = card.getAttribute('data-nation');
             const cardType = card.getAttribute('data-type');
+            const cardStatus = card.querySelector('.tank-class') ?
+                card.querySelector('.tank-class').textContent : 'Unknown';
 
             const nationMatch = filters.nation.length === 0 || filters.nation.includes(cardNation);
             const typeMatch = filters.type.length === 0 || filters.type.includes(cardType);
+            const statusMatch = filters.status.length === 0 || filters.status.includes(cardStatus);
 
-            if (nationMatch && typeMatch) {
+            if (nationMatch && typeMatch && statusMatch) {
                 card.style.display = 'block';
             } else {
                 card.style.display = 'none';
