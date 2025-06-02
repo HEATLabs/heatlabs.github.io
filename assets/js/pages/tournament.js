@@ -111,7 +111,7 @@ async function fetchViewCount() {
         }
 
         // Convert tracking URL to stats API URL
-        const statsApiUrl = trackingPixel.src.replace('/track/', '/api/stats?image=');
+        const statsApiUrl = trackingPixel.src.replace('/track/', '/stats?image=');
         const response = await fetch(statsApiUrl);
 
         if (!response.ok) {
