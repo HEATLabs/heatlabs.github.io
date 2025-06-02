@@ -248,7 +248,7 @@ function createTournamentCard(tournament) {
             <p class="tournament-desc">${tournament.description}</p>
             <div class="tournament-buttons">
                 <a href="tournaments/${tournament.slug}.html" class="btn-accent">
-                    <i class="fa-solid fa-trophy"></i>About Tournament
+                    <i class="fa-solid fa-trophy mr-2"></i>About Tournament
                 </a>
             </div>
         </div>
