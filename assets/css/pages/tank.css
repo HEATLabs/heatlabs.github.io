@@ -1459,6 +1459,27 @@ p {
 	border-color: var(--accent-color);
 }
 
+.chart-stat-toggle {
+	padding: 0.5rem 1rem;
+	border-radius: 0.5rem;
+	background-color: var(--card-bg);
+	border: 1px solid var(--border-color);
+	color: var(--text-secondary);
+	cursor: pointer;
+	transition: all 0.3s ease;
+	font-size: 0.9rem;
+}
+
+.chart-stat-toggle:hover {
+	background-color: var(--bg-secondary);
+}
+
+.chart-stat-toggle.active {
+	background-color: var(--accent-color);
+	color: white;
+	border-color: var(--accent-color);
+}
+
 .charts-grid {
 	display: grid;
 	grid-template-columns: repeat(1, 1fr);
