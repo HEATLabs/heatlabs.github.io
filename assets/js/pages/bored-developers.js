@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // API endpoints
     const APIs = {
-        bored: 'https://www.boredapi.com/api/activity',
+        bored: 'https://bored.api.lewagon.com/api/activity',
         dog: 'https://dog.ceo/api/breeds/image/random',
         joke: 'https://v2.jokeapi.dev/joke/Any?safe-mode',
         catFact: 'https://catfact.ninja/fact'
