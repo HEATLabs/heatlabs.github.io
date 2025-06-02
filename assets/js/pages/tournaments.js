@@ -179,6 +179,43 @@ async function fetchTournamentData() {
     }
 }
 
+async function fetchTournamentViewCount(imageName) {
+    try {
+        const response = await fetch(`https://pcwstats-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${imageName}.png`);
+        if (!response.ok) {
+            throw new Error('Failed to load view count');
+        }
+        const data = await response.json();
+        return data.totalViews || 0;
+    } catch (error) {
+        console.error('Error loading view count:', error);
+        return 0; // Return 0 if there's an error
+    }
+}
+
+// Function to update view counters on all tournament cards
+async function updateTournamentViewCounters() {
+    const tournamentCards = document.querySelectorAll('.tournament-card');
+
+    for (const card of tournamentCards) {
+        const tournamentLink = card.querySelector('a.btn-accent');
+        if (tournamentLink) {
+            // Extract the tournament name from the href (e.g., "tournaments/open-alpha-2-tournament.html" -> "open-alpha-2-tournament")
+            const tournamentName = tournamentLink.getAttribute('href')
+                .split('/').pop()
+                .replace('.html', '');
+
+            // Fetch the view count
+            const views = await fetchTournamentViewCount(tournamentName);
+            const viewsElement = card.querySelector('.views-count');
+
+            if (viewsElement) {
+                viewsElement.textContent = views.toLocaleString();
+            }
+        }
+    }
+}
+
 // Create tournament card HTML
 function createTournamentCard(tournament) {
     const card = document.createElement('div');
@@ -191,15 +228,12 @@ function createTournamentCard(tournament) {
     const tournamentTypeHTML = tournament.type && tournament.type.trim() !== '' ?
         `<div class="${tournamentTag}-tournament-tag">${tournament.type}</div>` : '';
 
-    // Add view counter placeholder (we'll update this later)
-    const viewCounterHTML = `<div class="tournament-views-counter">
-        <i class="fas fa-eye"></i>
-        <span class="views-count">0</span>
-    </div>`;
-
     card.innerHTML = `
         <div class="tournament-img-container">
-            ${viewCounterHTML}
+            <div class="tournament-views-counter">
+                <i class="fas fa-eye"></i>
+                <span class="views-count">0</span>
+            </div>
             <img src="${tournament.image}" alt="${tournament.name} Preview" class="tournament-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.png'">
             ${tournamentTypeHTML}
         </div>
@@ -220,30 +254,7 @@ function createTournamentCard(tournament) {
         </div>
     `;
 
-    // After creating the card, fetch and update the view count
-    if (tournament['tournament-views']) {
-        fetchViewCount(tournament['tournament-views']).then(views => {
-            const viewsElement = card.querySelector('.views-count');
-            if (viewsElement) {
-                viewsElement.textContent = views.totalViews.toLocaleString();
-            }
-        });
-    }
-
     return card;
-}
-
-async function fetchViewCount(apiUrl) {
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-            throw new Error('Failed to load view count');
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Error loading view count:', error);
-        return { totalViews: 0 }; // Return 0 if there's an error
-    }
 }
 
 // Render all tournament cards
@@ -265,6 +276,9 @@ async function renderTournamentCards() {
 
     // Store original cards for filtering/sorting
     originalCards = Array.from(tournamentGrid.querySelectorAll('.tournament-card'));
+
+    // Update view counters after all cards are rendered
+    await updateTournamentViewCounters();
 
     // Initialize display with sorting/filtering
     updateTournamentsDisplay();
