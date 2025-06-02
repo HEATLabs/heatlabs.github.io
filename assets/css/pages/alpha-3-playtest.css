@@ -1,0 +1,121 @@
+/* Countdown specific styles */
+.countdown-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	text-align: center;
+	padding: 1rem;
+	width: 100%;
+	overflow: hidden;
+}
+
+.countdown-timer {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	gap: 1.5rem;
+	margin-bottom: 3rem;
+	width: 100%;
+	max-width: 100vw;
+	padding: 1rem;
+	box-sizing: border-box;
+}
+
+.countdown-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(30, 30, 30, 0.8);
+	border-radius: 0.5rem;
+	padding: 1.5rem;
+	min-width: 120px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+	border: 1px solid var(--border-color);
+	flex-shrink: 0;
+	box-sizing: border-box;
+}
+
+.countdown-value {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 5rem;
+	font-weight: 700;
+	color: var(--accent-color);
+	margin-bottom: 0.5rem;
+	font-family: var(--font-code);
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 1;
+}
+
+.countdown-label {
+	font-size: 1rem;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: var(--text-secondary);
+}
+
+/* Simplified mode styles */
+.countdown-timer.simple-mode {
+	justify-content: center;
+}
+
+.countdown-timer.simple-mode .countdown-item {
+	min-width: 600px;
+	padding: 2rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+
+	.countdown-timer {
+		gap: 1rem;
+		padding: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.countdown-item {
+		min-width: 80px;
+		padding: 1rem;
+	}
+
+	.countdown-value {
+		font-size: 3rem;
+	}
+
+	.countdown-timer.simple-mode .countdown-item {
+		min-width: 90vw;
+		padding: 1.5rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.countdown-timer {
+		gap: 0.5rem;
+	}
+
+	.countdown-item {
+		min-width: 70px;
+		padding: 0.75rem;
+	}
+
+	.countdown-value {
+		font-size: 2.5rem;
+	}
+}
+
+/* Hidden elements */
+.hidden {
+	display: none !important;
+}
+
+/* Visible elements */
+.visible {
+	display: block !important;
+}
