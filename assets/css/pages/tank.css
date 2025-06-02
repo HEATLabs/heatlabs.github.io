@@ -802,6 +802,22 @@ p {
 	.action-buttons {
 		flex-direction: column;
 	}
+
+	.charts-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.chart-toggle-container {
+		margin-left: 0;
+		width: 100%;
+		justify-content: flex-start;
+	}
+
+	.chart-stat-toggle {
+		padding: 0.5rem;
+		font-size: 0.8rem;
+	}
 }
 
 /* Fix for iOS scrolling */
@@ -1392,20 +1408,28 @@ p {
 	align-items: center;
 	flex-wrap: wrap;
 	gap: 1rem;
+	margin-bottom: 1rem;
 }
 
 .chart-title {
 	font-size: 1.1rem;
 	font-weight: 600;
-	margin: 0 0 0rem;
+	margin: 0;
 	color: var(--text-primary);
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
+	flex-grow: 1;
 }
 
 .chart-title i {
 	color: var(--accent-color);
+}
+
+.chart-toggle-container {
+	display: flex;
+	gap: 0.5rem;
+	margin-left: auto;
 }
 
 .chart-no-data {
@@ -1460,14 +1484,15 @@ p {
 }
 
 .chart-stat-toggle {
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 0.75rem;
 	border-radius: 0.5rem;
 	background-color: var(--card-bg);
 	border: 1px solid var(--border-color);
 	color: var(--text-secondary);
 	cursor: pointer;
 	transition: all 0.3s ease;
-	font-size: 0.9rem;
+	font-size: 0.85rem;
+	white-space: nowrap;
 }
 
 .chart-stat-toggle:hover {
@@ -1497,7 +1522,7 @@ p {
 	border-radius: 0.75rem;
 	box-shadow: var(--shadow);
 	border: 1px solid var(--border-color);
-	padding: 1.5rem;
+	padding: 1.25rem;
 	height: auto;
 	transition: transform 0.3s ease;
 }
