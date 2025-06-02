@@ -6,6 +6,11 @@
 	border-radius: 0.75rem;
 	box-shadow: var(--shadow);
 	border: 1px solid var(--border-color);
+	transition: all var(--transition-speed);
+}
+
+.data-section:hover {
+	box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
 }
 
 .data-section h2 {
@@ -13,6 +18,9 @@
 	color: var(--text-primary);
 	font-size: 1.5rem;
 	font-weight: bold;
+	border-bottom: 2px solid var(--accent-color);
+	padding-bottom: 0.5rem;
+	display: inline-block;
 }
 
 .data-description {
@@ -33,6 +41,17 @@
 
 .loading-spinner i {
 	font-size: 1.5rem;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 /* Missions Container Styles */
@@ -48,11 +67,28 @@
 	padding: 1.25rem;
 	border: 1px solid var(--border-color);
 	transition: all var(--transition-speed);
+	position: relative;
+	overflow: hidden;
+}
+
+.mission-card::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 4px;
+	height: 100%;
+	background-color: var(--accent-color);
+	transition: width 0.3s ease;
 }
 
 .mission-card:hover {
-	transform: translateY(-0.25rem);
-	box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mission-card:hover::before {
+	width: 8px;
 }
 
 .mission-name {
@@ -60,6 +96,8 @@
 	font-size: 1.1rem;
 	margin-bottom: 0.5rem;
 	color: var(--text-primary);
+	position: relative;
+	padding-left: 0.5rem;
 }
 
 .mission-code {
@@ -68,6 +106,9 @@
 	color: var(--text-secondary);
 	margin-bottom: 0.75rem;
 	word-break: break-all;
+	background-color: var(--bg-tertiary);
+	padding: 0.5rem;
+	border-radius: 0.25rem;
 }
 
 .mission-tags {
@@ -83,112 +124,29 @@
 	padding: 0.25rem 0.5rem;
 	border-radius: 0.25rem;
 	font-size: 0.75rem;
+	transition: all 0.2s ease;
 }
 
-/* Matchmaker Container Styles */
-.matchmaker-container {
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
-}
-
-.matchmaker-section {
-	background-color: var(--bg-secondary);
-	border-radius: 0.5rem;
+/* Error and No Data States */
+.error-message,
+.no-data {
 	padding: 1.5rem;
-	border: 1px solid var(--border-color);
+	background-color: var(--error-bg);
+	color: var(--error-text);
+	border-radius: 0.5rem;
+	text-align: center;
+	border-left: 4px solid var(--error-border);
 }
 
-.matchmaker-section h3 {
-	font-size: 1.25rem;
-	font-weight: bold;
-	margin-bottom: 1rem;
-	color: var(--text-primary);
-	border-bottom: 1px solid var(--border-color);
-	padding-bottom: 0.5rem;
-}
-
-.matchmaker-item {
-	margin-bottom: 1.5rem;
-}
-
-.matchmaker-item h4 {
-	font-weight: bold;
-	margin-bottom: 0.5rem;
-	color: var(--text-primary);
-}
-
-.matchmaker-item p {
-	color: var(--text-secondary);
-	margin-bottom: 0.5rem;
-	line-height: 1.5;
-}
-
-.matchmaker-list {
-	list-style-type: none;
-	padding-left: 0;
-	margin-top: 0.5rem;
-}
-
-.matchmaker-list li {
-	padding: 0.5rem 0;
-	border-bottom: 1px dashed var(--border-color);
-	display: flex;
-	justify-content: space-between;
-}
-
-.matchmaker-list li:last-child {
-	border-bottom: none;
-}
-
-.matchmaker-key {
-	font-weight: bold;
-	color: var(--text-primary);
-}
-
-.matchmaker-value {
-	color: var(--text-secondary);
-	text-align: right;
-	max-width: 60%;
-	word-break: break-word;
-}
-
-.matchmaker-table {
-	width: 100%;
-	border-collapse: collapse;
-	margin-top: 1rem;
-}
-
-.matchmaker-table th,
-.matchmaker-table td {
-	padding: 0.75rem;
-	text-align: left;
-	border-bottom: 1px solid var(--border-color);
-}
-
-.matchmaker-table th {
-	background-color: var(--bg-tertiary);
-	font-weight: bold;
-	color: var(--text-primary);
-}
-
-.matchmaker-table tr:hover {
-	background-color: var(--bg-tertiary);
+.no-data {
+	background-color: var(--info-bg);
+	color: var(--info-text);
+	border-left-color: var(--info-border);
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
 	.missions-container {
 		grid-template-columns: 1fr;
-	}
-
-	.matchmaker-list li {
-		flex-direction: column;
-	}
-
-	.matchmaker-value {
-		max-width: 100%;
-		text-align: left;
-		margin-top: 0.25rem;
 	}
 }
