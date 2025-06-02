@@ -1432,6 +1432,37 @@ p {
 	margin-left: auto;
 }
 
+.chart-toggle-btn {
+	position: relative;
+}
+
+.chart-toggle-btn::after {
+	content: attr(data-tooltip);
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: var(--card-bg);
+	color: var(--text-primary);
+	padding: 0.5rem 0.75rem;
+	border-radius: 0.5rem;
+	font-size: 0.8rem;
+	white-space: nowrap;
+	box-shadow: var(--shadow);
+	border: 1px solid var(--border-color);
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.2s ease;
+	pointer-events: none;
+	z-index: 100;
+}
+
+.chart-toggle-btn:hover::after {
+	opacity: 1;
+	visibility: visible;
+	bottom: calc(100% + 8px);
+}
+
 .chart-no-data {
 	display: flex;
 	flex-direction: column;
