@@ -668,17 +668,15 @@ function updateChart(chartId, chartName, datasets, labels) {
     const dataWithLabels = originalTankOrder.map((tank, index) => ({
         id: tank.id,
         name: tank.name,
-        values: datasets.map(dataset => dataset.data[index])
+        type: tank.type,
+        values: datasets.map(dataset => dataset.data[index]),
+        isCurrentTank: tank.id.toString() === currentTankId.toString()
     }));
 
     // Sort based on the first dataset's values (main sort key)
     let sortedData = [...dataWithLabels];
     if (datasets.length > 0 && datasets[0].data.length > 0) {
         sortedData.sort((a, b) => {
-            // Current tank should always stay first
-            if (a.id === originalTankOrder[0].id) return -1;
-            if (b.id === originalTankOrder[0].id) return 1;
-
             // Handle null/undefined values by putting them at the end
             if (a.values[0] == null) return 1;
             if (b.values[0] == null) return -1;
@@ -703,26 +701,24 @@ function updateChart(chartId, chartName, datasets, labels) {
     });
 
     // Find the current tank's new position after sorting
-    const currentTankNewIndex = sortedData.findIndex(item =>
-        item.id === originalTankOrder[0].id
-    );
+    const currentTankNewIndex = sortedData.findIndex(item => item.isCurrentTank);
 
     // Prepare datasets with different colors
     const chartDatasets = sortedDatasets.map((dataset, index) => ({
         label: dataset.label,
         data: dataset.data,
-        backgroundColor: sortedData.map((_, labelIndex) =>
-            labelIndex === currentTankNewIndex ?
+        backgroundColor: sortedData.map((item) =>
+            item.isCurrentTank ?
             'rgba(75, 192, 192, 0.7)' : // Current tank - teal
             chartColors[index % chartColors.length]
         ),
-        borderColor: sortedData.map((_, labelIndex) =>
-            labelIndex === currentTankNewIndex ?
+        borderColor: sortedData.map((item) =>
+            item.isCurrentTank ?
             'rgba(75, 192, 192, 1)' : // Current tank - teal border
             chartBorderColors[index % chartBorderColors.length]
         ),
-        borderWidth: sortedData.map((_, labelIndex) =>
-            labelIndex === currentTankNewIndex ? 2 : 1 // Thicker border for current tank
+        borderWidth: sortedData.map((item) =>
+            item.isCurrentTank ? 2 : 1 // Thicker border for current tank
         )
     }));
 
@@ -733,18 +729,18 @@ function updateChart(chartId, chartName, datasets, labels) {
             legendItem.className = 'chart-legend-item';
 
             // Add special styling for current tank
-            if (item.id === originalTankOrder[0].id) {
+            if (item.isCurrentTank) {
                 legendItem.classList.add('current-tank');
             }
 
             const colorBox = document.createElement('div');
             colorBox.className = 'chart-legend-color';
-            colorBox.style.backgroundColor = index === currentTankNewIndex ?
+            colorBox.style.backgroundColor = item.isCurrentTank ?
                 'rgba(75, 192, 192, 0.7)' : // Current tank - teal
                 chartColors[0];
 
             // Add border to current tank legend color box
-            if (item.id === originalTankOrder[0].id) {
+            if (item.isCurrentTank) {
                 colorBox.style.border = '2px solid rgba(75, 192, 192, 1)';
             }
 
@@ -752,7 +748,7 @@ function updateChart(chartId, chartName, datasets, labels) {
             labelSpan.textContent = item.name || 'Unknown';
 
             // Add indicator for current tank
-            if (item.id === originalTankOrder[0].id) {
+            if (item.isCurrentTank) {
                 labelSpan.textContent += ' (Current)';
                 labelSpan.style.fontWeight = 'bold';
             }
@@ -792,7 +788,7 @@ function updateChart(chartId, chartName, datasets, labels) {
                     ...chartConfig.plugins.tooltip,
                     callbacks: {
                         label: function(context) {
-                            const isCurrentTank = context.dataIndex === currentTankNewIndex;
+                            const isCurrentTank = sortedData[context.dataIndex].isCurrentTank;
                             const prefix = isCurrentTank ? '★ ' : '';
                             return `${prefix}${context.dataset.label}: ${context.raw}`;
                         }
