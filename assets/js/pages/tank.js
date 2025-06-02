@@ -429,143 +429,150 @@ async function updateCharts(compareType) {
     // Limit to top 49 tanks plus current tank for better visualization
     tanksToCompare = tanksToCompare.slice(0, 49);
 
+    // Create an array of all tank objects
+    const allTanksForCharts = [currentTank, ...tanksToCompare];
+
+    // Store the original order of tanks with their names and IDs
+    const originalTankOrder = allTanksForCharts.map(tank => ({
+        id: tank.id,
+        name: tank.name,
+        type: tank.type
+    }));
+
+    // Store this order for later use in chart updates
+    if (!window.chartData) {
+        window.chartData = {};
+    }
+    window.chartData[compareType] = {
+        originalOrder: originalTankOrder,
+        tanks: allTanksForCharts
+    };
+
     // Prepare data for charts
-    const labels = tanksToCompare.map(tank => tank ? tank.name : 'Unknown');
-    labels.unshift(currentTank.name);
+    const labels = allTanksForCharts.map(tank => tank ? tank.name : 'Unknown');
 
     // Firepower data
-    const firepowerDamage = tanksToCompare.map(tank => {
+    const firepowerDamage = allTanksForCharts.map(tank => {
         if (!tank || !tank.stats || !tank.stats.FIREPOWER) return 0;
         return parseFloat(tank.stats.FIREPOWER.DAMAGE) || 0;
     });
-    const firepowerReload = tanksToCompare.map(tank => {
+    const firepowerReload = allTanksForCharts.map(tank => {
         if (!tank || !tank.stats || !tank.stats.FIREPOWER) return 0;
         return parseFloat(tank.stats.FIREPOWER["RELOAD TIME"]) || 0;
     });
-    const firepowerAiming = tanksToCompare.map(tank => {
+    const firepowerAiming = allTanksForCharts.map(tank => {
         if (!tank || !tank.stats || !tank.stats.FIREPOWER) return 0;
         return parseFloat(tank.stats.FIREPOWER["AIMING SPEED"]) || 0;
     });
 
     // Survivability data
-    const survivabilityHp = tanksToCompare.map(tank => {
+    const survivabilityHp = allTanksForCharts.map(tank => {
         if (!tank || !tank.stats || !tank.stats.SURVIVABILITY) return 0;
         return parseFloat(tank.stats.SURVIVABILITY["HIT POINTS"]) || 0;
     });
-    const survivabilityCrewHp = tanksToCompare.map(tank => {
+    const survivabilityCrewHp = allTanksForCharts.map(tank => {
         if (!tank || !tank.stats || !tank.stats.SURVIVABILITY) return 0;
         return parseFloat(tank.stats.SURVIVABILITY["CREW HIT POINTS"]) || 0;
     });
-    const survivabilityTrackHp = tanksToCompare.map(tank => {
+    const survivabilityTrackHp = allTanksForCharts.map(tank => {
         if (!tank || !tank.stats || !tank.stats.SURVIVABILITY) return 0;
         return parseFloat(tank.stats.SURVIVABILITY["TRACK HIT POINTS"]) || 0;
     });
 
     // Mobility data
-    const mobilityForward = tanksToCompare.map(tank => {
+    const mobilityForward = allTanksForCharts.map(tank => {
         if (!tank || !tank.stats || !tank.stats.MOBILITY) return 0;
         return parseFloat(tank.stats.MOBILITY["FORWARD SPEED, KM/H"]) || 0;
     });
-    const mobilityReverse = tanksToCompare.map(tank => {
+    const mobilityReverse = allTanksForCharts.map(tank => {
         if (!tank || !tank.stats || !tank.stats.MOBILITY) return 0;
         return parseFloat(tank.stats.MOBILITY["REVERSE SPEED, KM/H"]) || 0;
     });
-    const mobilityTraverse = tanksToCompare.map(tank => {
+    const mobilityTraverse = allTanksForCharts.map(tank => {
         if (!tank || !tank.stats || !tank.stats.MOBILITY) return 0;
         return parseFloat(tank.stats.MOBILITY["TRAVERSE SPEED"]) || 0;
     });
 
     // Utility data
-    const utilityEnergy = tanksToCompare.map(tank => {
+    const utilityEnergy = allTanksForCharts.map(tank => {
         if (!tank || !tank.stats || !tank.stats.UTILITY) return 0;
         return parseFloat(tank.stats.UTILITY["ENERGY POINTS"]) || 0;
     });
-    const utilityRegen = tanksToCompare.map(tank => {
+    const utilityRegen = allTanksForCharts.map(tank => {
         if (!tank || !tank.stats || !tank.stats.UTILITY) return 0;
         return parseFloat(tank.stats.UTILITY["ENERGY REGENERATION"]) || 0;
     });
-    const utilitySpotting = tanksToCompare.map(tank => {
+    const utilitySpotting = allTanksForCharts.map(tank => {
         if (!tank || !tank.stats || !tank.stats.RECON) return 0;
         return parseFloat(tank.stats.RECON["SPOTTING RANGE, METERS"]) || 0;
     });
 
-    // Add current tank data
-    const currentFpStats = currentTank.stats.FIREPOWER;
-    const currentSurvStats = currentTank.stats.SURVIVABILITY;
-    const currentMobStats = currentTank.stats.MOBILITY;
-    const currentUtilStats = currentTank.stats.UTILITY;
-    const currentReconStats = currentTank.stats.RECON;
-
-    firepowerDamage.unshift(currentFpStats ? parseFloat(currentFpStats.DAMAGE) || 0 : 0);
-    firepowerReload.unshift(currentFpStats ? parseFloat(currentFpStats["RELOAD TIME"]) || 0 : 0);
-    firepowerAiming.unshift(currentFpStats ? parseFloat(currentFpStats["AIMING SPEED"]) || 0 : 0);
-
-    survivabilityHp.unshift(currentSurvStats ? parseFloat(currentSurvStats["HIT POINTS"]) || 0 : 0);
-    survivabilityCrewHp.unshift(currentSurvStats ? parseFloat(currentSurvStats["CREW HIT POINTS"]) || 0 : 0);
-    survivabilityTrackHp.unshift(currentSurvStats ? parseFloat(currentSurvStats["TRACK HIT POINTS"]) || 0 : 0);
-
-    mobilityForward.unshift(currentMobStats ? parseFloat(currentMobStats["FORWARD SPEED, KM/H"]) || 0 : 0);
-    mobilityReverse.unshift(currentMobStats ? parseFloat(currentMobStats["REVERSE SPEED, KM/H"]) || 0 : 0);
-    mobilityTraverse.unshift(currentMobStats ? parseFloat(currentMobStats["TRAVERSE SPEED"]) || 0 : 0);
-
-    utilityEnergy.unshift(currentUtilStats ? parseFloat(currentUtilStats["ENERGY POINTS"]) || 0 : 0);
-    utilityRegen.unshift(currentUtilStats ? parseFloat(currentUtilStats["ENERGY REGENERATION"]) || 0 : 0);
-    utilitySpotting.unshift(currentReconStats ? parseFloat(currentReconStats["SPOTTING RANGE, METERS"]) || 0 : 0);
-
     // Store datasets for each chart
     chartDatasets.firepower = [{
             label: 'Damage',
-            data: firepowerDamage
+            data: firepowerDamage,
+            tankOrder: originalTankOrder
         },
         {
             label: 'Reload Time',
-            data: firepowerReload
+            data: firepowerReload,
+            tankOrder: originalTankOrder
         },
         {
             label: 'Aiming Speed',
-            data: firepowerAiming
+            data: firepowerAiming,
+            tankOrder: originalTankOrder
         }
     ];
 
     chartDatasets.survivability = [{
             label: 'Tank Hit Points',
-            data: survivabilityHp
+            data: survivabilityHp,
+            tankOrder: originalTankOrder
         },
         {
             label: 'Crew Hit Points',
-            data: survivabilityCrewHp
+            data: survivabilityCrewHp,
+            tankOrder: originalTankOrder
         },
         {
             label: 'Track Hit Points',
-            data: survivabilityTrackHp
+            data: survivabilityTrackHp,
+            tankOrder: originalTankOrder
         }
     ];
 
     chartDatasets.mobility = [{
             label: 'Forward Speed',
-            data: mobilityForward
+            data: mobilityForward,
+            tankOrder: originalTankOrder
         },
         {
             label: 'Reverse Speed',
-            data: mobilityReverse
+            data: mobilityReverse,
+            tankOrder: originalTankOrder
         },
         {
             label: 'Traverse Speed',
-            data: mobilityTraverse
+            data: mobilityTraverse,
+            tankOrder: originalTankOrder
         }
     ];
 
     chartDatasets.utility = [{
             label: 'Energy Points',
-            data: utilityEnergy
+            data: utilityEnergy,
+            tankOrder: originalTankOrder
         },
         {
             label: 'Energy Regen',
-            data: utilityRegen
+            data: utilityRegen,
+            tankOrder: originalTankOrder
         },
         {
             label: 'Signal Range',
-            data: utilitySpotting
+            data: utilitySpotting,
+            tankOrder: originalTankOrder
         }
     ];
 
@@ -633,49 +640,13 @@ function updateSingleChart(chartType, statIndex) {
     }
 
     // Update the chart with just the selected stat
-    updateChart(chartId, chartName, [dataset], labels);
+    updateChart(chartId, chartName, [{
+        ...dataset,
+        tankOrder: chartDatasets[chartType][0].tankOrder
+    }], labels);
 
     // Update chart colors to match current theme
     updateChartColors();
-}
-
-function sortChartData(labels, datasets, currentTankIndex = 0) {
-    // If no datasets or empty data, return original
-    if (!datasets || datasets.length === 0 || !datasets[0].data || datasets[0].data.length === 0) {
-        return {
-            sortedLabels: labels,
-            sortedDatasets: datasets,
-            currentTankNewIndex: currentTankIndex
-        };
-    }
-
-    // Create array of objects with label and values
-    const data = labels.map((label, i) => ({
-        label,
-        // Use the first dataset's values for sorting
-        value: datasets[0].data[i],
-        isCurrentTank: i === currentTankIndex
-    }));
-
-    // Sort by the selected stat value
-    const sortedData = [...data].sort((a, b) => {
-        // Handle null/undefined values by putting them at the end
-        if (a.value == null) return 1;
-        if (b.value == null) return -1;
-        return a.value - b.value;
-    });
-
-    // Get the sorted indices
-    const sortedIndices = sortedData.map(item => data.findIndex(d => d.label === item.label));
-
-    return {
-        sortedLabels: sortedIndices.map(i => data[i].label),
-        sortedDatasets: datasets.map(dataset => ({
-            ...dataset,
-            data: sortedIndices.map(i => dataset.data[i])
-        })),
-        currentTankNewIndex: sortedIndices.indexOf(currentTankIndex)
-    };
 }
 
 function updateChart(chartId, chartName, datasets, labels) {
@@ -690,40 +661,79 @@ function updateChart(chartId, chartName, datasets, labels) {
         legendContainer.innerHTML = '';
     }
 
-    // Sort the data
-    const {
-        sortedLabels,
-        sortedDatasets,
-        currentTankNewIndex
-    } = sortChartData(labels, datasets);
+    // Get the original tank order from the first dataset
+    const originalTankOrder = datasets[0].tankOrder || [];
+
+    // Create an array of objects that maintain the relationship between labels and data
+    const dataWithLabels = originalTankOrder.map((tank, index) => ({
+        id: tank.id,
+        name: tank.name,
+        values: datasets.map(dataset => dataset.data[index])
+    }));
+
+    // Sort based on the first dataset's values (main sort key)
+    let sortedData = [...dataWithLabels];
+    if (datasets.length > 0 && datasets[0].data.length > 0) {
+        sortedData.sort((a, b) => {
+            // Current tank should always stay first
+            if (a.id === originalTankOrder[0].id) return -1;
+            if (b.id === originalTankOrder[0].id) return 1;
+
+            // Handle null/undefined values by putting them at the end
+            if (a.values[0] == null) return 1;
+            if (b.values[0] == null) return -1;
+            return a.values[0] - b.values[0];
+        });
+    }
+
+    // Get the sorted labels and datasets
+    const sortedLabels = sortedData.map(item => item.name);
+    const sortedDatasets = datasets.map(dataset => {
+        // Create a mapping from tank ID to data point
+        const idToData = {};
+        dataWithLabels.forEach((item, index) => {
+            idToData[item.id] = dataset.data[index];
+        });
+
+        // Create sorted data array based on the sorted data
+        return {
+            ...dataset,
+            data: sortedData.map(item => idToData[item.id])
+        };
+    });
+
+    // Find the current tank's new position after sorting
+    const currentTankNewIndex = sortedData.findIndex(item =>
+        item.id === originalTankOrder[0].id
+    );
 
     // Prepare datasets with different colors
     const chartDatasets = sortedDatasets.map((dataset, index) => ({
         label: dataset.label,
         data: dataset.data,
-        backgroundColor: sortedLabels.map((_, labelIndex) =>
+        backgroundColor: sortedData.map((_, labelIndex) =>
             labelIndex === currentTankNewIndex ?
             'rgba(75, 192, 192, 0.7)' : // Current tank - teal
             chartColors[index % chartColors.length]
         ),
-        borderColor: sortedLabels.map((_, labelIndex) =>
+        borderColor: sortedData.map((_, labelIndex) =>
             labelIndex === currentTankNewIndex ?
             'rgba(75, 192, 192, 1)' : // Current tank - teal border
             chartBorderColors[index % chartBorderColors.length]
         ),
-        borderWidth: sortedLabels.map((_, labelIndex) =>
+        borderWidth: sortedData.map((_, labelIndex) =>
             labelIndex === currentTankNewIndex ? 2 : 1 // Thicker border for current tank
         )
     }));
 
     // Create legend items
     if (legendContainer) {
-        sortedLabels.forEach((label, index) => {
+        sortedData.forEach((item, index) => {
             const legendItem = document.createElement('div');
             legendItem.className = 'chart-legend-item';
 
             // Add special styling for current tank
-            if (index === currentTankNewIndex) {
+            if (item.id === originalTankOrder[0].id) {
                 legendItem.classList.add('current-tank');
             }
 
@@ -734,15 +744,15 @@ function updateChart(chartId, chartName, datasets, labels) {
                 chartColors[0];
 
             // Add border to current tank legend color box
-            if (index === currentTankNewIndex) {
+            if (item.id === originalTankOrder[0].id) {
                 colorBox.style.border = '2px solid rgba(75, 192, 192, 1)';
             }
 
             const labelSpan = document.createElement('span');
-            labelSpan.textContent = label || 'Unknown';
+            labelSpan.textContent = item.name || 'Unknown';
 
             // Add indicator for current tank
-            if (index === currentTankNewIndex) {
+            if (item.id === originalTankOrder[0].id) {
                 labelSpan.textContent += ' (Current)';
                 labelSpan.style.fontWeight = 'bold';
             }
