@@ -47,6 +47,14 @@
 	font-weight: bold;
 }
 
+.brand-logo-img {
+	height: 2rem;
+	width: auto;
+	margin-right: 0.75rem;
+	margin-left: -1.90rem;
+	transition: all var(--transition-speed);
+}
+
 .beta-tag {
 	background-color: var(--accent-color);
 	color: white;
@@ -74,6 +82,22 @@
 	font-size: 1.2rem;
 	cursor: pointer;
 	padding: 0.25rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+	.brand-logo-img {
+		height: 0rem;
+	}
+
+	.brand-logo {
+		font-size: 0rem;
+	}
+
+	.beta-tag {
+		font-size: 0rem;
+		padding: 0rem;
+	}
 }
 
 /* Responsive adjustments */
