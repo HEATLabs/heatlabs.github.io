@@ -25,6 +25,7 @@
 	width: 100%;
 	justify-content: space-between;
 	align-items: center;
+	position: relative;
 }
 
 .brand-logo {
@@ -34,10 +35,13 @@
 	font-weight: bold;
 	color: var(--text-primary);
 	margin-right: auto;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .brand-logo i {
-	margin-right: -2rem;
+	margin-right: 0.5rem;
 	font-size: 1.2em;
 }
 
@@ -78,6 +82,12 @@
 	}
 
 	.brand-logo {
+		position: static;
+		transform: none;
 		margin-right: 0;
+	}
+
+	.brand-logo i {
+		margin-right: -2rem;
 	}
 }
