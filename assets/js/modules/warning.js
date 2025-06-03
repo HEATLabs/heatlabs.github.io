@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p class="warning-modal-subtitle">Please read this important notice</p>
             </div>
             <div class="warning-modal-content">
-                <p>Welcome to PCWStats! This website is currently in active development and some features may not be fully functional yet.</p>
+                <p class="text-center">Welcome to PCWStats! This website is currently in active development and some features may not be fully functional yet.</p>
 
                 <ul class="warning-modal-list">
                     <li>
@@ -40,8 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span>Firefox users are encouraged to keep hardware acceleration enabled</span>
                     </li>
                 </ul>
-
-                <p><i class="fas fa-hard-hat"></i> We're working hard to improve the site and appreciate your patience. Your feedback is welcome!</p>
             </div>
             <button class="warning-modal-button" id="warningAcknowledge">
                 <i class="fas fa-check-circle mr-2"></i>I Understand
