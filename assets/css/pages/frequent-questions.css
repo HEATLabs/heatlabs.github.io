@@ -1,0 +1,140 @@
+/* FAQ Content */
+.faq-content {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding-bottom: 3rem;
+}
+
+/* FAQ Categories */
+.faq-category-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.5rem;
+	margin-bottom: 2rem;
+}
+
+.faq-tab {
+	padding: 0.5rem 1rem;
+	border-radius: 0.5rem;
+	background-color: var(--card-bg);
+	border: 1px solid var(--border-color);
+	color: var(--text-secondary);
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.faq-tab:hover {
+	color: var(--text-primary);
+	border-color: var(--accent-color);
+}
+
+.faq-tab.active {
+	background-color: var(--accent-color);
+	border-color: var(--accent-color);
+	color: white;
+}
+
+/* FAQ List */
+.faq-category {
+	display: none;
+	animation: fadeIn 0.3s ease;
+}
+
+.faq-category.active {
+	display: block;
+}
+
+.faq-item {
+	margin-bottom: 1.5rem;
+	border-radius: 0.5rem;
+	border: 1px solid var(--border-color);
+	background-color: var(--card-bg);
+	box-shadow: var(--shadow);
+	padding: 1.5rem;
+	transition: all 0.2s ease;
+}
+
+.faq-item:hover {
+	box-shadow: var(--shadow-hover);
+}
+
+.faq-question {
+	color: var(--text-primary);
+	font-size: 1.1rem;
+	font-weight: 600;
+	margin-bottom: 0.75rem;
+	display: flex;
+	align-items: center;
+}
+
+.faq-question i {
+	margin-right: 0.75rem;
+	color: var(--accent-color);
+}
+
+.faq-answer {
+	color: var(--text-secondary);
+	line-height: 1.7;
+}
+
+.faq-answer p,
+.faq-answer ul,
+.faq-answer ol {
+	margin-bottom: 1rem;
+}
+
+.faq-answer ul,
+.faq-answer ol {
+	padding-left: 1.5rem;
+}
+
+.faq-answer li {
+	margin-bottom: 0.5rem;
+}
+
+.faq-answer a {
+	color: var(--accent-color);
+	text-decoration: none;
+	font-weight: 500;
+}
+
+.faq-answer a:hover {
+	text-decoration: underline;
+}
+
+/* Animation */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+	.faq-question {
+		font-size: 1rem;
+	}
+
+	.faq-item {
+		padding: 1rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.faq-category-tabs {
+		gap: 0.25rem;
+	}
+
+	.faq-tab {
+		padding: 0.5rem;
+		font-size: 0.9rem;
+	}
+}
