@@ -4,8 +4,7 @@
 	backdrop-filter: blur(10px);
 	position: fixed;
 	width: 100%;
-	z-index: 100;
-	border-bottom: 1px solid var(--border-color);
+	z-index: 1000;
 	transition: all var(--transition-speed);
 	box-shadow: var(--shadow);
 }
