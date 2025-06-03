@@ -1,12 +1,11 @@
 /* Header/Navbar */
 .navbar {
 	background-color: var(--bg-quaternary);
-	backdrop-filter: blur(100px);
 	position: fixed;
 	width: 100%;
 	z-index: 1000;
 	transition: all var(--transition-speed);
-	box-shadow: var(--shadow);
+	box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
 }
 
 .navbar.scrolled {
