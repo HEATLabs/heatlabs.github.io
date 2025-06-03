@@ -45,7 +45,7 @@ h2::after {
 /* Features Grid */
 .features-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 2rem;
 	margin-top: 2rem;
 }
@@ -91,10 +91,55 @@ h2::after {
 	line-height: 1.6;
 }
 
+/* FAQ Section */
+.faq-container {
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	padding: 2rem;
+	box-shadow: var(--shadow);
+	border: 1px solid var(--border-color);
+	margin-top: 2rem;
+}
+
+.faq-categories {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 1.5rem;
+	margin-top: 2rem;
+}
+
+.faq-category {
+	text-align: center;
+	padding: 1.5rem;
+	border-radius: 0.5rem;
+	background-color: var(--bg-secondary);
+}
+
+.faq-category i {
+	font-size: 2rem;
+	color: var(--accent-color);
+	margin-bottom: 1rem;
+	display: block;
+}
+
+.faq-category h3 {
+	font-size: 1.1rem;
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+	color: var(--text-primary);
+}
+
+.faq-category p {
+	font-size: 0.9rem;
+	color: var(--text-secondary);
+	margin-bottom: 0;
+	line-height: 1.5;
+}
+
 /* Team Grid */
 .team-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 2rem;
 	margin-top: 2rem;
 }
@@ -170,7 +215,7 @@ h2::after {
 /* Action Boxes Grid */
 .action-boxes-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 	gap: 1.5rem;
 	margin-top: 2rem;
 }
@@ -225,7 +270,7 @@ h2::after {
 /* Responsive adjustments */
 @media (max-width: 1024px) {
 	.action-boxes-grid {
-		grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 	}
 }
 
@@ -233,14 +278,24 @@ h2::after {
 	.action-boxes-grid {
 		grid-template-columns: repeat(2, 1fr));
 	}
+
+	.faq-categories {
+		grid-template-columns: repeat(2, 1fr));
+	}
 }
 
 @media (max-width: 480px) {
-	.action-boxes-grid {
+
+	.action-boxes-grid,
+	.faq-categories {
 		grid-template-columns: 1fr;
 	}
 
 	.action-box {
+		padding: 1.25rem;
+	}
+
+	.faq-category {
 		padding: 1.25rem;
 	}
 }
@@ -307,6 +362,10 @@ h2::after {
 	}
 
 	.about-cta {
+		padding: 1.5rem;
+	}
+
+	.faq-container {
 		padding: 1.5rem;
 	}
 }
