@@ -1,7 +1,7 @@
 /* Header/Navbar */
 .navbar {
 	background-color: var(--header-bg);
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(100px);
 	position: fixed;
 	width: 100%;
 	z-index: 1000;
@@ -13,16 +13,31 @@
 	box-shadow: var(--shadow);
 }
 
+.navbar .container {
+	width: 100%;
+	max-width: 100%;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.navbar .flex {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .brand-logo {
 	display: flex;
 	align-items: center;
 	font-size: 1.5rem;
 	font-weight: bold;
 	color: var(--text-primary);
+	margin-right: auto;
 }
 
 .brand-logo i {
-	margin-right: 0.5rem;
+	margin-right: -1.5rem;
 	font-size: 1.2em;
 }
 
@@ -34,4 +49,35 @@
 	border-radius: 1rem;
 	margin-left: 0.5rem;
 	font-weight: bold;
+}
+
+/* Right side buttons container */
+.navbar-actions {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-left: auto;
+}
+
+/* Search and theme toggle buttons */
+.search-button,
+.theme-toggle-mobile {
+	background: transparent;
+	border: none;
+	color: var(--text-primary);
+	font-size: 1.2rem;
+	cursor: pointer;
+	padding: 0.25rem;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+	.navbar .container {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
+
+	.brand-logo {
+		margin-right: 0;
+	}
 }
