@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // API endpoints
     const STATS_API_URL = 'https://pcwstats-pixel-api.vercel.app/api/stats';
     const PIXEL_MAPPING_URL = 'https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tracking-pixel.json';
+    const GSC_INDEX_URL = 'https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/gsc-index.json';
 
     // DOM elements
     const totalViewsEl = document.getElementById('totalViews');
@@ -12,6 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const dailyViewsChartEl = document.getElementById('dailyViewsChart');
     const topPagesChartEl = document.getElementById('topPagesChart');
     const viewsByTimeChartEl = document.getElementById('viewsByTimeChart');
+    const indexedPagesChartEl = document.getElementById('indexedPagesChart');
+    const viewsByCategoryChartEl = document.getElementById('viewsByCategoryChart');
     const statsTableBody = document.getElementById('statsTableBody');
     const pageSearch = document.getElementById('pageSearch');
     const sortBy = document.getElementById('sortBy');
@@ -41,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Global variables
     let statsData = {};
     let pixelMapping = {};
+    let gscIndexData = {};
     let processedData = [];
     let currentPage = 1;
     const itemsPerPage = 10;
@@ -51,17 +55,19 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             showLoading();
 
-            const [statsResponse, mappingResponse] = await Promise.all([
+            const [statsResponse, mappingResponse, gscResponse] = await Promise.all([
                 fetch(STATS_API_URL),
-                fetch(PIXEL_MAPPING_URL)
+                fetch(PIXEL_MAPPING_URL),
+                fetch(GSC_INDEX_URL)
             ]);
 
-            if (!statsResponse.ok || !mappingResponse.ok) {
+            if (!statsResponse.ok || !mappingResponse.ok || !gscResponse.ok) {
                 throw new Error('Failed to fetch data');
             }
 
             statsData = await statsResponse.json();
             pixelMapping = await mappingResponse.json();
+            gscIndexData = await gscResponse.json();
 
             processData();
             updateSummaryCards();
@@ -87,6 +93,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 const last7DaysViews = calculateLastNDaysViews(pixelStats.dailyViews, 7);
                 const last30DaysViews = calculateLastNDaysViews(pixelStats.dailyViews, 30);
 
+                // Determine if page is a main page
+                const isMainPage = [
+                    'website-statistics.js',
+                    'tournaments.html',
+                    'tanks.html',
+                    'tankopedia.html',
+                    'support-us.html',
+                    'strategy-planner.html',
+                    'roulette.html',
+                    'news.html',
+                    'maxwell.html',
+                    'maps.html',
+                    'legal.html',
+                    'index.html',
+                    'guides.html',
+                    'get-involved.html',
+                    'game-data.html',
+                    'devsonly.html',
+                    'credits.html',
+                    'contact-us.html',
+                    'check-compare.html',
+                    'changelog.html',
+                    'builds.html',
+                    'bug-hunting.html',
+                    'bored-developers.html',
+                    'blog.html',
+                    'alpha-3-playtest.html',
+                    'about-us.html',
+                    '404.html',
+                    'website-statistics.html'
+                ].some(mainPage => pageInfo.html_file.includes(mainPage));
+
                 processedData.push({
                     pixelFilename,
                     pageName: pageInfo.page_name,
@@ -96,12 +134,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     last7DaysViews,
                     last30DaysViews,
                     dailyViews: pixelStats.dailyViews,
-                    category: getCategoryFromPath(pageInfo.html_file)
+                    category: isMainPage ? 'Main Pages' : getCategoryFromPath(pageInfo.html_file),
+                    isIndexed: isPageIndexed(pageInfo.html_file)
                 });
             }
         }
 
         filteredData = [...processedData];
+    }
+
+    function isPageIndexed(htmlFile) {
+        if (!gscIndexData?.data?.pages) return false;
+
+        const pageUrl = `https://pcwstats.github.io/${htmlFile}`;
+        return gscIndexData.data.pages.some(page =>
+            page.url === pageUrl &&
+            page.indexing_state === 'INDEXED' &&
+            page.coverage_state === 'VALID'
+        );
     }
 
     function calculateLastNDaysViews(dailyViews, days) {
@@ -159,6 +209,8 @@ document.addEventListener('DOMContentLoaded', function() {
         renderDailyViewsChart();
         renderTopPagesChart();
         renderViewsByTimeChart();
+        renderIndexedPagesChart();
+        renderViewsByCategoryChart();
     }
 
     function renderDailyViewsChart() {
@@ -288,6 +340,105 @@ document.addEventListener('DOMContentLoaded', function() {
                 datasets: [{
                     label: 'Views',
                     data: viewsData,
+                    backgroundColor: 'rgba(153, 102, 255, 0.7)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            precision: 0
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function renderIndexedPagesChart() {
+        const indexedCount = processedData.filter(page => page.isIndexed).length;
+        const notIndexedCount = processedData.filter(page => !page.isIndexed).length;
+
+        new Chart(indexedPagesChartEl, {
+            type: 'pie',
+            data: {
+                labels: ['Indexed & Tracked', 'Tracked Not Indexed'],
+                datasets: [{
+                    data: [indexedCount, notIndexedCount],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 99, 132, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.raw || 0;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = Math.round((value / total) * 100);
+                                return `${label}: ${value} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function renderViewsByCategoryChart() {
+        const categories = {};
+        const today = new Date();
+
+        // Calculate views by category for last 30 days
+        processedData.forEach(page => {
+            if (!categories[page.category]) {
+                categories[page.category] = 0;
+            }
+
+            // Sum views for last 30 days
+            for (let i = 0; i < 30; i++) {
+                const date = new Date(today);
+                date.setDate(date.getDate() - i);
+                const dateStr = date.toISOString().split('T')[0];
+                categories[page.category] += page.dailyViews[dateStr] || 0;
+            }
+        });
+
+        const sortedCategories = Object.entries(categories)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 10); // Limit to top 10 categories
+
+        new Chart(viewsByCategoryChartEl, {
+            type: 'bar',
+            data: {
+                labels: sortedCategories.map(item => item[0]),
+                datasets: [{
+                    label: 'Views',
+                    data: sortedCategories.map(item => item[1]),
                     backgroundColor: 'rgba(153, 102, 255, 0.7)',
                     borderColor: 'rgba(153, 102, 255, 1)',
                     borderWidth: 1
@@ -444,6 +595,10 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="modal-stat-item">
         <div class="modal-stat-label">Page URL</div>
         <div class="modal-stat-value" style="word-break: break-all;">${page.htmlFile}</div>
+      </div>
+      <div class="modal-stat-item">
+        <div class="modal-stat-label">Indexed Status</div>
+        <div class="modal-stat-value">${page.isIndexed ? 'Indexed' : 'Not Indexed'}</div>
       </div>
     `;
 

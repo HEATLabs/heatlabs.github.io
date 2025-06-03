@@ -103,7 +103,7 @@
 .chart-container {
 	background-color: var(--card-bg);
 	border-radius: 0.75rem;
-	padding: 1.5rem;
+	padding: 1rem;
 	box-shadow: var(--shadow);
 	border: 1px solid var(--border-color);
 	height: 400px;
@@ -116,7 +116,7 @@
 	width: 100% !important;
 	height: calc(100% - 40px) !important;
 	min-height: 300px;
-	max-height: 360px;
+	max-height: 350px;
 }
 
 .chart-container h3 {
