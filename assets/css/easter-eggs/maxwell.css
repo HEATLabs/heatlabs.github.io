@@ -18,6 +18,46 @@
 	border: 1px solid var(--border-color);
 }
 
+.maxwell-gif {
+	transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.maxwell-gif.playing {
+	animation: pulse 1.5s infinite;
+	filter: drop-shadow(0 0 8px rgba(255, 255, 0, 0.7));
+}
+
+.maxwell-gif.needs-interaction {
+	filter: drop-shadow(0 0 8px rgba(255, 165, 0, 0.7));
+	animation: bounce 2s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.05);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes bounce {
+
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
 .maxwell-code {
 	font-size: 8rem;
 	font-weight: bold;
