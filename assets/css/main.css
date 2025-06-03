@@ -100,6 +100,8 @@ html {
 	--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
 	--ongoing-accent-color: #ff8300;
 	--ended-accent-color: #ff8300;
+	--cancelled-accent-color: #ed3945;
+	--dev-accent-color: #ae00ff;
 }
 
 /* Font Setup */
