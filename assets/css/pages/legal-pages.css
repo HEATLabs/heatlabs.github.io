@@ -11,6 +11,17 @@
 	border: 1px solid var(--border-color);
 }
 
+.legal-content a {
+	color: var(--accent-color);
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.legal-content a:hover {
+	color: var(--accent-color-hover);
+	text-decoration: underline;
+}
+
 .legal-content h2 {
 	color: var(--accent-color);
 	margin-top: 2rem;
