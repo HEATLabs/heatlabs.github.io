@@ -20,10 +20,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const lockoutTime = parseInt(darkModeLockout);
         if (Date.now() < lockoutTime) {
             isLocked = true;
-            forceLightMode();
+            forceDarkMode();
         } else {
             localStorage.removeItem('darkModeLockout');
         }
+    }
+
+    // Initialize theme - set dark mode as default
+    if (!localStorage.getItem('theme')) {
+        html.classList.add('dark-theme');
+        localStorage.setItem('theme', 'dark-theme');
+    } else {
+        const savedTheme = localStorage.getItem('theme');
+        html.classList.add(savedTheme);
     }
 
     // Initialize theme icons
@@ -76,12 +85,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Force light mode and update icon
-    function forceLightMode() {
-        html.classList.remove('dark-theme');
-        html.classList.add('light-theme');
-        localStorage.setItem('theme', 'light-theme');
-        updateThemeIcon(false);
+    // Force dark mode and update icon
+    function forceDarkMode() {
+        html.classList.remove('light-theme');
+        html.classList.add('dark-theme');
+        localStorage.setItem('theme', 'dark-theme');
+        updateThemeIcon(true);
         updateChartColors();
     }
 
