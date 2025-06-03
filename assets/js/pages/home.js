@@ -40,7 +40,7 @@ function calculateDaysAndCoffee() {
     const today = new Date();
     const diffTime = today - creationDate;
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    const coffeeCups = diffDays * 9; // 9 cups per day
+    const coffeeCups = diffDays * 11; // 11 cups per day
 
     // Animate the days counter
     const daysCounter = document.getElementById('days-since-creation');
