@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     // API endpoints
     const STATS_API_URL = 'https://pcwstats-pixel-api.vercel.app/api/stats';
-    const PIXEL_MAPPING_URL = 'https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tracking-pixel.json';
-    const GSC_INDEX_URL = 'https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/gsc-index.json';
+    const PIXEL_MAPPING_URL = 'https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tracking-pixel.json';
+    const GSC_INDEX_URL = 'https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/gsc-index.json';
 
     // DOM elements
     const totalViewsEl = document.getElementById('totalViews');
