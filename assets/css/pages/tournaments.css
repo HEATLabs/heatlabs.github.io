@@ -97,12 +97,38 @@
 	top: 0.5rem;
 	right: 0.5rem;
 	background-color: var(--bg-dark);
-	color: var(--ongoing-accent-color);
+	color: var(--ended-accent-color);
 	padding: 0.25rem 0.75rem;
 	border-radius: 1rem;
 	font-size: 0.75rem;
 	font-weight: bold;
-	border: 1px solid var(--ongoing-accent-color);
+	border: 1px solid var(--ended-accent-color);
+}
+
+.cancelled-tournament-tag {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	background-color: var(--bg-dark);
+	color: var(--cancelled-accent-color);
+	padding: 0.25rem 0.75rem;
+	border-radius: 1rem;
+	font-size: 0.75rem;
+	font-weight: bold;
+	border: 1px solid var(--cancelled-accent-color);
+}
+
+.dev-tournament-tag {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	background-color: var(--bg-dark);
+	color: var(--dev-accent-color);
+	padding: 0.25rem 0.75rem;
+	border-radius: 1rem;
+	font-size: 0.75rem;
+	font-weight: bold;
+	border: 1px solid var(--dev-accent-color);
 }
 
 .tournament-info {
