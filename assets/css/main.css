@@ -81,11 +81,13 @@ html {
 	--bg-dark: #121212;
 	--bg-dark-secondary: #1e1e1e;
 	--bg-dark-tertiary: #2d2d2d;
+	--bg-dark-quaternary: #0e0e0e;
 	--text-dark: #e0e0e0;
 	--text-dark-secondary: #b0b0b0;
 	--bg-light: #f8f9fa;
 	--bg-light-secondary: #ffffff;
 	--bg-light-tertiary: #e9ecef;
+	--bg-light-quaternary: #e9ecef;
 	--text-light: #333;
 	--text-light-secondary: #666;
 	--shadow-light: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -239,6 +241,7 @@ body {
 	--bg-primary: var(--bg-light);
 	--bg-secondary: var(--bg-light-secondary);
 	--bg-tertiary: var(--bg-light-tertiary);
+	--bg-quaternary: var(--bg-light-quaternary);
 	--text-primary: var(--text-light);
 	--text-secondary: var(--text-light-secondary);
 	--card-bg: white;
@@ -251,6 +254,7 @@ body {
 	--bg-primary: var(--bg-dark);
 	--bg-secondary: var(--bg-dark-secondary);
 	--bg-tertiary: var(--bg-dark-tertiary);
+	--bg-quaternary: var(--bg-dark-quaternary);
 	--text-primary: var(--text-dark);
 	--text-secondary: var(--text-dark-secondary);
 	--card-bg: var(--bg-dark-secondary);

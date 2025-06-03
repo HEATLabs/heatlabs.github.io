@@ -1,6 +1,6 @@
 /* Header/Navbar */
 .navbar {
-	background-color: var(--header-bg);
+	background-color: var(--bg-quaternary);
 	backdrop-filter: blur(100px);
 	position: fixed;
 	width: 100%;
