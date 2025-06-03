@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentResults = []; // Track current search results
 
     // Load search data
-    fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/search-keywords.json')
+    fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/search-keywords.json')
         .then(response => response.json())
         .then(data => {
             searchData = data;
