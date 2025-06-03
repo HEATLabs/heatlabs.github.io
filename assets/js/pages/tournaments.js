@@ -167,6 +167,8 @@ function updateTournamentsDisplay() {
 async function fetchTournamentData() {
     try {
         const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tournaments.json');
+        // Uncomment line below to use local JSON
+        // const response = await fetch('../Website-Configs/tournaments.json');
         if (!response.ok) {
             throw new Error('Failed to load tournament data');
         }
@@ -224,9 +226,17 @@ function createTournamentCard(tournament) {
     card.dataset.type = tournament.type.toLowerCase();
     card.dataset.mode = tournament.mode;
 
-    const tournamentTag = tournament.type.toLowerCase() === 'ongoing' ? 'ongoing' : 'ended';
+    const tournamentTag = (() => {
+        switch (tournament.type?.toLowerCase()) {
+            case 'ended': return 'ended';
+            case 'upcoming': return 'upcoming';
+            case 'dev': return 'dev';
+            case 'cancelled': return 'cancelled';
+            default: return 'ongoing';
+        }
+    })();
     const tournamentTypeHTML = tournament.type && tournament.type.trim() !== '' ?
-        `<div class="${tournamentTag}-tournament-tag">${tournament.type}</div>` : '';
+        `<div class="${tournamentTag}-tournament-tag">${tournament.type}</div>` : '<div class="ongoing-tournament-tag">Ongoing</div>';
 
     card.innerHTML = `
         <div class="tournament-img-container">
