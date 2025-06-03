@@ -22,6 +22,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextPageBtn = document.getElementById('nextPage');
     const pageInfo = document.getElementById('pageInfo');
 
+    // Loading overlay
+    const loadingOverlay = document.createElement('div');
+    loadingOverlay.className = 'loading-overlay';
+    loadingOverlay.innerHTML = `
+        <div class="loader-spinner"></div>
+        <div class="loading-text">Loading Website Statistics</div>
+        <div class="loading-subtext">Fetching and processing data...</div>
+        <div class="loading-progress">
+            <div class="loading-progress-bar" id="loadingProgressBar"></div>
+        </div>
+    `;
+    document.body.appendChild(loadingOverlay);
+    const loadingProgressBar = document.getElementById('loadingProgressBar');
+
     // Modal elements
     const modalOverlay = document.createElement('div');
     modalOverlay.className = 'modal-overlay';
@@ -54,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function init() {
         try {
             showLoading();
+            updateLoadingProgress(20);
 
             const [statsResponse, mappingResponse, gscResponse] = await Promise.all([
                 fetch(STATS_API_URL),
@@ -65,19 +80,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error('Failed to fetch data');
             }
 
+            updateLoadingProgress(40);
             statsData = await statsResponse.json();
+            updateLoadingProgress(50);
             pixelMapping = await mappingResponse.json();
+            updateLoadingProgress(60);
             gscIndexData = await gscResponse.json();
+            updateLoadingProgress(70);
 
             processData();
+            updateLoadingProgress(80);
             updateSummaryCards();
+            updateLoadingProgress(85);
             renderCharts();
+            updateLoadingProgress(95);
             renderTable();
+            updateLoadingProgress(100);
             setupEventListeners();
+
+            // Small delay before hiding to ensure everything is rendered
+            setTimeout(hideLoading, 300);
         } catch (error) {
             console.error('Error loading data:', error);
             showError();
-        } finally {
             hideLoading();
         }
     }
@@ -616,11 +641,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showLoading() {
-        console.log('Loading data...');
+        loadingOverlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        updateLoadingProgress(10);
     }
 
     function hideLoading() {
-        console.log('Data loaded');
+        loadingOverlay.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    function updateLoadingProgress(percent) {
+        loadingProgressBar.style.width = `${percent}%`;
     }
 
     function showError() {
