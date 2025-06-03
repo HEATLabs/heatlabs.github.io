@@ -2,44 +2,35 @@
 .sidebar {
 	position: fixed;
 	top: 0;
-	left: -100%;
-	width: var(--sidebar-width);
+	left: 0;
+	width: var(--sidebar-collapsed-width, 4rem);
 	height: 100vh;
 	background-color: var(--bg-primary);
-	z-index: 1000;
+	z-index: 999;
 	transition: all var(--transition-speed) ease;
 	box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
 	display: flex;
 	flex-direction: column;
 	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.sidebar:hover {
+	width: var(--sidebar-width);
 }
 
 .sidebar.open {
 	left: 0;
-}
-
-.sidebar-overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	z-index: 999;
-	opacity: 0;
-	visibility: hidden;
-	transition: opacity var(--transition-speed), visibility var(--transition-speed);
-	backdrop-filter: blur(2px);
-}
-
-.sidebar-overlay.open {
-	opacity: 1;
-	visibility: visible;
+	width: var(--sidebar-width);
 }
 
 .sidebar-header {
 	padding: 1rem;
-	border-bottom: 1px solid var(--border-color);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 4.2rem;
+	white-space: nowrap;
 }
 
 .sidebar-close-btn {
@@ -49,6 +40,14 @@
 	font-size: 1.2rem;
 	cursor: pointer;
 	transition: color var(--transition-speed);
+	opacity: 0;
+	visibility: hidden;
+}
+
+.sidebar:hover .sidebar-close-btn,
+.sidebar.open .sidebar-close-btn {
+	opacity: 1;
+	visibility: visible;
 }
 
 .sidebar-close-btn:hover {
@@ -64,17 +63,27 @@
 	border-radius: 0.5rem;
 	margin: 0 0.5rem;
 	transition: all var(--transition-speed);
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 .sidebar-link i {
-	width: 1.5rem;
+	width: 1rem;
 	text-align: center;
 	margin-right: 0.75rem;
 	color: var(--text-secondary);
+	flex-shrink: 0;
 }
 
 .sidebar-link span {
 	flex-grow: 1;
+	opacity: 0;
+	transition: opacity var(--transition-speed);
+}
+
+.sidebar:hover .sidebar-link span,
+.sidebar.open .sidebar-link span {
+	opacity: 1;
 }
 
 .sidebar-link:hover {
@@ -90,6 +99,82 @@
 	background-color: var(--accent-color-light);
 	color: var(--accent-color);
 	font-weight: 600;
+}
+
+/* WIP link indicator */
+.sidebar-link.wip::after {
+	content: "WIP";
+	display: inline-block;
+	background-color: var(--accent-color-light);
+	color: var(--accent-color);
+	font-size: 0.7rem;
+	padding: 0.15rem 0.4rem;
+	border-radius: 0.25rem;
+	margin-left: 0.5rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	opacity: 0;
+	transition: opacity var(--transition-speed);
+}
+
+.sidebar:hover .sidebar-link.wip::after,
+.sidebar.open .sidebar-link.wip::after {
+	opacity: 1;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+	.sidebar {
+		left: -100%;
+		width: var(--sidebar-width);
+	}
+
+	.sidebar:hover {
+		width: var(--sidebar-width);
+	}
+
+	.sidebar.open {
+		left: 0;
+	}
+
+	.sidebar-close-btn {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.sidebar-link span {
+		opacity: 1;
+	}
+
+	.sidebar-link.wip::after {
+		opacity: 1;
+	}
+}
+
+/* Sidebar overlay - mobile only */
+.sidebar-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 999;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity var(--transition-speed), visibility var(--transition-speed);
+	backdrop-filter: blur(2px);
+}
+
+@media (min-width: 769px) {
+	.sidebar-overlay {
+		display: none;
+	}
+}
+
+.sidebar-overlay.open {
+	opacity: 1;
+	visibility: visible;
 }
 
 /* Hamburger Menu */
@@ -114,11 +199,11 @@
 	background-color: var(--text-primary);
 	border-radius: 3px;
 	transition: all var(--transition-speed);
-	transform-origin: left center;
+	transform-origin: center center;
 }
 
 .hamburger-menu.open span:nth-child(1) {
-	transform: rotate(45deg);
+	transform: rotate(45deg) translate(6px, 6px);
 }
 
 .hamburger-menu.open span:nth-child(2) {
@@ -126,7 +211,13 @@
 }
 
 .hamburger-menu.open span:nth-child(3) {
-	transform: rotate(-45deg);
+	transform: rotate(-45deg) translate(6px, -6px);
+}
+
+@media (min-width: 769px) {
+	.hamburger-menu {
+		display: none;
+	}
 }
 
 /* WIP Modal */
@@ -201,18 +292,4 @@
 
 .wip-modal-close:hover {
 	background-color: var(--accent-color-hover);
-}
-
-/* WIP link indicator */
-.sidebar-link.wip::after {
-	content: "WIP";
-	display: inline-block;
-	background-color: var(--accent-color-light);
-	color: var(--accent-color);
-	font-size: 0.7rem;
-	padding: 0.15rem 0.4rem;
-	border-radius: 0.25rem;
-	margin-left: 0.5rem;
-	font-weight: bold;
-	text-transform: uppercase;
 }

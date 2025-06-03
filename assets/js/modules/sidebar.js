@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebarOverlay');
 
+    // Check if mobile view
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
     // Track sidebar state
     let isSidebarOpen = false;
 
@@ -123,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Click handlers for sidebar
-    if (hamburgerBtn) {
+    if (hamburgerBtn && isMobile) {
         hamburgerBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             openSidebar();
@@ -137,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    if (overlay) {
+    if (overlay && isMobile) {
         overlay.addEventListener('click', closeSidebar);
     }
 
@@ -189,15 +192,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Close sidebar when clicking outside
-    document.addEventListener('click', function(e) {
-        if (isSidebarOpen && sidebar && !sidebar.contains(e.target)) {
-            closeSidebar();
-        }
-    });
+    if (isMobile) {
+        document.addEventListener('click', function(e) {
+            if (isSidebarOpen && sidebar && !sidebar.contains(e.target)) {
+                closeSidebar();
+            }
+        });
+    }
 
     // Close modals on escape key press
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && isSidebarOpen) {
+        if (e.key === 'Escape' && isSidebarOpen && isMobile) {
             closeSidebar();
         }
         if (e.key === 'Escape' && wipModalOverlay.classList.contains('open')) {
@@ -232,7 +237,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
             sidebarLinks.forEach(l => l.classList.remove('active'));
             this.classList.add('active');
-            closeSidebar();
+
+            // Only close sidebar on mobile
+            if (isMobile) {
+                closeSidebar();
+            }
         });
     });
+
+    // Handle window resize
+    function handleResize() {
+        const newIsMobile = window.matchMedia('(max-width: 768px)').matches;
+
+        if (newIsMobile !== isMobile) {
+            // Viewport changed between mobile and desktop
+            if (newIsMobile) {
+                // Changed to mobile view
+                sidebar.classList.remove('open');
+                overlay.classList.remove('open');
+                if (hamburgerBtn) hamburgerBtn.classList.remove('open');
+                document.body.style.overflow = '';
+                isSidebarOpen = false;
+            } else {
+                // Changed to desktop view
+                sidebar.classList.remove('open');
+                overlay.classList.remove('open');
+                if (hamburgerBtn) hamburgerBtn.classList.remove('open');
+                document.body.style.overflow = '';
+                isSidebarOpen = false;
+            }
+        }
+    }
+
+    window.addEventListener('resize', handleResize);
 });
