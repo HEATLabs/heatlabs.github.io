@@ -12,6 +12,15 @@
 	padding-top: 60px;
 }
 
+.hero-content {
+	position: relative;
+	z-index: 2;
+	max-width: 1200px;
+	width: 100%;
+	padding: 2rem;
+	animation: fadeInUp 1s ease-out;
+}
+
 .hero .hero-content {
 	max-width: 800px;
 	padding: 2rem;
@@ -52,13 +61,150 @@
 }
 
 .home-hero h1 {
-	font-size: 3rem;
+	font-size: 4.5rem;
 	font-weight: bold;
 	margin-bottom: 1.5rem;
+	background: var(--accent-color);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hero-subtitle {
+	font-size: 1.5rem;
+	max-width: 800px;
+	margin: 0 auto 3rem;
+	color: rgba(255, 255, 255, 0.9);
+	line-height: 1.6;
+}
+
+.hero-buttons {
+	display: flex;
+	justify-content: center;
+	gap: 1.5rem;
+	flex-wrap: wrap;
+}
+
+.hero-btn {
+	display: inline-flex;
+	align-items: center;
+	padding: 1rem 2rem;
+	font-size: 1.125rem;
+	font-weight: 600;
+	border-radius: 50px;
+	text-decoration: none;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .home-hero p {
 	font-size: 1.5rem;
 	margin-bottom: 2rem;
 	opacity: 0.9;
+}
+
+.hero-scroll-indicator {
+	position: absolute;
+	bottom: 30px;
+	left: 50%;
+	transform: translateX(-50%);
+	color: white;
+	font-size: 1.5rem;
+	animation: bounce 2s infinite;
+	cursor: pointer;
+	z-index: 2;
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(40px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes bounce {
+
+	0%,
+	20%,
+	50%,
+	80%,
+	100% {
+		transform: translateY(0) translateX(-50%);
+	}
+
+	40% {
+		transform: translateY(-20px) translateX(-50%);
+	}
+
+	60% {
+		transform: translateY(-10px) translateX(-50%);
+	}
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991px) {
+	.hero-text h1 {
+		font-size: 4.5rem;
+	}
+
+	.hero-subtitle {
+		font-size: 0.9rem;
+	}
+
+	.home-hero p {
+		font-size: 1.3rem;
+		margin-bottom: 2rem;
+		opacity: 0.9;
+	}
+}
+
+@media (max-width: 767px) {
+	.hero-text h1 {
+		font-size: 3.75rem;
+	}
+
+	.hero-subtitle {
+		font-size: 0.9rem;
+		margin-bottom: 2rem;
+	}
+
+	.home-hero p {
+		font-size: 1.3rem;
+		margin-bottom: 2rem;
+		opacity: 0.9;
+	}
+
+	.hero-buttons {
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.hero-btn {
+		width: 100%;
+		max-width: 300px;
+		justify-content: center;
+	}
+}
+
+@media (max-width: 575px) {
+	.hero-text h1 {
+		font-size: 3.25rem;
+	}
+
+	.home-hero p {
+		font-size: 1.3rem;
+		margin-bottom: 2rem;
+		opacity: 0.9;
+	}
+
+	.hero-subtitle {
+		font-size: 0.9rem;
+	}
 }

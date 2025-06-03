@@ -277,6 +277,26 @@
 	margin-top: auto;
 }
 
+.btn-primary {
+	background-color: transparent;
+	color: white;
+	border: 2px solid white;
+}
+
+.btn-primary i {
+	transition: color 0.3s, transform 0.3s;
+}
+
+.btn-primary:hover i {
+	color: var(--accent-color);
+}
+
+.btn-primary:hover {
+	transform: translateY(-3px);
+	border: 2px solid var(--accent-color);
+	box-shadow: 0 6px 20px var(--accent-color-hover);
+}
+
 /* Animations */
 @keyframes fadeIn {
 	from {
