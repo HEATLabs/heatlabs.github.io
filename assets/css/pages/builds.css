@@ -652,61 +652,144 @@
 	}
 }
 
+/* Mobile-specific styles for builds page */
 @media (max-width: 768px) {
 	.builds-grid {
-		grid-template-columns: 1fr;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+	}
+
+	.build-card {
+		margin-bottom: 0;
+		min-height: 0;
 	}
 
 	.build-header {
-		height: 150px;
+		height: 120px;
+	}
+
+	.build-tank-name {
+		font-size: 1rem;
+		padding: 0.5rem;
+	}
+
+	.build-tank-type,
+	.build-tank-nation {
+		font-size: 0.65rem;
+		padding: 0.15rem 0.5rem;
+	}
+
+	.build-content {
+		padding: 1rem;
+	}
+
+	.build-title {
+		font-size: 0.95rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.build-description {
+		font-size: 0.8rem;
+		min-height: 40px;
+		margin-bottom: 0.5rem;
 	}
 
 	.build-meta {
 		flex-direction: column;
-		gap: 0.5rem;
+		gap: 0.25rem;
+		margin-bottom: 0.5rem;
+		font-size: 0.75rem;
 	}
 
-	.build-stats {
-		justify-content: flex-start;
+	.build-modules {
+		margin-top: 0.5rem;
+		padding-top: 0.5rem;
 	}
 
-	.build-components-grid {
-		grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+	.build-modules-title {
+		font-size: 0.8rem;
 	}
-}
 
-@media (max-width: 480px) {
-	.build-card {
-		margin-bottom: 1.5rem;
+	.build-modules-list {
+		gap: 0.25rem;
+	}
+
+	.build-module {
+		font-size: 0.7rem;
+		padding: 0.15rem 0.35rem;
 	}
 
 	.build-actions {
+		padding-top: 0.5rem;
 		flex-direction: column;
-		align-items: stretch;
 		gap: 0.5rem;
 	}
 
 	.btn-view-build {
 		width: 100%;
-		margin-right: 0;
+		padding: 0.35rem 0.5rem;
+		font-size: 0.8rem;
 	}
 
 	.featured-badge {
-		margin-left: 0;
-		text-align: center;
 		width: 100%;
+		text-align: center;
+		font-size: 0.7rem;
+		padding: 0.25rem 0.5rem;
 	}
 
-	.build-detail-tank {
+	.build-filters {
+		gap: 0.75rem;
+	}
+
+	.filter-group {
+		width: 100%;
 		flex-direction: column;
 		align-items: flex-start;
+		gap: 0.25rem;
 	}
 
-	.tank-image-container {
+	.filter-label {
+		font-size: 0.85rem;
+	}
+
+	.filter-select {
 		width: 100%;
+		padding: 0.35rem 0.75rem;
+		font-size: 0.85rem;
+	}
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+	.build-filters {
+		gap: 0.5rem;
 	}
 
-	.build-components-grid {
-		grid-template-columns: repeat(2, 1fr);
+	.build-content {
+		padding: 0.75rem;
+	}
+
+	.build-modules-list {
+		flex-wrap: wrap;
+	}
+
+	.build-tank-name {
+		font-size: 0.9rem;
+	}
+
+	.build-title {
+		font-size: 0.85rem;
+	}
+
+	.build-description {
+		font-size: 0.75rem;
+	}
+}
+
+/* Special case for very narrow screens */
+@media (max-width: 360px) {
+	.builds-grid {
+		grid-template-columns: 1fr;
 	}
 }
