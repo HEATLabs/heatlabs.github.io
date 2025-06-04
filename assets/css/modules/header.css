@@ -75,13 +75,27 @@
 
 /* Search and theme toggle buttons */
 .search-button,
+.system-status,
 .theme-toggle-mobile {
-	background: transparent;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: transparent;
 	border: none;
 	color: var(--text-primary);
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 	cursor: pointer;
-	padding: 0.25rem;
+	transition: all var(--transition-speed);
+}
+
+.system-status:hover,
+.search-button:hover,
+.theme-toggle-mobile:hover {
+	background-color: var(--accent-color-light);
+	color: var(--accent-color);
 }
 
 /* Mobile adjustments */
