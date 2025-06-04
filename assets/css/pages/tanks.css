@@ -347,24 +347,110 @@
 	font-weight: bold;
 }
 
-/* Responsive adjustments */
+/* Mobile-specific styles for tanks page */
+@media (max-width: 768px) {
+	.tanks-grid {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+	}
+
+	.tank-card {
+		border-radius: 0.5rem;
+	}
+
+	.tank-img-container {
+		height: 140px;
+	}
+
+	.tank-info {
+		padding: 1rem;
+		height: calc(100% - 140px);
+	}
+
+	.tank-info h3 {
+		font-size: 1.1rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.tank-meta {
+		font-size: 0.75rem;
+		gap: 0.5rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.tank-class {
+		font-size: 0.65rem;
+		padding: 0.15rem 0.5rem;
+	}
+
+	.tank-buttons {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.tank-buttons .btn-accent,
+	.tank-buttons .btn-outline {
+		font-size: 0.8rem;
+		padding: 0.4rem;
+	}
+
+	.tank-views-counter {
+		font-size: 0.65rem;
+		padding: 0.15rem 0.5rem;
+	}
+
+	.tank-views-counter i {
+		font-size: 0.55rem;
+	}
+}
+
+/* Adjustments for very small screens */
+@media (max-width: 400px) {
+	.tanks-grid {
+		gap: 0.75rem;
+	}
+
+	.tank-img-container {
+		height: 120px;
+	}
+
+	.tank-info {
+		height: calc(100% - 120px);
+		padding: 0.75rem;
+	}
+
+	.tank-info h3 {
+		font-size: 1rem;
+	}
+
+	.tank-meta {
+		font-size: 0.7rem;
+	}
+}
+
+/* Filter adjustments for mobile */
 @media (max-width: 768px) {
 	.filters-container {
-		flex-direction: column;
-		gap: 1.5rem;
+		gap: 1rem;
 	}
 
 	.filter-group {
 		min-width: 100%;
+		max-width: 100%;
 	}
 
-	.filter-buttons-grid {
-		grid-template-columns: repeat(3, 1fr);
-	}
-}
-
-@media (max-width: 480px) {
 	.filter-buttons-grid {
 		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.filter-btn {
+		font-size: 0.85rem;
+		padding: 0.5rem 0.25rem;
+		white-space: normal;
+	}
+
+	.filter-group-title {
+		text-align: center;
+		padding-left: 0;
 	}
 }
