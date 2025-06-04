@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchStatusData() {
-    fetch('../../Website-Configs/system-status.json')
+    fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/system-status.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
