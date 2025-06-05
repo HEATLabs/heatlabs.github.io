@@ -260,6 +260,40 @@
       <section id="main" class="section">
         <div class="container mx-auto px-4">
           <h2 class="section-title">All Maps</h2>
+          <!-- Filters Section -->
+          <div class="filters-section">
+            <div class="container mx-auto px-4">
+              <!-- Filter Buttons Grid -->
+              <div class="filters-container">
+                <!-- Size Filters -->
+                <div class="filter-group">
+                  <h3 class="filter-group-title">SIZE</h3>
+                  <div class="filter-buttons-grid">
+                    <button class="filter-btn size-filter" data-size="Biggest First">
+                      <i class="fas fa-sort-amount-down"></i> Biggest First </button>
+                    <button class="filter-btn size-filter" data-size="Smallest First">
+                      <i class="fas fa-sort-amount-up"></i> Smallest First </button>
+                  </div>
+                </div>
+                <!-- Status Filters -->
+                <div class="filter-group">
+                  <h3 class="filter-group-title">STATUS</h3>
+                  <div class="filter-buttons-grid">
+                    <button class="filter-btn status-filter" data-status="Available Now">
+                      <i class="fas fa-check-circle"></i> Available Now </button>
+                    <button class="filter-btn status-filter" data-status="To Be Released">
+                      <i class="fas fa-clock"></i> To Be Released </button>
+                  </div>
+                </div>
+              </div>
+              <!-- Active Filters -->
+              <div class="active-filters-container">
+                <div class="active-filters">
+                  <div class="no-filters-message">No filters selected</div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="maps-grid text-center">
             <!-- Map Card 1 -->
             <div class="map-card">
