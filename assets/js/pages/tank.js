@@ -1222,7 +1222,7 @@ function showBuildsPlaceholder() {
                 <i class="fas fa-tools"></i>
                 <h3>Builds Coming Soon</h3>
                 <p>We're currently collecting and analyzing the best builds for this tank. Check back soon or contribute your own build!</p>
-                <a href="../../../contact-us.html#main" class="btn-accent">
+                <a href="../../../resources/contact-us.html#main" class="btn-accent">
                     <i></i> Submit Your Build
                 </a>
             </div>
