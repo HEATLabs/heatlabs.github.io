@@ -287,11 +287,11 @@ async function renderTournamentCards() {
     // Store original cards for filtering/sorting
     originalCards = Array.from(tournamentGrid.querySelectorAll('.tournament-card'));
 
-    // Update view counters after all cards are rendered
-    await updateTournamentViewCounters();
-
     // Initialize display with sorting/filtering
     updateTournamentsDisplay();
+
+    // Update view counters after all cards are rendered
+    await updateTournamentViewCounters();
 }
 
 // Initialize tournament functionality
