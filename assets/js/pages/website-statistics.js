@@ -120,34 +120,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Determine if page is a main page
                 const isMainPage = [
-                    'website-statistics.js',
                     'tournaments.html',
                     'tanks.html',
                     'tankopedia.html',
-                    'support-us.html',
                     'strategy-planner.html',
-                    'roulette.html',
                     'news.html',
-                    'maxwell.html',
                     'maps.html',
                     'legal.html',
                     'index.html',
                     'guides.html',
-                    'get-involved.html',
                     'game-data.html',
-                    'devsonly.html',
-                    'credits.html',
-                    'contact-us.html',
                     'check-compare.html',
-                    'changelog.html',
                     'builds.html',
                     'bug-hunting.html',
-                    'bored-developers.html',
                     'blog.html',
-                    'alpha-3-playtest.html',
-                    'about-us.html',
                     '404.html',
-                    'website-statistics.html'
                 ].some(mainPage => pageInfo.html_file.includes(mainPage));
 
                 processedData.push({
@@ -203,6 +190,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (path.includes('news/')) return 'News';
         if (path.includes('tanks/')) return 'Tanks';
         if (path.includes('tournaments/')) return 'Tournaments';
+        if (path.includes('resources/')) return 'Resources';
+        if (path.includes('easter-eggs/')) return 'Easter Eggs';
         return 'Other';
     }
 
