@@ -110,11 +110,24 @@ function filterMaps() {
 function toggleFilter(filterType, value, button) {
     // For size filters, only allow one to be active at a time
     if (filterType === 'size') {
-        filters[filterType] = [value];
-        // Update all size filter buttons
-        document.querySelectorAll(`.${filterType}-filter`).forEach(btn => {
-            btn.classList.remove('active');
-        });
+        const isAlreadyActive = filters.size.includes(value);
+
+        if (isAlreadyActive) {
+            // If clicking the active size filter, remove it
+            filters.size = [];
+            button.classList.remove('active');
+        } else {
+            // Otherwise, set this as the only active size filter
+            filters.size = [value];
+
+            // Update all size filter buttons
+            document.querySelectorAll(`.${filterType}-filter`).forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Activate the clicked button
+            button.classList.add('active');
+        }
     } else {
         const index = filters[filterType].indexOf(value);
         if (index === -1) {
@@ -122,10 +135,8 @@ function toggleFilter(filterType, value, button) {
         } else {
             filters[filterType].splice(index, 1);
         }
+        button.classList.toggle('active');
     }
-
-    // Toggle button active state
-    button.classList.toggle('active');
 
     updateActiveFilters();
     filterMaps();
