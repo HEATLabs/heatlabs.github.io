@@ -79,6 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize any interactive elements specific to tank pages
     initializeTankPageElements();
 
+    // Initialize comparison button
+    initializeComparisonButton();
+
     // Initialize charts
     initializeCharts();
 });
@@ -1721,6 +1724,111 @@ function initializeTankPageElements() {
             observer.observe(el);
         });
     }
+}
+
+// Comparison functionality
+let comparisonTanks = JSON.parse(localStorage.getItem('tankComparison')) || [];
+
+function initializeComparisonButton() {
+    const tankIdMeta = document.querySelector('meta[name="tank-id"]');
+    const currentTankId = tankIdMeta ? tankIdMeta.content : null;
+
+    if (!currentTankId) return;
+
+    const compareBtn = document.querySelector('.quick-actions .compare-btn');
+    if (!compareBtn) return;
+
+    // Check if current tank is in comparison
+    const isInComparison = comparisonTanks.includes(currentTankId);
+    updateComparisonButton(compareBtn, isInComparison);
+
+    // Set up click handler
+    compareBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        handleComparisonClick(currentTankId, compareBtn);
+    });
+
+    // Initialize modal
+    initializeComparisonModal();
+}
+
+function updateComparisonButton(button, isInComparison) {
+    if (isInComparison) {
+        button.innerHTML = '<i class="fas fa-times"></i><span>Remove from Comparison</span>';
+        button.classList.add('added');
+    } else {
+        button.innerHTML = '<i class="fas fa-exchange-alt"></i><span>Add to Comparison</span>';
+        button.classList.remove('added');
+    }
+}
+
+function handleComparisonClick(tankId, button) {
+    const index = comparisonTanks.indexOf(tankId);
+
+    if (index === -1) {
+        // Add to comparison
+        comparisonTanks.push(tankId);
+        showComparisonModal();
+    } else {
+        // Remove from comparison
+        comparisonTanks.splice(index, 1);
+    }
+
+    // Update localStorage
+    localStorage.setItem('tankComparison', JSON.stringify(comparisonTanks));
+
+    // Update button state
+    updateComparisonButton(button, index === -1);
+}
+
+function showComparisonModal() {
+    const modal = document.getElementById('comparisonModal');
+    const overlay = document.getElementById('comparisonModalOverlay');
+
+    if (modal && overlay) {
+        modal.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function initializeComparisonModal() {
+    const modal = document.getElementById('comparisonModal');
+    const overlay = document.getElementById('comparisonModalOverlay');
+    const closeBtn = document.getElementById('comparisonModalClose');
+    const compareBtn = document.getElementById('comparisonModalCompare');
+
+    if (!modal || !overlay) return;
+
+    // Close modal handlers
+    function closeModal() {
+        modal.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+
+    if (overlay) {
+        overlay.addEventListener('click', closeModal);
+    }
+
+    if (compareBtn) {
+        compareBtn.addEventListener('click', function() {
+            if (comparisonTanks.length > 0) {
+                window.location.href = '../check-compare.html';
+            }
+        });
+    }
+
+    // Close with ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
 }
 
 function initializeImageGallery() {
