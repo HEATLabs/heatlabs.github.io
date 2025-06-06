@@ -44,7 +44,6 @@
 	padding: 0.75rem 1rem;
 	border-radius: 0.5rem;
 	display: none;
-	/* Changed from hidden class to default none */
 }
 
 .status-summary-item i {
@@ -145,7 +144,7 @@
 
 .major-outage .status-dot,
 .status-dot.major-outage {
-    background-color: #ef4444;
+	background-color: #ef4444;
 }
 
 .maintenance .status-dot,
@@ -169,8 +168,8 @@
 }
 
 .major-outage {
-    color: #ef4444;
-    background-color: rgba(239, 68, 68, 0.1);
+	color: #ef4444;
+	background-color: rgba(239, 68, 68, 0.1);
 }
 
 .maintenance {
@@ -197,6 +196,51 @@
 }
 
 /* Incidents Section */
+.incident-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-top: 0.5rem;
+	font-size: 0.85rem;
+}
+
+.incident-status {
+	display: inline-block;
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.25rem;
+	font-weight: 500;
+}
+
+.incident-status.operational {
+	background-color: rgba(16, 185, 129, 0.1);
+	color: #10b981;
+}
+
+.incident-status.degraded {
+	background-color: rgba(245, 158, 11, 0.1);
+	color: #f59e0b;
+}
+
+.incident-status.partial-outage {
+	background-color: rgba(249, 115, 22, 0.1);
+	color: #f97316;
+}
+
+.incident-status.major-outage {
+	background-color: rgba(239, 68, 68, 0.1);
+	color: #ef4444;
+}
+
+.incident-status.maintenance {
+	background-color: rgba(59, 130, 246, 0.1);
+	color: #3b82f6;
+}
+
+.incident-status.ended {
+	background-color: rgba(16, 185, 129, 0.1);
+	color: #10b981;
+}
+
 .incidents-section {
 	margin-bottom: 3rem;
 }
@@ -266,6 +310,19 @@
 	background-color: var(--bg-secondary);
 	border-radius: 0.5rem;
 	margin-bottom: 0.75rem;
+}
+
+.update-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.5rem;
+}
+
+.update-header .update-time {
+	font-size: 0.8rem;
+	color: var(--text-tertiary);
+	margin: 0;
 }
 
 .update-status {
@@ -374,6 +431,13 @@
 }
 
 /* Responsive Styles */
+@media (max-width: 480px) {
+	.incident-meta {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+}
+
 @media (max-width: 768px) {
 	.status-summary-header {
 		flex-direction: column;
