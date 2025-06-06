@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Special prize configuration
         specialPrize: {
             name: "Special Prize",
-            image: "https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/roulette/special.png",
+            image: "https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/roulette/special.webp",
             nation: "Mystery",
             type: "Legendary",
             slug: "special-prize",
