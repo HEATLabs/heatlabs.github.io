@@ -319,6 +319,17 @@
 	border-color: var(--accent-color-hover);
 }
 
+.comparison-sidebar-footer .btn-add-all {
+	background-color: var(--bg-secondary);
+	border: 1px solid var(--border-color);
+	color: var(--accent-color);
+}
+
+.comparison-sidebar-footer .btn-add-all:hover {
+	background-color: var(--bg-tertiary);
+	border-color: var(--accent-color);
+}
+
 /* Comparison Animation */
 @keyframes pop {
 	0% {

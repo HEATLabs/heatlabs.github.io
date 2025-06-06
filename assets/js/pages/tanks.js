@@ -43,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="comparison-tanks-list"></div>
             <div class="comparison-sidebar-footer">
+                <button class="btn-add-all">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Add All
+                </button>
                 <button class="btn-clear">
                     <i class="fas fa-trash-alt"></i> Clear
                 </button>
@@ -68,6 +71,9 @@ document.addEventListener('DOMContentLoaded', function() {
         comparisonSidebar.querySelector('.comparison-sidebar-close').addEventListener('click', toggleSidebar);
         comparisonOverlay.addEventListener('click', toggleSidebar);
         comparisonSidebar.querySelector('.btn-clear').addEventListener('click', clearComparison);
+        comparisonSidebar.querySelector('.btn-add-all').addEventListener('click', function (){
+            addAllTanks();
+        });
         comparisonSidebar.querySelector('.btn-compare').addEventListener('click', function() {
             if (comparisonData.length > 0) {
                 window.location.href = 'check-compare.html';
@@ -522,6 +528,29 @@ document.addEventListener('DOMContentLoaded', function() {
         comparisonData = [];
         saveComparisonData();
         updateComparisonSidebar();
+    }
+
+    // Add all tanks to comparison
+    function addAllTanks() {
+        // Get all tank cards that are currently visible (after filtering)
+        const visibleTankCards = Array.from(document.querySelectorAll('.tank-card[data-tank-id]'))
+            .filter(card => card.style.display !== 'none');
+
+        // Get their IDs
+        const allTankIds = visibleTankCards.map(card => card.getAttribute('data-tank-id'));
+
+        // Add all tanks that aren't already in comparison
+        allTankIds.forEach(tankId => {
+            if (!comparisonData.includes(tankId)) {
+                comparisonData.push(tankId);
+            }
+        });
+
+        // Save and update UI
+        saveComparisonData();
+
+        // Trigger animation
+        triggerPopAnimation();
     }
 
     // Save comparison data to localStorage
