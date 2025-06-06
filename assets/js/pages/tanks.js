@@ -93,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isOpening) {
             trigger.style.right = `${sidebar.offsetWidth}px`;
             trigger.style.display = 'flex';
+            trigger.classList.remove('pop-animation');
         } else {
             trigger.style.right = '0';
         }
@@ -479,6 +480,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function triggerPopAnimation() {
+        const trigger = document.querySelector('.comparison-trigger');
+        if (trigger) {
+            // Remove any existing animation class
+            trigger.classList.remove('pop-animation');
+
+            // Trigger reflow to restart animation
+            void trigger.offsetWidth;
+
+            // Add animation class
+            trigger.classList.add('pop-animation');
+
+            // Remove the class after animation completes
+            setTimeout(() => {
+                trigger.classList.remove('pop-animation');
+            }, 200);
+        }
+    }
+
     // Add tank to comparison
     function addTankToComparison(tankId) {
         if (!comparisonData.includes(tankId)) {
@@ -487,6 +507,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (comparisonData.length === 1) {
                 initComparisonSidebar();
             }
+            triggerPopAnimation();
         }
     }
 
@@ -520,6 +541,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target.closest('.compare-btn')) {
             const tankId = e.target.closest('.compare-btn').getAttribute('data-tank-id');
             addTankToComparison(tankId);
+            triggerPopAnimation();
         }
     });
 
