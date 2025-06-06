@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
             item.setAttribute('data-is-special', tank.isSpecial || false);
 
             item.innerHTML = `
-                <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.png'">
+                <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
                 <h4>${tank.name}</h4>
             `;
 

@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const loadingStrategy = item.category.toLocaleLowerCase() === 'abilities' ? 'eager' : 'lazy';
         card.innerHTML = `
             <div class="tankopedia-img-container">
-                <img src="${item.image}" loading="${loadingStrategy}" alt="${item.name}" class="tankopedia-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.png'">
+                <img src="${item.image}" loading="${loadingStrategy}" alt="${item.name}" class="tankopedia-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
             </div>
             <div class="tankopedia-info">
                 <h3>${item.name}</h3>

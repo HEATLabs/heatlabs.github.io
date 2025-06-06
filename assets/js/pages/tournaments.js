@@ -244,7 +244,7 @@ function createTournamentCard(tournament) {
                 <i class="fas fa-eye"></i>
                 <span class="views-count">0</span>
             </div>
-            <img src="${tournament.image}" alt="${tournament.name} Preview" class="tournament-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.png'">
+            <img src="${tournament.image}" alt="${tournament.name} Preview" class="tournament-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
             ${tournamentTypeHTML}
         </div>
         <div class="tournament-info">

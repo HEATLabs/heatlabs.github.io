@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const tankElement = document.createElement('div');
             tankElement.className = 'comparison-tank';
             tankElement.innerHTML = `
-                <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.png'">
+                <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
                 <span>${tank.name}</span>
                 <button class="remove-tank" data-tank-id="${tank.id}">
                     <i class="fas fa-times"></i>
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tableHTML += `
                 <th>
                     <div class="tank-header">
-                        <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.png'">
+                        <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
                         <div class="tank-name">${tank.name}</div>
                         <div class="tank-meta">
                             <span><i class="fas fa-flag"></i> ${tank.nation}</span>

@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <i class="fas fa-eye"></i>
                     <span class="views-count">0</span>
                 </div>
-                <img src="${tank.image}" alt="${tank.name} Preview" class="tank-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.png'">
+                <img src="${tank.image}" alt="${tank.name} Preview" class="tank-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
                 ${tankClassHTML}
             </div>
             <div class="tank-info">
