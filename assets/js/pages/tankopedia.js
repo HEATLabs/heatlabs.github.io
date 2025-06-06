@@ -297,6 +297,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Pause any playing videos
         document.querySelectorAll('.modal-video').forEach(video => {
             video.pause();
+            video.currentTime = 0;
+            video.removeAttribute('src');
+            video.load();
         });
     }
 
@@ -386,6 +389,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalName = document.getElementById('tankopediaModalVideoName');
         const modalId = document.getElementById('tankopediaModalVideoId');
         const modalCategory = document.getElementById('tankopediaModalVideoCategory');
+
+        modalVideo.pause();
+        modalVideo.currentTime = 0;
 
         modalVideo.src = item.videoUrl || item.image;
         modalVideo.setAttribute('poster', item.image);
