@@ -315,8 +315,27 @@
 }
 
 .comparison-sidebar-footer .btn-compare:hover {
-	background-color: var(--accent-color-dark);
-	border-color: var(--accent-color-dark);
+	background-color: var(--accent-color-hover);
+	border-color: var(--accent-color-hover);
+}
+
+/* Comparison Animation */
+@keyframes pop {
+	0% {
+		transform: translateY(-50%) scale(1);
+	}
+
+	50% {
+		transform: translateY(-50%) scale(1.2);
+	}
+
+	100% {
+		transform: translateY(-50%) scale(1);
+	}
+}
+
+.comparison-trigger.pop-animation {
+	animation: pop 0.2s ease-out;
 }
 
 /* Comparison Trigger Button */
@@ -336,6 +355,7 @@
 	box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
 	z-index: 999;
 	transition: all 0.3s ease;
+	transform-origin: right center;
 }
 
 .comparison-trigger:hover {
