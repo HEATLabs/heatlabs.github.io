@@ -18,7 +18,146 @@ document.addEventListener('DOMContentLoaded', function() {
     const clearComparisonBtn = document.getElementById('clearComparison');
     const openComparisonBtn = document.getElementById('openComparison');
     const comparisonCount = document.getElementById('comparisonCount');
-    let comparisonData = [];
+    let comparisonData = JSON.parse(localStorage.getItem('tankComparison')) || [];
+
+    // Create comparison sidebar elements
+    function initComparisonSidebar() {
+        // Check if sidebar already exists
+        if (document.querySelector('.comparison-sidebar')) return;
+
+        // Create overlay
+        const comparisonOverlay = document.createElement('div');
+        comparisonOverlay.className = 'comparison-overlay';
+        comparisonOverlay.style.display = 'none';
+        document.body.appendChild(comparisonOverlay);
+
+        // Create sidebar
+        const comparisonSidebar = document.createElement('div');
+        comparisonSidebar.className = 'comparison-sidebar';
+        comparisonSidebar.innerHTML = `
+            <div class="comparison-sidebar-header">
+                <h3 class="comparison-sidebar-title">Tank Comparison</h3>
+                <button class="comparison-sidebar-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="comparison-tanks-list"></div>
+            <div class="comparison-sidebar-footer">
+                <button class="btn-clear">
+                    <i class="fas fa-trash-alt"></i> Clear
+                </button>
+                <button class="btn-compare">
+                    <i class="fas fa-exchange-alt"></i> Compare
+                </button>
+            </div>
+        `;
+        document.body.appendChild(comparisonSidebar);
+
+        // Create trigger button
+        const comparisonTrigger = document.createElement('button');
+        comparisonTrigger.className = 'comparison-trigger';
+        comparisonTrigger.innerHTML = `
+            <i class="fas fa-exchange-alt comparison-trigger-icon"></i>
+            <span class="comparison-trigger-count">0</span>
+        `;
+        comparisonTrigger.style.display = 'none';
+        document.body.appendChild(comparisonTrigger);
+
+        // Add event listeners
+        comparisonTrigger.addEventListener('click', toggleSidebar);
+        comparisonSidebar.querySelector('.comparison-sidebar-close').addEventListener('click', toggleSidebar);
+        comparisonOverlay.addEventListener('click', toggleSidebar);
+        comparisonSidebar.querySelector('.btn-clear').addEventListener('click', clearComparison);
+        comparisonSidebar.querySelector('.btn-compare').addEventListener('click', function() {
+            if (comparisonData.length > 0) {
+                window.location.href = 'check-compare.html';
+            }
+        });
+
+        // Initialize sidebar with current data
+        updateComparisonSidebar();
+    }
+
+    // Toggle sidebar visibility
+    function toggleSidebar() {
+        const sidebar = document.querySelector('.comparison-sidebar');
+        const overlay = document.querySelector('.comparison-overlay');
+        const trigger = document.querySelector('.comparison-trigger');
+
+        const isOpening = !sidebar.classList.contains('open');
+
+        sidebar.classList.toggle('open');
+        overlay.style.display = isOpening ? 'block' : 'none';
+
+        // Position the trigger button at the edge of the sidebar
+        if (isOpening) {
+            trigger.style.right = `${sidebar.offsetWidth}px`;
+            trigger.style.display = 'flex';
+        } else {
+            trigger.style.right = '0';
+        }
+    }
+
+    // Update comparison sidebar display
+    function updateComparisonSidebar() {
+        const sidebar = document.querySelector('.comparison-sidebar');
+        const trigger = document.querySelector('.comparison-trigger');
+        const tanksList = sidebar ? sidebar.querySelector('.comparison-tanks-list') : null;
+        const triggerCount = trigger ? trigger.querySelector('.comparison-trigger-count') : null;
+
+        if (!tanksList || !triggerCount) return;
+
+        tanksList.innerHTML = '';
+
+        if (comparisonData.length === 0) {
+            tanksList.innerHTML = `
+                <div class="comparison-empty">
+                    No tanks selected for comparison,<br>
+                    add two or more tanks to start the comparison</a>
+                </div>
+            `;
+            // Show trigger button even when empty
+            trigger.style.display = 'flex';
+            triggerCount.textContent = '0';
+            return;
+        }
+
+        // Create tank elements for the sidebar
+        comparisonData.forEach(tankId => {
+            const tankCard = document.querySelector(`.tank-card[data-tank-id="${tankId}"]`);
+            if (tankCard) {
+                const tankName = tankCard.querySelector('h3').textContent;
+                const tankImg = tankCard.querySelector('.tank-img').src;
+
+                const tankElement = document.createElement('div');
+                tankElement.className = 'comparison-tank-item';
+                tankElement.innerHTML = `
+                    <img src="${tankImg}" alt="${tankName}" class="comparison-tank-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
+                    <span class="comparison-tank-name">${tankName}</span>
+                    <button class="comparison-tank-remove" data-tank-id="${tankId}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+
+                tanksList.appendChild(tankElement);
+
+                tankElement.querySelector('.comparison-tank-remove').addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    removeTankFromComparison(tankId);
+                });
+            }
+        });
+
+        triggerCount.textContent = comparisonData.length;
+        trigger.style.display = 'flex';
+
+        // Position the trigger button at the edge of the sidebar if it's open
+        if (sidebar.classList.contains('open')) {
+            trigger.style.right = `${sidebar.offsetWidth}px`;
+        } else {
+            trigger.style.right = '0';
+        }
+    }
 
     // Fetch tank data from JSON file
     async function fetchTankData() {
@@ -149,6 +288,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Update view counters
         updateTankViewCounters();
+
+        // Initialize comparison buttons
+        initComparisonButtons();
+
+        // Update sidebar after tanks are loaded
+        updateComparisonSidebar();
     }
 
     // Initialize filter buttons
@@ -182,6 +327,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Initialize active filters display
         updateActiveFilters();
+    }
+
+    // Initialize comparison buttons
+    function initComparisonButtons() {
+        document.querySelectorAll('.compare-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const tankId = this.getAttribute('data-tank-id');
+                addTankToComparison(tankId);
+            });
+        });
     }
 
     // Toggle filter on/off
@@ -284,23 +439,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Load comparison data from localStorage
-    function loadComparisonData() {
-        const savedComparison = localStorage.getItem('tankComparison');
-        if (savedComparison) {
-            comparisonData = JSON.parse(savedComparison);
-            updateComparisonModal();
-        }
-    }
-
-    // Save comparison data to localStorage
-    function saveComparisonData() {
-        localStorage.setItem('tankComparison', JSON.stringify(comparisonData));
-        updateComparisonModal();
-    }
-
     // Update the comparison modal display
     function updateComparisonModal() {
+        if (!comparisonTanksContainer) return;
+
         comparisonTanksContainer.innerHTML = '';
 
         comparisonData.forEach(tankId => {
@@ -328,12 +470,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        comparisonCount.textContent = comparisonData.length;
+        if (comparisonCount) {
+            comparisonCount.textContent = comparisonData.length;
+        }
 
-        if (comparisonData.length > 0) {
-            comparisonModal.style.display = 'flex';
-        } else {
-            comparisonModal.style.display = 'none';
+        if (comparisonModal) {
+            comparisonModal.style.display = comparisonData.length > 0 ? 'flex' : 'none';
         }
     }
 
@@ -342,6 +484,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!comparisonData.includes(tankId)) {
             comparisonData.push(tankId);
             saveComparisonData();
+            if (comparisonData.length === 1) {
+                initComparisonSidebar();
+            }
         }
     }
 
@@ -355,11 +500,20 @@ document.addEventListener('DOMContentLoaded', function() {
     function clearComparison() {
         comparisonData = [];
         saveComparisonData();
+        updateComparisonSidebar();
+    }
+
+    // Save comparison data to localStorage
+    function saveComparisonData() {
+        localStorage.setItem('tankComparison', JSON.stringify(comparisonData));
+        updateComparisonModal();
+        updateComparisonSidebar();
     }
 
     // Initialize the page
     renderTankCards();
-    loadComparisonData();
+    initComparisonSidebar();
+    updateComparisonModal();
 
     // Event delegation for compare buttons
     document.addEventListener('click', function(e) {
@@ -370,10 +524,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Event listeners for comparison modal buttons
-    clearComparisonBtn.addEventListener('click', clearComparison);
-    openComparisonBtn.addEventListener('click', function() {
-        if (comparisonData.length > 0) {
-            window.location.href = 'check-compare.html';
-        }
-    });
+    if (clearComparisonBtn) {
+        clearComparisonBtn.addEventListener('click', clearComparison);
+    }
+    if (openComparisonBtn) {
+        openComparisonBtn.addEventListener('click', function() {
+            if (comparisonData.length > 0) {
+                window.location.href = 'check-compare.html';
+            }
+        });
+    }
 });

@@ -1,121 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
     const comparisonTable = document.getElementById('comparisonTable');
     const clearAllBtn = document.getElementById('clearAllComparison');
-    const comparisonModal = document.getElementById('comparisonModal');
-    const comparisonTanksContainer = document.getElementById('comparisonTanksContainer');
-    const comparisonCount = document.getElementById('comparisonCount');
-    const clearComparisonBtn = document.getElementById('clearComparison');
-    const openComparisonBtn = document.getElementById('openComparison');
-    const comparisonNavPrev = document.getElementById('comparisonNavPrev');
-    const comparisonNavNext = document.getElementById('comparisonNavNext');
-
     let comparisonData = [];
     let tankDetails = {};
-    let currentScrollPosition = 0;
 
     // Load comparison data from localStorage
     function loadComparison() {
         const savedComparison = localStorage.getItem('tankComparison');
         if (savedComparison) {
             comparisonData = JSON.parse(savedComparison);
-            updateComparisonModal();
+            // Fetch details for all tanks in comparison
+            Promise.all(comparisonData.map(id => fetchTankDetails(id)))
+                .then(() => renderComparisonTable());
         }
     }
 
     // Save comparison data to localStorage
     function saveComparison() {
         localStorage.setItem('tankComparison', JSON.stringify(comparisonData));
-        updateComparisonModal();
-    }
-
-    // Update the comparison modal
-    function updateComparisonModal() {
-        comparisonTanksContainer.innerHTML = '';
-
-        if (comparisonData.length === 0) {
-            comparisonModal.style.display = 'none';
-            comparisonCount.textContent = '0';
-            return;
-        }
-
-        comparisonModal.style.display = 'flex';
-        comparisonCount.textContent = comparisonData.length;
-
-        // Create tank elements for the modal
-        comparisonData.forEach(tankId => {
-            const tank = tankDetails[tankId];
-            if (!tank) return;
-
-            const tankElement = document.createElement('div');
-            tankElement.className = 'comparison-tank';
-            tankElement.innerHTML = `
-                <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
-                <span>${tank.name}</span>
-                <button class="remove-tank" data-tank-id="${tank.id}">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-
-            comparisonTanksContainer.appendChild(tankElement);
-        });
-
-        // Add event listeners to remove buttons in modal
-        document.querySelectorAll('#comparisonTanksContainer .remove-tank').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const tankId = this.getAttribute('data-tank-id');
-                removeTankFromComparison(tankId);
-            });
-        });
-
-        // Update carousel navigation
-        updateCarouselNavigation();
-    }
-
-    // Update carousel navigation buttons
-    function updateCarouselNavigation() {
-        const container = comparisonTanksContainer;
-        const containerWidth = container.clientWidth;
-        const contentWidth = container.scrollWidth;
-
-        comparisonNavPrev.style.display = currentScrollPosition > 0 ? 'flex' : 'none';
-        comparisonNavNext.style.display = contentWidth > containerWidth + currentScrollPosition ? 'flex' : 'none';
-    }
-
-    // Scroll comparison modal
-    function scrollComparison(direction) {
-        const container = comparisonTanksContainer;
-        const scrollAmount = 200;
-        const maxScroll = container.scrollWidth - container.clientWidth;
-
-        if (direction === 'prev') {
-            currentScrollPosition = Math.max(0, currentScrollPosition - scrollAmount);
-        } else {
-            currentScrollPosition = Math.min(maxScroll, currentScrollPosition + scrollAmount);
-        }
-
-        container.scrollTo({
-            left: currentScrollPosition,
-            behavior: 'smooth'
-        });
-
-        // Update buttons after scroll completes
-        setTimeout(updateCarouselNavigation, 300);
-    }
-
-    // Handle container resize
-    function handleResize() {
-        updateCarouselNavigation();
-    }
-
-    // Initialize carousel
-    function initCarousel() {
-        comparisonTanksContainer.addEventListener('scroll', function() {
-            currentScrollPosition = this.scrollLeft;
-            updateCarouselNavigation();
-        });
-
-        window.addEventListener('resize', handleResize);
+        renderComparisonTable();
     }
 
     // Fetch tank details
@@ -401,23 +304,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize
     loadComparison();
     renderComparisonTable();
-    initCarousel();
 
-    // Event listeners
-    clearAllBtn.addEventListener('click', clearAllComparison);
-    clearComparisonBtn.addEventListener('click', clearAllComparison);
-    openComparisonBtn.addEventListener('click', function() {
-        if (comparisonData.length > 0) {
-            window.location.href = 'check-compare.html';
-        }
-    });
-
-    // Navigation buttons for comparison modal
-    comparisonNavPrev.addEventListener('click', () => scrollComparison('prev'));
-    comparisonNavNext.addEventListener('click', () => scrollComparison('next'));
-
-    // Hide modal if no tanks to compare
-    if (comparisonData.length === 0) {
-        comparisonModal.style.display = 'none';
+    // Event listener for clear all button
+    if (clearAllBtn) {
+        clearAllBtn.addEventListener('click', clearAllComparison);
     }
 });
