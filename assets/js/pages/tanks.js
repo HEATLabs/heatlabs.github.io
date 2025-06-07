@@ -565,6 +565,23 @@ document.addEventListener('DOMContentLoaded', function() {
     initComparisonSidebar();
     updateComparisonModal();
 
+    // Fix Compare buttons disappearing on mobile
+    window.addEventListener('pageshow', handleBFCacheRestore);
+
+    function handleBFCacheRestore(event) {
+        if (event.persisted) {
+            // Fix footer visibility
+            const footer = document.querySelector('.comparison-sidebar-footer');
+            if (footer) {
+                void footer.offsetHeight; // Trigger reflow
+                footer.style.display = 'flex';
+            }
+            // Refresh comparison data
+            comparisonData = JSON.parse(localStorage.getItem('tankComparison')) || [];
+            updateComparisonSidebar();
+        }
+    }
+
     // Event delegation for compare buttons
     document.addEventListener('click', function(e) {
         if (e.target.closest('.compare-btn')) {
