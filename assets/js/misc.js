@@ -37,13 +37,74 @@
 // Arabic Radio Easter Egg
 (() => {
     const TRIGGER_WORD = 'راديو'; // "radio" in Saudi Arabic
+    const STORAGE_PREFIX = 'pcwstats_radio_';
     let radioStations = [];
     let currentStationIndex = 0;
     let audioPlayer = null;
     let inputBuffer = '';
+    let isPlaying = false;
+    let currentVolume = 0.5;
+
+    // Load persistent state from sessionStorage
+    const loadRadioState = () => {
+        try {
+            const savedStations = sessionStorage.getItem(STORAGE_PREFIX + 'stations');
+            const savedIndex = sessionStorage.getItem(STORAGE_PREFIX + 'currentIndex');
+            const savedVolume = sessionStorage.getItem(STORAGE_PREFIX + 'volume');
+            const savedIsPlaying = sessionStorage.getItem(STORAGE_PREFIX + 'isPlaying');
+            const savedModalVisible = sessionStorage.getItem(STORAGE_PREFIX + 'modalVisible');
+
+            if (savedStations) {
+                radioStations = JSON.parse(savedStations);
+            }
+            if (savedIndex !== null) {
+                currentStationIndex = parseInt(savedIndex, 10);
+            }
+            if (savedVolume !== null) {
+                currentVolume = parseFloat(savedVolume);
+            }
+            if (savedIsPlaying === 'true') {
+                isPlaying = true;
+            }
+
+            // Restore modal if it was visible
+            if (savedModalVisible === 'true') {
+                setTimeout(() => {
+                    showRadioModal();
+                    if (isPlaying && radioStations.length > 0) {
+                        setTimeout(() => playCurrentStation(), 100);
+                    }
+                }, 100);
+            }
+        } catch (error) {
+            console.error('Error loading radio state:', error);
+        }
+    };
+
+    // Save persistent state to sessionStorage
+    const saveRadioState = () => {
+        try {
+            sessionStorage.setItem(STORAGE_PREFIX + 'stations', JSON.stringify(radioStations));
+            sessionStorage.setItem(STORAGE_PREFIX + 'currentIndex', currentStationIndex.toString());
+            sessionStorage.setItem(STORAGE_PREFIX + 'volume', currentVolume.toString());
+            sessionStorage.setItem(STORAGE_PREFIX + 'isPlaying', isPlaying.toString());
+            const modalVisible = document.getElementById('arabicRadioModal')?.classList.contains('show') || false;
+            sessionStorage.setItem(STORAGE_PREFIX + 'modalVisible', modalVisible.toString());
+        } catch (error) {
+            console.error('Error saving radio state:', error);
+        }
+    };
+
+    // Save state before page unload
+    window.addEventListener('beforeunload', saveRadioState);
 
     // Create and style the radio modal
     const createRadioModal = () => {
+        const existingModal = document.getElementById('arabicRadioModal');
+        if (existingModal) {
+            existingModal.remove();
+        }
+
         const modal = document.createElement('div');
         modal.id = 'arabicRadioModal';
         modal.className = 'arabic-radio-modal';
@@ -70,7 +131,7 @@
                     </button>
                 </div>
                 <div class="arabic-radio-volume">
-                    <input type="range" min="0" max="1" step="0.01" value="0.5" class="arabic-radio-volume-slider">
+                    <input type="range" min="0" max="1" step="0.01" value="${currentVolume}" class="arabic-radio-volume-slider">
                     <i class="fas fa-volume-up"></i>
                 </div>
             </div>
@@ -86,7 +147,11 @@
         modal.querySelector('.arabic-radio-volume-slider').addEventListener('input', adjustVolume);
 
         // Load stations when modal is first shown
-        loadRadioStations();
+        if (radioStations.length === 0) {
+            loadRadioStations();
+        } else {
+            updateStationInfo();
+        }
     };
 
     // Show the radio modal
@@ -95,6 +160,7 @@
             createRadioModal();
         }
         document.getElementById('arabicRadioModal').classList.add('show');
+        saveRadioState();
     };
 
     // Hide the radio modal
@@ -102,11 +168,7 @@
         const modal = document.getElementById('arabicRadioModal');
         if (modal) {
             modal.classList.remove('show');
-            // Stop audio when modal is closed
-            if (audioPlayer) {
-                audioPlayer.pause();
-                audioPlayer = null;
-            }
+            saveRadioState();
         }
     };
 
@@ -120,8 +182,11 @@
             radioStations = await response.json();
 
             if (radioStations.length > 0) {
-                currentStationIndex = 0;
+                if (currentStationIndex >= radioStations.length) {
+                    currentStationIndex = 0;
+                }
                 updateStationInfo();
+                saveRadioState();
             } else {
                 modal.querySelector('.arabic-radio-station-name').textContent = 'No stations found';
             }
@@ -141,7 +206,16 @@
         modal.querySelector('.arabic-radio-station-country').textContent = station.country || '';
 
         // Play the station
-        playCurrentStation();
+        const playButton = modal.querySelector('.arabic-radio-play');
+        if (playButton) {
+            playButton.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+        }
+
+        // Update volume slider
+        const volumeSlider = modal.querySelector('.arabic-radio-volume-slider');
+        if (volumeSlider) {
+            volumeSlider.value = currentVolume;
+        }
     };
 
     // Play the current station
@@ -159,7 +233,8 @@
 
         // Create new audio player
         audioPlayer = new Audio(station.url_resolved || station.url);
-        audioPlayer.volume = document.querySelector('.arabic-radio-volume-slider').value;
+        audioPlayer.volume = currentVolume;
+        audioPlayer.crossOrigin = "anonymous";
 
         // Update play button to pause icon
         if (playButton) {
@@ -167,8 +242,27 @@
         }
 
         // Play the station
-        audioPlayer.play().catch(error => {
+        audioPlayer.play().then(() => {
+            isPlaying = true;
+            saveRadioState();
+        }).catch(error => {
             console.error('Error playing station:', error);
+            if (playButton) {
+                playButton.innerHTML = '<i class="fas fa-play"></i>';
+            }
+            isPlaying = false;
+            saveRadioState();
+        });
+
+        // Handle audio end/error events
+        audioPlayer.addEventListener('ended', () => {
+            isPlaying = false;
+            saveRadioState();
+        });
+
+        audioPlayer.addEventListener('error', () => {
+            isPlaying = false;
+            saveRadioState();
             if (playButton) {
                 playButton.innerHTML = '<i class="fas fa-play"></i>';
             }
@@ -178,17 +272,29 @@
     // Toggle play/pause
     const togglePlayPause = () => {
         const playButton = document.querySelector('.arabic-radio-play');
+
+        if (!audioPlayer && radioStations.length > 0) {
+            playCurrentStation();
+            return;
+        }
+
         if (!audioPlayer) return;
 
         if (audioPlayer.paused) {
             audioPlayer.play().then(() => {
                 playButton.innerHTML = '<i class="fas fa-pause"></i>';
+                isPlaying = true;
+                saveRadioState();
             }).catch(error => {
                 console.error('Error playing station:', error);
+                isPlaying = false;
+                saveRadioState();
             });
         } else {
             audioPlayer.pause();
             playButton.innerHTML = '<i class="fas fa-play"></i>';
+            isPlaying = false;
+            saveRadioState();
         }
     };
 
@@ -198,6 +304,10 @@
 
         currentStationIndex = (currentStationIndex + 1) % radioStations.length;
         updateStationInfo();
+        if (isPlaying) {
+            playCurrentStation();
+        }
+        saveRadioState();
     };
 
     // Play previous station
@@ -206,13 +316,19 @@
 
         currentStationIndex = (currentStationIndex - 1 + radioStations.length) % radioStations.length;
         updateStationInfo();
+        if (isPlaying) {
+            playCurrentStation();
+        }
+        saveRadioState();
     };
 
     // Adjust volume
     const adjustVolume = (event) => {
+        currentVolume = parseFloat(event.target.value);
         if (audioPlayer) {
-            audioPlayer.volume = event.target.value;
+            audioPlayer.volume = currentVolume;
         }
+        saveRadioState();
     };
 
     // Check for trigger word - Updated to handle Arabic characters
@@ -268,122 +384,144 @@
     });
 
     // Add CSS to the document head
-    const style = document.createElement('style');
-    style.textContent = `
-        .arabic-radio-modal {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid #444;
-            border-radius: 8px;
-            color: white;
-            font-family: inherit;
-            z-index: 9999;
-            transform: translateY(120%);
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
+    const addRadioStyles = () => {
+        // Remove existing styles if they exist
+        const existingStyle = document.getElementById('arabicRadioStyles');
+        if (existingStyle) {
+            existingStyle.remove();
         }
 
-        .arabic-radio-modal.show {
-            transform: translateY(0);
-        }
-
-        .arabic-radio-header {
-            padding: 12px 15px;
-            background: #141312;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #333;
-        }
-
-        .arabic-radio-header h3 {
-            margin: 0;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .arabic-radio-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 0 5px;
-        }
-
-        .arabic-radio-close:hover {
-            color: #ccc;
-        }
-
-        .arabic-radio-body {
-            padding: 15px;
-        }
-
-        .arabic-radio-station-info {
-            margin-bottom: 15px;
-        }
-
-        .arabic-radio-station-name {
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 3px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .arabic-radio-station-country {
-            font-size: 12px;
-            color: #aaa;
-        }
-
-        .arabic-radio-controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .arabic-radio-controls button {
-            background: #333;
-            border: none;
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .arabic-radio-controls button:hover {
-            background: #444;
-        }
-
-        .arabic-radio-volume {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .arabic-radio-volume-slider {
-            flex-grow: 1;
-            cursor: pointer;
-        }
-
-        @media (max-width: 400px) {
+        const style = document.createElement('style');
+        style.id = 'arabicRadioStyles';
+        style.textContent = `
             .arabic-radio-modal {
-                width: calc(100% - 40px);
-                right: 10px;
-                bottom: 10px;
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 300px;
+                background: rgba(0, 0, 0, 0.9);
+                border: 1px solid #444;
+                border-radius: 8px;
+                color: white;
+                font-family: inherit;
+                z-index: 9999;
+                transform: translateY(120%);
+                transition: transform 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                overflow: hidden;
             }
-        }
-    `;
-    document.head.appendChild(style);
+
+            .arabic-radio-modal.show {
+                transform: translateY(0);
+            }
+
+            .arabic-radio-header {
+                padding: 12px 15px;
+                background: #141312;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #333;
+            }
+
+            .arabic-radio-header h3 {
+                margin: 0;
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .arabic-radio-close {
+                background: none;
+                border: none;
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+                padding: 0 5px;
+            }
+
+            .arabic-radio-close:hover {
+                color: #ccc;
+            }
+
+            .arabic-radio-body {
+                padding: 15px;
+            }
+
+            .arabic-radio-station-info {
+                margin-bottom: 15px;
+            }
+
+            .arabic-radio-station-name {
+                font-weight: bold;
+                font-size: 14px;
+                margin-bottom: 3px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .arabic-radio-station-country {
+                font-size: 12px;
+                color: #aaa;
+            }
+
+            .arabic-radio-controls {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin-bottom: 15px;
+            }
+
+            .arabic-radio-controls button {
+                background: #333;
+                border: none;
+                color: white;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: background 0.2s;
+            }
+
+            .arabic-radio-controls button:hover {
+                background: #444;
+            }
+
+            .arabic-radio-volume {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .arabic-radio-volume-slider {
+                flex-grow: 1;
+                cursor: pointer;
+            }
+
+            @media (max-width: 400px) {
+                .arabic-radio-modal {
+                    width: calc(100% - 40px);
+                    right: 10px;
+                    bottom: 10px;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    };
+
+    // Initialize the radio system
+    const initRadio = () => {
+        addRadioStyles();
+        loadRadioState();
+    };
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initRadio);
+    } else {
+        initRadio();
+    }
 })();
