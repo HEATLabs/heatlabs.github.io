@@ -17,7 +17,7 @@
 
             // If buffer ends with any of the secret codes, redirect
             if (secretCodes.some(code => inputBuffer.endsWith(code))) {
-                window.location.href = '/devsonly.html';
+                window.location.href = '/easter-eggs/devsonly.html';
             }
         }
     });
