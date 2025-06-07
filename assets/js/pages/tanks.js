@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </button>
             </div>
         `;
+        document.body.appendChild(comparisonSidebar);
 
         // Create trigger button
         const comparisonTrigger = document.createElement('button');
@@ -78,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = 'check-compare.html';
             }
         });
-        document.body.appendChild(comparisonSidebar);
+
         // Initialize sidebar with current data
         updateComparisonSidebar();
     }
