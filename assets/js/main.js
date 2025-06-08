@@ -111,7 +111,7 @@ function addVersionToFooter(update, isFallback = false) {
     // Create changelog link
     const changelogLink = document.createElement('a');
     changelogLink.className = 'version-info-item version-info-link';
-    changelogLink.href = 'https://pcwstats.github.io/resources/changelog.html';
+    changelogLink.href = 'https://pcwstats.github.io/Website-Changelog';
     changelogLink.innerHTML = `
         <span>View Changelog</span>
         <i class="fas fa-external-link-alt"></i>
