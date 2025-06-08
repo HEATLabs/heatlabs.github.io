@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeCounters() {
     const counters = document.querySelectorAll('.fun-fact-number[data-count]');
     const speed = 200; // The lower the faster
+    let animationComplete = true;
 
     counters.forEach(counter => {
         // Skip the coffee cups counter since we'll calculate it separately
@@ -18,21 +19,31 @@ function initializeCounters() {
         }
 
         const target = +counter.getAttribute('data-count');
-        const count = +counter.innerText;
-        const increment = target / speed;
+        const currentText = counter.innerText;
+        let currentCount = parseFloat(currentText.replace(/[^0-9.]/g, '')) || 0;
 
-        if (count < target) {
-            counter.innerText = Math.ceil(count + increment);
-            setTimeout(initializeCounters, 1);
-        } else {
-            // For the "lines of code" counter, add "k" after animation completes
-            if (counter.parentElement.querySelector('.fun-fact-label').textContent.includes('Lines of Code')) {
-                counter.innerText = target + 'k';
+        const isLinesOfCode = counter.parentElement.querySelector('.fun-fact-label').textContent.includes('Lines of Code');
+
+        if (currentCount < target) {
+            animationComplete = false;
+            const increment = Math.max(1, target / speed);
+            let newCount = Math.min(currentCount + increment, target);
+
+            if (isLinesOfCode) {
+                // For lines of code, we show raw numbers during animation
+                counter.innerText = Math.floor(newCount).toLocaleString();
             } else {
-                counter.innerText = target;
+                counter.innerText = Math.floor(newCount);
             }
+        } else if (isLinesOfCode && !currentText.includes('M')) {
+            // For the "lines of code" counter, add "M" after animation completes
+            counter.innerText = (target / 1000000).toFixed(2) + 'M';
         }
     });
+
+    if (!animationComplete) {
+        requestAnimationFrame(initializeCounters);
+    }
 }
 
 function calculateDaysAndCoffee() {
