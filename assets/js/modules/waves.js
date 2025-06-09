@@ -72,6 +72,7 @@ class Noise {
 
 function initWaves() {
     const container = document.querySelector('.waves-container');
+    if (!container) return;
     const canvas = document.createElement('canvas');
     canvas.className = 'waves-canvas';
     container.appendChild(canvas);
@@ -260,9 +261,12 @@ function initWaves() {
     }
 
     function onTouchMove(e) {
-        e.preventDefault();
         const touch = e.touches[0];
-        updateMouse(touch.clientX, touch.clientY);
+        const element = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (element && element.closest('.waves-container')) {
+            e.preventDefault();
+            updateMouse(touch.clientX, touch.clientY);
+        }
     }
 
     function updateMouse(x, y) {
@@ -294,7 +298,7 @@ function initWaves() {
         window.removeEventListener("resize", onResize);
         window.removeEventListener("mousemove", onMouseMove);
         window.removeEventListener("touchmove", onTouchMove);
-        cancelAnimationFrame(frameId);
+        if (frameId) cancelAnimationFrame(frameId);
     };
 }
 
