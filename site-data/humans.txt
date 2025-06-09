@@ -3,9 +3,19 @@
   GitHub: https://github.com/ThatSINEWAVE
   Contact: sinewave_ (Discord)
 
+  SINEWAVE     - Founder & Lead Developer
+  _VEN0M       - Frontend Developer
+  Anuraen      - Graphic Designer
+  esmatty      - Content Writer
+  IAmEdWards   - Game Analyst
+  Shockwave    - Content Writer
+
 /* THANKS */
   Tailwind CSS: https://tailwindcss.com/
   GitHub Pages: https://pages.github.com/
+  Chart.js: https://www.chartjs.org/
+  LZ-String: https://pieroxy.net/blog/pages/lz-string/index.html
+  Pannellum.js: https://pannellum.org/
 
 /* SITE */
   Last update: 2025/05/23
