@@ -920,8 +920,22 @@
 	</url>
 	<!-- Changelog Page -->
 	<url>
-		<loc>https://pcwstats.github.io/changelog.html</loc>
-		<lastmod>2025-05-23</lastmod>
+		<loc>https://pcwstats.github.io/Website-Changelog</loc>
+		<lastmod>2025-06-08</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Status Page -->
+	<url>
+		<loc>https://pcwstats.github.io/Website-Status</loc>
+		<lastmod>2025-06-08</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Statistics Page -->
+	<url>
+		<loc>https://pcwstats.github.io/Website-Statistics</loc>
+		<lastmod>2025-06-08</lastmod>
 		<changefreq>daily</changefreq>
 		<priority>0.8</priority>
 	</url>
