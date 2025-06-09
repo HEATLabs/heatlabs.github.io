@@ -17,15 +17,36 @@
 	</url>
 	<!-- Tank Roulette Page -->
 	<url>
-		<loc>https://pcwstats.github.io/roulette.html</loc>
-		<lastmod>2025-05-23</lastmod>
+		<loc>https://pcwstats.github.io/easter-eggs/roulette.html</loc>
+		<lastmod>2025-06-08</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Devs Only Page -->
 	<url>
-		<loc>https://pcwstats.github.io/devsonly.html</loc>
-		<lastmod>2025-05-23</lastmod>
+		<loc>https://pcwstats.github.io/easter-eggs/devsonly.html</loc>
+		<lastmod>2025-06-08</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Maxwell Page -->
+	<url>
+		<loc>https://pcwstats.github.io/easter-eggs/maxwell.html</loc>
+		<lastmod>2025-06-08</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Bored Developers Page -->
+	<url>
+		<loc>https://pcwstats.github.io/easter-eggs/bored-developers.html</loc>
+		<lastmod>2025-06-08</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Alpha 3 Playtest Page -->
+	<url>
+		<loc>https://pcwstats.github.io/easter-eggs/alpha-3-playtest.html</loc>
+		<lastmod>2025-06-08</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
@@ -141,6 +162,118 @@
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
+	<!-- Alpha-2 Fuel Crit Multiplier Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/alpha-2-fuel-crit-multiplier.html</loc>
+		<lastmod>2025-06-23</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Damage Calculation Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/damage-calculation.html</loc>
+		<lastmod>2025-06-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Developer Guide Images Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/developer-guide-images.html</loc>
+		<lastmod>2025-06-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Discovery of Corex Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/discovery-of-corex.html</loc>
+		<lastmod>2025-06-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Exploring Animation and Movement Desync Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/exploring-animation-and-movement-desync.html</loc>
+		<lastmod>2025-06-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Exploring the Main Menu Garage Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/exploring-the-main-menu-garage.html</loc>
+		<lastmod>2025-06-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Hunting for Potential Hidden Servers Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/hunting-for-potential-hidden-servers.html</loc>
+		<lastmod>2025-06-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Info from Developers Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/info-from-developers.html</loc>
+		<lastmod>2025-06-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Mysterious Engine Picture Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/mysterious-engine-picture.html</loc>
+		<lastmod>2025-06-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Potential Campaign Mode Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/potential-campaign-mode.html</loc>
+		<lastmod>2025-06-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Tank Module Locations Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/tank-module-locations.html</loc>
+		<lastmod>2025-06-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- The Three Badges Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/the-three-badges.html</loc>
+		<lastmod>2025-06-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Titan Dummies Respawn Glitch Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/titan-dummies-respawn-glitch.html</loc>
+		<lastmod>2025-06-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Unlocking the Camera Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/unlocking-the-camera.html</loc>
+		<lastmod>2025-06-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Who is PCW Bug Hunters Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/who-is-pcw-bug-hunters.html</loc>
+		<lastmod>2025-06-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<!-- Weird Pattern Images Page -->
+	<url>
+		<loc>https://pcwstats.github.io/bug-hunting/wierd-pattern-images.html</loc>
+		<lastmod>2025-06-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
 	<!-- Community Guides Page -->
 	<url>
 		<loc>https://pcwstats.github.io/guides.html</loc>
@@ -185,8 +318,22 @@
 	</url>
 	<!-- Community Credits Page -->
 	<url>
-		<loc>https://pcwstats.github.io/credits.html</loc>
-		<lastmod>2025-05-23</lastmod>
+		<loc>https://pcwstats.github.io/resources/credits.html</loc>
+		<lastmod>2025-06-08</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Frequent Questions Page -->
+	<url>
+		<loc>https://pcwstats.github.io/resources/frequent-questions.html</loc>
+		<lastmod>2025-06-08</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<!-- Get Involved Page -->
+	<url>
+		<loc>https://pcwstats.github.io/resources/get-involved.html</loc>
+		<lastmod>2025-06-08</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
@@ -850,8 +997,8 @@
 	</url>
 	<!-- About PCWStats Page -->
 	<url>
-		<loc>https://pcwstats.github.io/about-us.html</loc>
-		<lastmod>2025-05-23</lastmod>
+		<loc>https://pcwstats.github.io/resources/about-us.html</loc>
+		<lastmod>2025-06-08</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
@@ -906,15 +1053,15 @@
 	</url>
 	<!-- Contact Us Page -->
 	<url>
-		<loc>https://pcwstats.github.io/contact-us.html</loc>
-		<lastmod>2025-05-23</lastmod>
+		<loc>https://pcwstats.github.io/resources/contact-us.html</loc>
+		<lastmod>2025-06-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Support PCWStats Page -->
 	<url>
-		<loc>https://pcwstats.github.io/support-us.html</loc>
-		<lastmod>2025-05-23</lastmod>
+		<loc>https://pcwstats.github.io/resources/support-us.html</loc>
+		<lastmod>2025-06-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
