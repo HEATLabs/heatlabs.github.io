@@ -28,15 +28,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Get the latest update (first item in the array)
                 const latestUpdate = data.updates[0];
                 addVersionToFooter(latestUpdate);
+                addVersionToBetaTag(latestUpdate);
             }
         })
         .catch(error => {
             console.error('Error fetching version information:', error);
             // Fallback version display if the fetch fails
-            addVersionToFooter({
+            const fallbackVersion = {
                 version: '1.0.0',
                 date: new Date().toISOString().split('T')[0]
-            }, true);
+            };
+            addVersionToFooter(fallbackVersion, true);
+            addVersionToBetaTag(fallbackVersion, true);
         });
 });
 
@@ -73,6 +76,23 @@ function initializeInteractiveElements() {
             card.classList.add('animated');
         });
     }
+}
+
+function addVersionToBetaTag(update, isFallback = false) {
+    // Find the beta tag element in the header
+    const betaTag = document.querySelector('.beta-tag');
+
+    if (!betaTag) {
+        console.warn('Could not find beta tag element');
+        return;
+    }
+
+    // Set the version text and tooltip
+    betaTag.textContent = `v${update.version}`;
+    betaTag.title = `Version ${update.version} | Last Updated: ${isFallback ? formatDate(new Date().toISOString().split('T')[0]) : formatDate(update.date)}`;
+
+    // Add class for styling if needed
+    betaTag.classList.add('version-tag');
 }
 
 function addVersionToFooter(update, isFallback = false) {
