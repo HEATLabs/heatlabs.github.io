@@ -218,6 +218,26 @@ async function updateTournamentViewCounters() {
     }
 }
 
+
+// Determine Glare color to use based on tournament ID
+function getGlareColor(tournamentId) {
+    const colorMap = {
+        '1': 'rgba(255, 148, 40, 0.3)',    // Orange-ish
+        '2': 'rgba(192, 192, 192, 0.3)',     // White-ish
+        '3': 'rgba(100, 255, 150, 0.3)',    // Test Color
+        '4': 'rgba(255, 200, 100, 0.3)',    // Test Color 2
+        '5': 'rgba(200, 100, 255, 0.3)',    // Test Color 3
+    };
+
+    // Check if we have a direct match
+    if (colorMap[tournamentId]) {
+        return colorMap[tournamentId];
+    }
+
+    // Default color if no ID or matching
+    return 'rgba(255, 148, 40, 0.3)';
+}
+
 // Create tournament card HTML
 function createTournamentCard(tournament) {
     const card = document.createElement('div');
@@ -225,6 +245,7 @@ function createTournamentCard(tournament) {
     card.dataset.date = tournament.date;
     card.dataset.type = tournament.type.toLowerCase();
     card.dataset.mode = tournament.mode;
+    card.dataset.id = tournament.id; // Store the ID if needed
 
     const tournamentTag = (() => {
         switch (tournament.type?.toLowerCase()) {
@@ -235,6 +256,9 @@ function createTournamentCard(tournament) {
             default: return 'ongoing';
         }
     })();
+    // Get the appropriate glare color based on tournament ID
+    const glareColor = getGlareColor(tournament.id);
+    const glareStyle = `linear-gradient(-45deg, hsla(0,0%,0%,0) 60%, ${glareColor} 70%, hsla(0,0%,0%,0) 100%)`;
     const tournamentTypeHTML = tournament.type && tournament.type.trim() !== '' ?
         `<div class="${tournamentTag}-tournament-tag">${tournament.type}</div>` : '<div class="ongoing-tournament-tag">Ongoing</div>';
 
@@ -246,6 +270,7 @@ function createTournamentCard(tournament) {
             </div>
             <img src="${tournament.image}" alt="${tournament.name} Preview" class="tournament-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
             ${tournamentTypeHTML}
+            <div class="glare-overlay" style="background-image: ${glareStyle}"></div>
         </div>
         <div class="tournament-info">
             <h3>${tournament.name}</h3>
