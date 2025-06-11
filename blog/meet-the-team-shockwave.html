@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Main meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Page title displayed in the browser tab -->
+    <title>Meet The Team: Template - PCWStats</title>
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="PCWStats - Meet The Team: Template">
+    <meta name="description" content="Meet The Team: Template - PCWStats developer insights on Project CW development and community building. Expert analysis and platform updates.">
+    <meta name="author" content="PCWStats Team">
+    <meta name="copyright" content="© 2025 PCWStats by SINEWAVE Development. All rights reserved.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="language" content="English">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://pcwstats.github.io/blog/meet-the-team-template.html">
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" href="../site-data/sitemap.xml">
+    <!-- Theme Checker -->
+    <script>
+      // Immediately set theme class before rendering begins
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          // Default to dark theme if saved or system preference
+          if (savedTheme === 'dark-theme' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark-theme');
+          } else {
+            document.documentElement.classList.add('light-theme');
+          }
+        } catch (e) {
+          console.error('Theme initialization error:', e);
+          document.documentElement.classList.add('light-theme');
+        }
+      })();
+    </script>
+    <!-- Main stylesheets -->
+    <link rel="stylesheet" href="../assets/css/libraries/tailwind.css">
+    <link rel="stylesheet" href="../assets/css/libraries/font-awesome/all.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/misc.css">
+    <link rel="stylesheet" href="../assets/css/pages/blog-pages.css">
+    <link rel="stylesheet" href="../assets/css/modules/header.css">
+    <link rel="stylesheet" href="../assets/css/modules/footer.css">
+    <link rel="stylesheet" href="../assets/css/modules/sidebar.css">
+    <link rel="stylesheet" href="../assets/css/modules/cta.css">
+    <link rel="stylesheet" href="../assets/css/modules/no-scrollbar.css">
+    <link rel="stylesheet" href="../assets/css/modules/search.css">
+    <link rel="stylesheet" href="../assets/css/modules/warning.css">
+    <link rel="stylesheet" href="../assets/css/modules/banner.css">
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/favicons/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/favicons/favicon.ico" type="image/x-icon">
+    <!-- Apple Touch Icons (for iOS home screen bookmarks) -->
+    <link rel="apple-touch-icon" sizes="57x57" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/apple/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/apple/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/apple/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/apple/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/apple/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/apple/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/apple/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/apple/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/apple/apple-icon-180x180.png">
+    <!-- Favicons for different devices -->
+    <link rel="icon" type="image/png" sizes="192x192" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/android/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/favicons/favicon-16x16.png">
+    <!-- Web Manifest -->
+    <link rel="manifest" href="../site-data/site.manifest">
+    <!-- Windows-specific tiles (for pinned sites in Windows Start menu) -->
+    <meta name="msapplication-TileColor" content="#141312">
+    <meta name="msapplication-TileImage" content="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/microsoft/ms-icon-144x144.png">
+    <meta name="msapplication-config" content="../site-data/browserconfig.xml">
+    <!-- Safari-specific meta tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="PCWStats">
+    <!-- Browser UI color -->
+    <meta name="theme-color" content="#141312">
+    <meta name="msapplication-navbutton-color" content="#141312">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#141312">
+    <!-- Open Graph Meta Tags (for social media sharing, mainly Facebook) -->
+    <meta property="og:title" content="PCWStats - Meet The Team: Template">
+    <meta property="og:description" content="Meet The Team: Template - PCWStats developer insights on Project CW development and community building. Expert analysis and platform updates.">
+    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/social-share/PCWStats.png">
+    <meta property="og:url" content="https://pcwstats.github.io/blog/meet-the-team-template.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="PCWStats">
+    <meta property="og:locale" content="en_US">
+    <!-- Twitter Card Meta Tags (for better sharing on Twitter) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@PCWStats">
+    <meta name="twitter:creator" content="@PCWStats">
+    <meta name="twitter:title" content="PCWStats - Meet The Team: Template">
+    <meta name="twitter:description" content="Meet The Team: Template - PCWStats developer insights on Project CW development and community building. Expert analysis and platform updates.">
+    <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/social-share/PCWStats.png">
+    <meta name="twitter:image:alt" content="PCWStats - Your one-stop solution for comprehensive statistics insights and guides for Project CW">
+  </head>
+  <body>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="flex items-center justify-between">
+          <button id="closeSidebar" class="sidebar-close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <nav class="flex-grow">
+        <ul class="space-y-2">
+          <li>
+            <a href="../index.html" class="sidebar-link">
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="../tanks.html" class="sidebar-link">
+              <i class="fas fa-shield-alt"></i>
+              <span>Tank Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="../players.html" class="sidebar-link wip">
+              <i class="fas fa-user"></i>
+              <span>Player Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="../maps.html" class="sidebar-link">
+              <i class="fas fa-map"></i>
+              <span>Map Knowledge</span>
+            </a>
+          </li>
+          <li>
+            <a href="../guides.html" class="sidebar-link">
+              <i class="fas fa-book-open"></i>
+              <span>Community Guides</span>
+            </a>
+          </li>
+          <li>
+            <a href="../strategy-planner.html" class="sidebar-link wip">
+              <i class="fas fa-chess"></i>
+              <span>Strategy Planner</span>
+            </a>
+          </li>
+          <li>
+            <a href="../builds.html" class="sidebar-link wip">
+              <i class="fas fa-wrench"></i>
+              <span>Common Builds</span>
+            </a>
+          </li>
+          <li>
+            <a href="../news.html" class="sidebar-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Game News</span>
+            </a>
+          </li>
+          <li>
+            <a href="../tankopedia.html" class="sidebar-link">
+              <i class="fas fa-database"></i>
+              <span>Tankopedia</span>
+            </a>
+          </li>
+          <li>
+            <a href="../bug-hunting.html" class="sidebar-link">
+              <i class="fas fa-bug"></i>
+              <span>Bug Hunting</span>
+            </a>
+          </li>
+          <li>
+            <a href="../tournaments.html" class="sidebar-link">
+              <i class="fas fa-trophy"></i>
+              <span>Tournaments</span>
+            </a>
+          </li>
+          <li>
+            <a href="../blog.html" class="sidebar-link active">
+              <i class="fas fa-blog"></i>
+              <span>Official Blog</span>
+            </a>
+          </li>
+          <li>
+            <a href="../legal.html" class="sidebar-link">
+              <i class="fas fa-balance-scale"></i>
+              <span>Project Policies</span>
+            </a>
+          </li>
+          <li>
+            <a href="../resources/about-us.html" class="sidebar-link">
+              <i class="fas fa-info-circle"></i>
+              <span>About the Project</span>
+            </a>
+          </li>
+          <li>
+            <a href="../resources/credits.html" class="sidebar-link">
+              <i class="fas fa-users"></i>
+              <span>Community Credits</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- Main Content -->
+    <div class="content-wrapper">
+      <!-- Header/Navbar -->
+      <header class="navbar">
+        <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center py-3">
+            <div class="flex items-center space-x-4">
+              <button id="openSidebar" class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <a href="../index.html" class="brand-logo">
+                <img src="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/logo/logo.webp" alt="PCWStats Logo" class="brand-logo-img">
+                <span>PCWStats</span>
+                <span class="beta-tag"></span>
+              </a>
+            </div>
+            <div class="navbar-actions">
+              <button id="openSearch" class="search-button">
+                <i class="fas fa-search"></i>
+              </button>
+              <div class="theme-toggle-mobile" id="themeToggleMobile">
+                <i class="fas fa-moon"></i>
+              </div>
+              <a href="https://pcwstats.github.io/Website-Status" class="system-status">
+                <i class="fa-solid fa-server"></i>
+              </a>
+              <a href="https://pcwstats.github.io/Website-Statistics" class="system-status">
+                <i class="fa-solid fa-chart-column"></i>
+              </a>
+              <a href="https://pcwstats.github.io/Website-Changelog" class="system-status">
+                <i class="fa-solid fa-clipboard-list"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- blog Header -->
+      <section class="blog-header">
+        <div class="container mx-auto px-4">
+          <div class="blog-meta">
+            <span class="blog-type-badge">MEET THE TEAM</span>
+            <span>
+              <i class="far fa-clock mr-1"></i> 18 min read </span>
+            <span>
+              <i class="far fa-calendar-alt mr-1"></i>June 12, 2025 </span>
+          </div>
+          <h1 class="blog-title">Meet the Team - Shockwave</h1>
+          <div class="blog-author">
+            <img src="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/team-members/Shockwave.webp" alt="Author" class="author-avatar">
+            <div>
+              <p class="author-name">Shockwave</p>
+              <p class="author-title">Content Writer</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- blog Content -->
+      <section class="section py-8">
+        <div class="container mx-auto px-4">
+          <div class="blog-content-wrapper">
+            <!-- Main Content -->
+            <div class="blog-main-content">
+              <div class="blog-text">
+                <!-- Section 1 -->
+                <h2 id="section-1">Introduction</h2>
+                <p>The name is Shrayes. Yeah, I know it's a weird name, but it’s the one I have, so I just roll with it. </p>
+                <p>Most folks on the internet just know me as Shockwave. I adopted the name from the Decepticon from the Transformers series. Something just struck out to me as him being such a unique character, the mystique, the cold and cunning logic.</p>
+                <p>I got my introduction to Project Cold Wars through my background from World of Warships, being a long-standing and jaded veteran of that game. I plunged headfirst into the OAT1 and haven’t looked back since.</p>
+                <!-- Section 2 -->
+                <h2 id="section-2">What I Do</h2>
+                <p>I am a writer for the PCWStats Team, working on tank and map guides as well as general advice guides. Most of the time I’m usually just lurking around listening in to feedback from other players while also test evaluating almost every tank that I get my hands on and writing guides for them. I also provide occasional suggestions to people that are struggling with the game. My vision with helping people out is to try and foster a community within the game that in turn helps everyone that wants to play the game be better at it, with the mindset that it isn’t fun to keep getting blown out every game and not improve because you don’t really know why you keep getting blown out repeatedly, nor are constant steamroll games fun for good players either.</p>
+                <!-- Section 3 -->
+                <h2 id="section-3">My Background</h2>
+                <p>My background is interesting, as I never really cared much for picking apart and putting together technology. Although I have a fascination with the field of STEM, my primary focus has always been on the Arts, through the fields of Social Sciences and Politics. However, as I said, I have a fascination with the sciences, and I’ll often peruse through scientific articles, lectures, and other pieces of material that catch my interest, and I’ll keep that knowledge to dwell on later and add it to my collection.</p>
+                <p>Besides my interest in collecting a large amount of knowledge about everything that I can, I also love politics and discussing it with my colleagues. I got my start in politics in college as part of the Student government body and transitioned it back into my home city, where I work with the city council on helping to run a summer class for Government 101.</p>
+                <p>My personal tastes lean in all sorts of directions. I have a fascination with both hand to hand vehicular, and tower defense combat in video games. To wit, I have played way too much of the Bloons Tower Defense Franchise, as well as a good bit of Doom 2016 and Eternal, on top of Project CW, World of Warships and World of Tanks. This also feeds into my music tastes, as I do listen to a ton of Heavy Metal such as Guns n’ Roses, AC/DC, and A7X. As for everything else, as Loki says, it varies from moment to moment.</p>
+                <p>From a personal standpoint, I’m shy and anxious; on the internet I will yap for days but in real life I don’t really say all too much outside of the classroom or a meeting, and I prefer to let whatever work I do speak for itself.</p>
+                <!-- Section 4 -->
+                <h2 id="section-4">Favorite Thing About Project CW</h2>
+                <p>My favorite thing about Project CW is really just the fact that I’ve found a wonderful community with which I can share my ideas and collaborate, and of course really have fun when playing a Wargaming Title without having to deal with a group of people that can really grate your nerves.</p>
+                <!-- Section 5 -->
+                <h2 id="section-5">Favorite Agent and Tank</h2>
+                <p>Chopper and his M1E1.</p>
+                <p>Violence isn’t the answer, it’s the question, and the answer is yes.</p>
+                <!-- Section 6 -->
+                <h2 id="section-6">Fun Facts</h2>
+                <p>I obsess over details and I like to sketch out my crazy ideas and talk about them to anyone who is willing to listen to them.</p>
+                <p>I’m a massive sucker for Mint Chip Ice Cream.</p>
+                <p>I used to be a good athlete, but I walk around with a limp due to a strained knee and achilles tendon. It doesn’t bother me, but it certainly is rather annoying.</p>
+                <p>My favorite soundtrack is BFG Division from Doom 2016.</p>
+                <!-- Section 7 -->
+                <h2 id="section-7">Quote & Personal Motto</h2>
+                <p>My Personal Motto is “Try and win with reason and compassion. If that doesn’t work, just kill them and win anyway”</p>
+                <p>Quotes:</p>
+                <p>“Fortis Fortuna Adiuvat” - Fortune Favors the Bold</p>
+                <p>“War never determines who is right or wrong, war only determines who is left. Either you’re left standing, or you’re left in pieces. You either be uncompromising, or force yourself to compromise and falter. The latter option in either case is unfavorable.”</p>
+                <p>“Use a gun, and if that doesn’t kill the bastard trying to kill you, use more gun”</p>
+                <!-- Section 8 -->
+                <h2 id="section-8">Final Thoughts</h2>
+                <p>I exist as a person on the Project CW Discord. If you have any questions or want to platoon up or ask for help or something, I’m open.</p>
+              </div>
+              <!-- Mobile Sidebar Content -->
+              <div class="mobile-sidebar-content lg:hidden mt-12">
+                <!-- Author Info -->
+                <div class="sidebar-card">
+                  <h3>About the Author</h3>
+                  <div class="author-info">
+                    <img src="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/team-members/Shockwave.webp" alt="Author">
+                    <div>
+                      <h4>Shockwave</h4>
+                      <p>Content Writer</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Table of Contents -->
+                <div class="sidebar-card">
+                  <h3>Table of Contents</h3>
+                  <ul class="space-y-2">
+                    <li>
+                      <a href="#introduction" class="hover:text-accent-color">Introduction</a>
+                    </li>
+                    <li>
+                      <a href="#section-2" class="hover:text-accent-color">What I Do</a>
+                    </li>
+                    <li>
+                      <a href="#section-3" class="hover:text-accent-color">My Background</a>
+                    </li>
+                    <li>
+                      <a href="#section-4" class="hover:text-accent-color">Favorite Thing About Project CW</a>
+                    </li>
+                    <li>
+                      <a href="#section-5" class="hover:text-accent-color">Favorite Agent and Tank</a>
+                    </li>
+                    <li>
+                      <a href="#section-6" class="hover:text-accent-color">Fun Facts</a>
+                    </li>
+                    <li>
+                      <a href="#section-7" class="hover:text-accent-color">Quote & Personal Motto</a>
+                    </li>
+                    <li>
+                      <a href="#section-8" class="hover:text-accent-color">Final Thoughts</a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- Related blog -->
+                <div class="sidebar-card">
+                  <h3>Related Articles</h3>
+                  <div class="related-blog">
+                    <h4>
+                      <a href="meet-the-team-sinewave.html" class="hover:text-accent-color">Meet The Team: esmatty</a>
+                    </h4>
+                    <p>Meet esmatty, Content Writer at PCWStats</p>
+                  </div>
+                  <div class="related-blog">
+                    <h4>
+                      <a href="meet-the-team-sinewave.html" class="hover:text-accent-color">Meet The Team: SINEWAVE</a>
+                    </h4>
+                    <p>Meet SINEWAVE, Founder & Lead Developer at PCWStats</p>
+                  </div>
+                  <div class="related-blog">
+                    <h4>
+                      <a href="meet-the-team-ven0m.html" class="hover:text-accent-color">Meet The Team: VEN0M</a>
+                    </h4>
+                    <p>Meet VEN0M, Frontend Developer at PCWStats</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Desktop Sidebar -->
+            <div class="blog-sidebar hidden lg:block">
+              <!-- Author Info -->
+              <div class="sidebar-card">
+                <h3>About the Author</h3>
+                <div class="author-info">
+                  <img src="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/team-members/Shockwave.webp" alt="Author">
+                  <div>
+                    <h4>Shockwave</h4>
+                    <p>Content Writer</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Table of Contents -->
+              <div class="sidebar-card">
+                <h3>Table of Contents</h3>
+                <ul class="space-y-2">
+                  <li>
+                    <a href="#section-1" class="hover:text-accent-color">Introduction</a>
+                  </li>
+                  <li>
+                    <a href="#section-2" class="hover:text-accent-color">What I Do</a>
+                  </li>
+                  <li>
+                    <a href="#section-3" class="hover:text-accent-color">My Background</a>
+                  </li>
+                  <li>
+                    <a href="#section-4" class="hover:text-accent-color">Favorite Thing About PCW</a>
+                  </li>
+                  <li>
+                    <a href="#section-5" class="hover:text-accent-color">Favorite Agent and Tank</a>
+                  </li>
+                  <li>
+                    <a href="#section-6" class="hover:text-accent-color">Fun Facts</a>
+                  </li>
+                  <li>
+                    <a href="#section-7" class="hover:text-accent-color">Quote & Personal Motto</a>
+                  </li>
+                  <li>
+                    <a href="#section-8" class="hover:text-accent-color">Final Thoughts</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- Related blog -->
+              <div class="sidebar-card">
+                <h3>Related Articles</h3>
+                <div class="related-blog">
+                  <h4>
+                    <a href="meet-the-team-esmatty.html" class="hover:text-accent-color">Meet the Team - esmatty</a>
+                  </h4>
+                  <p>Meet esmatty, Content Writer at PCWStats</p>
+                </div>
+                <div class="related-blog">
+                  <h4>
+                    <a href="meet-the-team-sinewave.html" class="hover:text-accent-color">Meet the Team - SINEWAVE</a>
+                  </h4>
+                  <p>Meet SINEWAVE, Founder & Lead Developer at PCWStats</p>
+                </div>
+                <div class="related-blog">
+                  <h4>
+                    <a href="meet-the-team-ven0m.html" class="hover:text-accent-color">Meet the Team - VEN0M</a>
+                  </h4>
+                  <p>Meet VEN0M, Frontend Developer at PCWStats</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Search Modal -->
+      <div class="search-overlay" id="searchOverlay"></div>
+      <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+          <div class="search-input-container">
+            <i class="fas fa-search search-modal-icon"></i>
+            <input type="text" placeholder="Search tanks, maps, guides..." class="search-modal-input" autofocus>
+          </div>
+          <div class="search-suggestions">
+            <p class="search-suggestions-title">Past Searches</p>
+            <div class="past-searches-tags">
+              <!-- Past searches will be dynamically inserted here -->
+            </div>
+            <div class="search-results-container">
+              <div class="search-results-placeholder">
+                <i class="fas fa-search"></i>
+                <p>Your search results will appear here</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <footer class="footer bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-10 space-y-10">
+          <!-- Top Row -->
+          <div class="footer-brand flex flex-col items-center text-center">
+            <div>
+              <h3 class="text-2xl font-semibold">PCWStats</h3>
+              <p class="text-gray-400">Your go-to resource for Project CW statistics and gameplay information.</p>
+            </div>
+            <div class="flex space-x-4 text-xl">
+              <a href="https://discord.com/invite/2nHHHBWNDw" class="social-icon">
+                <i class="fab fa-discord"></i>
+              </a>
+              <a href="https://x.com/PCWStats" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://github.com/PCWStats" class="social-icon">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.youtube.com/@PCWStats" class="social-icon">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Middle Row -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-10 text-center">
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Tools</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../maps.html">Map Knowledge</a>
+                </li>
+                <li>
+                  <a href="../tanks.html">Tank Statistics</a>
+                </li>
+                <li>
+                  <a href="../tankopedia.html">Tankopedia</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Community</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../guides.html">Community Guides</a>
+                </li>
+                <li>
+                  <a href="../builds.html">Common Builds</a>
+                </li>
+                <li>
+                  <a href="../tournaments.html">Tournaments</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">PCWStats</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../resources/about-us.html">About the Project</a>
+                </li>
+                <li>
+                  <a href="../blog.html">Official Blog</a>
+                </li>
+                <li>
+                  <a href="../news.html">Game News</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Credits</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../resources/credits.html">Community Credits</a>
+                </li>
+                <li>
+                  <a href="../resources/support-us.html">Support the Project</a>
+                </li>
+                <li>
+                  <a href="../resources/contact-us.html">Contact Us</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Legal</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../legal/terms-of-service.html">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="../legal/project-license.html">Project License</a>
+                </li>
+                <li>
+                  <a href="../legal/privacy-policy.html">Privacy Policy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Contact Row -->
+          <div class="text-center">
+            <h3 class="text-lg font-semibold mb-1">Contact</h3>
+            <p class="text-gray-400 mb-2">Have suggestions, found a bug or want to help?</p>
+            <a href="../resources/contact-us.html" class="btn-accent mt-4">
+              <i class="fas fa-envelope mr-2"></i>Send Feedback </a>
+            <a href="../resources/get-involved.html" class="btn-accent mt-4">
+              <i class="fas fa-users mr-2"></i>Get Involved </a>
+          </div>
+          <!-- Bottom Disclaimer -->
+          <div class="text-center text-sm text-gray-500 space-y-1 border-t border-gray-700 pt-1">
+            <p> PCWStats is a community-made project and is not associated with, endorsed by, or affiliated with <a href="https://projectcw.dev" class="disclaimer-link">Project CW</a> or <a href="https://www.wargaming.net" class="disclaimer-link">Wargaming.net</a>.</p>
+            <p>&copy; 2025 PCWStats by SINEWAVE Development. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/misc.js"></script>
+    <script src="../assets/js/modules/image-protection.js"></script>
+    <script src="../assets/js/pages/blog-pages.js"></script>
+    <script src="../assets/js/modules/sidebar.js"></script>
+    <script src="../assets/js/modules/theme-loader.js"></script>
+    <script src="../assets/js/modules/search.js"></script>
+    <script src="../assets/js/modules/warning.js"></script>
+    <script src="../assets/js/modules/banner.js"></script>
+  </body>
+</html>
