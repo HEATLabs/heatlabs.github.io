@@ -1,0 +1,336 @@
+/* Agents Page Specific Styles */
+.agents-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 2rem;
+	margin-top: 2rem;
+}
+
+.agent-card {
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	overflow: hidden;
+	box-shadow: var(--shadow);
+	transition: all var(--transition-speed);
+	border: 1px solid var(--border-color);
+	cursor: pointer;
+}
+
+.agent-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.agent-img-container {
+	position: relative;
+	height: 200px;
+	overflow: hidden;
+}
+
+.agent-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform var(--transition-speed);
+}
+
+.agent-card:hover .agent-img {
+	transform: scale(1.05);
+}
+
+.agent-info {
+	padding: 1.5rem;
+	text-align: left;
+}
+
+.agent-info h3 {
+	font-weight: bold;
+	font-size: 1.25rem;
+	margin-bottom: 0.5rem;
+	color: var(--text-primary);
+}
+
+.agent-specialty {
+	color: var(--accent-color);
+	font-weight: 500;
+	margin-bottom: 0.5rem;
+	font-size: 0.9rem;
+}
+
+.agent-meta {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	color: var(--text-secondary);
+	font-size: 0.85rem;
+	margin-top: 0.5rem;
+}
+
+.agent-meta i {
+	color: var(--accent-color);
+}
+
+/* Agent Modal Styles */
+.agent-modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.9);
+	z-index: 1000;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s ease;
+	backdrop-filter: blur(5px);
+}
+
+.agent-modal-overlay.active {
+	opacity: 1;
+	visibility: visible;
+}
+
+.agent-modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0.95);
+	width: 90%;
+	max-width: 850px;
+	max-height: 90vh;
+	background-color: var(--bg-primary);
+	border-radius: 1rem;
+	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+	z-index: 1001;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	overflow-y: auto;
+	border: 1px solid var(--border-color);
+}
+
+.agent-modal.active {
+	opacity: 1;
+	visibility: visible;
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.agent-modal-close {
+	position: absolute;
+	top: 1.25rem;
+	right: 1.25rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, 0.2);
+	border: none;
+	border-radius: 50%;
+	color: var(--text-secondary);
+	font-size: 1.25rem;
+	cursor: pointer;
+	z-index: 10;
+	transition: all 0.2s ease;
+}
+
+.agent-modal-close:hover {
+	color: var(--text-primary);
+	background: rgba(0, 0, 0, 0.3);
+	transform: rotate(90deg);
+}
+
+.agent-modal-content {
+	padding: 2.5rem;
+}
+
+.agent-modal-header {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	margin-bottom: 2rem;
+	position: relative;
+}
+
+.agent-modal-image-container {
+	width: 100%;
+	height: 300px;
+	border-radius: 0.75rem;
+	overflow: hidden;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.agent-modal-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top;
+}
+
+.agent-modal-info {
+	text-align: center;
+	padding: 0 1rem;
+}
+
+.agent-modal-info h2 {
+	font-size: 2rem;
+	margin-bottom: 0.5rem;
+	color: var(--text-primary);
+	font-weight: 700;
+}
+
+.agent-modal-specialty {
+	font-size: 1.2rem;
+	color: var(--accent-color);
+	font-weight: 600;
+	margin-bottom: 1rem;
+	display: inline-block;
+	padding: 0.25rem 0.75rem;
+	background: rgba(var(--accent-rgb), 0.1);
+	border-radius: 2rem;
+}
+
+.agent-modal-description {
+	color: var(--text-secondary);
+	line-height: 1.7;
+	font-size: 1.05rem;
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+.agent-modal-body {
+	margin-top: 2.5rem;
+}
+
+.agent-modal-body h3 {
+	font-size: 1.5rem;
+	margin-bottom: 1.25rem;
+	color: var(--text-primary);
+	padding-bottom: 0.5rem;
+	position: relative;
+	display: inline-block;
+}
+
+.agent-modal-body h3::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 50%;
+	height: 3px;
+	background: var(--accent-color);
+	border-radius: 3px;
+}
+
+.agent-modal-body p {
+	color: var(--text-secondary);
+	line-height: 1.7;
+	margin-bottom: 1.5rem;
+	font-size: 1.05rem;
+}
+
+.agent-modal-tanks-container {
+	width: 100%;
+	overflow-x: auto;
+	padding-bottom: 1rem;
+}
+
+.agent-modal-tanks {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1.5rem;
+	margin-top: 1.5rem;
+	padding: 0.5rem;
+}
+
+.agent-modal-tank {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-decoration: none;
+	transition: all 0.2s ease;
+	width: 200px;
+}
+
+.agent-modal-tank:hover {
+	transform: translateY(-5px);
+}
+
+.agent-modal-tank img {
+	width: 200px;
+	height: 100px;
+	object-fit: contain;
+	border-radius: 0.5rem;
+	margin-bottom: 0.75rem;
+	background-color: var(--bg-tertiary);
+	padding: 0.5rem;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+	border: 1px solid var(--border-color);
+}
+
+.agent-modal-tank span {
+	font-size: 0.85rem;
+	color: var(--text-primary);
+	text-align: center;
+	font-weight: 500;
+	transition: color 0.2s ease;
+}
+
+.agent-modal-tank:hover span {
+	color: var(--accent-color);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+	.agents-grid {
+		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	}
+
+	.agent-modal {
+		width: 95%;
+		max-width: 95%;
+	}
+
+	.agent-modal-content {
+		padding: 1.5rem;
+	}
+
+	.agent-modal-image-container {
+		height: 220px;
+	}
+
+	.agent-modal-info h2 {
+		font-size: 1.75rem;
+	}
+
+	.agent-modal-tanks {
+		gap: 1rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.agents-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.agent-modal-content {
+		padding: 1.25rem;
+	}
+
+	.agent-modal-image-container {
+		height: 180px;
+	}
+
+	.agent-modal-info h2 {
+		font-size: 1.5rem;
+	}
+
+	.agent-modal-specialty {
+		font-size: 1rem;
+	}
+
+	.agent-modal-body h3 {
+		font-size: 1.3rem;
+	}
+}
