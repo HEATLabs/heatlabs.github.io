@@ -1,4 +1,23 @@
 // Tournament Page JS for PCWStats
+let tanksData = [];
+
+// Load tanks data
+async function loadTanksData() {
+    try {
+        const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
+        if (!response.ok) {
+            throw new Error('Failed to fetch tanks data');
+        }
+        tanksData = await response.json();
+        window.tanksData = tanksData;
+    } catch (error) {
+        console.error('Error loading tanks data:', error);
+    }
+}
+
+// Load tanks data when the script runs
+loadTanksData();
+
 document.addEventListener('DOMContentLoaded', function() {
     // Get tournament ID from meta tag
     const tournamentIdMeta = document.querySelector('meta[name="tournament-id"]');
@@ -273,6 +292,9 @@ function openTeamModal(team) {
                 const tankElement = document.createElement('div');
                 tankElement.className = 'team-modal-tank';
 
+                const tankLink = document.createElement('a');
+                tankLink.href = `../tanks/${getTankSlug(tank.tank_name)}.html`;
+                tankLink.className = 'tank-link';
                 const tankImg = document.createElement('img');
                 tankImg.src = tank.tank_image || 'https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/tanks/placeholder-image.png';
                 tankImg.alt = tank.tank_name || 'Tank Image';
@@ -285,8 +307,9 @@ function openTeamModal(team) {
                     <div class="text-sm text-gray-600 dark:text-gray-400">${tank.tank_name || 'Unknown Tank'}</div>
                 `;
 
-                tankElement.appendChild(tankImg);
-                tankElement.appendChild(tankInfo);
+                tankLink.appendChild(tankImg);
+                tankLink.appendChild(tankInfo);
+                tankElement.appendChild(tankLink);
                 teamModalTanksContainer.appendChild(tankElement);
             });
         } else {
@@ -298,6 +321,19 @@ function openTeamModal(team) {
     teamModal.classList.add('active');
     teamModalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+}
+
+function getTankSlug(tankName) {
+    if (!tankName) return '';
+
+    // Try to find the tank in the tanks.json data
+    if (window.tanksData) {
+        const tank = window.tanksData.find(t => t.name === tankName);
+        if (tank) return tank.slug;
+    }
+
+    // For fallback we convert the name to a slug format
+    return tankName.toLowerCase().replace(/\s+/g, '-');
 }
 
 function initializeTournamentPageElements() {
