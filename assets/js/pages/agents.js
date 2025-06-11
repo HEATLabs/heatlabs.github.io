@@ -1,7 +1,7 @@
 // Function to fetch agents data
 async function fetchAgentsData() {
     try {
-        const response = await fetch('../Website-Configs/agents.json');
+        const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/agents.json');
         if (!response.ok) {
             throw new Error('Failed to load agents data');
         }
