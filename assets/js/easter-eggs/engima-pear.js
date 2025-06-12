@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to hide the easter egg and stop sound
     function hideEasterEgg() {
         easterEgg.style.display = 'none';
+        easterEgg.style.opacity = '0';
         if (sound) {
             sound.pause();
             sound.currentTime = 0; // Reset to beginning
