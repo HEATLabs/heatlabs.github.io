@@ -66,6 +66,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 </button>
             </div>
         </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast">
+            <i class="fas fa-check-circle"></i>
+            <span id="toast-message">Settings saved successfully!</span>
+        </div>
     `;
 
     // Insert the modal into DOM
@@ -78,6 +84,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const settingsCancelBtn = document.getElementById('settingsCancelBtn');
     const settingsSaveBtn = document.getElementById('settingsSaveBtn');
     const clearSearchHistoryBtn = document.getElementById('clearSearchHistoryBtn');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toast-message');
 
     // Keyboard listener for "settings" command
     let typedKeys = '';
@@ -99,6 +107,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Show toast notification
+    function showToast(message, type = 'success') {
+        toast.className = 'toast';
+        toast.classList.add(type);
+        toastMessage.textContent = message;
+
+        // Set appropriate icon based on type
+        const icon = toast.querySelector('i');
+        if (type === 'success') {
+            icon.className = 'fas fa-check-circle';
+        } else {
+            icon.className = 'fas fa-info-circle';
+        }
+
+        toast.classList.add('show');
+
+        // Hide after 3 seconds
+        setTimeout(() => {
+            toast.classList.remove('show');
+            toast.classList.add('hide');
+
+            // Remove hide class after animation completes
+            setTimeout(() => {
+                toast.classList.remove('hide');
+            }, 300);
+        }, 3000);
+    }
+
     // Open settings modal
     function openSettingsModal() {
         settingsModal.classList.add('active');
@@ -108,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Load saved settings (mock data)
         document.getElementById('themeSelect').value = 'system';
         document.getElementById('reducedMotionToggle').checked = false;
-        document.getElementById('unitSystemSelect').value = 'metric';
     }
 
     // Close settings modal
@@ -122,23 +157,24 @@ document.addEventListener('DOMContentLoaded', function() {
     function saveSettings() {
         const theme = document.getElementById('themeSelect').value;
         const reducedMotion = document.getElementById('reducedMotionToggle').checked;
-        const unitSystem = document.getElementById('unitSystemSelect').value;
 
         // In a real implementation, these will be saved to localStorage when ill finish this
         console.log('Settings saved:', {
             theme,
-            reducedMotion,
-            unitSystem
+            reducedMotion
         });
 
-        // Show a success message, this will be a toast notification
-        alert('Settings saved successfully!');
-        closeSettingsModal();
+        // Show success toast
+        showToast('Settings saved successfully!', 'success');
+
+        // Close modal after a short delay to allow toast to be seen
+        setTimeout(closeSettingsModal, 500);
     }
 
     // Clear search history (mock function)
     function clearSearchHistory() {
-        alert('Search history cleared! (This is a mock action)');
+        // Show info toast
+        showToast('Search history cleared!', 'info');
     }
 
     // Event listeners
