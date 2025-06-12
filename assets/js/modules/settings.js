@@ -84,8 +84,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const settingsCancelBtn = document.getElementById('settingsCancelBtn');
     const settingsSaveBtn = document.getElementById('settingsSaveBtn');
     const clearSearchHistoryBtn = document.getElementById('clearSearchHistoryBtn');
+    const themeSelect = document.getElementById('themeSelect');
+    const reducedMotionToggle = document.getElementById('reducedMotionToggle');
     const toast = document.getElementById('toast');
     const toastMessage = document.getElementById('toast-message');
+
+    // Open settings modal when clicking settings button
+    const openSettingsBtn = document.getElementById('openSettings');
+    if (openSettingsBtn) {
+        openSettingsBtn.addEventListener('click', openSettingsModal);
+    }
 
     // Keyboard listener for "settings" command
     let typedKeys = '';
@@ -141,9 +149,12 @@ document.addEventListener('DOMContentLoaded', function() {
         settingsOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
 
-        // Load saved settings (mock data)
-        document.getElementById('themeSelect').value = 'system';
-        document.getElementById('reducedMotionToggle').checked = false;
+        // Load saved settings
+        const savedTheme = localStorage.getItem('themePreference') || 'system';
+        const savedMotion = localStorage.getItem('reducedMotion') === 'true';
+
+        themeSelect.value = savedTheme;
+        reducedMotionToggle.checked = savedMotion;
     }
 
     // Close settings modal
@@ -153,16 +164,24 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
     }
 
-    // Save settings (mock function)
+    // Save settings
     function saveSettings() {
-        const theme = document.getElementById('themeSelect').value;
-        const reducedMotion = document.getElementById('reducedMotionToggle').checked;
+        const theme = themeSelect.value;
+        const reducedMotion = reducedMotionToggle.checked;
 
-        // In a real implementation, these will be saved to localStorage when ill finish this
-        console.log('Settings saved:', {
-            theme,
-            reducedMotion
-        });
+        // Save to localStorage
+        localStorage.setItem('themePreference', theme);
+        localStorage.setItem('reducedMotion', reducedMotion);
+
+        // Apply theme
+        applyThemePreference(theme);
+
+        // Apply reduced motion
+        if (reducedMotion) {
+            document.documentElement.classList.add('reduced-motion');
+        } else {
+            document.documentElement.classList.remove('reduced-motion');
+        }
 
         // Show success toast
         showToast('Settings saved successfully!', 'success');
@@ -171,10 +190,58 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(closeSettingsModal, 500);
     }
 
-    // Clear search history (mock function)
+    // Apply theme preference
+    function applyThemePreference(theme) {
+        const html = document.documentElement;
+
+        // Remove existing theme classes
+        html.classList.remove('dark-theme', 'light-theme');
+
+        if (theme === 'system') {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                html.classList.add('dark-theme');
+                localStorage.setItem('theme', 'dark-theme');
+            } else {
+                html.classList.add('light-theme');
+                localStorage.setItem('theme', 'light-theme');
+            }
+        } else if (theme === 'dark') {
+            html.classList.add('dark-theme');
+            localStorage.setItem('theme', 'dark-theme');
+        } else {
+            html.classList.add('light-theme');
+            localStorage.setItem('theme', 'light-theme');
+        }
+
+        // Dispatch event for other components to listen to
+        document.dispatchEvent(new CustomEvent('themeChanged'));
+    }
+
+    // Clear search history
     function clearSearchHistory() {
+        localStorage.removeItem('pastSearches');
+
+        // Update search.js if it's loaded
+        if (typeof updatePastSearchesDisplay === 'function') {
+            updatePastSearchesDisplay();
+        }
+
         // Show info toast
         showToast('Search history cleared!', 'info');
+    }
+
+    // Initialize settings on page load
+    function initializeSettings() {
+        // Check for reduced motion preference
+        const reducedMotion = localStorage.getItem('reducedMotion') === 'true';
+        if (reducedMotion) {
+            document.documentElement.classList.add('reduced-motion');
+        }
+
+        // Check for theme preference
+        const themePreference = localStorage.getItem('themePreference') || 'system';
+        applyThemePreference(themePreference);
     }
 
     // Event listeners
@@ -187,4 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
     settingsModal.addEventListener('click', function(e) {
         e.stopPropagation();
     });
+
+    // Initialize settings when page loads
+    initializeSettings();
 });
