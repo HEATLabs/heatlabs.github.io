@@ -42,24 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             <div class="settings-group">
                 <h3 class="settings-group-title">
-                    <i class="fas fa-ruler-combined"></i>
-                    Units
-                </h3>
-
-                <div class="settings-option">
-                    <div>
-                        <div class="settings-label">Unit System</div>
-                        <div class="settings-description">Display measurements in metric or imperial units</div>
-                    </div>
-                    <select class="settings-select" id="unitSystemSelect">
-                        <option value="metric">Metric (km/h, m)</option>
-                        <option value="imperial">Imperial (mph, ft)</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="settings-group">
-                <h3 class="settings-group-title">
                     <i class="fas fa-search"></i>
                     Search
                 </h3>
