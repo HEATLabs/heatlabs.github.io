@@ -76,7 +76,7 @@
 /* Search and theme toggle buttons */
 .search-button,
 .system-status,
-.theme-toggle-mobile {
+.settings-button {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
@@ -93,7 +93,7 @@
 
 .system-status:hover,
 .search-button:hover,
-.theme-toggle-mobile:hover {
+.settings-button:hover {
 	background-color: var(--accent-color-light);
 	color: var(--accent-color);
 }
