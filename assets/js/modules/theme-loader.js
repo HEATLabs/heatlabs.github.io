@@ -11,8 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let isLocked = false;
 
     const html = document.documentElement;
-    const themeToggle = document.getElementById('themeToggle');
-    const themeToggleMobile = document.getElementById('themeToggleMobile');
 
     // Check lockout
     const darkModeLockout = localStorage.getItem('darkModeLockout');
@@ -35,9 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
         html.classList.add(savedTheme);
     }
 
-    // Initialize theme icons
-    updateThemeIcon(html.classList.contains('dark-theme'));
-
     // Theme toggle function with Easter Egg logic
     function handleThemeToggle() {
         if (isLocked) {
@@ -50,12 +45,10 @@ document.addEventListener('DOMContentLoaded', function() {
             html.classList.remove('dark-theme');
             html.classList.add('light-theme');
             localStorage.setItem('theme', 'light-theme');
-            updateThemeIcon(false);
         } else {
             html.classList.remove('light-theme');
             html.classList.add('dark-theme');
             localStorage.setItem('theme', 'dark-theme');
-            updateThemeIcon(true);
         }
 
         // Update charts when theme changes
@@ -73,24 +66,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Assign handler
-    if (themeToggle) themeToggle.addEventListener('click', handleThemeToggle);
-    if (themeToggleMobile) themeToggleMobile.addEventListener('click', handleThemeToggle);
-
-    // Update theme icon
-    function updateThemeIcon(isDark) {
-        const themeIconMobile = themeToggleMobile ? themeToggleMobile.querySelector('i') : null;
-        if (themeIconMobile) {
-            themeIconMobile.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-        }
-    }
-
     // Force dark mode and update icon
     function forceDarkMode() {
         html.classList.remove('light-theme');
         html.classList.add('dark-theme');
         localStorage.setItem('theme', 'dark-theme');
-        updateThemeIcon(true);
         updateChartColors();
     }
 
@@ -139,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const lockoutUntil = Date.now() + LOCKOUT_DURATION;
         localStorage.setItem('darkModeLockout', lockoutUntil.toString());
 
-        forceLightMode();
+        forceDarkMode();
         showLockoutModal(true);
     }
 
@@ -266,4 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize chart colors on first load
     setTimeout(updateChartColors, 500);
+
+    // Listen for theme changes from settings
+    document.addEventListener('themeChanged', updateChartColors);
 });
