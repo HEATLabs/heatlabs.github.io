@@ -95,26 +95,6 @@ document.addEventListener('DOMContentLoaded', function() {
         openSettingsBtn.addEventListener('click', openSettingsModal);
     }
 
-    // Keyboard listener for "settings" command
-    let typedKeys = '';
-    document.addEventListener('keydown', function(e) {
-        // Only track letters
-        if (e.key.length === 1 && e.key.match(/[a-z]/i)) {
-            typedKeys += e.key.toLowerCase();
-
-            // Check if "settings" has been typed
-            if (typedKeys.includes('settings')) {
-                openSettingsModal();
-                typedKeys = ''; // Reset after opening
-            }
-
-            // Limit the length to prevent memory issues
-            if (typedKeys.length > 20) {
-                typedKeys = typedKeys.slice(-20);
-            }
-        }
-    });
-
     // Show toast notification
     function showToast(message, type = 'success') {
         toast.className = 'toast';
