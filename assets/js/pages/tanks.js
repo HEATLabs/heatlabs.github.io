@@ -6,6 +6,19 @@ document.addEventListener('DOMContentLoaded', function() {
         status: []
     };
 
+document.addEventListener('click', function(event) {
+    const sidebar = document.querySelector('.comparison-sidebar');
+    const trigger = document.querySelector('.comparison-trigger');
+
+    // If sidebar exists and is open, and click is outside of it
+    if (sidebar && sidebar.classList.contains('open') &&
+        !sidebar.contains(event.target) &&
+        event.target !== trigger &&
+        !trigger.contains(event.target)) {
+        toggleSidebar(event);
+    }
+});
+
     // DOM elements
     const activeFiltersContainer = document.querySelector('.active-filters');
     const noFiltersMessage = document.querySelector('.no-filters-message');
@@ -85,11 +98,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Toggle sidebar visibility
-    function toggleSidebar() {
+    function toggleSidebar(event) {
         const sidebar = document.querySelector('.comparison-sidebar');
         const overlay = document.querySelector('.comparison-overlay');
         const trigger = document.querySelector('.comparison-trigger');
 
+        // If click came from outside the sidebar and overlay, and sidebar is open, close it
+        if (event && event.target !== overlay && !sidebar.contains(event.target) &&
+            !trigger.contains(event.target) && sidebar.classList.contains('open')) {
+            // This is a click outside, so we'll close the sidebar
+            sidebar.classList.remove('open');
+            overlay.style.display = 'none';
+            trigger.style.right = '0';
+            return;
+        }
+
+        // Normal toggle behavior
         const isOpening = !sidebar.classList.contains('open');
 
         sidebar.classList.toggle('open');
