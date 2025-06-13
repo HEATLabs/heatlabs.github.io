@@ -37,10 +37,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="settings-label">Reduced Motion</div>
                         <div class="settings-description">Reduce animations and transitions</div>
                     </div>
-                    <label class="settings-toggle">
-                        <input type="checkbox" id="reducedMotionToggle">
-                        <span class="settings-toggle-slider"></span>
-                    </label>
+                    <select class="settings-select" id="reducedMotionSelect">
+                        <option value="false">Disabled</option>
+                        <option value="true">Enabled</option>
+                    </select>
                 </div>
             </div>
 
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const settingsSaveBtn = document.getElementById('settingsSaveBtn');
     const clearSearchHistoryBtn = document.getElementById('clearSearchHistoryBtn');
     const themeSelect = document.getElementById('themeSelect');
-    const reducedMotionToggle = document.getElementById('reducedMotionToggle');
+    const reducedMotionSelect = document.getElementById('reducedMotionSelect');
     const toast = document.getElementById('toast');
     const toastMessage = document.getElementById('toast-message');
     const dataRetentionSelect = document.getElementById('dataRetentionSelect');
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const savedRetention = localStorage.getItem('dataRetention') || '3';
 
         themeSelect.value = savedTheme;
-        reducedMotionToggle.checked = savedMotion;
+        reducedMotionSelect.value = savedMotion;
         dataRetentionSelect.value = savedRetention;
     }
 
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Save settings
     function saveSettings() {
         const theme = themeSelect.value;
-        const reducedMotion = reducedMotionToggle.checked;
+        const reducedMotion = reducedMotionSelect.value === 'true';
         const dataRetention = dataRetentionSelect.value;
 
         // Save to localStorage
