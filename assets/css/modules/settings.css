@@ -224,10 +224,69 @@
 	background-color: rgba(239, 68, 68, 0.1);
 }
 
-.settings-data-actions {
+/* Confirmation Modal Styles */
+.confirmation-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 1100;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s ease;
+}
+
+.confirmation-overlay.active {
+	opacity: 1;
+	visibility: visible;
+}
+
+.confirmation-modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0.9);
+	width: 90%;
+	max-width: 500px;
+	background-color: var(--card-bg);
+	border-radius: 1rem;
+	padding: 2rem;
+	box-shadow: var(--shadow-lg);
+	border: 1px solid var(--border-color);
+	z-index: 1101;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s ease;
+}
+
+.confirmation-modal.active {
+	opacity: 1;
+	visibility: visible;
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.confirmation-content {
+	text-align: center;
+}
+
+.confirmation-content h3 {
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+	color: var(--text-primary);
+}
+
+.confirmation-content p {
+	font-size: 1rem;
+	color: var(--text-secondary);
+	margin-bottom: 2rem;
+}
+
+.confirmation-buttons {
 	display: flex;
-	gap: 0.75rem;
-	margin-top: 1rem;
+	justify-content: center;
+	gap: 1rem;
 }
 
 /* Toast Notification Styles */
@@ -315,7 +374,7 @@
 		font-size: 0.9rem;
 	}
 
-	.settings-data-actions {
+	.confirmation-buttons {
 		flex-direction: column;
 		gap: 0.5rem;
 	}
