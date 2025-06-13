@@ -565,7 +565,15 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
 	.comparison-sidebar {
-		width: 320px;
+		display: flex;
+		flex-direction: column;
+		height: 100vh;
+	}
+
+	.comparison-tanks-list {
+		flex: 1;
+		overflow-y: auto;
+		padding-bottom: 70px;
 	}
 
 	.comparison-tank-item {
