@@ -1,0 +1,130 @@
+/* Outdated Warning Modal Styles */
+.outdated-warning-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.8);
+	z-index: 9999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.outdated-warning-overlay.active {
+	opacity: 1;
+	visibility: visible;
+}
+
+.outdated-warning-modal {
+	background-color: var(--card-bg);
+	border-radius: 1rem;
+	width: 90%;
+	max-width: 500px;
+	padding: 2rem;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+	border: 1px solid var(--border-color);
+	transform: translateY(20px) scale(0.95);
+	transition: all 0.3s ease;
+	position: relative;
+	overflow: hidden;
+}
+
+.outdated-warning-overlay.active .outdated-warning-modal {
+	transform: translateY(0) scale(1);
+}
+
+.outdated-warning-modal::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 5px;
+	background: var(--accent-color);
+}
+
+.outdated-warning-modal-header {
+	margin-bottom: 1.5rem;
+	text-align: center;
+	position: relative;
+	padding-top: 1rem;
+}
+
+.outdated-warning-modal-title {
+	font-size: 1.75rem;
+	font-weight: bold;
+	color: var(--accent-color);
+	margin-bottom: 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+}
+
+.outdated-warning-modal-header i {
+	font-size: 3em;
+	color: #ff5e5e;
+}
+
+.outdated-warning-modal-subtitle {
+	color: var(--text-secondary);
+	font-size: 1rem;
+}
+
+.outdated-warning-modal-content {
+	text-align: center;
+}
+
+.outdated-warning-modal-date {
+	font-weight: bold;
+	color: #ff5e5e;
+	background-color: rgba(255, 94, 94, 0.1);
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.25rem;
+	display: inline-block;
+}
+
+.outdated-warning-modal-buttons {
+	display: flex;
+	gap: 1rem;
+	margin-top: 1.5rem;
+}
+
+.outdated-warning-modal-button {
+	flex: 1;
+	text-align: center;
+	padding: 0.75rem;
+	border-radius: 0.5rem;
+	font-weight: 600;
+	transition: all 0.3s ease;
+	border: none;
+	cursor: pointer;
+	font-size: 1rem;
+}
+
+.outdated-warning-modal-button-primary {
+	background-color: var(--accent-color);
+	color: white;
+}
+
+.outdated-warning-modal-button-primary:hover {
+	background-color: var(--accent-color-hover);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(255, 94, 94, 0.3);
+}
+
+.outdated-warning-modal-button-secondary {
+	background-color: var(--card-bg);
+	color: var(--text-primary);
+	border: 1px solid var(--border-color);
+}
+
+.outdated-warning-modal-button-secondary:hover {
+	background-color: var(--hover-color);
+	transform: translateY(-2px);
+}
