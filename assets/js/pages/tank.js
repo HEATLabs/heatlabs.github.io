@@ -159,6 +159,11 @@ async function fetchTankData(tankId) {
             await fetchAndPopulateStockData(tank.stock, tank.id, tank.slug);
         }
 
+        // Fetch abilities data if available
+        if (tank.abilities) {
+            await fetchAndPopulateAbilities(tank.abilities, tank.id);
+        }
+
         // Fetch builds data if available
         if (tank.builds) {
             await fetchAndPopulateBuilds(tank.builds, tank.id);
@@ -167,6 +172,237 @@ async function fetchTankData(tankId) {
     } catch (error) {
         console.error('Error fetching tank data:', error);
     }
+}
+
+async function fetchAndPopulateAbilities(abilitiesUrl, tankId) {
+    try {
+        const abilitiesResponse = await fetch(abilitiesUrl);
+        const abilitiesData = await abilitiesResponse.json();
+
+        if (abilitiesData) {
+            populateAbilities(abilitiesData);
+            initializeAbilityModals();
+        }
+    } catch (error) {
+        console.error('Error fetching abilities data:', error);
+    }
+}
+
+function populateAbilities(abilitiesData) {
+    const abilitiesContainer = document.getElementById('abilities-container');
+    if (!abilitiesContainer) return;
+
+    // Clear existing content
+    abilitiesContainer.innerHTML = '';
+
+    // Create cards for each ability type
+    if (abilitiesData.agentAbility && abilitiesData.agentAbility.length > 0) {
+        abilitiesData.agentAbility.forEach(ability => {
+            abilitiesContainer.appendChild(createAbilityCard(ability, 'Agent Ability'));
+        });
+    }
+
+    if (abilitiesData.primaryAttack && abilitiesData.primaryAttack.length > 0) {
+        abilitiesData.primaryAttack.forEach(ability => {
+            abilitiesContainer.appendChild(createAbilityCard(ability, 'Primary Attack'));
+        });
+    }
+
+    if (abilitiesData.tankAbilities && abilitiesData.tankAbilities.length > 0) {
+        abilitiesData.tankAbilities.forEach(ability => {
+            abilitiesContainer.appendChild(createAbilityCard(ability, 'Tank Ability'));
+        });
+    }
+}
+
+function createAbilityCard(ability, type) {
+    const abilityCard = document.createElement('div');
+    abilityCard.className = 'ability-card';
+    abilityCard.dataset.abilityName = ability.name;
+
+    abilityCard.innerHTML = `
+        <div class="ability-image">
+            <img src="${ability.icon}" alt="${ability.name}" loading="lazy">
+        </div>
+        <div class="ability-info">
+            <h3>${ability.name}</h3>
+            <p>${type}</p>
+        </div>
+    `;
+
+    return abilityCard;
+}
+
+function initializeAbilityModals() {
+    // Create modal elements if they don't exist
+    if (!document.getElementById('abilityModal')) {
+        const abilityModal = document.createElement('div');
+        abilityModal.className = 'ability-modal';
+        abilityModal.id = 'abilityModal';
+        abilityModal.innerHTML = `
+            <button class="ability-modal-close" id="abilityModalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="ability-modal-content">
+                <div class="ability-modal-header">
+                    <div class="ability-modal-title">
+                        <h2 id="abilityModalName"></h2>
+                        <p id="abilityModalType"></p>
+                    </div>
+                </div>
+                <div class="ability-modal-video" id="abilityModalVideo"></div>
+                <div class="ability-modal-description" id="abilityModalDescription"></div>
+            </div>
+        `;
+
+        const abilityModalOverlay = document.createElement('div');
+        abilityModalOverlay.className = 'ability-modal-overlay';
+        abilityModalOverlay.id = 'abilityModalOverlay';
+
+        document.body.appendChild(abilityModalOverlay);
+        document.body.appendChild(abilityModal);
+    }
+
+    // Set up click handlers for all ability cards
+    document.querySelectorAll('.ability-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const abilityName = this.dataset.abilityName;
+            const tankIdMeta = document.querySelector('meta[name="tank-id"]');
+            const tankId = tankIdMeta ? tankIdMeta.content : null;
+
+            if (!tankId) {
+                console.error('No tank ID found');
+                return;
+            }
+
+            // Find the tank data to get abilities URL
+            fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json')
+                .then(response => response.json())
+                .then(tanksData => {
+                    const tank = tanksData.find(t => t.id.toString() === tankId.toString());
+                    if (!tank || !tank.abilities) {
+                        console.error('Tank or abilities URL not found');
+                        return;
+                    }
+
+                    // Fetch the abilities data
+                    return fetch(tank.abilities);
+                })
+                .then(response => response.json())
+                .then(abilitiesData => {
+                    // Find the clicked ability in any of the categories
+                    let ability = null;
+                    let abilityType = '';
+
+                    // Check agent abilities
+                    if (abilitiesData.agentAbility) {
+                        const found = abilitiesData.agentAbility.find(a => a.name === abilityName);
+                        if (found) {
+                            ability = found;
+                            abilityType = 'Agent Ability';
+                        }
+                    }
+
+                    // Check primary attacks
+                    if (!ability && abilitiesData.primaryAttack) {
+                        const found = abilitiesData.primaryAttack.find(a => a.name === abilityName);
+                        if (found) {
+                            ability = found;
+                            abilityType = 'Primary Attack';
+                        }
+                    }
+
+                    // Check tank abilities
+                    if (!ability && abilitiesData.tankAbilities) {
+                        const found = abilitiesData.tankAbilities.find(a => a.name === abilityName);
+                        if (found) {
+                            ability = found;
+                            abilityType = 'Tank Ability';
+                        }
+                    }
+
+                    if (!ability) {
+                        console.error('Ability not found:', abilityName);
+                        return;
+                    }
+
+                    // Populate modal
+                    document.getElementById('abilityModalName').textContent = ability.name;
+                    document.getElementById('abilityModalType').textContent = abilityType;
+                    document.getElementById('abilityModalDescription').textContent = ability.description;
+
+                    // Set up video if available
+                    const videoContainer = document.getElementById('abilityModalVideo');
+                    videoContainer.innerHTML = '';
+
+                    if (ability.video) {
+                        if (ability.video.includes('youtube') || ability.video.includes('youtu.be')) {
+                            // YouTube video
+                            let videoId = '';
+                            if (ability.video.includes('v=')) {
+                                videoId = ability.video.split('v=')[1].split('&')[0];
+                            } else if (ability.video.includes('youtu.be/')) {
+                                videoId = ability.video.split('youtu.be/')[1].split('?')[0];
+                            }
+
+                            if (videoId) {
+                                const iframe = document.createElement('iframe');
+                                iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}`;
+                                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                                iframe.allowFullscreen = true;
+                                videoContainer.appendChild(iframe);
+                            }
+                        } else {
+                            // Direct video file
+                            const video = document.createElement('video');
+                            video.src = ability.video;
+                            video.controls = true;
+                            video.autoplay = true;
+                            video.muted = true;
+                            video.style.width = '100%';
+                            videoContainer.appendChild(video);
+                        }
+                    } else {
+                        videoContainer.innerHTML = '<p class="text-center">No video available for this ability</p>';
+                    }
+
+                    // Show modal
+                    document.getElementById('abilityModal').classList.add('active');
+                    document.getElementById('abilityModalOverlay').classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                })
+                .catch(error => {
+                    console.error('Error loading ability data:', error);
+                });
+        });
+    });
+
+    // Close modal handlers
+    const closeModal = () => {
+        document.getElementById('abilityModal').classList.remove('active');
+        document.getElementById('abilityModalOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+
+        // Pause any videos when closing
+        const videos = document.getElementById('abilityModal').querySelectorAll('video, iframe');
+        videos.forEach(video => {
+            if (video.tagName === 'VIDEO') {
+                video.pause();
+            } else if (video.tagName === 'IFRAME') {
+                video.src = video.src; // Reset to stop YouTube videos
+            }
+        });
+    };
+
+    document.getElementById('abilityModalOverlay').addEventListener('click', closeModal);
+    document.getElementById('abilityModalClose').addEventListener('click', closeModal);
+
+    // Close with ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && document.getElementById('abilityModal').classList.contains('active')) {
+            closeModal();
+        }
+    });
 }
 
 async function fetchAndPopulateStockData(stockUrl, tankId, tankSlug) {
@@ -975,6 +1211,9 @@ function initializeAccordions() {
 function initializeTankPageElements() {
     // Initialize image gallery
     initializeImageGallery();
+
+    // Initialize Ability Modals
+    initializeAbilityModals();
 
     // Initialize accordions
     initializeAccordions();
