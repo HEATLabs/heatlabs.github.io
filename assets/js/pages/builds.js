@@ -174,7 +174,7 @@ async function processTankBuilds(tank) {
         if (buildsData.buildList && buildsData.buildList.length > 0) {
             buildsData.buildList.forEach(build => {
                 if (build.buildDisplay) {
-                    originalBuilds.push({
+                    const fullBuild = {
                         ...build,
                         tankId: tank.id,
                         tankName: tank.name,
@@ -182,7 +182,17 @@ async function processTankBuilds(tank) {
                         tankType: tank.type,
                         tankImage: tank.image,
                         tankSlug: tank.slug
-                    });
+                    };
+
+                    // Check if this build already exists
+                    const exists = originalBuilds.some(existingBuild =>
+                        existingBuild.tankSlug === fullBuild.tankSlug &&
+                        existingBuild.buildNumber === fullBuild.buildNumber
+                    );
+
+                    if (!exists) {
+                        originalBuilds.push(fullBuild);
+                    }
                 }
             });
         }
@@ -352,9 +362,11 @@ function getUrlParams() {
 
 // Function to find a build by tank slug and build number
 function findBuildByParams(tankSlug, buildNumber) {
+    const numBuildNumber = typeof buildNumber === 'string' ? parseInt(buildNumber) : buildNumber;
+
     return originalBuilds.find(build =>
         build.tankSlug === tankSlug &&
-        build.buildNumber.toString() === buildNumber.toString()
+        build.buildNumber === numBuildNumber
     );
 }
 
@@ -379,6 +391,9 @@ function handleUrlParams() {
                     document.getElementById('typeFilter').value = targetBuild.tankType;
                     document.getElementById('sortFilter').value = 'featured';
 
+                    // Force update the filter options
+                    updateFilterOptions();
+
                     // Update the display and then show the modal
                     updateBuildsDisplay();
 
@@ -391,6 +406,8 @@ function handleUrlParams() {
                             `${window.location.pathname}?tank=${tank}&build=${build}`
                         );
                     }, 100);
+                } else {
+                    console.warn(`Build not found for tank: ${tank}, build: ${build}`);
                 }
             }
         }, 100);
