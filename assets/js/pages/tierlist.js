@@ -53,6 +53,15 @@ document.addEventListener('DOMContentLoaded', function() {
         agents: null
     };
 
+    // Touch drag variables
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let draggedItem = null;
+    let draggedItemOriginalParent = null;
+    let draggedItemOriginalIndex = 0;
+    let draggedItemClone = null;
+    let isDragging = false;
+
     // Initialize the tier list creator
     function init() {
         // Add event listeners to tier options
@@ -409,7 +418,7 @@ document.addEventListener('DOMContentLoaded', function() {
         itemElement.dataset.type = item.type;
 
         itemElement.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
+            <img src="${item.image}" alt="${item.name}" draggable="false">
             <div class="item-name">${item.name}</div>
         `;
 
@@ -419,23 +428,62 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize drag and drop functionality
     function initDragAndDrop() {
         const items = document.querySelectorAll('.tier-item');
+        const containers = document.querySelectorAll('.tier-items, .unranked-items');
 
+        // Remove all existing event listeners first
         items.forEach(item => {
-            item.addEventListener('dragstart', dragStart);
-            item.addEventListener('dragend', dragEnd);
+            item.removeEventListener('touchstart', handleTouchStart);
+            item.removeEventListener('touchmove', handleTouchMove, {
+                passive: false
+            });
+            item.removeEventListener('touchend', handleTouchEnd);
+            item.removeEventListener('dragstart', dragStart);
+            item.removeEventListener('dragend', dragEnd);
         });
 
-        const tierItemsContainers = document.querySelectorAll('.tier-items, .unranked-items');
+        containers.forEach(container => {
+            container.removeEventListener('dragover', dragOver);
+            container.removeEventListener('dragenter', dragEnter);
+            container.removeEventListener('dragleave', dragLeave);
+            container.removeEventListener('drop', drop);
+            container.removeEventListener('touchmove', handleContainerTouchMove, {
+                passive: false
+            });
+            container.removeEventListener('touchend', handleContainerTouchEnd);
+        });
 
-        tierItemsContainers.forEach(container => {
+        // Add new event listeners
+        items.forEach(item => {
+            // Mouse events
+            item.addEventListener('dragstart', dragStart);
+            item.addEventListener('dragend', dragEnd);
+
+            // Touch events
+            item.addEventListener('touchstart', handleTouchStart, {
+                passive: false
+            });
+            item.addEventListener('touchmove', handleTouchMove, {
+                passive: false
+            });
+            item.addEventListener('touchend', handleTouchEnd);
+        });
+
+        containers.forEach(container => {
+            // Mouse events
             container.addEventListener('dragover', dragOver);
             container.addEventListener('dragenter', dragEnter);
             container.addEventListener('dragleave', dragLeave);
             container.addEventListener('drop', drop);
+
+            // Touch events
+            container.addEventListener('touchmove', handleContainerTouchMove, {
+                passive: false
+            });
+            container.addEventListener('touchend', handleContainerTouchEnd);
         });
     }
 
-    // Drag and drop event handlers
+    // Mouse drag and drop event handlers
     function dragStart(e) {
         e.dataTransfer.setData('text/plain', this.dataset.id);
         setTimeout(() => this.classList.add('dragging'), 0);
@@ -468,6 +516,109 @@ document.addEventListener('DOMContentLoaded', function() {
         if (draggedItem) {
             this.appendChild(draggedItem);
         }
+    }
+
+    // Touch event handlers
+    function handleTouchStart(e) {
+        if (isDragging) return;
+
+        const touch = e.touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        draggedItem = this;
+        draggedItemOriginalParent = this.parentNode;
+        draggedItemOriginalIndex = Array.from(this.parentNode.children).indexOf(this);
+
+        // Create a clone for visual feedback
+        draggedItemClone = this.cloneNode(true);
+        draggedItemClone.style.position = 'fixed';
+        draggedItemClone.style.zIndex = '1000';
+        draggedItemClone.style.width = `${this.offsetWidth}px`;
+        draggedItemClone.style.height = `${this.offsetHeight}px`;
+        draggedItemClone.style.left = `${this.getBoundingClientRect().left}px`;
+        draggedItemClone.style.top = `${this.getBoundingClientRect().top}px`;
+        draggedItemClone.style.pointerEvents = 'none';
+        draggedItemClone.classList.add('dragging');
+        document.body.appendChild(draggedItemClone);
+
+        // Hide original while dragging
+        this.style.visibility = 'hidden';
+
+        isDragging = true;
+        e.preventDefault();
+    }
+
+    function handleTouchMove(e) {
+        if (!isDragging) return;
+
+        const touch = e.touches[0];
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+
+        // Move the clone
+        draggedItemClone.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+
+        // Find the container under the touch point
+        const touchX = touch.clientX;
+        const touchY = touch.clientY;
+        const elementUnderTouch = document.elementFromPoint(touchX, touchY);
+        const container = elementUnderTouch.closest('.tier-items, .unranked-items');
+
+        // Highlight potential drop target
+        document.querySelectorAll('.tier-items, .unranked-items').forEach(el => {
+            el.classList.remove('drag-over');
+        });
+
+        if (container) {
+            container.classList.add('drag-over');
+        }
+
+        e.preventDefault();
+    }
+
+    function handleTouchEnd(e) {
+        if (!isDragging) return;
+
+        // Find the container under the touch point
+        const touch = e.changedTouches[0];
+        const touchX = touch.clientX;
+        const touchY = touch.clientY;
+        const elementUnderTouch = document.elementFromPoint(touchX, touchY);
+        const container = elementUnderTouch.closest('.tier-items, .unranked-items');
+
+        // Remove highlight from all containers
+        document.querySelectorAll('.tier-items, .unranked-items').forEach(el => {
+            el.classList.remove('drag-over');
+        });
+
+        // Move the item to the new container if valid
+        if (container) {
+            container.appendChild(draggedItem);
+        } else {
+            // Return to original position if no valid container
+            if (draggedItemOriginalParent && draggedItemOriginalParent.children[draggedItemOriginalIndex]) {
+                draggedItemOriginalParent.insertBefore(draggedItem, draggedItemOriginalParent.children[draggedItemOriginalIndex]);
+            } else {
+                draggedItemOriginalParent.appendChild(draggedItem);
+            }
+        }
+
+        // Clean up
+        draggedItem.style.visibility = '';
+        draggedItemClone.remove();
+        draggedItem = null;
+        draggedItemClone = null;
+        isDragging = false;
+    }
+
+    function handleContainerTouchMove(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+    }
+
+    function handleContainerTouchEnd(e) {
+        if (!isDragging) return;
+        e.preventDefault();
     }
 
     // Initialize the app
