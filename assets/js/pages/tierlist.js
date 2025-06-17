@@ -7,11 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const unrankedItems = document.getElementById('unrankedItems');
     const resetButton = document.getElementById('resetTierList');
     const saveButton = document.getElementById('saveTierList');
+    const shareButton = document.getElementById('shareTierList');
+    const loadTierListInput = document.getElementById('loadTierListInput');
+    const loadTierListButton = document.getElementById('loadTierListButton');
 
     // Modal elements
-    const modal = document.createElement('div');
-    modal.className = 'reset-modal hidden';
-    modal.innerHTML = `
+    const resetModal = document.createElement('div');
+    resetModal.className = 'reset-modal hidden';
+    resetModal.innerHTML = `
         <div class="reset-modal-content">
             <h3>Reset Tier List</h3>
             <p>Are you sure you want to reset this tier list? All your rankings will be lost.</p>
@@ -21,12 +24,30 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
     `;
-    document.body.appendChild(modal);
+
+    const shareModal = document.createElement('div');
+    shareModal.className = 'share-modal hidden';
+    shareModal.innerHTML = `
+        <div class="share-modal-content">
+            <h3>Share Your Tier List</h3>
+            <p>Your <span class="share-category"></span> tier list has been saved and is ready to be shared!</p>
+            <div class="share-url-container">
+                <input type="text" class="share-url-input" readonly>
+                <button class="copy-url-button">
+                    <i class="fas fa-copy"></i> Copy
+                </button>
+            </div>
+            <button class="share-modal-close">Close</button>
+        </div>
+    `;
+
+    document.body.appendChild(resetModal);
+    document.body.appendChild(shareModal);
 
     // Tier list data
     let currentType = '';
     let items = [];
-    let tierLists = {
+    const tierLists = {
         tanks: null,
         maps: null,
         agents: null
@@ -54,21 +75,88 @@ document.addEventListener('DOMContentLoaded', function() {
         // Save button
         saveButton.addEventListener('click', saveCurrentTierList);
 
+        // Share button
+        shareButton.addEventListener('click', shareCurrentTierList);
+
+        // Load tier list button
+        loadTierListButton.addEventListener('click', loadSharedTierList);
+
         // Modal event listeners
-        modal.querySelector('.reset-modal-cancel').addEventListener('click', hideResetModal);
-        modal.querySelector('.reset-modal-confirm').addEventListener('click', confirmReset);
+        resetModal.querySelector('.reset-modal-cancel').addEventListener('click', hideResetModal);
+        resetModal.querySelector('.reset-modal-confirm').addEventListener('click', confirmReset);
+
+        shareModal.querySelector('.share-modal-close').addEventListener('click', hideShareModal);
+        shareModal.querySelector('.copy-url-button').addEventListener('click', copyShareUrl);
+
+        // Check for shared tier list in URL
+        checkForSharedTierList();
+    }
+
+    // Check URL for shared tier list
+    function checkForSharedTierList() {
+        const params = new URLSearchParams(window.location.search);
+        const sharedData = params.get('tierlist');
+
+        if (sharedData) {
+            try {
+                // Decompress the URL using LZString
+                const decompressed = LZString.decompressFromEncodedURIComponent(sharedData);
+                if (!decompressed) throw new Error('Invalid compressed data');
+
+                const parsedData = JSON.parse(decompressed);
+                const {
+                    t: type,
+                    i: itemData
+                } = parsedData;
+
+                // Set the current type and load the tier list
+                currentType = type;
+                loadTierList(type).then(() => {
+                    // Apply the shared tier list
+                    applySavedTierList(itemData);
+
+                    // Show a message that a shared tier list was loaded
+                    showNotification(`Loaded shared ${type} tier list`);
+                });
+            } catch (e) {
+                console.error('Error loading shared tier list:', e);
+                showNotification('Invalid shared tier list URL', 'error');
+            }
+        }
     }
 
     // Show reset confirmation modal
     function showResetModal() {
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
+        resetModal.classList.remove('hidden');
+        document.body.classList.add('modal-open');
     }
 
     // Hide reset confirmation modal
     function hideResetModal() {
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
+        resetModal.classList.add('hidden');
+        document.body.classList.remove('modal-open');
+    }
+
+    // Show share modal
+    function showShareModal() {
+        shareModal.querySelector('.share-category').textContent = currentType;
+        shareModal.classList.remove('hidden');
+        document.body.classList.add('modal-open');
+    }
+
+    // Hide share modal
+    function hideShareModal() {
+        shareModal.classList.add('hidden');
+        document.body.classList.remove('modal-open');
+    }
+
+    // Copy share URL to clipboard
+    function copyShareUrl() {
+        const urlInput = shareModal.querySelector('.share-url-input');
+        urlInput.select();
+        document.execCommand('copy');
+        hideShareModal();
+        showNotification('URL copied to clipboard!');
     }
 
     // Confirm reset and execute
@@ -84,6 +172,39 @@ document.addEventListener('DOMContentLoaded', function() {
     function saveCurrentTierList() {
         if (!currentType) return;
 
+        const tierListData = getCurrentTierListData();
+        localStorage.setItem(`tierList_${currentType}`, JSON.stringify(tierListData));
+        showNotification('Tier list saved successfully!');
+    }
+
+    // Share the current tier list
+    function shareCurrentTierList() {
+        if (!currentType) return;
+
+        // First save the tier list
+        saveCurrentTierList();
+
+        // Get current tier list data
+        const tierListData = getCurrentTierListData();
+
+        // Create a minimal shareable data structure
+        const shareData = {
+            t: currentType, // Shortened property name
+            i: tierListData.items // Shortened property name
+        };
+
+        // Compress the data using LZString
+        const compressedData = LZString.compressToEncodedURIComponent(JSON.stringify(shareData));
+        const shareUrl = `${window.location.origin}${window.location.pathname}?tierlist=${compressedData}`;
+
+        // Show the share modal with the URL
+        const urlInput = shareModal.querySelector('.share-url-input');
+        urlInput.value = shareUrl;
+        showShareModal();
+    }
+
+    // Get current tier list data
+    function getCurrentTierListData() {
         const tierListData = {
             items: {},
             timestamp: new Date().toISOString()
@@ -101,18 +222,60 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Save to localStorage
-        localStorage.setItem(`tierList_${currentType}`, JSON.stringify(tierListData));
-
-        // Show save confirmation
-        showSaveConfirmation();
+        return tierListData;
     }
 
-    // Show save confirmation
-    function showSaveConfirmation() {
+    // Load a shared tier list
+    function loadSharedTierList() {
+        const url = loadTierListInput.value.trim();
+
+        if (!url) {
+            showNotification('Please enter a valid URL', 'error');
+            return;
+        }
+
+        try {
+            // Extract the tierlist parameter from the URL
+            const urlObj = new URL(url);
+            const sharedData = urlObj.searchParams.get('tierlist');
+
+            if (!sharedData) {
+                throw new Error('No tier list data found in URL');
+            }
+
+            // Decompress the URL using LZString
+            const decompressed = LZString.decompressFromEncodedURIComponent(sharedData);
+            if (!decompressed) throw new Error('Invalid compressed data');
+
+            const parsedData = JSON.parse(decompressed);
+            const {
+                t: type,
+                i: itemData
+            } = parsedData;
+
+            // Set the current type and load the tier list
+            currentType = type;
+            loadTierList(type).then(() => {
+                // Apply the shared tier list
+                applySavedTierList(itemData);
+
+                // Show a message that a shared tier list was loaded
+                showNotification(`Loaded shared ${type} tier list`);
+
+                // Clear the input
+                loadTierListInput.value = '';
+            });
+        } catch (e) {
+            console.error('Error loading shared tier list:', e);
+            showNotification('Invalid shared tier list URL', 'error');
+        }
+    }
+
+    // Show notification
+    function showNotification(message, type = 'success') {
         const notification = document.createElement('div');
-        notification.className = 'save-notification';
-        notification.textContent = 'Tier list saved successfully!';
+        notification.className = `save-notification ${type}`;
+        notification.textContent = message;
         document.body.appendChild(notification);
 
         setTimeout(() => {
@@ -160,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Load saved data if exists
             const savedData = loadSavedTierList(type);
             if (savedData) {
-                applySavedTierList(savedData);
+                applySavedTierList(savedData.items);
             }
 
             // Initialize drag and drop
@@ -169,13 +332,13 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error('Error loading tier list data:', error);
             tierListTitle.textContent = 'Error loading data';
-            // Show error message to user
+            showNotification('Error loading data', 'error');
         }
     }
 
     // Apply saved tier list data to the UI
-    function applySavedTierList(savedData) {
-        Object.entries(savedData.items).forEach(([itemId, tier]) => {
+    function applySavedTierList(itemData) {
+        Object.entries(itemData).forEach(([itemId, tier]) => {
             const itemElement = document.querySelector(`.tier-item[data-id="${itemId}"]`);
             if (itemElement) {
                 const container = tier === 'unranked' ?
@@ -193,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/tanks.json');
         const data = await response.json();
         return data.map(tank => ({
-            id: tank.id,
+            id: tank.id.toString(), // Ensure ID is string for consistency
             name: tank.name,
             image: tank.image,
             type: 'tank'
@@ -205,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/maps.json');
         const data = await response.json();
         return data.maps.map(map => ({
-            id: map.name.toLowerCase().replace(/\s+/g, '-'),
+            id: map.id.toString(), // Use the ID from JSON
             name: map.name,
             image: map.image,
             type: 'map'
@@ -217,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/agents.json');
         const data = await response.json();
         return data.agents.map(agent => ({
-            id: agent.name.toLowerCase(),
+            id: agent.id.toString(), // Use the ID from JSON
             name: agent.name,
             image: agent.image,
             type: 'agent'

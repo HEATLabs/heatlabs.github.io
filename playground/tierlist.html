@@ -298,6 +298,15 @@
                 <button class="select-button">Select</button>
               </div>
             </div>
+            <!-- Add this below the grid of tier options -->
+            <div class="load-tier-list">
+              <h3>Load a Tier List</h3>
+              <p>Paste a shared tier list URL below to load it</p>
+              <div class="load-tier-list-container">
+                <input type="text" id="loadTierListInput" class="load-tier-list-input" placeholder="Paste shared tier list URL here">
+                <button id="loadTierListButton" class="load-tier-list-button">Load</button>
+              </div>
+            </div>
           </div>
           <!-- Tier List Creator -->
           <div id="tierListCreator" class="tier-list-creator hidden">
@@ -347,6 +356,8 @@
                 <i class="fas fa-redo mr-2"></i> Reset </button>
               <button id="saveTierList" class="action-button save-button">
                 <i class="fas fa-save mr-2"></i> Save </button>
+              <button id="shareTierList" class="action-button share-button">
+                <i class="fas fa-share-alt mr-2"></i> Share </button>
             </div>
           </div>
         </div>
@@ -501,6 +512,7 @@
     <script src="../assets/js/modules/image-protection.js"></script>
     <script src="../assets/js/modules/waves.js"></script>
     <script src="../assets/js/pages/tierlist.js"></script>
+    <script src="../assets/js/libraries/lz-string.js"></script>
     <script src="../assets/js/modules/sidebar.js"></script>
     <script src="../assets/js/modules/theme-loader.js"></script>
     <script src="../assets/js/modules/search.js"></script>
