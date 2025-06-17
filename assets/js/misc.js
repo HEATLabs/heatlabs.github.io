@@ -36,7 +36,10 @@
 
 // Arabic Radio Easter Egg
 (() => {
-    const TRIGGER_WORD = 'راديو'; // "radio" in Saudi Arabic
+    const TRIGGER_WORDS = {
+        'venom': 'https://de1.api.radio-browser.info/json/stations/search?limit=10&tagList=lofi&hidebroken=true&order=clickcount&reverse=true',
+        'راديو': 'https://de1.api.radio-browser.info/json/stations/search?limit=10&tagList=arabic&hidebroken=true&order=clickcount&reverse=true'
+    }; // "radio" in Saudi Arabic
     const STORAGE_PREFIX = 'pcwstats_radio_';
     let radioStations = [];
     let currentStationIndex = 0;
@@ -44,6 +47,7 @@
     let inputBuffer = '';
     let isPlaying = false;
     let currentVolume = 0.5;
+    let currentTriggerWord = null;
 
     // Load persistent state from sessionStorage
     const loadRadioState = () => {
@@ -175,12 +179,13 @@
     // Load radio stations from API
     const loadRadioStations = async () => {
         const modal = document.getElementById('arabicRadioModal');
-        if (!modal) return;
+        if (!modal || !currentTriggerWord) return;
 
         try {
-            const response = await fetch('https://de1.api.radio-browser.info/json/stations/search?limit=10&tagList=arabic&hidebroken=true&order=clickcount&reverse=true');
-            radioStations = await response.json();
-
+            for (const url in TRIGGER_WORDS) {
+                const response = await fetch(TRIGGER_WORDS[currentTriggerWord]);
+                radioStations = await response.json();
+            }
             if (radioStations.length > 0) {
                 if (currentStationIndex >= radioStations.length) {
                     currentStationIndex = 0;
@@ -336,10 +341,14 @@
         // Handle input from text fields, textareas, etc.
         if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
             const inputValue = event.target.value;
-            if (inputValue.includes(TRIGGER_WORD)) {
+            for (const word in TRIGGER_WORDS){
+            if (inputValue.includes(word)) {
+                currentTriggerWord = word;
                 showRadioModal();
                 // Clear the trigger word from the input
-                event.target.value = inputValue.replace(TRIGGER_WORD, '');
+                event.target.value = inputValue.replace(TRIGGER_WORDS, '');
+                break;
+                }
             }
         }
     });
@@ -358,15 +367,19 @@
             inputBuffer += key;
 
             // Keep buffer length reasonable (double the trigger word length)
-            const maxLength = TRIGGER_WORD.length * 2;
+            const maxLength = Math.max(...Object.keys(TRIGGER_WORDS).map(w=> w.length)) * 2;
             if (inputBuffer.length > maxLength) {
                 inputBuffer = inputBuffer.slice(-maxLength);
             }
 
             // Check if buffer contains the trigger word
-            if (inputBuffer.includes(TRIGGER_WORD)) {
-                showRadioModal();
-                inputBuffer = ''; // Reset buffer
+            for (const word in TRIGGER_WORDS) {
+                if (inputBuffer.includes(word)) {
+                    currentTriggerWord = word;
+                    showRadioModal();
+                    inputBuffer = ''; // Reset Buffer
+                    break;
+                }
             }
         }
     });
@@ -378,8 +391,12 @@
         }
 
         const data = event.data;
-        if (data && data.includes(TRIGGER_WORD)) {
-            showRadioModal();
+        for (const word in TRIGGER_WORDS) {
+            if (data && data.includes(word)) {
+                currentTriggerWord = word;
+                showRadioModal();
+                break;
+            }
         }
     });
 
