@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch data
     async function fetchTankopediaData() {
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tankopedia.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/asset-gallery.json');
 
             // Uncomment line below to check using local JSON
-            // const response = await fetch('../Website-Configs/tankopedia.json');
+            // const response = await fetch('../Website-Configs/asset-gallery.json');
 
             if (!response.ok) {
                 throw new Error('Failed to load tankopedia data');
