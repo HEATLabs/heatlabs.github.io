@@ -432,13 +432,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Remove all existing event listeners first
         items.forEach(item => {
-            item.removeEventListener('touchstart', handleTouchStart);
-            item.removeEventListener('touchmove', handleTouchMove, {
-                passive: false
-            });
-            item.removeEventListener('touchend', handleTouchEnd);
             item.removeEventListener('dragstart', dragStart);
             item.removeEventListener('dragend', dragEnd);
+            item.removeEventListener('touchstart', handleTouchStart);
+            item.removeEventListener('touchmove', handleTouchMove);
+            item.removeEventListener('touchend', handleTouchEnd);
         });
 
         containers.forEach(container => {
@@ -446,9 +444,7 @@ document.addEventListener('DOMContentLoaded', function() {
             container.removeEventListener('dragenter', dragEnter);
             container.removeEventListener('dragleave', dragLeave);
             container.removeEventListener('drop', drop);
-            container.removeEventListener('touchmove', handleContainerTouchMove, {
-                passive: false
-            });
+            container.removeEventListener('touchmove', handleContainerTouchMove);
             container.removeEventListener('touchend', handleContainerTouchEnd);
         });
 
@@ -459,12 +455,8 @@ document.addEventListener('DOMContentLoaded', function() {
             item.addEventListener('dragend', dragEnd);
 
             // Touch events
-            item.addEventListener('touchstart', handleTouchStart, {
-                passive: false
-            });
-            item.addEventListener('touchmove', handleTouchMove, {
-                passive: false
-            });
+            item.addEventListener('touchstart', handleTouchStart, { passive: false });
+            item.addEventListener('touchmove', handleTouchMove, { passive: false });
             item.addEventListener('touchend', handleTouchEnd);
         });
 
@@ -476,17 +468,16 @@ document.addEventListener('DOMContentLoaded', function() {
             container.addEventListener('drop', drop);
 
             // Touch events
-            container.addEventListener('touchmove', handleContainerTouchMove, {
-                passive: false
-            });
+            container.addEventListener('touchmove', handleContainerTouchMove, { passive: false });
             container.addEventListener('touchend', handleContainerTouchEnd);
         });
     }
 
     // Mouse drag and drop event handlers
     function dragStart(e) {
+        this.classList.add('dragging');
         e.dataTransfer.setData('text/plain', this.dataset.id);
-        setTimeout(() => this.classList.add('dragging'), 0);
+        e.dataTransfer.effectAllowed = 'move';
     }
 
     function dragEnd() {
@@ -495,6 +486,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function dragOver(e) {
         e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
     }
 
     function dragEnter(e) {
@@ -512,9 +504,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const id = e.dataTransfer.getData('text/plain');
         const draggedItem = document.querySelector(`.tier-item[data-id="${id}"]`);
+        const isDragging = document.querySelector('.dragging');
 
-        if (draggedItem) {
-            this.appendChild(draggedItem);
+        if (draggedItem && isDragging) {
+            // Get the mouse position
+            const dropY = e.clientY;
+
+            // Get all items in the container
+            const itemsInContainer = [...this.querySelectorAll('.tier-item:not(.dragging)')];
+
+            // Find the closest item based on position
+            const closestItem = itemsInContainer.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = dropY - box.top - box.height / 2;
+
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY });
+
+            if (closestItem.element) {
+                this.insertBefore(draggedItem, closestItem.element);
+            } else {
+                this.appendChild(draggedItem);
+            }
         }
     }
 
