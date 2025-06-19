@@ -206,7 +206,7 @@
             </a>
           </li>
           <li>
-            <a href="about-us.html" class="sidebar-link">
+            <a href="resources/about-us.html" class="sidebar-link">
               <i class="fas fa-info-circle"></i>
               <span>About the Project</span>
             </a>
@@ -266,12 +266,37 @@
           <p>Master every Agent with detailed insights and more</p>
         </div>
       </section>
-      <!-- Agents Grid Section -->
       <section id="main" class="section">
         <div class="container mx-auto px-4">
           <h2 class="section-title">All Agents</h2>
-          <div class="agents-grid text-center" id="agents-grid">
-            <!-- Agents will be dynamically inserted here -->
+          <!-- Filters Section -->
+          <div class="filters-section">
+            <div class="container mx-auto px-4">
+              <!-- Filter Buttons Grid -->
+              <div class="filters-container">
+                <!-- Status Filters -->
+                <div class="filter-group">
+                  <h3 class="filter-group-title">STATUS</h3>
+                  <div class="filter-buttons-grid">
+                    <button class="filter-btn status-filter" data-status="Available Now">
+                      <i class="fas fa-check-circle"></i> Available Now
+                    </button>
+                    <button class="filter-btn status-filter" data-status="To Be Released">
+                      <i class="fas fa-clock"></i> To Be Released
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- Active Filters -->
+              <div class="active-filters-container">
+                <div class="active-filters">
+                  <div class="no-filters-message">No filters selected</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="agents-grid text-center">
+            <!-- Agent cards will be dynamically inserted here -->
           </div>
         </div>
       </section>
@@ -279,11 +304,11 @@
       <section class="cta-section">
         <div class="container mx-auto px-4 text-center">
           <h2>Improve this Page</h2>
-          <p class="text-lg mb-8 max-w-2xl mx-auto">Know useful strategies or tips for specific Agents? Contribute to this page and make it better for everyone!</p>
+          <p class="text-lg mb-8 max-w-2xl mx-auto">Have detailed stats, performance insights, or tactical advice for these tanks? Contribute to improve this resource for all players!</p>
           <div class="flex justify-center gap-4 flex-wrap">
             <a href="https://discord.com/invite/2nHHHBWNDw" class="cta-button inline-flex items-center px-6 py-3 bg-discord-color text-white rounded-lg font-medium hover:bg-discord-color-dark transition-colors">
               <i class="fab fa-discord mr-2"></i> Join Our Discord </a>
-            <a href="contact-us.html" class="cta-button inline-flex items-center px-6 py-3 bg-accent-color text-white rounded-lg font-medium hover:bg-accent-color-dark transition-colors">
+            <a href="resources/contact-us.html" class="cta-button inline-flex items-center px-6 py-3 bg-accent-color text-white rounded-lg font-medium hover:bg-accent-color-dark transition-colors">
               <i class="fas fa-edit mr-2"></i> Improve This Page </a>
           </div>
         </div>
@@ -343,7 +368,7 @@
                   <a href="maps.html">Map Knowledge</a>
                 </li>
                 <li>
-                  <a href="tanks.html">Tank Statistics</a>
+                  <a href="#">Tank Statistics</a>
                 </li>
                 <li>
                   <a href="asset-gallery.html">Asset Gallery</a>
@@ -368,7 +393,7 @@
               <h3 class="text-lg font-semibold mb-2">PCWStats</h3>
               <ul class="footer-links text-gray-400">
                 <li>
-                  <a href="about-us.html">About the Project</a>
+                  <a href="resources/about-us.html">About the Project</a>
                 </li>
                 <li>
                   <a href="blog.html">Official Blog</a>
@@ -385,10 +410,10 @@
                   <a href="resources/credits.html">Community Credits</a>
                 </li>
                 <li>
-                  <a href="support-us.html">Support the Project</a>
+                  <a href="resources/support-us.html">Support the Project</a>
                 </li>
                 <li>
-                  <a href="contact-us.html">Contact Us</a>
+                  <a href="resources/contact-us.html">Contact Us</a>
                 </li>
               </ul>
             </div>
@@ -411,55 +436,26 @@
           <div class="text-center">
             <h3 class="text-lg font-semibold mb-1">Contact</h3>
             <p class="text-gray-400 mb-2">Have suggestions, found a bug or want to help?</p>
-            <a href="contact-us.html" class="btn-accent mt-4">
+            <a href="resources/contact-us.html" class="btn-accent mt-4">
               <i class="fas fa-envelope mr-2"></i>Send Feedback </a>
-            <a href="get-involved.html" class="btn-accent mt-4">
+            <a href="resources/get-involved.html" class="btn-accent mt-4">
               <i class="fas fa-users mr-2"></i>Get Involved </a>
           </div>
           <!-- Bottom Disclaimer -->
           <div class="text-center text-sm text-gray-500 space-y-1 border-t border-gray-700 pt-1">
-            <p> PCWStats is a community-made project and is not associated with, endorsed by, or affiliated with <a href="https://projectcw.dev" class="disclaimer-link">Project CW</a> or <a href="https://www.wargaming.net" class="disclaimer-link">Wargaming.net</a>. </p>
+            <p> PCWStats is a community-made project and is not associated with, endorsed by, or affiliated with <a href="https://projectcw.dev" class="disclaimer-link">Project CW</a> or <a href="https://www.wargaming.net" class="disclaimer-link">Wargaming.net</a>.</p>
             <p>&copy; 2025 PCWStats by SINEWAVE Development. All rights reserved.</p>
           </div>
         </div>
       </footer>
     </div>
-    <!-- Agent Modal -->
-    <div class="agent-modal-overlay" id="agentModalOverlay"></div>
-    <div class="agent-modal" id="agentModal">
-      <button class="agent-modal-close" id="agentModalClose">
-        <i class="fas fa-times"></i>
-      </button>
-      <div class="agent-modal-content">
-        <div class="agent-modal-header">
-          <div class="agent-modal-image-container">
-            <img id="agentModalImage" src="" alt="Agent Image" class="agent-modal-image">
-          </div>
-          <div class="agent-modal-info">
-            <h2 id="agentModalName">Agent Name</h2>
-            <p class="agent-modal-specialty" id="agentModalSpecialty">Specialty: Name</p>
-            <p class="agent-modal-description" id="agentModalDescription">Ability Description</p>
-          </div>
-        </div>
-        <div class="agent-modal-body">
-          <h3>Background Story</h3>
-          <p id="agentModalStory">Agent's background story goes here...</p>
-          <h3>Compatible Tanks</h3>
-          <div class="agent-modal-tanks-container">
-            <div class="agent-modal-tanks" id="agentModalTanksContainer">
-              <!-- Tank images will be inserted here by JavaScript -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/misc.js"></script>
     <script src="assets/js/modules/image-protection.js"></script>
     <script src="assets/js/modules/waves.js"></script>
-    <script src="assets/js/pages/agents.js"></script>
     <script src="assets/js/modules/sidebar.js"></script>
     <script src="assets/js/modules/theme-loader.js"></script>
+    <script src="assets/js/pages/agents.js"></script>
     <script src="assets/js/modules/search.js"></script>
     <script src="assets/js/modules/warning.js"></script>
     <script src="assets/js/modules/global-hero.js"></script>
