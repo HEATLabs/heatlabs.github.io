@@ -144,126 +144,6 @@ function updatePaginationControls(totalPages) {
     paginationContainer.appendChild(nextButton);
 }
 
-// Development Progress Functionality
-function initializeDevelopmentProgress() {
-    fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/development.json')
-        .then(response => response.json())
-        .then(data => {
-            const container = document.getElementById('progressContainer');
-
-            // Create legend section
-            const legendContainer = document.createElement('div');
-            legendContainer.className = 'progress-legend';
-
-            // Add legend title
-            const legendTitle = document.createElement('h3');
-            legendTitle.textContent = 'Status Legend';
-            legendContainer.appendChild(legendTitle);
-
-            // Create legend items
-            const legendItems = document.createElement('div');
-            legendItems.className = 'legend-items';
-
-            // Add each status to the legend
-            Object.entries(data.stages).forEach(([emoji, description]) => {
-                const legendItem = document.createElement('div');
-                legendItem.className = 'legend-item';
-
-                const emojiSpan = document.createElement('span');
-                emojiSpan.className = 'legend-emoji';
-                emojiSpan.textContent = emoji;
-
-                const descSpan = document.createElement('span');
-                descSpan.className = 'legend-desc';
-                descSpan.textContent = description;
-
-                legendItem.appendChild(emojiSpan);
-                legendItem.appendChild(descSpan);
-                legendItems.appendChild(legendItem);
-            });
-
-            legendContainer.appendChild(legendItems);
-            container.appendChild(legendContainer);
-
-            // Calculate stats
-            let totalTasks = 0;
-            const statusCounts = {};
-            Object.keys(data.stages).forEach(status => {
-                statusCounts[status] = 0;
-            });
-
-            data.categories.forEach(category => {
-                category.tasks.forEach(task => {
-                    totalTasks++;
-                    statusCounts[task.status]++;
-                });
-            });
-
-            const completedPercentage = Math.round((statusCounts["🟢"] / totalTasks) * 100);
-
-            // Create progress bar and stats
-            const progressSection = document.createElement('div');
-            progressSection.innerHTML = `
-                <div class="progress-bar-container">
-                    <div class="progress-bar" style="width: ${completedPercentage}%"></div>
-                </div>
-                <div class="progress-stats">
-                    <div class="progress-stat">
-                        <div class="progress-stat-value">${totalTasks}</div>
-                        <div class="progress-stat-label">Total Tasks</div>
-                    </div>
-                    <div class="progress-stat">
-                        <div class="progress-stat-value" style="color: var(--accent-color)">${statusCounts["🟡"]}</div>
-                        <div class="progress-stat-label">In Progress</div>
-                    </div>
-                    <div class="progress-stat">
-                        <div class="progress-stat-value" style="color: #34A853">${statusCounts["🟢"]}</div>
-                        <div class="progress-stat-label">Completed</div>
-                    </div>
-                    <div class="progress-stat">
-                        <div class="progress-stat-value" style="color: #FF9900">${statusCounts["🟠"]}</div>
-                        <div class="progress-stat-label">Postponed</div>
-                    </div>
-                    <div class="progress-stat">
-                        <div class="progress-stat-value" style="color: #4285F4">${statusCounts["🔵"]}</div>
-                        <div class="progress-stat-label">Concept</div>
-                    </div>
-                </div>
-            `;
-            container.appendChild(progressSection);
-
-            // Create task lists
-            data.categories.forEach(category => {
-                const categoryElement = document.createElement('div');
-                categoryElement.className = 'task-category';
-                categoryElement.innerHTML = `
-                    <h3>${category.name}</h3>
-                    <div class="task-list" id="taskList-${category.name.replace(/\s+/g, '-')}"></div>
-                `;
-                container.appendChild(categoryElement);
-
-                const taskList = categoryElement.querySelector('.task-list');
-                category.tasks.forEach(task => {
-                    const taskElement = document.createElement('div');
-                    taskElement.className = 'task-item';
-                    taskElement.innerHTML = `
-                        <span class="task-status status-${data.stages[task.status].toLowerCase().replace(/\s+/g, '-')}">${task.status}</span>
-                        <span class="task-name">${task.name}</span>
-                    `;
-                    taskList.appendChild(taskElement);
-                });
-            });
-        })
-        .catch(error => {
-            console.error('Error loading tasks:', error);
-            document.getElementById('progressContainer').innerHTML = `
-                <div class="text-center text-red-500">
-                    Failed to load development progress data. Please try again later.
-                </div>
-            `;
-        });
-}
-
 // Web Tests Functionality
 function initializeWebTests() {
     // Create the web tests section
@@ -1200,9 +1080,6 @@ document.addEventListener('DOMContentLoaded', function() {
             card.classList.add('animated');
         });
     }, 300);
-
-    // Initialize development progress
-    initializeDevelopmentProgress();
 
     // Initialize web tests
     initializeWebTests();
