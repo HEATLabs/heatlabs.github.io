@@ -38,7 +38,8 @@
 (() => {
     const TRIGGER_WORDS = {
         'venom': 'https://de1.api.radio-browser.info/json/stations/search?limit=10&tagList=lofi&hidebroken=true&order=clickcount&reverse=true',
-        'راديو': 'https://de1.api.radio-browser.info/json/stations/search?limit=10&tagList=arabic&hidebroken=true&order=clickcount&reverse=true'
+        'راديو': 'https://de1.api.radio-browser.info/json/stations/search?limit=10&tagList=arabic&hidebroken=true&order=clickcount&reverse=true',
+        'traviemo': 'https://de1.api.radio-browser.info/json/stations/search?limit=10&tagList=80s en español&hidebroken=true&order=clickcount&reverse=true'
     }; // "radio" in Saudi Arabic
     const STORAGE_PREFIX = 'pcwstats_radio_';
     let radioStations = [];
