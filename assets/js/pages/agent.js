@@ -195,8 +195,8 @@ function updateAgentPageElements(agent) {
     const sidebarQuickFacts = document.querySelector('.sidebar-card ul');
     if (sidebarQuickFacts) {
         sidebarQuickFacts.innerHTML = `
-            <li><strong>Status:</strong> ${agent.status}</li>
-            <li><strong>Tanks:</strong> ${agent.compatibleTanks ? agent.compatibleTanks.length : 0}</li>
+            <li><strong>Agent Status:</strong> ${agent.status}</li>
+            <li><strong>Number of Tanks:</strong> ${agent.compatibleTanks ? agent.compatibleTanks.length : 0}</li>
         `;
     }
 }
