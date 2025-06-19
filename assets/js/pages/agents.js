@@ -148,7 +148,6 @@ document.addEventListener('DOMContentLoaded', function() {
             button.addEventListener('click', function() {
                 const status = this.getAttribute('data-status');
                 toggleFilter('status', status, this);
-                filterAgents();
             });
         });
 
@@ -156,19 +155,29 @@ document.addEventListener('DOMContentLoaded', function() {
         updateActiveFilters();
     }
 
-    // Toggle filter on/off
+    // Toggle filter on/off - now only allows one status filter at a time
     function toggleFilter(filterType, value, button) {
-        const index = filters[filterType].indexOf(value);
+        const isAlreadyActive = filters[filterType].includes(value);
 
-        if (index === -1) {
-            filters[filterType].push(value);
-            button.classList.add('active');
-        } else {
-            filters[filterType].splice(index, 1);
+        if (isAlreadyActive) {
+            // If clicking the active filter, remove it
+            filters[filterType] = [];
             button.classList.remove('active');
+        } else {
+            // Otherwise, set this as the only active filter
+            filters[filterType] = [value];
+
+            // Update all filter buttons of this type
+            document.querySelectorAll(`.${filterType}-filter`).forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Activate the clicked button
+            button.classList.add('active');
         }
 
         updateActiveFilters();
+        filterAgents();
     }
 
     // Update active filters display
