@@ -1,22 +1,7 @@
 // Main JS for PCWStats
 document.addEventListener('DOMContentLoaded', function() {
-    // Navbar scroll effect
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 10) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    }
-
-    // Initialize interactive elements
-    initializeInteractiveElements();
-
-    // Fetch changelog data from GitHub
-    fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/changelog.json')
+    // Check maintenance mode first
+    fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/maintenance.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -24,23 +9,97 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(data => {
-            if (data.updates && data.updates.length > 0) {
-                // Get the latest update (first item in the array)
-                const latestUpdate = data.updates[0];
-                addVersionToFooter(latestUpdate);
-                addVersionToBetaTag(latestUpdate);
+            if (data.maintenance) {
+                // Create maintenance overlay
+                const maintenanceOverlay = document.createElement('div');
+                maintenanceOverlay.className = 'maintenance-overlay';
+                maintenanceOverlay.innerHTML = `
+                    <div class="maintenance-container">
+                        <h1 class="maintenance-title"><i class="fas fa-tools"></i> Maintenance Mode</h1>
+                        <p class="maintenance-message">${data.message}</p>
+                        <div class="maintenance-details">
+                            <p><strong>Estimated downtime:</strong> ${data.estimated_downtime}</p>
+                            <p><strong>Started:</strong> ${new Date(data.start_time).toLocaleString()}</p>
+                        </div>
+                        <div class="maintenance-buttons">
+                            <a href="https://pcwstats.github.io/Website-Changelog" class="maintenance-btn maintenance-btn-secondary">
+                                <i class="fas fa-clipboard-list"></i> Changelog
+                            </a>
+                            <a href="https://pcwstats.github.io/Website-Status" class="maintenance-btn maintenance-btn-primary">
+                                <i class="fas fa-server"></i> Status Page
+                            </a>
+                            <a href="https://pcwstats.github.io/Website-Statistics" class="maintenance-btn maintenance-btn-secondary">
+                                <i class="fas fa-chart-column"></i> Statistics
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                // Add to body and disable scrolling
+                document.body.appendChild(maintenanceOverlay);
+                document.body.style.overflow = 'hidden';
+
+                // Disable all interactive elements EXCEPT those in the maintenance overlay
+                document.querySelectorAll('body > *:not(.maintenance-overlay) a, body > *:not(.maintenance-overlay) button, body > *:not(.maintenance-overlay) input, body > *:not(.maintenance-overlay) select, body > *:not(.maintenance-overlay) textarea').forEach(el => {
+                    el.style.pointerEvents = 'none';
+                });
+
+                // Stop execution of other JS if in maintenance mode
+                return;
             }
+
+            // Continue with normal execution if not in maintenance mode
+            initNormalFunctions();
         })
         .catch(error => {
-            console.error('Error fetching version information:', error);
-            // Fallback version display if the fetch fails
-            const fallbackVersion = {
-                version: '1.0.0',
-                date: new Date().toISOString().split('T')[0]
-            };
-            addVersionToFooter(fallbackVersion, true);
-            addVersionToBetaTag(fallbackVersion, true);
+            console.error('Error checking maintenance status:', error);
+            // Continue with normal execution if maintenance check fails
+            initNormalFunctions();
         });
+
+    function initNormalFunctions() {
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 10) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // Initialize interactive elements
+        initializeInteractiveElements();
+
+        // Fetch changelog data from GitHub
+        fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/changelog.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.updates && data.updates.length > 0) {
+                    // Get the latest update (first item in the array)
+                    const latestUpdate = data.updates[0];
+                    addVersionToFooter(latestUpdate);
+                    addVersionToBetaTag(latestUpdate);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching version information:', error);
+                // Fallback version display if the fetch fails
+                const fallbackVersion = {
+                    version: '1.0.0',
+                    date: new Date().toISOString().split('T')[0]
+                };
+                addVersionToFooter(fallbackVersion, true);
+                addVersionToBetaTag(fallbackVersion, true);
+            });
+    }
 });
 
 function initializeInteractiveElements() {
