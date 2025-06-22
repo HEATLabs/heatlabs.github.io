@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Maintenance Mode - PCWStats</title>
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="PCWStats - Maintenance Mode">
+    <meta name="description" content="PCWStats is currently undergoing maintenance. We'll be back soon with improvements!">
+    <meta name="robots" content="noindex, nofollow">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="assets/css/libraries/font-awesome/all.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pages/maintenance.css">
+    <link rel="stylesheet" href="assets/css/modules/no-scrollbar.css">
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/favicons/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <!-- Theme Checker -->
+    <script>
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (savedTheme === 'dark-theme' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark-theme');
+          } else {
+            document.documentElement.classList.add('light-theme');
+          }
+        } catch (e) {
+          console.error('Theme initialization error:', e);
+          document.documentElement.classList.add('light-theme');
+        }
+      })();
+    </script>
+    <!-- Maintenance Mode Section -->
+    <section class="home-hero">
+      <div class="waves-container"></div>
+      <div class="hero-content">
+        <div class="maintenance-content">
+          <h1 class="maintenance-title"><i class="fas fa-tools"></i> Maintenance</h1>
+          <p class="maintenance-message" id="maintenanceMessage">PCWStats is currently undergoing maintenance. We're working hard to bring you an improved experience.</p>
+          <div class="maintenance-details">
+            <p><strong>Estimated downtime:</strong> <span id="estimatedDowntime">1 hour</span></p>
+            <p><strong>Started:</strong> <span id="startTime">Just now</span></p>
+          </div>
+          <div class="maintenance-buttons">
+            <a href="https://pcwstats.github.io/Website-Changelog" class="maintenance-btn maintenance-btn-secondary">
+              <i class="fas fa-clipboard-list"></i> Changelog
+            </a>
+            <a href="https://pcwstats.github.io/Website-Status" class="maintenance-btn maintenance-btn-primary">
+              <i class="fas fa-server"></i> Status Page
+            </a>
+            <a href="https://pcwstats.github.io/Website-Statistics" class="maintenance-btn maintenance-btn-secondary">
+              <i class="fas fa-chart-column"></i> Statistics
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Scripts -->
+    <script src="assets/js/modules/waves.js"></script>
+    <script src="assets/js/pages/maintenance.js"></script>
+  </body>
+</html>

@@ -1,0 +1,143 @@
+.maintenance-content {
+	position: relative;
+	z-index: 2;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 3rem;
+	background-color: var(--bg-dark-secondary);
+	border-radius: 1rem;
+	border: 2px solid var(--accent-color);
+	box-shadow: 0 0 30px rgba(255, 131, 0, 0.3);
+	animation: pulse 2s infinite;
+	color: white;
+	text-align: center;
+}
+
+@keyframes pulse {
+	0% {
+		box-shadow: 0 0 30px rgba(255, 131, 0, 0.3);
+	}
+
+	50% {
+		box-shadow: 0 0 50px rgba(255, 131, 0, 0.5);
+	}
+
+	100% {
+		box-shadow: 0 0 30px rgba(255, 131, 0, 0.3);
+	}
+}
+
+.maintenance-title {
+	font-size: 3rem;
+	margin-bottom: 1.5rem;
+	color: var(--accent-color);
+}
+
+.maintenance-message {
+	font-size: 1.5rem;
+	margin-bottom: 2rem;
+	line-height: 1.6;
+}
+
+.maintenance-details {
+	margin-bottom: 2rem;
+	font-size: 1.1rem;
+	color: var(--text-dark-secondary);
+}
+
+.maintenance-buttons {
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.maintenance-btn {
+	padding: 0.75rem 1.5rem;
+	border-radius: 0.5rem;
+	font-weight: 600;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	transition: all var(--transition-speed);
+}
+
+.maintenance-btn-primary {
+	background-color: var(--accent-color);
+	color: white;
+}
+
+.maintenance-btn-primary:hover {
+	background-color: var(--accent-color-hover);
+	transform: translateY(-2px);
+}
+
+.maintenance-btn-secondary {
+	background-color: transparent;
+	color: var(--accent-color);
+	border: 2px solid var(--accent-color);
+}
+
+.maintenance-btn-secondary:hover {
+	background-color: var(--accent-color-light);
+}
+
+/* Override hero styles for maintenance page */
+.home-hero {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+.hero-content {
+	padding-top: 0;
+	margin: 0;
+}
+
+.waves-container {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	overflow: hidden;
+}
+
+/* Ensure html and body take full height without scroll */
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+@media (max-width: 768px) {
+	.maintenance-content {
+		padding: 2rem;
+		width: 90%;
+	}
+
+	.maintenance-title {
+		font-size: 2rem;
+	}
+
+	.maintenance-message {
+		font-size: 1.2rem;
+	}
+
+	.maintenance-buttons {
+		flex-direction: column;
+	}
+
+	.maintenance-btn {
+		width: 100%;
+		justify-content: center;
+	}
+}

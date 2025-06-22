@@ -10,41 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             if (data.maintenance) {
-                // Create maintenance overlay
-                const maintenanceOverlay = document.createElement('div');
-                maintenanceOverlay.className = 'maintenance-overlay';
-                maintenanceOverlay.innerHTML = `
-                    <div class="maintenance-container">
-                        <h1 class="maintenance-title"><i class="fas fa-tools"></i> Maintenance Mode</h1>
-                        <p class="maintenance-message">${data.message}</p>
-                        <div class="maintenance-details">
-                            <p><strong>Estimated downtime:</strong> ${data.estimated_downtime}</p>
-                            <p><strong>Started:</strong> ${new Date(data.start_time).toLocaleString()}</p>
-                        </div>
-                        <div class="maintenance-buttons">
-                            <a href="https://pcwstats.github.io/Website-Changelog" class="maintenance-btn maintenance-btn-secondary">
-                                <i class="fas fa-clipboard-list"></i> Changelog
-                            </a>
-                            <a href="https://pcwstats.github.io/Website-Status" class="maintenance-btn maintenance-btn-primary">
-                                <i class="fas fa-server"></i> Status Page
-                            </a>
-                            <a href="https://pcwstats.github.io/Website-Statistics" class="maintenance-btn maintenance-btn-secondary">
-                                <i class="fas fa-chart-column"></i> Statistics
-                            </a>
-                        </div>
-                    </div>
-                `;
-
-                // Add to body and disable scrolling
-                document.body.appendChild(maintenanceOverlay);
-                document.body.style.overflow = 'hidden';
-
-                // Disable all interactive elements EXCEPT those in the maintenance overlay
-                document.querySelectorAll('body > *:not(.maintenance-overlay) a, body > *:not(.maintenance-overlay) button, body > *:not(.maintenance-overlay) input, body > *:not(.maintenance-overlay) select, body > *:not(.maintenance-overlay) textarea').forEach(el => {
-                    el.style.pointerEvents = 'none';
-                });
-
-                // Stop execution of other JS if in maintenance mode
+                // Redirect to maintenance page
+                window.location.href = 'https://pcwstats.github.io/maintenance.html';
                 return;
             }
 
