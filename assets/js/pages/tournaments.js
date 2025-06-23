@@ -245,22 +245,37 @@ function createTournamentCard(tournament) {
     card.dataset.date = tournament.date;
     card.dataset.type = tournament.type.toLowerCase();
     card.dataset.mode = tournament.mode;
-    card.dataset.id = tournament.id; // Store the ID if needed
+    card.dataset.id = tournament.id;
 
+    // Get current time and tournament start time as Date objects
+    const now = new Date();
+    const tournamentStart = new Date(tournament.start);
+
+    // Determine if tournament has started
+    const hasStarted = now >= tournamentStart;
     const tournamentTag = (() => {
         switch (tournament.type?.toLowerCase()) {
             case 'ended': return 'ended';
             case 'upcoming': return 'upcoming';
             case 'dev': return 'dev';
             case 'cancelled': return 'cancelled';
-            default: return 'ongoing';
+            default: return hasStarted ? 'ongoing' : 'upcoming';
         }
     })();
+
     // Get the appropriate glare color based on tournament ID
     const glareColor = getGlareColor(tournament.id);
     const glareStyle = `linear-gradient(-45deg, hsla(0,0%,0%,0) 60%, ${glareColor} 70%, hsla(0,0%,0%,0) 100%)`;
     const tournamentTypeHTML = tournament.type && tournament.type.trim() !== '' ?
-        `<div class="${tournamentTag}-tournament-tag">${tournament.type}</div>` : '<div class="ongoing-tournament-tag">Ongoing</div>';
+        `<div class="${tournamentTag}-tournament-tag">${tournament.type}</div>` :
+        `<div class="${hasStarted ? 'ongoing' : 'upcoming'}-tournament-tag">${hasStarted ? 'Ongoing' : 'Upcoming'}</div>`;
+
+    // Determine which link to use based on time comparison
+    const tournamentLink = (tournament.type?.toLowerCase()) === 'dev' ?
+        'tournaments/tournament-maintenance.html' :
+            hasStarted ?
+            `tournaments/${tournament.slug}.html` :
+            'tournaments/tournament-maintenance.html';
 
     card.innerHTML = `
         <div class="tournament-img-container">
@@ -275,14 +290,14 @@ function createTournamentCard(tournament) {
         <div class="tournament-info">
             <h3>${tournament.name}</h3>
             <div class="tournament-meta items-center">
-                <span class="tournament-date"><i class="fa-solid fa-calendar"></i> ${tournament.date}</span>
+                <span class="tournament-date"><i class="fa-solid fa-calendar"></i> ${formatDate(tournament.date)}</span>
             </div>
             <div class="tournament-meta items-center">
                 <span><i class="fa-solid fa-bomb"></i> ${tournament.mode}</span>
             </div>
             <p class="tournament-desc">${tournament.description}</p>
             <div class="tournament-buttons">
-                <a href="tournaments/${tournament.slug}.html" class="btn-accent">
+                <a href="${tournamentLink}" class="btn-accent">
                     <i class="fa-solid fa-trophy mr-2"></i>About Tournament
                 </a>
             </div>

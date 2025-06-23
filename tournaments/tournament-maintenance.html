@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tournament Maintenance - PCWStats</title>
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="PCWStats - Tournament Maintenance">
+    <meta name="description" content="This tournament is either being constructed or is currently unavailable. Please check back later.">
+    <meta name="robots" content="noindex, nofollow">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../assets/css/libraries/font-awesome/all.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/pages/tournaments.css">
+    <link rel="stylesheet" href="../assets/css/modules/no-scrollbar.css">
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/favicons/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <!-- Theme Checker -->
+    <script>
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (savedTheme === 'dark-theme' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark-theme');
+          } else {
+            document.documentElement.classList.add('light-theme');
+          }
+        } catch (e) {
+          console.error('Theme initialization error:', e);
+          document.documentElement.classList.add('light-theme');
+        }
+      })();
+    </script>
+    <!-- Maintenance Mode Section -->
+    <section class="home-hero">
+      <div class="waves-container"></div>
+      <div class="hero-content">
+        <div class="tournament-maintenance-content">
+          <h1 class="tournament-maintenance-title"><i class="fas fa-tools"></i>Tournament Maintenance</h1>
+          <p class="tournament-maintenance-message" id="tournament-maintenanceMessage">This tournament is either being constructed or is currently unavailable. Please check back later.</p>
+          <div class="tournament-maintenance-details">
+            <p><strong>Estimated Release:</strong> <span id="estimatedDowntime">5 hour</span></p>
+            <p><strong>Started:</strong> <span id="startTime">Just now</span></p>
+          </div>
+          <div class="tournament-maintenance-buttons">
+            <a href="https://pcwstats.github.io/tournaments" class="tournament-maintenance-btn tournament-maintenance-btn-secondary">
+              <i class="fas fa-trophy"></i> Tournaments
+            </a>
+            <a href="https://pcwstats.github.io/Website-Changelog" class="tournament-maintenance-btn tournament-maintenance-btn-secondary">
+              <i class="fas fa-clipboard-list"></i> Changelog
+            </a>
+            <a href="https://pcwstats.github.io/Website-Status" class="tournament-maintenance-btn tournament-maintenance-btn-primary">
+              <i class="fas fa-server"></i> Status Page
+            </a>
+            <a href="https://pcwstats.github.io/Website-Statistics" class="tournament-maintenance-btn tournament-maintenance-btn-secondary">
+              <i class="fas fa-chart-column"></i> Statistics
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/misc.js"></script>
+    <script src="../assets/js/modules/waves.js"></script>
+  </body>
+</html>
