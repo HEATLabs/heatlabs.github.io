@@ -250,16 +250,18 @@ function createTournamentCard(tournament) {
     // Get current time and tournament start time as Date objects
     const now = new Date();
     const tournamentStart = new Date(tournament.start);
+    const tournamentEnd = new Date(tournament.end);
 
     // Determine if tournament has started
     const hasStarted = now >= tournamentStart;
+    const hasEnded = now >= tournamentEnd;
     const tournamentTag = (() => {
         switch (tournament.type?.toLowerCase()) {
             case 'ended': return 'ended';
             case 'upcoming': return 'upcoming';
             case 'dev': return 'dev';
             case 'cancelled': return 'cancelled';
-            default: return hasStarted ? 'ongoing' : 'upcoming';
+            default: return hasEnded ? 'ended' : hasStarted ? 'ongoing' : 'upcoming';
         }
     })();
 
@@ -268,7 +270,8 @@ function createTournamentCard(tournament) {
     const glareStyle = `linear-gradient(-45deg, hsla(0,0%,0%,0) 60%, ${glareColor} 70%, hsla(0,0%,0%,0) 100%)`;
     const tournamentTypeHTML = tournament.type && tournament.type.trim() !== '' ?
         `<div class="${tournamentTag}-tournament-tag">${tournament.type}</div>` :
-        `<div class="${hasStarted ? 'ongoing' : 'upcoming'}-tournament-tag">${hasStarted ? 'Ongoing' : 'Upcoming'}</div>`;
+        // `<div class="${hasEnded ? 'ended' : hasStarted ? 'ongoing' : 'upcoming'}-tournament-tag">${hasEnded ? 'Ended' : hasStarted ? 'Ongoing' : 'Upcoming'}</div>`;
+        `<div class="dev-tournament-tag">No type set in config</div>`;
 
     // Determine which link to use based on time comparison
     const tournamentLink = (tournament.type?.toLowerCase()) === 'dev' ?
