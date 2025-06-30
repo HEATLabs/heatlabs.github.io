@@ -63,6 +63,14 @@
 	border-radius: 1rem;
 	margin-left: 0.5rem;
 	font-weight: bold;
+	text-decoration: none;
+	transition: all var(--transition-speed);
+}
+
+.brand-logo-container {
+	display: flex;
+	align-items: center;
+	position: relative;
 }
 
 /* Right side buttons container */
