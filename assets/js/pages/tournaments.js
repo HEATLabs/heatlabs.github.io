@@ -310,6 +310,16 @@ function createTournamentCard(tournament) {
     return card;
 }
 
+// Animate tank cards into view
+function animateTournamentCards() {
+    const tournamentCards = document.querySelectorAll('.tournament-card');
+    tournamentCards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add('animated');
+        }, index * 100); // Stagger the animations
+    });
+}
+
 // Render all tournament cards
 async function renderTournamentCards() {
     const tournamentGrid = document.querySelector('.tournament-grid');
@@ -332,6 +342,9 @@ async function renderTournamentCards() {
 
     // Initialize display with sorting/filtering
     updateTournamentsDisplay();
+
+    // // Animate Tournament Cards
+    animateTournamentCards();
 
     // Update view counters after all cards are rendered
     await updateTournamentViewCounters();
