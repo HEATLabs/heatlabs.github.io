@@ -144,6 +144,19 @@
 	border: 1px solid var(--upcoming-accent-color);
 }
 
+.community-tournament-tag {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	background-color: var(--bg-dark);
+	color: var(--community-accent-color);
+	padding: 0.25rem 0.75rem;
+	border-radius: 1rem;
+	font-size: 0.75rem;
+	font-weight: bold;
+	border: 1px solid var(--community-accent-color);
+}
+
 .tournament-info {
 	padding: 1.5rem;
 	display: flex;

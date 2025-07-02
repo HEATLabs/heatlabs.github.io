@@ -261,6 +261,7 @@ function createTournamentCard(tournament) {
             case 'upcoming': return 'upcoming';
             case 'dev': return 'dev';
             case 'cancelled': return 'cancelled';
+            case 'community': return 'community';
             default: return hasEnded ? 'ended' : hasStarted ? 'ongoing' : 'upcoming';
         }
     })();
@@ -316,7 +317,7 @@ function animateTournamentCards() {
     tournamentCards.forEach((card, index) => {
         setTimeout(() => {
             card.classList.add('animated');
-        }, index * 100); // Stagger the animations
+        }, index * 200); // Stagger the animations
     });
 }
 
