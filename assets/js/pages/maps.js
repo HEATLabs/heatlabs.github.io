@@ -38,7 +38,7 @@ async function updateMapViewCounters() {
 // Initialize filters
 const filters = {
     size: [],
-    status: []
+    status: ['Available Now']
 };
 
 // DOM elements
@@ -217,4 +217,7 @@ function initFilterButtons() {
 document.addEventListener('DOMContentLoaded', function() {
     initFilterButtons();
     updateMapViewCounters();
+
+    // Sets default map status filter to Available Now
+    document.querySelector('.status-filter[data-status="Available Now"]').classList.add('active');
 });
