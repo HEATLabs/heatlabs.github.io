@@ -219,5 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateMapViewCounters();
 
     // Sets default map status filter to Available Now
-    document.querySelector('.status-filter[data-status="Available Now"]').classList.add('active');
+    const availableNowBtn = document.querySelector('.status-filter[data-status="Available Now"]');
+    availableNowBtn.classList.add('active');
+    filterMaps();
 });
