@@ -3,7 +3,7 @@ window.tournamentData = [];
 let originalCards = [];
 let currentPage = 1;
 let postsPerPage = 12;
-
+let debugTournamentCards = false;
 // Function to format date as "Month Day, Year"
 function formatDate(dateString) {
     const date = new Date(dateString);
@@ -166,9 +166,14 @@ function updateTournamentsDisplay() {
 // Fetch tournament data from JSON file
 async function fetchTournamentData() {
     try {
-        const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tournaments.json');
-        // Uncomment line below to use local JSON
-        // const response = await fetch('../Website-Configs/tournaments.json');
+        let dataURL = "https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tournaments.json" ;
+
+        // For use in Dev Env
+        if (debugTournamentCards === true) {
+            dataURL = "../Website-Configs/tournaments.json";
+        }
+
+        const response = await fetch(dataURL);
         if (!response.ok) {
             throw new Error('Failed to load tournament data');
         }
@@ -307,7 +312,20 @@ function createTournamentCard(tournament) {
             </div>
         </div>
     `;
-
+    if (debugTournamentCards === true) {
+        console.log("Created ", tournament.name, "card");
+        console.log(tournament.name, "'s ID: ", tournament.id);
+        console.log(tournament.name, "'s Name:", tournament.name);
+        console.log(tournament.name, "'s Slug: ", tournament.slug);
+        console.log(tournament.name, "'s Description: ", tournament.description);
+        console.log(tournament.name, "'s Start Date: ", tournament.start);
+        console.log(tournament.name, "'s End Date: ", tournament.end);
+        console.log(tournament.name, "'s Date: ", tournament.date);
+        console.log(tournament.name, "'s Mode: ", tournament.mode);
+        console.log(tournament.name, "'s Type: ", tournament.type);
+        console.log(tournament.name, "'s Image: ", tournament.image);
+        console.log(tournament.name, "'s Glare Color: ", glareColor);
+    }
     return card;
 }
 
@@ -382,3 +400,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+if (debugTournamentCards === true) {
+    console.log(atob("SWYgeW91J3JlIHJlYWRpbmcgdGhpcywgdHlwZSBjb25mdXNlZCBvbiB0aGUgcGFnZS4="))
+}
