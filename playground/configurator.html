@@ -279,12 +279,69 @@
         <div class="waves-container"></div>
         <div class="hero-content">
           <h1>Game Configurator</h1>
-          <p>Configure your Project CW instance</p>
+          <p>Configure your Project CW instance (BETA)</p>
         </div>
       </section>
       <!-- Configurator Section -->
-      <section id="main" class="section">
-        <!-- Config Content Options -->
+      <section id="main" class="section configurator-container">
+        <div class="container mx-auto px-4">
+          <div class="configurator-header">
+            <h2>Project CW Configurator</h2>
+            <p>Upload your <code>coldwar.project</code> file to customize game settings </p>
+          </div>
+          <div class="file-upload-container">
+            <div class="upload-box" id="dropZone">
+              <i class="fas fa-file-upload"></i>
+              <p>Drag & drop your config file here or</p>
+              <button id="fileInputBtn" class="btn-primary">Browse Files</button>
+              <input type="file" id="fileInput" accept=".project" style="display: none;">
+            </div>
+            <div class="file-info" id="fileInfo" style="display: none;">
+              <p>
+                <i class="fas fa-file-alt"></i>
+                <span id="fileName"></span>
+              </p>
+              <button id="resetFile" class="btn-secondary">Change File</button>
+            </div>
+          </div>
+          <div id="configSections" style="display: none;">
+            <div class="settings-tabs">
+              <button class="tab-btn active" data-tab="aiming">Aiming</button>
+              <button class="tab-btn" data-tab="aim-assist">Aim Assist</button>
+              <button class="tab-btn" data-tab="armor">Armor Outliner</button>
+              <button class="tab-btn" data-tab="controller">Controller</button>
+              <button class="tab-btn" data-tab="markers">Markers</button>
+              <button class="tab-btn" data-tab="window">Window</button>
+              <button class="tab-btn" data-tab="resolution">Resolution</button>
+            </div>
+            <div class="tab-content active" id="aiming-tab">
+              <!-- Aiming settings will be loaded here -->
+            </div>
+            <div class="tab-content" id="aim-assist-tab">
+              <!-- Aim assist settings will be loaded here -->
+            </div>
+            <div class="tab-content" id="armor-tab">
+              <!-- Armor outliner settings will be loaded here -->
+            </div>
+            <div class="tab-content" id="controller-tab">
+              <!-- Controller settings will be loaded here -->
+            </div>
+            <div class="tab-content" id="markers-tab">
+              <!-- Marker settings will be loaded here -->
+            </div>
+            <div class="tab-content" id="window-tab">
+              <!-- Window settings will be loaded here -->
+            </div>
+            <div class="tab-content" id="resolution-tab">
+              <!-- Resolution settings will be loaded here -->
+            </div>
+            <div class="action-buttons">
+              <button id="saveConfig" class="btn-primary">Save Configuration</button>
+              <button id="downloadConfig" class="btn-secondary">Download Modified File</button>
+              <button id="resetAll" class="btn-reset">Reset All to Default</button>
+            </div>
+          </div>
+        </div>
       </section>
       <!-- CTA Section -->
       <section class="cta-section">

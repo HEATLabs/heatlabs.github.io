@@ -1,0 +1,279 @@
+/* Configurator Container */
+.configurator-container {
+	padding: 2rem 0;
+	min-height: 70vh;
+}
+
+.configurator-header {
+	text-align: center;
+	margin-bottom: 2rem;
+}
+
+.configurator-header h2 {
+	font-size: 2rem;
+	font-weight: bold;
+	color: var(--text-primary);
+	margin-bottom: 0.5rem;
+}
+
+.configurator-header p {
+	color: var(--text-secondary);
+	font-size: 1.1rem;
+}
+
+/* File Upload Section */
+.file-upload-container {
+	max-width: 600px;
+	margin: 0 auto 3rem;
+	text-align: center;
+}
+
+.upload-box {
+	border: 2px dashed var(--border-color);
+	border-radius: 0.75rem;
+	padding: 2rem;
+	transition: all var(--transition-speed);
+	background-color: var(--card-bg);
+}
+
+.upload-box:hover {
+	border-color: var(--accent-color);
+}
+
+.upload-box i {
+	font-size: 3rem;
+	color: var(--accent-color);
+	margin-bottom: 1rem;
+}
+
+.upload-box p {
+	margin-bottom: 0.5rem;
+	color: var(--text-primary);
+}
+
+.small-text {
+	font-size: 0.9rem;
+	color: var(--text-secondary);
+}
+
+.file-info {
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	padding: 1rem;
+	margin-top: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.file-info p {
+	margin: 0;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	color: var(--text-primary);
+}
+
+/* Tabs */
+.settings-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-bottom: 1.5rem;
+	border-bottom: 1px solid var(--border-color);
+	padding-bottom: 0.5rem;
+}
+
+.tab-btn {
+	padding: 0.5rem 1rem;
+	background: none;
+	border: none;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	color: var(--text-secondary);
+	font-weight: 500;
+	transition: all var(--transition-speed);
+}
+
+.tab-btn:hover {
+	color: var(--text-primary);
+	background-color: var(--bg-tertiary);
+}
+
+.tab-btn.active {
+	color: var(--accent-color);
+	background-color: var(--accent-color-light);
+}
+
+/* Tab Content */
+.tab-content {
+	display: none;
+	padding: 1.5rem;
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	margin-bottom: 2rem;
+	border: 1px solid var(--border-color);
+}
+
+.tab-content.active {
+	display: block;
+}
+
+.settings-group {
+	margin-bottom: 2rem;
+}
+
+.settings-group h3 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+	color: var(--text-primary);
+	padding-bottom: 0.5rem;
+	border-bottom: 1px solid var(--border-color);
+}
+
+/* Improved setting items alignment */
+.setting-item {
+	display: grid;
+	grid-template-columns: 220px 1fr auto auto;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 1rem;
+	padding: 0.75rem;
+	background-color: var(--bg-secondary);
+	border-radius: 0.5rem;
+}
+
+.setting-item label {
+	font-weight: 500;
+	color: var(--text-primary);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.setting-item input[type="range"] {
+	width: 100%;
+	min-width: 200px;
+	max-width: 300px;
+}
+
+.setting-value {
+	min-width: 50px;
+	text-align: center;
+	font-family: monospace;
+}
+
+.checkbox-item {
+	grid-column: 1 / -1;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 0.5rem;
+}
+
+.checkbox-item input[type="checkbox"] {
+	width: 1.2rem;
+	height: 1.2rem;
+	margin: 0;
+}
+
+/* Marker settings specific styles */
+.marker-type-content {
+	margin-top: 1rem;
+}
+
+.marker-state-group {
+	background-color: var(--bg-secondary);
+	border-radius: 0.5rem;
+	padding: 1rem;
+	margin-bottom: 1rem;
+}
+
+.marker-state-group h4 {
+	font-size: 1.1rem;
+	margin-bottom: 0.75rem;
+	color: var(--text-primary);
+}
+
+/* Action Buttons */
+.action-buttons {
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	margin-top: 2rem;
+	flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-reset {
+	padding: 0.75rem 1.5rem;
+	border-radius: 0.5rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all var(--transition-speed);
+	border: none;
+}
+
+.btn-primary {
+	background-color: var(--accent-color);
+	color: white;
+}
+
+.btn-primary:hover {
+	background-color: var(--accent-color-dark);
+}
+
+.btn-secondary {
+	background-color: var(--bg-tertiary);
+	color: var(--text-primary);
+	border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+	background-color: var(--bg-secondary);
+}
+
+.btn-reset {
+	background-color: transparent;
+	color: var(--text-secondary);
+	border: 1px solid var(--border-color);
+}
+
+.btn-reset:hover {
+	color: var(--text-primary);
+	background-color: var(--bg-tertiary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.setting-item {
+		grid-template-columns: 1fr;
+		gap: 0.5rem;
+	}
+
+	.setting-item label {
+		min-width: auto;
+		margin-bottom: 0.25rem;
+	}
+
+	.action-buttons {
+		flex-direction: column;
+	}
+
+	.action-buttons button {
+		width: 100%;
+	}
+}
+
+/* Drag and Drop States */
+#dropZone.drag-over {
+	border-color: var(--accent-color);
+	background-color: var(--accent-color-light);
+}
+
+#dropZone.drag-over i,
+#dropZone.drag-over p {
+	color: var(--accent-color);
+}
