@@ -572,7 +572,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const windowSettings = configData['engine::WindowProjectSettings'] || {};
 
-        const group = createSettingsGroup('Window Settings');
+        const group = createSettingsGroup('Window Resolution Settings');
         tab.appendChild(group);
 
         if (windowSettings.minSize) {
