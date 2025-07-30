@@ -150,12 +150,21 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	padding-right: 25rem;
+	margin-right: 1rem;
 }
 
 .setting-item input[type="range"] {
 	width: 100%;
 	min-width: 200px;
 	max-width: 300px;
+	-webkit-appearance: none;
+	background: linear-gradient(to right , var(--bg-dark-secondary), var(--bg-dark-tertiary), var(--accent-color-light), var(--accent-color));
+	border-radius: 0.5rem;
+	border: 0.1rem solid var(--border-color);
+	padding-left: 5rem;
+	margin-left: 15%;
+	cursor: grabbing;
 }
 
 .setting-value {
@@ -164,6 +173,19 @@
 	font-family: monospace;
 }
 
+#setting-stopType {
+	background: var(--bg-tertiary);
+	border-radius: 0.5rem;
+	border: 1px solid transparent;
+	padding-left: 0.5rem;
+	-webkit-appearance: none !important;
+}
+
+#setting-stopType:hover {
+	border-radius: 0.5rem;
+	border: 1px solid var(--accent-color);
+	-webkit-appearance: none !important;
+}
 .checkbox-item {
 	grid-column: 1 / -1;
 	display: flex;
@@ -207,7 +229,8 @@
 
 .btn-primary,
 .btn-secondary,
-.btn-reset {
+.btn-reset,
+.btn-save-config {
 	padding: 0.75rem 1.5rem;
 	border-radius: 0.5rem;
 	font-weight: 500;
@@ -244,6 +267,18 @@
 .btn-reset:hover {
 	color: var(--text-primary);
 	background-color: var(--bg-tertiary);
+	border-color: var(--accent-color);
+}
+
+.btn-save-config{
+	background-color: var(--accent-color);
+	color: white;
+}
+
+.btn-save-config:hover {
+	background-color: transparent;
+	color: var(--accent-color);
+	border: 1px solid var(--accent-color);
 }
 
 /* Responsive */
