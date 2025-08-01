@@ -162,7 +162,6 @@
 	background: linear-gradient(to right , var(--bg-dark-secondary), var(--bg-dark-tertiary), var(--accent-color-light), var(--accent-color));
 	border-radius: 0.5rem;
 	border: 0.1rem solid var(--border-color);
-	padding-left: 5rem;
 	margin-left: 15%;
 	cursor: grabbing;
 }
