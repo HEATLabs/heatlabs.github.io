@@ -313,17 +313,7 @@ function createTournamentCard(tournament) {
         </div>
     `;
     if (debugTournamentCards === true) {
-        console.log("Created ", tournament.name, "card");
-        console.log(tournament.name, "'s ID: ", tournament.id);
-        console.log(tournament.name, "'s Name:", tournament.name);
-        console.log(tournament.name, "'s Slug: ", tournament.slug);
-        console.log(tournament.name, "'s Description: ", tournament.description);
-        console.log(tournament.name, "'s Start Date: ", tournament.start);
-        console.log(tournament.name, "'s End Date: ", tournament.end);
-        console.log(tournament.name, "'s Date: ", tournament.date);
-        console.log(tournament.name, "'s Mode: ", tournament.mode);
-        console.log(tournament.name, "'s Type: ", tournament.type);
-        console.log(tournament.name, "'s Image: ", tournament.image);
+        console.table(tournament);
         console.log(tournament.name, "'s Glare Color: ", glareColor);
     }
     return card;
@@ -352,8 +342,10 @@ async function renderTournamentCards() {
 
     // Create and append cards for each tournament
     tournaments.forEach(tournament => {
+        if (tournament.publish === true) {
         const card = createTournamentCard(tournament);
         tournamentGrid.appendChild(card);
+        }
     });
 
     // Store original cards for filtering/sorting
@@ -376,8 +368,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const postsPerPageFilter = document.getElementById('postsPerPage');
 
     // Render tournament cards and initialize functionality
+    if (debugTournamentCards === true) {
+        console.time("renderTournamentCards time");
+        renderTournamentCards();
+        console.timeEnd("renderTournamentCards time");
+    }else {
     renderTournamentCards();
-
+}
     // Add event listeners for filter changes
     if (sortFilter) {
         sortFilter.addEventListener('change', () => {
