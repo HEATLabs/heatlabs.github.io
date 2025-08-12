@@ -1039,7 +1039,7 @@ function populateTankStats(tankStats) {
         let targetCategory = null;
         categories.forEach(cat => {
             const h3 = cat.querySelector('h3');
-            if (h3 && h3.textContent.includes(category)) {
+            if (h3 && h3.textContent.trim().toUpperCase() === category.toUpperCase()) {
                 targetCategory = cat;
             }
         });
@@ -1053,7 +1053,7 @@ function populateTankStats(tankStats) {
         let targetItem = null;
         statItems.forEach(item => {
             const nameElement = item.querySelector('.stat-name');
-            if (nameElement && nameElement.textContent.includes(statName)) {
+            if (nameElement && nameElement.textContent.trim().toUpperCase() === statName.toUpperCase()) {
                 targetItem = item;
             }
         });
