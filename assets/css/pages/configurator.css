@@ -21,6 +21,10 @@
 	font-size: 1.1rem;
 }
 
+.config-app-link {
+	color: var(--accent-color);
+}
+
 /* File Upload Section */
 .file-upload-container {
 	max-width: 600px;
