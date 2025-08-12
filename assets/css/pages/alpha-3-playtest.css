@@ -71,9 +71,63 @@
 	padding: 2rem;
 }
 
+/* Notification popup styles */
+.notification-popup {
+	position: fixed;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: rgba(30, 30, 30, 0.95);
+	color: var(--text-primary);
+	padding: 15px 20px;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	border: 1px solid var(--border-color);
+	max-width: 90%;
+	width: 600px;
+	z-index: 1000;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	animation: slideUp 0.3s ease-out;
+}
+
+.notification-popup p {
+	margin: 0;
+	padding-right: 15px;
+	font-size: 0.9rem;
+	line-height: 1.4;
+}
+
+.notification-popup .close-btn {
+	background: none;
+	border: none;
+	color: var(--text-secondary);
+	font-size: 1.2rem;
+	cursor: pointer;
+	padding: 5px;
+	flex-shrink: 0;
+	transition: color 0.2s;
+}
+
+.notification-popup .close-btn:hover {
+	color: var(--accent-color);
+}
+
+@keyframes slideUp {
+	from {
+		transform: translateX(-50%) translateY(100%);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateX(-50%) translateY(0);
+		opacity: 1;
+	}
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
-
 	.countdown-timer {
 		gap: 1rem;
 		padding: 0.5rem;
@@ -93,6 +147,15 @@
 		min-width: 90vw;
 		padding: 1.5rem;
 	}
+
+	.notification-popup {
+		width: 90%;
+		padding: 12px 15px;
+	}
+
+	.notification-popup p {
+		font-size: 0.85rem;
+	}
 }
 
 @media (max-width: 480px) {
@@ -107,6 +170,11 @@
 
 	.countdown-value {
 		font-size: 2.5rem;
+	}
+
+	.notification-popup {
+		width: 95%;
+		padding: 10px 12px;
 	}
 }
 

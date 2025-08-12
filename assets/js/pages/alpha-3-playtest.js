@@ -5,6 +5,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const countdownTitle = document.querySelector('.countdown-title');
     const countdownSubtitle = document.querySelector('.countdown-subtitle');
     const countdownTimer = document.querySelector('.countdown-timer');
+    const speculationNotice = document.getElementById('speculationNotice');
+    const closeNoticeBtn = document.getElementById('closeNotice');
+
+    // Show notification popup
+    function showNotification() {
+        // Only show if not previously dismissed
+        if (!localStorage.getItem('noticeDismissed')) {
+            speculationNotice.style.display = 'flex';
+        }
+    }
+
+    // Close notification popup
+    function closeNotification() {
+        speculationNotice.style.display = 'none';
+        localStorage.setItem('noticeDismissed', 'true');
+    }
+
+    // Event listeners for notification
+    closeNoticeBtn.addEventListener('click', closeNotification);
 
     // Initialize timer display mode
     let simpleCountdownMode = true;
@@ -72,6 +91,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initial call to display countdown immediately
     updateCountdown();
+
+    // Show notification
+    showNotification();
 
     function updateCountdown() {
         const now = new Date();
