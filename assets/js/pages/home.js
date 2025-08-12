@@ -1,28 +1,68 @@
 // home.js - Fun Facts Counter Animation
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize counters
-    initializeCounters();
-
-    // Calculate and display days since creation and coffee cups
-    calculateDaysAndCoffee();
+    // Fetch fun facts data from JSON
+    fetchFunFactsData();
 });
 
-function initializeCounters() {
-    const counters = document.querySelectorAll('.fun-fact-number[data-count]');
+async function fetchFunFactsData() {
+    try {
+        const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/home-stats.json');
+        if (!response.ok) {
+            throw new Error('Failed to fetch fun facts data');
+        }
+        const data = await response.json();
+
+        // Initialize counters with the fetched data
+        initializeCounters(data);
+        calculateDaysAndCoffee(data);
+    } catch (error) {
+        console.error('Error loading fun facts data:', error);
+        // Fallback to default values if fetch fails
+        const fallbackData = {
+            creationDate: 'April 24, 2025 00:00:00',
+            coffeePerDay: 11,
+            stats: {
+                teamMembers: 7,
+                linesOfCode: 1190141,
+                contributors: 1
+            }
+        };
+        initializeCounters(fallbackData);
+        calculateDaysAndCoffee(fallbackData);
+    }
+}
+
+function initializeCounters(data) {
+    const counters = document.querySelectorAll('.fun-fact-number');
     const speed = 200; // The lower the faster
     let animationComplete = true;
 
     counters.forEach(counter => {
-        // Skip the coffee cups counter since we'll calculate it separately
-        if (counter.parentElement.querySelector('.fun-fact-label').textContent.includes('Coffee Cups')) {
+        const parentItem = counter.closest('.fun-fact-item');
+        const label = parentItem.querySelector('.fun-fact-label').textContent;
+        let target = 0;
+
+        // Determine which counter we are dealing with
+        if (label.includes('Team Members')) {
+            target = data.stats.teamMembers;
+        } else if (label.includes('Lines of Code')) {
+            target = data.stats.linesOfCode;
+        } else if (label.includes('Community Contributors')) {
+            target = data.stats.contributors;
+        } else if (label.includes('Coffee Cups')) {
+            // Skip coffee cups
             return;
+        } else if (label.includes('Days Since Creation')) {
+            // Skip days counter
+            return;
+        } else {
+            return; // Skip unknown counters
         }
 
-        const target = +counter.getAttribute('data-count');
         const currentText = counter.innerText;
         let currentCount = parseFloat(currentText.replace(/[^0-9.]/g, '')) || 0;
 
-        const isLinesOfCode = counter.parentElement.querySelector('.fun-fact-label').textContent.includes('Lines of Code');
+        const isLinesOfCode = label.includes('Lines of Code');
 
         if (currentCount < target) {
             animationComplete = false;
@@ -42,16 +82,16 @@ function initializeCounters() {
     });
 
     if (!animationComplete) {
-        requestAnimationFrame(initializeCounters);
+        requestAnimationFrame(() => initializeCounters(data));
     }
 }
 
-function calculateDaysAndCoffee() {
-    const creationDate = new Date('April 24, 2025 00:00:00');
+function calculateDaysAndCoffee(data) {
+    const creationDate = new Date(data.creationDate);
     const today = new Date();
     const diffTime = today - creationDate;
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    const coffeeCups = diffDays * 11; // 11 cups per day
+    const coffeeCups = diffDays * data.coffeePerDay;
 
     // Animate the days counter
     const daysCounter = document.getElementById('days-since-creation');
