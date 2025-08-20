@@ -7,7 +7,7 @@ async function fetchGuideViewCount(guideName) {
     try {
         // Extract the guide name from the path (e.g., "tank-guides/xm1-v-build-guide.html" -> "xm1-v-build-guide")
         const baseName = guideName.split('/').pop().replace('.html', '');
-        const response = await fetch(`https://heatlabs-pixel-api.vercel.app/api/stats?image=heatlabs-tracker-pixel-${baseName}.png`);
+        const response = await fetch(`https://heatlabs-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${baseName}.png`);
         if (!response.ok) {
             throw new Error('Failed to load view count');
         }

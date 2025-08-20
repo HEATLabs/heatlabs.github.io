@@ -1,7 +1,7 @@
 // Function to fetch view count from API
 async function fetchViewCount(pageName) {
     try {
-        const response = await fetch(`https://heatlabs-pixel-api.vercel.app/api/stats?image=heatlabs-tracker-pixel-${pageName}.png`);
+        const response = await fetch(`https://heatlabs-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${pageName}.png`);
         if (!response.ok) {
             throw new Error('Failed to load view count');
         }

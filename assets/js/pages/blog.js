@@ -8,7 +8,7 @@ async function fetchBlogViewCount(blogName) {
     try {
         // Remove any path prefixes and .html extension
         const baseName = blogName.replace(/^.*[\\\/]/, '').replace('.html', '');
-        const response = await fetch(`https://heatlabs-pixel-api.vercel.app/api/stats?image=heatlabs-tracker-pixel-${baseName}.png`);
+        const response = await fetch(`https://heatlabs-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${baseName}.png`);
         if (!response.ok) {
             throw new Error('Failed to load view count');
         }
