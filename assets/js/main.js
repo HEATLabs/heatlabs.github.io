@@ -1,7 +1,7 @@
-// Main JS for PCWStats
+// Main JS for HEAT Labs
 document.addEventListener('DOMContentLoaded', function() {
     // Check maintenance mode first
-    fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/maintenance.json')
+    fetch('https://raw.githubusercontent.com/HEATLabs/Website-Configs/refs/heads/main/maintenance.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             if (data.maintenance) {
                 // Redirect to maintenance page
-                window.location.href = 'https://pcwstats.github.io/maintenance.html';
+                window.location.href = 'https://heatlabs.github.io/maintenance.html';
                 return;
             }
 
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeInteractiveElements();
 
         // Fetch changelog data from GitHub
-        fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/changelog.json')
+        fetch('https://raw.githubusercontent.com/HEATLabs/Website-Configs/refs/heads/main/changelog.json')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -157,7 +157,7 @@ function addVersionToFooter(update, isFallback = false) {
     // Create changelog link
     const changelogLink = document.createElement('a');
     changelogLink.className = 'version-info-item version-info-link';
-    changelogLink.href = 'https://pcwstats.github.io/Website-Changelog';
+    changelogLink.href = 'https://heatlabs.github.io/Website-Changelog';
     changelogLink.innerHTML = `
         <span>View Changelog</span>
         <i class="fas fa-external-link-alt"></i>
