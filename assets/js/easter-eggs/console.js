@@ -1,4 +1,4 @@
-// Console Easter Egg JS for PCWStats
+// Console Easter Egg JS for HEATLabs
 document.addEventListener('DOMContentLoaded', function() {
     // Console elements
     const consoleModal = document.getElementById('consoleModal');
@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ASCII Art for boot screen
     const asciiArt = `
-░█▀█░█▀▀░█░█░█▀▀░▀█▀░█▀█░▀█▀░█▀▀
-░█▀▀░█░░░█▄█░▀▀█░░█░░█▀█░░█░░▀▀█
-░▀░░░▀▀▀░▀░▀░▀▀▀░░▀░░▀░▀░░▀░░▀▀▀
+░█░█░█▀▀░█▀█░▀█▀░░░█░░░█▀█░█▀▄░█▀▀
+░█▀█░█▀▀░█▀█░░█░░░░█░░░█▀█░█▀▄░▀▀█
+░▀░▀░▀▀▀░▀░▀░░▀░░░░▀▀▀░▀░▀░▀▀░░▀▀▀
     `;
 
     // Easter egg activation - typing "console" or "hacker"
@@ -60,12 +60,12 @@ document.addEventListener('DOMContentLoaded', function() {
             execute: () => listTournaments()
         },
         version: {
-            description: 'Shows PCWStats version info',
+            description: 'Shows HEAT Labs version info',
             usage: 'version',
             execute: () => showVersion()
         },
         about: {
-            description: 'About PCWStats project',
+            description: 'About HEAT Labs project',
             usage: 'about',
             execute: () => aboutProject()
         },
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Clear console and start boot sequence
         clearConsole();
-        consoleOutput.innerHTML = '<div class="boot-line">Initializing PCWStats Console v1.1...</div>';
+        consoleOutput.innerHTML = '<div class="boot-line">Initializing HEAT Labs Console v1.1...</div>';
 
         // Simulate boot sequence
         setTimeout(() => {
@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
 
         setTimeout(() => {
-            addOutputLine('Connecting to PCWStats API...');
+            addOutputLine('Connecting to HEAT Labs API...');
         }, 1500);
 
         setTimeout(() => {
@@ -263,8 +263,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Clear console
     function clearConsole() {
         consoleOutput.innerHTML = '';
-        addOutputLine('PCWStats Console [Version 1.1]');
-        addOutputLine('(c) 2025 PCWStats Team. All rights reserved.');
+        addOutputLine('HEAT Labs Console [Version 1.1]');
+        addOutputLine('(c) 2025 HEAT LabsTeam. All rights reserved.');
         addOutputLine('');
     }
 
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
         historyIndex = -1;
 
         // Display command
-        addOutputLine(`<span class="prompt">${sudoActive ? 'root' : 'user'}@pcwstats:~$</span> ${input}`, 'command-line');
+        addOutputLine(`<span class="prompt">${sudoActive ? 'root' : 'user'}@heatlabs:~$</span> ${input}`, 'command-line');
 
         // Parse command
         const parts = input.split(' ');
@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // List all tanks
     async function listTanks() {
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Database-Files@main/tanks.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Database-Files@main/tanks.json');
             if (!response.ok) throw new Error('Failed to load tank data');
 
             const data = await response.json();
@@ -391,7 +391,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const tankName = args.join(' ');
 
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
             if (!response.ok) throw new Error('Failed to load tank data');
 
             const data = await response.json();
@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const tank2Name = args[1];
 
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
             if (!response.ok) throw new Error('Failed to load tank data');
 
             const data = await response.json();
@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // List tournaments
     async function listTournaments() {
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tournaments.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tournaments.json');
             if (!response.ok) throw new Error('Failed to load tournament data');
 
             const data = await response.json();
@@ -551,20 +551,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Show version info
     async function showVersion() {
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/changelog.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/changelog.json');
             if (!response.ok) throw new Error('Failed to load version data');
 
             const data = await response.json();
             if (data.updates && data.updates.length > 0) {
                 const latest = data.updates[0];
-                addOutputLine('PCWStats Version Information:', 'output-header');
+                addOutputLine('HEAT Labs Version Information:', 'output-header');
                 addOutputLine('----------------------------', 'output-header');
                 addOutputLine(`Version: v${latest.version}`, 'version-info');
                 addOutputLine(`Release Date: ${formatDate(latest.date)}`, 'version-info');
                 addOutputLine(`Description: ${latest.description}`, 'version-info');
             }
         } catch (error) {
-            addOutputLine('PCWStats Console [Version 1.1]', 'version-info');
+            addOutputLine('HEAT Labs Console [Version 1.1]', 'version-info');
             addOutputLine('(Fallback version information)', 'warning');
         }
     }
@@ -581,9 +581,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // About project
     function aboutProject() {
-        addOutputLine('PCWStats Project Information:', 'output-header');
+        addOutputLine('HEAT Labs Project Information:', 'output-header');
         addOutputLine('---------------------------', 'output-header');
-        addOutputLine('PCWStats is a community-driven project aimed at providing', 'about-line');
+        addOutputLine('HEAT Labs is a community-driven project aimed at providing', 'about-line');
         addOutputLine('Project CW players with comprehensive and reliable tank', 'about-line');
         addOutputLine('statistics and gameplay information.', 'about-line');
         addOutputLine('', 'about-line');
@@ -693,7 +693,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Tank roulette
     async function tankRoulette() {
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
             if (!response.ok) throw new Error('Failed to load tank data');
 
             const data = await response.json();

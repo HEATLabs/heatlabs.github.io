@@ -1,4 +1,4 @@
-// Theme functionality + Easter Egg for PCWStats with Chart.js support
+// Theme functionality + Easter Egg for HEAT Labs with Chart.js support
 document.addEventListener('DOMContentLoaded', function() {
     // Constants for Easter Egg
     const MAX_TOGGLES = 10;

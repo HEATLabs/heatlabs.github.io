@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Load missions data
-    fetch('https://cdn.jsdelivr.net/gh/PCWStats/Database-Files@main/game-data/missions.json')
+    fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Database-Files@main/game-data/missions.json')
         .then(response => response.json())
         .then(data => displayMissions(data.entitlements))
         .catch(error => {

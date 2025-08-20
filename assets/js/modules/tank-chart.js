@@ -122,7 +122,7 @@ async function initializeCharts() {
 
     try {
         // First fetch the tanks.json to get the tank details
-        const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
+        const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
         const tanksData = await tanksResponse.json();
 
         // Find current tank to get type and agents

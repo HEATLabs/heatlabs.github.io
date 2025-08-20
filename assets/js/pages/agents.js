@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch agent data from JSON file
     async function fetchAgentData() {
         try {
-            const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/agents.json');
+            const response = await fetch('https://raw.githubusercontent.com/HEATLabs/Website-Configs/refs/heads/main/agents.json');
             if (!response.ok) {
                 throw new Error('Failed to load agent data');
             }
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch view count for an agent
     async function fetchViewCount(agentSlug) {
         try {
-            const response = await fetch(`https://pcwstats-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${agentSlug}.png`);
+            const response = await fetch(`https://heatlabs-pixel-api.vercel.app/api/stats?image=heatlabs-tracker-pixel-${agentSlug}.png`);
             if (!response.ok) {
                 throw new Error('Failed to load view count');
             }
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <i class="fas fa-eye"></i>
                     <span class="views-count">0</span>
                 </div>
-                <img src="${agent.image}" alt="${agent.name} Preview" class="agent-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
+                <img src="${agent.image}" alt="${agent.name} Preview" class="agent-img" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagefailedtoload.webp'">
                 ${agentStatusHTML}
             </div>
             <div class="agent-info">

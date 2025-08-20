@@ -166,7 +166,7 @@ function updateTournamentsDisplay() {
 // Fetch tournament data from JSON file
 async function fetchTournamentData() {
     try {
-        let dataURL = "https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tournaments.json" ;
+        let dataURL = "https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tournaments.json" ;
 
         // For use in Dev Env
         if (debugTournamentCards === true) {
@@ -188,7 +188,7 @@ async function fetchTournamentData() {
 
 async function fetchTournamentViewCount(imageName) {
     try {
-        const response = await fetch(`https://pcwstats-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${imageName}.png`);
+        const response = await fetch(`https://heatlabs-pixel-api.vercel.app/api/stats?image=heatlabs-tracker-pixel-${imageName}.png`);
         if (!response.ok) {
             throw new Error('Failed to load view count');
         }
@@ -292,7 +292,7 @@ function createTournamentCard(tournament) {
                 <i class="fas fa-eye"></i>
                 <span class="views-count">0</span>
             </div>
-            <img src="${tournament.image}" alt="${tournament.name} Preview" class="tournament-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
+            <img src="${tournament.image}" alt="${tournament.name} Preview" class="tournament-img" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagefailedtoload.webp'">
             ${tournamentTypeHTML}
             <div class="glare-overlay" style="background-image: ${glareStyle}"></div>
         </div>

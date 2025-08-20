@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Create the video element
     const video = document.createElement('video');
-    video.src = 'https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/miscellaneous/lizard_easter_egg.mp4';
+    video.src = 'https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/miscellaneous/lizard_easter_egg.mp4';
     video.alt = 'Lizard Lizard Lizard';
     video.style.maxWidth = '90%';
     video.style.maxHeight = '90%';

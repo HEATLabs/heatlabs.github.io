@@ -163,7 +163,7 @@ document.addEventListener('click', function(event) {
                 const tankElement = document.createElement('div');
                 tankElement.className = 'comparison-tank-item';
                 tankElement.innerHTML = `
-                    <img src="${tankImg}" alt="${tankName}" class="comparison-tank-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
+                    <img src="${tankImg}" alt="${tankName}" class="comparison-tank-img" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagefailedtoload.webp'">
                     <span class="comparison-tank-name">${tankName}</span>
                     <button class="comparison-tank-remove" data-tank-id="${tankId}">
                         <i class="fas fa-times"></i>
@@ -193,7 +193,7 @@ document.addEventListener('click', function(event) {
     // Fetch tank data from JSON file
     async function fetchTankData() {
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
             if (!response.ok) {
                 throw new Error('Failed to load tank data');
             }
@@ -207,7 +207,7 @@ document.addEventListener('click', function(event) {
 
     async function fetchViewCount(imageName) {
         try {
-            const response = await fetch(`https://pcwstats-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${imageName}.png`);
+            const response = await fetch(`https://heatlabs-pixel-api.vercel.app/api/stats?image=heatlabs-tracker-pixel-${imageName}.png`);
             if (!response.ok) {
                 throw new Error('Failed to load view count');
             }
@@ -260,7 +260,7 @@ document.addEventListener('click', function(event) {
                     <i class="fas fa-eye"></i>
                     <span class="views-count">0</span>
                 </div>
-                <img src="${tank.image}" alt="${tank.name} Preview" class="tank-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
+                <img src="${tank.image}" alt="${tank.name} Preview" class="tank-img" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagefailedtoload.webp'">
                 ${tankClassHTML}
             </div>
             <div class="tank-info">

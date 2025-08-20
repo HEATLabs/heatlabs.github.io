@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p class="warning-modal-subtitle">Please read this important notice</p>
             </div>
             <div class="warning-modal-content">
-                <p class="text-center">Welcome to PCWStats! This website is currently in active development.</p>
+                <p class="text-center">Welcome to HEAT Labs! This website is currently in active development.</p>
 
                 <ul class="warning-modal-list">
                     <li>

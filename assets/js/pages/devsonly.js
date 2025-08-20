@@ -398,15 +398,15 @@ function runLocalStorageTest(testElement) {
 
     try {
         // Test write
-        localStorage.setItem('pcwstats_test', 'test_value');
+        localStorage.setItem('heatlabs_test', 'test_value');
         logTestMessage(testElement, 'Successfully wrote to localStorage');
 
         // Test read
-        const value = localStorage.getItem('pcwstats_test');
+        const value = localStorage.getItem('heatlabs_test');
         logTestMessage(testElement, `Read from localStorage: ${value}`);
 
         // Test clear
-        localStorage.removeItem('pcwstats_test');
+        localStorage.removeItem('heatlabs_test');
         logTestMessage(testElement, 'Successfully removed test item from localStorage');
 
         setTestResults(testElement, 'All LocalStorage operations completed successfully');

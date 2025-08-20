@@ -2,9 +2,9 @@
 // Social media redirect easter Egg
 (() => {
     const secretCodes = {
-        'youtube': 'https://www.youtube.com/@PCWStats',
-        'twitter': 'https://x.com/PCWStats',
-        'github': 'https://github.com/PCWStats',
+        'youtube': 'https://www.youtube.com/@HEATLabs',
+        'twitter': 'https://x.com/HEATLabs',
+        'github': 'https://github.com/HEATLabs',
         'discord': 'https://discord.com/invite/2nHHHBWNDw'
     };
 
@@ -41,7 +41,7 @@
         'راديو': 'https://de1.api.radio-browser.info/json/stations/search?limit=10&tagList=arabic&hidebroken=true&order=clickcount&reverse=true',
         'traviemo': 'https://de1.api.radio-browser.info/json/stations/search?limit=10&tagList=80s en español&hidebroken=true&order=clickcount&reverse=true'
     }; // "radio" in Saudi Arabic
-    const STORAGE_PREFIX = 'pcwstats_radio_';
+    const STORAGE_PREFIX = 'heatlabs_radio_';
     let radioStations = [];
     let currentStationIndex = 0;
     let audioPlayer = null;
@@ -116,7 +116,7 @@
 
         modal.innerHTML = `
             <div class="arabic-radio-header">
-                <h3>PCWStats Radio Stations</h3>
+                <h3>HEAT Labs Radio Stations</h3>
                 <button class="arabic-radio-close">&times;</button>
             </div>
             <div class="arabic-radio-body">

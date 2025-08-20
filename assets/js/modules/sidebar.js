@@ -1,4 +1,4 @@
-// Sidebar functionality for PCWStats
+// Sidebar functionality for HEAT Labs
 document.addEventListener('DOMContentLoaded', function() {
     // Sidebar functionality
     const hamburgerBtn = document.getElementById('openSidebar');

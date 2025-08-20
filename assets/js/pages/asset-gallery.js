@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch data
     async function fetchTankopediaData() {
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/asset-gallery.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/asset-gallery.json');
 
             // Uncomment line below to check using local JSON
             // const response = await fetch('../Website-Configs/asset-gallery.json');
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const loadingStrategy = item.category.toLocaleLowerCase() === 'abilities' ? 'eager' : 'lazy';
         card.innerHTML = `
             <div class="tankopedia-img-container">
-                <img src="${item.image}" loading="${loadingStrategy}" alt="${item.name}" class="tankopedia-img" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
+                <img src="${item.image}" loading="${loadingStrategy}" alt="${item.name}" class="tankopedia-img" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagefailedtoload.webp'">
             </div>
             <div class="tankopedia-info">
                 <h3>${item.name}</h3>

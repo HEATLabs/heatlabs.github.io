@@ -1,10 +1,10 @@
-// Tournament Page JS for PCWStats
+// Tournament Page JS for HEAT Labs
 let tanksData = [];
 
 // Load tanks data
 async function loadTanksData() {
     try {
-        const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
+        const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
         if (!response.ok) {
             throw new Error('Failed to fetch tanks data');
         }
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function fetchTournamentData(tournamentId) {
     try {
         // First fetch the tournaments.json to get the tournament details
-        const tournamentsResponse = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tournaments.json');
+        const tournamentsResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tournaments.json');
         if (!tournamentsResponse.ok) {
             throw new Error(`Failed to fetch tournaments list: ${tournamentsResponse.status}`);
         }
@@ -124,7 +124,7 @@ function updateTournamentPageElements(tournamentId, tournamentData) {
 async function fetchViewCount() {
     try {
         // Get the tracking pixel URL from the meta tag
-        const trackingPixel = document.querySelector('.pcwstats-tracking-pixel');
+        const trackingPixel = document.querySelector('.heatlabs-tracking-pixel');
         if (!trackingPixel || !trackingPixel.src) {
             return { totalViews: 0 };
         }
@@ -175,7 +175,7 @@ function populateTopTeams(teams) {
         // Set team data on the card
         if (teamCard) teamCard.dataset.team = JSON.stringify(team);
         if (teamImage) {
-            teamImage.src = team.team_logo || 'https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/placeholder-image.png';
+            teamImage.src = team.team_logo || 'https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/placeholder-image.png';
             teamImage.alt = `${team.team_name} Logo` || 'Team Logo';
         }
         if (teamName) teamName.textContent = team.team_name || 'Unknown Team';
@@ -273,7 +273,7 @@ function openTeamModal(team) {
 
     // Populate modal with team data
     if (teamModalImage) {
-        teamModalImage.src = team.team_logo || 'https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/placeholder-image.png';
+        teamModalImage.src = team.team_logo || 'https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/placeholder-image.png';
         teamModalImage.alt = team.team_name || 'Team Logo';
     }
     if (teamModalName) teamModalName.textContent = team.team_name || 'Unknown Team';
@@ -296,7 +296,7 @@ function openTeamModal(team) {
                 tankLink.href = `../tanks/${getTankSlug(tank.tank_name)}.html`;
                 tankLink.className = 'tank-link';
                 const tankImg = document.createElement('img');
-                tankImg.src = tank.tank_image || 'https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/tanks/placeholder-image.png';
+                tankImg.src = tank.tank_image || 'https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/tanks/placeholder-image.png';
                 tankImg.alt = tank.tank_name || 'Tank Image';
                 tankImg.loading = 'lazy';
 

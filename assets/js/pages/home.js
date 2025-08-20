@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function fetchFunFactsData() {
     try {
-        const response = await fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/home-stats.json');
+        const response = await fetch('https://raw.githubusercontent.com/HEATLabs/Website-Configs/refs/heads/main/home-stats.json');
         if (!response.ok) {
             throw new Error('Failed to fetch fun facts data');
         }

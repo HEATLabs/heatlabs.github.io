@@ -5,7 +5,7 @@ let currentTankType = 'Unknown';
 let currentTankAgents = [];
 let comparisonTanks = JSON.parse(localStorage.getItem('tankComparison')) || [];
 
-// Tank Page JS for PCWStats
+// Tank Page JS for HEAT Labs
 document.addEventListener('DOMContentLoaded', function() {
     // Get tank ID from meta tag
     const tankIdMeta = document.querySelector('meta[name="tank-id"]');
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function fetchViewCount() {
     try {
         // Get the tracking pixel URL from the meta tag
-        const trackingPixel = document.querySelector('.pcwstats-tracking-pixel');
+        const trackingPixel = document.querySelector('.heatlabs-tracking-pixel');
         if (!trackingPixel || !trackingPixel.src) {
             return {
                 totalViews: 0
@@ -84,7 +84,7 @@ async function fetchViewCount() {
         const imageName = trackingPixel.src.split('/').pop();
 
         // Build the stats API URL
-        const statsApiUrl = `https://pcwstats-pixel-api.vercel.app/api/stats?image=${imageName}`;
+        const statsApiUrl = `https://heatlabs-pixel-api.vercel.app/api/stats?image=${imageName}`;
         const response = await fetch(statsApiUrl);
 
         if (!response.ok) {
@@ -135,7 +135,7 @@ function isValidTankStats(stats) {
 async function fetchTankData(tankId) {
     try {
         // First fetch the tanks.json to get the tank details
-        const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
+        const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
         const tanksData = await tanksResponse.json();
 
         // Find the tank with matching ID
@@ -276,7 +276,7 @@ function initializeAbilityModals() {
             }
 
             // Find the tank data to get abilities URL
-            fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json')
+            fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json')
                 .then(response => response.json())
                 .then(tanksData => {
                     const tank = tanksData.find(t => t.id.toString() === tankId.toString());
@@ -456,7 +456,7 @@ async function fetchAndPopulateStockData(stockUrl, tankId, tankSlug) {
 async function calculateAndDisplayGSS(currentTankStats, currentTankId) {
     try {
         // First fetch all tanks data
-        const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
+        const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
         const tanksData = await tanksResponse.json();
 
         // Then fetch all stock data for comparison
@@ -879,9 +879,9 @@ function populateAgents(agents) {
 
 function updateTankPageElements(tank) {
     // Update page title and meta tags
-    document.title = `${tank.name} - PCWStats`;
-    document.querySelector('meta[property="og:title"]').content = `PCWStats - ${tank.name}`;
-    document.querySelector('meta[name="twitter:title"]').content = `PCWStats - ${tank.name}`;
+    document.title = `${tank.name} - HEAT Labs`;
+    document.querySelector('meta[property="og:title"]').content = `HEAT Labs - ${tank.name}`;
+    document.querySelector('meta[name="twitter:title"]').content = `HEAT Labs - ${tank.name}`;
 
     // Update tank header information
     const tankHeader = document.querySelector('.tank-header');
@@ -938,7 +938,7 @@ function initializeAgentModals() {
 
             try {
                 // First get the tank data to find the agents URL
-                const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
+                const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
                 const tanksData = await tanksResponse.json();
                 const tank = tanksData.find(t => t.id.toString() === tankId.toString());
 

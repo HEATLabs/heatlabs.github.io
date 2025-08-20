@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Create the GIF element
     const gif = document.createElement('img');
-    gif.src = 'https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/miscellaneous/blitz_whos_gonna_tell_him.gif';
+    gif.src = 'https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/miscellaneous/blitz_whos_gonna_tell_him.gif';
     gif.alt = 'Blitz Easter Egg';
     gif.style.maxWidth = '90%';
     gif.style.maxHeight = '90%';
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Preload the sound when page loads
     function preloadSound() {
-        sound = new Audio('https://cdn.jsdelivr.net/gh/PCWStats/Database-Files@main/sounds/blitz.wav');
+        sound = new Audio('https://cdn.jsdelivr.net/gh/HEATLabs/Database-Files@main/sounds/blitz.wav');
         sound.load();
     }
     preloadSound();
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (konamiIndex === konamiCode.length) {
                 // Ensure we have a sound object
                 if (!sound) {
-                    sound = new Audio('https://cdn.jsdelivr.net/gh/PCWStats/Database-Files@main/sounds/blitz.wav');
+                    sound = new Audio('https://cdn.jsdelivr.net/gh/HEATLabs/Database-Files@main/sounds/blitz.wav');
                 }
 
                 // Reset sound to start

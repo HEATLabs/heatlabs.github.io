@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function fetchBugViewCount() {
     try {
         // Get the tracking pixel URL from the meta tag
-        const trackingPixel = document.querySelector('.pcwstats-tracking-pixel');
+        const trackingPixel = document.querySelector('.heatlabs-tracking-pixel');
         if (!trackingPixel || !trackingPixel.src) {
             return {
                 totalViews: 0
@@ -32,7 +32,7 @@ async function fetchBugViewCount() {
         const imageName = trackingPixel.src.split('/').pop();
 
         // Build the stats API URL
-        const statsApiUrl = `https://pcwstats-pixel-api.vercel.app/api/stats?image=${imageName}`;
+        const statsApiUrl = `https://heatlabs-pixel-api.vercel.app/api/stats?image=${imageName}`;
         const response = await fetch(statsApiUrl);
 
         if (!response.ok) {

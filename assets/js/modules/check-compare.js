@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         try {
             // First get the tank info from tanks.json
-            const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
+            const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
             const tanksData = await tanksResponse.json();
             const tankInfo = tanksData.find(tank => tank.id == tankId);
 
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tableHTML += `
                 <th>
                     <div class="tank-header">
-                        <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
+                        <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagefailedtoload.webp'">
                         <div class="tank-name">${tank.name}</div>
                         <div class="tank-meta">
                             <span><i class="fas fa-flag"></i> ${tank.nation}</span>

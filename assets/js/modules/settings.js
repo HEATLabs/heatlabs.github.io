@@ -322,8 +322,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const exportData = {
             exportInfo: {
                 exportDate: new Date().toISOString(),
-                source: 'PCWStats Data Export',
-                description: 'This export offers a simple, one-click view of the data that PCWStats stores locally in your browser. For transparency: this data is completely private. It has always been stored exclusively on your device, and PCWStats cannot access, analyze, or transmit it in any way. It is not shared between devices unless your browser specifically syncs such data and you enabled that feature. This tool exists purely to let you see the information your browser uses to keep PCWStats functioning correctly.'
+                source: 'HEAT Labs Data Export',
+                description: 'This export offers a simple, one-click view of the data that HEAT Labs stores locally in your browser. For transparency: this data is completely private. It has always been stored exclusively on your device, and HEAT Labs cannot access, analyze, or transmit it in any way. It is not shared between devices unless your browser specifically syncs such data and you enabled that feature. This tool exists purely to let you see the information your browser uses to keep HEAT Labs functioning correctly.'
             },
             userData: {
                 // App Settings
@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create and trigger download
         const a = document.createElement('a');
         a.href = url;
-        a.download = `pcwstats-data-export-${new Date().toISOString().split('T')[0]}.json`;
+        a.download = `heatlabs-data-export-${new Date().toISOString().split('T')[0]}.json`;
         a.style.display = 'none';
         document.body.appendChild(a);
         a.click();

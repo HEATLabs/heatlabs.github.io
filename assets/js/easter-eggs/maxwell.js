@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Create audio element
-    const audio = new Audio('https://raw.githubusercontent.com/PCWStats/Database-Files/refs/heads/main/sounds/maxwell.mp3');
+    const audio = new Audio('https://raw.githubusercontent.com/HEATLabs/Database-Files/refs/heads/main/sounds/maxwell.mp3');
     const maxwellGif = document.querySelector('.maxwell-gif');
 
     // Ensure we have the element

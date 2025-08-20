@@ -1,7 +1,7 @@
 // Initialize variables
 let currentAgentId = null;
 
-// Agent Page JS for PCWStats
+// Agent Page JS for HEAT Labs
 document.addEventListener('DOMContentLoaded', function() {
     // Get agent ID from meta tag
     const agentIdMeta = document.querySelector('meta[name="agent-id"]');
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function fetchViewCount() {
     try {
         // Get the tracking pixel URL from the meta tag
-        const trackingPixel = document.querySelector('.pcwstats-tracking-pixel');
+        const trackingPixel = document.querySelector('.heatlabs-tracking-pixel');
         if (!trackingPixel || !trackingPixel.src) {
             return {
                 totalViews: 0
@@ -35,7 +35,7 @@ async function fetchViewCount() {
         const imageName = trackingPixel.src.split('/').pop();
 
         // Build the stats API URL
-        const statsApiUrl = `https://pcwstats-pixel-api.vercel.app/api/stats?image=${imageName}`;
+        const statsApiUrl = `https://heatlabs-pixel-api.vercel.app/api/stats?image=${imageName}`;
         const response = await fetch(statsApiUrl);
 
         if (!response.ok) {
@@ -71,7 +71,7 @@ function displayViewCounter(views) {
 async function fetchAgentData(agentId) {
     try {
         // First fetch the agents.json to get the agent details
-        const agentsResponse = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/agents.json');
+        const agentsResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/agents.json');
         const agentsData = await agentsResponse.json();
 
         // Find the agent with matching ID
@@ -137,7 +137,7 @@ function populateCompatibleTanks(tanks) {
         tankCard.className = 'tank-card';
         tankCard.innerHTML = `
             <div class="tank-img-container">
-                <img src="${tank.image}" alt="${tank.name}" class="tank-img" loading="lazy" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
+                <img src="${tank.image}" alt="${tank.name}" class="tank-img" loading="lazy" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagefailedtoload.webp'">
             </div>
             <div class="tank-info">
                 <h3>${tank.name}</h3>
@@ -161,9 +161,9 @@ function populateCompatibleTanks(tanks) {
 
 function updateAgentPageElements(agent) {
     // Update page title and meta tags
-    document.title = `${agent.name} - PCWStats`;
-    document.querySelector('meta[property="og:title"]').content = `PCWStats - ${agent.name}`;
-    document.querySelector('meta[name="twitter:title"]').content = `PCWStats - ${agent.name}`;
+    document.title = `${agent.name} - HEAT Labs`;
+    document.querySelector('meta[property="og:title"]').content = `HEAT Labs - ${agent.name}`;
+    document.querySelector('meta[name="twitter:title"]').content = `HEAT Labs - ${agent.name}`;
 
     // Update agent header information
     const agentHeader = document.querySelector('.agent-header');

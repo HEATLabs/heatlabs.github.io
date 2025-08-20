@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Create the GIF element
     const gif = document.createElement('img');
-    gif.src = 'https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/miscellaneous/enigma_pear.png';
+    gif.src = 'https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/miscellaneous/enigma_pear.png';
     gif.alt = 'Enigma Pear Easter Egg';
     gif.style.maxWidth = '90%';
     gif.style.maxHeight = '90%';
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Preload the sound when page loads
     function preloadSound() {
-        sound = new Audio('https://cdn.jsdelivr.net/gh/PCWStats/Database-Files@main/sounds/enigma_pear.wav');
+        sound = new Audio('https://cdn.jsdelivr.net/gh/HEATLabs/Database-Files@main/sounds/enigma_pear.wav');
         sound.load();
     }
     preloadSound();
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (wordCode.includes(inputBuffer)) {
                 // Ensure we have a sound object
                 if (!sound) {
-                    sound = new Audio('https://cdn.jsdelivr.net/gh/PCWStats/Database-Files@main/sounds/enigma_pear.wav');
+                    sound = new Audio('https://cdn.jsdelivr.net/gh/HEATLabs/Database-Files@main/sounds/enigma_pear.wav');
                 }
 
                 // Reset sound to start

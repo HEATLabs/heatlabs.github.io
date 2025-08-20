@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchMaintenanceData() {
-    fetch('https://raw.githubusercontent.com/PCWStats/Website-Configs/refs/heads/main/maintenance.json')
+    fetch('https://raw.githubusercontent.com/HEATLabs/Website-Configs/refs/heads/main/maintenance.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -23,7 +23,7 @@ function fetchMaintenanceData() {
             console.error('Error fetching maintenance data:', error);
             // Fallback to default values if fetch fails
             updateMaintenancePage({
-                message: "PCWStats is currently undergoing maintenance. We're working hard to bring you an improved experience.",
+                message: "HEAT Labs is currently undergoing maintenance. We're working hard to bring you an improved experience.",
                 estimated_downtime: "1 hour",
                 start_time: "Just now"
             });

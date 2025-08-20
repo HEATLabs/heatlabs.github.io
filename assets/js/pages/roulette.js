@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Special prize configuration
         specialPrize: {
             name: "Special Prize",
-            image: "https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/roulette/special.webp",
+            image: "https://raw.githubusercontent.com/HEATLabs/Website-Images/refs/heads/main/roulette/special.webp",
             nation: "Mystery",
             type: "Legendary",
             slug: "special-prize",
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Minimum distance (in items) to move away if special prize would be selected
             minAvoidDistance: 2,
             // Sound to play when special prize is "almost" selected
-            almostSound: "https://github.com/PCWStats/Database-Files/raw/refs/heads/main/sounds/fail.wav"
+            almostSound: "https://github.com/HEATLabs/Database-Files/raw/refs/heads/main/sounds/fail.wav"
         }
     };
 
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let itemWidth = 200; // Default width of each roulette item
     let lastCenterItemId = null;
     let centerItemIdAtStop = null; // Track the center item when stopping
-    const clickSound = new Audio('https://github.com/PCWStats/Database-Files/raw/refs/heads/main/sounds/click_2.wav');
+    const clickSound = new Audio('https://github.com/HEATLabs/Database-Files/raw/refs/heads/main/sounds/click_2.wav');
     const almostSound = new Audio(rouletteConfig.specialPrize.almostSound);
     clickSound.volume = rouletteConfig.soundVolume;
     almostSound.volume = rouletteConfig.soundVolume;
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch tank data from JSON file
     async function fetchTankData() {
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/PCWStats/Website-Configs@main/tanks.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
             if (!response.ok) {
                 throw new Error('Failed to load tank data');
             }
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
             item.setAttribute('data-is-special', tank.isSpecial || false);
 
             item.innerHTML = `
-                <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn.jsdelivr.net/gh/PCWStats/Website-Images@main/placeholder/imagefailedtoload.webp'">
+                <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagefailedtoload.webp'">
                 <h4>${tank.name}</h4>
             `;
 
