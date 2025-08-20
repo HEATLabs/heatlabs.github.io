@@ -4,7 +4,7 @@
 
 <img src="https://raw.githubusercontent.com/HEATLabs/Website-Images/refs/heads/main/social-share/HEATLabs.png" alt="HEAT Labs Banner"/>
 
-> One-stop solution for comprehensive statistics and insights in Project CW
+> One-stop solution for comprehensive statistics and insights in World of Tanks: HEAT
 
 </div>
 
