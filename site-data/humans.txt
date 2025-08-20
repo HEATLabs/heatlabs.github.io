@@ -8,6 +8,7 @@
   Anuraen      - Graphic Designer
   esmatty      - Content Writer
   IAmEdWards   - Game Analyst
+  antitank99   - Game Analyst
   Shockwave    - Content Writer
 
 /* THANKS */
@@ -18,7 +19,7 @@
   Pannellum.js: https://pannellum.org/
 
 /* SITE */
-  Last update: 2025/05/23
+  Last update: 2025/08/20
   Language: English
   Doctype: HTML5
   IDE: WebStorm

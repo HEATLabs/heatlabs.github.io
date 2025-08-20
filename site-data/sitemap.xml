@@ -3,1085 +3,1085 @@
 	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<!-- Home Page -->
 	<url>
-		<loc>https://pcwstats.github.io</loc>
+		<loc>https://heatlabs.github.io</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<!-- Tank Statistics Page -->
 	<url>
-		<loc>https://pcwstats.github.io/tanks.html</loc>
+		<loc>https://heatlabs.github.io/tanks.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Tank Roulette Page -->
 	<url>
-		<loc>https://pcwstats.github.io/easter-eggs/roulette.html</loc>
+		<loc>https://heatlabs.github.io/easter-eggs/roulette.html</loc>
 		<lastmod>2025-06-08</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Devs Only Page -->
 	<url>
-		<loc>https://pcwstats.github.io/easter-eggs/devsonly.html</loc>
+		<loc>https://heatlabs.github.io/easter-eggs/devsonly.html</loc>
 		<lastmod>2025-06-08</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Maxwell Page -->
 	<url>
-		<loc>https://pcwstats.github.io/easter-eggs/maxwell.html</loc>
+		<loc>https://heatlabs.github.io/easter-eggs/maxwell.html</loc>
 		<lastmod>2025-06-08</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Bored Developers Page -->
 	<url>
-		<loc>https://pcwstats.github.io/easter-eggs/bored-developers.html</loc>
+		<loc>https://heatlabs.github.io/easter-eggs/bored-developers.html</loc>
 		<lastmod>2025-06-08</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Alpha 3 Playtest Page -->
 	<url>
-		<loc>https://pcwstats.github.io/easter-eggs/alpha-3-playtest.html</loc>
+		<loc>https://heatlabs.github.io/easter-eggs/alpha-3-playtest.html</loc>
 		<lastmod>2025-06-08</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Strategy Planner Page -->
 	<url>
-		<loc>https://pcwstats.github.io/strategy-planner.html</loc>
+		<loc>https://heatlabs.github.io/strategy-planner.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Map Knowledge Page -->
 	<url>
-		<loc>https://pcwstats.github.io/maps.html</loc>
+		<loc>https://heatlabs.github.io/maps.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Nord Oko Page -->
 	<url>
-		<loc>https://pcwstats.github.io/maps/nord-oko.html</loc>
+		<loc>https://heatlabs.github.io/maps/nord-oko.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Project Phoenix Page -->
 	<url>
-		<loc>https://pcwstats.github.io/maps/project-phoenix.html</loc>
+		<loc>https://heatlabs.github.io/maps/project-phoenix.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Sunstroke Page -->
 	<url>
-		<loc>https://pcwstats.github.io/maps/sunstroke.html</loc>
+		<loc>https://heatlabs.github.io/maps/sunstroke.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Blossom Crash Page -->
 	<url>
-		<loc>https://pcwstats.github.io/maps/blossom-crash.html</loc>
+		<loc>https://heatlabs.github.io/maps/blossom-crash.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Scarred City Page -->
 	<url>
-		<loc>https://pcwstats.github.io/maps/scarred-city.html</loc>
+		<loc>https://heatlabs.github.io/maps/scarred-city.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Nexus Dam Page -->
 	<url>
-		<loc>https://pcwstats.github.io/maps/nexus-dam.html</loc>
+		<loc>https://heatlabs.github.io/maps/nexus-dam.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Aircraft Carrier Page -->
 	<url>
-		<loc>https://pcwstats.github.io/maps/aircraft-carrier.html</loc>
+		<loc>https://heatlabs.github.io/maps/aircraft-carrier.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Military Training Page -->
 	<url>
-		<loc>https://pcwstats.github.io/maps/military-training.html</loc>
+		<loc>https://heatlabs.github.io/maps/military-training.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Baikonur Page -->
 	<url>
-		<loc>https://pcwstats.github.io/maps/baikonur.html</loc>
+		<loc>https://heatlabs.github.io/maps/baikonur.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Inferno Page -->
 	<url>
-		<loc>https://pcwstats.github.io/maps/inferno.html</loc>
+		<loc>https://heatlabs.github.io/maps/inferno.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Moonshot Page -->
 	<url>
-		<loc>https://pcwstats.github.io/maps/moonshot.html</loc>
+		<loc>https://heatlabs.github.io/maps/moonshot.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Ballistic Range Page -->
 	<url>
-		<loc>https://pcwstats.github.io/maps/ballistic-range.html</loc>
+		<loc>https://heatlabs.github.io/maps/ballistic-range.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Common Builds Page -->
 	<url>
-		<loc>https://pcwstats.github.io/builds.html</loc>
+		<loc>https://heatlabs.github.io/builds.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- PCW Bug Hunting Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Alpha-2 Fuel Crit Multiplier Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/alpha-2-fuel-crit-multiplier.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/alpha-2-fuel-crit-multiplier.html</loc>
 		<lastmod>2025-06-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Damage Calculation Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/damage-calculation.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/damage-calculation.html</loc>
 		<lastmod>2025-06-09</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Developer Guide Images Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/developer-guide-images.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/developer-guide-images.html</loc>
 		<lastmod>2025-06-09</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Discovery of Corex Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/discovery-of-corex.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/discovery-of-corex.html</loc>
 		<lastmod>2025-06-09</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Exploring Animation and Movement Desync Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/exploring-animation-and-movement-desync.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/exploring-animation-and-movement-desync.html</loc>
 		<lastmod>2025-06-09</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Exploring the Main Menu Garage Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/exploring-the-main-menu-garage.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/exploring-the-main-menu-garage.html</loc>
 		<lastmod>2025-06-09</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Hunting for Potential Hidden Servers Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/hunting-for-potential-hidden-servers.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/hunting-for-potential-hidden-servers.html</loc>
 		<lastmod>2025-06-09</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Info from Developers Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/info-from-developers.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/info-from-developers.html</loc>
 		<lastmod>2025-06-09</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Mysterious Engine Picture Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/mysterious-engine-picture.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/mysterious-engine-picture.html</loc>
 		<lastmod>2025-06-09</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Potential Campaign Mode Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/potential-campaign-mode.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/potential-campaign-mode.html</loc>
 		<lastmod>2025-06-09</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Tank Module Locations Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/tank-module-locations.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/tank-module-locations.html</loc>
 		<lastmod>2025-06-09</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- The Three Badges Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/the-three-badges.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/the-three-badges.html</loc>
 		<lastmod>2025-06-09</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Titan Dummies Respawn Glitch Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/titan-dummies-respawn-glitch.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/titan-dummies-respawn-glitch.html</loc>
 		<lastmod>2025-06-09</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Unlocking the Camera Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/unlocking-the-camera.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/unlocking-the-camera.html</loc>
 		<lastmod>2025-06-09</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Who is PCW Bug Hunters Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/who-is-pcw-bug-hunters.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/who-is-pcw-bug-hunters.html</loc>
 		<lastmod>2025-06-09</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Weird Pattern Images Page -->
 	<url>
-		<loc>https://pcwstats.github.io/bug-hunting/wierd-pattern-images.html</loc>
+		<loc>https://heatlabs.github.io/bug-hunting/wierd-pattern-images.html</loc>
 		<lastmod>2025-06-09</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Community Guides Page -->
 	<url>
-		<loc>https://pcwstats.github.io/guides.html</loc>
+		<loc>https://heatlabs.github.io/guides.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- General Guides Page -->
 	<url>
-		<loc>https://pcwstats.github.io/guides/general-guides.html</loc>
+		<loc>https://heatlabs.github.io/guides/general-guides.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Map Guides Page -->
 	<url>
-		<loc>https://pcwstats.github.io/guides/map-guides.html</loc>
+		<loc>https://heatlabs.github.io/guides/map-guides.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Tank Guides Page -->
 	<url>
-		<loc>https://pcwstats.github.io/guides/tank-guides.html</loc>
+		<loc>https://heatlabs.github.io/guides/tank-guides.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- XM1-V Build Guide Page -->
 	<url>
-		<loc>https://pcwstats.github.io/guides/tank-guides/xm1-v-build-guide.html</loc>
+		<loc>https://heatlabs.github.io/guides/tank-guides/xm1-v-build-guide.html</loc>
 		<lastmod>2025-05-31</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.4</priority>
 	</url>
 	<!-- BAT-4M Basic Guide Page -->
 	<url>
-		<loc>https://pcwstats.github.io/guides/tank-guides/bat-4m-basic-guide.html</loc>
+		<loc>https://heatlabs.github.io/guides/tank-guides/bat-4m-basic-guide.html</loc>
 		<lastmod>2025-05-31</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.4</priority>
 	</url>
 	<!-- Community Credits Page -->
 	<url>
-		<loc>https://pcwstats.github.io/resources/credits.html</loc>
+		<loc>https://heatlabs.github.io/resources/credits.html</loc>
 		<lastmod>2025-06-08</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Frequent Questions Page -->
 	<url>
-		<loc>https://pcwstats.github.io/resources/frequent-questions.html</loc>
+		<loc>https://heatlabs.github.io/resources/frequent-questions.html</loc>
 		<lastmod>2025-06-08</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Get Involved Page -->
 	<url>
-		<loc>https://pcwstats.github.io/resources/get-involved.html</loc>
+		<loc>https://heatlabs.github.io/resources/get-involved.html</loc>
 		<lastmod>2025-06-08</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Tournaments Page -->
 	<url>
-		<loc>https://pcwstats.github.io/tournaments.html</loc>
+		<loc>https://heatlabs.github.io/tournaments.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Alpha #1 Tournament Page -->
 	<url>
-		<loc>https://pcwstats.github.io/tournaments/open-alpha-1-tournament.html</loc>
+		<loc>https://heatlabs.github.io/tournaments/open-alpha-1-tournament.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Alpha #2 Tournament Page -->
 	<url>
-		<loc>https://pcwstats.github.io/tournaments/open-alpha-2-tournament.html</loc>
+		<loc>https://heatlabs.github.io/tournaments/open-alpha-2-tournament.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Game News Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news.html</loc>
+		<loc>https://heatlabs.github.io/news.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- agent-spotlight-akira Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/agent-spotlight-akira.html</loc>
+		<loc>https://heatlabs.github.io/news/agent-spotlight-akira.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- agent-spotlight-fantome Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/agent-spotlight-fantome.html</loc>
+		<loc>https://heatlabs.github.io/news/agent-spotlight-fantome.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- agent-spotlight-kent Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/agent-spotlight-kent.html</loc>
+		<loc>https://heatlabs.github.io/news/agent-spotlight-kent.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-1-day-to-go Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-1-1-day-to-go.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-1-1-day-to-go.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-2-days-to-go Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-1-2-days-to-go.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-1-2-days-to-go.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-3-days-to-go Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-1-3-days-to-go.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-1-3-days-to-go.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-facts-figures Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-1-facts-figures.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-1-facts-figures.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-patch-3-quick-match-updates Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-1-patch-3-quick-match-updates.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-1-patch-3-quick-match-updates.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-patch-4-quality-of-life Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-1-patch-4-quality-of-life.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-1-patch-4-quality-of-life.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-patch-5-fantome-updates Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-1-patch-5-fantome-updates.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-1-patch-5-fantome-updates.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-patch-6-ray-updates Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-1-patch-6-ray-updates.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-1-patch-6-ray-updates.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-patch-7-raketa-updates Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-1-patch-7-raketa-updates.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-1-patch-7-raketa-updates.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-patch-8-akira-updates Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-1-patch-8-akira-updates.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-1-patch-8-akira-updates.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-patch-8-delayed Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-1-patch-8-delayed.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-1-patch-8-delayed.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-patch-9-hstvl-updates Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-1-patch-9-hstvl-updates.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-1-patch-9-hstvl-updates.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-patch-10-tournament-preparation-improvements Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-1-patch-10-tournament-preparation-improvements.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-1-patch-10-tournament-preparation-improvements.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-patch-11-post-tournament-qol-improvements Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-1-patch-11-post-tournament-qol-improvements.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-1-patch-11-post-tournament-qol-improvements.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-valentines-day Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-1-valentines-day.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-1-valentines-day.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-1-day-to-go Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-2-1-day-to-go.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-2-1-day-to-go.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-2-days-to-go Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-2-2-days-to-go.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-2-2-days-to-go.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-3-days-to-go Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-2-3-days-to-go.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-2-3-days-to-go.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-patch-1-first-patch Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-2-patch-1-first-patch.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-2-patch-1-first-patch.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-patch-2-client-server-update Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-2-patch-2-client-server-update.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-2-patch-2-client-server-update.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-patch-3-hounds-become-the-hunted Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-2-patch-3-hounds-become-the-hunted.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-2-patch-3-hounds-become-the-hunted.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-patch-4-balance-improvements Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-2-patch-4-balance-improvements.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-2-patch-4-balance-improvements.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-patch-5-small-improvements Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-2-patch-5-small-improvements.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-2-patch-5-small-improvements.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-patch-6-important-changes Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-2-patch-6-important-changes.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-2-patch-6-important-changes.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-patch-7-bradley-is-here Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-2-patch-7-bradley-is-here.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-2-patch-7-bradley-is-here.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-patch-8-balancing-changes Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-2-patch-8-balancing-changes.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-2-patch-8-balancing-changes.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-patch-9-balancing-tweaks Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-2-patch-9-balancing-tweaks.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-2-patch-9-balancing-tweaks.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-valentines-day Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/alpha-2-valentines-day.html</loc>
+		<loc>https://heatlabs.github.io/news/alpha-2-valentines-day.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- balanced-and-reworked-maps Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/balanced-and-reworked-maps.html</loc>
+		<loc>https://heatlabs.github.io/news/balanced-and-reworked-maps.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- beirut-concept-art Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/beirut-concept-art.html</loc>
+		<loc>https://heatlabs.github.io/news/beirut-concept-art.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- blossom-crash-concept-art-1 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/blossom-crash-concept-art-1.html</loc>
+		<loc>https://heatlabs.github.io/news/blossom-crash-concept-art-1.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- blossom-crash-concept-art-2 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/blossom-crash-concept-art-2.html</loc>
+		<loc>https://heatlabs.github.io/news/blossom-crash-concept-art-2.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- community-managers-reintroduction Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/community-managers-reintroduction.html</loc>
+		<loc>https://heatlabs.github.io/news/community-managers-reintroduction.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- concept-art-1 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/concept-art-1.html</loc>
+		<loc>https://heatlabs.github.io/news/concept-art-1.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- concept-art-2 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/concept-art-2.html</loc>
+		<loc>https://heatlabs.github.io/news/concept-art-2.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- content-creator-impressions Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/content-creator-impressions.html</loc>
+		<loc>https://heatlabs.github.io/news/content-creator-impressions.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- desktop-mobile-backgrounds Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/desktop-mobile-backgrounds.html</loc>
+		<loc>https://heatlabs.github.io/news/desktop-mobile-backgrounds.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- dev-questions-answers-design Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/dev-questions-answers-design.html</loc>
+		<loc>https://heatlabs.github.io/news/dev-questions-answers-design.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- dev-questions-answers-narrative Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/dev-questions-answers-narrative.html</loc>
+		<loc>https://heatlabs.github.io/news/dev-questions-answers-narrative.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- friendship-dam-concept-art-1 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/friendship-dam-concept-art-1.html</loc>
+		<loc>https://heatlabs.github.io/news/friendship-dam-concept-art-1.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- friendship-dam-sneak-peek-1 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/friendship-dam-sneak-peek-1.html</loc>
+		<loc>https://heatlabs.github.io/news/friendship-dam-sneak-peek-1.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- friendship-dam-sneak-peek-2 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/friendship-dam-sneak-peek-2.html</loc>
+		<loc>https://heatlabs.github.io/news/friendship-dam-sneak-peek-2.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- gun-dispersion-changes Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/gun-dispersion-changes.html</loc>
+		<loc>https://heatlabs.github.io/news/gun-dispersion-changes.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- happy-tanksgiving Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/happy-tanksgiving.html</loc>
+		<loc>https://heatlabs.github.io/news/happy-tanksgiving.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- hitbox-monday-1 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/hitbox-monday-1.html</loc>
+		<loc>https://heatlabs.github.io/news/hitbox-monday-1.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- hitbox-monday-2 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/hitbox-monday-2.html</loc>
+		<loc>https://heatlabs.github.io/news/hitbox-monday-2.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- hitbox-monday-3 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/hitbox-monday-3.html</loc>
+		<loc>https://heatlabs.github.io/news/hitbox-monday-3.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- hitbox-monday-4 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/hitbox-monday-4.html</loc>
+		<loc>https://heatlabs.github.io/news/hitbox-monday-4.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- hitbox-monday-5 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/hitbox-monday-5.html</loc>
+		<loc>https://heatlabs.github.io/news/hitbox-monday-5.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- jager-wall-bug Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/jager-wall-bug.html</loc>
+		<loc>https://heatlabs.github.io/news/jager-wall-bug.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- project-cw-debrief-1 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/project-cw-debrief-1.html</loc>
+		<loc>https://heatlabs.github.io/news/project-cw-debrief-1.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- project-cw-debrief-2 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/project-cw-debrief-2.html</loc>
+		<loc>https://heatlabs.github.io/news/project-cw-debrief-2.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- project-cw-gamescom-2025 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/project-cw-gamescom-2025.html</loc>
+		<loc>https://heatlabs.github.io/news/project-cw-gamescom-2025.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- map-monday-1 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/map-monday-1.html</loc>
+		<loc>https://heatlabs.github.io/news/map-monday-1.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- map-monday-2 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/map-monday-2.html</loc>
+		<loc>https://heatlabs.github.io/news/map-monday-2.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- map-monday-3 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/map-monday-3.html</loc>
+		<loc>https://heatlabs.github.io/news/map-monday-3.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- map-monday-4 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/map-monday-4.html</loc>
+		<loc>https://heatlabs.github.io/news/map-monday-4.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- map-monday-5 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/map-monday-5.html</loc>
+		<loc>https://heatlabs.github.io/news/map-monday-5.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- medals-explained Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/medals-explained.html</loc>
+		<loc>https://heatlabs.github.io/news/medals-explained.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- new-agents-1 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/new-agents-1.html</loc>
+		<loc>https://heatlabs.github.io/news/new-agents-1.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- new-agents-2 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/new-agents-2.html</loc>
+		<loc>https://heatlabs.github.io/news/new-agents-2.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- new-agents-3 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/new-agents-3.html</loc>
+		<loc>https://heatlabs.github.io/news/new-agents-3.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- nord-oko-concept-art-1 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/nord-oko-concept-art-1.html</loc>
+		<loc>https://heatlabs.github.io/news/nord-oko-concept-art-1.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- nord-oko-concept-art-2 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/nord-oko-concept-art-2.html</loc>
+		<loc>https://heatlabs.github.io/news/nord-oko-concept-art-2.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- nord-oko-concept-art-3 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/nord-oko-concept-art-3.html</loc>
+		<loc>https://heatlabs.github.io/news/nord-oko-concept-art-3.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- plant-defuse-mode Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/plant-defuse-mode.html</loc>
+		<loc>https://heatlabs.github.io/news/plant-defuse-mode.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- progression-and-social-changes Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/progression-and-social-changes.html</loc>
+		<loc>https://heatlabs.github.io/news/progression-and-social-changes.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- quest-progress Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/quest-progress.html</loc>
+		<loc>https://heatlabs.github.io/news/quest-progress.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- update-recap Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/update-recap.html</loc>
+		<loc>https://heatlabs.github.io/news/update-recap.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- who-are-they-1 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/who-are-they-1.html</loc>
+		<loc>https://heatlabs.github.io/news/who-are-they-1.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- who-are-they-2 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/news/who-are-they-2.html</loc>
+		<loc>https://heatlabs.github.io/news/who-are-they-2.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-announcement-1 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/announcements/alpha-1-announcement-1.html</loc>
+		<loc>https://heatlabs.github.io/announcements/alpha-1-announcement-1.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-1-announcement-2 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/announcements/alpha-1-announcement-2.html</loc>
+		<loc>https://heatlabs.github.io/announcements/alpha-1-announcement-2.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-facts-figures Page -->
 	<url>
-		<loc>https://pcwstats.github.io/announcements/alpha-2-facts-figures.html</loc>
+		<loc>https://heatlabs.github.io/announcements/alpha-2-facts-figures.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-has-ended Page -->
 	<url>
-		<loc>https://pcwstats.github.io/announcements/alpha-2-has-ended.html</loc>
+		<loc>https://heatlabs.github.io/announcements/alpha-2-has-ended.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-livestream Page -->
 	<url>
-		<loc>https://pcwstats.github.io/announcements/alpha-2-livestream.html</loc>
+		<loc>https://heatlabs.github.io/announcements/alpha-2-livestream.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- alpha-2-tournament Page -->
 	<url>
-		<loc>https://pcwstats.github.io/announcements/alpha-2-tournament.html</loc>
+		<loc>https://heatlabs.github.io/announcements/alpha-2-tournament.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- jamess-introduction Page -->
 	<url>
-		<loc>https://pcwstats.github.io/announcements/jamess-introduction.html</loc>
+		<loc>https://heatlabs.github.io/announcements/jamess-introduction.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- last-day-of-alpha-2 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/announcements/last-day-of-alpha-2.html</loc>
+		<loc>https://heatlabs.github.io/announcements/last-day-of-alpha-2.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- voreksis-introduction Page -->
 	<url>
-		<loc>https://pcwstats.github.io/announcements/voreksis-introduction.html</loc>
+		<loc>https://heatlabs.github.io/announcements/voreksis-introduction.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- winter-wargames-tournament-1 Page -->
 	<url>
-		<loc>https://pcwstats.github.io/announcements/winter-wargames-tournament-1.html</loc>
+		<loc>https://heatlabs.github.io/announcements/winter-wargames-tournament-1.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Tankopedia Page -->
 	<url>
-		<loc>https://pcwstats.github.io/tankopedia.html</loc>
+		<loc>https://heatlabs.github.io/tankopedia.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Official Blog Page -->
 	<url>
-		<loc>https://pcwstats.github.io/blog.html</loc>
+		<loc>https://heatlabs.github.io/blog.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- New Feature: Tournaments Page -->
 	<url>
-		<loc>https://pcwstats.github.io/blog/tournament-feature-blog.html</loc>
+		<loc>https://heatlabs.github.io/blog/tournament-feature-blog.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Meet the Team - SINEWAVE Page -->
 	<url>
-		<loc>https://pcwstats.github.io/blog/meet-the-team-sinewave.html</loc>
+		<loc>https://heatlabs.github.io/blog/meet-the-team-sinewave.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Meet the Team - ven0m Page -->
 	<url>
-		<loc>https://pcwstats.github.io/blog/meet-the-team-ven0m.html</loc>
+		<loc>https://heatlabs.github.io/blog/meet-the-team-ven0m.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Meet the Team - esmatty Page -->
 	<url>
-		<loc>https://pcwstats.github.io/blog/meet-the-team-esmatty.html</loc>
+		<loc>https://heatlabs.github.io/blog/meet-the-team-esmatty.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- About PCWStats Page -->
 	<url>
-		<loc>https://pcwstats.github.io/resources/about-us.html</loc>
+		<loc>https://heatlabs.github.io/resources/about-us.html</loc>
 		<lastmod>2025-06-08</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Project Policies Page -->
 	<url>
-		<loc>https://pcwstats.github.io/legal.html</loc>
+		<loc>https://heatlabs.github.io/legal.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Privacy Policy Page -->
 	<url>
-		<loc>https://pcwstats.github.io/legal/privacy-policy.html</loc>
+		<loc>https://heatlabs.github.io/legal/privacy-policy.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Terms of Service Page -->
 	<url>
-		<loc>https://pcwstats.github.io/legal/terms-of-service.html</loc>
+		<loc>https://heatlabs.github.io/legal/terms-of-service.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Project License Page -->
 	<url>
-		<loc>https://pcwstats.github.io/legal/project-license.html</loc>
+		<loc>https://heatlabs.github.io/legal/project-license.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Code of Conduct Page -->
 	<url>
-		<loc>https://pcwstats.github.io/legal/code-of-conduct.html</loc>
+		<loc>https://heatlabs.github.io/legal/code-of-conduct.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Project Contributions Page -->
 	<url>
-		<loc>https://pcwstats.github.io/legal/project-contributions.html</loc>
+		<loc>https://heatlabs.github.io/legal/project-contributions.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Project Security Page -->
 	<url>
-		<loc>https://pcwstats.github.io/legal/project-security.html</loc>
+		<loc>https://heatlabs.github.io/legal/project-security.html</loc>
 		<lastmod>2025-05-23</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<!-- Contact Us Page -->
 	<url>
-		<loc>https://pcwstats.github.io/resources/contact-us.html</loc>
+		<loc>https://heatlabs.github.io/resources/contact-us.html</loc>
 		<lastmod>2025-06-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Support PCWStats Page -->
 	<url>
-		<loc>https://pcwstats.github.io/resources/support-us.html</loc>
+		<loc>https://heatlabs.github.io/resources/support-us.html</loc>
 		<lastmod>2025-06-08</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Changelog Page -->
 	<url>
-		<loc>https://pcwstats.github.io/Website-Changelog</loc>
+		<loc>https://heatlabs.github.io/Website-Changelog</loc>
 		<lastmod>2025-06-08</lastmod>
 		<changefreq>daily</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Status Page -->
 	<url>
-		<loc>https://pcwstats.github.io/Website-Status</loc>
+		<loc>https://heatlabs.github.io/Website-Status</loc>
 		<lastmod>2025-06-08</lastmod>
 		<changefreq>daily</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<!-- Statistics Page -->
 	<url>
-		<loc>https://pcwstats.github.io/Website-Statistics</loc>
+		<loc>https://heatlabs.github.io/Website-Statistics</loc>
 		<lastmod>2025-06-08</lastmod>
 		<changefreq>daily</changefreq>
 		<priority>0.8</priority>

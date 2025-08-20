@@ -1,8 +1,8 @@
 <div align="center">
 
-# PCWStats - Website
+# HEAT Labs - Website
 
-<img src="https://raw.githubusercontent.com/PCWStats/Website-Images/refs/heads/main/social-share/PCWStats.png" alt="PCWStats Banner"/>
+<img src="https://raw.githubusercontent.com/HEATLabs/Website-Images/refs/heads/main/social-share/HEATLabs.png" alt="HEAT Labs Banner"/>
 
 > One-stop solution for comprehensive statistics and insights in Project CW
 
@@ -36,9 +36,9 @@ Coming Soon!
 We welcome contributions, be it code, content, bug reports, or design feedback.
 If you’d like to contribute or report an issue, you can:
 
-1. **Create an issue** in the [PCWStats main organization](https://github.com/PCWStats) that holds all repositories.
+1. **Create an issue** in the [HEAT Labs main organization](https://github.com/HEATLabs) that holds all repositories.
 2. **Contact us on Discord** via [this invite link](https://thatsinewave.github.io/Discord-Redirect/).
-3. **Use our contact form** on the [PCWStats Contact Us page](https://pcwstats.github.io/resources/contact-us.html).
+3. **Use our contact form** on the [HEAT Labs Contact Us page](https://heatlabs.github.io/resources/contact-us.html).
 
 When submitting changes via pull requests:
 
@@ -52,4 +52,4 @@ When submitting changes via pull requests:
 
 ## License
 
-Distributed under the GNU GPL-3.0 License. See the [LICENSE](LICENSE) file for full details. PCWStats is free and open-source for community use and collaboration.
+Distributed under the GNU GPL-3.0 License. See the [LICENSE](LICENSE) file for full details. HEAT Labs is free and open-source for community use and collaboration.

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pcwstats.github.io/site-data/sitemap.xml
+Sitemap: https://heatlabs.github.io/site-data/sitemap.xml
