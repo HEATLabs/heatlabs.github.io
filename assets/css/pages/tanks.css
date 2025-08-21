@@ -220,6 +220,10 @@
 	gap: 0.75rem;
 }
 
+.nation-filter:last-child {
+	grid-column: 2;
+}
+
 .filter-btn {
 	display: flex;
 	align-items: center;
@@ -250,6 +254,27 @@
 .filter-btn i {
 	margin-right: 0.5rem;
 	font-size: 0.8rem;
+}
+
+.status-filter-buttons-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 0.75rem;
+}
+.status-filter-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.6rem 0.5rem;
+	border-radius: 0.5rem;
+	background-color: var(--bg-secondary);
+	color: var(--text-primary);
+	border: 1px solid var(--border-color);
+	cursor: pointer;
+	transition: all var(--transition-speed);
+	font-size: 0.9rem;
+	text-align: center;
+	white-space: nowrap;
 }
 
 /* Status Filter group */
