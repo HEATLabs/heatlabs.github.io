@@ -261,6 +261,73 @@ input:checked+.toggle-slider:before {
 	color: #F44336;
 }
 
+/* Chart Section Styles */
+.chart-section {
+	margin-top: 1.5rem;
+	border-top: 1px solid var(--border-color);
+	padding-top: 1rem;
+}
+
+.chart-toggle-buttons {
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.chart-toggle-btn {
+	padding: 0.5rem 1rem;
+	border: 1px solid var(--border-color);
+	background-color: var(--bg-secondary);
+	color: var(--text-primary);
+	border-radius: 0.375rem;
+	cursor: pointer;
+	font-size: 0.85rem;
+	font-weight: 500;
+	transition: all 0.2s ease;
+}
+
+.chart-toggle-btn:hover {
+	background-color: var(--bg-tertiary);
+}
+
+.chart-toggle-btn.active {
+	background-color: var(--accent-color);
+	color: white;
+	border-color: var(--accent-color);
+}
+
+.chart-container {
+	position: relative;
+	height: 200px;
+	width: 100%;
+}
+
+.chart-placeholder {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+	color: var(--text-secondary);
+	background-color: var(--bg-tertiary);
+	border-radius: 0.5rem;
+}
+
+.chart-placeholder-icon {
+	font-size: 2rem;
+	margin-bottom: 0.5rem;
+	opacity: 0.5;
+}
+
+.chart-placeholder-text {
+	font-size: 0.9rem;
+	text-align: center;
+	margin: 0;
+	opacity: 0.7;
+}
+
 @media (max-width: 768px) {
 	.content-wrapper>.section {
 		padding-left: 10px;
@@ -275,5 +342,9 @@ input:checked+.toggle-slider:before {
 		flex-direction: column;
 		gap: 1rem;
 		align-items: flex-start;
+	}
+
+	.chart-container {
+		height: 180px;
 	}
 }
