@@ -228,11 +228,6 @@ function createChart(monitorId, type, monitorData) {
             return;
         }
 
-        const labels = last24hLogs.map(log => {
-            const date = new Date(log.datetime * 1000);
-            return date.toLocaleTimeString();
-        });
-
         const data = last24hLogs.map(log => log.type === 1 ? 100 : 0); // 1 = up, 2 = down
 
         // Hide placeholder and show canvas
@@ -244,7 +239,7 @@ function createChart(monitorId, type, monitorData) {
         chartInstances[monitorId] = new Chart(canvasContext, {
             type: 'line',
             data: {
-                labels: labels,
+                labels: Array(last24hLogs.length).fill(''),
                 datasets: [{
                     label: 'Uptime Status',
                     data: data,
@@ -276,11 +271,10 @@ function createChart(monitorId, type, monitorData) {
                     },
                     x: {
                         ticks: {
-                            maxTicksLimit: 6,
-                            color: themeColors.tickColor
+                            display: false,
                         },
                         grid: {
-                            color: themeColors.gridColor
+                            display: false
                         }
                     }
                 },
@@ -323,11 +317,6 @@ function createChart(monitorId, type, monitorData) {
             return;
         }
 
-        const labels = last24hResponses.map(rt => {
-            const date = new Date(rt.datetime * 1000);
-            return date.toLocaleTimeString();
-        });
-
         const data = last24hResponses.map(rt => rt.value);
 
         // Hide placeholder and show canvas
@@ -339,7 +328,7 @@ function createChart(monitorId, type, monitorData) {
         chartInstances[monitorId] = new Chart(canvasContext, {
             type: 'line',
             data: {
-                labels: labels,
+                labels: Array(last24hResponses.length).fill(''),
                 datasets: [{
                     label: 'Response Time (ms)',
                     data: data,
@@ -370,11 +359,10 @@ function createChart(monitorId, type, monitorData) {
                     },
                     x: {
                         ticks: {
-                            maxTicksLimit: 6,
-                            color: themeColors.tickColor
+                            display: false,
                         },
                         grid: {
-                            color: themeColors.gridColor
+                            display: false
                         }
                     }
                 },
