@@ -448,19 +448,18 @@ function displayMonitors(data) {
         const lastCheck = formatLastCheck(monitor);
         const monitoringSince = formatMonitoringSince(monitor.create_datetime);
 
-        // Get average response time from recent data
-        let avgResponseTime = null;
+        // Get the latest response time
+        let latestResponseTime = null;
         let responseTimeHtml = "";
 
         if (monitor.response_times && monitor.response_times.length > 0) {
-            // Calculate average of last 10 response times
-            const recentResponses = monitor.response_times.slice(-10);
-            const sum = recentResponses.reduce((total, rt) => total + rt.value, 0);
-            avgResponseTime = Math.round(sum / recentResponses.length);
+            // Sort response times by datetime (newest first) and get the most recent
+            const sortedResponseTimes = [...monitor.response_times].sort((a, b) => b.datetime - a.datetime);
+            latestResponseTime = sortedResponseTimes[0].value;
         }
 
         // Format response time
-        responseTimeHtml = formatResponseTime(avgResponseTime);
+        responseTimeHtml = formatResponseTime(latestResponseTime);
 
         // Get custom uptime ratios if available
         let customUptimeHtml = "";
