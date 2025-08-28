@@ -53,8 +53,28 @@ function formatUptime(uptimeRatio) {
     return `<span class="uptime-value ${uptimeClass}">${uptimePercent.toFixed(2)}%</span>`;
 }
 
-// Format last check timestamp
-function formatLastCheck(timestamp) {
+// Format last check timestamp using the most recent log entry
+function formatLastCheck(monitor) {
+    // Check if we have logs and get the most recent one
+    if (monitor.logs && monitor.logs.length > 0) {
+        // Sort logs by datetime (newest first)
+        const sortedLogs = [...monitor.logs].sort((a, b) => b.datetime - a.datetime);
+        const lastLog = sortedLogs[0];
+
+        if (lastLog && lastLog.datetime) {
+            // Convert to milliseconds
+            const timestampMs = lastLog.datetime < 10000000000 ? lastLog.datetime * 1000 : lastLog.datetime;
+            const dt = new Date(timestampMs);
+
+            // Check if date is valid
+            if (isNaN(dt.getTime())) return "Never";
+
+            return dt.toLocaleString();
+        }
+    }
+
+    // Fallback to last_heartbeat if no logs available
+    const timestamp = monitor.last_heartbeat || monitor.create_datetime;
     if (!timestamp || timestamp === 0) return "Never";
 
     // Convert to milliseconds
@@ -65,6 +85,20 @@ function formatLastCheck(timestamp) {
     if (isNaN(dt.getTime())) return "Never";
 
     return dt.toLocaleString();
+}
+
+// Format monitoring since date (when the monitor was created)
+function formatMonitoringSince(timestamp) {
+    if (!timestamp || timestamp === 0) return "Unknown";
+
+    // Convert to milliseconds
+    const timestampMs = timestamp < 10000000000 ? timestamp * 1000 : timestamp;
+    const dt = new Date(timestampMs);
+
+    // Check if date is valid
+    if (isNaN(dt.getTime())) return "Unknown";
+
+    return dt.toLocaleDateString();
 }
 
 // Format response time with appropriate color
@@ -168,8 +202,8 @@ function displayMonitors(data) {
         let uptimeRatio = monitor.all_time_uptime_ratio || monitor.custom_uptime_ratio || "0";
         const uptime = formatUptime(uptimeRatio);
 
-        const lastCheckTimestamp = monitor.last_heartbeat || monitor.create_datetime;
-        const lastCheck = formatLastCheck(lastCheckTimestamp);
+        const lastCheck = formatLastCheck(monitor);
+        const monitoringSince = formatMonitoringSince(monitor.create_datetime);
 
         // Get average response time from recent data
         let avgResponseTime = null;
@@ -224,6 +258,11 @@ function displayMonitors(data) {
                     <div class="server-detail">
                         <span class="detail-label">Last Check:</span>
                         <span class="detail-value">${lastCheck}</span>
+                    </div>
+
+                    <div class="server-detail">
+                        <span class="detail-label">Monitoring Since:</span>
+                        <span class="detail-value">${monitoringSince}</span>
                     </div>
                 </div>
 
