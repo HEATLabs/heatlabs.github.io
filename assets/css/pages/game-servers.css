@@ -101,48 +101,25 @@
 	color: #F44336;
 }
 
-.server-response {
-	margin-top: 1rem;
-	padding-top: 1rem;
-	border-top: 1px solid var(--border-color);
-}
-
-.response-bar {
-	height: 6px;
-	background-color: var(--bg-tertiary);
-	border-radius: 3px;
-	margin-bottom: 0.5rem;
-	overflow: hidden;
-}
-
-.response-fill {
-	height: 100%;
-	border-radius: 3px;
-	transition: width 0.5s ease;
-}
-
-.response-na {
-	background-color: var(--text-secondary);
-	opacity: 0.5;
+.response-value {
+	font-weight: 600;
 }
 
 .response-fast {
-	background-color: #4CAF50;
+	color: #4CAF50;
 }
 
 .response-medium {
-	background-color: #FF9800;
+	color: #FF9800;
 }
 
 .response-slow {
-	background-color: #F44336;
+	color: #F44336;
 }
 
-.response-info {
-	display: flex;
-	justify-content: space-between;
-	font-size: 0.85rem;
+.response-na {
 	color: var(--text-secondary);
+	opacity: 0.7;
 }
 
 .last-updated {

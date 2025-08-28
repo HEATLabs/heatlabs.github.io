@@ -53,6 +53,23 @@ function formatUptime(uptimeRatio) {
     return `<span class="uptime-value ${uptimeClass}">${uptimePercent.toFixed(2)}%</span>`;
 }
 
+// Format response time with appropriate color
+function formatResponseTime(responseTime) {
+    if (!responseTime) {
+        return `<span class="response-value response-na">N/A</span>`;
+    }
+
+    let responseClass = "response-slow";
+
+    if (responseTime < 100) {
+        responseClass = "response-fast";
+    } else if (responseTime < 500) {
+        responseClass = "response-medium";
+    }
+
+    return `<span class="response-value ${responseClass}">${responseTime}ms</span>`;
+}
+
 // Format last check timestamp using the most recent log entry
 function formatLastCheck(monitor) {
     // Check if we have logs and get the most recent one
@@ -99,40 +116,6 @@ function formatMonitoringSince(timestamp) {
     if (isNaN(dt.getTime())) return "Unknown";
 
     return dt.toLocaleDateString();
-}
-
-// Format response time with appropriate color
-function formatResponseTime(responseTime) {
-    if (!responseTime) {
-        return `
-            <div class="response-bar">
-                <div class="response-fill response-na" style="width: 100%"></div>
-            </div>
-            <div class="response-info">
-                <span>Response Time</span>
-                <span>N/A</span>
-            </div>
-        `;
-    }
-
-    let responseClass = "response-slow";
-    let width = Math.min(100, responseTime / 10);
-
-    if (responseTime < 100) {
-        responseClass = "response-fast";
-    } else if (responseTime < 500) {
-        responseClass = "response-medium";
-    }
-
-    return `
-        <div class="response-bar">
-            <div class="response-fill ${responseClass}" style="width: ${width}%"></div>
-        </div>
-        <div class="response-info">
-            <span>Response Time</span>
-            <span>${responseTime}ms</span>
-        </div>
-    `;
 }
 
 // Fetch monitors from Uptime Robot API using form data
@@ -216,7 +199,7 @@ function displayMonitors(data) {
             avgResponseTime = Math.round(sum / recentResponses.length);
         }
 
-        // Always show response time section, even if no data
+        // Format response time
         responseTimeHtml = formatResponseTime(avgResponseTime);
 
         // Get custom uptime ratios if available
@@ -249,8 +232,18 @@ function displayMonitors(data) {
 
                 <div class="server-details">
                     <div class="server-detail">
+                        <span class="detail-label">Monitoring Since:</span>
+                        <span class="detail-value">${monitoringSince}</span>
+                    </div>
+                    
+                    <div class="server-detail">
                         <span class="detail-label">Uptime:</span>
                         <span class="detail-value">${uptime}</span>
+                    </div>
+
+                    <div class="server-detail">
+                        <span class="detail-label">Response Time:</span>
+                        <span class="detail-value">${responseTimeHtml}</span>
                     </div>
 
                     ${customUptimeHtml}
@@ -260,13 +253,7 @@ function displayMonitors(data) {
                         <span class="detail-value">${lastCheck}</span>
                     </div>
 
-                    <div class="server-detail">
-                        <span class="detail-label">Monitoring Since:</span>
-                        <span class="detail-value">${monitoringSince}</span>
-                    </div>
                 </div>
-
-                <div class="server-response">${responseTimeHtml}</div>
             </div>
         `;
     });
