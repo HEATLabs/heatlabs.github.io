@@ -226,7 +226,7 @@
 
 .fun-facts-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-template-columns: repeat(4, 1fr);
 	gap: 2rem;
 	text-align: center;
 }
@@ -250,11 +250,15 @@
 }
 
 .fun-fact-number {
-	font-size: 3rem;
+	font-size: 2.5rem;
 	font-weight: 700;
 	color: var(--accent-color);
 	margin-bottom: 0.5rem;
 	transition: all 0.3s ease;
+	min-height: 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .fun-fact-item:hover .fun-fact-number {
@@ -315,6 +319,10 @@
 	.features-grid {
 		gap: 1.5rem;
 	}
+
+	.fun-facts-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
 
 @media (max-width: 991px) {
@@ -328,6 +336,10 @@
 
 	.home-hero h1 {
 		font-size: 3.5rem;
+	}
+
+	.fun-facts-grid {
+		grid-template-columns: repeat(2, 1fr);
 	}
 }
 
@@ -378,6 +390,6 @@
 	}
 
 	.fun-fact-number {
-		font-size: 2.5rem;
+		font-size: 2rem;
 	}
 }
