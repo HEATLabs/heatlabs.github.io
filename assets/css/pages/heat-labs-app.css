@@ -126,6 +126,53 @@
 	transform: translateY(-1px);
 }
 
+/* iOS Guide Modal Dark Mode Styles */
+.dark-theme #iosGuideModal .bg-white {
+	background-color: var(--bg-secondary);
+	color: var(--text-primary);
+}
+
+.dark-theme #iosGuideModal .text-gray-500 {
+	color: #9ca3af;
+}
+
+.dark-theme #iosGuideModal .text-gray-700 {
+	color: #d1d5db;
+}
+
+.dark-theme #iosGuideModal .hover\:text-gray-700:hover {
+	color: #e5e7eb;
+}
+
+.dark-theme #iosGuideModal .bg-blue-500 {
+	background-color: #3b82f6;
+}
+
+.dark-theme #iosGuideModal .text-white {
+	color: white;
+}
+
+.dark-theme #iosGuideModal .hover\:bg-blue-600:hover {
+	background-color: #2563eb;
+}
+
+/* Additional iOS modal styling */
+#iosGuideModal .bg-white {
+	transition: background-color 0.3s ease;
+}
+
+.dark-theme #iosGuideModal {
+	color: var(--text-primary);
+}
+
+.dark-theme #iosGuideModal h3 {
+	color: var(--text-primary);
+}
+
+.dark-theme #iosGuideModal p {
+	color: var(--text-secondary);
+}
+
 @keyframes slideInUp {
 	from {
 		transform: translateY(100px);
