@@ -194,10 +194,15 @@ h2::after {
 	border: 1px solid var(--border-color);
 }
 
-/* Beta Testers */
+/* Content Creators */
 .content-creators {
-	gap: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
 	margin-top: 1rem;
+	justify-content: center;
+	align-items: center;
+	row-gap: 1rem;
 }
 
 .content-creators span {
