@@ -433,9 +433,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 rowState.push({
                     letter: tile.textContent || '',
-                    status: tile.classList.contains('correct') ? 'correct' :
-                           tile.classList.contains('present') ? 'present' :
-                           tile.classList.contains('absent') ? 'absent' : ''
+                    status: tile.classList.contains('correct') ? 'correct' : tile.classList.contains('present') ? 'present' : tile.classList.contains('absent') ? 'absent' : ''
                 });
             }
 
