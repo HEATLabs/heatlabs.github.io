@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const maxStreakElement = document.getElementById('maxStreak');
     const gamesPlayedElement = document.getElementById('gamesPlayed');
     const winPercentageElement = document.getElementById('winPercentage');
-    const guessDistributionElement = document.getElementById('guessDistribution');
 
     // Game state
     let currentGuess = '';
@@ -38,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
         gamesWon: 0,
         currentStreak: 0,
         maxStreak: 0,
-        guessDistribution: {}, // Object to handle variable word lengths
         lastPlayed: null
     };
 
@@ -90,11 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const savedStats = localStorage.getItem('wordleStats');
         if (savedStats) {
             stats = JSON.parse(savedStats);
-
-            // Ensure guessDistribution is an object
-            if (!stats.guessDistribution || typeof stats.guessDistribution !== 'object') {
-                stats.guessDistribution = {};
-            }
         }
     }
 
@@ -333,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function() {
         disableInput();
 
         // Update stats
-        updateStats(true, currentRow + 1);
+        updateStats(true);
     }
 
     // Handle game loss
@@ -387,20 +380,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Update statistics
-    function updateStats(won, guessCount = null) {
+    function updateStats(won) {
         // Always update stats
         stats.gamesPlayed++;
 
         if (won) {
             stats.gamesWon++;
             stats.currentStreak++;
-
-            // Store guess distribution by word length
-            const lengthKey = wordLength.toString();
-            if (!stats.guessDistribution[lengthKey]) {
-                stats.guessDistribution[lengthKey] = [0, 0, 0];
-            }
-            stats.guessDistribution[lengthKey][guessCount - 1]++;
 
             if (stats.currentStreak > stats.maxStreak) {
                 stats.maxStreak = stats.currentStreak;
@@ -423,36 +409,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const winPercentage = stats.gamesPlayed > 0 ? Math.round((stats.gamesWon / stats.gamesPlayed) * 100) : 0;
         winPercentageElement.textContent = `${winPercentage}%`;
-
-        // Update guess distribution for current word length
-        updateGuessDistribution();
-    }
-
-    // Update the guess distribution chart
-    function updateGuessDistribution() {
-        const lengthKey = wordLength.toString();
-        const distribution = stats.guessDistribution[lengthKey] || [0, 0, 0];
-        const maxGuesses = Math.max(...distribution, 1); // Avoid division by zero
-
-        guessDistributionElement.innerHTML = '';
-
-        for (let i = 0; i < MAX_GUESSES; i++) {
-            const count = distribution[i] || 0;
-            const percentage = maxGuesses > 0 ? (count / maxGuesses) * 100 : 0;
-
-            const row = document.createElement('div');
-            row.className = 'distribution-row';
-
-            row.innerHTML = `
-                <div class="distribution-label">${i + 1}</div>
-                <div class="distribution-bar">
-                    <div class="distribution-fill" style="width: ${percentage}%"></div>
-                </div>
-                <div class="distribution-count">${count}</div>
-            `;
-
-            guessDistributionElement.appendChild(row);
-        }
     }
 
     // Enable input

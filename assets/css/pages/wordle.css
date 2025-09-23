@@ -1,6 +1,6 @@
 /* Wordle Styles */
 .wordle-game {
-	max-width: 800px;
+	max-width: 900px;
 	margin: 2rem auto;
 	padding: 2rem;
 	background-color: var(--card-bg);
@@ -42,6 +42,7 @@
 	background-color: var(--bg-secondary);
 	border-radius: 0.5rem;
 	border: 1px solid var(--border-color);
+	min-width: 80px;
 }
 
 .stat-value {
@@ -56,15 +57,33 @@
 	margin-top: 0.25rem;
 }
 
+.wordle-content {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.wordle-board-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+	background-color: var(--bg-secondary);
+	border-radius: 0.5rem;
+	border: 1px solid var(--border-color);
+	min-height: 220px;
+}
+
 .wordle-board {
-	margin-bottom: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
 }
 
 .guess-row {
 	display: flex;
 	justify-content: center;
 	gap: 0.5rem;
-	margin-bottom: 0.5rem;
 }
 
 .letter-tile {
@@ -77,7 +96,7 @@
 	font-weight: 700;
 	border: 2px solid var(--border-color);
 	border-radius: 0.375rem;
-	background-color: var(--bg-secondary);
+	background-color: var(--card-bg);
 	transition: all 0.3s ease;
 }
 
@@ -118,23 +137,34 @@
 	}
 }
 
-.wordle-input {
+.wordle-input-container {
 	display: flex;
-	justify-content: center;
-	margin-bottom: 2rem;
+	flex-direction: column;
+	gap: 1.5rem;
+	align-items: center;
+	padding: 1.5rem;
+	background-color: var(--bg-secondary);
+	border-radius: 0.5rem;
+	border: 1px solid var(--border-color);
+}
+
+.wordle-input {
+	width: 100%;
+	max-width: 400px;
 }
 
 .wordle-input-field {
-	width: 300px;
+	width: 100%;
 	padding: 0.75rem 1rem;
 	border: 2px solid var(--border-color);
 	border-radius: 0.375rem;
-	background-color: var(--bg-secondary);
+	background-color: var(--card-bg);
 	color: var(--text-primary);
 	font-size: 1.1rem;
 	text-align: center;
 	text-transform: uppercase;
 	transition: border-color 0.3s ease;
+	box-sizing: border-box;
 }
 
 .wordle-input-field:focus {
@@ -144,12 +174,13 @@
 
 .wordle-buttons {
 	display: flex;
-	justify-content: center;
 	gap: 1rem;
-	margin-bottom: 2rem;
+	width: 100%;
+	max-width: 400px;
 }
 
 .wordle-button {
+	flex: 1;
 	padding: 0.75rem 1.5rem;
 	border-radius: 0.5rem;
 	font-weight: 600;
@@ -158,6 +189,7 @@
 	border: none;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	gap: 0.5rem;
 }
 
@@ -287,77 +319,20 @@
 	}
 }
 
-.wordle-history {
-	margin-top: 2rem;
-	padding: 1.5rem;
-	background-color: var(--bg-secondary);
-	border-radius: 0.5rem;
-	border: 1px solid var(--border-color);
-}
-
-.history-title {
-	font-size: 1.2rem;
-	font-weight: 700;
-	margin-bottom: 1rem;
-	color: var(--text-primary);
-	text-align: center;
-}
-
-.history-stats {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-	gap: 1rem;
-	margin-bottom: 1.5rem;
-}
-
-.history-chart {
-	margin-top: 1.5rem;
-}
-
-.guess-distribution {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-}
-
-.distribution-row {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-}
-
-.distribution-label {
-	width: 30px;
-	font-weight: 600;
-	color: var(--text-primary);
-}
-
-.distribution-bar {
-	flex: 1;
-	height: 25px;
-	background-color: var(--border-color);
-	border-radius: 0.25rem;
-	overflow: hidden;
-	position: relative;
-}
-
-.distribution-fill {
-	height: 100%;
-	background-color: var(--accent-color);
-	transition: width 0.5s ease;
-}
-
-.distribution-count {
-	width: 30px;
-	text-align: right;
-	font-size: 0.9rem;
-	color: var(--text-secondary);
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
 	.wordle-game {
 		padding: 1rem;
+	}
+
+	.wordle-stats {
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.stat-item {
+		min-width: 70px;
+		padding: 0.5rem 0.75rem;
 	}
 
 	.letter-tile {
@@ -366,41 +341,33 @@
 		font-size: 1.25rem;
 	}
 
-	.wordle-input-field {
-		width: 100%;
-		max-width: 250px;
-	}
-
-	.wordle-stats {
-		flex-wrap: wrap;
-		gap: 1rem;
-	}
-
-	.history-stats {
-		grid-template-columns: repeat(2, 1fr);
+	.wordle-buttons {
+		flex-direction: column;
 	}
 }
 
 @media (max-width: 480px) {
+	.wordle-stats {
+		gap: 0.5rem;
+	}
+
+	.stat-item {
+		min-width: 60px;
+		padding: 0.4rem 0.6rem;
+	}
+
+	.stat-value {
+		font-size: 1.25rem;
+	}
+
 	.letter-tile {
 		width: 40px;
 		height: 40px;
 		font-size: 1rem;
 	}
 
-	.wordle-buttons {
-		flex-direction: column;
-		align-items: center;
-	}
-
-	.wordle-button {
-		width: 100%;
-		max-width: 200px;
-		justify-content: center;
-	}
-
-	.history-stats {
-		grid-template-columns: 1fr;
+	.wordle-input-container {
+		padding: 1rem;
 	}
 
 	.wordle-modal-content {
