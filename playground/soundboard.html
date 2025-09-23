@@ -121,6 +121,8 @@
     <meta name="twitter:image:alt" content="HEAT Labs - Your one-stop solution for comprehensive statistics insights and guides for World of Tanks: HEAT">
   </head>
   <body>
+    <!-- Custom Privacy-Focused Tracking Pixel -->
+    <img src="https://heatlabs-pixel-api.vercel.app/api/track/pcwstats-tracker-pixel-soundboard.png" alt="" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;" class="heatlabs-tracking-pixel" data-page="soundboard">
     <!-- Sidebar Overlay -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <!-- Sidebar -->
@@ -277,13 +279,96 @@
       <section class="hero">
         <div class="waves-container"></div>
         <div class="hero-content">
-          <h1>Soundboard</h1>
+          <h1>Soundboard (BETA)</h1>
           <p>Listen to all sounds from World of Tanks: HEAT</p>
         </div>
       </section>
       <!-- Main Content -->
       <section id="main" class="section">
-        <!-- Soundboard Section -->
+        <div class="container mx-auto px-4">
+          <div class="soundboard-container">
+            <!-- Controls Bar -->
+            <div class="soundboard-controls">
+              <div class="controls-left">
+                <div class="search-container">
+                  <i class="fas fa-search"></i>
+                  <input type="text" id="soundSearch" placeholder="Search sounds...">
+                </div>
+              </div>
+              <div class="controls-right">
+                <button id="toggleFavorites" class="favorites-toggle">
+                  <i class="far fa-heart"></i>
+                  <span>Favorites</span>
+                </button>
+                <button id="playRandom" class="btn-outline">
+                  <i class="fas fa-random"></i>
+                  <span>Random</span>
+                </button>
+              </div>
+            </div>
+            <!-- Filters Section -->
+            <div class="filters-section">
+              <div class="filter-group">
+                <h3 class="filter-group-title">CATEGORY</h3>
+                <div class="filter-buttons-grid" id="categoryFilters">
+                  <!-- Categories will be dynamically inserted -->
+                </div>
+              </div>
+              <div class="filter-group">
+                <h3 class="filter-group-title">SOURCE</h3>
+                <div class="filter-buttons-grid" id="sourceFilters">
+                  <!-- Sources will be dynamically inserted -->
+                </div>
+              </div>
+              <div class="filter-group">
+                <h3 class="filter-group-title">TYPE</h3>
+                <div class="filter-buttons-grid" id="typeFilters">
+                  <!-- Types will be dynamically inserted -->
+                </div>
+              </div>
+            </div>
+            <!-- Active Filters -->
+            <div class="active-filters-container">
+              <div class="active-filters" id="activeFilters">
+                <div class="no-filters-message">No filters selected</div>
+              </div>
+            </div>
+            <!-- Sound Stats -->
+            <div class="sound-stats">
+              <span id="soundsCount">Loading sounds...</span>
+              <span id="playingStatus" class="playing-status"></span>
+            </div>
+            <!-- Sounds Grid -->
+            <div class="sounds-grid" id="soundsGrid">
+              <!-- Sound cards will be dynamically inserted here -->
+            </div>
+            <!-- Pagination Controls -->
+            <div class="pagination-controls" id="paginationControls" style="display: none;">
+              <button id="prevPage" class="pagination-btn">
+                <i class="fas fa-chevron-left"></i>
+                Previous
+              </button>
+              <div class="pagination-info">
+                Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
+              </div>
+              <button id="nextPage" class="pagination-btn">
+                Next
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="loading-indicator">
+              <i class="fas fa-spinner fa-spin"></i>
+              <span>Loading sounds...</span>
+            </div>
+            <!-- No Results Message -->
+            <div id="noResults" class="no-results" style="display: none;">
+              <i class="fas fa-volume-mute"></i>
+              <h3>No sounds found</h3>
+              <p>Try adjusting your filters or search term</p>
+            </div>
+          </div>
+        </div>
       </section>
       <!-- CTA Section -->
       <section class="cta-section">
