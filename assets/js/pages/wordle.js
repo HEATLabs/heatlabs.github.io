@@ -259,11 +259,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        if (!wordList.map(w => w.toUpperCase()).includes(currentGuess)) {
-            showModal('Invalid Word', 'Not a valid word', 'error');
-            return;
-        }
-
         // Evaluate the guess
         evaluateGuess();
 
