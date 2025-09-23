@@ -312,9 +312,27 @@
                 </div>
               </div>
             </div>
-            <!-- Game Board -->
-            <div class="wordle-board" id="wordleBoard">
-              <!-- Board will be dynamically generated based on word length -->
+            <!-- Game Content -->
+            <div class="wordle-content">
+              <!-- Game Board -->
+              <div class="wordle-board-container">
+                <div class="wordle-board" id="wordleBoard">
+                  <!-- Board will be dynamically generated based on word length -->
+                </div>
+              </div>
+              <!-- Input Area -->
+              <div class="wordle-input-container">
+                <div class="wordle-input">
+                  <input type="text" id="wordleInput" class="wordle-input-field" maxlength="15" placeholder="Enter your guess">
+                </div>
+                <!-- Buttons -->
+                <div class="wordle-buttons">
+                  <button id="submitGuess" class="wordle-button submit-button">
+                    <i class="fas fa-paper-plane mr-2"></i> Submit Guess </button>
+                  <button id="newGame" class="wordle-button new-game-button">
+                    <i class="fas fa-redo mr-2"></i> New Game </button>
+                </div>
+              </div>
             </div>
             <!-- Message Modal -->
             <div id="wordleModal" class="wordle-modal">
@@ -323,41 +341,6 @@
                 <h3 id="wordleModalTitle" class="wordle-modal-title"></h3>
                 <p id="wordleModalMessage" class="wordle-modal-message"></p>
                 <button id="wordleModalClose" class="wordle-modal-close">Continue</button>
-              </div>
-            </div>
-            <!-- Input Area -->
-            <div class="wordle-input">
-              <input type="text" id="wordleInput" class="wordle-input-field" maxlength="15" placeholder="Enter your guess">
-            </div>
-            <!-- Buttons -->
-            <div class="wordle-buttons">
-              <button id="submitGuess" class="wordle-button submit-button">
-                <i class="fas fa-paper-plane mr-2"></i> Submit Guess </button>
-              <button id="newGame" class="wordle-button new-game-button">
-                <i class="fas fa-redo mr-2"></i> New Game </button>
-            </div>
-            <!-- Game History -->
-            <div class="wordle-history">
-              <h3 class="history-title">Game Statistics</h3>
-              <div class="history-stats">
-                <div class="stat-item">
-                  <div class="stat-value" id="historyGamesPlayed">0</div>
-                  <div class="stat-label">Games Played</div>
-                </div>
-                <div class="stat-item">
-                  <div class="stat-value" id="historyGamesWon">0</div>
-                  <div class="stat-label">Games Won</div>
-                </div>
-                <div class="stat-item">
-                  <div class="stat-value" id="historyWinPercentage">0%</div>
-                  <div class="stat-label">Win Percentage</div>
-                </div>
-              </div>
-              <div class="history-chart">
-                <h4 class="text-center mb-2 font-semibold">Guess Distribution</h4>
-                <div id="guessDistribution" class="guess-distribution">
-                  <!-- Distribution bars will be inserted here by JavaScript -->
-                </div>
               </div>
             </div>
           </div>

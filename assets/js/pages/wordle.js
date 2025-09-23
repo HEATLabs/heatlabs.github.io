@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const wordleModalMessage = document.getElementById('wordleModalMessage');
     const wordleModalClose = document.getElementById('wordleModalClose');
 
+    // Stats elements
     const currentStreakElement = document.getElementById('currentStreak');
     const maxStreakElement = document.getElementById('maxStreak');
     const gamesPlayedElement = document.getElementById('gamesPlayed');
@@ -49,8 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Load stats from localStorage
         loadStats();
 
-        // Check if we need a new word
-        checkForNewWord();
+        // Start a new game
+        startNewGame();
 
         // Set up event listeners
         wordleInput.addEventListener('input', handleInput);
@@ -102,48 +103,10 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('wordleStats', JSON.stringify(stats));
     }
 
-    // Check if we need a new word for the day
-    function checkForNewWord() {
-        const today = new Date().toDateString();
-        const lastPlayed = stats.lastPlayed ? new Date(stats.lastPlayed).toDateString() : null;
-
-        // If we've already played today, load the saved game state
-        if (lastPlayed === today) {
-            const savedGame = localStorage.getItem('wordleGameState');
-            if (savedGame) {
-                const gameState = JSON.parse(savedGame);
-                wordOfTheDay = gameState.wordOfTheDay;
-                wordLength = wordOfTheDay.length;
-                currentRow = gameState.currentRow;
-                currentGuess = gameState.currentGuess;
-                gameOver = gameState.gameOver;
-
-                // Recreate the board with correct dimensions
-                createBoard();
-
-                // Restore the board state
-                restoreBoard(gameState.boardState);
-
-                if (gameOver) {
-                    disableInput();
-                }
-
-                return;
-            }
-        }
-
-        // Otherwise, start a new game with today's word
-        startNewGame();
-    }
-
-    // Generate a consistent word of the day based on the date
-    function getWordOfTheDay() {
-        const today = new Date();
-        const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
-
-        // Simple deterministic random based on date
-        const index = seed % wordList.length;
-        return wordList[index].toUpperCase();
+    // Get a random word from the word list
+    function getRandomWord() {
+        const randomIndex = Math.floor(Math.random() * wordList.length);
+        return wordList[randomIndex].toUpperCase();
     }
 
     // Create the game board dynamically based on word length
@@ -221,8 +184,8 @@ document.addEventListener('DOMContentLoaded', function() {
         currentRow = 0;
         gameOver = false;
 
-        // Get today's word
-        wordOfTheDay = getWordOfTheDay();
+        // Get a random word
+        wordOfTheDay = getRandomWord();
         wordLength = wordOfTheDay.length;
 
         // Create the board with correct dimensions
@@ -238,28 +201,8 @@ document.addEventListener('DOMContentLoaded', function() {
         wordleInput.focus();
         wordleInput.value = '';
 
-        // Save initial game state
-        saveGameState();
-    }
-
-    // Restore the board from saved state
-    function restoreBoard(boardState) {
-        for (let row = 0; row < MAX_GUESSES; row++) {
-            for (let col = 0; col < wordLength; col++) {
-                const tileIndex = row * wordLength + col;
-                const tile = letterTiles[tileIndex];
-                const letterState = boardState[row][col];
-
-                if (letterState.letter) {
-                    tile.textContent = letterState.letter;
-                    tile.classList.add('filled');
-
-                    if (letterState.status) {
-                        tile.classList.add(letterState.status);
-                    }
-                }
-            }
-        }
+        // Clear any saved game state since we're starting fresh
+        localStorage.removeItem('wordleGameState');
     }
 
     // Handle input in the text field
@@ -340,9 +283,6 @@ document.addEventListener('DOMContentLoaded', function() {
             wordleInput.value = '';
             wordleInput.focus();
         }
-
-        // Save game state
-        saveGameState();
     }
 
     // Evaluate the current guess and color the tiles
@@ -448,39 +388,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update statistics
     function updateStats(won, guessCount = null) {
-        const today = new Date().toDateString();
-        const lastPlayed = stats.lastPlayed ? new Date(stats.lastPlayed).toDateString() : null;
+        // Always update stats
+        stats.gamesPlayed++;
 
-        // Only update if we haven't played today
-        if (lastPlayed !== today) {
-            stats.gamesPlayed++;
+        if (won) {
+            stats.gamesWon++;
+            stats.currentStreak++;
 
-            if (won) {
-                stats.gamesWon++;
-                stats.currentStreak++;
-
-                // Store guess distribution by word length
-                const lengthKey = wordLength.toString();
-                if (!stats.guessDistribution[lengthKey]) {
-                    stats.guessDistribution[lengthKey] = [0, 0, 0];
-                }
-                stats.guessDistribution[lengthKey][guessCount - 1]++;
-
-                if (stats.currentStreak > stats.maxStreak) {
-                    stats.maxStreak = stats.currentStreak;
-                }
-            } else {
-                stats.currentStreak = 0;
+            // Store guess distribution by word length
+            const lengthKey = wordLength.toString();
+            if (!stats.guessDistribution[lengthKey]) {
+                stats.guessDistribution[lengthKey] = [0, 0, 0];
             }
+            stats.guessDistribution[lengthKey][guessCount - 1]++;
 
-            stats.lastPlayed = new Date().toISOString();
-            saveStats();
-            updateStatsDisplay();
+            if (stats.currentStreak > stats.maxStreak) {
+                stats.maxStreak = stats.currentStreak;
+            }
+        } else {
+            stats.currentStreak = 0;
         }
+
+        stats.lastPlayed = new Date().toISOString();
+        saveStats();
+        updateStatsDisplay();
     }
 
     // Update the stats display
     function updateStatsDisplay() {
+        // Update main stats
         currentStreakElement.textContent = stats.currentStreak;
         maxStreakElement.textContent = stats.maxStreak;
         gamesPlayedElement.textContent = stats.gamesPlayed;
@@ -529,39 +465,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function disableInput() {
         wordleInput.disabled = true;
         submitButton.disabled = true;
-    }
-
-    // Save the current game state
-    function saveGameState() {
-        const boardState = [];
-
-        for (let row = 0; row < MAX_GUESSES; row++) {
-            const rowState = [];
-
-            for (let col = 0; col < wordLength; col++) {
-                const tileIndex = row * wordLength + col;
-                const tile = letterTiles[tileIndex];
-
-                rowState.push({
-                    letter: tile.textContent || '',
-                    status: tile.classList.contains('correct') ? 'correct' : tile.classList.contains('present') ? 'present' : tile.classList.contains('absent') ? 'absent' : ''
-                });
-            }
-
-            boardState.push(rowState);
-        }
-
-        const gameState = {
-            wordOfTheDay: wordOfTheDay,
-            wordLength: wordLength,
-            currentRow: currentRow,
-            currentGuess: currentGuess,
-            gameOver: gameOver,
-            boardState: boardState,
-            timestamp: new Date().toISOString()
-        };
-
-        localStorage.setItem('wordleGameState', JSON.stringify(gameState));
     }
 
     // Initialize the game
