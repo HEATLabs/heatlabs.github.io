@@ -34,6 +34,7 @@
 	justify-content: center;
 	gap: 1.5rem;
 	margin-top: 1rem;
+	flex-wrap: wrap;
 }
 
 .stat-item {
@@ -43,6 +44,8 @@
 	border-radius: 0.5rem;
 	border: 1px solid var(--border-color);
 	min-width: 80px;
+	flex: 1;
+	max-width: 120px;
 }
 
 .stat-value {
@@ -326,13 +329,13 @@
 	}
 
 	.wordle-stats {
-		flex-wrap: wrap;
 		gap: 1rem;
 	}
 
 	.stat-item {
 		min-width: 70px;
 		padding: 0.5rem 0.75rem;
+		max-width: 100px;
 	}
 
 	.letter-tile {
@@ -354,6 +357,7 @@
 	.stat-item {
 		min-width: 60px;
 		padding: 0.4rem 0.6rem;
+		max-width: 80px;
 	}
 
 	.stat-value {

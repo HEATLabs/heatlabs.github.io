@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentStreakElement = document.getElementById('currentStreak');
     const maxStreakElement = document.getElementById('maxStreak');
     const gamesPlayedElement = document.getElementById('gamesPlayed');
+    const gamesWonElement = document.getElementById('gamesWon');
+    const gamesLostElement = document.getElementById('gamesLost');
     const winPercentageElement = document.getElementById('winPercentage');
 
     // Game state
@@ -35,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let stats = {
         gamesPlayed: 0,
         gamesWon: 0,
+        gamesLost: 0,
         currentStreak: 0,
         maxStreak: 0,
         lastPlayed: null
@@ -392,6 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 stats.maxStreak = stats.currentStreak;
             }
         } else {
+            stats.gamesLost++;
             stats.currentStreak = 0;
         }
 
@@ -406,6 +410,8 @@ document.addEventListener('DOMContentLoaded', function() {
         currentStreakElement.textContent = stats.currentStreak;
         maxStreakElement.textContent = stats.maxStreak;
         gamesPlayedElement.textContent = stats.gamesPlayed;
+        gamesWonElement.textContent = stats.gamesWon;
+        gamesLostElement.textContent = stats.gamesLost;
 
         const winPercentage = stats.gamesPlayed > 0 ? Math.round((stats.gamesWon / stats.gamesPlayed) * 100) : 0;
         winPercentageElement.textContent = `${winPercentage}%`;
