@@ -186,31 +186,105 @@
 	transform: translateY(-2px);
 }
 
-.wordle-message {
+/* Modal Styles */
+.wordle-modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 1000;
+	align-items: center;
+	justify-content: center;
+}
+
+.wordle-modal.active {
+	display: flex;
+	animation: fadeIn 0.3s ease;
+}
+
+.wordle-modal-content {
+	background-color: var(--card-bg);
+	border-radius: 0.75rem;
+	padding: 2rem;
+	max-width: 400px;
+	width: 90%;
 	text-align: center;
-	padding: 1rem;
-	border-radius: 0.5rem;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+	border: 1px solid var(--border-color);
+	animation: slideUp 0.3s ease;
+}
+
+.wordle-modal-icon {
+	font-size: 3rem;
 	margin-bottom: 1rem;
-	font-weight: 600;
-	transition: all 0.3s ease;
 }
 
-.wordle-message.success {
-	background-color: rgba(76, 175, 80, 0.1);
+.wordle-modal-icon.success {
 	color: #4CAF50;
-	border: 1px solid #4CAF50;
 }
 
-.wordle-message.error {
-	background-color: rgba(244, 67, 54, 0.1);
+.wordle-modal-icon.error {
 	color: #f44336;
-	border: 1px solid #f44336;
 }
 
-.wordle-message.info {
-	background-color: rgba(33, 150, 243, 0.1);
+.wordle-modal-icon.info {
 	color: #2196F3;
-	border: 1px solid #2196F3;
+}
+
+.wordle-modal-title {
+	font-size: 1.5rem;
+	font-weight: 700;
+	margin-bottom: 1rem;
+	color: var(--text-primary);
+}
+
+.wordle-modal-message {
+	font-size: 1rem;
+	color: var(--text-secondary);
+	margin-bottom: 1.5rem;
+	line-height: 1.5;
+}
+
+.wordle-modal-close {
+	padding: 0.75rem 1.5rem;
+	background-color: var(--accent-color);
+	color: white;
+	border: none;
+	border-radius: 0.5rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	width: 100%;
+}
+
+.wordle-modal-close:hover {
+	background-color: var(--accent-color-hover);
+	transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slideUp {
+	from {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
 }
 
 .wordle-history {
@@ -327,5 +401,9 @@
 
 	.history-stats {
 		grid-template-columns: 1fr;
+	}
+
+	.wordle-modal-content {
+		padding: 1.5rem;
 	}
 }

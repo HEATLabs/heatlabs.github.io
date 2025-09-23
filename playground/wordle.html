@@ -291,7 +291,7 @@
             <!-- Header -->
             <div class="wordle-header">
               <h2 class="wordle-title">HEAT Wordle</h2>
-              <p class="wordle-subtitle">Guess the HEAT-related word in 6 tries</p>
+              <p class="wordle-subtitle">Guess the HEAT-related word in 3 tries</p>
               <!-- Stats -->
               <div class="wordle-stats">
                 <div class="stat-item">
@@ -313,56 +313,21 @@
               </div>
             </div>
             <!-- Game Board -->
-            <div class="wordle-board">
-              <!-- 6 rows of 5 tiles each -->
-              <div class="guess-row">
-                <div class="letter-tile" data-row="0" data-col="0"></div>
-                <div class="letter-tile" data-row="0" data-col="1"></div>
-                <div class="letter-tile" data-row="0" data-col="2"></div>
-                <div class="letter-tile" data-row="0" data-col="3"></div>
-                <div class="letter-tile" data-row="0" data-col="4"></div>
-              </div>
-              <div class="guess-row">
-                <div class="letter-tile" data-row="1" data-col="0"></div>
-                <div class="letter-tile" data-row="1" data-col="1"></div>
-                <div class="letter-tile" data-row="1" data-col="2"></div>
-                <div class="letter-tile" data-row="1" data-col="3"></div>
-                <div class="letter-tile" data-row="1" data-col="4"></div>
-              </div>
-              <div class="guess-row">
-                <div class="letter-tile" data-row="2" data-col="0"></div>
-                <div class="letter-tile" data-row="2" data-col="1"></div>
-                <div class="letter-tile" data-row="2" data-col="2"></div>
-                <div class="letter-tile" data-row="2" data-col="3"></div>
-                <div class="letter-tile" data-row="2" data-col="4"></div>
-              </div>
-              <div class="guess-row">
-                <div class="letter-tile" data-row="3" data-col="0"></div>
-                <div class="letter-tile" data-row="3" data-col="1"></div>
-                <div class="letter-tile" data-row="3" data-col="2"></div>
-                <div class="letter-tile" data-row="3" data-col="3"></div>
-                <div class="letter-tile" data-row="3" data-col="4"></div>
-              </div>
-              <div class="guess-row">
-                <div class="letter-tile" data-row="4" data-col="0"></div>
-                <div class="letter-tile" data-row="4" data-col="1"></div>
-                <div class="letter-tile" data-row="4" data-col="2"></div>
-                <div class="letter-tile" data-row="4" data-col="3"></div>
-                <div class="letter-tile" data-row="4" data-col="4"></div>
-              </div>
-              <div class="guess-row">
-                <div class="letter-tile" data-row="5" data-col="0"></div>
-                <div class="letter-tile" data-row="5" data-col="1"></div>
-                <div class="letter-tile" data-row="5" data-col="2"></div>
-                <div class="letter-tile" data-row="5" data-col="3"></div>
-                <div class="letter-tile" data-row="5" data-col="4"></div>
+            <div class="wordle-board" id="wordleBoard">
+              <!-- Board will be dynamically generated based on word length -->
+            </div>
+            <!-- Message Modal -->
+            <div id="wordleModal" class="wordle-modal">
+              <div class="wordle-modal-content">
+                <div id="wordleModalIcon" class="wordle-modal-icon"></div>
+                <h3 id="wordleModalTitle" class="wordle-modal-title"></h3>
+                <p id="wordleModalMessage" class="wordle-modal-message"></p>
+                <button id="wordleModalClose" class="wordle-modal-close">Continue</button>
               </div>
             </div>
-            <!-- Message Area -->
-            <div id="wordleMessage" class="wordle-message"></div>
             <!-- Input Area -->
             <div class="wordle-input">
-              <input type="text" id="wordleInput" class="wordle-input-field" maxlength="5" placeholder="Enter your guess">
+              <input type="text" id="wordleInput" class="wordle-input-field" maxlength="15" placeholder="Enter your guess">
             </div>
             <!-- Buttons -->
             <div class="wordle-buttons">

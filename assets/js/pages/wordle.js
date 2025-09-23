@@ -1,16 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Game constants
-    const WORD_LENGTH = 5;
-    const MAX_GUESSES = 6;
+    const MAX_GUESSES = 3;
 
     // DOM Elements
     const wordleGame = document.getElementById('wordleGame');
-    const guessRows = document.querySelectorAll('.guess-row');
-    const letterTiles = document.querySelectorAll('.letter-tile');
+    const wordleBoard = document.getElementById('wordleBoard');
     const wordleInput = document.getElementById('wordleInput');
     const submitButton = document.getElementById('submitGuess');
     const newGameButton = document.getElementById('newGame');
-    const messageElement = document.getElementById('wordleMessage');
+
+    // Modal elements
+    const wordleModal = document.getElementById('wordleModal');
+    const wordleModalIcon = document.getElementById('wordleModalIcon');
+    const wordleModalTitle = document.getElementById('wordleModalTitle');
+    const wordleModalMessage = document.getElementById('wordleModalMessage');
+    const wordleModalClose = document.getElementById('wordleModalClose');
+
     const currentStreakElement = document.getElementById('currentStreak');
     const maxStreakElement = document.getElementById('maxStreak');
     const gamesPlayedElement = document.getElementById('gamesPlayed');
@@ -23,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let gameOver = false;
     let wordOfTheDay = '';
     let wordList = [];
+    let wordLength = 5; // Dynamically set based on chosen word
+    let letterTiles = [];
 
     // Stats
     let stats = {
@@ -30,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         gamesWon: 0,
         currentStreak: 0,
         maxStreak: 0,
-        guessDistribution: [0, 0, 0, 0, 0, 0], // Index 0 = 1 guess, index 5 = 6 guesses
+        guessDistribution: {}, // Object to handle variable word lengths
         lastPlayed: null
     };
 
@@ -50,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
         wordleInput.addEventListener('keydown', handleKeyDown);
         submitButton.addEventListener('click', submitGuess);
         newGameButton.addEventListener('click', startNewGame);
+        wordleModalClose.addEventListener('click', closeModal);
 
         // Focus the input field
         wordleInput.focus();
@@ -63,16 +71,16 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const response = await fetch('https://raw.githubusercontent.com/HEATLabs/Website-Configs/refs/heads/main/words.json');
             const data = await response.json();
-            wordList = data.words.filter(word => word.length === WORD_LENGTH);
+            wordList = data.words;
 
             if (wordList.length === 0) {
                 throw new Error('No valid words found in word list');
             }
         } catch (error) {
             console.error('Error loading word list:', error);
-            // Fallback word list
-            wordList = ['ray', 'kent', 'blitz', 'ember', 'hound'].filter(word => word.length === WORD_LENGTH);
-            showMessage('Error loading word list. Using fallback words.', 'error');
+            // Fallback word list with varying lengths
+            wordList = ['ray', 'kent', 'blitz', 'ember', 'hound', 'tank', 'shell', 'armor', 'battle', 'strategy'];
+            showModal('Error', 'Error loading word list. Using fallback words.', 'error');
         }
     }
 
@@ -81,6 +89,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const savedStats = localStorage.getItem('wordleStats');
         if (savedStats) {
             stats = JSON.parse(savedStats);
+
+            // Ensure guessDistribution is an object
+            if (!stats.guessDistribution || typeof stats.guessDistribution !== 'object') {
+                stats.guessDistribution = {};
+            }
         }
     }
 
@@ -100,11 +113,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (savedGame) {
                 const gameState = JSON.parse(savedGame);
                 wordOfTheDay = gameState.wordOfTheDay;
+                wordLength = wordOfTheDay.length;
                 currentRow = gameState.currentRow;
                 currentGuess = gameState.currentGuess;
                 gameOver = gameState.gameOver;
 
-                // Restore the board
+                // Recreate the board with correct dimensions
+                createBoard();
+
+                // Restore the board state
                 restoreBoard(gameState.boardState);
 
                 if (gameOver) {
@@ -129,6 +146,74 @@ document.addEventListener('DOMContentLoaded', function() {
         return wordList[index].toUpperCase();
     }
 
+    // Create the game board dynamically based on word length
+    function createBoard() {
+        wordleBoard.innerHTML = '';
+        letterTiles = [];
+
+        // Update input maxlength
+        wordleInput.maxLength = wordLength;
+
+        for (let row = 0; row < MAX_GUESSES; row++) {
+            const guessRow = document.createElement('div');
+            guessRow.className = 'guess-row';
+
+            for (let col = 0; col < wordLength; col++) {
+                const tile = document.createElement('div');
+                tile.className = 'letter-tile';
+                tile.setAttribute('data-row', row);
+                tile.setAttribute('data-col', col);
+                guessRow.appendChild(tile);
+                letterTiles.push(tile);
+            }
+
+            wordleBoard.appendChild(guessRow);
+        }
+
+        // Update CSS for dynamic tile sizing
+        updateTileStyles();
+    }
+
+    // Update tile styles based on word length
+    function updateTileStyles() {
+        const tileSize = Math.min(60, Math.max(30, 400 / wordLength)); // Responsive sizing
+        const fontSize = Math.min(1.5, Math.max(1, tileSize / 40));
+
+        const style = document.createElement('style');
+        style.textContent = `
+            .letter-tile {
+                width: ${tileSize}px;
+                height: ${tileSize}px;
+                font-size: ${fontSize}rem;
+            }
+
+            @media (max-width: 768px) {
+                .letter-tile {
+                    width: ${tileSize * 0.85}px;
+                    height: ${tileSize * 0.85}px;
+                    font-size: ${fontSize * 0.85}rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .letter-tile {
+                    width: ${tileSize * 0.7}px;
+                    height: ${tileSize * 0.7}px;
+                    font-size: ${fontSize * 0.7}rem;
+                }
+            }
+        `;
+
+        // Remove existing dynamic styles
+        const existingStyle = document.getElementById('dynamicTileStyles');
+        if (existingStyle) {
+            existingStyle.remove();
+        }
+
+        style.id = 'dynamicTileStyles';
+        document.head.appendChild(style);
+    }
+
     // Start a new game
     function startNewGame() {
         // Reset game state
@@ -136,17 +221,18 @@ document.addEventListener('DOMContentLoaded', function() {
         currentRow = 0;
         gameOver = false;
 
-        // Clear the board
-        clearBoard();
-
         // Get today's word
         wordOfTheDay = getWordOfTheDay();
+        wordLength = wordOfTheDay.length;
+
+        // Create the board with correct dimensions
+        createBoard();
 
         // Enable input
         enableInput();
 
-        // Clear message
-        clearMessage();
+        // Close any open modal
+        closeModal();
 
         // Focus input field
         wordleInput.focus();
@@ -156,19 +242,11 @@ document.addEventListener('DOMContentLoaded', function() {
         saveGameState();
     }
 
-    // Clear the game board
-    function clearBoard() {
-        letterTiles.forEach(tile => {
-            tile.textContent = '';
-            tile.className = 'letter-tile';
-        });
-    }
-
     // Restore the board from saved state
     function restoreBoard(boardState) {
         for (let row = 0; row < MAX_GUESSES; row++) {
-            for (let col = 0; col < WORD_LENGTH; col++) {
-                const tileIndex = row * WORD_LENGTH + col;
+            for (let col = 0; col < wordLength; col++) {
+                const tileIndex = row * wordLength + col;
                 const tile = letterTiles[tileIndex];
                 const letterState = boardState[row][col];
 
@@ -189,8 +267,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let input = wordleInput.value.toUpperCase().replace(/[^A-Z]/g, '');
 
         // Limit to word length
-        if (input.length > WORD_LENGTH) {
-            input = input.substring(0, WORD_LENGTH);
+        if (input.length > wordLength) {
+            input = input.substring(0, wordLength);
         }
 
         wordleInput.value = input;
@@ -216,8 +294,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update the visual board with current guess
     function updateBoard() {
         // Clear current row
-        for (let i = 0; i < WORD_LENGTH; i++) {
-            const tileIndex = currentRow * WORD_LENGTH + i;
+        for (let i = 0; i < wordLength; i++) {
+            const tileIndex = currentRow * wordLength + i;
             const tile = letterTiles[tileIndex];
             tile.textContent = '';
             tile.className = 'letter-tile';
@@ -225,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Fill with current guess
         for (let i = 0; i < currentGuess.length; i++) {
-            const tileIndex = currentRow * WORD_LENGTH + i;
+            const tileIndex = currentRow * wordLength + i;
             const tile = letterTiles[tileIndex];
             tile.textContent = currentGuess[i];
             tile.classList.add('filled');
@@ -237,13 +315,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (gameOver) return;
 
         // Validate guess
-        if (currentGuess.length !== WORD_LENGTH) {
-            showMessage('Guess must be 5 letters', 'error');
+        if (currentGuess.length !== wordLength) {
+            showModal('Invalid Guess', `Guess must be ${wordLength} letters`, 'error');
             return;
         }
 
         if (!wordList.map(w => w.toUpperCase()).includes(currentGuess)) {
-            showMessage('Not a valid word', 'error');
+            showModal('Invalid Word', 'Not a valid word', 'error');
             return;
         }
 
@@ -275,10 +353,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create arrays to track which letters have been matched
         const targetLetters = target.split('');
         const guessLetters = guess.split('');
-        const result = Array(WORD_LENGTH).fill('absent');
+        const result = Array(wordLength).fill('absent');
 
         // First pass: mark correct letters
-        for (let i = 0; i < WORD_LENGTH; i++) {
+        for (let i = 0; i < wordLength; i++) {
             if (guessLetters[i] === targetLetters[i]) {
                 result[i] = 'correct';
                 targetLetters[i] = null; // Mark as used
@@ -286,7 +364,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Second pass: mark present letters (correct but wrong position)
-        for (let i = 0; i < WORD_LENGTH; i++) {
+        for (let i = 0; i < wordLength; i++) {
             if (result[i] === 'correct') continue;
 
             const index = targetLetters.indexOf(guessLetters[i]);
@@ -297,8 +375,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Apply the results to the board
-        for (let i = 0; i < WORD_LENGTH; i++) {
-            const tileIndex = currentRow * WORD_LENGTH + i;
+        for (let i = 0; i < wordLength; i++) {
+            const tileIndex = currentRow * wordLength + i;
             const tile = letterTiles[tileIndex];
             tile.classList.add(result[i]);
         }
@@ -307,7 +385,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle game win
     function gameWon() {
         gameOver = true;
-        showMessage(`Congratulations! You found the word in ${currentRow + 1} guess${currentRow + 1 === 1 ? '' : 'es'}!`, 'success');
+        showModal(
+            'Congratulations!',
+            `You found the word in ${currentRow + 1} guess${currentRow + 1 === 1 ? '' : 'es'}!`,
+            'success'
+        );
         disableInput();
 
         // Update stats
@@ -317,11 +399,51 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle game loss
     function gameLost() {
         gameOver = true;
-        showMessage(`Game over! The word was ${wordOfTheDay}.`, 'error');
+        showModal('Game Over', `The word was ${wordOfTheDay}.`, 'error');
         disableInput();
 
         // Update stats
         updateStats(false);
+    }
+
+    // Show modal with message
+    function showModal(title, message, type) {
+        // Set modal content based on type
+        wordleModalTitle.textContent = title;
+        wordleModalMessage.textContent = message;
+
+        // Clear previous icon classes
+        wordleModalIcon.className = 'wordle-modal-icon';
+
+        // Add appropriate icon and styling based on type
+        switch (type) {
+            case 'success':
+                wordleModalIcon.classList.add('success');
+                wordleModalIcon.innerHTML = '<i class="fas fa-check-circle"></i>';
+                break;
+            case 'error':
+                wordleModalIcon.classList.add('error');
+                wordleModalIcon.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
+                break;
+            case 'info':
+                wordleModalIcon.classList.add('info');
+                wordleModalIcon.innerHTML = '<i class="fas fa-info-circle"></i>';
+                break;
+        }
+
+        // Show the modal
+        wordleModal.classList.add('active');
+
+        // Focus the close button for accessibility
+        setTimeout(() => {
+            wordleModalClose.focus();
+        }, 100);
+    }
+
+    // Close modal
+    function closeModal() {
+        wordleModal.classList.remove('active');
+        wordleInput.focus();
     }
 
     // Update statistics
@@ -336,7 +458,13 @@ document.addEventListener('DOMContentLoaded', function() {
             if (won) {
                 stats.gamesWon++;
                 stats.currentStreak++;
-                stats.guessDistribution[guessCount - 1]++;
+
+                // Store guess distribution by word length
+                const lengthKey = wordLength.toString();
+                if (!stats.guessDistribution[lengthKey]) {
+                    stats.guessDistribution[lengthKey] = [0, 0, 0];
+                }
+                stats.guessDistribution[lengthKey][guessCount - 1]++;
 
                 if (stats.currentStreak > stats.maxStreak) {
                     stats.maxStreak = stats.currentStreak;
@@ -360,18 +488,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const winPercentage = stats.gamesPlayed > 0 ? Math.round((stats.gamesWon / stats.gamesPlayed) * 100) : 0;
         winPercentageElement.textContent = `${winPercentage}%`;
 
-        // Update guess distribution
+        // Update guess distribution for current word length
         updateGuessDistribution();
     }
 
     // Update the guess distribution chart
     function updateGuessDistribution() {
-        const maxGuesses = Math.max(...stats.guessDistribution, 1); // Avoid division by zero
+        const lengthKey = wordLength.toString();
+        const distribution = stats.guessDistribution[lengthKey] || [0, 0, 0];
+        const maxGuesses = Math.max(...distribution, 1); // Avoid division by zero
 
         guessDistributionElement.innerHTML = '';
 
         for (let i = 0; i < MAX_GUESSES; i++) {
-            const count = stats.guessDistribution[i] || 0;
+            const count = distribution[i] || 0;
             const percentage = maxGuesses > 0 ? (count / maxGuesses) * 100 : 0;
 
             const row = document.createElement('div');
@@ -387,25 +517,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             guessDistributionElement.appendChild(row);
         }
-    }
-
-    // Show a message to the user
-    function showMessage(text, type) {
-        messageElement.textContent = text;
-        messageElement.className = `wordle-message ${type}`;
-
-        // Auto-hide after 3 seconds for non-error messages
-        if (type !== 'error') {
-            setTimeout(() => {
-                clearMessage();
-            }, 3000);
-        }
-    }
-
-    // Clear the message
-    function clearMessage() {
-        messageElement.textContent = '';
-        messageElement.className = 'wordle-message';
     }
 
     // Enable input
@@ -427,8 +538,8 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let row = 0; row < MAX_GUESSES; row++) {
             const rowState = [];
 
-            for (let col = 0; col < WORD_LENGTH; col++) {
-                const tileIndex = row * WORD_LENGTH + col;
+            for (let col = 0; col < wordLength; col++) {
+                const tileIndex = row * wordLength + col;
                 const tile = letterTiles[tileIndex];
 
                 rowState.push({
@@ -442,6 +553,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const gameState = {
             wordOfTheDay: wordOfTheDay,
+            wordLength: wordLength,
             currentRow: currentRow,
             currentGuess: currentGuess,
             gameOver: gameOver,
