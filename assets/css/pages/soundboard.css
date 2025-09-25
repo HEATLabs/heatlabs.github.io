@@ -404,11 +404,11 @@
 	color: var(--text-primary);
 }
 
-/* Filter adjustments for soundboard - Matching tanks page style */
+/* Filters section */
 .filters-section {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	gap: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
 	margin-bottom: 2rem;
 	background: var(--bg-secondary);
 	padding: 1.5rem;
@@ -416,20 +416,10 @@
 	border: 1px solid var(--border-color);
 }
 
-.filters-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 1.5rem;
-	margin-bottom: 1rem;
-	max-width: 1200px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
 .filter-group {
 	display: flex;
 	flex-direction: column;
+	width: 100%;
 }
 
 .filter-group-title {
@@ -444,26 +434,27 @@
 
 .filter-buttons-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-	gap: 0.5rem;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 0.75rem;
 }
 
 .filter-btn {
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	padding: 0.75rem 1rem;
+	padding: 0.85rem 1.25rem;
 	border-radius: 0.5rem;
 	background-color: var(--bg-tertiary);
 	color: var(--text-primary);
 	border: 1px solid var(--border-color);
 	cursor: pointer;
 	transition: all var(--transition-speed);
-	font-size: 0.85rem;
+	font-size: 0.9rem;
 	text-align: left;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	min-height: 44px;
 }
 
 .filter-btn:hover {
@@ -479,10 +470,11 @@
 }
 
 .filter-btn i {
-	margin-right: 0.5rem;
-	font-size: 0.8rem;
-	width: 16px;
+	margin-right: 0.75rem;
+	font-size: 0.9rem;
+	width: 18px;
 	text-align: center;
+	flex-shrink: 0;
 }
 
 /* Active Filters */
@@ -544,13 +536,8 @@
 }
 
 @media (max-width: 1024px) {
-	.filters-section {
-		grid-template-columns: 1fr;
-		gap: 1.5rem;
-	}
-
 	.filter-buttons-grid {
-		grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 	}
 }
 
@@ -586,14 +573,19 @@
 		margin-bottom: 0.75rem;
 	}
 
+	.filter-buttons-grid {
+		grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+	}
+
 	.filter-btn {
-		padding: 0.6rem 0.75rem;
-		font-size: 0.8rem;
-		justify-content: center;
+		padding: 0.75rem 1rem;
+		font-size: 0.85rem;
+		justify-content: flex-start;
+		min-height: 42px;
 	}
 
 	.filter-btn i {
-		margin-right: 0.35rem;
+		margin-right: 0.5rem;
 	}
 
 	.active-filters-container {
@@ -658,6 +650,7 @@
 
 	.filter-btn {
 		justify-content: flex-start;
+		min-height: 44px;
 	}
 
 	.active-filters {
@@ -675,5 +668,19 @@
 
 	.global-volume-slider {
 		width: 100%;
+	}
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+	.filter-btn {
+		padding: 0.7rem 0.9rem;
+		font-size: 0.82rem;
+		min-height: 40px;
+	}
+
+	.filter-btn i {
+		margin-right: 0.4rem;
+		font-size: 0.85rem;
 	}
 }
