@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Game constants
-    const MAX_GUESSES = 3;
+    const MAX_GUESSES = 5;
 
     // DOM Elements
     const wordleGame = document.getElementById('wordleGame');
