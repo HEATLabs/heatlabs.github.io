@@ -477,18 +477,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Play or stop a sound
     function playSound(soundId) {
+        // If clicking the same sound that's playing, stop it
+        if (soundboardState.currentlyPlaying === soundId) {
+            stopSound(soundId);
+            return;
+        }
+
         // Stop currently playing sound if any
         if (soundboardState.currentlyPlaying) {
             stopSound(soundboardState.currentlyPlaying);
-
-            // If clicking the same sound that's playing, just stop it
-            if (soundboardState.currentlyPlaying === soundId) {
-                soundboardState.currentlyPlaying = null;
-                updatePlayingStatus();
-                // Only update the specific sound card instead of re-rendering all
-                updateSoundCardUI(soundId);
-                return;
-            }
         }
 
         const sound = soundboardState.sounds.find(s => s.soundID === soundId);
@@ -497,6 +494,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create audio element
         const audio = new Audio(sound.soundFile);
         audio.volume = soundboardState.volume;
+
+        // Store the audio element for this sound
+        sound.audioElement = audio;
 
         // Play the sound
         audio.play();
@@ -544,12 +544,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Stop a sound
     function stopSound(soundId) {
-        // Find all audio elements and stop them
-        const audioElements = document.querySelectorAll('audio');
-        audioElements.forEach(audio => {
-            audio.pause();
-            audio.currentTime = 0;
-        });
+        const sound = soundboardState.sounds.find(s => s.soundID === soundId);
+
+        if (sound && sound.audioElement) {
+            // Stop the specific audio element
+            sound.audioElement.pause();
+            sound.audioElement.currentTime = 0;
+            sound.audioElement = null;
+        } else {
+            // Fallback: stop all audio elements if specific one not found
+            const audioElements = document.querySelectorAll('audio');
+            audioElements.forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+        }
 
         soundboardState.currentlyPlaying = null;
         updatePlayingStatus();
