@@ -22,6 +22,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Function to get thumbnail path for videos
+    function getThumbnailPath(videoPath) {
+        // Check if this is a video file
+        const videoExtensions = ['.webm', '.mp4', '.avi', '.mov', '.wmv'];
+        const isVideo = videoExtensions.some(ext => videoPath.toLowerCase().includes(ext));
+
+        if (!isVideo) {
+            return videoPath; // Return original path if not a video
+        }
+
+        // Extract filename and extension
+        const lastSlashIndex = videoPath.lastIndexOf('/');
+        const filenameWithExt = videoPath.substring(lastSlashIndex + 1);
+        const dotIndex = filenameWithExt.lastIndexOf('.');
+        const filename = filenameWithExt.substring(0, dotIndex);
+        const extension = filenameWithExt.substring(dotIndex);
+
+        // Replace extension with .webp for thumbnail
+        const thumbnailExtension = '.webp';
+
+        // Construct thumbnail path by inserting '/thumbnails/' before filename
+        const basePath = videoPath.substring(0, lastSlashIndex + 1);
+        const thumbnailPath = basePath + 'thumbnails/' + filename + thumbnailExtension;
+
+        return thumbnailPath;
+    }
+
     // Create card HTML
     function createTankopediaCard(item) {
         const card = document.createElement('div');
@@ -31,11 +58,15 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
 
-        //Determines what loading an image should use based on its category (Default: Abilities)
+        // Determine image source - use thumbnail for videos, original image for others (Default: Abilities)
+        const imageSrc = item.modalType === 'video' ? getThumbnailPath(item.image) : item.image;
+
+        // Determine loading strategy
         const loadingStrategy = item.category.toLocaleLowerCase() === 'abilities' ? 'eager' : 'lazy';
+
         card.innerHTML = `
             <div class="tankopedia-img-container">
-                <img src="${item.image}" loading="${loadingStrategy}" alt="${item.name}" class="tankopedia-img" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagefailedtoload.webp'">
+                <img src="${imageSrc}" loading="${loadingStrategy}" alt="${item.name}" class="tankopedia-img" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagefailedtoload.webp'">
             </div>
             <div class="tankopedia-info">
                 <h3>${item.name}</h3>
@@ -394,7 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modalVideo.currentTime = 0;
 
         modalVideo.src = item.videoUrl || item.image;
-        modalVideo.setAttribute('poster', item.image);
+        modalVideo.setAttribute('poster', getThumbnailPath(item.image));
         modalId.textContent = 'ID: ' + item.id;
         modalName.textContent = item.name;
         modalCategory.textContent = 'Category: ' + item.category;
