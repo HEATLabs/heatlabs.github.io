@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Only proceed if we found hero elements
     if (heroes.length > 0) {
-        // Generate a random number between 1 and 46
-        const randomImageNumber = Math.floor(Math.random() * 51) + 1;
+        // Generate a random number between 1 and 61
+        const randomImageNumber = Math.floor(Math.random() * 61) + 1;
 
         // Construct the new image URL
         const newImageUrl = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/hero-background/${randomImageNumber}.webp')`;
