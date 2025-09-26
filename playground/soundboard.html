@@ -345,15 +345,15 @@
             <!-- Pagination Controls -->
             <div class="pagination-controls" id="paginationControls" style="display: none;">
               <button id="prevPage" class="pagination-btn">
-                <i class="fas fa-chevron-left"></i>
-                Previous
-              </button>
-              <div class="pagination-info">
-                Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
+                <i class="fas fa-chevron-left"></i> Previous </button>
+              <div class="pagination-info"> Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
               </div>
-              <button id="nextPage" class="pagination-btn">
-                Next
-                <i class="fas fa-chevron-right"></i>
+              <div class="page-jump-container">
+                <span class="page-jump-label">Go to:</span>
+                <input type="number" id="pageJumpInput" class="page-jump-input" min="1" value="1" placeholder="1">
+                <button id="pageJumpBtn" class="page-jump-btn">Go</button>
+              </div>
+              <button id="nextPage" class="pagination-btn"> Next <i class="fas fa-chevron-right"></i>
               </button>
             </div>
             <!-- Loading Indicator -->

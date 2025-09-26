@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextPage = document.getElementById('nextPage');
     const currentPage = document.getElementById('currentPage');
     const totalPages = document.getElementById('totalPages');
+    const pageJumpInput = document.getElementById('pageJumpInput');
+    const pageJumpBtn = document.getElementById('pageJumpBtn');
 
     // Audio context for better sound management
     let audioContext;
@@ -344,6 +346,13 @@ document.addEventListener('DOMContentLoaded', function() {
         currentPage.textContent = soundboardState.currentPage;
         totalPages.textContent = calculatedTotalPages;
 
+        // Update page jump input
+        if (pageJumpInput) {
+            pageJumpInput.value = soundboardState.currentPage;
+            pageJumpInput.setAttribute('max', calculatedTotalPages);
+            pageJumpInput.setAttribute('placeholder', `1-${calculatedTotalPages}`);
+        }
+
         // Show/hide pagination controls
         if (calculatedTotalPages > 1) {
             paginationControls.style.display = 'flex';
@@ -359,6 +368,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const startIndex = (soundboardState.currentPage - 1) * soundboardState.soundsPerPage + 1;
         const endIndex = Math.min(soundboardState.currentPage * soundboardState.soundsPerPage, totalSounds);
         soundsCount.textContent = `${totalSounds} sounds (showing ${startIndex}-${endIndex})`;
+    }
+
+    // Jump to specific page
+    function jumpToPage(pageNumber) {
+        const calculatedTotalPages = Math.ceil(soundboardState.filteredSounds.length / soundboardState.soundsPerPage);
+        const page = Math.max(1, Math.min(pageNumber, calculatedTotalPages));
+
+        if (page !== soundboardState.currentPage) {
+            soundboardState.currentPage = page;
+            soundboardState.preventRender = false;
+            renderSoundCards();
+            updatePagination();
+        }
     }
 
     // Get sounds for current page
@@ -693,6 +715,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 updatePagination();
             }
         });
+
+        // Page jump functionality
+        if (pageJumpInput && pageJumpBtn) {
+            pageJumpInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const page = parseInt(this.value);
+                    if (!isNaN(page) && page > 0) {
+                        jumpToPage(page);
+                    }
+                }
+            });
+
+            pageJumpBtn.addEventListener('click', function() {
+                const page = parseInt(pageJumpInput.value);
+                if (!isNaN(page) && page > 0) {
+                    jumpToPage(page);
+                }
+            });
+        }
 
         // Event delegation for sound cards
         soundsGrid.addEventListener('click', function(e) {
