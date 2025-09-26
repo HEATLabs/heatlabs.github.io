@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+  <!--
+  Hey you... yeah, you with the scraper.
+
+  What are you doing? Parsing divs like it’s 2009?
+  This ain’t a secret government site, it’s fully open source.
+
+  Save yourself the trouble and:
+  Check us out on GitHub: https://github.com/HEATLabs
+  Slide into our Discord: https://discord.gg/KRYEw9aGZT
+
+  Seriously, we *want* you to see the code. Talk to us, we’re cool.
+  Unless you're using regex to parse HTML... then we have *questions*.
+
+  Stay fabulous, dev friend.
+  -->
+<html lang="en">
+  <head>
+    <!-- Main meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Page title displayed in the browser tab -->
+    <title>Fantome - HEAT Labs</title>
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="HEAT Labs - Fantome">
+    <meta name="description" content="Fantome complete stats, armor analysis, and gameplay guide for World of Tanks: HEAT. Performance data, builds, and tactics from HEAT Labs experts.">
+    <meta name="author" content="HEAT Labs Team">
+    <meta name="copyright" content="© 2025 HEAT Labs by SINEWAVE Development. All rights reserved.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="language" content="English">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://heatlabs.github.io/agents/fantome.html">
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" href="../site-data/sitemap.xml">
+    <!-- Theme Checker -->
+    <script>
+      // Immediately set theme class before rendering begins
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          // Default to dark theme if saved or system preference
+          if (savedTheme === 'dark-theme' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark-theme');
+          } else {
+            document.documentElement.classList.add('light-theme');
+          }
+        } catch (e) {
+          console.error('Theme initialization error:', e);
+          document.documentElement.classList.add('light-theme');
+        }
+      })();
+    </script>
+    <!-- Main stylesheets -->
+    <link rel="stylesheet" href="../assets/css/libraries/tailwind.css">
+    <link rel="stylesheet" href="../assets/css/libraries/font-awesome/all.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/misc.css">
+    <link rel="stylesheet" href="../assets/css/pages/agent.css">
+    <link rel="stylesheet" href="../assets/css/modules/outdated-content.css">
+    <link rel="stylesheet" href="../assets/css/modules/settings.css">
+    <link rel="stylesheet" href="../assets/css/modules/header.css">
+    <link rel="stylesheet" href="../assets/css/modules/footer.css">
+    <link rel="stylesheet" href="../assets/css/modules/sidebar.css">
+    <link rel="stylesheet" href="../assets/css/modules/cta.css">
+    <link rel="stylesheet" href="../assets/css/modules/no-scrollbar.css">
+    <link rel="stylesheet" href="../assets/css/modules/search.css">
+    <link rel="stylesheet" href="../assets/css/modules/tooltip.css">
+    <link rel="stylesheet" href="../assets/css/modules/warning.css">
+    <link rel="stylesheet" href="../assets/css/modules/banner.css">
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/favicons/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/favicons/favicon.ico" type="image/x-icon">
+    <!-- Apple Touch Icons (for iOS home screen bookmarks) -->
+    <link rel="apple-touch-icon" sizes="57x57" href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/apple/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/apple/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/apple/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/apple/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/apple/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/apple/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/apple/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/apple/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/apple/apple-icon-180x180.png">
+    <!-- Favicons for different devices -->
+    <link rel="icon" type="image/png" sizes="192x192" href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/android/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/favicons/favicon-16x16.png">
+    <!-- Web Manifest -->
+    <link rel="manifest" href="../site-data/site.manifest">
+    <!-- Windows-specific tiles (for pinned sites in Windows Start menu) -->
+    <meta name="msapplication-TileColor" content="#141312">
+    <meta name="msapplication-TileImage" content="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/microsoft/ms-icon-144x144.png">
+    <meta name="msapplication-config" content="../site-data/browserconfig.xml">
+    <!-- Safari-specific meta tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="HEAT Labs">
+    <!-- Browser UI color -->
+    <meta name="theme-color" content="#141312">
+    <meta name="msapplication-navbutton-color" content="#141312">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#141312">
+    <!-- Open Graph Meta Tags (for social media sharing, mainly Facebook) -->
+    <meta property="og:title" content="HEAT Labs - Fantome">
+    <meta property="og:description" content="Fantome complete stats, armor analysis, and gameplay guide for World of Tanks: HEAT. Performance data, builds, and tactics from HEAT Labs experts.">
+    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/social-share/HEATLabs.png">
+    <meta property="og:url" content="https://heatlabs.github.io/agents/fantome.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="HEAT Labs">
+    <meta property="og:locale" content="en_US">
+    <!-- Twitter Card Meta Tags (for better sharing on Twitter) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HEAT_Labs">
+    <meta name="twitter:creator" content="@HEAT_Labs">
+    <meta name="twitter:title" content="HEAT Labs - Fantome">
+    <meta name="twitter:description" content="Fantome complete stats, armor analysis, and gameplay guide for World of Tanks: HEAT. Performance data, builds, and tactics from HEAT Labs experts.">
+    <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/social-share/HEATLabs.png">
+    <meta name="twitter:image:alt" content="HEAT Labs - Your one-stop solution for comprehensive statistics insights and guides for World of Tanks: HEAT">
+    <!-- agent ID for JavaScript -->
+    <meta id="agent-id" name="agent-id" content="15">
+    <!-- Last Content Update Date -->
+    <meta id="content-update-date" name="content-update-date" content="2025-02-05">
+  </head>
+  <body>
+    <!-- Custom Privacy-Focused Tracking Pixel -->
+    <img src="https://heatlabs-pixel-api.vercel.app/api/track/pcwstats-tracker-pixel-fantome.png" alt="" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;" class="heatlabs-tracking-pixel" data-page="fantome">
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="flex items-center justify-between">
+          <button id="closeSidebar" class="sidebar-close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <nav class="flex-grow">
+        <ul class="space-y-2">
+          <li>
+            <a href="../index.html" class="sidebar-link">
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="../tanks.html" class="sidebar-link">
+              <i class="fas fa-shield-alt"></i>
+              <span>Tank Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="../players.html" class="sidebar-link wip">
+              <i class="fas fa-user"></i>
+              <span>Player Statistics</span>
+            </a>
+          </li>
+          <li>
+            <a href="../maps.html" class="sidebar-link">
+              <i class="fas fa-map"></i>
+              <span>Map Knowledge</span>
+            </a>
+          </li>
+          <li>
+            <a href="../guides.html" class="sidebar-link">
+              <i class="fas fa-book-open"></i>
+              <span>Community Guides</span>
+            </a>
+          </li>
+          <li>
+            <a href="../strategy-planner.html" class="sidebar-link wip">
+              <i class="fas fa-chess"></i>
+              <span>Strategy Planner</span>
+            </a>
+          </li>
+          <li>
+            <a href="../builds.html" class="sidebar-link">
+              <i class="fas fa-wrench"></i>
+              <span>Common Builds</span>
+            </a>
+          </li>
+          <li>
+            <a href="../playground.html" class="sidebar-link">
+              <i class="fa-solid fa-gamepad"></i>
+              <span>Playground</span>
+            </a>
+          </li>
+          <li>
+            <a href="../news.html" class="sidebar-link">
+              <i class="fas fa-newspaper"></i>
+              <span>Game News</span>
+            </a>
+          </li>
+          <li>
+            <a href="../asset-gallery.html" class="sidebar-link">
+              <i class="fas fa-database"></i>
+              <span>Asset Gallery</span>
+            </a>
+          </li>
+          <li>
+            <a href="../bug-hunting.html" class="sidebar-link">
+              <i class="fas fa-bug"></i>
+              <span>Bug Hunting</span>
+            </a>
+          </li>
+          <li>
+            <a href="../tournaments.html" class="sidebar-link">
+              <i class="fas fa-trophy"></i>
+              <span>Tournaments</span>
+            </a>
+          </li>
+          <li>
+            <a href="../blog.html" class="sidebar-link">
+              <i class="fas fa-blog"></i>
+              <span>Official Blog</span>
+            </a>
+          </li>
+          <li>
+            <a href="../legal.html" class="sidebar-link">
+              <i class="fas fa-balance-scale"></i>
+              <span>Project Policies</span>
+            </a>
+          </li>
+          <li>
+            <a href="../resources/about-us.html" class="sidebar-link">
+              <i class="fas fa-info-circle"></i>
+              <span>About the Project</span>
+            </a>
+          </li>
+          <li>
+            <a href="../resources/credits.html" class="sidebar-link">
+              <i class="fas fa-users"></i>
+              <span>Community Credits</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- Main Content -->
+    <div class="content-wrapper">
+      <!-- Header/Navbar -->
+      <header class="navbar">
+        <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center py-3">
+            <div class="flex items-center space-x-4">
+              <button id="openSidebar" class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <div class="brand-logo-container">
+                <a href="../index.html" class="brand-logo">
+                  <img src="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/logo/logo.webp" alt="HEAT Labs Logo" class="brand-logo-img">
+                  <span>HEAT Labs</span>
+                </a>
+                <a href="../Website-Changelog" class="beta-tag">BETA</a>
+              </div>
+            </div>
+            <div class="navbar-actions">
+              <button id="openSearch" class="search-button">
+                <i class="fas fa-search"></i>
+              </button>
+              <button id="openSettings" class="settings-button">
+                  <i class="fas fa-cog"></i>
+              </button>
+              <a href="https://heatlabs.github.io/Website-Status" class="system-status">
+                <i class="fa-solid fa-server"></i>
+              </a>
+              <a href="https://heatlabs.github.io/Website-Statistics" class="system-status">
+                <i class="fa-solid fa-chart-column"></i>
+              </a>
+              <a href="https://heatlabs.github.io/Website-Changelog" class="system-status">
+                <i class="fa-solid fa-clipboard-list"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Agent Header -->
+      <section class="agent-header">
+        <div class="container mx-auto px-4">
+          <div class="agent-meta">
+            <span class="agent-status-badge">Unknown</span>
+            <span>
+              <i class="fas fa-users mr-1"></i> Number of Tanks: </span>
+          </div>
+          <h1 class="agent-title">Agent</h1>
+          <p class="agent-description">This agent is not yet available. Statistics, details, and player feedback will be added once it's officially released.</p>
+        </div>
+      </section>
+      <!-- Agent Content -->
+      <section class="section py-8">
+        <div class="container mx-auto px-4">
+          <div class="agent-content-wrapper">
+            <!-- Main Content -->
+            <div class="agent-main-content">
+              <!-- agent Image -->
+              <div class="agent-image mb-8">
+                <img src="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagecomingsoon.webp" alt="M1E1 agent" class="rounded-lg shadow-lg">
+                <p class="text-center text-sm text-gray-500 mt-2">AI-upscaled image based on a low-resolution asset found in the World of Tanks: HEAT game files. This is a temporary placeholder created by the HEAT Labs Team and will be replaced once a higher-quality render or official image of the vehicle becomes available.</p>
+              </div>
+              <!-- Ability Overview -->
+              <div class="mb-12">
+                <h2 id="ability-overview">Ability Overview</h2>
+                <div class="abilities-grid" id="abilities-container">
+                  <!-- Abilities will be dynamically inserted here by JavaScript -->
+                </div>
+              </div>
+              <!-- Compatible Agents -->
+              <div class="mb-12">
+                <h2 id="compatible-tanks">Compatible Tanks</h2>
+                <p class="mb-4 text-center">All tanks that this agent can use</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8" id="tanks-container">
+                  <!-- Tanks will be dynamically inserted here by JavaScript -->
+                </div>
+                <div class="agent-button text-center mt-8">
+                  <a href="../tanks.html" class="btn-accent">
+                    <i class="fa-solid fa-id-badge mr-2"></i>View All Vehicles </a>
+                </div>
+              </div>
+              <!-- Community Feedback -->
+              <div class="mb-12">
+                <h2 id="community-feedback">Community Feedback</h2>
+                <p class="mb-4 text-center">Player opinions and ratings based on community surveys:</p>
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-8 my-8">
+                  <div class="feedback-card">
+                    <h3>Common Player Feedback</h3>
+                    <div class="feedback-item positive">
+                      <i class="fas fa-thumbs-up"></i>
+                      <div>
+                        <p>"Your insights could be featured here, tell us what stands out to you about this agent!"</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Video Tutorials -->
+              <div class="mb-12">
+                <h2 id="video-tutorials">Video Tutorials</h2>
+                <p class="mb-4 text-center">Learn from video guides created by community contributors</p>
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-8 my-8">
+                  <div class="video-card">
+                    <div class="video-info text-center">
+                      <h4>Want to help improve this page?</h4>
+                      <p class="video-description">Share videos from your favorite creators that showcase this agent, or send in your own! If you're a content creator and have featured this agent in your content, reach out to us, we’d love to highlight your work here!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Tips from Top Players -->
+              <div class="mb-12">
+                <h2 id="pro-tips">Tips from Top Players</h2>
+                <p class="mb-4 text-center">Strategic advice from players with high win rates in this vehicle:</p>
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-8 my-8">
+                  <div class="pro-tip-card">
+                    <div class="pro-tip-header">
+                      <img src="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/team-members/SINEWAVE.webp" alt="Player Avatar" class="avatar">
+                      <div>
+                        <h4>SINEWAVE</h4>
+                        <span>Lead Developer</span>
+                      </div>
+                    </div>
+                    <div class="pro-tip">
+                      <p>Got strategic insights or know a high-level player who does? Help us grow this section by submitting tips that make a real difference on this agent. If you're a seasoned player with a strong win rate, we'd love to feature your advice, get in touch!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Agent Summary Section -->
+              <div class="mb-12">
+                <h2 id="summary">Agent Summary</h2>
+                <p class="mb-4 text-center">This vehicle is not yet available. Statistics, details, and player feedback will be added once it's officially released.</p>
+                <div class="action-buttons text-center my-8">
+                  <a href="../agents.html" class="btn-accent mt-4">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to agent List </a>
+                  <a href="#" class="btn-accent mt-4">
+                    <i class="fas fa-thumbs-up mr-2"></i>Rate This agent </a>
+                </div>
+              </div>
+            </div>
+            <!-- Desktop Sidebar -->
+            <div class="agent-sidebar hidden lg:block">
+              <!-- Map Quick Facts -->
+              <div class="sidebar-card">
+                <h3>Agent Quick Facts</h3>
+                <ul class="space-y-2">
+                  <li>
+                    <strong>Agent Status:</strong> Info coming soon
+                  </li>
+                  <li>
+                    <strong>Number of Tanks:</strong> Info coming soon
+                  </li>
+                </ul>
+              </div>
+              <!-- agent Guides -->
+              <div class="sidebar-card">
+                <h3>Related Guides</h3>
+                <div class="related-guide">
+                  <h4>
+                    <a href="../resources/contact-us.html">No Guides Available Yet</a>
+                  </h4>
+                  <p>We're still working on writing guides for this section. If you’ve got helpful info to share, click right here to submit your own guide!</p>
+                </div>
+                <div class="button text-center">
+                  <a href="../guides.html">View all Guides</a>
+                </div>
+              </div>
+              <!-- agent Gallery -->
+              <div class="sidebar-card">
+                <h3>Agent Gallery</h3>
+                <div class="grid grid-cols-2 gap-2">
+                  <a href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagecomingsoon.webp" class="gallery-thumbnail">
+                    <img src="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagecomingsoon.webp" alt=" Front View">
+                  </a>
+                  <a href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagecomingsoon.webp" class="gallery-thumbnail">
+                    <img src="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagecomingsoon.webp" alt=" Front View">
+                  </a>
+                  <a href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagecomingsoon.webp" class="gallery-thumbnail">
+                    <img src="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagecomingsoon.webp" alt=" Front View">
+                  </a>
+                  <a href="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagecomingsoon.webp" class="gallery-thumbnail">
+                    <img src="https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagecomingsoon.webp" alt=" Front View">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Search Modal -->
+      <div class="search-overlay" id="searchOverlay"></div>
+      <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+          <div class="search-input-container">
+            <i class="fas fa-search search-modal-icon"></i>
+            <input type="text" placeholder="Search agents, maps, guides..." class="search-modal-input" autofocus>
+          </div>
+          <div class="search-suggestions">
+            <p class="search-suggestions-title">Past Searches</p>
+            <div class="past-searches-tags">
+              <!-- Past searches will be dynamically inserted here -->
+            </div>
+            <div class="search-results-container">
+              <div class="search-results-placeholder">
+                <i class="fas fa-search"></i>
+                <p>Your search results will appear here</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <footer class="footer bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-10 space-y-10">
+          <!-- Top Row -->
+          <div class="footer-brand flex flex-col items-center text-center">
+            <div>
+              <h3 class="text-2xl font-semibold">HEAT Labs</h3>
+              <p class="text-gray-400">Your go-to resource for World of Tanks: HEAT statistics and gameplay information.</p>
+            </div>
+            <div class="flex space-x-4 text-xl">
+              <a href="https://discord.com/invite/caEFCA9ScF" class="social-icon" title="Official Discord">
+                <i class="fab fa-discord"></i>
+              </a>
+              <a href="https://x.com/HEAT_Labs" class="social-icon" title="Official X">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://github.com/HEATLabs" class="social-icon" title="Official GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.youtube.com/@HEATLabs-Official" class="social-icon" title="Official YouTube">
+                <i class="fab fa-youtube"></i>
+              </a>
+              <a href="https://next.nexusmods.com/profile/HEATLabs" class="social-icon" title="Official Nexus Mods">
+                <i class="fas fa-gamepad"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Middle Row -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-10 text-center">
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Tools</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../maps.html">Map Knowledge</a>
+                </li>
+                <li>
+                  <a href="../tanks.html">Tank Statistics</a>
+                </li>
+                <li>
+                  <a href="../asset-gallery.html">Asset Gallery</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Community</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../guides.html">Community Guides</a>
+                </li>
+                <li>
+                  <a href="../builds.html">Common Builds</a>
+                </li>
+                <li>
+                  <a href="../tournaments.html">Tournaments</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">HEAT Labs</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../resources/about-us.html">About the Project</a>
+                </li>
+                <li>
+                  <a href="../blog.html">Official Blog</a>
+                </li>
+                <li>
+                  <a href="../news.html">Game News</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Credits</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../resources/credits.html">Community Credits</a>
+                </li>
+                <li>
+                  <a href="../resources/support-us.html">Support the Project</a>
+                </li>
+                <li>
+                  <a href="../resources/contact-us.html">Contact Us</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Legal</h3>
+              <ul class="footer-links text-gray-400">
+                <li>
+                  <a href="../legal/terms-of-service.html">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="../legal/project-license.html">Project License</a>
+                </li>
+                <li>
+                  <a href="../legal/privacy-policy.html">Privacy Policy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Contact Row -->
+          <div class="text-center">
+            <h3 class="text-lg font-semibold mb-1">Contact</h3>
+            <p class="text-gray-400 mb-2">Have suggestions, found a bug or want to help?</p>
+            <a href="../resources/contact-us.html" class="btn-accent mt-4">
+              <i class="fas fa-envelope mr-2"></i>Send Feedback </a>
+            <a href="../resources/get-involved.html" class="btn-accent mt-4">
+              <i class="fas fa-users mr-2"></i>Get Involved </a>
+          </div>
+          <!-- Bottom Disclaimer -->
+          <div class="text-center text-sm text-gray-500 space-y-1 border-t border-gray-700 pt-1">
+            <p> HEAT Labs is a community-made project and is not associated with, endorsed by, or affiliated with <a href="https://wotheat.com" class="disclaimer-link">World of Tanks: HEAT</a> or <a href="https://www.wargaming.net" class="disclaimer-link">Wargaming.net</a>.</p>
+            <p>&copy; 2025 HEAT Labs by SINEWAVE Development. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- Image Gallery Modal -->
+    <div class="gallery-modal" id="galleryModal">
+      <div class="gallery-modal-content">
+        <button class="gallery-close-btn" id="galleryCloseBtn">
+          <i class="fas fa-times"></i>
+        </button>
+        <button class="gallery-nav-btn gallery-prev-btn" id="galleryPrevBtn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="gallery-main-image-container">
+          <img id="galleryMainImage" src="" alt="Gallery Image">
+          <div class="gallery-image-caption" id="galleryImageCaption"></div>
+        </div>
+        <button class="gallery-nav-btn gallery-next-btn" id="galleryNextBtn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="gallery-thumbnails-container" id="galleryThumbnailsContainer"></div>
+      </div>
+    </div>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/misc.js"></script>
+    <script src="../assets/js/modules/image-protection.js"></script>
+    <script src="../assets/js/modules/outdated-content.js"></script>
+    <script src="../assets/js/libraries/chart.js"></script>
+    <script src="../assets/js/modules/sidebar.js"></script>
+    <script src="../assets/js/modules/theme-loader.js"></script>
+    <script src="../assets/js/pages/agent.js"></script>
+    <script src="../assets/js/modules/agent-chart.js"></script>
+    <script src="../assets/js/modules/search.js"></script>
+    <script src="../assets/js/modules/tooltip.js"></script>
+    <script src="../assets/js/modules/warning.js"></script>
+    <script src="../assets/js/modules/banner.js"></script>
+    <script src="../assets/js/easter-eggs/confidential.js"></script>
+    <script src="../assets/js/easter-eggs/australian-localization.js"></script>
+    <script src="../assets/js/modules/settings.js"></script>
+  </body>
+</html>
