@@ -161,8 +161,134 @@ document.addEventListener('DOMContentLoaded', function() {
         controlsRight.insertBefore(volumeControl, controlsRight.firstChild);
     }
 
+    // Calculate available filter options based on current filters
+    function calculateAvailableFilters() {
+        let availableSounds = soundboardState.sounds;
+
+        // Apply current filters to find available sounds
+        if (soundboardState.filters.category.length > 0) {
+            availableSounds = availableSounds.filter(sound =>
+                soundboardState.filters.category.includes(sound.category)
+            );
+        }
+
+        if (soundboardState.filters.source.length > 0) {
+            availableSounds = availableSounds.filter(sound =>
+                soundboardState.filters.source.includes(sound.soundSource)
+            );
+        }
+
+        if (soundboardState.filters.type.length > 0) {
+            availableSounds = availableSounds.filter(sound =>
+                soundboardState.filters.type.includes(sound.soundType)
+            );
+        }
+
+        if (soundboardState.searchTerm) {
+            const term = soundboardState.searchTerm.toLowerCase();
+            availableSounds = availableSounds.filter(sound =>
+                sound.soundName.toLowerCase().includes(term) ||
+                sound.soundDescription.toLowerCase().includes(term) ||
+                sound.soundID.toLowerCase().includes(term)
+            );
+        }
+
+        if (soundboardState.showFavorites) {
+            availableSounds = availableSounds.filter(sound =>
+                soundboardState.favorites.includes(sound.soundID)
+            );
+        }
+
+        // Get available values for each filter type
+        const availableCategories = [...new Set(availableSounds.map(sound => sound.category).filter(Boolean))];
+        const availableSources = [...new Set(availableSounds.map(sound => sound.soundSource).filter(Boolean))];
+        const availableTypes = [...new Set(availableSounds.map(sound => sound.soundType).filter(Boolean))];
+
+        return {
+            categories: availableCategories,
+            sources: availableSources,
+            types: availableTypes
+        };
+    }
+
+    // Update filter button states (enable/disable)
+    function updateFilterButtonStates() {
+        const availableFilters = calculateAvailableFilters();
+
+        // Update category filter buttons
+        const categoryButtons = document.querySelectorAll('.filter-btn[data-category]');
+        categoryButtons.forEach(button => {
+            const category = button.getAttribute('data-category');
+            const isActive = soundboardState.filters.category.includes(category);
+            const isAvailable = availableFilters.categories.includes(category);
+
+            if (isActive) {
+                button.classList.add('active');
+                button.disabled = false;
+            } else {
+                button.classList.remove('active');
+                button.disabled = !isAvailable;
+
+                if (!isAvailable) {
+                    button.title = 'No sounds available with current filters';
+                } else {
+                    button.title = '';
+                }
+            }
+        });
+
+        // Update source filter buttons
+        const sourceButtons = document.querySelectorAll('.filter-btn[data-source]');
+        sourceButtons.forEach(button => {
+            const source = button.getAttribute('data-source');
+            const isActive = soundboardState.filters.source.includes(source);
+            const isAvailable = availableFilters.sources.includes(source);
+
+            if (isActive) {
+                button.classList.add('active');
+                button.disabled = false;
+            } else {
+                button.classList.remove('active');
+                button.disabled = !isAvailable;
+
+                if (!isAvailable) {
+                    button.title = 'No sounds available with current filters';
+                } else {
+                    button.title = '';
+                }
+            }
+        });
+
+        // Update type filter buttons
+        const typeButtons = document.querySelectorAll('.filter-btn[data-type]');
+        typeButtons.forEach(button => {
+            const type = button.getAttribute('data-type');
+            const isActive = soundboardState.filters.type.includes(type);
+            const isAvailable = availableFilters.types.includes(type);
+
+            if (isActive) {
+                button.classList.add('active');
+                button.disabled = false;
+            } else {
+                button.classList.remove('active');
+                button.disabled = !isAvailable;
+
+                if (!isAvailable) {
+                    button.title = 'No sounds available with current filters';
+                } else {
+                    button.title = '';
+                }
+            }
+        });
+    }
+
     // Toggle filter on/off
     function toggleFilter(filterType, value, button) {
+        // Don't process if button is disabled (unless it's active)
+        if (button.disabled && !button.classList.contains('active')) {
+            return;
+        }
+
         const index = soundboardState.filters[filterType].indexOf(value);
 
         if (index === -1) {
@@ -175,8 +301,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         soundboardState.currentPage = 1; // Reset to first page when filters change
         soundboardState.preventRender = false; // Ensure normal rendering
+
         updateActiveFilters();
         filterSounds();
+        updateFilterButtonStates();
     }
 
     // Update active filters display
@@ -227,6 +355,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 soundboardState.currentPage = 1;
                 soundboardState.preventRender = false;
                 filterSounds();
+                updateFilterButtonStates();
             });
             activeFilters.appendChild(pill);
         }
@@ -247,6 +376,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 soundboardState.currentPage = 1;
                 soundboardState.preventRender = false;
                 filterSounds();
+                updateFilterButtonStates();
             });
             activeFilters.appendChild(pill);
         }
@@ -281,6 +411,7 @@ document.addEventListener('DOMContentLoaded', function() {
             soundboardState.preventRender = false;
             updateActiveFilters();
             filterSounds();
+            updateFilterButtonStates();
         });
 
         return pill;
@@ -486,6 +617,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update UI if we're showing favorites
         if (soundboardState.showFavorites) {
             filterSounds();
+            updateFilterButtonStates();
         } else {
             // Just update the favorite button for this sound
             const favoriteBtn = document.querySelector(`.favorite-btn[data-sound-id="${soundId}"]`);
@@ -670,6 +802,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Render initial sounds
         filterSounds();
 
+        // Update filter button states initially
+        updateFilterButtonStates();
+
         // Set up event listeners
         setupEventListeners();
     }
@@ -682,6 +817,7 @@ document.addEventListener('DOMContentLoaded', function() {
             soundboardState.currentPage = 1;
             soundboardState.preventRender = false;
             filterSounds();
+            updateFilterButtonStates();
         });
 
         // Toggle favorites
@@ -691,6 +827,7 @@ document.addEventListener('DOMContentLoaded', function() {
             soundboardState.currentPage = 1;
             soundboardState.preventRender = false;
             filterSounds();
+            updateFilterButtonStates();
         });
 
         // Play random sound
