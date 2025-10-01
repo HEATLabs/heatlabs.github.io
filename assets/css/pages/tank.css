@@ -2016,6 +2016,222 @@ body.chart-theme-updated {
 	margin-bottom: 0;
 }
 
+/* 3D Model Viewer Styles */
+.tank-model-viewer {
+	position: relative;
+	width: 100%;
+	height: 500px;
+	background-color: var(--bg-secondary);
+	border-radius: 0.75rem;
+	box-shadow: var(--shadow-lg);
+	border: 1px solid var(--border-color);
+	overflow: hidden;
+	margin-bottom: 1rem;
+}
+
+.model-viewer-container {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.model-viewer-canvas {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.model-viewer-controls {
+	position: absolute;
+	bottom: 1rem;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 0.5rem;
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 0.75rem;
+	border-radius: 2rem;
+	backdrop-filter: blur(10px);
+	z-index: 10;
+}
+
+.model-control-btn {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: var(--accent-color);
+	color: white;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	font-size: 1rem;
+}
+
+.model-control-btn:hover {
+	background-color: var(--accent-hover);
+	transform: scale(1.1);
+}
+
+.model-control-btn.active {
+	background-color: var(--accent-color-dark);
+	box-shadow: 0 0 0 2px white;
+}
+
+.texture-selector {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 0.75rem;
+	border-radius: 0.5rem;
+	backdrop-filter: blur(10px);
+	z-index: 10;
+}
+
+.texture-option {
+	width: 40px;
+	height: 40px;
+	border-radius: 4px;
+	overflow: hidden;
+	cursor: pointer;
+	border: 2px solid transparent;
+	transition: all 0.3s ease;
+	margin-bottom: 0.5rem;
+}
+
+.texture-option:last-child {
+	margin-bottom: 0;
+}
+
+.texture-option.active {
+	border-color: var(--accent-color);
+	transform: scale(1.1);
+}
+
+.texture-option img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.model-loading {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--bg-secondary);
+	z-index: 5;
+}
+
+.model-loading-spinner {
+	width: 50px;
+	height: 50px;
+	border: 4px solid var(--border-color);
+	border-top: 4px solid var(--accent-color);
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+	margin-bottom: 1rem;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.model-error {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--bg-secondary);
+	color: var(--text-secondary);
+	text-align: center;
+	padding: 2rem;
+	z-index: 5;
+}
+
+.model-error i {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+	color: var(--accent-color);
+}
+
+.fullscreen-model {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1000;
+	background-color: rgba(0, 0, 0, 0.9);
+}
+
+.fullscreen-model .tank-model-viewer {
+	width: 100%;
+	height: 100%;
+	border-radius: 0;
+	margin: 0;
+}
+
+.fullscreen-close {
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	width: 50px;
+	height: 50px;
+	background-color: var(--accent-color);
+	color: white;
+	border: none;
+	border-radius: 50%;
+	font-size: 1.5rem;
+	cursor: pointer;
+	z-index: 1001;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@media (max-width: 768px) {
+	.tank-model-viewer {
+		height: 400px;
+	}
+
+	.model-control-btn {
+		width: 35px;
+		height: 35px;
+		font-size: 0.9rem;
+	}
+
+	.texture-selector {
+		top: 0.5rem;
+		right: 0.5rem;
+		padding: 0.5rem;
+	}
+
+	.texture-option {
+		width: 35px;
+		height: 35px;
+	}
+}
+
 @media (max-width: 768px) {
 	.builds-container {
 		grid-template-columns: 1fr;
