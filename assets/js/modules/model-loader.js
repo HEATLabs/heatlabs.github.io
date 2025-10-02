@@ -27,8 +27,8 @@ class ModelLoader {
         this.texturePath = 'https://cdn.jsdelivr.net/gh/HEATLabs/Tank-Models@main/test-model/';
 
         // Model configuration (Local)
-        // this.modelPath = '../../Database-Files/tanks/test-model/60TP.FBX';
-        // this.texturePath = '../../Database-Files/tanks/test-model/';
+        // this.modelPath = '../../Tank-Models/test-model/60TP.FBX';
+        // this.texturePath = '../../Tank-Models/test-model/';
 
         // Store original dimensions for fullscreen handling
         this.originalWidth = null;
