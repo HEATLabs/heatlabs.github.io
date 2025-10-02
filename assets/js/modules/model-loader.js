@@ -596,21 +596,33 @@ class ModelLoader {
         }
 
         // Restore original dimensions and trigger resize
+        this.restoreOriginalSize();
+    }
+
+    restoreOriginalSize() {
+        if (!this.camera || !this.renderer) return;
+
+        // Use a small delay to ensure the DOM has updated
         setTimeout(() => {
-            if (this.originalWidth && this.originalHeight) {
-                this.renderer.setSize(this.originalWidth, this.originalHeight);
-                this.camera.aspect = this.originalWidth / this.originalHeight;
-                this.camera.updateProjectionMatrix();
+            const width = this.originalWidth || this.container.clientWidth;
+            const height = this.originalHeight || this.container.clientHeight;
+
+            this.camera.aspect = width / height;
+            this.camera.updateProjectionMatrix();
+            this.renderer.setSize(width, height);
+
+            // Force a render update
+            if (this.renderer && this.scene && this.camera) {
+                this.renderer.render(this.scene, this.camera);
             }
-            this.onWindowResize();
-        }, 100);
+        }, 50);
     }
 
     onWindowResize() {
         if (!this.camera || !this.renderer) return;
 
         // Only update if we're not in fullscreen mode
-        if (!document.fullscreenElement) {
+        if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
             const width = this.container.clientWidth;
             const height = this.container.clientHeight;
 
@@ -732,7 +744,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (modelViewer) {
         // Check if Three.js is available
         if (typeof THREE !== 'undefined') {
-            new ModelLoader('tank-model-viewer');
+            window.modelLoaderInstance = new ModelLoader('tank-model-viewer');
         } else {
             console.error('Three.js is not loaded');
             modelViewer.innerHTML = `
@@ -755,6 +767,11 @@ document.addEventListener('fullscreenchange', function() {
         if (closeBtn) {
             closeBtn.remove();
         }
+        // Trigger size restoration when exiting via Escape key
+        const modelLoader = window.modelLoaderInstance;
+        if (modelLoader && modelLoader.restoreOriginalSize) {
+            modelLoader.restoreOriginalSize();
+        }
     }
 });
 
@@ -765,6 +782,27 @@ document.addEventListener('webkitfullscreenchange', function() {
         const closeBtn = modelViewer.querySelector('.fullscreen-close');
         if (closeBtn) {
             closeBtn.remove();
+        }
+        // Trigger size restoration when exiting via Escape key
+        const modelLoader = window.modelLoaderInstance;
+        if (modelLoader && modelLoader.restoreOriginalSize) {
+            modelLoader.restoreOriginalSize();
+        }
+    }
+});
+
+document.addEventListener('msfullscreenchange', function() {
+    const modelViewer = document.getElementById('tank-model-viewer');
+    if (!document.msFullscreenElement && modelViewer) {
+        modelViewer.classList.remove('fullscreen-model');
+        const closeBtn = modelViewer.querySelector('.fullscreen-close');
+        if (closeBtn) {
+            closeBtn.remove();
+        }
+        // Trigger size restoration when exiting via Escape key
+        const modelLoader = window.modelLoaderInstance;
+        if (modelLoader && modelLoader.restoreOriginalSize) {
+            modelLoader.restoreOriginalSize();
         }
     }
 });
