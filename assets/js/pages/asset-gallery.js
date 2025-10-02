@@ -60,20 +60,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Determine image source - use thumbnail for videos, original image for others (Default: Abilities)
         const imageSrc = item.modalType === 'video' ? getThumbnailPath(item.image) : item.image;
+        const isAbilities = item.category.toLocaleLowerCase() === 'abilities';
 
-        // Determine loading strategy
-        const loadingStrategy = item.category.toLocaleLowerCase() === 'abilities' ? 'eager' : 'lazy';
+        // Different strategies based on importance
+        const loadingStrategy = isAbilities ? 'eager' : 'lazy';
+        const decodingStrategy = isAbilities ? 'sync' : 'async';
+        const imageStyle = !isAbilities ? 'style="opacity: 0; transition: opacity 0.1s ease;"' : '';
 
         card.innerHTML = `
-            <div class="tankopedia-img-container">
-                <img src="${imageSrc}" loading="${loadingStrategy}" alt="${item.name}" class="tankopedia-img" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagefailedtoload.webp'">
-            </div>
-            <div class="tankopedia-info">
-                <h3>${item.name}</h3>
-                <p>${item.description.substring(0, 60)}</p>
-            </div>
-        `;
+        <div class="tankopedia-img-container">
+            <img src="${imageSrc}" loading="${loadingStrategy}" decoding="${decodingStrategy}" alt="${item.name}" class="tankopedia-img" ${imageStyle} onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagefailedtoload.webp'; this.style.opacity='1'">
+        </div>
+        <div class="tankopedia-info">
+            <h3>${item.name}</h3>
+            <p>${item.description.substring(0, 60)}</p>
+        </div>
+    `;
 
+        const img = card.querySelector('.tankopedia-img');
+
+        if (isAbilities) {
+            // For Abilities
+            img.decode?.().catch(console.error);
+        } else {
+            // Lazy images
+            img.addEventListener('load', function() {
+                //console.log(`Lazy image decoded and faded in: ${item.name}`);
+                this.style.opacity = '1';
+            });
+
+            if (img.complete) {
+                img.style.opacity = '1';
+            }
+        }
         // Add click event to open modal
         card.addEventListener('click', function() {
             openTankopediaModal(item);
