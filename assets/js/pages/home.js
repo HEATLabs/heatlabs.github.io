@@ -2,7 +2,69 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Fetch fun facts data from JSON
     fetchFunFactsData();
+
+    // Initialize hero counters
+    initializeHeroCounters();
 });
+
+// Hero Counters Animation
+async function initializeHeroCounters() {
+    try {
+        // Fetch all required data
+        const [agentsData, mapsData, tanksData] = await Promise.all([
+            fetch('https://raw.githubusercontent.com/HEATLabs/Website-Configs/refs/heads/main/agents.json').then(res => res.json()),
+            fetch('https://raw.githubusercontent.com/HEATLabs/Website-Configs/refs/heads/main/maps.json').then(res => res.json()),
+            fetch('https://raw.githubusercontent.com/HEATLabs/Website-Configs/refs/heads/main/tanks.json').then(res => res.json())
+        ]);
+
+        // Count all items
+        const agentsCount = agentsData.agents.length;
+        const mapsCount = mapsData.maps.length;
+        const tanksCount = tanksData.length;
+
+        // Speed factor: higher = faster, lower = slower
+        const speedFactor = 2;
+
+        // Animate counters with speed factor
+        animateHeroCounter('agents-count', agentsCount, 1500, speedFactor);
+        animateHeroCounter('maps-count', mapsCount, 1500, speedFactor);
+        animateHeroCounter('tanks-count', tanksCount, 1500, speedFactor);
+
+    } catch (error) {
+        console.error('Error loading hero counters data:', error);
+        // Show N/A if fetch fails
+        document.getElementById('agents-count').textContent = 'N/A';
+        document.getElementById('maps-count').textContent = 'N/A';
+        document.getElementById('tanks-count').textContent = 'N/A';
+    }
+}
+
+function animateHeroCounter(elementId, targetValue, duration, speedFactor = 1) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+
+    let startValue = 0;
+    const startTime = performance.now();
+
+    function updateCounter(currentTime) {
+        const elapsedTime = currentTime - startTime;
+        const progress = Math.min(elapsedTime / duration, 1);
+
+        // Apply speed factor
+        const adjustedProgress = Math.min(progress * speedFactor, 1);
+        const currentValue = Math.floor(startValue + (targetValue - startValue) * adjustedProgress);
+
+        element.textContent = currentValue.toLocaleString();
+
+        if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.textContent = targetValue.toLocaleString();
+        }
+    }
+
+    requestAnimationFrame(updateCounter);
+}
 
 async function fetchFunFactsData() {
     try {

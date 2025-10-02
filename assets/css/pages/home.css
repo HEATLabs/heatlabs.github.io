@@ -59,6 +59,91 @@
 	font-size: 1.125rem;
 }
 
+/* Home Hero Counters Section */
+.hero-counters {
+	display: flex;
+	justify-content: center;
+	gap: 3rem;
+	margin-top: -2.5rem;
+	margin-bottom: 1rem;
+}
+
+.hero-counter {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding: 1.5rem;
+	border-radius: 1rem;
+	box-shadow: var(--shadow);
+	transition: all 0.3s ease;
+	min-width: 140px;
+}
+
+.hero-counter-number {
+	font-size: 2.5rem;
+	font-weight: 700;
+	color: var(--accent-color);
+	transition: all 0.3s ease;
+	min-height: 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.hero-counter-label {
+	font-size: 0.9rem;
+	color: var(--text-secondary);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+/* Responsive adjustments for hero counters */
+@media (max-width: 991px) {
+	.hero-counters {
+		gap: 2rem;
+	}
+
+	.hero-counter {
+		min-width: 220px;
+		padding: 1.25rem;
+	}
+
+	.hero-counter-number {
+		font-size: 2rem;
+	}
+}
+
+@media (max-width: 767px) {
+	.hero-counters {
+		gap: 1rem;
+	}
+
+	.hero-counter {
+		min-width: 100px;
+		padding: 1rem;
+	}
+
+	.hero-counter-number {
+		font-size: 1.75rem;
+	}
+}
+
+@media (max-width: 575px) {
+	.hero-counters {
+		gap: 1rem;
+		max-width: 200px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.hero-counter {
+		min-width: auto;
+		padding: 1.5rem;
+	}
+}
+
 /* Features Section */
 .features-section {
 	padding: 5rem 0;
