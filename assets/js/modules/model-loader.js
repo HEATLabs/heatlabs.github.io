@@ -647,14 +647,35 @@ class ModelLoader {
             <div class="model-loading-spinner"></div>
             <p>Loading 3D Model...</p>
         `;
+
+        // Make the loading state non-blocking
+        loadingDiv.style.pointerEvents = 'none';
+        loadingDiv.style.zIndex = '10';
+
         this.container.appendChild(loadingDiv);
         this.loadingElement = loadingDiv;
+
+        // Allow user interaction with the rest of the page
+        this.container.style.pointerEvents = 'auto';
+
+        // Ensure the canvas itself wont block interactions during loading
+        if (this.renderer && this.renderer.domElement) {
+            this.renderer.domElement.style.pointerEvents = 'auto';
+        }
     }
 
     hideLoadingState() {
         if (this.loadingElement) {
             this.loadingElement.remove();
             this.loadingElement = null;
+        }
+
+        // Restore normal pointer events for the container
+        this.container.style.pointerEvents = '';
+
+        // Ensure canvas has proper pointer events after loading
+        if (this.renderer && this.renderer.domElement) {
+            this.renderer.domElement.style.pointerEvents = 'auto';
         }
     }
 
@@ -667,7 +688,15 @@ class ModelLoader {
             <p>${message}</p>
             <button class="btn-accent mt-4" onclick="location.reload()">Retry</button>
         `;
+
+        // Make error state non-blocking
+        errorDiv.style.pointerEvents = 'auto';
+        errorDiv.style.zIndex = '20';
+
         this.container.appendChild(errorDiv);
+
+        // Ensure user can still interact with the page
+        this.container.style.pointerEvents = 'auto';
     }
 
     animate() {
