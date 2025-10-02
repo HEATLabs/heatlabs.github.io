@@ -16,7 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
         currentPage: 1,
         soundsPerPage: 40,
         // Flag to prevent unnecessary re-renders
-        preventRender: false
+        preventRender: false,
+        // Share modal state
+        shareModal: null,
+        currentSharedSound: null,
+        // Track audio elements
+        audioElements: new Map()
     };
 
     // DOM elements
@@ -53,6 +58,227 @@ document.addEventListener('DOMContentLoaded', function() {
             globalGainNode.connect(audioContext.destination);
         } catch (e) {
             console.error('Web Audio API not supported', e);
+        }
+    }
+
+    // Create share modal
+    function createShareModal() {
+        const modal = document.createElement('div');
+        modal.className = 'share-modal';
+        modal.innerHTML = `
+            <div class="share-modal-content">
+                <div class="share-modal-header">
+                    <h3 class="share-modal-title">Share this sound!</h3>
+                    <button class="share-modal-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="share-sound-preview">
+                    <div class="share-sound-info">
+                        <div class="share-sound-name" id="shareSoundName">Sound Name</div>
+                        <div class="share-sound-description" id="shareSoundDescription">Sound description will appear here</div>
+                    </div>
+                    <div class="share-sound-meta" id="shareSoundMeta">
+                        <!-- Meta tags will be inserted here -->
+                    </div>
+                </div>
+                <div class="share-url-section">
+                    <div class="share-url-label">Share this sound:</div>
+                    <div class="share-url-container">
+                        <input type="text" class="share-url-input" id="shareUrlInput" readonly>
+                        <button class="share-copy-btn" id="shareCopyBtn">
+                            <i class="fas fa-copy"></i>
+                            Copy
+                        </button>
+                    </div>
+                </div>
+                <div class="share-sound-player">
+                    <button class="play-btn share-play-btn" id="sharePlayBtn">
+                        <i class="fas fa-play"></i>
+                        Play
+                    </button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+        soundboardState.shareModal = modal;
+
+        // Add event listeners for modal
+        const closeBtn = modal.querySelector('.share-modal-close');
+        const copyBtn = modal.querySelector('#shareCopyBtn');
+        const playBtn = modal.querySelector('#sharePlayBtn');
+
+        closeBtn.addEventListener('click', closeShareModal);
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeShareModal();
+            }
+        });
+
+        copyBtn.addEventListener('click', copyShareUrl);
+
+        // Direct event listener for share modal play button
+        playBtn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent event bubbling
+            toggleShareSoundPlayback();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeShareModal();
+            }
+        });
+    }
+
+    // Open share modal for a specific sound
+    function openShareModal(soundId) {
+        // Stop any currently playing sound before opening modal
+        if (soundboardState.currentlyPlaying) {
+            stopSound(soundboardState.currentlyPlaying);
+        }
+
+        const sound = soundboardState.sounds.find(s => s.soundID === soundId);
+        if (!sound) return;
+
+        soundboardState.currentSharedSound = sound;
+
+        // Update modal content
+        document.getElementById('shareSoundName').textContent = sound.soundName;
+        document.getElementById('shareSoundDescription').textContent = sound.soundDescription;
+
+        // Update meta tags
+        const metaContainer = document.getElementById('shareSoundMeta');
+        metaContainer.innerHTML = `
+            <span>${sound.category}</span>
+            <span>${sound.soundType}</span>
+            ${sound.soundSource ? `<span>${sound.soundSource}</span>` : ''}
+        `;
+
+        // Update share URL
+        const shareUrl = generateShareUrl(soundId);
+        document.getElementById('shareUrlInput').value = shareUrl;
+
+        // Update play button state BEFORE showing modal
+        updateSharePlayButton();
+
+        // Show modal
+        soundboardState.shareModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Close share modal
+    function closeShareModal() {
+        if (soundboardState.shareModal) {
+            soundboardState.shareModal.classList.remove('active');
+            document.body.style.overflow = '';
+
+            // Stop the sound when closing modal
+            if (soundboardState.currentSharedSound && soundboardState.currentlyPlaying === soundboardState.currentSharedSound.soundID) {
+                stopSound(soundboardState.currentSharedSound.soundID);
+            }
+
+            soundboardState.currentSharedSound = null;
+        }
+    }
+
+    // Generate share URL for a sound
+    function generateShareUrl(soundId) {
+        const currentUrl = window.location.href.split('?')[0]; // Remove existing query params
+        return `${currentUrl}?sound=${soundId}`;
+    }
+
+    // Copy share URL to clipboard
+    async function copyShareUrl() {
+        const urlInput = document.getElementById('shareUrlInput');
+        const copyBtn = document.getElementById('shareCopyBtn');
+
+        try {
+            await navigator.clipboard.writeText(urlInput.value);
+
+            // Visual feedback
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            copyBtn.classList.add('copied');
+
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                copyBtn.classList.remove('copied');
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+            // Fallback for older browsers
+            urlInput.select();
+            document.execCommand('copy');
+        }
+    }
+
+    // Toggle sound playback in share modal
+    function toggleShareSoundPlayback() {
+        if (!soundboardState.currentSharedSound) return;
+
+        const soundId = soundboardState.currentSharedSound.soundID;
+
+        // If we're already playing this sound, stop it
+        if (soundboardState.currentlyPlaying === soundId) {
+            stopSound(soundId);
+        } else {
+            // If another sound is playing, stop it first
+            if (soundboardState.currentlyPlaying) {
+                stopSound(soundboardState.currentlyPlaying);
+            }
+
+            // Small delay to ensure previous sound is fully stopped
+            setTimeout(() => {
+                playSound(soundId);
+            }, 50);
+        }
+    }
+
+    // Update play button in share modal
+    function updateSharePlayButton() {
+        const playBtn = document.getElementById('sharePlayBtn');
+        if (!playBtn) return;
+
+        if (!soundboardState.currentSharedSound) {
+            playBtn.classList.remove('playing');
+            playBtn.innerHTML = '<i class="fas fa-play"></i> Play';
+            return;
+        }
+
+        const isPlaying = soundboardState.currentlyPlaying === soundboardState.currentSharedSound.soundID;
+
+        if (isPlaying) {
+            playBtn.classList.add('playing');
+            playBtn.innerHTML = '<i class="fas fa-stop"></i> Stop';
+        } else {
+            playBtn.classList.remove('playing');
+            playBtn.innerHTML = '<i class="fas fa-play"></i> Play';
+        }
+    }
+
+    // Check URL for sound parameter and open modal if present
+    function checkUrlForSound() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const soundId = urlParams.get('sound');
+
+        if (soundId) {
+            // Wait for sounds to load, then open modal
+            const checkSound = setInterval(() => {
+                const soundExists = soundboardState.sounds.some(s => s.soundID === soundId);
+                if (soundExists) {
+                    clearInterval(checkSound);
+                    openShareModal(soundId);
+
+                    // Clean URL without reloading page
+                    const cleanUrl = window.location.href.split('?')[0];
+                    window.history.replaceState({}, document.title, cleanUrl);
+                }
+            }, 100);
+
+            // Timeout after 5 seconds
+            setTimeout(() => clearInterval(checkSound), 5000);
         }
     }
 
@@ -544,8 +770,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <div class="sound-actions">
                     <button class="sound-action-btn favorite-btn ${isFavorited ? 'favorited' : ''}"
-                            data-sound-id="${sound.soundID}">
+                            data-sound-id="${sound.soundID}" title="Add to favorites">
                         <i class="${isFavorited ? 'fas' : 'far'} fa-heart"></i>
+                    </button>
+                    <button class="sound-action-btn share-btn"
+                            data-sound-id="${sound.soundID}" title="Share sound">
+                        <i class="fas fa-share-alt"></i>
                     </button>
                 </div>
             </div>
@@ -631,12 +861,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Play or stop a sound
     function playSound(soundId) {
-        // If clicking the same sound that's playing, stop it
-        if (soundboardState.currentlyPlaying === soundId) {
-            stopSound(soundId);
-            return;
-        }
-
         // Stop currently playing sound if any
         if (soundboardState.currentlyPlaying) {
             stopSound(soundboardState.currentlyPlaying);
@@ -650,91 +874,110 @@ document.addEventListener('DOMContentLoaded', function() {
         audio.volume = soundboardState.volume;
 
         // Store the audio element for this sound
-        sound.audioElement = audio;
+        soundboardState.audioElements.set(soundId, audio);
 
-        // Play the sound
-        audio.play();
-        soundboardState.currentlyPlaying = soundId;
-
-        // Update UI without re-rendering all cards
-        updatePlayingStatus();
-        updateSoundCardUI(soundId);
-
-        // Handle audio end
+        // Set up audio event listeners
         audio.addEventListener('ended', () => {
             soundboardState.currentlyPlaying = null;
+            soundboardState.audioElements.delete(soundId);
+            updatePlayButtons();
+            updateSharePlayButton();
             updatePlayingStatus();
-            updateSoundCardUI(soundId);
         });
 
-        // Handle audio errors
-        audio.addEventListener('error', () => {
-            console.error('Error playing sound:', sound.soundName);
+        audio.addEventListener('error', (e) => {
+            console.error('Error playing sound:', soundId, e);
             soundboardState.currentlyPlaying = null;
+            soundboardState.audioElements.delete(soundId);
+            updatePlayButtons();
+            updateSharePlayButton();
             updatePlayingStatus();
-            updateSoundCardUI(soundId);
         });
-    }
 
-    // Update only the specific sound card UI instead of re-rendering all
-    function updateSoundCardUI(soundId) {
-        const soundCard = document.querySelector(`.sound-card[data-sound-id="${soundId}"]`);
-        if (!soundCard) return;
+        // Use a promise to handle the play request properly
+        const playPromise = audio.play();
 
-        const isPlaying = soundboardState.currentlyPlaying === soundId;
-        const playBtn = soundCard.querySelector('.play-btn');
-        const playIcon = playBtn.querySelector('i');
-
-        if (isPlaying) {
-            playBtn.classList.add('playing');
-            playIcon.className = 'fas fa-stop';
-            playBtn.innerHTML = `<i class="fas fa-stop"></i> Stop`;
-        } else {
-            playBtn.classList.remove('playing');
-            playIcon.className = 'fas fa-play';
-            playBtn.innerHTML = `<i class="fas fa-play"></i> Play`;
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                // Playback started successfully
+                soundboardState.currentlyPlaying = soundId;
+                updatePlayButtons();
+                updateSharePlayButton();
+                updatePlayingStatus();
+            }).catch(error => {
+                console.error('Playback failed:', error);
+                soundboardState.currentlyPlaying = null;
+                soundboardState.audioElements.delete(soundId);
+                updatePlayButtons();
+                updateSharePlayButton();
+                updatePlayingStatus();
+            });
         }
     }
 
     // Stop a sound
     function stopSound(soundId) {
-        const sound = soundboardState.sounds.find(s => s.soundID === soundId);
+        // Get the audio element from our Map
+        const audio = soundboardState.audioElements.get(soundId);
 
-        if (sound && sound.audioElement) {
-            // Stop the specific audio element
-            sound.audioElement.pause();
-            sound.audioElement.currentTime = 0;
-            sound.audioElement = null;
-        } else {
-            // Fallback: stop all audio elements if specific one not found
-            const audioElements = document.querySelectorAll('audio');
-            audioElements.forEach(audio => {
+        if (audio) {
+            try {
+                // Stop the specific audio element
                 audio.pause();
                 audio.currentTime = 0;
-            });
+
+                // Remove the audio element from our Map
+                soundboardState.audioElements.delete(soundId);
+            } catch (e) {
+                console.error('Error stopping sound:', e);
+            }
         }
 
-        soundboardState.currentlyPlaying = null;
+        // Additional cleanup
+        soundboardState.audioElements.forEach((audio, id) => {
+            try {
+                if (!audio.paused || audio.currentTime > 0) {
+                    audio.pause();
+                    audio.currentTime = 0;
+                    soundboardState.audioElements.delete(id);
+                }
+            } catch (e) {
+                // Ignore errors on cleanup (leftover)
+            }
+        });
+
+        if (soundboardState.currentlyPlaying === soundId) {
+            soundboardState.currentlyPlaying = null;
+        }
+
+        updatePlayButtons();
+        updateSharePlayButton();
         updatePlayingStatus();
+    }
 
-        // Update the specific sound card if it exists
-        if (soundId) {
-            updateSoundCardUI(soundId);
-        }
+    // Update all play buttons
+    function updatePlayButtons() {
+        const playButtons = document.querySelectorAll('.play-btn');
+        playButtons.forEach(button => {
+            const soundId = button.getAttribute('data-sound-id');
+            const isPlaying = soundboardState.currentlyPlaying === soundId;
+
+            button.classList.toggle('playing', isPlaying);
+            button.innerHTML = `<i class="fas ${isPlaying ? 'fa-stop' : 'fa-play'}"></i> ${isPlaying ? 'Stop' : 'Play'}`;
+        });
     }
 
     // Update playing status display
     function updatePlayingStatus() {
         if (soundboardState.currentlyPlaying) {
-            const sound = soundboardState.sounds.find(s => s.soundID === soundboardState.currentlyPlaying);
-            playingStatus.textContent = `Now playing: ${sound ? sound.soundName : 'Unknown'}`;
-            playingStatus.className = 'playing-status playing';
-            playingStatus.innerHTML = `<i class="fas fa-volume-up"></i> Now playing: ${sound ? sound.soundName : 'Unknown'}`;
-        } else {
-            playingStatus.textContent = 'No sound playing';
-            playingStatus.className = 'playing-status';
-            playingStatus.innerHTML = `<i class="fas fa-volume-mute"></i> No sound playing`;
+            const playingSound = soundboardState.sounds.find(s => s.soundID === soundboardState.currentlyPlaying);
+            if (playingSound) {
+                playingStatus.innerHTML = `<i class="fas fa-volume-up"></i> Now Playing: ${playingSound.soundName}`;
+                playingStatus.style.display = 'flex';
+                return;
+            }
         }
+        playingStatus.style.display = 'none';
     }
 
     // Set global volume
@@ -743,8 +986,7 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('soundboardVolume', volume);
 
         // Update all audio elements
-        const audioElements = document.querySelectorAll('audio');
-        audioElements.forEach(audio => {
+        soundboardState.audioElements.forEach(audio => {
             audio.volume = volume;
         });
 
@@ -761,157 +1003,145 @@ document.addEventListener('DOMContentLoaded', function() {
         const randomIndex = Math.floor(Math.random() * soundboardState.filteredSounds.length);
         const randomSound = soundboardState.filteredSounds[randomIndex];
 
-        // Set flag to prevent full re-render
-        soundboardState.preventRender = true;
-
         playSound(randomSound.soundID);
-
-        // Reset the flag after a short delay
-        setTimeout(() => {
-            soundboardState.preventRender = false;
-        }, 100);
     }
 
     // Initialize the soundboard
     async function initSoundboard() {
-        // Initialize audio context
-        initAudioContext();
+        try {
+            // Show loading indicator
+            loadingIndicator.style.display = 'flex';
+            soundsGrid.innerHTML = '';
 
-        // Show loading indicator
-        loadingIndicator.style.display = 'flex';
-        soundsGrid.style.display = 'none';
+            // Initialize audio context
+            initAudioContext();
 
-        // Fetch sounds data
-        const data = await fetchSoundsData();
-        soundboardState.sounds = processSoundsData(data);
-        soundboardState.filteredSounds = [...soundboardState.sounds];
+            // Create share modal
+            createShareModal();
 
-        // Initialize filter buttons
-        initFilterButtons(soundboardState.sounds);
+            // Fetch and process sounds data
+            const data = await fetchSoundsData();
+            soundboardState.sounds = processSoundsData(data);
+            soundboardState.filteredSounds = soundboardState.sounds;
 
-        // Create global volume control
-        createGlobalVolumeControl();
+            // Initialize UI components
+            initFilterButtons(soundboardState.sounds);
+            createGlobalVolumeControl();
+            updateActiveFilters();
+            updatePagination();
+            renderSoundCards();
+            updateFilterButtonStates();
 
-        // Set initial volume
-        setVolume(soundboardState.volume);
+            // Hide loading indicator
+            loadingIndicator.style.display = 'none';
 
-        // Hide loading indicator and show sounds
-        loadingIndicator.style.display = 'none';
-        soundsGrid.style.display = 'grid';
+            // Check URL for sound parameter
+            checkUrlForSound();
 
-        // Render initial sounds
-        filterSounds();
-
-        // Update filter button states initially
-        updateFilterButtonStates();
-
-        // Set up event listeners
-        setupEventListeners();
+        } catch (error) {
+            console.error('Error initializing soundboard:', error);
+            loadingIndicator.style.display = 'none';
+            soundsGrid.innerHTML = '<div class="error-message">Failed to load sounds. Please try again later.</div>';
+        }
     }
 
-    // Set up event listeners
-    function setupEventListeners() {
-        // Search input
-        soundSearch.addEventListener('input', function() {
-            soundboardState.searchTerm = this.value.trim();
-            soundboardState.currentPage = 1;
+    // Event Listeners
+
+    // Search input
+    soundSearch.addEventListener('input', function() {
+        soundboardState.searchTerm = this.value.trim();
+        soundboardState.currentPage = 1;
+        soundboardState.preventRender = false;
+        filterSounds();
+        updateFilterButtonStates();
+    });
+
+    // Toggle favorites
+    toggleFavorites.addEventListener('click', function() {
+        soundboardState.showFavorites = !soundboardState.showFavorites;
+        this.classList.toggle('active', soundboardState.showFavorites);
+        soundboardState.currentPage = 1;
+        soundboardState.preventRender = false;
+        filterSounds();
+        updateActiveFilters();
+        updateFilterButtonStates();
+    });
+
+    // Play random sound
+    playRandom.addEventListener('click', playRandomSound);
+
+    // Pagination controls
+    prevPage.addEventListener('click', () => {
+        if (soundboardState.currentPage > 1) {
+            soundboardState.currentPage--;
             soundboardState.preventRender = false;
-            filterSounds();
-            updateFilterButtonStates();
-        });
-
-        // Toggle favorites
-        toggleFavorites.addEventListener('click', function() {
-            this.classList.toggle('active');
-            soundboardState.showFavorites = !soundboardState.showFavorites;
-            soundboardState.currentPage = 1;
-            soundboardState.preventRender = false;
-            filterSounds();
-            updateFilterButtonStates();
-        });
-
-        // Play random sound
-        playRandom.addEventListener('click', playRandomSound);
-
-        // Pagination controls
-        prevPage.addEventListener('click', () => {
-            if (soundboardState.currentPage > 1) {
-                soundboardState.currentPage--;
-                soundboardState.preventRender = false;
-                renderSoundCards();
-                updatePagination();
-            }
-        });
-
-        nextPage.addEventListener('click', () => {
-            const calculatedTotalPages = Math.ceil(soundboardState.filteredSounds.length / soundboardState.soundsPerPage);
-            if (soundboardState.currentPage < calculatedTotalPages) {
-                soundboardState.currentPage++;
-                soundboardState.preventRender = false;
-                renderSoundCards();
-                updatePagination();
-            }
-        });
-
-        // Page jump functionality
-        if (pageJumpInput && pageJumpBtn) {
-            pageJumpInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    const page = parseInt(this.value);
-                    if (!isNaN(page) && page > 0) {
-                        jumpToPage(page);
-                    }
-                }
-            });
-
-            pageJumpBtn.addEventListener('click', function() {
-                const page = parseInt(pageJumpInput.value);
-                if (!isNaN(page) && page > 0) {
-                    jumpToPage(page);
-                }
-            });
+            renderSoundCards();
+            updatePagination();
         }
+    });
 
-        // Event delegation for sound cards
-        soundsGrid.addEventListener('click', function(e) {
-            const playBtn = e.target.closest('.play-btn');
-            const favoriteBtn = e.target.closest('.favorite-btn');
+    nextPage.addEventListener('click', () => {
+        const totalPages = Math.ceil(soundboardState.filteredSounds.length / soundboardState.soundsPerPage);
+        if (soundboardState.currentPage < totalPages) {
+            soundboardState.currentPage++;
+            soundboardState.preventRender = false;
+            renderSoundCards();
+            updatePagination();
+        }
+    });
 
-            if (playBtn) {
-                const soundId = playBtn.getAttribute('data-sound-id');
-                soundboardState.preventRender = true; // Prevent re-render for individual plays
-                playSound(soundId);
-                setTimeout(() => {
-                    soundboardState.preventRender = false;
-                }, 100);
-            }
-
-            if (favoriteBtn) {
-                const soundId = favoriteBtn.getAttribute('data-sound-id');
-                toggleFavorite(soundId);
+    // Page jump functionality
+    if (pageJumpInput && pageJumpBtn) {
+        pageJumpBtn.addEventListener('click', () => {
+            const pageNumber = parseInt(pageJumpInput.value);
+            if (!isNaN(pageNumber) && pageNumber > 0) {
+                jumpToPage(pageNumber);
             }
         });
 
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            // Space bar to play/stop (when not focused on input)
-            if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-                e.preventDefault();
+        pageJumpInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const pageNumber = parseInt(pageJumpInput.value);
+                if (!isNaN(pageNumber) && pageNumber > 0) {
+                    jumpToPage(pageNumber);
+                }
+            }
+        });
+    }
+
+    // Event delegation for dynamic elements
+    document.addEventListener('click', function(e) {
+        // Play button in sound cards
+        if (e.target.closest('.play-btn') && !e.target.closest('.share-play-btn')) {
+            const button = e.target.closest('.play-btn');
+            const soundId = button.getAttribute('data-sound-id');
+
+            if (soundboardState.currentlyPlaying === soundId) {
+                stopSound(soundId);
+            } else {
+                // If another sound is playing, stop it first
                 if (soundboardState.currentlyPlaying) {
                     stopSound(soundboardState.currentlyPlaying);
-                } else if (soundboardState.filteredSounds.length > 0) {
-                    soundboardState.preventRender = true;
-                    playRandomSound();
                 }
+                playSound(soundId);
             }
+        }
 
-            // Escape to stop sound
-            if (e.code === 'Escape' && soundboardState.currentlyPlaying) {
-                stopSound(soundboardState.currentlyPlaying);
-            }
-        });
-    }
+        // Favorite button
+        else if (e.target.closest('.favorite-btn')) {
+            const button = e.target.closest('.favorite-btn');
+            const soundId = button.getAttribute('data-sound-id');
+            toggleFavorite(soundId);
+        }
 
-    // Initialize the soundboard when DOM is loaded
+        // Share button
+        else if (e.target.closest('.share-btn')) {
+            const button = e.target.closest('.share-btn');
+            const soundId = button.getAttribute('data-sound-id');
+            openShareModal(soundId);
+        }
+    });
+
+    // Initialize the soundboard
     initSoundboard();
 });
