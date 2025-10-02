@@ -23,8 +23,8 @@ class ModelLoader {
         this.shadowsEnabled = true;
 
         // Model configuration (Prod)
-        this.modelPath = 'https://cdn.jsdelivr.net/gh/HEATLabs/Database-Files@main/tanks/test-model/60TP.fbx';
-        this.texturePath = 'https://cdn.jsdelivr.net/gh/HEATLabs/Database-Files@main/tanks/test-model/';
+        this.modelPath = 'https://cdn.jsdelivr.net/gh/HEATLabs/Tank-Models@main/test-model/60TP.fbx';
+        this.texturePath = 'https://cdn.jsdelivr.net/gh/HEATLabs/Tank-Models@main/test-model/';
 
         // Model configuration (Local)
         // this.modelPath = '../../Database-Files/tanks/test-model/60TP.FBX';
