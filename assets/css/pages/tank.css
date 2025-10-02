@@ -2071,12 +2071,12 @@ body.chart-theme-updated {
 }
 
 .model-control-btn:hover {
-	background-color: var(--accent-hover);
+	background-color: var(accent-color-hover);
 	transform: scale(1.1);
 }
 
 .model-control-btn.active {
-	background-color: var(--accent-color-dark);
+	background-color: var(accent-color-light);
 	box-shadow: 0 0 0 2px white;
 }
 
