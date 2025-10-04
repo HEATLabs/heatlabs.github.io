@@ -2,10 +2,11 @@
 // Social media redirect easter Egg
 (() => {
     const secretCodes = {
-        'youtube': 'https://www.youtube.com/@HEATLabs',
-        'twitter': 'https://x.com/HEATLabs',
+        'youtube': 'https://www.youtube.com/@HEATLabs-Official',
+        'twitter': 'https://x.com/HEAT_Labs',
         'github': 'https://github.com/HEATLabs',
-        'discord': 'https://discord.com/invite/2nHHHBWNDw'
+        'discord': 'https://discord.com/invite/caEFCA9ScF',
+        'nexus': 'https://next.nexusmods.com/profile/HEATLabs'
     };
 
     let inputBuffer = '';
