@@ -1,0 +1,115 @@
+/* Radio Easter Egg Styles */
+.arabic-radio-modal {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: white;
+    font-family: inherit;
+    z-index: 9999;
+    transform: translateY(120%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.arabic-radio-modal.show {
+    transform: translateY(0);
+}
+
+.arabic-radio-header {
+    padding: 12px 15px;
+    background: #141312;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.arabic-radio-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.arabic-radio-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.arabic-radio-close:hover {
+    color: #ccc;
+}
+
+.arabic-radio-body {
+    padding: 15px;
+}
+
+.arabic-radio-station-info {
+    margin-bottom: 15px;
+}
+
+.arabic-radio-station-name {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.arabic-radio-station-country {
+    font-size: 12px;
+    color: #aaa;
+}
+
+.arabic-radio-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.arabic-radio-controls button {
+    background: #333;
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.arabic-radio-controls button:hover {
+    background: #444;
+}
+
+.arabic-radio-volume {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.arabic-radio-volume-slider {
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+@media (max-width: 400px) {
+    .arabic-radio-modal {
+        width: calc(100% - 40px);
+        right: 10px;
+        bottom: 10px;
+    }
+}
