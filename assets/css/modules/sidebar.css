@@ -101,27 +101,6 @@
 	font-weight: 600;
 }
 
-/* WIP link indicator */
-.sidebar-link.wip::after {
-	content: "WIP";
-	display: inline-block;
-	background-color: var(--accent-color-light);
-	color: var(--accent-color);
-	font-size: 0.7rem;
-	padding: 0.15rem 0.4rem;
-	border-radius: 0.25rem;
-	margin-left: 0.5rem;
-	font-weight: bold;
-	text-transform: uppercase;
-	opacity: 0;
-	transition: opacity var(--transition-speed);
-}
-
-.sidebar:hover .sidebar-link.wip::after,
-.sidebar.open .sidebar-link.wip::after {
-	opacity: 1;
-}
-
 /* Mobile styles */
 @media (max-width: 768px) {
 	.sidebar {
@@ -218,78 +197,4 @@
 	.hamburger-menu {
 		display: none;
 	}
-}
-
-/* WIP Modal */
-.wip-modal {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background-color: var(--bg-primary);
-	padding: 2rem;
-	border-radius: 0.5rem;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-	z-index: 1100;
-	max-width: 90%;
-	width: 400px;
-	text-align: center;
-	opacity: 0;
-	visibility: hidden;
-	transition: opacity var(--transition-speed), visibility var(--transition-speed);
-}
-
-.wip-modal.open {
-	opacity: 1;
-	visibility: visible;
-}
-
-.wip-modal-overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.7);
-	z-index: 1099;
-	opacity: 0;
-	visibility: hidden;
-	transition: opacity var(--transition-speed), visibility var(--transition-speed);
-	backdrop-filter: blur(3px);
-}
-
-.wip-modal-overlay.open {
-	opacity: 1;
-	visibility: visible;
-}
-
-.wip-modal-icon {
-	font-size: 3rem;
-	color: var(--accent-color);
-	margin-bottom: 1rem;
-}
-
-.wip-modal-title {
-	font-size: 1.5rem;
-	margin-bottom: 1rem;
-	color: var(--text-primary);
-}
-
-.wip-modal-content {
-	color: var(--text-secondary);
-	margin-bottom: 1.5rem;
-}
-
-.wip-modal-close {
-	background-color: var(--accent-color);
-	color: white;
-	border: none;
-	padding: 0.5rem 1.5rem;
-	border-radius: 0.25rem;
-	cursor: pointer;
-	transition: background-color var(--transition-speed);
-}
-
-.wip-modal-close:hover {
-	background-color: var(--accent-color-hover);
 }
