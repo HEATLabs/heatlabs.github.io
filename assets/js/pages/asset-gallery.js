@@ -1,7 +1,7 @@
-// Tankopedia Page JS
+// Asset Gallery Page JS
 document.addEventListener('DOMContentLoaded', function() {
     // Fetch data
-    async function fetchTankopediaData() {
+    async function fetchassetGalleryData() {
         try {
             const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/asset-gallery.json');
 
@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // const response = await fetch('../Website-Configs/asset-gallery.json');
 
             if (!response.ok) {
-                throw new Error('Failed to load tankopedia data');
+                throw new Error('Failed to load Asset Gallery data');
             }
             const data = await response.json();
             return data;
         } catch (error) {
-            console.error('Error loading tankopedia data:', error);
+            console.error('Error loading Asset Gallery data:', error);
             return {
                 category_order: [],
                 categories: []
@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Create card HTML
-    function createTankopediaCard(item) {
+    function createassetGalleryCard(item) {
         const card = document.createElement('div');
-        card.className = 'tankopedia-card';
+        card.className = 'assetGallery-card';
         card.setAttribute('data-category', item.category);
         card.setAttribute('data-name', item.name);
         card.style.opacity = '0';
@@ -68,16 +68,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const imageStyle = !isAbilities ? 'style="opacity: 0; transition: opacity 0.1s ease;"' : '';
 
         card.innerHTML = `
-        <div class="tankopedia-img-container">
-            <img src="${imageSrc}" loading="${loadingStrategy}" decoding="${decodingStrategy}" alt="${item.name}" class="tankopedia-img" ${imageStyle} onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagefailedtoload.webp'; this.style.opacity='1'">
+        <div class="assetGallery-img-container">
+            <img src="${imageSrc}" loading="${loadingStrategy}" decoding="${decodingStrategy}" alt="${item.name}" class="assetGallery-img" ${imageStyle} onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagefailedtoload.webp'; this.style.opacity='1'">
         </div>
-        <div class="tankopedia-info">
+        <div class="assetGallery-info">
             <h3>${item.name}</h3>
             <p>${item.description.substring(0, 60)}</p>
         </div>
     `;
 
-        const img = card.querySelector('.tankopedia-img');
+        const img = card.querySelector('.assetGallery-img');
 
         if (isAbilities) {
             // For Abilities
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         // Add click event to open modal
         card.addEventListener('click', function() {
-            openTankopediaModal(item);
+            openassetGalleryModal(item);
         });
 
         return card;
@@ -118,13 +118,13 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="container mx-auto px-4">
                 <h2 class="section-title">${category.name}</h2>
                 ${category.description ? `<p class="category-description text-center mb-10">${category.description}</p>` : ''}
-                <div class="tankopedia-grid">
+                <div class="assetGallery-grid">
                     <!-- Items will be loaded here -->
                 </div>
             </div>
         `;
 
-        const grid = section.querySelector('.tankopedia-grid');
+        const grid = section.querySelector('.assetGallery-grid');
 
         // Sort items alphabetically
         const sortedItems = sortItemsAlphabetically(category.items);
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sortedItems.forEach(function(item, index) {
             // Add category info to each item for modal
             item.category = category.name;
-            const card = createTankopediaCard(item);
+            const card = createassetGalleryCard(item);
             grid.appendChild(card);
 
             // Animate card into view
@@ -232,14 +232,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Render all category sections
-    async function renderTankopediaSections() {
-        const data = await fetchTankopediaData();
+    async function renderassetGallerySections() {
+        const data = await fetchassetGalleryData();
         const category_order = data.category_order || [];
         const categories = data.categories || [];
         const categoriesContainer = document.querySelector('#categories-container');
 
         if (categories.length === 0) {
-            categoriesContainer.innerHTML = '<p class="text-center py-10">Failed to load tankopedia data. Please try again later.</p>';
+            categoriesContainer.innerHTML = '<p class="text-center py-10">Failed to load Asset Gallery data. Please try again later.</p>';
             return;
         }
 
@@ -307,13 +307,13 @@ document.addEventListener('DOMContentLoaded', function() {
             threshold: 0.1
         });
 
-        document.querySelectorAll('.tankopedia-card').forEach(function(card) {
+        document.querySelectorAll('.assetGallery-card').forEach(function(card) {
             observer.observe(card);
         });
     }
 
     // Initialize modals
-    function initTankopediaModals() {
+    function initassetGalleryModals() {
         const modalOverlays = document.querySelectorAll('.modal-overlay');
         const modalCloses = document.querySelectorAll('.modal-close');
 
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Open modal with item data
-    function openTankopediaModal(item) {
+    function openassetGalleryModal(item) {
         // Determine which modal to show based on item.modalType or default to standard
         const modalType = item.modalType || 'standard';
 
@@ -379,14 +379,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Standard Modal
     function openStandardModal(item) {
-        const modal = document.getElementById('tankopediaModalStandard');
-        const modalOverlay = document.getElementById('tankopediaModalOverlay');
-        const modalImage = document.getElementById('tankopediaModalStandardImage');
-        const modalName = document.getElementById('tankopediaModalStandardName');
-        const modalId = document.getElementById('tankopediaModalStandardId');
-        const modalCategory = document.getElementById('tankopediaModalStandardCategory');
-        const modalDescription = document.getElementById('tankopediaModalStandardDescription');
-        const modalHowToObtain = document.getElementById('tankopediaModalStandardHowToObtain');
+        const modal = document.getElementById('assetGalleryModalStandard');
+        const modalOverlay = document.getElementById('assetGalleryModalOverlay');
+        const modalImage = document.getElementById('assetGalleryModalStandardImage');
+        const modalName = document.getElementById('assetGalleryModalStandardName');
+        const modalId = document.getElementById('assetGalleryModalStandardId');
+        const modalCategory = document.getElementById('assetGalleryModalStandardCategory');
+        const modalDescription = document.getElementById('assetGalleryModalStandardDescription');
+        const modalHowToObtain = document.getElementById('assetGalleryModalStandardHowToObtain');
         modalImage.src = item.image;
         modalImage.alt = item.name;
         modalId.textContent = 'ID: ' + item.id;
@@ -413,12 +413,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Banner Modal
     function openBannerModal(item) {
-        const modal = document.getElementById('tankopediaModalBanner');
-        const modalOverlay = document.getElementById('tankopediaModalOverlay');
-        const modalImage = document.getElementById('tankopediaModalBannerImage');
-        const modalName = document.getElementById('tankopediaModalBannerName');
-        const modalId = document.getElementById('tankopediaModalBannerId');
-        const modalCategory = document.getElementById('tankopediaModalBannerCategory');
+        const modal = document.getElementById('assetGalleryModalBanner');
+        const modalOverlay = document.getElementById('assetGalleryModalOverlay');
+        const modalImage = document.getElementById('assetGalleryModalBannerImage');
+        const modalName = document.getElementById('assetGalleryModalBannerName');
+        const modalId = document.getElementById('assetGalleryModalBannerId');
+        const modalCategory = document.getElementById('assetGalleryModalBannerCategory');
 
         modalImage.src = item.image;
         modalImage.alt = item.name;
@@ -433,12 +433,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Video Modal
     function openVideoModal(item) {
-        const modal = document.getElementById('tankopediaModalVideo');
-        const modalOverlay = document.getElementById('tankopediaModalOverlay');
-        const modalVideo = document.getElementById('tankopediaModalVideoElement');
-        const modalName = document.getElementById('tankopediaModalVideoName');
-        const modalId = document.getElementById('tankopediaModalVideoId');
-        const modalCategory = document.getElementById('tankopediaModalVideoCategory');
+        const modal = document.getElementById('assetGalleryModalVideo');
+        const modalOverlay = document.getElementById('assetGalleryModalOverlay');
+        const modalVideo = document.getElementById('assetGalleryModalVideoElement');
+        const modalName = document.getElementById('assetGalleryModalVideoName');
+        const modalId = document.getElementById('assetGalleryModalVideoId');
+        const modalCategory = document.getElementById('assetGalleryModalVideoCategory');
 
         modalVideo.pause();
         modalVideo.currentTime = 0;
@@ -456,12 +456,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 360 Modal
     function open360Modal(item) {
-        const modal = document.getElementById('tankopediaModal360');
-        const modalOverlay = document.getElementById('tankopediaModalOverlay');
-        const modalImage = document.getElementById('tankopediaModal360Image');
-        const modalName = document.getElementById('tankopediaModal360Name');
-        const modalId = document.getElementById('tankopediaModal360Id');
-        const modalCategory = document.getElementById('tankopediaModal360Category');
+        const modal = document.getElementById('assetGalleryModal360');
+        const modalOverlay = document.getElementById('assetGalleryModalOverlay');
+        const modalImage = document.getElementById('assetGalleryModal360Image');
+        const modalName = document.getElementById('assetGalleryModal360Name');
+        const modalId = document.getElementById('assetGalleryModal360Id');
+        const modalCategory = document.getElementById('assetGalleryModal360Category');
 
         modalImage.src = item.image;
         modalImage.alt = item.name;
@@ -475,7 +475,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Initialize 360 viewer if needed
         if (window.Pannellum) {
-            pannellum.viewer('tankopediaModal360Image', {
+            pannellum.viewer('assetGalleryModal360Image', {
                 type: 'equirectangular',
                 panorama: item.image,
                 autoLoad: true
@@ -484,6 +484,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Initialize the page
-    renderTankopediaSections();
-    initTankopediaModals();
+    renderassetGallerySections();
+    initassetGalleryModals();
 });

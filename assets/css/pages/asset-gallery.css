@@ -1,5 +1,5 @@
-/* Tankopedia Page Specific Styles */
-/* Tankopedia Grid */
+/* Asset Gallery Page Specific Styles */
+/* Asset Gallery Grid */
 #categories-container {
 	display: flex;
 	flex-direction: column;
@@ -7,7 +7,7 @@
 	padding-top: 1rem;
 }
 
-.tankopedia-grid {
+.assetGallery-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	gap: 2rem;
@@ -15,7 +15,7 @@
 	margin: 0 auto;
 }
 
-.tankopedia-card {
+.assetGallery-card {
 	background-color: var(--card-bg);
 	border-radius: 0.75rem;
 	overflow: hidden;
@@ -27,17 +27,17 @@
 	transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.tankopedia-card.animated {
+.assetGallery-card.animated {
 	opacity: 1;
 	transform: translateY(0);
 }
 
-.tankopedia-card:hover {
+.assetGallery-card:hover {
 	transform: translateY(-0.5rem);
 	box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
 }
 
-.tankopedia-img-container {
+.assetGallery-img-container {
 	position: relative;
 	height: 0;
 	padding-bottom: 100%;
@@ -45,7 +45,7 @@
 	background-color: var(--bg-tertiary);
 }
 
-.tankopedia-img {
+.assetGallery-img {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -55,43 +55,43 @@
 	transition: transform var(--transition-speed);
 }
 
-.tankopedia-card:hover .tankopedia-img {
+.assetGallery-card:hover .assetGallery-img {
 	transform: scale(1.05);
 }
 
-.tankopedia-info {
+.assetGallery-info {
 	padding: 1.5rem;
 }
 
-.tankopedia-info h3 {
+.assetGallery-info h3 {
 	font-weight: bold;
 	font-size: 1.25rem;
 	margin-bottom: 0.5rem;
 	text-align: center;
 }
 
-.tankopedia-info p {
+.assetGallery-info p {
 	color: var(--text-secondary);
 	font-size: 0.9rem;
 	text-align: center;
 	margin-bottom: 0;
 }
 
-.tankopedia-modal-id {
+.assetGallery-modal-id {
 	font-size: 0.9rem;
 	color: var(--text-secondary);
 	margin-bottom: 0.5rem;
 }
 
-.tankopedia-modal-description {
+.assetGallery-modal-description {
 	font-size: 1rem;
 	line-height: 1.7;
 	color: var(--text-secondary);
 	margin-top: 1rem;
 }
 
-/* Tankopedia Modal */
-.tankopedia-modal-overlay {
+/* Asset Gallery Modal */
+.assetGallery-modal-overlay {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -104,12 +104,12 @@
 	transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.tankopedia-modal-overlay.active {
+.assetGallery-modal-overlay.active {
 	opacity: 1;
 	visibility: visible;
 }
 
-.tankopedia-modal {
+.assetGallery-modal {
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -128,16 +128,16 @@
 	border: 1px solid var(--border-color);
 }
 
-.tankopedia-modal.active {
+.assetGallery-modal.active {
 	opacity: 1;
 	visibility: visible;
 }
 
-.tankopedia-modal-content {
+.assetGallery-modal-content {
 	padding: 2rem;
 }
 
-.tankopedia-modal-close {
+.assetGallery-modal-close {
 	position: absolute;
 	top: 1rem;
 	right: 1rem;
@@ -156,11 +156,11 @@
 	transition: background-color 0.3s ease;
 }
 
-.tankopedia-modal-close:hover {
+.assetGallery-modal-close:hover {
 	background-color: var(--accent-color-dark);
 }
 
-.tankopedia-modal-header {
+.assetGallery-modal-header {
 	display: flex;
 	flex-direction: column;
 	gap: 1.5rem;
@@ -168,13 +168,13 @@
 }
 
 @media (min-width: 768px) {
-	.tankopedia-modal-header {
+	.assetGallery-modal-header {
 		flex-direction: row;
 		align-items: flex-start;
 	}
 }
 
-.tankopedia-modal-image-container {
+.assetGallery-modal-image-container {
 	flex-shrink: 0;
 	width: 300px;
 	height: 300px;
@@ -188,17 +188,17 @@
 	background-color: var(--bg-tertiary);
 }
 
-.tankopedia-modal-image {
+.assetGallery-modal-image {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
 
-.tankopedia-modal-info {
+.assetGallery-modal-info {
 	flex-grow: 1;
 }
 
-.tankopedia-modal-info h2 {
+.assetGallery-modal-info h2 {
 	font-size: 1.75rem;
 	margin-top: 0;
 	margin-bottom: 0.5rem;
@@ -206,18 +206,18 @@
 	text-align: left;
 }
 
-.tankopedia-modal-category {
+.assetGallery-modal-category {
 	font-size: 1.1rem;
 	color: var(--accent-color);
 	margin-bottom: 1rem;
 	font-weight: 500;
 }
 
-.tankopedia-modal-body {
+.assetGallery-modal-body {
 	margin-top: 2rem;
 }
 
-.tankopedia-modal-body h3 {
+.assetGallery-modal-body h3 {
 	font-size: 1.25rem;
 	margin-top: 1.5rem;
 	margin-bottom: 0.75rem;
@@ -226,7 +226,7 @@
 	padding-bottom: 0.5rem;
 }
 
-.tankopedia-modal-body p {
+.assetGallery-modal-body p {
 	font-size: 1rem;
 	line-height: 1.6;
 	color: var(--text-secondary);
@@ -401,13 +401,13 @@
 }
 
 /* Standard Modal */
-#tankopediaModalStandard {
+#assetGalleryModalStandard {
 	width: 90%;
 	max-width: 800px;
 	max-height: 90vh;
 }
 
-.tankopedia-modal-image-container {
+.assetGallery-modal-image-container {
 	flex-shrink: 0;
 	width: 300px;
 	height: 300px;
@@ -421,14 +421,14 @@
 	background-color: var(--bg-tertiary);
 }
 
-.tankopedia-modal-image {
+.assetGallery-modal-image {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
 
 /* Banner Modal */
-#tankopediaModalBanner {
+#assetGalleryModalBanner {
 	width: 90%;
 	max-width: 1000px;
 	max-height: 90vh;
@@ -451,7 +451,7 @@
 }
 
 /* Video Modal */
-#tankopediaModalVideo {
+#assetGalleryModalVideo {
 	width: 90%;
 	max-width: 1000px;
 	max-height: 90vh;
@@ -474,7 +474,7 @@
 }
 
 /* 360 Modal */
-#tankopediaModal360 {
+#assetGalleryModal360 {
 	width: 90%;
 	max-width: 800px;
 	max-height: 90vh;
@@ -506,7 +506,7 @@
 
 @media (max-width: 768px) {
 
-	.tankopedia-modal-image-container,
+	.assetGallery-modal-image-container,
 	.banner-modal-image-container,
 	.video-modal-container,
 	.modal-360-container {
@@ -514,26 +514,26 @@
 		height: auto;
 	}
 
-	.tankopedia-modal-image-container {
+	.assetGallery-modal-image-container {
 		aspect-ratio: 1/1;
 	}
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-	.tankopedia-modal-image-container {
+	.assetGallery-modal-image-container {
 		width: 100%;
 		height: auto;
 		aspect-ratio: 1/1;
 	}
 
-	.tankopedia-grid {
+	.assetGallery-grid {
 		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	}
 }
 
 @media (max-width: 480px) {
-	.tankopedia-grid {
+	.assetGallery-grid {
 		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 	}
 }

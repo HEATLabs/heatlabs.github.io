@@ -53,7 +53,7 @@
         }
       })();
     </script>
-    <!-- Optimize Loading of Tankopedia -->
+    <!-- Optimize Loading of Asset Gallery -->
     <link rel="dns-prefetch" href="https://raw.githubusercontent.com/HEATLabs/Website-Images/main">
     <link rel="preconnect" href="https://raw.githubusercontent.com/HEATLabs/Website-Images/main" crossorigin>
     <!-- Main stylesheets -->
@@ -128,7 +128,7 @@
   </head>
   <body>
     <!-- Custom Privacy-Focused Tracking Pixel -->
-    <img src="https://heatlabs-pixel-api.vercel.app/api/track/pcwstats-tracker-pixel-tankopedia.png" alt="" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;" class="heatlabs-tracking-pixel" data-page="tankopedia">
+    <img src="https://heatlabs-pixel-api.vercel.app/api/track/pcwstats-tracker-pixel-tankopedia.png" alt="" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;" class="heatlabs-tracking-pixel" data-page="asset-gallery">
     <!-- Sidebar Overlay -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <!-- Sidebar -->
@@ -361,7 +361,7 @@
                   <a href="tanks.html">Tank Statistics</a>
                 </li>
                 <li>
-                  <a href="#">Tankopedia</a>
+                  <a href="#">Asset Gallery</a>
                 </li>
               </ul>
             </div>
@@ -440,78 +440,78 @@
       </footer>
     </div>
     <!-- Standard Modal -->
-    <div class="modal-overlay" id="tankopediaModalOverlay"></div>
-    <div class="modal" id="tankopediaModalStandard">
+    <div class="modal-overlay" id="assetGalleryModalOverlay"></div>
+    <div class="modal" id="assetGalleryModalStandard">
       <button class="modal-close">
         <i class="fas fa-times"></i>
       </button>
-      <div class="tankopedia-modal-content">
+      <div class="assetGallery-modal-content">
         <div class="modal-header">
-          <div class="tankopedia-modal-image-container">
-            <img id="tankopediaModalStandardImage" src="" alt="Item Image" class="tankopedia-modal-image">
+          <div class="assetGallery-modal-image-container">
+            <img id="assetGalleryModalStandardImage" src="" alt="Item Image" class="assetGallery-modal-image">
           </div>
           <div class="modal-info">
-            <p class="modal-id" id="tankopediaModalStandardId">ID: loading...</p>
-            <h2 id="tankopediaModalStandardName">Item Name</h2>
-            <p class="modal-category" id="tankopediaModalStandardCategory">Category: loading...</p>
-            <p class="modal-description" id="tankopediaModalStandardDescription">Item description goes here</p>
+            <p class="modal-id" id="assetGalleryModalStandardId">ID: loading...</p>
+            <h2 id="assetGalleryModalStandardName">Item Name</h2>
+            <p class="modal-category" id="assetGalleryModalStandardCategory">Category: loading...</p>
+            <p class="modal-description" id="assetGalleryModalStandardDescription">Item description goes here</p>
           </div>
         </div>
-        <div class="tankopedia-modal-body">
-          <div id="tankopediaModalStandardHowToObtain" style="display: none;"></div>
+        <div class="assetGallery-modal-body">
+          <div id="assetGalleryModalStandardHowToObtain" style="display: none;"></div>
         </div>
       </div>
     </div>
     <!-- Banner Modal -->
-    <div class="modal" id="tankopediaModalBanner">
+    <div class="modal" id="assetGalleryModalBanner">
       <button class="modal-close">
         <i class="fas fa-times"></i>
       </button>
-      <div class="tankopedia-modal-content">
+      <div class="assetGallery-modal-content">
         <div class="modal-header">
           <div class="banner-modal-image-container">
-            <img id="tankopediaModalBannerImage" src="" alt="Item Image" class="banner-modal-image">
+            <img id="assetGalleryModalBannerImage" src="" alt="Item Image" class="banner-modal-image">
           </div>
           <div class="modal-info">
-            <p class="modal-id" id="tankopediaModalBannerId">ID: loading...</p>
-            <h2 id="tankopediaModalBannerName">Item Name</h2>
-            <p class="modal-category" id="tankopediaModalBannerCategory">Category: loading...</p>
+            <p class="modal-id" id="assetGalleryModalBannerId">ID: loading...</p>
+            <h2 id="assetGalleryModalBannerName">Item Name</h2>
+            <p class="modal-category" id="assetGalleryModalBannerCategory">Category: loading...</p>
           </div>
         </div>
       </div>
     </div>
     <!-- Video Modal -->
-    <div class="modal" id="tankopediaModalVideo">
+    <div class="modal" id="assetGalleryModalVideo">
       <button class="modal-close">
         <i class="fas fa-times"></i>
       </button>
-      <div class="tankopedia-modal-content">
+      <div class="assetGallery-modal-content">
         <div class="modal-header">
           <div class="video-modal-container">
-            <video id="tankopediaModalVideoElement" class="video-modal-element" controls> Your browser does not support the video tag. </video>
+            <video id="assetGalleryModalVideoElement" class="video-modal-element" controls> Your browser does not support the video tag. </video>
           </div>
           <div class="modal-info">
-            <p class="modal-id" id="tankopediaModalVideoId">ID: loading...</p>
-            <h2 id="tankopediaModalVideoName">Item Name</h2>
-            <p class="modal-category" id="tankopediaModalVideoCategory">Category: loading...</p>
+            <p class="modal-id" id="assetGalleryModalVideoId">ID: loading...</p>
+            <h2 id="assetGalleryModalVideoName">Item Name</h2>
+            <p class="modal-category" id="assetGalleryModalVideoCategory">Category: loading...</p>
           </div>
         </div>
       </div>
     </div>
     <!-- 360 Modal -->
-    <div class="modal" id="tankopediaModal360">
+    <div class="modal" id="assetGalleryModal360">
       <button class="modal-close">
         <i class="fas fa-times"></i>
       </button>
-      <div class="tankopedia-modal-content">
+      <div class="assetGallery-modal-content">
         <div class="modal-header">
           <div class="modal-360-container">
-            <div id="tankopediaModal360Image" class="modal-360-image"></div>
+            <div id="assetGalleryModal360Image" class="modal-360-image"></div>
           </div>
           <div class="modal-info">
-            <p class="modal-id" id="tankopediaModal360Id">ID: loading...</p>
-            <h2 id="tankopediaModal360Name">Item Name</h2>
-            <p class="modal-category" id="tankopediaModal360Category">Category: loading...</p>
+            <p class="modal-id" id="assetGalleryModal360Id">ID: loading...</p>
+            <h2 id="assetGalleryModal360Name">Item Name</h2>
+            <p class="modal-category" id="assetGalleryModal360Category">Category: loading...</p>
           </div>
         </div>
       </div>
