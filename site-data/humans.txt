@@ -1,15 +1,18 @@
-/* TEAM */
+/* FOUNDER */
   Creator: ThatSINEWAVE
   GitHub: https://github.com/ThatSINEWAVE
   Contact: sinewave_ (Discord)
 
+/* TEAM */
   SINEWAVE     - Founder & Lead Developer
   _VEN0M       - Frontend Developer
   Anuraen      - Graphic Designer
   esmatty      - Content Writer
+  Shockwave    - Content Writer
+  OPEN         - 3D Content Specialist
+  OPEN         - Sound Library Curator
   IAmEdWards   - Game Analyst
   antitank99   - Game Analyst
-  Shockwave    - Content Writer
 
 /* THANKS */
   Tailwind CSS: https://tailwindcss.com/
@@ -17,9 +20,10 @@
   Chart.js: https://www.chartjs.org/
   LZ-String: https://pieroxy.net/blog/pages/lz-string/index.html
   Pannellum.js: https://pannellum.org/
+  three.js: https://threejs.org/
 
 /* SITE */
-  Last update: 2025/08/20
+  Last update: 2025/10/06
   Language: English
   Doctype: HTML5
   IDE: WebStorm
