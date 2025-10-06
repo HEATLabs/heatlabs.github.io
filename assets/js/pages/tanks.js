@@ -89,7 +89,7 @@ document.addEventListener('click', function(event) {
         });
         comparisonSidebar.querySelector('.btn-compare').addEventListener('click', function() {
             if (comparisonData.length > 0) {
-                window.location.href = 'check-compare.html';
+                window.location.href = 'check-compare';
             }
         });
 
@@ -270,7 +270,7 @@ document.addEventListener('click', function(event) {
                     <span><i class="fas fa-layer-group"></i> ${tank.type}</span>
                 </div>
                 <div class="tank-buttons">
-                    <a href="tanks/${tank.slug}.html" class="btn-accent">
+                    <a href="tanks/${tank.slug}" class="btn-accent">
                         <i class="fas fa-chart-bar mr-2"></i>Statistics
                     </a>
                     <button class="btn-outline compare-btn" data-tank-id="${tank.id}">
@@ -605,7 +605,7 @@ document.addEventListener('click', function(event) {
     if (openComparisonBtn) {
         openComparisonBtn.addEventListener('click', function() {
             if (comparisonData.length > 0) {
-                window.location.href = 'check-compare.html';
+                window.location.href = 'check-compare';
             }
         });
     }

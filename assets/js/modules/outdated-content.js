@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Handle submit button click
         document.getElementById('outdatedWarningSubmit').addEventListener('click', function() {
-            window.location.href = '../resources/contact-us.html';
+            window.location.href = '../resources/contact-us';
         });
 
         // Close when clicking outside modal

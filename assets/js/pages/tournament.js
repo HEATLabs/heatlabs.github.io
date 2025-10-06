@@ -293,7 +293,7 @@ function openTeamModal(team) {
                 tankElement.className = 'team-modal-tank';
 
                 const tankLink = document.createElement('a');
-                tankLink.href = `../tanks/${getTankSlug(tank.tank_name)}.html`;
+                tankLink.href = `../tanks/${getTankSlug(tank.tank_name)}`;
                 tankLink.className = 'tank-link';
                 const tankImg = document.createElement('img');
                 tankImg.src = tank.tank_image || 'https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder-image.webp';

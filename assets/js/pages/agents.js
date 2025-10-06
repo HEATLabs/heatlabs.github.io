@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span><i class="fa-solid fa-gear"></i> ${tankText}</span>
                 </div>
                 <div class="agent-buttons">
-                    <a href="agents/${agent.slug}.html" class="btn-accent">
+                    <a href="agents/${agent.slug}" class="btn-accent">
                         <i class="fas fa-info-circle mr-2"></i>Details
                     </a>
                 </div>

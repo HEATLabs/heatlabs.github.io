@@ -146,7 +146,7 @@ function populateCompatibleTanks(tanks) {
 
         // Make the card clickable to go to the tank page
         tankCard.addEventListener('click', () => {
-            window.location.href = `../tanks/${tank.slug}.html`;
+            window.location.href = `../tanks/${tank.slug}`;
         });
 
         tanksContainer.appendChild(tankCard);

@@ -395,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
         resultName.textContent = tank.name;
         resultNation.innerHTML = `<i class="fas fa-flag"></i> ${tank.nation}`;
         resultType.innerHTML = `<i class="fas fa-tag"></i> ${tank.type}`;
-        resultLink.href = `../tanks/${tank.slug}.html`;
+        resultLink.href = `../tanks/${tank.slug}`;
 
         // Show the result card with animation
         setTimeout(() => {

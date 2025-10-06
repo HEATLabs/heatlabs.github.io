@@ -751,7 +751,7 @@ function showBuildsPlaceholder() {
                 <i class="fas fa-tools"></i>
                 <h3>Builds Coming Soon</h3>
                 <p>We're currently collecting and analyzing the best builds for this tank. Check back soon or contribute your own build!</p>
-                <a href="../../../resources/contact-us.html#main" class="btn-accent">
+                <a href="../../../resources/contact-us#main" class="btn-accent">
                     <i></i> Submit Your Build
                 </a>
             </div>
@@ -978,7 +978,7 @@ function initializeAgentModals() {
 
                         // Create link to tank page
                         const tankLink = document.createElement('a');
-                        tankLink.href = `../tanks/${tank.slug}.html`; // Using slug for URL
+                        tankLink.href = `../tanks/${tank.slug}`; // Using slug for URL
                         tankLink.style.display = 'contents'; // Makes link inherit parent's display
 
                         // Create tank image
@@ -1345,7 +1345,7 @@ function initializeComparisonModal() {
     if (compareBtn) {
         compareBtn.addEventListener('click', function() {
             if (comparisonTanks.length > 0) {
-                window.location.href = '../check-compare.html';
+                window.location.href = '../check-compare';
             }
         });
     }

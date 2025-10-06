@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <tr>
                     <td colspan="100" class="comparison-empty py-10">
                         No tanks selected for comparison.<br>
-                        <a href="tanks.html">Browse tanks to compare</a>
+                        <a href="tanks">Browse tanks to compare</a>
                     </td>
                 </tr>
             `;

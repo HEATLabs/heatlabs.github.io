@@ -281,10 +281,10 @@ function createTournamentCard(tournament) {
 
     // Determine which link to use based on time comparison
     const tournamentLink = (tournament.type?.toLowerCase()) === 'dev' ?
-        'tournaments/tournament-maintenance.html' :
+        'tournaments/tournament-maintenance' :
             hasStarted ?
-            `tournaments/${tournament.slug}.html` :
-            'tournaments/tournament-maintenance.html';
+            `tournaments/${tournament.slug}` :
+            'tournaments/tournament-maintenance';
 
     card.innerHTML = `
         <div class="tournament-img-container">
