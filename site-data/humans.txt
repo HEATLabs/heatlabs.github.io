@@ -18,7 +18,7 @@
   Tailwind CSS: https://tailwindcss.com/
   GitHub Pages: https://pages.github.com/
   Chart.js: https://www.chartjs.org/
-  LZ-String: https://pieroxy.net/blog/pages/lz-string/index.html
+  LZ-String: https://pieroxy.net/blog/pages/lz-string/index
   Pannellum.js: https://pannellum.org/
   three.js: https://threejs.org/
 

@@ -2,7 +2,7 @@
 const CACHE_NAME = 'heat-labs-v1';
 const urlsToCache = [
     '/',
-    '/index.html',
+    '/index',
     '/assets/css/main.css',
     '/assets/js/main.js',
     'https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/logo/logo.webp'
