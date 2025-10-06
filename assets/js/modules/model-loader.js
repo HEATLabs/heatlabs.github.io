@@ -23,12 +23,12 @@ class ModelLoader {
         this.shadowsEnabled = true;
 
         // Model configuration (Prod)
-        this.modelPath = 'https://cdn.jsdelivr.net/gh/HEATLabs/Tank-Models@main/test-model/60TP.fbx';
-        this.texturePath = 'https://cdn.jsdelivr.net/gh/HEATLabs/Tank-Models@main/test-model/';
+        this.modelPath = 'https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Models@main/test-model/60TP.fbx';
+        this.texturePath = 'https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Models@main/test-model/';
 
         // Model configuration (Local)
-        // this.modelPath = '../../Tank-Models/test-model/60TP.FBX';
-        // this.texturePath = '../../Tank-Models/test-model/';
+        // this.modelPath = '../../HEAT-Labs-Models/test-model/60TP.FBX';
+        // this.texturePath = '../../HEAT-Labs-Models/test-model/';
 
         // Store original dimensions for fullscreen handling
         this.originalWidth = null;
