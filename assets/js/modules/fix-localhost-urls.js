@@ -14,6 +14,8 @@ function fixLocalLinks() {
                 !href.endsWith('/') &&
                 !href.endsWith('.html') &&
                 !href.endsWith('.net') &&
+                !href.endsWith('.png') &&
+                !href.endsWith('.webp') &&
                 !href.includes('.com')) {
 
                 link.setAttribute('href', href + '.html');
