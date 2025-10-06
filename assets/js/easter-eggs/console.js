@@ -391,7 +391,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const tankName = args.join(' ');
 
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Configs@main/tanks.json');
             if (!response.ok) throw new Error('Failed to load tank data');
 
             const data = await response.json();
@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const tank2Name = args[1];
 
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Configs@main/tanks.json');
             if (!response.ok) throw new Error('Failed to load tank data');
 
             const data = await response.json();
@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // List tournaments
     async function listTournaments() {
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tournaments.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Configs@main/tournaments.json');
             if (!response.ok) throw new Error('Failed to load tournament data');
 
             const data = await response.json();
@@ -551,7 +551,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Show version info
     async function showVersion() {
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/changelog.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Configs@main/changelog.json');
             if (!response.ok) throw new Error('Failed to load version data');
 
             const data = await response.json();
@@ -693,7 +693,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Tank roulette
     async function tankRoulette() {
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Configs@main/tanks.json');
             if (!response.ok) throw new Error('Failed to load tank data');
 
             const data = await response.json();

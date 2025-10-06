@@ -166,11 +166,11 @@ function updateTournamentsDisplay() {
 // Fetch tournament data from JSON file
 async function fetchTournamentData() {
     try {
-        let dataURL = "https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tournaments.json" ;
+        let dataURL = "https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Configs@main/tournaments.json" ;
 
         // For use in Dev Env
         if (debugTournamentCards === true) {
-            dataURL = "../Website-Configs/tournaments.json";
+            dataURL = "../HEAT-Labs-Configs/tournaments.json";
         }
 
         const response = await fetch(dataURL);

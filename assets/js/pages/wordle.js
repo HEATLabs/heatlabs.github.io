@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load word list from JSON
     async function loadWordList() {
         try {
-            const response = await fetch('https://raw.githubusercontent.com/HEATLabs/Website-Configs/refs/heads/main/words.json');
+            const response = await fetch('https://raw.githubusercontent.com/HEATLabs/HEAT-Labs-Configs/refs/heads/main/words.json');
             const data = await response.json();
             wordList = data.words;
 

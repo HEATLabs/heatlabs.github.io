@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch data
     async function fetchassetGalleryData() {
         try {
-            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/asset-gallery.json');
+            const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Configs@main/asset-gallery.json');
 
             // Uncomment line below to check using local JSON
-            // const response = await fetch('../Website-Configs/asset-gallery.json');
+            // const response = await fetch('../HEAT-Labs-Configs/asset-gallery.json');
 
             if (!response.ok) {
                 throw new Error('Failed to load Asset Gallery data');

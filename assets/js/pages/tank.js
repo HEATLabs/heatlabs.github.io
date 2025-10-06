@@ -135,7 +135,7 @@ function isValidTankStats(stats) {
 async function fetchTankData(tankId) {
     try {
         // First fetch the tanks.json to get the tank details
-        const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
+        const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Configs@main/tanks.json');
         const tanksData = await tanksResponse.json();
 
         // Find the tank with matching ID
@@ -276,7 +276,7 @@ function initializeAbilityModals() {
             }
 
             // Find the tank data to get abilities URL
-            fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json')
+            fetch('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Configs@main/tanks.json')
                 .then(response => response.json())
                 .then(tanksData => {
                     const tank = tanksData.find(t => t.id.toString() === tankId.toString());
@@ -456,7 +456,7 @@ async function fetchAndPopulateStockData(stockUrl, tankId, tankSlug) {
 async function calculateAndDisplayGSS(currentTankStats, currentTankId) {
     try {
         // First fetch all tanks data
-        const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
+        const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Configs@main/tanks.json');
         const tanksData = await tanksResponse.json();
 
         // Then fetch all stock data for comparison
@@ -938,7 +938,7 @@ function initializeAgentModals() {
 
             try {
                 // First get the tank data to find the agents URL
-                const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
+                const tanksResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Configs@main/tanks.json');
                 const tanksData = await tanksResponse.json();
                 const tank = tanksData.find(t => t.id.toString() === tankId.toString());
 

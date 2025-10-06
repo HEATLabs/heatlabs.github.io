@@ -71,7 +71,7 @@ function displayViewCounter(views) {
 async function fetchAgentData(agentId) {
     try {
         // First fetch the agents.json to get the agent details
-        const agentsResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/agents.json');
+        const agentsResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Configs@main/agents.json');
         const agentsData = await agentsResponse.json();
 
         // Find the agent with matching ID

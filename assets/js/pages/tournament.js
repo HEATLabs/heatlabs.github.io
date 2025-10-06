@@ -4,7 +4,7 @@ let tanksData = [];
 // Load tanks data
 async function loadTanksData() {
     try {
-        const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tanks.json');
+        const response = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Configs@main/tanks.json');
         if (!response.ok) {
             throw new Error('Failed to fetch tanks data');
         }
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function fetchTournamentData(tournamentId) {
     try {
         // First fetch the tournaments.json to get the tournament details
-        const tournamentsResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Configs@main/tournaments.json');
+        const tournamentsResponse = await fetch('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Configs@main/tournaments.json');
         if (!tournamentsResponse.ok) {
             throw new Error(`Failed to fetch tournaments list: ${tournamentsResponse.status}`);
         }
