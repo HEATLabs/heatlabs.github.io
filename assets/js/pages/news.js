@@ -6,7 +6,7 @@ let postsPerPage = 12;
 // Function to fetch view count from API
 async function fetchNewsViewCount(newsName) {
     try {
-        const response = await fetch(`https://heatlabs-pixel-api.vercel.app/api/stats?image=pcwstats-tracker-pixel-${newsName}.png`);
+        const response = await fetch(`https://views.heatlabs.net/api/stats?image=pcwstats-tracker-pixel-${newsName}.png`);
         if (!response.ok) {
             throw new Error('Failed to load view count');
         }

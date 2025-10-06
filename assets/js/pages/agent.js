@@ -35,7 +35,7 @@ async function fetchViewCount() {
         const imageName = trackingPixel.src.split('/').pop();
 
         // Build the stats API URL
-        const statsApiUrl = `https://heatlabs-pixel-api.vercel.app/api/stats?image=${imageName}`;
+        const statsApiUrl = `https://views.heatlabs.net/api/stats?image=${imageName}`;
         const response = await fetch(statsApiUrl);
 
         if (!response.ok) {
