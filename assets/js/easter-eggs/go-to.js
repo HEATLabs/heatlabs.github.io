@@ -4,7 +4,7 @@
         'youtube': 'https://www.youtube.com/@HEATLabs-Official',
         'twitter': 'https://x.com/HEAT_Labs',
         'github': 'https://github.com/HEATLabs',
-        'discord': 'https://discord.com/invite/caEFCA9ScF',
+        'discord': 'https://discord.heatlabs.net',
         'nexus': 'https://next.nexusmods.com/profile/HEATLabs'
     };
 
