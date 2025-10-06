@@ -5,7 +5,7 @@ const urlsToCache = [
     '/index',
     '/assets/css/main.css',
     '/assets/js/main.js',
-    'https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/logo/logo.webp'
+    'https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/logo/logo.webp'
 ];
 
 // Install event

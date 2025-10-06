@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const randomImageNumber = Math.floor(Math.random() * 61) + 1;
 
         // Construct the new image URL
-        const newImageUrl = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images-Features@main/hero-background/${randomImageNumber}.webp')`;
+        const newImageUrl = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images-Features@main/hero-background/${randomImageNumber}.webp')`;
 
         // Apply the new background image to all hero elements
         heroes.forEach(hero => {

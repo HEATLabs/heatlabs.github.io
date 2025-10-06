@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Special prize configuration
         specialPrize: {
             name: "Special Prize",
-            image: "https://raw.githubusercontent.com/HEATLabs/Website-Images-Features/refs/heads/main/roulette/special.webp",
+            image: "https://raw.githubusercontent.com/HEATLabs/HEAT-Labs-Images-Features/refs/heads/main/roulette/special.webp",
             nation: "Mystery",
             type: "Legendary",
             slug: "special-prize",
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
             item.setAttribute('data-is-special', tank.isSpecial || false);
 
             item.innerHTML = `
-                <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/Website-Images@main/placeholder/imagefailedtoload.webp'">
+                <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/placeholder/imagefailedtoload.webp'">
                 <h4>${tank.name}</h4>
             `;
 

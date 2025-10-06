@@ -137,22 +137,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const maps = [{
             id: 'blossom_crash',
             name: 'Blossom Crash',
-            image: 'https://github.com/HEATLabs/Website-Images-Features/blob/main/strat-planner/blossom_crash_radar.webp?raw=true'
+            image: 'https://github.com/HEATLabs/HEAT-Labs-Images-Features/blob/main/strat-planner/blossom_crash_radar.webp?raw=true'
         },
         {
             id: 'nord_oko',
             name: 'Nord Oko',
-            image: 'https://github.com/HEATLabs/Website-Images-Features/blob/main/strat-planner/nord_oko_radar.webp?raw=true'
+            image: 'https://github.com/HEATLabs/HEAT-Labs-Images-Features/blob/main/strat-planner/nord_oko_radar.webp?raw=true'
         },
         {
             id: 'scarred_city',
             name: 'Scarred City',
-            image: 'https://github.com/HEATLabs/Website-Images-Features/blob/main/strat-planner/scarred_city_radar.webp?raw=true'
+            image: 'https://github.com/HEATLabs/HEAT-Labs-Images-Features/blob/main/strat-planner/scarred_city_radar.webp?raw=true'
         },
         {
             id: 'sunstroke',
             name: 'Sunstroke',
-            image: 'https://github.com/HEATLabs/Website-Images-Features/blob/main/strat-planner/sunstroke_radar.webp?raw=true'
+            image: 'https://github.com/HEATLabs/HEAT-Labs-Images-Features/blob/main/strat-planner/sunstroke_radar.webp?raw=true'
         }
     ];
 
