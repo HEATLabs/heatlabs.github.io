@@ -2,1639 +2,1639 @@
 <urlset
 	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>https://heatlabs.github.io</loc>
+		<loc>https://heatlabs.net</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/404.html</loc>
+		<loc>https://heatlabs.net/404.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents.html</loc>
+		<loc>https://heatlabs.net/agents.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/asset-gallery.html</loc>
+		<loc>https://heatlabs.net/asset-gallery.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog.html</loc>
+		<loc>https://heatlabs.net/blog.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting.html</loc>
+		<loc>https://heatlabs.net/bug-hunting.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/builds.html</loc>
+		<loc>https://heatlabs.net/builds.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/check-compare.html</loc>
+		<loc>https://heatlabs.net/check-compare.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/game-data.html</loc>
+		<loc>https://heatlabs.net/game-data.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/guides.html</loc>
+		<loc>https://heatlabs.net/guides.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/index.html</loc>
+		<loc>https://heatlabs.net/index.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/legal.html</loc>
+		<loc>https://heatlabs.net/legal.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maintenance.html</loc>
+		<loc>https://heatlabs.net/maintenance.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps.html</loc>
+		<loc>https://heatlabs.net/maps.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news.html</loc>
+		<loc>https://heatlabs.net/news.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/players.html</loc>
+		<loc>https://heatlabs.net/players.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/playground.html</loc>
+		<loc>https://heatlabs.net/playground.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks.html</loc>
+		<loc>https://heatlabs.net/tanks.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tournaments.html</loc>
+		<loc>https://heatlabs.net/tournaments.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/video-showcase.html</loc>
+		<loc>https://heatlabs.net/video-showcase.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/akira.html</loc>
+		<loc>https://heatlabs.net/agents/akira.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/anansi.html</loc>
+		<loc>https://heatlabs.net/agents/anansi.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/arblast.html</loc>
+		<loc>https://heatlabs.net/agents/arblast.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/atom.html</loc>
+		<loc>https://heatlabs.net/agents/atom.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/blitz.html</loc>
+		<loc>https://heatlabs.net/agents/blitz.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/chopper.html</loc>
+		<loc>https://heatlabs.net/agents/chopper.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/ember.html</loc>
+		<loc>https://heatlabs.net/agents/ember.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/fantome.html</loc>
+		<loc>https://heatlabs.net/agents/fantome.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/hound.html</loc>
+		<loc>https://heatlabs.net/agents/hound.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/jager.html</loc>
+		<loc>https://heatlabs.net/agents/jager.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/kent.html</loc>
+		<loc>https://heatlabs.net/agents/kent.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/placeholder-agent.html</loc>
+		<loc>https://heatlabs.net/agents/placeholder-agent.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/punch.html</loc>
+		<loc>https://heatlabs.net/agents/punch.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/raketa.html</loc>
+		<loc>https://heatlabs.net/agents/raketa.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/ray.html</loc>
+		<loc>https://heatlabs.net/agents/ray.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/reaper.html</loc>
+		<loc>https://heatlabs.net/agents/reaper.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/agents/udarnik.html</loc>
+		<loc>https://heatlabs.net/agents/udarnik.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/announcements/alpha-1-announcement-1.html</loc>
+		<loc>https://heatlabs.net/announcements/alpha-1-announcement-1.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/announcements/alpha-1-announcement-2.html</loc>
+		<loc>https://heatlabs.net/announcements/alpha-1-announcement-2.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/announcements/alpha-2-facts-figures.html</loc>
+		<loc>https://heatlabs.net/announcements/alpha-2-facts-figures.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/announcements/alpha-2-has-ended.html</loc>
+		<loc>https://heatlabs.net/announcements/alpha-2-has-ended.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/announcements/alpha-2-livestream.html</loc>
+		<loc>https://heatlabs.net/announcements/alpha-2-livestream.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/announcements/alpha-2-tournament.html</loc>
+		<loc>https://heatlabs.net/announcements/alpha-2-tournament.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/announcements/game-name-released.html</loc>
+		<loc>https://heatlabs.net/announcements/game-name-released.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/announcements/jamess-introduction.html</loc>
+		<loc>https://heatlabs.net/announcements/jamess-introduction.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/announcements/last-day-of-alpha-2.html</loc>
+		<loc>https://heatlabs.net/announcements/last-day-of-alpha-2.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/announcements/placeholder-announcement.html</loc>
+		<loc>https://heatlabs.net/announcements/placeholder-announcement.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/announcements/voreksis-introduction.html</loc>
+		<loc>https://heatlabs.net/announcements/voreksis-introduction.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/announcements/winter-wargames-tournament-1.html</loc>
+		<loc>https://heatlabs.net/announcements/winter-wargames-tournament-1.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/feature-showcase-template.html</loc>
+		<loc>https://heatlabs.net/blog/feature-showcase-template.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/from-pcwstats-to-heat-labs.html</loc>
+		<loc>https://heatlabs.net/blog/from-pcwstats-to-heat-labs.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/heat-labs-application.html</loc>
+		<loc>https://heatlabs.net/blog/heat-labs-application.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/looking-for-new-team-members.html</loc>
+		<loc>https://heatlabs.net/blog/looking-for-new-team-members.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/meet-the-team-antitank99.html</loc>
+		<loc>https://heatlabs.net/blog/meet-the-team-antitank99.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/meet-the-team-anuraen.html</loc>
+		<loc>https://heatlabs.net/blog/meet-the-team-anuraen.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/meet-the-team-esmatty.html</loc>
+		<loc>https://heatlabs.net/blog/meet-the-team-esmatty.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/meet-the-team-iamedwards.html</loc>
+		<loc>https://heatlabs.net/blog/meet-the-team-iamedwards.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/meet-the-team-shockwave.html</loc>
+		<loc>https://heatlabs.net/blog/meet-the-team-shockwave.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/meet-the-team-sinewave.html</loc>
+		<loc>https://heatlabs.net/blog/meet-the-team-sinewave.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/meet-the-team-template.html</loc>
+		<loc>https://heatlabs.net/blog/meet-the-team-template.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/meet-the-team-ven0m.html</loc>
+		<loc>https://heatlabs.net/blog/meet-the-team-ven0m.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/new-playground-features.html</loc>
+		<loc>https://heatlabs.net/blog/new-playground-features.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/placeholder-blog-post.html</loc>
+		<loc>https://heatlabs.net/blog/placeholder-blog-post.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/tournament-feature-blog.html</loc>
+		<loc>https://heatlabs.net/blog/tournament-feature-blog.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/views-api-outage.html</loc>
+		<loc>https://heatlabs.net/blog/views-api-outage.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/blog/website-plans-and-mission.html</loc>
+		<loc>https://heatlabs.net/blog/website-plans-and-mission.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/alpha-2-fuel-crit-multiplier.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/alpha-2-fuel-crit-multiplier.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/damage-calculation.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/damage-calculation.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/developer-guide-images.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/developer-guide-images.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/discovery-of-corex.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/discovery-of-corex.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/exploring-animation-and-movement-desync.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/exploring-animation-and-movement-desync.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/exploring-the-main-menu-garage.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/exploring-the-main-menu-garage.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/hunting-for-potential-hidden-servers.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/hunting-for-potential-hidden-servers.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/info-from-developers.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/info-from-developers.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/mysterious-engine-picture.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/mysterious-engine-picture.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/placeholder-bug-hunt.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/placeholder-bug-hunt.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/potential-campaign-mode.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/potential-campaign-mode.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/tank-module-locations.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/tank-module-locations.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/the-three-badges.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/the-three-badges.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/titan-dummies-respawn-glitch.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/titan-dummies-respawn-glitch.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/unlocking-the-camera.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/unlocking-the-camera.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/who-is-pcw-bug-hunters.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/who-is-pcw-bug-hunters.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/bug-hunting/wierd-pattern-images.html</loc>
+		<loc>https://heatlabs.net/bug-hunting/wierd-pattern-images.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/easter-eggs/bored-developers.html</loc>
+		<loc>https://heatlabs.net/easter-eggs/bored-developers.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/easter-eggs/devsonly.html</loc>
+		<loc>https://heatlabs.net/easter-eggs/devsonly.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/easter-eggs/hungry-devs.html</loc>
+		<loc>https://heatlabs.net/easter-eggs/hungry-devs.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/easter-eggs/maxwell.html</loc>
+		<loc>https://heatlabs.net/easter-eggs/maxwell.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/guides/general-guides.html</loc>
+		<loc>https://heatlabs.net/guides/general-guides.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/guides/map-guides.html</loc>
+		<loc>https://heatlabs.net/guides/map-guides.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/guides/tank-guides.html</loc>
+		<loc>https://heatlabs.net/guides/tank-guides.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/legal/code-of-conduct.html</loc>
+		<loc>https://heatlabs.net/legal/code-of-conduct.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/legal/privacy-policy.html</loc>
+		<loc>https://heatlabs.net/legal/privacy-policy.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/legal/project-contributions.html</loc>
+		<loc>https://heatlabs.net/legal/project-contributions.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/legal/project-license.html</loc>
+		<loc>https://heatlabs.net/legal/project-license.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/legal/project-security.html</loc>
+		<loc>https://heatlabs.net/legal/project-security.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/legal/terms-of-service.html</loc>
+		<loc>https://heatlabs.net/legal/terms-of-service.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/afghanistan-2.html</loc>
+		<loc>https://heatlabs.net/maps/afghanistan-2.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/afghanistan.html</loc>
+		<loc>https://heatlabs.net/maps/afghanistan.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/aircraft-carrier.html</loc>
+		<loc>https://heatlabs.net/maps/aircraft-carrier.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/avalanche.html</loc>
+		<loc>https://heatlabs.net/maps/avalanche.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/baikonur.html</loc>
+		<loc>https://heatlabs.net/maps/baikonur.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/ballistic-range.html</loc>
+		<loc>https://heatlabs.net/maps/ballistic-range.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/blossom-crash.html</loc>
+		<loc>https://heatlabs.net/maps/blossom-crash.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/citadel.html</loc>
+		<loc>https://heatlabs.net/maps/citadel.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/classified.html</loc>
+		<loc>https://heatlabs.net/maps/classified.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/comms.html</loc>
+		<loc>https://heatlabs.net/maps/comms.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/critical-harbor.html</loc>
+		<loc>https://heatlabs.net/maps/critical-harbor.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/crossroads.html</loc>
+		<loc>https://heatlabs.net/maps/crossroads.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/deadly-fields.html</loc>
+		<loc>https://heatlabs.net/maps/deadly-fields.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/desert-city.html</loc>
+		<loc>https://heatlabs.net/maps/desert-city.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/deserted.html</loc>
+		<loc>https://heatlabs.net/maps/deserted.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/dolcegusta.html</loc>
+		<loc>https://heatlabs.net/maps/dolcegusta.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/duga.html</loc>
+		<loc>https://heatlabs.net/maps/duga.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/evergreen.html</loc>
+		<loc>https://heatlabs.net/maps/evergreen.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/fatal-acres.html</loc>
+		<loc>https://heatlabs.net/maps/fatal-acres.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/harvest.html</loc>
+		<loc>https://heatlabs.net/maps/harvest.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/height-911rs.html</loc>
+		<loc>https://heatlabs.net/maps/height-911rs.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/height-911tb.html</loc>
+		<loc>https://heatlabs.net/maps/height-911tb.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/hydro.html</loc>
+		<loc>https://heatlabs.net/maps/hydro.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/inferno.html</loc>
+		<loc>https://heatlabs.net/maps/inferno.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/kerak.html</loc>
+		<loc>https://heatlabs.net/maps/kerak.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/military-training.html</loc>
+		<loc>https://heatlabs.net/maps/military-training.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/moonshot.html</loc>
+		<loc>https://heatlabs.net/maps/moonshot.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/nexus-dam.html</loc>
+		<loc>https://heatlabs.net/maps/nexus-dam.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/nord-oko.html</loc>
+		<loc>https://heatlabs.net/maps/nord-oko.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/placeholder-map.html</loc>
+		<loc>https://heatlabs.net/maps/placeholder-map.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/port.html</loc>
+		<loc>https://heatlabs.net/maps/port.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/project-phoenix.html</loc>
+		<loc>https://heatlabs.net/maps/project-phoenix.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/red-alert.html</loc>
+		<loc>https://heatlabs.net/maps/red-alert.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/ring-of-fury.html</loc>
+		<loc>https://heatlabs.net/maps/ring-of-fury.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/scarred-city.html</loc>
+		<loc>https://heatlabs.net/maps/scarred-city.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/spillway.html</loc>
+		<loc>https://heatlabs.net/maps/spillway.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/sundered-city.html</loc>
+		<loc>https://heatlabs.net/maps/sundered-city.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/sunstroke.html</loc>
+		<loc>https://heatlabs.net/maps/sunstroke.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/surveillance.html</loc>
+		<loc>https://heatlabs.net/maps/surveillance.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/tajbeg.html</loc>
+		<loc>https://heatlabs.net/maps/tajbeg.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/maps/zenith.html</loc>
+		<loc>https://heatlabs.net/maps/zenith.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/agent-spotlight-akira.html</loc>
+		<loc>https://heatlabs.net/news/agent-spotlight-akira.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/agent-spotlight-fantome.html</loc>
+		<loc>https://heatlabs.net/news/agent-spotlight-fantome.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/agent-spotlight-kent.html</loc>
+		<loc>https://heatlabs.net/news/agent-spotlight-kent.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-1-1-day-to-go.html</loc>
+		<loc>https://heatlabs.net/news/alpha-1-1-day-to-go.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-1-2-days-to-go.html</loc>
+		<loc>https://heatlabs.net/news/alpha-1-2-days-to-go.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-1-3-days-to-go.html</loc>
+		<loc>https://heatlabs.net/news/alpha-1-3-days-to-go.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-1-facts-figures.html</loc>
+		<loc>https://heatlabs.net/news/alpha-1-facts-figures.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-1-patch-10-tournament-preparation-improvements.html</loc>
+		<loc>https://heatlabs.net/news/alpha-1-patch-10-tournament-preparation-improvements.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-1-patch-11-post-tournament-qol-improvements.html</loc>
+		<loc>https://heatlabs.net/news/alpha-1-patch-11-post-tournament-qol-improvements.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-1-patch-3-quick-match-updates.html</loc>
+		<loc>https://heatlabs.net/news/alpha-1-patch-3-quick-match-updates.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-1-patch-4-quality-of-life.html</loc>
+		<loc>https://heatlabs.net/news/alpha-1-patch-4-quality-of-life.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-1-patch-5-fantome-updates.html</loc>
+		<loc>https://heatlabs.net/news/alpha-1-patch-5-fantome-updates.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-1-patch-6-ray-updates.html</loc>
+		<loc>https://heatlabs.net/news/alpha-1-patch-6-ray-updates.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-1-patch-7-raketa-updates.html</loc>
+		<loc>https://heatlabs.net/news/alpha-1-patch-7-raketa-updates.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-1-patch-8-akira-updates.html</loc>
+		<loc>https://heatlabs.net/news/alpha-1-patch-8-akira-updates.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-1-patch-8-delayed.html</loc>
+		<loc>https://heatlabs.net/news/alpha-1-patch-8-delayed.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-1-patch-9-hstvl-updates.html</loc>
+		<loc>https://heatlabs.net/news/alpha-1-patch-9-hstvl-updates.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-1-valentines-day.html</loc>
+		<loc>https://heatlabs.net/news/alpha-1-valentines-day.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-2-1-day-to-go.html</loc>
+		<loc>https://heatlabs.net/news/alpha-2-1-day-to-go.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-2-2-days-to-go.html</loc>
+		<loc>https://heatlabs.net/news/alpha-2-2-days-to-go.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-2-3-days-to-go.html</loc>
+		<loc>https://heatlabs.net/news/alpha-2-3-days-to-go.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-2-patch-1-first-patch.html</loc>
+		<loc>https://heatlabs.net/news/alpha-2-patch-1-first-patch.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-2-patch-2-client-server-update.html</loc>
+		<loc>https://heatlabs.net/news/alpha-2-patch-2-client-server-update.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-2-patch-3-hounds-become-the-hunted.html</loc>
+		<loc>https://heatlabs.net/news/alpha-2-patch-3-hounds-become-the-hunted.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-2-patch-4-balance-improvements.html</loc>
+		<loc>https://heatlabs.net/news/alpha-2-patch-4-balance-improvements.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-2-patch-5-small-improvements.html</loc>
+		<loc>https://heatlabs.net/news/alpha-2-patch-5-small-improvements.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-2-patch-6-important-changes.html</loc>
+		<loc>https://heatlabs.net/news/alpha-2-patch-6-important-changes.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-2-patch-7-bradley-is-here.html</loc>
+		<loc>https://heatlabs.net/news/alpha-2-patch-7-bradley-is-here.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-2-patch-8-balancing-changes.html</loc>
+		<loc>https://heatlabs.net/news/alpha-2-patch-8-balancing-changes.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-2-patch-9-balancing-tweaks.html</loc>
+		<loc>https://heatlabs.net/news/alpha-2-patch-9-balancing-tweaks.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/alpha-2-valentines-day.html</loc>
+		<loc>https://heatlabs.net/news/alpha-2-valentines-day.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/balanced-and-reworked-maps.html</loc>
+		<loc>https://heatlabs.net/news/balanced-and-reworked-maps.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/beirut-concept-art.html</loc>
+		<loc>https://heatlabs.net/news/beirut-concept-art.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/blossom-crash-concept-art-1.html</loc>
+		<loc>https://heatlabs.net/news/blossom-crash-concept-art-1.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/blossom-crash-concept-art-2.html</loc>
+		<loc>https://heatlabs.net/news/blossom-crash-concept-art-2.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/community-managers-reintroduction.html</loc>
+		<loc>https://heatlabs.net/news/community-managers-reintroduction.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/concept-art-1.html</loc>
+		<loc>https://heatlabs.net/news/concept-art-1.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/concept-art-2.html</loc>
+		<loc>https://heatlabs.net/news/concept-art-2.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/content-creator-impressions.html</loc>
+		<loc>https://heatlabs.net/news/content-creator-impressions.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/desktop-mobile-backgrounds.html</loc>
+		<loc>https://heatlabs.net/news/desktop-mobile-backgrounds.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/dev-questions-answers-design.html</loc>
+		<loc>https://heatlabs.net/news/dev-questions-answers-design.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/dev-questions-answers-narrative.html</loc>
+		<loc>https://heatlabs.net/news/dev-questions-answers-narrative.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/friendship-dam-concept-art-1.html</loc>
+		<loc>https://heatlabs.net/news/friendship-dam-concept-art-1.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/friendship-dam-sneak-peek-1.html</loc>
+		<loc>https://heatlabs.net/news/friendship-dam-sneak-peek-1.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/friendship-dam-sneak-peek-2.html</loc>
+		<loc>https://heatlabs.net/news/friendship-dam-sneak-peek-2.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/gun-dispersion-changes.html</loc>
+		<loc>https://heatlabs.net/news/gun-dispersion-changes.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/happy-tanksgiving.html</loc>
+		<loc>https://heatlabs.net/news/happy-tanksgiving.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/hitbox-monday-1.html</loc>
+		<loc>https://heatlabs.net/news/hitbox-monday-1.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/hitbox-monday-2.html</loc>
+		<loc>https://heatlabs.net/news/hitbox-monday-2.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/hitbox-monday-3.html</loc>
+		<loc>https://heatlabs.net/news/hitbox-monday-3.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/hitbox-monday-4.html</loc>
+		<loc>https://heatlabs.net/news/hitbox-monday-4.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/hitbox-monday-5.html</loc>
+		<loc>https://heatlabs.net/news/hitbox-monday-5.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/jager-wall-bug.html</loc>
+		<loc>https://heatlabs.net/news/jager-wall-bug.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/map-monday-1.html</loc>
+		<loc>https://heatlabs.net/news/map-monday-1.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/map-monday-2.html</loc>
+		<loc>https://heatlabs.net/news/map-monday-2.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/map-monday-3.html</loc>
+		<loc>https://heatlabs.net/news/map-monday-3.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/map-monday-4.html</loc>
+		<loc>https://heatlabs.net/news/map-monday-4.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/map-monday-5.html</loc>
+		<loc>https://heatlabs.net/news/map-monday-5.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/medals-explained.html</loc>
+		<loc>https://heatlabs.net/news/medals-explained.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/new-agents-1.html</loc>
+		<loc>https://heatlabs.net/news/new-agents-1.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/new-agents-2.html</loc>
+		<loc>https://heatlabs.net/news/new-agents-2.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/new-agents-3.html</loc>
+		<loc>https://heatlabs.net/news/new-agents-3.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/nord-oko-concept-art-1.html</loc>
+		<loc>https://heatlabs.net/news/nord-oko-concept-art-1.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/nord-oko-concept-art-2.html</loc>
+		<loc>https://heatlabs.net/news/nord-oko-concept-art-2.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/nord-oko-concept-art-3.html</loc>
+		<loc>https://heatlabs.net/news/nord-oko-concept-art-3.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/placeholder-news.html</loc>
+		<loc>https://heatlabs.net/news/placeholder-news.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/plant-defuse-mode.html</loc>
+		<loc>https://heatlabs.net/news/plant-defuse-mode.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/progression-and-social-changes.html</loc>
+		<loc>https://heatlabs.net/news/progression-and-social-changes.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/project-cw-debrief-1.html</loc>
+		<loc>https://heatlabs.net/news/project-cw-debrief-1.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/project-cw-debrief-2.html</loc>
+		<loc>https://heatlabs.net/news/project-cw-debrief-2.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/project-cw-debrief-3.html</loc>
+		<loc>https://heatlabs.net/news/project-cw-debrief-3.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/project-cw-gamescom-2025.html</loc>
+		<loc>https://heatlabs.net/news/project-cw-gamescom-2025.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/quest-progress.html</loc>
+		<loc>https://heatlabs.net/news/quest-progress.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/update-recap.html</loc>
+		<loc>https://heatlabs.net/news/update-recap.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/who-are-they-1.html</loc>
+		<loc>https://heatlabs.net/news/who-are-they-1.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/news/who-are-they-2.html</loc>
+		<loc>https://heatlabs.net/news/who-are-they-2.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/placeholder-tables/all-guides-placeholder.html</loc>
+		<loc>https://heatlabs.net/placeholder-tables/all-guides-placeholder.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/placeholder-tables/guide-category-placeholder.html</loc>
+		<loc>https://heatlabs.net/placeholder-tables/guide-category-placeholder.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/playground/alpha-3-playtest.html</loc>
+		<loc>https://heatlabs.net/playground/alpha-3-playtest.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/playground/configurator.html</loc>
+		<loc>https://heatlabs.net/playground/configurator.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/playground/game-servers.html</loc>
+		<loc>https://heatlabs.net/playground/game-servers.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/playground/heat-labs-app.html</loc>
+		<loc>https://heatlabs.net/playground/heat-labs-app.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/playground/roulette.html</loc>
+		<loc>https://heatlabs.net/playground/roulette.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/playground/soundboard.html</loc>
+		<loc>https://heatlabs.net/playground/soundboard.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/playground/strategy-planner.html</loc>
+		<loc>https://heatlabs.net/playground/strategy-planner.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/playground/tierlist.html</loc>
+		<loc>https://heatlabs.net/playground/tierlist.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/playground/wordle.html</loc>
+		<loc>https://heatlabs.net/playground/wordle.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/resources/about-us.html</loc>
+		<loc>https://heatlabs.net/resources/about-us.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/resources/contact-us.html</loc>
+		<loc>https://heatlabs.net/resources/contact-us.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/resources/credits.html</loc>
+		<loc>https://heatlabs.net/resources/credits.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/resources/frequent-questions.html</loc>
+		<loc>https://heatlabs.net/resources/frequent-questions.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/resources/get-involved.html</loc>
+		<loc>https://heatlabs.net/resources/get-involved.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/resources/support-us.html</loc>
+		<loc>https://heatlabs.net/resources/support-us.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/steam-news/announcing-world-of-tanks-heat.html</loc>
+		<loc>https://heatlabs.net/steam-news/announcing-world-of-tanks-heat.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/steam-news/fair-play-and-clear-value.html</loc>
+		<loc>https://heatlabs.net/steam-news/fair-play-and-clear-value.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/steam-news/join-the-lodestar-program.html</loc>
+		<loc>https://heatlabs.net/steam-news/join-the-lodestar-program.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/steam-news/placeholder-post.html</loc>
+		<loc>https://heatlabs.net/steam-news/placeholder-post.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/agds.html</loc>
+		<loc>https://heatlabs.net/tanks/agds.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/alvt.html</loc>
+		<loc>https://heatlabs.net/tanks/alvt.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/amx-10-rc.html</loc>
+		<loc>https://heatlabs.net/tanks/amx-10-rc.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/bat-4m.html</loc>
+		<loc>https://heatlabs.net/tanks/bat-4m.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/fv4030x.html</loc>
+		<loc>https://heatlabs.net/tanks/fv4030x.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/hstv-l.html</loc>
+		<loc>https://heatlabs.net/tanks/hstv-l.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/leopard-1a1b.html</loc>
+		<loc>https://heatlabs.net/tanks/leopard-1a1b.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/leopard-1a6a1.html</loc>
+		<loc>https://heatlabs.net/tanks/leopard-1a6a1.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/leopard-2fk.html</loc>
+		<loc>https://heatlabs.net/tanks/leopard-2fk.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/leopard-2k14.html</loc>
+		<loc>https://heatlabs.net/tanks/leopard-2k14.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/m1-railgun.html</loc>
+		<loc>https://heatlabs.net/tanks/m1-railgun.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/m1e1.html</loc>
+		<loc>https://heatlabs.net/tanks/m1e1.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/m3a1-bradley.html</loc>
+		<loc>https://heatlabs.net/tanks/m3a1-bradley.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/m60a3e2-bot.html</loc>
+		<loc>https://heatlabs.net/tanks/m60a3e2-bot.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/m60a3e2.html</loc>
+		<loc>https://heatlabs.net/tanks/m60a3e2.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/m60e2.html</loc>
+		<loc>https://heatlabs.net/tanks/m60e2.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/object-279.html</loc>
+		<loc>https://heatlabs.net/tanks/object-279.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/object-287.html</loc>
+		<loc>https://heatlabs.net/tanks/object-287.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/placeholder-tank.html</loc>
+		<loc>https://heatlabs.net/tanks/placeholder-tank.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/ptz89c.html</loc>
+		<loc>https://heatlabs.net/tanks/ptz89c.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/t-55-enigma.html</loc>
+		<loc>https://heatlabs.net/tanks/t-55-enigma.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/t-62av.html</loc>
+		<loc>https://heatlabs.net/tanks/t-62av.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/t-62ms.html</loc>
+		<loc>https://heatlabs.net/tanks/t-62ms.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/t-64a.html</loc>
+		<loc>https://heatlabs.net/tanks/t-64a.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/t-72au.html</loc>
+		<loc>https://heatlabs.net/tanks/t-72au.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/t-72b.html</loc>
+		<loc>https://heatlabs.net/tanks/t-72b.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/test-model-viewer.html</loc>
+		<loc>https://heatlabs.net/tanks/test-model-viewer.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/xm1-90.html</loc>
+		<loc>https://heatlabs.net/tanks/xm1-90.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/xm1-v.html</loc>
+		<loc>https://heatlabs.net/tanks/xm1-v.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/xm551.html</loc>
+		<loc>https://heatlabs.net/tanks/xm551.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tanks/xm808-twister.html</loc>
+		<loc>https://heatlabs.net/tanks/xm808-twister.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tournaments/open-alpha-1-tournament.html</loc>
+		<loc>https://heatlabs.net/tournaments/open-alpha-1-tournament.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tournaments/open-alpha-2-tournament.html</loc>
+		<loc>https://heatlabs.net/tournaments/open-alpha-2-tournament.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/tournaments/tournament-maintenance.html</loc>
+		<loc>https://heatlabs.net/tournaments/tournament-maintenance.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/guides/general-guides/placeholder-general-guide.html</loc>
+		<loc>https://heatlabs.net/guides/general-guides/placeholder-general-guide.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.4</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/guides/map-guides/placeholder-map-guide.html</loc>
+		<loc>https://heatlabs.net/guides/map-guides/placeholder-map-guide.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.4</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/guides/tank-guides/bat-4m-basic-guide.html</loc>
+		<loc>https://heatlabs.net/guides/tank-guides/bat-4m-basic-guide.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.4</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/guides/tank-guides/placeholder-tank-guide.html</loc>
+		<loc>https://heatlabs.net/guides/tank-guides/placeholder-tank-guide.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.4</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.github.io/guides/tank-guides/xm1-v-build-guide.html</loc>
+		<loc>https://heatlabs.net/guides/tank-guides/xm1-v-build-guide.html</loc>
 		<lastmod>2025-10-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.4</priority>

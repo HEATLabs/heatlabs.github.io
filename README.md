@@ -38,7 +38,7 @@ If you’d like to contribute or report an issue, you can:
 
 1. **Create an issue** in the [HEAT Labs main organization](https://github.com/HEATLabs) that holds all repositories.
 2. **Contact us on Discord** via [this invite link](https://thatsinewave.github.io/Discord-Redirect/).
-3. **Use our contact form** on the [HEAT Labs Contact Us page](https://heatlabs.github.io/resources/contact-us.html).
+3. **Use our contact form** on the [HEAT Labs Contact Us page](https://heatlabs.net/resources/contact-us.html).
 
 When submitting changes via pull requests:
 

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             if (data.maintenance) {
                 // Redirect to maintenance page
-                window.location.href = 'https://heatlabs.github.io/maintenance.html';
+                window.location.href = 'https://heatlabs.net/maintenance.html';
                 return;
             }
 
@@ -157,7 +157,7 @@ function addVersionToFooter(update, isFallback = false) {
     // Create changelog link
     const changelogLink = document.createElement('a');
     changelogLink.className = 'version-info-item version-info-link';
-    changelogLink.href = 'https://heatlabs.github.io/Website-Changelog';
+    changelogLink.href = 'https://heatlabs.net/Website-Changelog';
     changelogLink.innerHTML = `
         <span>View Changelog</span>
         <i class="fas fa-external-link-alt"></i>
