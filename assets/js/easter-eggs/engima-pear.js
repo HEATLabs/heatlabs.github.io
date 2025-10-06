@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Preload the sound when page loads
     function preloadSound() {
-        sound = new Audio('https://cdn.jsdelivr.net/gh/HEATLabs/Database-Files@main/sounds/enigma_pear.wav');
+        sound = new Audio('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Database@main/sounds/enigma_pear.wav');
         sound.load();
     }
     preloadSound();
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (wordCode.includes(inputBuffer)) {
                 // Ensure we have a sound object
                 if (!sound) {
-                    sound = new Audio('https://cdn.jsdelivr.net/gh/HEATLabs/Database-Files@main/sounds/enigma_pear.wav');
+                    sound = new Audio('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Database@main/sounds/enigma_pear.wav');
                 }
 
                 // Reset sound to start

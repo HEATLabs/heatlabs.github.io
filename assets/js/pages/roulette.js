@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Minimum distance (in items) to move away if special prize would be selected
             minAvoidDistance: 2,
             // Sound to play when special prize is "almost" selected
-            almostSound: "https://github.com/HEATLabs/Database-Files/raw/refs/heads/main/sounds/fail.wav"
+            almostSound: "https://github.com/HEATLabs/HEAT-Labs-Database/raw/refs/heads/main/sounds/fail.wav"
         }
     };
 
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let itemWidth = 200; // Default width of each roulette item
     let lastCenterItemId = null;
     let centerItemIdAtStop = null; // Track the center item when stopping
-    const clickSound = new Audio('https://github.com/HEATLabs/Database-Files/raw/refs/heads/main/sounds/click_2.wav');
+    const clickSound = new Audio('https://github.com/HEATLabs/HEAT-Labs-Database/raw/refs/heads/main/sounds/click_2.wav');
     const almostSound = new Audio(rouletteConfig.specialPrize.almostSound);
     clickSound.volume = rouletteConfig.soundVolume;
     almostSound.volume = rouletteConfig.soundVolume;
