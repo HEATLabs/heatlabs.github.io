@@ -42,6 +42,17 @@ document.addEventListener('DOMContentLoaded', function() {
                         <option value="true">Enabled</option>
                     </select>
                 </div>
+
+                <div class="settings-option">
+                    <div>
+                        <div class="settings-label">Seasonal Content</div>
+                        <div class="settings-description">Show holiday themes and effects.</div>
+                    </div>
+                    <select class="settings-select" id="seasonalContentSelect">
+                        <option value="true">Enabled</option>
+                        <option value="false">Disabled</option>
+                    </select>
+                </div>
             </div>
 
             <div class="settings-group">
@@ -144,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const clearSearchHistoryBtn = document.getElementById('clearSearchHistoryBtn');
     const themeSelect = document.getElementById('themeSelect');
     const reducedMotionSelect = document.getElementById('reducedMotionSelect');
+    const seasonalContentSelect = document.getElementById('seasonalContentSelect');
     const toast = document.getElementById('toast');
     const toastMessage = document.getElementById('toast-message');
     const dataRetentionSelect = document.getElementById('dataRetentionSelect');
@@ -226,10 +238,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Load saved settings
         const savedTheme = localStorage.getItem('themePreference') || 'system';
         const savedMotion = localStorage.getItem('reducedMotion') === 'true';
+        const savedSeasonalContent = localStorage.getItem('seasonalContent') !== 'false'; // Default to true
         const savedRetention = localStorage.getItem('dataRetention') || '3';
 
         themeSelect.value = savedTheme;
         reducedMotionSelect.value = savedMotion;
+        seasonalContentSelect.value = savedSeasonalContent;
         dataRetentionSelect.value = savedRetention;
     }
 
@@ -244,11 +258,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function saveSettings() {
         const theme = themeSelect.value;
         const reducedMotion = reducedMotionSelect.value === 'true';
+        const seasonalContent = seasonalContentSelect.value === 'true';
         const dataRetention = dataRetentionSelect.value;
 
         // Save to localStorage
         localStorage.setItem('themePreference', theme);
         localStorage.setItem('reducedMotion', reducedMotion);
+        localStorage.setItem('seasonalContent', seasonalContent);
         localStorage.setItem('dataRetention', dataRetention);
 
         // Apply theme
@@ -358,7 +374,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const value = localStorage.getItem(key);
 
             // Categorize the data based on key patterns
-            if (key.includes('theme') || key.includes('Motion') || key.includes('Retention') || key.includes('Preference')) {
+            if (key.includes('theme') || key.includes('Motion') || key.includes('Retention') || key.includes('Preference') || key.includes('seasonal')) {
                 exportData.userData.settings[key] = value;
                 exportData.statistics.categories.settings++;
             } else if (key.includes('search') || key.includes('Search') || key.includes('query') || key.includes('history')) {
@@ -399,7 +415,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create and trigger download
         const a = document.createElement('a');
         a.href = url;
-        a.download = `heatlabs-data-export-${new Date().toISOString().split('T')[0]}.json`;
+        a.download = `heat-labs-data-export-${new Date().toISOString().split('T')[0]}.json`;
         a.style.display = 'none';
         document.body.appendChild(a);
         a.click();
@@ -446,7 +462,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i);
-            if (key === 'themePreference' || key === 'reducedMotion' || key === 'dataRetention') continue;
+            if (key === 'themePreference' || key === 'reducedMotion' || key === 'dataRetention' || key === 'seasonalContent') continue;
 
             try {
                 const item = JSON.parse(localStorage.getItem(key));
@@ -474,6 +490,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Check for theme preference
         const themePreference = localStorage.getItem('themePreference') || 'system';
         applyThemePreference(themePreference);
+
+        // Set default seasonal content preference if not set
+        if (!localStorage.getItem('seasonalContent')) {
+            localStorage.setItem('seasonalContent', 'true');
+        }
 
         // Set default data retention if not set
         if (!localStorage.getItem('dataRetention')) {
