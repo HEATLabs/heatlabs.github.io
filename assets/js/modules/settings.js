@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="settings-option">
                     <div>
                         <div class="settings-label">Seasonal Content</div>
-                        <div class="settings-description">Show holiday themes and effects.</div>
+                        <div class="settings-description">Show holiday themes and effects</div>
                     </div>
                     <select class="settings-select" id="seasonalContentSelect">
                         <option value="true">Enabled</option>
