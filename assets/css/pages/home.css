@@ -91,7 +91,7 @@
 
 .hero-counter-label {
 	font-size: 0.9rem;
-	color: var(--text-secondary);
+	color: rgba(255, 255, 255, 0.9);
 	font-weight: 600;
 	text-transform: uppercase;
 	letter-spacing: 0.5px;
