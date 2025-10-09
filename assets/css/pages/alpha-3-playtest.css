@@ -34,7 +34,6 @@
 	padding: 1.5rem;
 	min-width: 120px;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-	border: 1px solid var(--border-color);
 	flex-shrink: 0;
 	box-sizing: border-box;
 }
@@ -77,12 +76,10 @@
 	bottom: 20px;
 	left: 50%;
 	transform: translateX(-50%);
-	background-color: rgba(30, 30, 30, 0.95);
-	color: var(--text-primary);
+	background-color: var(--bg-dark);
 	padding: 15px 20px;
 	border-radius: 8px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-	border: 1px solid var(--border-color);
 	max-width: 90%;
 	width: 600px;
 	z-index: 1000;
@@ -94,15 +91,17 @@
 
 .notification-popup p {
 	margin: 0;
+	color: var(--text-dark);
 	padding-right: 15px;
 	font-size: 0.9rem;
 	line-height: 1.4;
+	font-weight: bold;
 }
 
 .notification-popup .close-btn {
 	background: none;
 	border: none;
-	color: var(--text-secondary);
+	color: var(--text-dark);
 	font-size: 1.2rem;
 	cursor: pointer;
 	padding: 5px;
@@ -111,7 +110,7 @@
 }
 
 .notification-popup .close-btn:hover {
-	color: var(--accent-color);
+	color: var(--text-secondary);
 }
 
 @keyframes slideUp {
