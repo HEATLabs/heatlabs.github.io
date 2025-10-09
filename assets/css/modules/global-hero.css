@@ -130,14 +130,6 @@ body {
 	line-height: 1.6;
 }
 
-.hero-subtitle {
-	font-size: 1.5rem;
-	max-width: 800px;
-	margin: 0 auto 3rem;
-	color: rgba(255, 255, 255, 0.9);
-	line-height: 1.6;
-}
-
 .hero-buttons {
 	display: flex;
 	justify-content: center;
