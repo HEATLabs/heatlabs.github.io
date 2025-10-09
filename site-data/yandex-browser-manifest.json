@@ -1,0 +1,9 @@
+{
+  "version": "1.0.0",
+  "api_version": 1,
+  "layout": {
+    "logo": "https://raw.githubusercontent.com/HEATLabs/HEAT-Labs-Images/refs/heads/main/yandex/yandex-browser-50x50.png",
+    "color": "#141312",
+    "show_title": true
+  }
+}
