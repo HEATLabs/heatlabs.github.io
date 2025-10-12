@@ -30,6 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let bypassActive = false;
     let isModalOpen = false;
 
+    // Track clicks on the bypass indicator
+    let bypassClickCount = 0;
+    let bypassClickTimeout = null;
+
     // Debounce function to prevent multiple rapid triggers
     function debounce(func, wait) {
         let timeout;
@@ -49,6 +53,19 @@ document.addEventListener('DOMContentLoaded', function() {
             bypassActive = true;
             // Show a indicator that bypass is active
             document.body.classList.add('bypass-active');
+
+            // Add CSS for the bypass indicator to prevent cursor change
+            if (!document.querySelector('#bypassIndicatorStyles')) {
+                const style = document.createElement('style');
+                style.id = 'bypassIndicatorStyles';
+                style.textContent = `
+                    .bypass-active::before {
+                        cursor: default !important;
+                        pointer-events: auto !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
         }
     }, 50);
 
@@ -62,6 +79,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('keyup', handleKeyUp);
+
+    // Function to handle clicks on the bypass indicator
+    function handleBypassIndicatorClick(e) {
+        // Only count clicks when bypass is active and the indicator is visible
+        if (!bypassActive || !document.body.classList.contains('bypass-active')) {
+            return;
+        }
+
+        // Prevent the click from affecting anything else
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Increment click counter
+        bypassClickCount++;
+
+        // Reset counter after 2 seconds of inactivity
+        clearTimeout(bypassClickTimeout);
+        bypassClickTimeout = setTimeout(() => {
+            bypassClickCount = 0;
+        }, 2000);
+
+        // Check if we've reached 10 clicks
+        if (bypassClickCount >= 10) {
+            // Reset counter
+            bypassClickCount = 0;
+            clearTimeout(bypassClickTimeout);
+
+            // Redirect to dev site
+            window.location.href = '//dev.heatlabs.net';
+        }
+    }
+
+    // Add click event listener to document to catch clicks on the bypass indicator
+    document.addEventListener('click', handleBypassIndicatorClick);
 
     // Function to show the WIP modal
     function showWipModal(event, href, isBypass = false) {
@@ -239,5 +290,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.disconnect();
         document.removeEventListener('keydown', handleKeyDown);
         document.removeEventListener('keyup', handleKeyUp);
+        document.removeEventListener('click', handleBypassIndicatorClick);
     });
 });
