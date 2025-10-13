@@ -1,0 +1,336 @@
+// Standalone Context Menu System
+class HeatLabsContextMenu {
+    constructor() {
+        this.menu = null;
+        this.isOpen = false;
+        this.currentTarget = null;
+        this.whitelistSelectors = [
+            'a',
+            'button',
+            'img',
+            '.feature-card',
+            '.tank-card',
+            '.quick-access-item',
+            '.sidebar-link',
+            '.btn-accent',
+            '.hero-btn',
+            'nav',
+            'header',
+            'footer',
+            'section',
+            'article',
+            'main',
+            'aside'
+        ];
+        this.blacklistSelectors = [
+            '.navbar',
+            '.theme-toggle-switch',
+            '.search-input',
+            '.context-menu',
+            '.heatlabs-context-menu',
+            'input',
+            'textarea',
+            'select'
+        ];
+        this.init();
+    }
+
+    init() {
+        this.createMenuElement();
+        this.bindEvents();
+        this.injectStyles();
+    }
+
+    injectStyles() {
+        // Check if styles are already injected
+        if (document.getElementById('heatlabs-context-menu-styles')) {
+            return;
+        }
+
+        // Create style element for dynamic styles
+        const style = document.createElement('style');
+        style.id = 'heatlabs-context-menu-styles';
+        style.textContent = `
+            .heatlabs-context-menu-feedback {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--accent-color);
+                color: white;
+                padding: 0.75rem 1.5rem;
+                border-radius: 0.5rem;
+                z-index: 10001;
+                font-family: var(--font-body);
+                font-weight: 500;
+                box-shadow: var(--shadow-lg);
+                transition: opacity 0.3s ease;
+                pointer-events: none;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    createMenuElement() {
+        this.menu = document.createElement('div');
+        this.menu.className = 'heatlabs-context-menu';
+        this.menu.innerHTML = `
+            <div class="heatlabs-context-menu-items"></div>
+        `;
+        document.body.appendChild(this.menu);
+    }
+
+    bindEvents() {
+        // Global context menu handler
+        document.addEventListener('contextmenu', (e) => {
+            if (this.shouldShowMenu(e.target)) {
+                e.preventDefault();
+                this.show(e, e.target);
+            } else {
+                this.hide();
+            }
+        });
+
+        // Close on click outside
+        document.addEventListener('click', (e) => {
+            if (this.isOpen && !this.menu.contains(e.target)) {
+                this.hide();
+            }
+        });
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.isOpen) {
+                this.hide();
+            }
+        });
+
+        // Handle window resize and scroll
+        window.addEventListener('resize', () => this.hide());
+        window.addEventListener('scroll', () => this.hide());
+
+        // Prevent context menu on the menu itself
+        this.menu.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    }
+
+    shouldShowMenu(target) {
+        // Check blacklist first
+        for (const selector of this.blacklistSelectors) {
+            if (target.closest(selector)) {
+                return false;
+            }
+        }
+
+        // Check whitelist
+        for (const selector of this.whitelistSelectors) {
+            if (target.closest(selector)) {
+                return true;
+            }
+        }
+
+        // Allow on any element except body and html
+        return target !== document.body && target !== document.documentElement;
+    }
+
+    show(event, target) {
+        this.currentTarget = target;
+        const menuConfig = this.getMenuConfig();
+
+        if (!menuConfig || !menuConfig.items || menuConfig.items.length === 0) {
+            return;
+        }
+
+        this.renderMenu(menuConfig.items);
+        this.positionMenu(event);
+        this.menu.classList.add('active');
+        this.isOpen = true;
+
+        document.body.classList.add('context-menu-active');
+    }
+
+    hide() {
+        if (this.menu) {
+            this.menu.classList.remove('active');
+            this.isOpen = false;
+            this.currentTarget = null;
+            document.body.classList.remove('context-menu-active');
+        }
+    }
+
+    getMenuConfig() {
+        return {
+            items: [{
+                    label: 'Back',
+                    icon: 'fas fa-arrow-left',
+                    action: () => window.history.back(),
+                    disabled: () => !document.referrer
+                },
+                {
+                    label: 'Forward',
+                    icon: 'fas fa-arrow-right',
+                    action: () => window.history.forward(),
+                    disabled: () => !window.history.state
+                },
+                {
+                    type: 'separator'
+                },
+                {
+                    label: 'Reload',
+                    icon: 'fas fa-redo',
+                    action: () => window.location.reload()
+                },
+                {
+                    type: 'separator'
+                },
+                {
+                    label: 'Changelog',
+                    icon: 'fas fa-clipboard-list',
+                    action: () => window.open('https://changelog.heatlabs.net', '_blank')
+                },
+                {
+                    label: 'Statistics',
+                    icon: 'fas fa-chart-column',
+                    action: () => window.open('https://statistics.heatlabs.net', '_blank')
+                },
+                {
+                    label: 'Status',
+                    icon: 'fas fa-server',
+                    action: () => window.open('https://status.heatlabs.net', '_blank')
+                },
+                {
+                    label: 'Socials',
+                    icon: 'fas fa-share',
+                    action: () => window.open('https://social.heatlabs.net', '_blank')
+                },
+                {
+                    type: 'separator'
+                },
+                {
+                    label: 'Source',
+                    icon: 'fas fa-code',
+                    action: () => window.open('https://github.com/HEATLabs', '_blank')
+                },
+                {
+                    label: 'Home',
+                    icon: 'fas fa-home',
+                    action: () => window.location.href = '/'
+                }
+            ]
+        };
+    }
+
+    renderMenu(items) {
+        const menuItemsContainer = this.menu.querySelector('.heatlabs-context-menu-items');
+        menuItemsContainer.innerHTML = '';
+
+        items.forEach((item) => {
+            if (item.type === 'separator') {
+                const separator = document.createElement('div');
+                separator.className = 'heatlabs-context-menu-separator';
+                menuItemsContainer.appendChild(separator);
+            } else {
+                const menuItem = document.createElement('button');
+                menuItem.className = 'heatlabs-context-menu-item';
+
+                if (item.disabled && typeof item.disabled === 'function' && item.disabled()) {
+                    menuItem.disabled = true;
+                }
+
+                menuItem.innerHTML = `
+                    ${item.icon ? `<span class="heatlabs-context-menu-icon"><i class="${item.icon}"></i></span>` : ''}
+                    <span class="heatlabs-context-menu-label">${item.label}</span>
+                `;
+
+                if (item.action && !menuItem.disabled) {
+                    menuItem.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        item.action.call(this, this.currentTarget);
+                        this.hide();
+                    });
+                }
+
+                menuItemsContainer.appendChild(menuItem);
+            }
+        });
+    }
+
+    positionMenu(event) {
+        if (!this.menu) return;
+
+        // Show temporarily to calculate dimensions
+        this.menu.style.visibility = 'hidden';
+        this.menu.style.display = 'block';
+        const menuRect = this.menu.getBoundingClientRect();
+        const menuWidth = menuRect.width;
+        const menuHeight = menuRect.height;
+        this.menu.style.display = '';
+        this.menu.style.visibility = 'visible';
+
+        // Viewport dimensions
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        // Available space calculation
+        const spaceRight = viewportWidth - event.clientX;
+        const spaceLeft = event.clientX;
+        const spaceBottom = viewportHeight - event.clientY;
+        const spaceTop = event.clientY;
+
+        // Determine optimal position
+        let posX = event.clientX;
+        let posY = event.clientY;
+        let positionClass = 'bottom-right';
+
+        // Horizontal positioning
+        if (spaceRight < menuWidth && spaceLeft >= menuWidth) {
+            posX = event.clientX - menuWidth;
+            positionClass = positionClass.replace('right', 'left');
+        } else if (spaceRight < menuWidth && spaceLeft < menuWidth) {
+            posX = spaceRight >= spaceLeft ? viewportWidth - menuWidth - 10 : 10;
+            positionClass = spaceRight >= spaceLeft ? 'bottom-right' : 'bottom-left';
+        }
+
+        // Vertical positioning
+        if (spaceBottom < menuHeight && spaceTop >= menuHeight) {
+            posY = event.clientY - menuHeight;
+            positionClass = positionClass.replace('bottom', 'top');
+        } else if (spaceBottom < menuHeight && spaceTop < menuHeight) {
+            posY = spaceBottom >= spaceTop ? viewportHeight - menuHeight - 10 : 10;
+            positionClass = spaceBottom >= spaceTop ? 'bottom-right' : 'top-right';
+        }
+
+        // Apply position with boundary checks
+        posX = Math.max(10, Math.min(posX, viewportWidth - menuWidth - 10));
+        posY = Math.max(10, Math.min(posY, viewportHeight - menuHeight - 10));
+
+        this.menu.style.left = `${posX}px`;
+        this.menu.style.top = `${posY}px`;
+
+        // Update position class
+        this.menu.classList.remove('top-left', 'top-right', 'bottom-left', 'bottom-right');
+        this.menu.classList.add(positionClass);
+    }
+
+    destroy() {
+        this.hide();
+        if (this.menu && document.body.contains(this.menu)) {
+            document.body.removeChild(this.menu);
+        }
+    }
+}
+
+// Auto-initialize when DOM is loaded
+let heatLabsContextMenu;
+
+document.addEventListener('DOMContentLoaded', () => {
+    heatLabsContextMenu = new HeatLabsContextMenu();
+});
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', () => {
+    if (heatLabsContextMenu) {
+        heatLabsContextMenu.destroy();
+    }
+});
