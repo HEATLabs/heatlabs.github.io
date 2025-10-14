@@ -228,6 +228,11 @@ class HeatLabsContextMenu {
                     disabled: () => !window.history.state
                 },
                 {
+                    label: 'Return Home',
+                    icon: 'fas fa-home',
+                    action: () => window.location.href = '/'
+                },
+                {
                     label: 'Reload Page',
                     icon: 'fas fa-redo',
                     action: () => window.location.reload()
@@ -277,11 +282,6 @@ class HeatLabsContextMenu {
                     label: 'View Source',
                     icon: 'fas fa-code',
                     action: () => window.open('https://github.com/HEATlabs', '_blank')
-                },
-                {
-                    label: 'Go Home',
-                    icon: 'fas fa-home',
-                    action: () => window.location.href = '/'
                 }
             ]
         };
