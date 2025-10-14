@@ -216,19 +216,19 @@ class HeatLabsContextMenu {
     getMenuConfig() {
         return {
             items: [{
-                    label: 'Back',
+                    label: 'Go Back',
                     icon: 'fas fa-arrow-left',
                     action: () => window.history.back(),
                     disabled: () => !document.referrer
                 },
                 {
-                    label: 'Forward',
+                    label: 'Go Forward',
                     icon: 'fas fa-arrow-right',
                     action: () => window.history.forward(),
                     disabled: () => !window.history.state
                 },
                 {
-                    label: 'Reload',
+                    label: 'Reload Page',
                     icon: 'fas fa-redo',
                     action: () => window.location.reload()
                 },
@@ -244,29 +244,29 @@ class HeatLabsContextMenu {
                     label: 'Extras',
                     icon: 'fas fa-ellipsis-h',
                     submenu: [{
-                            label: 'Changelog',
+                            label: 'View Changes',
                             icon: 'fas fa-clipboard-list',
                             action: () => window.open('https://changelog.heatlabs.net', '_blank')
                         },
                         {
-                            label: 'Statistics',
+                            label: 'View Statistics',
                             icon: 'fas fa-chart-column',
                             action: () => window.open('https://statistics.heatlabs.net', '_blank')
                         },
                         {
-                            label: 'Discord',
+                            label: 'System Status',
+                            icon: 'fas fa-server',
+                            action: () => window.open('https://status.heatlabs.net', '_blank')
+                        },
+                        {
+                            label: 'Join Discord',
                             icon: 'fab fa-discord',
                             action: () => window.open('https://discord.heatlabs.net', '_blank')
                         },
                         {
-                            label: 'Socials',
+                            label: 'Follow Us',
                             icon: 'fas fa-share',
                             action: () => window.open('https://social.heatlabs.net', '_blank')
-                        },
-                        {
-                            label: 'Status',
-                            icon: 'fas fa-server',
-                            action: () => window.open('https://status.heatlabs.net', '_blank')
                         }
                     ]
                 },
@@ -274,12 +274,12 @@ class HeatLabsContextMenu {
                     type: 'separator'
                 },
                 {
-                    label: 'Source',
+                    label: 'View Source',
                     icon: 'fas fa-code',
                     action: () => window.open('https://github.com/HEATlabs', '_blank')
                 },
                 {
-                    label: 'Home',
+                    label: 'Go Home',
                     icon: 'fas fa-home',
                     action: () => window.location.href = '/'
                 }
