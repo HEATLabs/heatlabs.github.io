@@ -392,6 +392,3 @@ class TwitchAlert {
 document.addEventListener('DOMContentLoaded', () => {
     new TwitchAlert();
 });
-
-// Export for potential manual control
-window.HEATTwitchAlert = TwitchAlert;
