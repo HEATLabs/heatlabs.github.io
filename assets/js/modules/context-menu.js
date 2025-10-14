@@ -215,6 +215,11 @@ class HeatLabsContextMenu {
                             label: 'Socials',
                             icon: 'fas fa-share',
                             action: () => window.open('https://social.heatlabs.net', '_blank')
+                        },
+                        {
+                            label: 'Discord',
+                            icon: 'fab fa-discord',
+                            action: () => window.open('https://discord.heatlabs.net', '_blank')
                         }
                     ]
                 },
