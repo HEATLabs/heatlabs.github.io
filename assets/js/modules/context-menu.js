@@ -68,6 +68,51 @@ class HeatLabsContextMenu {
                 transition: opacity 0.3s ease;
                 pointer-events: none;
             }
+
+            .heatlabs-context-menu-social-row {
+                display: flex;
+                justify-content: space-between;
+                padding: 0.5rem 0.75rem;
+                border-top: 1px solid var(--border-color);
+                margin-top: 0.5rem;
+            }
+
+            .heatlabs-context-menu-social-item {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 32px;
+                height: 32px;
+                border-radius: 6px;
+                margin-top: 0.25rem;
+                background: transparent;
+                border: none;
+                color: var(--text-color);
+                cursor: pointer;
+                transition: all 0.2s ease;
+                font-size: 1.1rem;
+            }
+
+            .heatlabs-context-menu-social-item:hover {
+                background: var(--accent-color);
+                color: white;
+            }
+
+            .heatlabs-context-menu-social-item.github:hover {
+                background: #333;
+            }
+
+            .heatlabs-context-menu-social-item.youtube:hover {
+                background: #ff0000;
+            }
+
+            .heatlabs-context-menu-social-item.discord:hover {
+                background: #5865f2;
+            }
+
+            .heatlabs-context-menu-social-item.twitter:hover {
+                background: #1da1f2;
+            }
         `;
         document.head.appendChild(style);
     }
@@ -313,6 +358,58 @@ class HeatLabsContextMenu {
                 menuItemsContainer.appendChild(menuItem);
             }
         });
+
+        // Add social media icons row at the bottom
+        this.addSocialMediaRow(menuItemsContainer);
+    }
+
+    addSocialMediaRow(container) {
+        const socialRow = document.createElement('div');
+        socialRow.className = 'heatlabs-context-menu-social-row';
+
+        const socialLinks = [
+            {
+                platform: 'github',
+                icon: 'fab fa-github',
+                url: 'https://github.com/HEATLabs',
+                title: 'GitHub'
+            },
+            {
+                platform: 'youtube',
+                icon: 'fab fa-youtube',
+                url: 'https://www.youtube.com/@HEATLabs-Official',
+                title: 'YouTube'
+            },
+            {
+                platform: 'discord',
+                icon: 'fab fa-discord',
+                url: 'https://discord.com/invite/caEFCA9ScF',
+                title: 'Discord'
+            },
+            {
+                platform: 'twitter',
+                icon: 'fab fa-twitter',
+                url: 'https://x.com/HEAT_Labs',
+                title: 'Twitter'
+            }
+        ];
+
+        socialLinks.forEach(link => {
+            const socialButton = document.createElement('button');
+            socialButton.className = `heatlabs-context-menu-social-item ${link.platform}`;
+            socialButton.title = link.title;
+            socialButton.innerHTML = `<i class="${link.icon}"></i>`;
+
+            socialButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                window.open(link.url, '_blank');
+                this.hide();
+            });
+
+            socialRow.appendChild(socialButton);
+        });
+
+        container.appendChild(socialRow);
     }
 
     setupSubmenuHover(menuItem, submenu) {
