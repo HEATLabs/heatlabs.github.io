@@ -2,8 +2,8 @@
 (function() {
     'use strict';
 
-    // Toggle Cobwebs
-    const COBWEBS_ENABLED = false;
+    // Toggle Halloween Effects
+    const COBWEBS_ENABLED = true;
 
     // Configuration
     const config = {
@@ -75,9 +75,18 @@
         }
     };
 
-    // Exit early if cobwebs are disabled
-    if (!COBWEBS_ENABLED) {
-        return;
+    let cobwebElements = [];
+
+    // Check if seasonal content is enabled in settings
+    function isSeasonalContentEnabled() {
+        // First check master toggle, if false, completely disable regardless of settings
+        if (!COBWEBS_ENABLED) {
+            return false;
+        }
+
+        // Then check user preference from localStorage
+        const seasonalContent = localStorage.getItem('seasonalContent');
+        return seasonalContent !== 'false'; // Default to true if not set
     }
 
     // Create cobweb element
@@ -148,24 +157,79 @@
         return cobweb;
     }
 
-    // Initialize cobwebs
-    function init() {
-        // Wait for DOM to be ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', addCobwebs);
-        } else {
-            addCobwebs();
-        }
-    }
-
     // Add all cobwebs to the page
     function addCobwebs() {
+        // Clear any existing cobwebs first
+        removeCobwebs();
+
+        if (!isSeasonalContentEnabled()) {
+            return;
+        }
+
         const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
 
         corners.forEach(corner => {
             const cobweb = createCobweb(corner);
             document.body.appendChild(cobweb);
+            cobwebElements.push(cobweb);
         });
+    }
+
+    // Remove all cobwebs from the page
+    function removeCobwebs() {
+        cobwebElements.forEach(cobweb => {
+            if (cobweb && cobweb.parentNode) {
+                cobweb.parentNode.removeChild(cobweb);
+            }
+        });
+        cobwebElements = [];
+
+        // Also remove any cobwebs that might have been added by previous versions
+        const existingCobwebs = document.querySelectorAll('[class*="cobweb"]');
+        existingCobwebs.forEach(cobweb => {
+            if (cobweb.parentNode) {
+                cobweb.parentNode.removeChild(cobweb);
+            }
+        });
+    }
+
+    // Update cobwebs based on current settings
+    function updateCobwebs() {
+        if (isSeasonalContentEnabled()) {
+            addCobwebs();
+        } else {
+            removeCobwebs();
+        }
+    }
+
+    // Initialize cobwebs
+    function init() {
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                addCobwebs();
+                setupSettingsListener();
+            });
+        } else {
+            addCobwebs();
+            setupSettingsListener();
+        }
+    }
+
+    // Listen for settings changes
+    function setupSettingsListener() {
+        // Listen for the themeChanged event that settings.js dispatches
+        document.addEventListener('themeChanged', updateCobwebs);
+
+        // Also check for settings changes periodically (fallback)
+        let lastSeasonalSetting = isSeasonalContentEnabled();
+        setInterval(() => {
+            const currentSeasonalSetting = isSeasonalContentEnabled();
+            if (currentSeasonalSetting !== lastSeasonalSetting) {
+                lastSeasonalSetting = currentSeasonalSetting;
+                updateCobwebs();
+            }
+        }, 1000);
     }
 
     init();
@@ -179,6 +243,12 @@
     let audioPlayer = null;
     let isPlaying = false;
     let currentVolume = 0.5;
+
+    // Check if seasonal content is enabled in settings
+    function isSeasonalContentEnabled() {
+        const seasonalContent = localStorage.getItem('seasonalContent');
+        return seasonalContent !== 'false'; // Default to true if not set
+    }
 
     // Load persistent state from sessionStorage
     const loadRadioState = () => {
@@ -202,8 +272,8 @@
                 isPlaying = true;
             }
 
-            // Restore modal if it was visible
-            if (savedModalVisible === 'true') {
+            // Restore modal if it was visible and seasonal content is enabled
+            if (savedModalVisible === 'true' && isSeasonalContentEnabled()) {
                 setTimeout(() => {
                     showRadioModal();
                     if (isPlaying && radioStations.length > 0) {
@@ -290,6 +360,11 @@
 
     // Show the radio modal
     const showRadioModal = () => {
+        // Only show if seasonal content is enabled
+        if (!isSeasonalContentEnabled()) {
+            return;
+        }
+
         if (!document.getElementById('arabicRadioModal')) {
             createRadioModal();
         }
@@ -614,17 +689,44 @@
         document.head.appendChild(style);
     };
 
+    // Update radio based on seasonal content setting
+    function updateRadio() {
+        if (!isSeasonalContentEnabled()) {
+            // Hide radio modal and stop playback if seasonal content is disabled
+            hideRadioModal();
+            if (audioPlayer) {
+                audioPlayer.pause();
+                isPlaying = false;
+                saveRadioState();
+            }
+        }
+    }
+
     // Initialize the radio system
     const initRadio = () => {
         addRadioStyles();
         loadRadioState();
 
+        // Listen for settings changes
+        document.addEventListener('themeChanged', updateRadio);
+
+        // Check for settings changes periodically (fallback)
+        let lastSeasonalSetting = isSeasonalContentEnabled();
+        setInterval(() => {
+            const currentSeasonalSetting = isSeasonalContentEnabled();
+            if (currentSeasonalSetting !== lastSeasonalSetting) {
+                lastSeasonalSetting = currentSeasonalSetting;
+                updateRadio();
+            }
+        }, 1000);
 
         setTimeout(() => {
-            const cobwebElements = document.querySelectorAll('[class*="cobweb"]');
-            if (cobwebElements.length > 0) {
-                // Cobwebs are enabled, show the radio modal
-                showRadioModal();
+            if (isSeasonalContentEnabled()) {
+                const cobwebElements = document.querySelectorAll('[class*="cobweb"]');
+                if (cobwebElements.length > 0) {
+                    // Cobwebs are enabled, show the radio modal
+                    showRadioModal();
+                }
             }
         }, 1000);
     };
