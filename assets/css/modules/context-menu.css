@@ -85,8 +85,8 @@
 
 .heatlabs-context-submenu {
 	position: absolute;
-	top: 0;
-	left: 100%;
+	top: -0.5rem;
+	left: calc(100% + 4px);
 	background: var(--card-bg);
 	border: 1px solid var(--border-color);
 	border-radius: 0.75rem;
@@ -97,12 +97,39 @@
 	transform: translateX(-10px);
 	transition: opacity 0.2s ease, transform 0.2s ease;
 	pointer-events: none;
+	z-index: 10001;
 }
 
-.heatlabs-context-menu-submenu:hover .heatlabs-context-submenu {
+/* Left-positioned submenu */
+.heatlabs-context-submenu.left {
+	left: auto;
+	right: calc(100% + 4px);
+	transform: translateX(10px);
+}
+
+.heatlabs-context-menu-submenu:hover .heatlabs-context-submenu,
+.heatlabs-context-submenu:hover {
 	opacity: 1;
 	transform: translateX(0);
 	pointer-events: all;
+}
+
+.heatlabs-context-menu-submenu:hover .heatlabs-context-submenu.left {
+	transform: translateX(0);
+}
+
+.heatlabs-context-submenu::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -4px;
+	width: 4px;
+	height: 100%;
+}
+
+.heatlabs-context-submenu.left::before {
+	left: auto;
+	right: -4px;
 }
 
 /* Edge detection positioning */

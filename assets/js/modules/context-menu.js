@@ -4,6 +4,8 @@ class HeatLabsContextMenu {
         this.menu = null;
         this.isOpen = false;
         this.currentTarget = null;
+        this.activeSubmenu = null;
+        this.submenuCloseTimeout = null;
         this.whitelistSelectors = [
             'a',
             'button',
@@ -155,7 +157,14 @@ class HeatLabsContextMenu {
             this.menu.classList.remove('active');
             this.isOpen = false;
             this.currentTarget = null;
+            this.activeSubmenu = null;
             document.body.classList.remove('context-menu-active');
+
+            // Clear any pending timeouts
+            if (this.submenuCloseTimeout) {
+                clearTimeout(this.submenuCloseTimeout);
+                this.submenuCloseTimeout = null;
+            }
         }
     }
 
@@ -185,24 +194,29 @@ class HeatLabsContextMenu {
                     type: 'separator'
                 },
                 {
-                    label: 'Changelog',
-                    icon: 'fas fa-clipboard-list',
-                    action: () => window.open('https://changelog.heatlabs.net', '_blank')
-                },
-                {
-                    label: 'Statistics',
-                    icon: 'fas fa-chart-column',
-                    action: () => window.open('https://statistics.heatlabs.net', '_blank')
-                },
-                {
-                    label: 'Status',
-                    icon: 'fas fa-server',
-                    action: () => window.open('https://status.heatlabs.net', '_blank')
-                },
-                {
-                    label: 'Socials',
-                    icon: 'fas fa-share',
-                    action: () => window.open('https://social.heatlabs.net', '_blank')
+                    label: 'Extras',
+                    icon: 'fas fa-ellipsis-h',
+                    submenu: [{
+                            label: 'Changelog',
+                            icon: 'fas fa-clipboard-list',
+                            action: () => window.open('https://changelog.heatlabs.net', '_blank')
+                        },
+                        {
+                            label: 'Statistics',
+                            icon: 'fas fa-chart-column',
+                            action: () => window.open('https://statistics.heatlabs.net', '_blank')
+                        },
+                        {
+                            label: 'Status',
+                            icon: 'fas fa-server',
+                            action: () => window.open('https://status.heatlabs.net', '_blank')
+                        },
+                        {
+                            label: 'Socials',
+                            icon: 'fas fa-share',
+                            action: () => window.open('https://social.heatlabs.net', '_blank')
+                        }
+                    ]
                 },
                 {
                     type: 'separator'
@@ -210,7 +224,7 @@ class HeatLabsContextMenu {
                 {
                     label: 'Source',
                     icon: 'fas fa-code',
-                    action: () => window.open('https://github.com/HEATLabs', '_blank')
+                    action: () => window.open('https://github.com/HEATlabs', '_blank')
                 },
                 {
                     label: 'Home',
@@ -230,6 +244,46 @@ class HeatLabsContextMenu {
                 const separator = document.createElement('div');
                 separator.className = 'heatlabs-context-menu-separator';
                 menuItemsContainer.appendChild(separator);
+            } else if (item.submenu) {
+                // Create submenu item
+                const menuItem = document.createElement('div');
+                menuItem.className = 'heatlabs-context-menu-item heatlabs-context-menu-submenu';
+
+                menuItem.innerHTML = `
+                    ${item.icon ? `<span class="heatlabs-context-menu-icon"><i class="${item.icon}"></i></span>` : ''}
+                    <span class="heatlabs-context-menu-label">${item.label}</span>
+                `;
+
+                // Create submenu container
+                const submenu = document.createElement('div');
+                submenu.className = 'heatlabs-context-submenu';
+
+                // Add submenu items
+                item.submenu.forEach((subItem) => {
+                    const submenuItem = document.createElement('button');
+                    submenuItem.className = 'heatlabs-context-menu-item';
+
+                    submenuItem.innerHTML = `
+                        ${subItem.icon ? `<span class="heatlabs-context-menu-icon"><i class="${subItem.icon}"></i></span>` : ''}
+                        <span class="heatlabs-context-menu-label">${subItem.label}</span>
+                    `;
+
+                    if (subItem.action) {
+                        submenuItem.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            subItem.action.call(this, this.currentTarget);
+                            this.hide();
+                        });
+                    }
+
+                    submenu.appendChild(submenuItem);
+                });
+
+                menuItem.appendChild(submenu);
+                menuItemsContainer.appendChild(menuItem);
+
+                // Add hover events with delay for smooth transition
+                this.setupSubmenuHover(menuItem, submenu);
             } else {
                 const menuItem = document.createElement('button');
                 menuItem.className = 'heatlabs-context-menu-item';
@@ -254,6 +308,87 @@ class HeatLabsContextMenu {
                 menuItemsContainer.appendChild(menuItem);
             }
         });
+    }
+
+    setupSubmenuHover(menuItem, submenu) {
+        let submenuTimeout;
+
+        // Show submenu on hover with slight delay
+        menuItem.addEventListener('mouseenter', () => {
+            // Clear any pending close timeout
+            if (this.submenuCloseTimeout) {
+                clearTimeout(this.submenuCloseTimeout);
+                this.submenuCloseTimeout = null;
+            }
+
+            // Position submenu
+            this.positionSubmenu(menuItem, submenu);
+
+            // Set as active submenu
+            this.activeSubmenu = submenu;
+        });
+
+        // Hide submenu with delay when leaving menu item
+        menuItem.addEventListener('mouseleave', (e) => {
+            // If moving to submenu, don't hide
+            if (submenu.contains(e.relatedTarget)) {
+                return;
+            }
+
+            // Set timeout to hide submenu
+            this.submenuCloseTimeout = setTimeout(() => {
+                if (this.activeSubmenu === submenu) {
+                    this.activeSubmenu = null;
+                }
+            }, 150);
+        });
+
+        // Keep submenu visible when hovering over it
+        submenu.addEventListener('mouseenter', () => {
+            // Clear close timeout when entering submenu
+            if (this.submenuCloseTimeout) {
+                clearTimeout(this.submenuCloseTimeout);
+                this.submenuCloseTimeout = null;
+            }
+            this.activeSubmenu = submenu;
+        });
+
+        // Hide submenu when leaving it
+        submenu.addEventListener('mouseleave', (e) => {
+            // If moving back to menu item, dont hide
+            if (menuItem.contains(e.relatedTarget)) {
+                return;
+            }
+
+            this.submenuCloseTimeout = setTimeout(() => {
+                if (this.activeSubmenu === submenu) {
+                    this.activeSubmenu = null;
+                }
+            }, 150);
+        });
+    }
+
+    positionSubmenu(menuItem, submenu) {
+        // Wait for the menu to be visible
+        setTimeout(() => {
+            const menuRect = this.menu.getBoundingClientRect();
+            const submenuRect = submenu.getBoundingClientRect();
+            const viewportWidth = window.innerWidth;
+
+            // Check if there is enough space on the right
+            const spaceRight = viewportWidth - menuRect.right;
+            const spaceLeft = menuRect.left;
+
+            // Default to right positioning
+            let positionClass = '';
+
+            // If not enough space on right but enough on left position to left
+            if (spaceRight < submenuRect.width && spaceLeft >= submenuRect.width) {
+                positionClass = 'left';
+            }
+
+            submenu.classList.toggle('left', positionClass === 'left');
+        }, 10);
     }
 
     positionMenu(event) {
