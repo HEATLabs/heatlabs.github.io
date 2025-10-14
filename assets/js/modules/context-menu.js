@@ -252,9 +252,9 @@ class HeatLabsContextMenu {
                             action: () => window.open('https://statistics.heatlabs.net', '_blank')
                         },
                         {
-                            label: 'Status',
-                            icon: 'fas fa-server',
-                            action: () => window.open('https://status.heatlabs.net', '_blank')
+                            label: 'Discord',
+                            icon: 'fab fa-discord',
+                            action: () => window.open('https://discord.heatlabs.net', '_blank')
                         },
                         {
                             label: 'Socials',
@@ -262,9 +262,9 @@ class HeatLabsContextMenu {
                             action: () => window.open('https://social.heatlabs.net', '_blank')
                         },
                         {
-                            label: 'Discord',
-                            icon: 'fab fa-discord',
-                            action: () => window.open('https://discord.heatlabs.net', '_blank')
+                            label: 'Status',
+                            icon: 'fas fa-server',
+                            action: () => window.open('https://status.heatlabs.net', '_blank')
                         }
                     ]
                 },
