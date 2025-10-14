@@ -233,6 +233,11 @@ class HeatLabsContextMenu {
                     action: () => window.location.reload()
                 },
                 {
+                    label: 'New Tab',
+                    icon: 'fas fa-plus',
+                    action: () => window.open('/', '_blank')
+                },
+                {
                     type: 'separator'
                 },
                 {
