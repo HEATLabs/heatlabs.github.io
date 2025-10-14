@@ -228,9 +228,6 @@ class HeatLabsContextMenu {
                     disabled: () => !window.history.state
                 },
                 {
-                    type: 'separator'
-                },
-                {
                     label: 'Reload',
                     icon: 'fas fa-redo',
                     action: () => window.location.reload()
