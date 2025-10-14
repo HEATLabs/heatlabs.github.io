@@ -246,7 +246,7 @@ class HeatLabsContextMenu {
                     type: 'separator'
                 },
                 {
-                    label: 'Extras',
+                    label: 'Resources',
                     icon: 'fas fa-ellipsis-h',
                     submenu: [{
                             label: 'View Changes',
