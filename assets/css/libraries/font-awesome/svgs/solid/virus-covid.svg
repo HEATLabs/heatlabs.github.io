@@ -1,9 +1,0 @@
-0000000000000000000000000000000000000000 df6d885f83d0c14977bde05c7311ccce3d1fba33 David <133239148+ThatSINEWAVE@users.noreply.github.com> 1748078405 +0300	commit (initial): Initial commit
-df6d885f83d0c14977bde05c7311ccce3d1fba33 57f36f278e448611ff1858d97ef99879b1c767c9 David <133239148+ThatSINEWAVE@users.noreply.github.com> 1748080330 +0300	commit: Update .gitignore
-57f36f278e448611ff1858d97ef99879b1c767c9 fae5a4a861dbafcc8786ca0ea2398c056936ce89 David <133239148+ThatSINEWAVE@users.noreply.github.com> 1748080341 +0300	commit: Create __init__.py
-fae5a4a861dbafcc8786ca0ea2398c056936ce89 25ff2a8fce3ff1753bfde5340a320a12b6efdce8 David <133239148+ThatSINEWAVE@users.noreply.github.com> 1748080346 +0300	commit: Create checkurl.py
-25ff2a8fce3ff1753bfde5340a320a12b6efdce8 e230e8dda370bbb3e9a64e16e6652a333d8dbea0 David <133239148+ThatSINEWAVE@users.noreply.github.com> 1748080354 +0300	commit: Create main.py
-e230e8dda370bbb3e9a64e16e6652a333d8dbea0 9b2191097d2c5523a7a4e14c984531dd66d5f294 David <133239148+ThatSINEWAVE@users.noreply.github.com> 1748080356 +0300	commit: Create requirements.txt
-9b2191097d2c5523a7a4e14c984531dd66d5f294 4ccb9181c1f8c019ef7677d693c2ddf7dd7be0ac David <133239148+ThatSINEWAVE@users.noreply.github.com> 1748080359 +0300	commit: Create __init__.py
-4ccb9181c1f8c019ef7677d693c2ddf7dd7be0ac ad00f20d5dcdf778e136e0ed13a629a5756e8908 David <133239148+ThatSINEWAVE@users.noreply.github.com> 1748080361 +0300	commit: Create url_checker.py
-ad00f20d5dcdf778e136e0ed13a629a5756e8908 9b60f1ef4ad97eda1cd8721eec38d4df842be898 David <133239148+Th

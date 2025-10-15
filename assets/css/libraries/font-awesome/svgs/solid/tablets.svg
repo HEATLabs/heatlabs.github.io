@@ -1,8 +1,0 @@
-{
-  "agents": [
-    {
-      "name": "Hound",
-      "image": "https://raw.githubusercontent.com/PCWStats/Website-Images/main/agents/Hound.png",
-      "specialty": "Hunter's Mark",
-      "description": "After activation, looking at any enemy tank will reveal the location of its critical modules to both Hound and his team. Aiming at any revealed critical zone and penetrating the tank is enough for hitting it while the Hunters Mark is on the opponent. Critical damage on a marked tank will extend the duration",
-      "story": "A hunter who spots enemy weak points and reveals them to the team. He grew up on a remote Arctic research outpost, honing his observational skills. His world was shattered at the age of 12, when a clandestine military unit kidnapped his parents and destroyed the station, launching Hou

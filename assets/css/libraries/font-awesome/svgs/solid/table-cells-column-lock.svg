@@ -1,8 +1,0 @@
-{
-  "agents": [
-    {
-      "name": "Reaper",
-      "image": "https://raw.githubusercontent.com/PCWStats/Website-Images/main/agents/Reaper.png",
-      "specialty": "Execute",
-      "description": "Reaper can always sense weakness in his opponents and strike hard against it. Any opponent that has less than 420 HP left is killed immediately when Reaper manages to deal damage to the target vehicle. When you activate the ability, Reaper loads a clip of shells that can deal increased critical damage and execute opponents more easily. The clip is automatically reloaded when Reaper executes an opponent.",
-      "story": "A bold fighter who excels at close range, striking swiftly to finish off wounded enemies. A quiet artist with ancient warrior blood, Reaper is a man of few words but deadly moves. He often ignor
