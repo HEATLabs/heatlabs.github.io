@@ -9,10 +9,10 @@
     const config = {
         // Available cobweb images
         images: {
-            cobweb1: 'https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/miscellaneous/corner-cobweb-1.png',
-            cobweb2: 'https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/miscellaneous/corner-cobweb-2.png',
-            cobweb3: 'https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/miscellaneous/corner-cobweb-3.png',
-            cobweb4: 'https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/miscellaneous/corner-cobweb-4.png'
+            cobweb1: 'https://cdn5.heatlabs.net/miscellaneous/corner-cobweb-1.png',
+            cobweb2: 'https://cdn5.heatlabs.net/miscellaneous/corner-cobweb-2.png',
+            cobweb3: 'https://cdn5.heatlabs.net/miscellaneous/corner-cobweb-3.png',
+            cobweb4: 'https://cdn5.heatlabs.net/miscellaneous/corner-cobweb-4.png'
         },
         // Assign which image goes to which corner
         cornerImages: {

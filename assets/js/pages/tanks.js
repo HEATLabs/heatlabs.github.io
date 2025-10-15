@@ -163,7 +163,7 @@ document.addEventListener('click', function(event) {
                 const tankElement = document.createElement('div');
                 tankElement.className = 'comparison-tank-item';
                 tankElement.innerHTML = `
-                    <img src="${tankImg}" alt="${tankName}" class="comparison-tank-img" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/placeholder/imagefailedtoload.webp'">
+                    <img src="${tankImg}" alt="${tankName}" class="comparison-tank-img" onerror="this.src='https://cdn5.heatlabs.net/placeholder/imagefailedtoload.webp'">
                     <span class="comparison-tank-name">${tankName}</span>
                     <button class="comparison-tank-remove" data-tank-id="${tankId}">
                         <i class="fas fa-times"></i>
@@ -260,7 +260,7 @@ document.addEventListener('click', function(event) {
                     <i class="fas fa-eye"></i>
                     <span class="views-count">0</span>
                 </div>
-                <img src="${tank.image}" alt="${tank.name} Preview" class="tank-img" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/placeholder/imagefailedtoload.webp'">
+                <img src="${tank.image}" alt="${tank.name} Preview" class="tank-img" onerror="this.src='https://cdn5.heatlabs.net/placeholder/imagefailedtoload.webp'">
                 ${tankClassHTML}
             </div>
             <div class="tank-info">

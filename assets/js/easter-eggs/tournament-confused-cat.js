@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Create the GIF element
     const gif = document.createElement('img');
-    gif.src = 'https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/miscellaneous/tournament_confused_cat.gif';
+    gif.src = 'https://cdn5.heatlabs.net/miscellaneous/tournament_confused_cat.gif';
     gif.alt = 'Tournament Easter Egg';
     gif.style.maxWidth = '90%';
     gif.style.maxHeight = '90%';

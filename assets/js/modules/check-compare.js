@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tableHTML += `
                 <th>
                     <div class="tank-header">
-                        <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/placeholder/imagefailedtoload.webp'">
+                        <img src="${tank.image}" alt="${tank.name}" onerror="this.src='https://cdn5.heatlabs.net/placeholder/imagefailedtoload.webp'">
                         <div class="tank-name">${tank.name}</div>
                         <div class="tank-meta">
                             <span><i class="fas fa-flag"></i> ${tank.nation}</span>

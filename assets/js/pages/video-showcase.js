@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         card.innerHTML = `
             <div class="video-thumbnail-container">
-                <img src="${video.thumbnail}" alt="${video.title}" class="video-thumbnail" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/placeholder/imagefailedtoload.webp'">
+                <img src="${video.thumbnail}" alt="${video.title}" class="video-thumbnail" onerror="this.src='https://cdn5.heatlabs.net/placeholder/imagefailedtoload.webp'">
                 <div class="play-button-overlay">
                     <div class="play-button">
                         <i class="fas fa-play"></i>

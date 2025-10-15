@@ -137,7 +137,7 @@ function populateCompatibleTanks(tanks) {
         tankCard.className = 'tank-card';
         tankCard.innerHTML = `
             <div class="tank-img-container">
-                <img src="${tank.image}" alt="${tank.name}" class="tank-img" loading="lazy" onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/placeholder/imagefailedtoload.webp'">
+                <img src="${tank.image}" alt="${tank.name}" class="tank-img" loading="lazy" onerror="this.src='https://cdn5.heatlabs.net/placeholder/imagefailedtoload.webp'">
             </div>
             <div class="tank-info">
                 <h3>${tank.name}</h3>

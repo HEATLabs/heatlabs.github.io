@@ -175,7 +175,7 @@ function populateTopTeams(teams) {
         // Set team data on the card
         if (teamCard) teamCard.dataset.team = JSON.stringify(team);
         if (teamImage) {
-            teamImage.src = team.team_logo || 'https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/placeholder/placeholder-image.webp';
+            teamImage.src = team.team_logo || 'https://cdn5.heatlabs.net/placeholder/placeholder-image.webp';
             teamImage.alt = `${team.team_name} Logo` || 'Team Logo';
         }
         if (teamName) teamName.textContent = team.team_name || 'Unknown Team';
@@ -273,7 +273,7 @@ function openTeamModal(team) {
 
     // Populate modal with team data
     if (teamModalImage) {
-        teamModalImage.src = team.team_logo || 'https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/placeholder/placeholder-image.webp';
+        teamModalImage.src = team.team_logo || 'https://cdn5.heatlabs.net/placeholder/placeholder-image.webp';
         teamModalImage.alt = team.team_name || 'Team Logo';
     }
     if (teamModalName) teamModalName.textContent = team.team_name || 'Unknown Team';
@@ -296,7 +296,7 @@ function openTeamModal(team) {
                 tankLink.href = `../tanks/${getTankSlug(tank.tank_name)}`;
                 tankLink.className = 'tank-link';
                 const tankImg = document.createElement('img');
-                tankImg.src = tank.tank_image || 'https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/placeholder-image.webp';
+                tankImg.src = tank.tank_image || 'https://cdn5.heatlabs.net/placeholder-image.webp';
                 tankImg.alt = tank.tank_name || 'Tank Image';
                 tankImg.loading = 'lazy';
 

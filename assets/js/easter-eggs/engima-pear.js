@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Create the GIF element
     const gif = document.createElement('img');
-    gif.src = 'https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/miscellaneous/enigma_pear.png';
+    gif.src = 'https://cdn5.heatlabs.net/miscellaneous/enigma_pear.png';
     gif.alt = 'Enigma Pear Easter Egg';
     gif.style.maxWidth = '90%';
     gif.style.maxHeight = '90%';

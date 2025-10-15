@@ -4,7 +4,7 @@
 	justify-content: center;
 	min-height: calc(120vh - 200px);
 	padding: 2rem;
-	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/miscellaneous/maxwell-cat-1.gif');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://cdn5.heatlabs.net/miscellaneous/maxwell-cat-1.gif');
 	background-color: var(--bg-primary);
 }
 

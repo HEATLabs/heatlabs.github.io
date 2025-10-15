@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         card.innerHTML = `
         <div class="assetGallery-img-container">
-            <img src="${imageSrc}" loading="${loadingStrategy}" decoding="${decodingStrategy}" alt="${item.name}" class="assetGallery-img" ${imageStyle} onerror="this.src='https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/placeholder/imagefailedtoload.webp'; this.style.opacity='1'">
+            <img src="${imageSrc}" loading="${loadingStrategy}" decoding="${decodingStrategy}" alt="${item.name}" class="assetGallery-img" ${imageStyle} onerror="this.src='https://cdn5.heatlabs.net/placeholder/imagefailedtoload.webp'; this.style.opacity='1'">
         </div>
         <div class="assetGallery-info">
             <h3>${item.name}</h3>

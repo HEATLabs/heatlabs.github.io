@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const tankTitle = document.querySelector('.tank-title');
     let clickCount = 0;
     const requiredClicks = 7;
-    const easterEggImageUrl = 'https://cdn.jsdelivr.net/gh/HEATLabs/HEAT-Labs-Images@main/miscellaneous/CONFIDENTIAL.png';
+    const easterEggImageUrl = 'https://cdn5.heatlabs.net/miscellaneous/CONFIDENTIAL.png';
 
     if (tankTitle) {
         // Store original cursor style to restore later
