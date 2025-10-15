@@ -12,9 +12,9 @@ async function initializeHeroCounters() {
     try {
         // Fetch all required data
         const [agentsData, mapsData, tanksData] = await Promise.all([
-            fetch('https://raw.githubusercontent.com/HEATLabs/HEAT-Labs-Configs/refs/heads/main/agents.json').then(res => res.json()),
-            fetch('https://raw.githubusercontent.com/HEATLabs/HEAT-Labs-Configs/refs/heads/main/maps.json').then(res => res.json()),
-            fetch('https://raw.githubusercontent.com/HEATLabs/HEAT-Labs-Configs/refs/heads/main/tanks.json').then(res => res.json())
+            fetch('"https://cdn1.heatlabs.net/agents.json').then(res => res.json()),
+            fetch('"https://cdn1.heatlabs.net/maps.json').then(res => res.json()),
+            fetch('"https://cdn1.heatlabs.net/tanks.json').then(res => res.json())
         ]);
 
         // Count all items
@@ -68,7 +68,7 @@ function animateHeroCounter(elementId, targetValue, duration, speedFactor = 1) {
 
 async function fetchFunFactsData() {
     try {
-        const response = await fetch('https://raw.githubusercontent.com/HEATLabs/HEAT-Labs-Configs/refs/heads/main/home-stats.json');
+        const response = await fetch('"https://cdn1.heatlabs.net/home-stats.json');
         if (!response.ok) {
             throw new Error('Failed to fetch fun facts data');
         }

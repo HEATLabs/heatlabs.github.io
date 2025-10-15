@@ -362,7 +362,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Load tanks data
     async function loadTanks() {
-        const response = await fetch('https://raw.githubusercontent.com/HEATLabs/HEAT-Labs-Configs/refs/heads/main/tanks.json');
+        const response = await fetch('"https://cdn1.heatlabs.net/tanks.json');
         const data = await response.json();
         return data.map(tank => ({
             id: tank.id.toString(), // Ensure ID is string for consistency
@@ -374,7 +374,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Load maps data
     async function loadMaps() {
-        const response = await fetch('https://raw.githubusercontent.com/HEATLabs/HEAT-Labs-Configs/refs/heads/main/maps.json');
+        const response = await fetch('"https://cdn1.heatlabs.net/maps.json');
         const data = await response.json();
         return data.maps.map(map => ({
             id: map.id.toString(), // Use the ID from JSON
@@ -386,7 +386,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Load agents data
     async function loadAgents() {
-        const response = await fetch('https://raw.githubusercontent.com/HEATLabs/HEAT-Labs-Configs/refs/heads/main/agents.json');
+        const response = await fetch('"https://cdn1.heatlabs.net/agents.json');
         const data = await response.json();
         return data.agents.map(agent => ({
             id: agent.id.toString(), // Use the ID from JSON

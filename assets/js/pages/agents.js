@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch agent data from JSON file
     async function fetchAgentData() {
         try {
-            const response = await fetch('https://raw.githubusercontent.com/HEATLabs/HEAT-Labs-Configs/refs/heads/main/agents.json');
+            const response = await fetch('"https://cdn1.heatlabs.net/agents.json');
             if (!response.ok) {
                 throw new Error('Failed to load agent data');
             }

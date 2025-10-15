@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch video data from JSON file
     async function fetchVideoData() {
         try {
-            const response = await fetch('https://raw.githubusercontent.com/HEATLabs/HEAT-Labs-Configs/refs/heads/main/videos.json');
+            const response = await fetch('"https://cdn1.heatlabs.net/videos.json');
             // const response = await fetch('../../HEAT-Labs-Configs/videos.json');
             if (!response.ok) {
                 throw new Error('Failed to load video data');

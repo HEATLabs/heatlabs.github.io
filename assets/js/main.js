@@ -1,7 +1,7 @@
 // Main JS for HEAT Labs
 document.addEventListener('DOMContentLoaded', function() {
     // Check maintenance mode first
-    fetch('https://raw.githubusercontent.com/HEATLabs/HEAT-Labs-Configs/refs/heads/main/maintenance.json')
+    fetch('"https://cdn1.heatlabs.net/maintenance.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeInteractiveElements();
 
         // Fetch changelog data from GitHub
-        fetch('https://raw.githubusercontent.com/HEATLabs/HEAT-Labs-Configs/refs/heads/main/changelog.json')
+        fetch('"https://cdn1.heatlabs.net/changelog.json')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
