@@ -26,12 +26,6 @@
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting</loc>
-		<lastmod>2025-11-06</lastmod>
-		<changefreq>weekly</changefreq>
-		<priority>0.8</priority>
-	</url>
-	<url>
 		<loc>https://heatlabs.net/builds</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
@@ -350,97 +344,97 @@
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/alpha-2-fuel-crit-multiplier</loc>
+		<loc>https://heatlabs.net/blog/alpha-2-fuel-crit-multiplier</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/damage-calculation</loc>
+		<loc>https://heatlabs.net/blog/damage-calculation</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/developer-guide-images</loc>
+		<loc>https://heatlabs.net/blog/developer-guide-images</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/discovery-of-corex</loc>
+		<loc>https://heatlabs.net/blog/discovery-of-corex</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/exploring-animation-and-movement-desync</loc>
+		<loc>https://heatlabs.net/blog/exploring-animation-and-movement-desync</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/exploring-the-main-menu-garage</loc>
+		<loc>https://heatlabs.net/blog/exploring-the-main-menu-garage</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/hunting-for-potential-hidden-servers</loc>
+		<loc>https://heatlabs.net/blog/hunting-for-potential-hidden-servers</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/info-from-developers</loc>
+		<loc>https://heatlabs.net/blog/info-from-developers</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/mysterious-engine-picture</loc>
+		<loc>https://heatlabs.net/blog/mysterious-engine-picture</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/potential-campaign-mode</loc>
+		<loc>https://heatlabs.net/blog/potential-campaign-mode</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/tank-module-locations</loc>
+		<loc>https://heatlabs.net/blog/tank-module-locations</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/the-three-badges</loc>
+		<loc>https://heatlabs.net/blog/the-three-badges</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/titan-dummies-respawn-glitch</loc>
+		<loc>https://heatlabs.net/blog/titan-dummies-respawn-glitch</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/unlocking-the-camera</loc>
+		<loc>https://heatlabs.net/blog/unlocking-the-camera</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/who-is-pcw-bug-hunters</loc>
+		<loc>https://heatlabs.net/blog/who-is-pcw-bug-hunters</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/bug-hunting/wierd-pattern-images</loc>
+		<loc>https://heatlabs.net/blog/wierd-pattern-images</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>

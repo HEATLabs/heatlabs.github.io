@@ -97,7 +97,7 @@
           "@type": "ListItem",
           "position": 3,
           "name": "Potential Campaign Mode",
-          "item": "https://heatlabs.net/bug-hunting/potential-campaign-mode"
+          "item": "https://heatlabs.net/blog/potential-campaign-mode"
         }
       ]
     }
@@ -120,7 +120,7 @@
     }
     </script>
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://heatlabs.net/bug-hunting/potential-campaign-mode">
+    <link rel="canonical" href="https://heatlabs.net/blog/potential-campaign-mode">
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="https://heatlabs.net/site-data/sitemap.xml">
     <!-- Theme Checker -->
@@ -149,7 +149,7 @@
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/misc.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/wip-modal.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/easter-eggs/radio.css">
-    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/bug-pages.css">
+    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/blog-pages.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/settings.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/context-menu.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/header.css">
@@ -205,7 +205,7 @@
     <meta property="og:description" content="Potential Campaign Mode - World of Tanks: HEAT bug analysis and investigation report. Detailed glitch breakdown and community findings from HEAT Labs research.">
     <meta property="og:image" content="https://cdn5.heatlabs.net/social-share/HEATLabs.png">
     <meta property="og:image:alt" content="Your one-stop solution for comprehensive statistics insights and guides for World of Tanks: HEAT">
-    <meta property="og:url" content="https://heatlabs.net/bug-hunting/potential-campaign-mode">
+    <meta property="og:url" content="https://heatlabs.net/blog/potential-campaign-mode">
     <meta property="og:type" content="article">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="320">
@@ -297,12 +297,6 @@
             </a>
           </li>
           <li>
-            <a href="../bug-hunting" class="sidebar-link active">
-              <i class="fas fa-bug"></i>
-              <span>Bug Hunting</span>
-            </a>
-          </li>
-          <li>
             <a href="../tournaments" class="sidebar-link">
               <i class="fas fa-trophy"></i>
               <span>Tournaments</span>
@@ -376,17 +370,17 @@
         </div>
       </header>
       <!-- bug Header -->
-      <section class="bug-header">
+      <section class="blog-header">
         <div class="container mx-auto px-4">
-          <div class="bug-meta">
-            <span class="bug-type-badge">Speculations</span>
+          <div class="blog-meta">
+            <span class="blog-type-badge">Speculations</span>
             <span>
               <i class="far fa-clock mr-1"></i> 24 min read </span>
             <span>
               <i class="far fa-calendar-alt mr-1"></i> February 20, 2024 </span>
           </div>
-          <h1 class="bug-title">Potential Campaign Mode</h1>
-          <div class="bug-author">
+          <h1 class="blog-title">Potential Campaign Mode</h1>
+          <div class="blog-author">
             <img src="https://cdn10.heatlabs.net/bug-hunting/author/PCWBugHunters.webp" alt="Author" class="author-avatar">
             <div>
               <p class="author-name">PCW Bug Hunters Team</p>
@@ -398,17 +392,17 @@
       <!-- bug Content -->
       <section class="section py-8">
         <div class="container mx-auto px-4">
-          <div class="bug-content-wrapper">
+          <div class="blog-content-wrapper">
             <!-- Main Content -->
-            <div class="bug-main-content">
-              <div class="bug-text">
+            <div class="blog-main-content">
+              <div class="blog-text">
                 <!-- Introduction -->
                 <h2 id="introduction">Introduction</h2>
                 <p>A deep dive into our speculations about a potential campaign mode coming to World of Tanks: HEAT</p>
                 <!-- Section 1 -->
                 <h2 id="section-1">The Discovery</h2>
                 <p>While examining the game files, two videos labeled first_login were found. These videos align perfectly when placed end to end, suggesting they may serve as an intro or cinematic sequence. Notably, only one of these videos currently appears in the game.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <video controls class="rounded-lg">
                     <source src="https://cdn5.heatlabs.net/bug-hunting/posts/campaign_1.mp4" type="video/mp4"> Your browser does not support the video tag.
                   </video>
@@ -416,65 +410,65 @@
                 <!-- Section 2 -->
                 <h2 id="section-2">The Clues</h2>
                 <p>In the video above, one frame displays a map marked with the coordinates 10°45'45.4"N, 106°39'36.6"E, pointing to Saigon/Ho Chi Minh City. These coordinates may be a critical hint toward the game’s setting.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/Map.webp" alt="Image" class="rounded-lg">
                 </div>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/Coords.webp" alt="Image" class="rounded-lg">
                 </div>
                 <p>Additionally, a piece of handwritten text in the same frame could provide more insights, although it remains partially undeciphered.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/Text.webp" alt="Image" class="rounded-lg">
                 </div>
                 <!-- Section 3 -->
                 <h2 id="section-3">The Research</h2>
                 <p>Upon searching these coordinates, we located a region in Vietnam similar to what appears in the video, though there’s a slight discrepancy. The coordinates 10°45'45.4"N, 106°39'36.6"E don’t perfectly match the area found, which actually sits at 10.589127684283982, 106.8835646611013.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/Coords_Location_1.webp" alt="Image" class="rounded-lg">
                   <p class="text-center text-sm text-gray-500 mt-2">Original topology map</p>
                 </div>
                 <p>Historical topology maps from the Vietnam War further align with the video’s terrain.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/war_topology.webp" alt="Image" class="rounded-lg">
                   <p class="text-center text-sm text-gray-500 mt-2">Cropped to match the relevant area</p>
                 </div>
                 <h3>The T-55 Enigma</h3>
                 <p>An additional interesting element in the video is the appearance of T-55 tanks. This specific tank, identified as the T-55 "Enigma," is only seen in the game’s tutorial mission, suggesting it might play a significant role in a possible campaign.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/Enigma_1.webp" alt="Image" class="rounded-lg">
                 </div>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/Enigma_2.webp" alt="Image" class="rounded-lg">
                 </div>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/Enigma_3.webp" alt="Image" class="rounded-lg">
                 </div>
                 <h3>Voice Lines and Possible Story</h3>
                 <p>We’ve also identified three distinct voice lines: two in English and one in another language, possibly Russian or Vietnamese. The lines reference a significant crash involving a Boeing 707 flying under an airline (possibly fictional) named 'Krompir Air'. It seems likely this aircraft was carrying a nuclear reactor of some type. Referred to only as 'ML-2'</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/Combo1.webp" alt="Image" class="rounded-lg">
                 </div>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/Combo2.webp" alt="Image" class="rounded-lg">
                   <p class="text-center text-sm text-gray-500 mt-2">Image showing Krompir Air crashed aircraft and the cargo</p>
                 </div>
                 <p>Also spoken in the full video shown at the top of this post, there are the lines "not your run of the mill Guerrillas" & "you'll be operating in a gray-zone, No witnesses" which suggests that our agents are either members of a PMC or individual military contractors. Suggesting that the US does not wish to get involved directly.</p>
                 <h4>Audio 1</h4>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <video controls class="rounded-lg">
                     <source src="https://cdn5.heatlabs.net/bug-hunting/posts/campaign_audio_1.mp4" type="video/mp4"> Your browser does not support the video tag.
                   </video>
                 </div>
                 <p>"A big explosion happened."</p>
                 <h4>Audio 2</h4>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <video controls class="rounded-lg">
                     <source src="https://cdn5.heatlabs.net/bug-hunting/posts/campaign_audio_2.mp4" type="video/mp4"> Your browser does not support the video tag.
                   </video>
                 </div>
                 <p>"U.S. plane... dived and crashed at Saigon."</p>
                 <h4>Audio 3</h4>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <video controls class="rounded-lg">
                     <source src="https://cdn5.heatlabs.net/bug-hunting/posts/campaign_audio_3.mp4" type="video/mp4"> Your browser does not support the video tag.
                   </video>
@@ -485,14 +479,14 @@
                 <p>Location: Saigon/Ho Chi Minh City, Vietnam</p>
                 <p>Timeline: Likely 1964-1969</p>
                 <p>The files also contain an invasion map from 1964 and imagery associated with the Ho Chi Minh Trail, which aligns with the video footage and references found.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/image_5.webp" alt="Image" class="rounded-lg">
                 </div>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/image_6.webp" alt="Image" class="rounded-lg">
                 </div>
                 <p>Another file shows a map that matches an actual location in Ho Chi Minh City, yet it hasn’t appeared in the game itself.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/image_7.webp" alt="Image" class="rounded-lg">
                 </div>
                 <p>Coordinates: 10.774268059861104, 106.72257135478984</p>
@@ -534,19 +528,19 @@
                 <!-- Related bug -->
                 <div class="sidebar-card">
                   <h3>Related Articles</h3>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="tank-module-locations" class="hover:text-accent-color">Tank Module Locations</a>
                     </h4>
                     <p>In this post, we delve into the critical modules of various tanks and their effects when damaged. Each module, from the ammo rack to the engine, plays a vital role in your tank's performance.</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="the-three-badges" class="hover:text-accent-color">The Three Badges</a>
                     </h4>
                     <p>During the Open Alpha of February 2024, three badges were discovered in the game files: Bravo, PKS, and Poachers. These could potentially be linked to the game's three Roles.</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="titan-dummies-respawn-glitch" class="hover:text-accent-color">Titan Dummies Respawn Glitch</a>
                     </h4>
@@ -556,7 +550,7 @@
               </div>
             </div>
             <!-- Desktop Sidebar -->
-            <div class="bug-sidebar hidden lg:block">
+            <div class="blog-sidebar hidden lg:block">
               <!-- Author Info -->
               <div class="sidebar-card">
                 <h3>About the Author</h3>
@@ -592,19 +586,19 @@
               <!-- Related bug -->
               <div class="sidebar-card">
                 <h3>Related Articles</h3>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="tank-module-locations" class="hover:text-accent-color">Tank Module Locations</a>
                   </h4>
                   <p>In this post, we delve into the critical modules of various tanks and their effects when damaged. Each module, from the ammo rack to the engine, plays a vital role in your tank's performance.</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="the-three-badges" class="hover:text-accent-color">The Three Badges</a>
                   </h4>
                   <p>During the Open Alpha of February 2024, three badges were discovered in the game files: Bravo, PKS, and Poachers. These could potentially be linked to the game's three Roles.</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="titan-dummies-respawn-glitch" class="hover:text-accent-color">Titan Dummies Respawn Glitch</a>
                   </h4>
@@ -758,7 +752,7 @@
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/go-to.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/radio.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/image-protection.js"></script>
-    <script src="https://cdn0.heatlabs.net/js-static/pages/bug-pages.js"></script>
+    <script src="https://cdn0.heatlabs.net/js-static/pages/blog-pages.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/sidebar.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/theme-loader.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/search.js"></script>

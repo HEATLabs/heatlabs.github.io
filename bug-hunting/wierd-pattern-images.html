@@ -97,7 +97,7 @@
           "@type": "ListItem",
           "position": 3,
           "name": "Wierd Pattern Images",
-          "item": "https://heatlabs.net/bug-hunting/wierd-pattern-images"
+          "item": "https://heatlabs.net/blog/wierd-pattern-images"
         }
       ]
     }
@@ -120,7 +120,7 @@
     }
     </script>
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://heatlabs.net/bug-hunting/wierd-pattern-images">
+    <link rel="canonical" href="https://heatlabs.net/blog/wierd-pattern-images">
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="https://heatlabs.net/site-data/sitemap.xml">
     <!-- Theme Checker -->
@@ -149,7 +149,7 @@
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/misc.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/wip-modal.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/easter-eggs/radio.css">
-    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/bug-pages.css">
+    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/blog-pages.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/settings.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/context-menu.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/header.css">
@@ -205,7 +205,7 @@
     <meta property="og:description" content="Wierd Pattern Images - World of Tanks: HEAT bug analysis and investigation report. Detailed glitch breakdown and community findings from HEAT Labs research.">
     <meta property="og:image" content="https://cdn5.heatlabs.net/social-share/HEATLabs.png">
     <meta property="og:image:alt" content="Your one-stop solution for comprehensive statistics insights and guides for World of Tanks: HEAT">
-    <meta property="og:url" content="https://heatlabs.net/bug-hunting/wierd-pattern-images">
+    <meta property="og:url" content="https://heatlabs.net/blog/wierd-pattern-images">
     <meta property="og:type" content="article">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="320">
@@ -297,12 +297,6 @@
             </a>
           </li>
           <li>
-            <a href="../bug-hunting" class="sidebar-link active">
-              <i class="fas fa-bug"></i>
-              <span>Bug Hunting</span>
-            </a>
-          </li>
-          <li>
             <a href="../tournaments" class="sidebar-link">
               <i class="fas fa-trophy"></i>
               <span>Tournaments</span>
@@ -376,17 +370,17 @@
         </div>
       </header>
       <!-- bug Header -->
-      <section class="bug-header">
+      <section class="blog-header">
         <div class="container mx-auto px-4">
-          <div class="bug-meta">
-            <span class="bug-type-badge">Datamining</span>
+          <div class="blog-meta">
+            <span class="blog-type-badge">Datamining</span>
             <span>
               <i class="far fa-clock mr-1"></i> 11 min read </span>
             <span>
               <i class="far fa-calendar-alt mr-1"></i> February 13, 2024 </span>
           </div>
-          <h1 class="bug-title">Wierd Pattern Images</h1>
-          <div class="bug-author">
+          <h1 class="blog-title">Wierd Pattern Images</h1>
+          <div class="blog-author">
             <img src="https://cdn10.heatlabs.net/bug-hunting/author/PCWBugHunters.webp" alt="Author" class="author-avatar">
             <div>
               <p class="author-name">PCW Bug Hunters Team</p>
@@ -398,10 +392,10 @@
       <!-- bug Content -->
       <section class="section py-8">
         <div class="container mx-auto px-4">
-          <div class="bug-content-wrapper">
+          <div class="blog-content-wrapper">
             <!-- Main Content -->
-            <div class="bug-main-content">
-              <div class="bug-text">
+            <div class="blog-main-content">
+              <div class="blog-text">
                 <!-- Introduction -->
                 <h2 id="introduction">Introduction</h2>
                 <p>A quick dive into mysterious images from the game files, featuring two patterns marked with rough edits that hint at developer intentions.</p>
@@ -410,14 +404,14 @@
                 <!-- Section 1 -->
                 <h2 id="section-1">Pattern Attack</h2>
                 <p>The image shows a side-view wireframe illustration of the front section of an Abrams tank, with a red "X" hand-drawn near the turret ring area. The marking appears to have been added manually.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/pattern_attack32d3a1eecf34b7f43c5e0335ae1c50c2.webp" alt="Image" class="rounded-lg">
                   <p class="text-center text-sm text-gray-500 mt-2">File name: pattern_attack32d3a1eecf34b7f43c5e0335ae1c50c2</p>
                 </div>
                 <!-- Section 2 -->
                 <h2 id="section-2">Pattern Defence</h2>
                 <p>The same wireframe illustration of the front section of an Abrams tank is depicted, identical to the "Pattern Attack" image. Both images appear to "cut" at the same position. This version includes a green, hand-drawn "shield" symbol covering a similar area, stretching from the gas extractor on the far right to the machine gun mount on the far left.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/pattern_defence089e9488d2213ccc551315b61ad44a96.webp" alt="Image" class="rounded-lg">
                   <p class="text-center text-sm text-gray-500 mt-2">File name: pattern_defence089e9488d2213ccc551315b61ad44a96</p>
                 </div>
@@ -459,19 +453,19 @@
                 <!-- Related bug -->
                 <div class="sidebar-card">
                   <h3>Related Articles</h3>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="damage-calculation" class="hover:text-accent-color">Damage Calculation</a>
                     </h4>
                     <p>In World of Tanks: HEAT, damage depends on several key mechanics and because of this, we’ll break it down in two main sections: Critical Damage Calculation and Critical Damage Registration</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="developer-guide-images" class="hover:text-accent-color">Developer Guide Images</a>
                     </h4>
                     <p>During the latest playtest, we discovered a series of images within the game files that appear to showcase specific development techniques.</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="discovery-of-corex" class="hover:text-accent-color">Discovery of CoreX</a>
                     </h4>
@@ -481,7 +475,7 @@
               </div>
             </div>
             <!-- Desktop Sidebar -->
-            <div class="bug-sidebar hidden lg:block">
+            <div class="blog-sidebar hidden lg:block">
               <!-- Author Info -->
               <div class="sidebar-card">
                 <h3>About the Author</h3>
@@ -514,19 +508,19 @@
               <!-- Related bug -->
               <div class="sidebar-card">
                 <h3>Related Articles</h3>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="damage-calculation" class="hover:text-accent-color">Damage Calculation</a>
                   </h4>
                   <p>In World of Tanks: HEAT, damage depends on several key mechanics and because of this, we’ll break it down in two main sections: Critical Damage Calculation and Critical Damage Registration</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="developer-guide-images" class="hover:text-accent-color">Developer Guide Images</a>
                   </h4>
                   <p>During the latest playtest, we discovered a series of images within the game files that appear to showcase specific development techniques.</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="discovery-of-corex" class="hover:text-accent-color">Discovery of CoreX</a>
                   </h4>
@@ -680,7 +674,7 @@
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/go-to.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/radio.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/image-protection.js"></script>
-    <script src="https://cdn0.heatlabs.net/js-static/pages/bug-pages.js"></script>
+    <script src="https://cdn0.heatlabs.net/js-static/pages/blog-pages.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/sidebar.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/theme-loader.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/search.js"></script>

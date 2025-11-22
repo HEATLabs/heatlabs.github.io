@@ -97,7 +97,7 @@
           "@type": "ListItem",
           "position": 3,
           "name": "Damage Calculation",
-          "item": "https://heatlabs.net/bug-hunting/damage-calculation"
+          "item": "https://heatlabs.net/blog/damage-calculation"
         }
       ]
     }
@@ -120,7 +120,7 @@
     }
     </script>
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://heatlabs.net/bug-hunting/damage-calculation">
+    <link rel="canonical" href="https://heatlabs.net/blog/damage-calculation">
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="https://heatlabs.net/site-data/sitemap.xml">
     <!-- Theme Checker -->
@@ -149,7 +149,7 @@
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/misc.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/wip-modal.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/easter-eggs/radio.css">
-    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/bug-pages.css">
+    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/blog-pages.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/settings.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/context-menu.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/header.css">
@@ -205,7 +205,7 @@
     <meta property="og:description" content="Bug Hunt Post - World of Tanks: HEAT bug analysis and investigation report. Detailed glitch breakdown and community findings from HEAT Labs research.">
     <meta property="og:image" content="https://cdn5.heatlabs.net/social-share/HEATLabs.png">
     <meta property="og:image:alt" content="Your one-stop solution for comprehensive statistics insights and guides for World of Tanks: HEAT">
-    <meta property="og:url" content="https://heatlabs.net/bug-hunting/damage-calculation">
+    <meta property="og:url" content="https://heatlabs.net/blog/damage-calculation">
     <meta property="og:type" content="article">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="320">
@@ -297,12 +297,6 @@
             </a>
           </li>
           <li>
-            <a href="../bug-hunting" class="sidebar-link active">
-              <i class="fas fa-bug"></i>
-              <span>Bug Hunting</span>
-            </a>
-          </li>
-          <li>
             <a href="../tournaments" class="sidebar-link">
               <i class="fas fa-trophy"></i>
               <span>Tournaments</span>
@@ -376,17 +370,17 @@
         </div>
       </header>
       <!-- bug Header -->
-      <section class="bug-header">
+      <section class="blog-header">
         <div class="container mx-auto px-4">
-          <div class="bug-meta">
-            <span class="bug-type-badge">Game Research</span>
+          <div class="blog-meta">
+            <span class="blog-type-badge">Game Research</span>
             <span>
               <i class="far fa-clock mr-1"></i> 10 min read </span>
             <span>
               <i class="far fa-calendar-alt mr-1"></i> February 10, 2024 </span>
           </div>
-          <h1 class="bug-title">Damage Calculation</h1>
-          <div class="bug-author">
+          <h1 class="blog-title">Damage Calculation</h1>
+          <div class="blog-author">
             <img src="https://cdn10.heatlabs.net/bug-hunting/author/PCWBugHunters.webp" alt="Author" class="author-avatar">
             <div>
               <p class="author-name">PCW Bug Hunters Team</p>
@@ -398,10 +392,10 @@
       <!-- bug Content -->
       <section class="section py-8">
         <div class="container mx-auto px-4">
-          <div class="bug-content-wrapper">
+          <div class="blog-content-wrapper">
             <!-- Main Content -->
-            <div class="bug-main-content">
-              <div class="bug-text">
+            <div class="blog-main-content">
+              <div class="blog-text">
                 <!-- Introduction -->
                 <h2 id="introduction">Introduction</h2>
                 <p>In World of Tanks: HEAT, damage depends on several key mechanics and because of this, we’ll break it down in two main sections: Critical Damage Calculation and Critical Damage Registration</p>
@@ -418,12 +412,12 @@
                 <p>These Universal Modifiers are then multiplied by a tank's unique Crit Modifier. This explains how a tank with lower base damage can still have higher critical damage than one with higher base damage.</p>
                 <p>To illustrate how these calculations work in practice, consider the following scenarios:</p>
                 <h3>Example Calculation for Engine Hits</h3>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/Crit_Hit_Engine.webp" alt="Critical Hit to Engine" class="rounded-lg">
                 </div>
                 <p>In this example a shell with a 1.5 crit modifier (tank's modifier) hits an engine which has a universal modifiers of 1.0. If the shell has 400 base damage this means 600 damage would be dealt. (Excluding crit mod reduction modifier) The engine itself takes 50 damage, reducing its health from 200 to 150.</p>
                 <h3>Example Calculation for Ammo Rack Hits</h3>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/Crit_Hit_Ammo.webp" alt="Critical Hit to Ammo" class="rounded-lg">
                 </div>
                 <p>In this scenario, the same shell with 400 base damage hits the ammo rack, which has a higher critical multiplier of 1.5. After applying the crit multiplier and universal modifier, the shell deals 900 damage to the tank. The ammo rack itself takes 50 damage, lowering its health from 200 to 150.</p>
@@ -441,7 +435,7 @@
                 <h3>Penetration and Damage Cones</h3>
                 <p>Penetration plays a key role in the damage cone, and it’s arguably more important than the ammo type. Penetration affects not only whether a shell can pierce the tank’s armor but also how deep the damage cone extends within the tank’s internal structure. Tanks with higher penetration, like Ray, can cause damage to internal modules from the front more effectively than tanks with lower penetration firing the same ammunition.</p>
                 <h3>Example for the Damage Cone on Different Ammo Types</h3>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/Crit_Registering_Image.webp" alt="Critical Hit to Engine and Ammo" class="rounded-lg">
                 </div>
                 <p>In practice, this means that tanks with high penetration, especially when firing HEAT ATGMs, have a higher likelihood of causing critical hits compared to tanks firing low-penetration APCR rounds, like Blitz.</p>
@@ -478,19 +472,19 @@
                 <!-- Related bug -->
                 <div class="sidebar-card">
                   <h3>Related Articles</h3>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="developer-guide-images" class="hover:text-accent-color">Damage Calculation</a>
                     </h4>
                     <p>In World of Tanks: HEAT, damage depends on several key mechanics and because of this, we’ll break it down in two main sections: Critical Damage Calculation and Critical Damage Registration</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="discovery-of-corex" class="hover:text-accent-color">Developer Guide Images</a>
                     </h4>
                     <p>During the latest playtest, we discovered a series of images within the game files that appear to showcase specific development techniques.</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="exploring-animation-and-movement-desync" class="hover:text-accent-color">Exploring Animation and Movement Desync</a>
                     </h4>
@@ -500,7 +494,7 @@
               </div>
             </div>
             <!-- Desktop Sidebar -->
-            <div class="bug-sidebar hidden lg:block">
+            <div class="blog-sidebar hidden lg:block">
               <!-- Author Info -->
               <div class="sidebar-card">
                 <h3>About the Author</h3>
@@ -530,19 +524,19 @@
               <!-- Related bug -->
               <div class="sidebar-card">
                 <h3>Related Articles</h3>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="developer-guide-images" class="hover:text-accent-color">Damage Calculation</a>
                   </h4>
                   <p>In World of Tanks: HEAT, damage depends on several key mechanics and because of this, we’ll break it down in two main sections: Critical Damage Calculation and Critical Damage Registration</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="discovery-of-corex" class="hover:text-accent-color">Developer Guide Images</a>
                   </h4>
                   <p>During the latest playtest, we discovered a series of images within the game files that appear to showcase specific development techniques.</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="exploring-animation-and-movement-desync" class="hover:text-accent-color">Exploring Animation and Movement Desync</a>
                   </h4>
@@ -696,7 +690,7 @@
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/go-to.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/radio.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/image-protection.js"></script>
-    <script src="https://cdn0.heatlabs.net/js-static/pages/bug-pages.js"></script>
+    <script src="https://cdn0.heatlabs.net/js-static/pages/blog-pages.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/sidebar.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/theme-loader.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/search.js"></script>

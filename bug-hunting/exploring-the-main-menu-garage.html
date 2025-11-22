@@ -97,7 +97,7 @@
           "@type": "ListItem",
           "position": 3,
           "name": "Exploring the Main Menu Garage",
-          "item": "https://heatlabs.net/bug-hunting/exploring-the-main-menu-garage"
+          "item": "https://heatlabs.net/blog/exploring-the-main-menu-garage"
         }
       ]
     }
@@ -120,7 +120,7 @@
     }
     </script>
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://heatlabs.net/bug-hunting/exploring-the-main-menu-garage">
+    <link rel="canonical" href="https://heatlabs.net/blog/exploring-the-main-menu-garage">
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="https://heatlabs.net/site-data/sitemap.xml">
     <!-- Theme Checker -->
@@ -149,7 +149,7 @@
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/misc.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/wip-modal.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/easter-eggs/radio.css">
-    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/bug-pages.css">
+    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/blog-pages.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/settings.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/context-menu.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/header.css">
@@ -205,7 +205,7 @@
     <meta property="og:description" content="Exploring the Main Menu Garage - World of Tanks: HEAT bug analysis and investigation report. Detailed glitch breakdown and community findings from HEAT Labs research.">
     <meta property="og:image" content="https://cdn5.heatlabs.net/social-share/HEATLabs.png">
     <meta property="og:image:alt" content="Your one-stop solution for comprehensive statistics insights and guides for World of Tanks: HEAT">
-    <meta property="og:url" content="https://heatlabs.net/bug-hunting/exploring-the-main-menu-garage">
+    <meta property="og:url" content="https://heatlabs.net/blog/exploring-the-main-menu-garage">
     <meta property="og:type" content="article">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="320">
@@ -297,12 +297,6 @@
             </a>
           </li>
           <li>
-            <a href="../bug-hunting" class="sidebar-link active">
-              <i class="fas fa-bug"></i>
-              <span>Bug Hunting</span>
-            </a>
-          </li>
-          <li>
             <a href="../tournaments" class="sidebar-link">
               <i class="fas fa-trophy"></i>
               <span>Tournaments</span>
@@ -376,17 +370,17 @@
         </div>
       </header>
       <!-- bug Header -->
-      <section class="bug-header">
+      <section class="blog-header">
         <div class="container mx-auto px-4">
-          <div class="bug-meta">
-            <span class="bug-type-badge">Game Research</span>
+          <div class="blog-meta">
+            <span class="blog-type-badge">Game Research</span>
             <span>
               <i class="far fa-clock mr-1"></i> 14 min read </span>
             <span>
               <i class="far fa-calendar-alt mr-1"></i> February 17, 2024 </span>
           </div>
-          <h1 class="bug-title">Exploring the Main Menu Garage</h1>
-          <div class="bug-author">
+          <h1 class="blog-title">Exploring the Main Menu Garage</h1>
+          <div class="blog-author">
             <img src="https://cdn10.heatlabs.net/bug-hunting/author/PCWBugHunters.webp" alt="Author" class="author-avatar">
             <div>
               <p class="author-name">PCW Bug Hunters Team</p>
@@ -398,17 +392,17 @@
       <!-- bug Content -->
       <section class="section py-8">
         <div class="container mx-auto px-4">
-          <div class="bug-content-wrapper">
+          <div class="blog-content-wrapper">
             <!-- Main Content -->
-            <div class="bug-main-content">
-              <div class="bug-text">
+            <div class="blog-main-content">
+              <div class="blog-text">
                 <!-- Introduction -->
                 <h2 id="introduction">Introduction</h2>
                 <p>After conducting some tests with HSTV-L inside the firing range, we've discovered that the room showcasing tanks in the main menu is located beneath the firing range map. Our next objective is to determine whether we can access this hidden room and drive around inside it. This exploration not only reveals intriguing elements of the game’s architecture but also raises questions about the potential for gameplay mechanics involving these hidden spaces.</p>
                 <!-- Section 1 -->
                 <h2 id="section-1">Locating the Main Garage</h2>
                 <p>We’ve showcased our finding in a video that serves as the proof of concept for the garage's location. This clip highlights the initial finding and placement of the garage area.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <video controls class="rounded-lg">
                     <source src="https://cdn5.heatlabs.net/bug-hunting/posts/garage_2.mp4" type="video/mp4"> Your browser does not support the video tag.
                   </video>
@@ -416,7 +410,7 @@
                 <!-- Section 2 -->
                 <h2 id="section-2">Closer Inspection</h2>
                 <p>In a second video, we take a closer look at the garage. Successfully landing in the area requires maneuvering the titan closer to the edge of the firing range to ensure that the tank can remain near it. This closer examination offers insight into the design choices made by the developers and hints at how players might interact with this hidden space in future updates.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <video controls class="rounded-lg">
                     <source src="https://cdn5.heatlabs.net/bug-hunting/posts/garage_1.mp4" type="video/mp4"> Your browser does not support the video tag.
                   </video>
@@ -457,19 +451,19 @@
                 <!-- Related bug -->
                 <div class="sidebar-card">
                   <h3>Related Articles</h3>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="hunting-for-potential-hidden-servers" class="hover:text-accent-color">Hunting For Potential Hidden Servers</a>
                     </h4>
                     <p>A look at the main server addresses used by the game, including a potential private dev-only server. Odd results from a recent port scan reveal only one active port.</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="info-from-developers" class="hover:text-accent-color">Info From Developers</a>
                     </h4>
                     <p>In this post, we’re collecting publicly shared information from the developers of World of Tanks: HEAT, gathered through casual conversations in the official Discord server.</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="mysterious-engine-picture" class="hover:text-accent-color">Mysterious Engine Picture</a>
                     </h4>
@@ -479,7 +473,7 @@
               </div>
             </div>
             <!-- Desktop Sidebar -->
-            <div class="bug-sidebar hidden lg:block">
+            <div class="blog-sidebar hidden lg:block">
               <!-- Author Info -->
               <div class="sidebar-card">
                 <h3>About the Author</h3>
@@ -509,19 +503,19 @@
               <!-- Related bug -->
               <div class="sidebar-card">
                 <h3>Related Articles</h3>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="hunting-for-potential-hidden-servers" class="hover:text-accent-color">Hunting For Potential Hidden Servers</a>
                   </h4>
                   <p>A look at the main server addresses used by the game, including a potential private dev-only server. Odd results from a recent port scan reveal only one active port.</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="info-from-developers" class="hover:text-accent-color">Info From Developers</a>
                   </h4>
                   <p>In this post, we’re collecting publicly shared information from the developers of World of Tanks: HEAT, gathered through casual conversations in the official Discord server.</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="mysterious-engine-picture" class="hover:text-accent-color">Mysterious Engine Picture</a>
                   </h4>
@@ -675,7 +669,7 @@
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/go-to.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/radio.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/image-protection.js"></script>
-    <script src="https://cdn0.heatlabs.net/js-static/pages/bug-pages.js"></script>
+    <script src="https://cdn0.heatlabs.net/js-static/pages/blog-pages.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/sidebar.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/theme-loader.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/search.js"></script>

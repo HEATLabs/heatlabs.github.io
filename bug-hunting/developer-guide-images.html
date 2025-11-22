@@ -97,7 +97,7 @@
           "@type": "ListItem",
           "position": 3,
           "name": "Developer Guide Images",
-          "item": "https://heatlabs.net/bug-hunting/developer-guide-images"
+          "item": "https://heatlabs.net/blog/developer-guide-images"
         }
       ]
     }
@@ -120,7 +120,7 @@
     }
     </script>
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://heatlabs.net/bug-hunting/developer-guide-images">
+    <link rel="canonical" href="https://heatlabs.net/blog/developer-guide-images">
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="https://heatlabs.net/site-data/sitemap.xml">
     <!-- Theme Checker -->
@@ -149,7 +149,7 @@
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/misc.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/wip-modal.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/easter-eggs/radio.css">
-    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/bug-pages.css">
+    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/blog-pages.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/settings.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/context-menu.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/header.css">
@@ -205,7 +205,7 @@
     <meta property="og:description" content="Developer Guide Images - World of Tanks: HEAT bug analysis and investigation report. Detailed glitch breakdown and community findings from HEAT Labs research.">
     <meta property="og:image" content="https://cdn5.heatlabs.net/social-share/HEATLabs.png">
     <meta property="og:image:alt" content="Your one-stop solution for comprehensive statistics insights and guides for World of Tanks: HEAT">
-    <meta property="og:url" content="https://heatlabs.net/bug-hunting/developer-guide-images">
+    <meta property="og:url" content="https://heatlabs.net/blog/developer-guide-images">
     <meta property="og:type" content="article">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="320">
@@ -297,12 +297,6 @@
             </a>
           </li>
           <li>
-            <a href="../bug-hunting" class="sidebar-link active">
-              <i class="fas fa-bug"></i>
-              <span>Bug Hunting</span>
-            </a>
-          </li>
-          <li>
             <a href="../tournaments" class="sidebar-link">
               <i class="fas fa-trophy"></i>
               <span>Tournaments</span>
@@ -376,17 +370,17 @@
         </div>
       </header>
       <!-- bug Header -->
-      <section class="bug-header">
+      <section class="blog-header">
         <div class="container mx-auto px-4">
-          <div class="bug-meta">
-            <span class="bug-type-badge">Datamining</span>
+          <div class="blog-meta">
+            <span class="blog-type-badge">Datamining</span>
             <span>
               <i class="far fa-clock mr-1"></i> 20 min read </span>
             <span>
               <i class="far fa-calendar-alt mr-1"></i> February 22, 2024 </span>
           </div>
-          <h1 class="bug-title">Developer Guide Images</h1>
-          <div class="bug-author">
+          <h1 class="blog-title">Developer Guide Images</h1>
+          <div class="blog-author">
             <img src="https://cdn10.heatlabs.net/bug-hunting/author/PCWBugHunters.webp" alt="Author" class="author-avatar">
             <div>
               <p class="author-name">PCW Bug Hunters Team</p>
@@ -398,10 +392,10 @@
       <!-- bug Content -->
       <section class="section py-8">
         <div class="container mx-auto px-4">
-          <div class="bug-content-wrapper">
+          <div class="blog-content-wrapper">
             <!-- Main Content -->
-            <div class="bug-main-content">
-              <div class="bug-text">
+            <div class="blog-main-content">
+              <div class="blog-text">
                 <!-- Introduction -->
                 <h2 id="introduction">Introduction</h2>
                 <p>Images found in files may reveal game development techniques and workflows sparking possibilities for modding.</p>
@@ -411,61 +405,61 @@
                 <p>Here are some of the key files that outline different aspects of the development workflow. Each file name hints at a potential functionality, which might be helpful in understanding modding techniques:</p>
                 <h3>Merge by Group Without LODs</h3>
                 <p>File name: merge_by_group_without_lods_import29dfa92b6311c4777e7a1df0dfeaa0c4</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/merge_by_group_without_lods_import29dfa92b6311c4777e7a1df0dfeaa0c4_converted.webp" alt="Image" class="rounded-lg">
                 </div>
                 <p>This image likely demonstrates a process where game assets or objects are merged into a single group without the inclusion of Level of Detail (LOD) data. LOD is often used to manage rendering distances, so this image might show a simplified merging technique, possibly for optimization or testing purposes.</p>
                 <h3>Merge by Group With LODs</h3>
                 <p>File name: merge_by_group_with_lods_importc6e2e48bbe153718bc69a626dd0a3b15</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/merge_by_group_with_lods_importc6e2e48bbe153718bc69a626dd0a3b15_converted.webp" alt="Image" class="rounded-lg">
                 </div>
                 <p>Contrasting with the previous one, this image probably depicts the merging of objects while retaining LOD information. It may be part of a workflow that aims to optimize performance by ensuring objects render properly at various distances, while still maintaining group cohesion.</p>
                 <h3>Combine Into a Single Object</h3>
                 <p>File name: combine_into_a_single_object_import00351473bb8a1bc00d88adc70cb75c4c</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/combine_into_a_single_object_import00351473bb8a1bc00d88adc70cb75c4c_converted.webp" alt="Image" class="rounded-lg">
                 </div>
                 <p>This image could showcase a method for combining multiple separate game objects or meshes into a single object. This could help with performance or simplify asset management in the game engine.</p>
                 <h3>Local Transform is ON</h3>
                 <p>File name: local_transform_is_ond38b6e52822b0aadd7329f60bef8f95a</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/local_transform_is_ond38b6e52822b0aadd7329f60bef8f95a_converted.webp" alt="Image" class="rounded-lg">
                 </div>
                 <p>This might be a visual representation of an object’s local transformation, possibly indicating a state where a transformation (such as rotation, scaling, or positioning) is applied to an object. The "on" could refer to an active state of this transformation.</p>
                 <h3>Local Transform is OFF</h3>
                 <p>File name: local_transform_is_off965f86fd085da6c1360ad6130d2f7f8a</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/local_transform_is_off965f86fd085da6c1360ad6130d2f7f8a_converted.webp" alt="Image" class="rounded-lg">
                 </div>
                 <p>In contrast to the previous image, this one could show when the local transformation is turned off or reset. It may be part of a tutorial or guide on how to manage and toggle transformations for better control over object placement or movement.</p>
                 <h3>Lights Tip</h3>
                 <p>File name: lights_tip01a22b3ac5801c80c610ef7d328ff9b485</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/lights_tip01a22b3ac5801c80c610ef7d328ff9b485_converted.webp" alt="Image" class="rounded-lg">
                 </div>
                 <p>Likely an illustration focused on lighting techniques, this image might provide tips or guidelines for placing or configuring lights in the game world. It could be a lighting setup example showing shadows, highlights, or ambient light.</p>
                 <h3>Markers</h3>
                 <p>File name: 0299_markers_01_rta8e5714ea3e5c4d88fd59b5127473f64c</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/0299_markers_01_rta8e5714ea3e5c4d88fd59b5127473f64c_converted.webp" alt="Image" class="rounded-lg">
                 </div>
                 <p>The handwritten nature suggests this image could be a placeholder or reference image used during development. It might be quicker for developers to write something out and import it into the game files as a note or marker for testing purposes.</p>
                 <h3>Custom UV Checker Height</h3>
                 <p>File name: customuvchecker_height_1k02d2a33079188d036d08dff4fcdade15</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/customuvchecker_height_1k02d2a33079188d036d08dff4fcdade15_converted.webp" alt="Image" class="rounded-lg">
                 </div>
                 <p>The first image is a gray background with instructions for a height map. It details a 0-1 height range, uses a 16-bit .EXR format, and specifies R16_UNORM compression. This appears to be a guide or preset for developers to use when creating height maps, providing clear specifications to ensure consistent quality and format.</p>
                 <h3>Dispersion Underlay</h3>
                 <p>File name: dispersion_underlay1e97aadbc6f99e091af70344f0b9a574</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/dispersion_underlay1e97aadbc6f99e091af70344f0b9a574.webp" alt="Image" class="rounded-lg">
                 </div>
                 <p>This image likely represents the gun's dispersion mechanic in the game, showing how shots spread out during firing. The grid with a tank silhouette could be used as a visual tool to test where the bullets may land in relation to the target during development.</p>
                 <h3>Early HUD Showcase</h3>
                 <p>File name: CW_HUD-100</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/CW_HUD-100.webp" alt="Image" class="rounded-lg">
                 </div>
                 <p>Another interesting find was an image shared by the developers in the public Discord server, revealing an early HUD design. This preview gives players a glimpse into what the game’s interface might look like in future builds.</p>
@@ -504,19 +498,19 @@
                 <!-- Related bug -->
                 <div class="sidebar-card">
                   <h3>Related Articles</h3>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="discovery-of-corex" class="hover:text-accent-color">Discovery of CoreX</a>
                     </h4>
                     <p>In this post, we uncover evidence suggesting that World of Tanks: HEAT may be powered by an upgraded version of Wargaming's Core engine, known as CoreX.</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="exploring-animation-and-movement-desync" class="hover:text-accent-color">Animation and Movement Desync</a>
                     </h4>
                     <p>Using network latency tweaks and virtual machines, we’re uncovering how World of Tanks: HEAT triggers animations and exploring ways to experiment with in-game movement.</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="exploring-the-main-menu-garage" class="hover:text-accent-color">Exploring the Main Menu Garage</a>
                     </h4>
@@ -526,7 +520,7 @@
               </div>
             </div>
             <!-- Desktop Sidebar -->
-            <div class="bug-sidebar hidden lg:block">
+            <div class="blog-sidebar hidden lg:block">
               <!-- Author Info -->
               <div class="sidebar-card">
                 <h3>About the Author</h3>
@@ -556,19 +550,19 @@
               <!-- Related bug -->
               <div class="sidebar-card">
                 <h3>Related Articles</h3>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="discovery-of-corex" class="hover:text-accent-color">Discovery of CoreX</a>
                   </h4>
                   <p>In this post, we uncover evidence suggesting that World of Tanks: HEAT may be powered by an upgraded version of Wargaming's Core engine, known as CoreX.</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="exploring-animation-and-movement-desync" class="hover:text-accent-color">Animation and Movement Desync</a>
                   </h4>
                   <p>Using network latency tweaks and virtual machines, we’re uncovering how World of Tanks: HEAT triggers animations and exploring ways to experiment with in-game movement.</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="exploring-the-main-menu-garage" class="hover:text-accent-color">Exploring the Main Menu Garage</a>
                   </h4>
@@ -722,7 +716,7 @@
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/go-to.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/radio.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/image-protection.js"></script>
-    <script src="https://cdn0.heatlabs.net/js-static/pages/bug-pages.js"></script>
+    <script src="https://cdn0.heatlabs.net/js-static/pages/blog-pages.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/sidebar.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/theme-loader.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/search.js"></script>

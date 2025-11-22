@@ -97,7 +97,7 @@
           "@type": "ListItem",
           "position": 3,
           "name": "Exploring Animation and Movement Desync",
-          "item": "https://heatlabs.net/bug-hunting/exploring-animation-and-movement-desync"
+          "item": "https://heatlabs.net/blog/exploring-animation-and-movement-desync"
         }
       ]
     }
@@ -120,7 +120,7 @@
     }
     </script>
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://heatlabs.net/bug-hunting/exploring-animation-and-movement-desync">
+    <link rel="canonical" href="https://heatlabs.net/blog/exploring-animation-and-movement-desync">
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="https://heatlabs.net/site-data/sitemap.xml">
     <!-- Theme Checker -->
@@ -149,7 +149,7 @@
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/misc.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/wip-modal.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/easter-eggs/radio.css">
-    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/bug-pages.css">
+    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/blog-pages.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/settings.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/context-menu.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/header.css">
@@ -205,7 +205,7 @@
     <meta property="og:description" content="Exploring Animation and Movement Desync - World of Tanks: HEAT bug analysis and investigation report. Detailed glitch breakdown and community findings from HEAT Labs research.">
     <meta property="og:image" content="https://cdn5.heatlabs.net/social-share/HEATLabs.png">
     <meta property="og:image:alt" content="Your one-stop solution for comprehensive statistics insights and guides for World of Tanks: HEAT">
-    <meta property="og:url" content="https://heatlabs.net/bug-hunting/exploring-animation-and-movement-desync">
+    <meta property="og:url" content="https://heatlabs.net/blog/exploring-animation-and-movement-desync">
     <meta property="og:type" content="article">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="320">
@@ -297,12 +297,6 @@
             </a>
           </li>
           <li>
-            <a href="../bug-hunting" class="sidebar-link active">
-              <i class="fas fa-bug"></i>
-              <span>Bug Hunting</span>
-            </a>
-          </li>
-          <li>
             <a href="../tournaments" class="sidebar-link">
               <i class="fas fa-trophy"></i>
               <span>Tournaments</span>
@@ -376,17 +370,17 @@
         </div>
       </header>
       <!-- bug Header -->
-      <section class="bug-header">
+      <section class="blog-header">
         <div class="container mx-auto px-4">
-          <div class="bug-meta">
-            <span class="bug-type-badge">Game Research</span>
+          <div class="blog-meta">
+            <span class="blog-type-badge">Game Research</span>
             <span>
               <i class="far fa-clock mr-1"></i> 5 min read </span>
             <span>
               <i class="far fa-calendar-alt mr-1"></i> February 15, 2024 </span>
           </div>
-          <h1 class="bug-title">Exploring Animation and Movement Desync</h1>
-          <div class="bug-author">
+          <h1 class="blog-title">Exploring Animation and Movement Desync</h1>
+          <div class="blog-author">
             <img src="https://cdn10.heatlabs.net/bug-hunting/author/PCWBugHunters.webp" alt="Author" class="author-avatar">
             <div>
               <p class="author-name">PCW Bug Hunters Team</p>
@@ -398,10 +392,10 @@
       <!-- bug Content -->
       <section class="section py-8">
         <div class="container mx-auto px-4">
-          <div class="bug-content-wrapper">
+          <div class="blog-content-wrapper">
             <!-- Main Content -->
-            <div class="bug-main-content">
-              <div class="bug-text">
+            <div class="blog-main-content">
+              <div class="blog-text">
                 <!-- Introduction -->
                 <h2 id="introduction">Introduction</h2>
                 <p>Using network latency tweaks and virtual machines, we’re uncovering how World of Tanks: HEAT triggers animations and exploring ways to experiment with in-game movement and glitching.</p>
@@ -410,14 +404,14 @@
                 <p>By adding artificial network latency through a virtual machine (VM) and altering its network connection, we’re able to observe desync effects in World of Tanks: HEAT. This approach lets us examine how animations are triggered across the server-client relationship. Testing in this way provides unique insights into animation timings, response lag, and the potential for controlled desync scenarios, helping us understand how the game responds to network variations.</p>
                 <h3>CHOPPER VIDEO: Local vs. Server Animation Triggers</h3>
                 <p>The chopper video reveals some interesting mechanics: while the gun’s recoil animation is triggered immediately upon clicking, the tank’s animation only starts once the server confirms the shell has fired. This shows that certain animations are client-side, while others wait for server response—an insight that might help the future modding community understand how the game handles animation priorities and responsiveness.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <video controls class="rounded-lg">
                     <source src="https://cdn5.heatlabs.net/bug-hunting/posts/delayed_chopper.mp4" type="video/mp4"> Your browser does not support the video tag.
                   </video>
                 </div>
                 <h3>PUNCH VIDEO: Controlled Movement Glitches</h3>
                 <p>Latency desyncs also open the door for testing movement glitches. With this method, we managed to glitch the tank’s movement locally, allowing it to pass through buildings or move beneath the map. These findings could eventually help the community explore new areas of the map and access zones that were previously unreachable.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <video controls class="rounded-lg">
                     <source src="https://cdn5.heatlabs.net/bug-hunting/posts/punch_cracked.mp4" type="video/mp4"> Your browser does not support the video tag.
                   </video>
@@ -432,7 +426,7 @@
                 <!-- Section 3 -->
                 <h2 id="section-3">Bloopers: Chopper Gone Haywire!</h2>
                 <p>For a bit of fun, here’s a bloopers clip featuring Chopper after a bit too much network desync! With exaggerated latency, Chopper’s movements became erratic, bouncing around and nearly passing through the map’s border. It’s a reminder that with great desync power comes...hilarious side effects!</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <video controls class="rounded-lg">
                     <source src="https://cdn5.heatlabs.net/bug-hunting/posts/cracked_chopper.mp4" type="video/mp4"> Your browser does not support the video tag.
                   </video>
@@ -473,19 +467,19 @@
                 <!-- Related bug -->
                 <div class="sidebar-card">
                   <h3>Related Articles</h3>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="exploring-the-main-menu-garage" class="hover:text-accent-color">Exploring the Main Menu Garage</a>
                     </h4>
                     <p>After conducting some tests with HSTV-L inside the firing range, we've discovered that the room showcasing tanks in the main menu is located beneath the firing range map.</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="hunting-for-potential-hidden-servers" class="hover:text-accent-color">Hunting For Potential Hidden Servers</a>
                     </h4>
                     <p>A look at the main server addresses used by the game, including a potential private dev-only server. Odd results from a recent port scan reveal only one active port.</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="info-from-developers" class="hover:text-accent-color">Info From Developers</a>
                     </h4>
@@ -495,7 +489,7 @@
               </div>
             </div>
             <!-- Desktop Sidebar -->
-            <div class="bug-sidebar hidden lg:block">
+            <div class="blog-sidebar hidden lg:block">
               <!-- Author Info -->
               <div class="sidebar-card">
                 <h3>About the Author</h3>
@@ -528,19 +522,19 @@
               <!-- Related bug -->
               <div class="sidebar-card">
                 <h3>Related Articles</h3>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="exploring-the-main-menu-garage" class="hover:text-accent-color">Exploring the Main Menu Garage</a>
                   </h4>
                   <p>After conducting some tests with HSTV-L inside the firing range, we've discovered that the room showcasing tanks in the main menu is located beneath the firing range map.</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="hunting-for-potential-hidden-servers" class="hover:text-accent-color">Hunting For Potential Hidden Servers</a>
                   </h4>
                   <p>A look at the main server addresses used by the game, including a potential private dev-only server. Odd results from a recent port scan reveal only one active port.</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="info-from-developers" class="hover:text-accent-color">Info From Developers</a>
                   </h4>
@@ -694,7 +688,7 @@
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/go-to.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/radio.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/image-protection.js"></script>
-    <script src="https://cdn0.heatlabs.net/js-static/pages/bug-pages.js"></script>
+    <script src="https://cdn0.heatlabs.net/js-static/pages/blog-pages.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/sidebar.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/theme-loader.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/search.js"></script>

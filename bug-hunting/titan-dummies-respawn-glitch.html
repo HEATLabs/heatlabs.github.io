@@ -97,7 +97,7 @@
           "@type": "ListItem",
           "position": 3,
           "name": "Titan Dummies Respawn Glitch",
-          "item": "https://heatlabs.net/bug-hunting/titan-dummies-respawn-glitch"
+          "item": "https://heatlabs.net/blog/titan-dummies-respawn-glitch"
         }
       ]
     }
@@ -120,7 +120,7 @@
     }
     </script>
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://heatlabs.net/bug-hunting/titan-dummies-respawn-glitch">
+    <link rel="canonical" href="https://heatlabs.net/blog/titan-dummies-respawn-glitch">
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="https://heatlabs.net/site-data/sitemap.xml">
     <!-- Theme Checker -->
@@ -149,7 +149,7 @@
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/misc.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/wip-modal.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/easter-eggs/radio.css">
-    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/bug-pages.css">
+    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/blog-pages.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/settings.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/context-menu.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/header.css">
@@ -205,7 +205,7 @@
     <meta property="og:description" content="Titan Dummies Respawn Glitch - World of Tanks: HEAT bug analysis and investigation report. Detailed glitch breakdown and community findings from HEAT Labs research.">
     <meta property="og:image" content="https://cdn5.heatlabs.net/social-share/HEATLabs.png">
     <meta property="og:image:alt" content="Your one-stop solution for comprehensive statistics insights and guides for World of Tanks: HEAT">
-    <meta property="og:url" content="https://heatlabs.net/bug-hunting/titan-dummies-respawn-glitch">
+    <meta property="og:url" content="https://heatlabs.net/blog/titan-dummies-respawn-glitch">
     <meta property="og:type" content="article">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="320">
@@ -297,12 +297,6 @@
             </a>
           </li>
           <li>
-            <a href="../bug-hunting" class="sidebar-link active">
-              <i class="fas fa-bug"></i>
-              <span>Bug Hunting</span>
-            </a>
-          </li>
-          <li>
             <a href="../tournaments" class="sidebar-link">
               <i class="fas fa-trophy"></i>
               <span>Tournaments</span>
@@ -376,17 +370,17 @@
         </div>
       </header>
       <!-- bug Header -->
-      <section class="bug-header">
+      <section class="blog-header">
         <div class="container mx-auto px-4">
-          <div class="bug-meta">
-            <span class="bug-type-badge">Game Research</span>
+          <div class="blog-meta">
+            <span class="blog-type-badge">Game Research</span>
             <span>
               <i class="far fa-clock mr-1"></i> 15 min read </span>
             <span>
               <i class="far fa-calendar-alt mr-1"></i> February 16, 2024 </span>
           </div>
-          <h1 class="bug-title">Titan Dummies Respawn Glitch</h1>
-          <div class="bug-author">
+          <h1 class="blog-title">Titan Dummies Respawn Glitch</h1>
+          <div class="blog-author">
             <img src="https://cdn10.heatlabs.net/bug-hunting/author/PCWBugHunters.webp" alt="Author" class="author-avatar">
             <div>
               <p class="author-name">PCW Bug Hunters Team</p>
@@ -398,20 +392,20 @@
       <!-- bug Content -->
       <section class="section py-8">
         <div class="container mx-auto px-4">
-          <div class="bug-content-wrapper">
+          <div class="blog-content-wrapper">
             <!-- Main Content -->
-            <div class="bug-main-content">
-              <div class="bug-text">
+            <div class="blog-main-content">
+              <div class="blog-text">
                 <!-- Introduction -->
                 <h2 id="introduction">Introduction</h2>
                 <p>In version 0.9.8, an intriguing glitch has emerged involving the Titan dummies in the firing range. After being destroyed, these dummies respawn at the normal player spawn point, leaving behind a ghost tank in their original location. This behavior raises questions about the mechanics of spawning and the conditions that trigger this unintended effect.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/titans.webp" alt="Image" class="rounded-lg">
                 </div>
                 <!-- Section 1 -->
                 <h2 id="section-1">A Closer Look at the Respawn Mechanism</h2>
                 <p>In our first video, we capture the moment when a Titan dummy is destroyed. Rather than simply disappearing, the game attempts to instantly respawn the tank at its original location. However, due to a lack of space, it instead spawns on top of another existing dummy, resulting in a chaotic clustering of tanks at the player spawn point.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <video controls class="rounded-lg">
                     <source src="https://cdn5.heatlabs.net/bug-hunting/posts/titan_wobble_1.mp4" type="video/mp4"> Your browser does not support the video tag.
                   </video>
@@ -419,7 +413,7 @@
                 <!-- Section 2 -->
                 <h2 id="section-2">Underlying Cause: Space Constraints</h2>
                 <p>Though the exact cause of this glitch remains unconfirmed, it appears that when checking for available spawn space, the dead body of the destroyed dummy does not despawn immediately. Consequently, the game identifies the player's spawn point as the only valid location for the new dummy, leading to this strange behavior. Our second video demonstrates this effect more closely as we attempt to push the dummies around, showcasing the interactions that occur in this glitchy scenario.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <video controls class="rounded-lg">
                     <source src="https://cdn5.heatlabs.net/bug-hunting/posts/titan_wobble_2.mp4" type="video/mp4"> Your browser does not support the video tag.
                   </video>
@@ -457,19 +451,19 @@
                 <!-- Related bug -->
                 <div class="sidebar-card">
                   <h3>Related Articles</h3>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="unlocking-the-camera" class="hover:text-accent-color">Unlocking the Camera</a>
                     </h4>
                     <p>While utilizing the same tricks to add artificial network latency and cause desyncs we successfully managed to unlock the camera for about 5-10 seconds.</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="who-is-pcw-bug-hunters" class="hover:text-accent-color">Who is PCW Bug Hunters?</a>
                     </h4>
                     <p>In this post we aim to answer some common questions about the PCW Bug Hunters group and our goals as a team with World of Tanks: HEAT.</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="wierd-pattern-images" class="hover:text-accent-color">Wierd Pattern Images</a>
                     </h4>
@@ -479,7 +473,7 @@
               </div>
             </div>
             <!-- Desktop Sidebar -->
-            <div class="bug-sidebar hidden lg:block">
+            <div class="blog-sidebar hidden lg:block">
               <!-- Author Info -->
               <div class="sidebar-card">
                 <h3>About the Author</h3>
@@ -509,19 +503,19 @@
               <!-- Related bug -->
               <div class="sidebar-card">
                 <h3>Related Articles</h3>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="unlocking-the-camera" class="hover:text-accent-color">Unlocking the Camera</a>
                   </h4>
                   <p>While utilizing the same tricks to add artificial network latency and cause desyncs we successfully managed to unlock the camera for about 5-10 seconds.</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="who-is-pcw-bug-hunters" class="hover:text-accent-color">Who is PCW Bug Hunters?</a>
                   </h4>
                   <p>In this post we aim to answer some common questions about the PCW Bug Hunters group and our goals as a team with World of Tanks: HEAT.</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="wierd-pattern-images" class="hover:text-accent-color">Wierd Pattern Images</a>
                   </h4>
@@ -675,7 +669,7 @@
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/go-to.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/radio.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/image-protection.js"></script>
-    <script src="https://cdn0.heatlabs.net/js-static/pages/bug-pages.js"></script>
+    <script src="https://cdn0.heatlabs.net/js-static/pages/blog-pages.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/sidebar.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/theme-loader.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/search.js"></script>

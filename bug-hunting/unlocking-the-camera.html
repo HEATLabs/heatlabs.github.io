@@ -97,7 +97,7 @@
           "@type": "ListItem",
           "position": 3,
           "name": "Unlocking the Camera on the End Game Screen",
-          "item": "https://heatlabs.net/bug-hunting/unlocking-the-camera"
+          "item": "https://heatlabs.net/blog/unlocking-the-camera"
         }
       ]
     }
@@ -120,7 +120,7 @@
     }
     </script>
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://heatlabs.net/bug-hunting/unlocking-the-camera">
+    <link rel="canonical" href="https://heatlabs.net/blog/unlocking-the-camera">
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="https://heatlabs.net/site-data/sitemap.xml">
     <!-- Theme Checker -->
@@ -149,7 +149,7 @@
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/misc.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/wip-modal.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/easter-eggs/radio.css">
-    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/bug-pages.css">
+    <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/pages/blog-pages.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/settings.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/context-menu.css">
     <link rel="stylesheet" href="https://cdn0.heatlabs.net/css-static/modules/header.css">
@@ -205,7 +205,7 @@
     <meta property="og:description" content="Unlocking the Camera on the End Game Screen - World of Tanks: HEAT bug analysis and investigation report. Detailed glitch breakdown and community findings from HEAT Labs research.">
     <meta property="og:image" content="https://cdn5.heatlabs.net/social-share/HEATLabs.png">
     <meta property="og:image:alt" content="Your one-stop solution for comprehensive statistics insights and guides for World of Tanks: HEAT">
-    <meta property="og:url" content="https://heatlabs.net/bug-hunting/unlocking-the-camera">
+    <meta property="og:url" content="https://heatlabs.net/blog/unlocking-the-camera">
     <meta property="og:type" content="article">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="320">
@@ -297,12 +297,6 @@
             </a>
           </li>
           <li>
-            <a href="../bug-hunting" class="sidebar-link active">
-              <i class="fas fa-bug"></i>
-              <span>Bug Hunting</span>
-            </a>
-          </li>
-          <li>
             <a href="../tournaments" class="sidebar-link">
               <i class="fas fa-trophy"></i>
               <span>Tournaments</span>
@@ -376,17 +370,17 @@
         </div>
       </header>
       <!-- bug Header -->
-      <section class="bug-header">
+      <section class="blog-header">
         <div class="container mx-auto px-4">
-          <div class="bug-meta">
-            <span class="bug-type-badge">Game Research</span>
+          <div class="blog-meta">
+            <span class="blog-type-badge">Game Research</span>
             <span>
               <i class="far fa-clock mr-1"></i> 5 min read </span>
             <span>
               <i class="far fa-calendar-alt mr-1"></i> February 18, 2024 </span>
           </div>
-          <h1 class="bug-title">Unlocking the Camera on the End Game Screen</h1>
-          <div class="bug-author">
+          <h1 class="blog-title">Unlocking the Camera on the End Game Screen</h1>
+          <div class="blog-author">
             <img src="https://cdn10.heatlabs.net/bug-hunting/author/PCWBugHunters.webp" alt="Author" class="author-avatar">
             <div>
               <p class="author-name">PCW Bug Hunters Team</p>
@@ -398,10 +392,10 @@
       <!-- bug Content -->
       <section class="section py-8">
         <div class="container mx-auto px-4">
-          <div class="bug-content-wrapper">
+          <div class="blog-content-wrapper">
             <!-- Main Content -->
-            <div class="bug-main-content">
-              <div class="bug-text">
+            <div class="blog-main-content">
+              <div class="blog-text">
                 <!-- Introduction -->
                 <h2 id="introduction">Introduction</h2>
                 <p>While utilizing the same tricks to add artificial network latency and cause desyncs as discussed in our previous post on Animation Testing While Lagging, We successfully managed to unlock the camera for about 5-10 seconds during the end game screen. This discovery presents an exciting opportunity to test if we can replicate this effect in other areas of the game.</p>
@@ -412,13 +406,13 @@
                 <p>As soon as the connection is interrupted, stop adding artificial latency and allow the game to reconnect. When it does, you should be able to move the camera around with your mouse for the 5-10 seconds that the end game screen is displayed.</p>
                 <h3>Proof of concept videos showcasing the bug happening</h3>
                 <p>First video showing the unlocked camera during the end game screen</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <video controls class="rounded-lg">
                     <source src="https://cdn5.heatlabs.net/bug-hunting/posts/kent_bug_2.mp4" type="video/mp4"> Your browser does not support the video tag.
                   </video>
                 </div>
                 <p>Second video demonstrating the effects of artificial network latency</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <video controls class="rounded-lg">
                     <source src="https://cdn5.heatlabs.net/bug-hunting/posts/kent_bug_3.mp4" type="video/mp4"> Your browser does not support the video tag.
                   </video>
@@ -426,7 +420,7 @@
                 <!-- Section 2 -->
                 <h2 id="section-2">Unexpected results</h2>
                 <p>This image captures a glitched end of match screen where the player's name is replaced by a variable: 'ENDGAMESETTINGS.PLAYERINFO.CALLSIGN'. This unusual display is most likely a result of the forced network connection loss during gameplay.</p>
-                <div class="bug-image my-6">
+                <div class="blog-image my-6">
                   <img src="https://cdn10.heatlabs.net/bug-hunting/posts/kent_bug_1.webp" alt="Image" class="rounded-lg">
                 </div>
                 <!-- Section 3 -->
@@ -467,19 +461,19 @@
                 <!-- Related bug -->
                 <div class="sidebar-card">
                   <h3>Related Articles</h3>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="who-is-pcw-bug-hunters" class="hover:text-accent-color">Who is PCW Bug Hunters?</a>
                     </h4>
                     <p>In this post we aim to answer some common questions about the PCW Bug Hunters group and our goals as a team with World of Tanks: HEAT.</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="wierd-pattern-images" class="hover:text-accent-color">Wierd Pattern Images</a>
                     </h4>
                     <p>In the game files, two images were found displaying some kind of "patterns", one with an "X" drawn over it and the other marked with a green shield.</p>
                   </div>
-                  <div class="related-bug">
+                  <div class="related-blog">
                     <h4>
                       <a href="damage-calculation" class="hover:text-accent-color">Damage Calculation</a>
                     </h4>
@@ -489,7 +483,7 @@
               </div>
             </div>
             <!-- Desktop Sidebar -->
-            <div class="bug-sidebar hidden lg:block">
+            <div class="blog-sidebar hidden lg:block">
               <!-- Author Info -->
               <div class="sidebar-card">
                 <h3>About the Author</h3>
@@ -522,19 +516,19 @@
               <!-- Related bug -->
               <div class="sidebar-card">
                 <h3>Related Articles</h3>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="who-is-pcw-bug-hunters" class="hover:text-accent-color">Who is PCW Bug Hunters?</a>
                   </h4>
                   <p>In this post we aim to answer some common questions about the PCW Bug Hunters group and our goals as a team with World of Tanks: HEAT.</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="wierd-pattern-images" class="hover:text-accent-color">Wierd Pattern Images</a>
                   </h4>
                   <p>In the game files, two images were found displaying some kind of "patterns", one with an "X" drawn over it and the other marked with a green shield.</p>
                 </div>
-                <div class="related-bug">
+                <div class="related-blog">
                   <h4>
                     <a href="damage-calculation" class="hover:text-accent-color">Damage Calculation</a>
                   </h4>
@@ -688,7 +682,7 @@
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/go-to.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/easter-eggs/radio.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/image-protection.js"></script>
-    <script src="https://cdn0.heatlabs.net/js-static/pages/bug-pages.js"></script>
+    <script src="https://cdn0.heatlabs.net/js-static/pages/blog-pages.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/sidebar.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/theme-loader.js"></script>
     <script src="https://cdn0.heatlabs.net/js-static/modules/search.js"></script>
