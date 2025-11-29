@@ -272,13 +272,20 @@
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/blog/minestones-and-feedback</loc>
+		<loc>https://heatlabs.net/blog/easter-egg-friday-03</loc>
+		<lastmod>2025-11-06</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+
+	<url>
+		<loc>https://heatlabs.net/blog/easter-egg-friday-04</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
 	</url>
 	<url>
-		<loc>https://heatlabs.net/blog/easter-egg-friday-03</loc>
+		<loc>https://heatlabs.net/blog/minestones-and-feedback</loc>
 		<lastmod>2025-11-06</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.6</priority>
