@@ -359,8 +359,8 @@
       <section class="hero">
         <div class="waves-container"></div>
         <div class="hero-content">
-          <h1>HEAT Labs App</h1>
-          <p>Download our application on your Phone or Desktop</p>
+          <h1>HEAT Labs PWA App</h1>
+          <p>Download our PWA application on your Phone or Desktop</p>
         </div>
       </section>
       <!-- Main Content -->
@@ -368,8 +368,8 @@
         <div class="container mx-auto px-4">
           <!-- App Introduction -->
           <div class="app-intro text-center mb-16">
-            <h2 class="text-3xl font-bold mb-4">Start using HEAT Labs Anywhere</h2>
-            <p class="text-xl  max-w-3xl mx-auto"> Install our Progressive Web App on your device for fast, reliable access to all HEAT Labs features, even when you're offline. Works on desktop, mobile, and tablet devices. </p>
+            <h2 class="text-3xl font-bold mb-4">Take HEAT Labs With You, Everywhere</h2>
+            <p class="text-xl  max-w-3xl mx-auto"> Install our Progressive Web App for seamless, instant access to tank stats, maps, and guides, optimized for performance on any device, with or without an internet connection. </p>
           </div>
           <!-- App Features Grid -->
           <div class="app-features grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
@@ -378,30 +378,30 @@
                 <i class="fas fa-bolt"></i>
               </div>
               <h3 class="text-xl font-semibold mb-2">Lightning Fast</h3>
-              <p class="description">Loads instantly and works smoothly even on slow networks.</p>
+              <p class="description">Loads instantly and delivers smooth performance, even on slower networks.</p>
             </div>
             <div class="feature-card text-center p-6 rounded-lg bg-white dark:bg-gray-800 shadow-md">
               <div class="feature-icon mb-4 text-4xl text-green-500">
-                <i class="fas fa-solid fa-globe"></i>
+                <i class="fas fa-solid fa-wifi"></i>
               </div>
-              <h3 class="text-xl font-semibold mb-2">Offline Access</h3>
-              <p class="description">Access key content even without an internet connection.</p>
+              <h3 class="text-xl font-semibold mb-2">Limited Offline Mode</h3>
+              <p class="description">Access recently viewed tank stats and guides when temporarily offline.</p>
             </div>
             <div class="feature-card text-center p-6 rounded-lg bg-white dark:bg-gray-800 shadow-md">
               <div class="feature-icon mb-4 text-4xl text-purple-500">
                 <i class="fas fa-mobile-alt"></i>
               </div>
-              <h3 class="text-xl font-semibold mb-2">App-like Experience</h3>
-              <p class="description">Feels like a native app with smooth animations and gestures.</p>
+              <h3 class="text-xl font-semibold mb-2">Native App Experience</h3>
+              <p class="description">Feels like a native app with smooth animations, gestures, and home screen launch.</p>
             </div>
           </div>
           <!-- Installation Section -->
           <div class="installation-section bg-gray-100 dark:bg-gray-800 rounded-xl p-8 mb-16">
             <div class="flex flex-col md:flex-row items-center">
               <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                <h3 class="text-2xl font-bold mb-4">Install HEAT Labs App</h3>
-                <p class="mb-6"> Get the full HEAT Labs experience on your device with our Progressive Web App. It's free, takes seconds to install, and doesn't require app store downloads. </p>
-                <p class="mb-6"> Note: PWA Apps are only supported in Chrome Desktop, Chrome Mobile, and other Chromium-based browsers. If the install button doesn’t appear below, it means you’re on an unsupported platform or browser. </p>
+                <h3 class="text-2xl font-bold mb-4">Install HEAT Labs PWA</h3>
+                <p class="mb-6"> Get the full HEAT Labs experience directly on your device, no app store required. Our PWA is free, lightweight, and installs in seconds. </p>
+                <p class="mb-6"> <strong>Note:</strong> PWA installation is supported in Chrome, Edge, Safari, and other modern browsers. If the install button doesn’t appear, ensure you’re using a supported browser or check our iOS instructions below. </p>
                 <div class="installation-steps space-y-4 mb-6">
                   <div class="step flex items-center">
                     <div class="step-number w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center mr-3">1</div>
@@ -409,18 +409,18 @@
                   </div>
                   <div class="step flex items-center">
                     <div class="step-number w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center mr-3">2</div>
-                    <p>Confirm the installation in the prompt</p>
+                    <p>Confirm the installation in the browser prompt</p>
                   </div>
                   <div class="step flex items-center">
                     <div class="step-number w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center mr-3">3</div>
-                    <p>Launch from your home screen or app drawer</p>
+                    <p>Launch directly from your home screen or app drawer</p>
                   </div>
                 </div>
                 <div class="install-buttons flex flex-col sm:flex-row gap-4">
                   <button id="installButton" class="btn-install bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg font-medium flex items-center justify-center transition-colors">
-                    <i class="fas fa-download mr-2"></i> Install App </button>
+                    <i class="fas fa-download mr-2"></i> Install HEAT Labs App </button>
                   <button id="installIosGuide" class="btn-install-ios bg-gray-800 hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600 text-white py-3 px-6 rounded-lg font-medium flex items-center justify-center transition-colors">
-                    <i class="fab fa-apple mr-2"></i> iOS Instructions </button>
+                    <i class="fab fa-apple mr-2"></i> iOS Installation Guide </button>
                 </div>
               </div>
               <div class="md:w-1/2 flex justify-center">
@@ -434,7 +434,7 @@
           <div id="iosGuideModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
             <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4">
               <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold">Install on iOS</h3>
+                <h3 class="text-xl font-bold">Install HEAT Labs on iOS</h3>
                 <button id="closeIosGuide" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
                   <i class="fas fa-times"></i>
                 </button>
@@ -442,19 +442,19 @@
               <div class="ios-steps space-y-4">
                 <div class="step flex items-start">
                   <div class="step-number w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center mr-3 flex-shrink-0">1</div>
-                  <p>Tap the <i class="fas fa-share"></i> Share button in Safari </p>
+                  <p>Open this page in <strong>Safari</strong> and tap the <i class="fas fa-share"></i> Share button</p>
                 </div>
                 <div class="step flex items-start">
                   <div class="step-number w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center mr-3 flex-shrink-0">2</div>
-                  <p>Scroll down and select "Add to Home Screen"</p>
+                  <p>Scroll down and select <strong>"Add to Home Screen"</strong></p>
                 </div>
                 <div class="step flex items-start">
                   <div class="step-number w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center mr-3 flex-shrink-0">3</div>
-                  <p>Tap "Add" in the top right corner</p>
+                  <p>Tap <strong>"Add"</strong> in the top right corner to confirm</p>
                 </div>
                 <div class="step flex items-start">
                   <div class="step-number w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center mr-3 flex-shrink-0">4</div>
-                  <p>Launch HEAT Labs from your home screen</p>
+                  <p>Launch <strong>HEAT Labs</strong> directly from your home screen</p>
                 </div>
               </div>
               <div class="mt-6">
@@ -468,19 +468,19 @@
             <div class="faq-grid grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="faq-item bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
                 <h3 class="text-lg font-semibold mb-2">What is a Progressive Web App?</h3>
-                <p class="">A PWA is a web application that uses modern web capabilities to deliver an app-like experience to users. They're reliable, fast, and engaging.</p>
+                <p class="">A PWA is a modern web application that uses advanced browser features to deliver an app-like experience, reliable, fast, and installable without an app store.</p>
               </div>
               <div class="faq-item bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold mb-2">Is the app free to install?</h3>
-                <p class="">Yes! Our PWA is completely free to install and use, with no hidden costs or in-app purchases.</p>
+                <h3 class="text-lg font-semibold mb-2">Is the app really free?</h3>
+                <p class="">Yes! Our PWA is completely free to install and use. There are no hidden fees, subscriptions, or in-app purchases.</p>
               </div>
               <div class="faq-item bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
                 <h3 class="text-lg font-semibold mb-2">Will it work on my device?</h3>
-                <p class="">Our PWA works on most modern browsers including Chrome, Firefox, Safari, and Edge on both desktop and mobile devices.</p>
+                <p class="">Our PWA works on most modern browsers including Chrome, Firefox, Safari, and Edge across desktop, mobile, and tablet devices.</p>
               </div>
               <div class="faq-item bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold mb-2">How do I update the app?</h3>
-                <p class="">PWAs update automatically whenever you're online, so you'll always have the latest version without needing to manually update.</p>
+                <h3 class="text-lg font-semibold mb-2">How do updates work?</h3>
+                <p class="">The app updates automatically when you're online, ensuring you always have the latest features and data without manual downloads.</p>
               </div>
             </div>
           </div>
