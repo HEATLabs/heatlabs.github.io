@@ -1298,6 +1298,12 @@
 		<priority>0.6</priority>
 	</url>
 	<url>
+		<loc>https://heatlabs.net/steam-news/heat-wrapped-2025-in-review</loc>
+		<lastmod>2025-12-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<url>
 		<loc>https://heatlabs.net/tanks/agds</loc>
 		<lastmod>2025-12-04</lastmod>
 		<changefreq>weekly</changefreq>
