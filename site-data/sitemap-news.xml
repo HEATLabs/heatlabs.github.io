@@ -113,6 +113,17 @@
 		</news:news>
 	</url>
 	<url>
+		<loc>https://heatlabs.net/blog/happy-holidays</loc>
+		<news:news>
+			<news:publication>
+				<news:name>HEAT Labs</news:name>
+				<news:language>en</news:language>
+			</news:publication>
+			<news:publication_date>2025-12-25T00:00:00+02:00</news:publication_date>
+			<news:title>Happy Holidays and Plans for 2026</news:title>
+		</news:news>
+	</url>
+	<url>
 		<loc>https://heatlabs.net/blog/new-playground-features</loc>
 		<news:news>
 			<news:publication>
