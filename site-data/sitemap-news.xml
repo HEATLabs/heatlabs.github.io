@@ -14,6 +14,17 @@
 		</news:news>
 	</url>
 	<url>
+		<loc>https://heatlabs.net/blog/easter-egg-friday-08</loc>
+		<news:news>
+			<news:publication>
+				<news:name>HEAT Labs</news:name>
+				<news:language>en</news:language>
+			</news:publication>
+			<news:publication_date>2025-12-26T00:00:00+02:00</news:publication_date>
+			<news:title>Easter Egg Friday #8</news:title>
+		</news:news>
+	</url>
+	<url>
 		<loc>https://heatlabs.net/blog/easter-egg-friday-07</loc>
 		<news:news>
 			<news:publication>
