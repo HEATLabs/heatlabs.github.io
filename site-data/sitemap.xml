@@ -1531,4 +1531,52 @@
 		<changefreq>weekly</changefreq>
 		<priority>0.4</priority>
 	</url>
+	<url>
+		<loc>https://status.heatlabs.net</loc>
+		<lastmod>2025-12-25</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.4</priority>
+	</url>
+	<url>
+		<loc>https://social.heatlabs.net</loc>
+		<lastmod>2025-12-25</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.4</priority>
+	</url>
+	<url>
+		<loc>https://bot.heatlabs.net</loc>
+		<lastmod>2025-12-25</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.4</priority>
+	</url>
+	<url>
+		<loc>https://app.heatlabs.net</loc>
+		<lastmod>2025-12-25</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.4</priority>
+	</url>
+	<url>
+		<loc>https://mods.heatlabs.net</loc>
+		<lastmod>2025-12-25</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.4</priority>
+	</url>
+	<url>
+		<loc>https://discord.heatlabs.net</loc>
+		<lastmod>2025-12-25</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.4</priority>
+	</url>
+	<url>
+		<loc>https://changelog.heatlabs.net</loc>
+		<lastmod>2025-12-25</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.4</priority>
+	</url>
+	<url>
+		<loc>https://statistics.heatlabs.net</loc>
+		<lastmod>2025-12-25</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.4</priority>
+	</url>
 </urlset>
