@@ -393,12 +393,48 @@
         <div class="waves-container"></div>
         <div class="hero-content">
           <h1>Game Data</h1>
-          <p>Detailed information about missions and matchmaking in World of Tanks: HEAT</p>
+          <p>Statistics, achievements, and detailed gameplay insights</p>
         </div>
       </section>
       <!-- Main Content -->
       <section id="main" class="section">
-      <!-- PLACEHOLDER -->
+        <div class="container mx-auto px-4">
+          <!-- Summary Cards -->
+          <div class="summary-cards mb-8"></div>
+          <!-- Tabs Navigation -->
+          <div class="game-data-tabs">
+            <button class="tab-button active" data-tab="achievements">
+              <i class="fas fa-trophy"></i> Steam Achievements </button>
+            <button class="tab-button" data-tab="statistics">
+              <i class="fas fa-chart-bar"></i> Game Statistics </button>
+          </div>
+          <!-- Filters and Search -->
+          <div class="game-data-filters">
+            <div class="search-container">
+              <i class="fas fa-search search-icon"></i>
+              <input type="text" class="search-input" placeholder="Search achievements or statistics...">
+            </div>
+            <div class="filter-group">
+              <label class="filter-label">Sort by:</label>
+              <select class="filter-select" id="sortFilter">
+                <option value="number">Number</option>
+                <option value="name">Name (A-Z)</option>
+              </select>
+            </div>
+          </div>
+          <!-- Achievements Tab Content -->
+          <div id="achievementsTab" class="tab-content active">
+            <div class="achievements-grid" id="achievementsGrid">
+              <!-- Achievements will be loaded here -->
+            </div>
+          </div>
+          <!-- Statistics Tab Content -->
+          <div id="statisticsTab" class="tab-content">
+            <div class="statistics-grid" id="statisticsGrid">
+              <!-- Statistics will be loaded here -->
+            </div>
+          </div>
+        </div>
       </section>
       <!-- CTA Section -->
       <section class="cta-section">
