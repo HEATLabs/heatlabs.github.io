@@ -1286,6 +1286,12 @@
 		<priority>0.6</priority>
 	</url>
 	<url>
+		<loc>https://heatlabs.net/playground/tank-defense</loc>
+		<lastmod>2026-01-01</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<url>
 		<loc>https://heatlabs.net/resources/about-us</loc>
 		<lastmod>2026-01-01</lastmod>
 		<changefreq>weekly</changefreq>
