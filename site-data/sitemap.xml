@@ -386,6 +386,12 @@
 		<priority>0.6</priority>
 	</url>
 	<url>
+		<loc>https://heatlabs.net/blog/heatlabs-on-android</loc>
+		<lastmod>2026-01-19</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<url>
 		<loc>https://heatlabs.net/blog/wishlist-heatlabs-on-steam</loc>
 		<lastmod>2026-01-16</lastmod>
 		<changefreq>weekly</changefreq>

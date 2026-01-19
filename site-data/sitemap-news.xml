@@ -3,6 +3,17 @@
 	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
 	xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 	<url>
+		<loc>https://heatlabs.net/blog/heatlabs-on-android</loc>
+		<news:news>
+			<news:publication>
+				<news:name>HEAT Labs</news:name>
+				<news:language>en</news:language>
+			</news:publication>
+			<news:publication_date>2026-01-19T00:00:00+02:00</news:publication_date>
+			<news:title>HEAT Labs Is Now on Android</news:title>
+		</news:news>
+	</url>
+	<url>
 		<loc>https://heatlabs.net/blog/wishlist-heatlabs-on-steam</loc>
 		<news:news>
 			<news:publication>
