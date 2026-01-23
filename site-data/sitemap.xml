@@ -356,6 +356,12 @@
 		<priority>0.6</priority>
 	</url>
 	<url>
+		<loc>https://heatlabs.net/blog/easter-egg-friday-12</loc>
+		<lastmod>2026-01-23</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<url>
 		<loc>https://heatlabs.net/blog/exploring-animation-and-movement-desync</loc>
 		<lastmod>2026-01-16</lastmod>
 		<changefreq>weekly</changefreq>
