@@ -1358,6 +1358,12 @@
 		<priority>0.6</priority>
 	</url>
 	<url>
+		<loc>https://heatlabs.net/steam-news/the-source-of-heat</loc>
+		<lastmod>2026-01-29</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<url>
 		<loc>https://heatlabs.net/steam-news/announcing-world-of-tanks-heat</loc>
 		<lastmod>2026-01-25</lastmod>
 		<changefreq>weekly</changefreq>
