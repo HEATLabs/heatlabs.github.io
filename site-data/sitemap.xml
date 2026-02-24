@@ -1586,6 +1586,12 @@
 		<priority>0.6</priority>
 	</url>
 	<url>
+		<loc>https://heatlabs.net/tournaments/brackets</loc>
+		<lastmod>2026-02-24</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<url>
 		<loc>https://heatlabs.net/tournaments/open-alpha-1-tournament</loc>
 		<lastmod>2026-01-25</lastmod>
 		<changefreq>weekly</changefreq>
