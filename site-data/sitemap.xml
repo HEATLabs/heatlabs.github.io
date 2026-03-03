@@ -266,6 +266,12 @@
 		<priority>0.6</priority>
 	</url>
 	<url>
+		<loc>https://heatlabs.net/blog/are-we-approaching-the-launch.html</loc>
+		<lastmod>2026-03-03</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<url>
 		<loc>https://heatlabs.net/blog/alpha-2-fuel-crit-multiplier</loc>
 		<lastmod>2026-02-24</lastmod>
 		<changefreq>weekly</changefreq>
