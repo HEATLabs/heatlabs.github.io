@@ -1424,6 +1424,12 @@
 		<priority>0.6</priority>
 	</url>
 	<url>
+		<loc>https://heatlabs.net/steam-news/announcing-the-heat-creators-contest</loc>
+		<lastmod>2026-03-13</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<url>
 		<loc>https://heatlabs.net/tanks/agds</loc>
 		<lastmod>2026-02-24</lastmod>
 		<changefreq>weekly</changefreq>
