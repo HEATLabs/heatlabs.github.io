@@ -1424,6 +1424,18 @@
 		<priority>0.6</priority>
 	</url>
 	<url>
+		<loc>https://heatlabs.net/steam-news/points-of-contact</loc>
+		<lastmod>2026-03-26</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<url>
+		<loc>https://heatlabs.net/steam-news/closed-beta-starts-april-16</loc>
+		<lastmod>2026-04-09</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<url>
 		<loc>https://heatlabs.net/steam-news/announcing-the-heat-creators-contest</loc>
 		<lastmod>2026-03-13</lastmod>
 		<changefreq>weekly</changefreq>

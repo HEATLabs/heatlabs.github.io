@@ -3,6 +3,28 @@
 	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
 	xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 	<url>
+		<loc>https://heatlabs.net/steam-news/closed-beta-starts-april-16</loc>
+		<news:news>
+			<news:publication>
+				<news:name>HEAT Labs</news:name>
+				<news:language>en</news:language>
+			</news:publication>
+			<news:publication_date>2026-04-09T00:00:00+02:00</news:publication_date>
+			<news:title>The HEAT Closed Beta Starts April 16</news:title>
+		</news:news>
+	</url>
+	<url>
+		<loc>https://heatlabs.net/steam-news/points-of-contact</loc>
+		<news:news>
+			<news:publication>
+				<news:name>HEAT Labs</news:name>
+				<news:language>en</news:language>
+			</news:publication>
+			<news:publication_date>2026-03-26T00:00:00+02:00</news:publication_date>
+			<news:title>Points of Contact</news:title>
+		</news:news>
+	</url>
+	<url>
 		<loc>https://heatlabs.net/steam-news/announcing-the-heat-creators-contest</loc>
 		<news:news>
 			<news:publication>
